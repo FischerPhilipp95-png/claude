@@ -7,7 +7,7 @@ export const SITE = {
   author: 'Philipp Fischer',
   email: 'flpspring@gmail.com',
   youtube: 'https://www.youtube.com/@derhandwerksdoktor',
-  amazonTag: '',
+  amazonTag: 'rechn24-21',
 };
 
 /** Amazon-Suchlink. Bewusst Suche statt einzelner Produkte, solange keine Produkte selbst geprüft sind. */

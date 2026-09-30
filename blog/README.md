@@ -25,6 +25,6 @@
 - [ ] IONOS: Statistik/„Web Analytics“ im Hosting-Paket ausgeschaltet lassen
 - [ ] Blog hochladen (siehe `site/README.md`), danach Kontaktformular einmal selbst testen
 - [ ] Gewerbe anmelden, Kleinunternehmerregelung/USt-IdNr. klären
-- [ ] Amazon-PartnerNet-Konto, danach Partner-Tag in `site/src/site.ts` eintragen
+- [x] Amazon-Partner-Tag `rechn24-21` in `site/src/site.ts` eingetragen
 - [ ] Google Search Console + Bing Webmaster Tools, Sitemap einreichen
 - [ ] Rechtstexte prüfen lassen (Rechtstexte-Abo oder Anwalt), siehe `recht/checkliste.md`
