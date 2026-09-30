@@ -18,7 +18,7 @@ Deshalb gilt für den Aufbau:
 | Amazon-Produkte | Textlinks und Buttons, **keine** Amazon-Bilder per Hotlink | Hotlink-Bilder übertragen die IP an Amazon ohne Einwilligung |
 | YouTube | Vorschaubild vom eigenen Server, Video erst nach Klick (youtube-nocookie) | ein normales iframe lädt sofort Google-Dienste |
 | Statistik | erstmal nur Google Search Console (läuft ohne Code auf der Seite); später höchstens Umami selbst gehostet | kein Tracking = nichts zu erklären |
-| Kontakt | E-Mail + Telefon im Impressum, kein Formular | ein Formular braucht einen Dienst, der Daten verarbeitet |
+| Kontakt | E-Mail + Kontaktformular als kleines PHP-Skript auf dem eigenen Hoster, Spamschutz per Honeypot-Feld | kein Formular-Dienst (Formspree o. Ä.) und kein Google reCAPTCHA, die Daten an Dritte schicken |
 | Kommentare, Newsletter | vorerst nicht | beides bringt eigene Pflichten (Moderation, Double-Opt-in) |
 | Hosting | deutscher/europäischer Hoster mit AV-Vertrag (Art. 28 DSGVO) | keine Übermittlung in Drittländer |
 
@@ -52,8 +52,12 @@ Datenschutzerklärung (`datenschutz.md`) ist genau auf diesen Aufbau geschrieben
   ab, sonst kann der Dienst nicht genutzt werden. Schreibweise genau:
   `c/o Postflex #PFX-780-231`, Vertrags-ID im Kundenkonto gegenprüfen.
 - **E-Mail ist Pflicht**, dazu ein zweiter schneller Kontaktweg: EuGH C-298/07 verlangt keine
-  Telefonnummer, aber sonst ein Kontaktformular. Einfachste Lösung: Telefonnummer
-  (z. B. günstige VoIP-/Zweitnummer, keine teure 0900-Nummer).
+  Telefonnummer, aber dann ein Kontaktformular. Wir nehmen das Formular (`/kontakt`).
+  Anfragen darüber zeitnah beantworten.
+- E-Mail im Impressum: `flpspring@gmail.com`. Rechtlich in Ordnung, steht in der
+  Datenschutzerklärung. Zwei Tipps: Die Adresse wird öffentlich und bekommt Spam. Und sauberer
+  ist später ein Postfach beim Hoster (`kontakt@[DOMAIN]`, meist im Paket enthalten), weil dann
+  keine Mails über Google laufen.
 - Von jeder Seite mit einem Klick erreichbar (Footer), Link heißt „Impressum“.
 - **Auch der YouTube-Kanal braucht ein Impressum**, sobald er Geld verdient: Link zum
   Blog-Impressum in „Kanal-Info → Links“ eintragen.

@@ -2,10 +2,12 @@
 Entwurf (Stand 30.09.2026), keine Rechtsberatung.
 Dieser Text passt NUR zu dem Aufbau, der in blog/recht/checkliste.md festgelegt ist:
 statische Seite, keine Cookies, keine Google Fonts, keine Amazon-Bilder per Hotlink,
-YouTube nur per Klick, keine Kommentare, kein Newsletter, kein Kontaktformular.
-Wird etwas davon geändert (z. B. Analytics, Kontaktformular, Newsletter), MUSS dieser Text angepasst werden.
+YouTube nur per Klick, keine Kommentare, kein Newsletter,
+Kontaktformular per PHP auf dem eigenen Hoster (kein Formular-Dienst, kein reCAPTCHA).
+Wird etwas davon geändert (z. B. Analytics, Formular-Dienst, Newsletter), MUSS dieser Text angepasst werden.
 
-Vor dem Livegang ausfüllen: [E-MAIL], [DOMAIN], [HOSTER: Name, Anschrift] (Abschnitt 3).
+Vor dem Livegang ausfüllen: [DOMAIN], [HOSTER: Name, Anschrift] (Abschnitt 3).
+Wechselt die Kontakt-E-Mail von Gmail zu einem Postfach beim Hoster, Abschnitt 4 anpassen.
 Abschnitt 7 (Reichweitenmessung) nur drinlassen, wenn wirklich eingebaut, sonst löschen.
 -->
 
@@ -20,7 +22,7 @@ c/o Postflex #PFX-780-231
 Emsdettener Straße 10
 48268 Greven
 Deutschland
-E-Mail: [E-MAIL]
+E-Mail: flpspring@gmail.com
 
 Ein Datenschutzbeauftragter ist nicht bestellt und gesetzlich nicht erforderlich.
 
@@ -45,10 +47,20 @@ Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren 
 Speicherdauer: Die Logfiles werden nach spätestens [7] Tagen gelöscht, soweit sie nicht zur
 Aufklärung eines konkreten Sicherheitsvorfalls länger benötigt werden.
 
-## 4. Kontakt per E-Mail
+## 4. Kontakt per E-Mail und Kontaktformular
 
-Wenn du mir eine E-Mail schreibst, verarbeite ich deine Angaben (E-Mail-Adresse, Name, Inhalt),
-um deine Anfrage zu beantworten.
+Wenn du mir eine E-Mail schreibst oder das Kontaktformular nutzt, verarbeite ich deine Angaben
+(Name, E-Mail-Adresse, Nachricht), um deine Anfrage zu beantworten. Pflichtfelder sind nur die
+E-Mail-Adresse und die Nachricht.
+
+Das Kontaktformular wird direkt auf dem unter Nr. 3 genannten Server verarbeitet und von dort
+als E-Mail an mich geschickt. Es wird kein externer Formular-Dienst und kein Captcha-Dienst
+eingesetzt.
+
+Mein E-Mail-Postfach wird bei Google (Gmail, Google Ireland Limited, Gordon House,
+Barrow Street, Dublin 4, Irland) geführt. Deine Nachricht wird daher auf Servern von Google
+gespeichert. Eine Übermittlung in die USA ist möglich. Google ist unter dem
+EU-US Data Privacy Framework zertifiziert (Art. 45 DSGVO).
 Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO, bei vertragsbezogenen Anfragen Art. 6 Abs. 1 lit. b DSGVO.
 Die Daten werden gelöscht, sobald die Anfrage erledigt ist und keine gesetzlichen
 Aufbewahrungspflichten entgegenstehen.
@@ -121,7 +133,7 @@ Du hast jederzeit das Recht auf:
 DSGVO verarbeite, kannst du aus Gründen, die sich aus deiner besonderen Situation ergeben,
 jederzeit widersprechen.
 
-Eine formlose E-Mail an [E-MAIL] genügt.
+Eine formlose E-Mail an flpspring@gmail.com genügt.
 
 ## 12. Beschwerderecht bei der Aufsichtsbehörde
 

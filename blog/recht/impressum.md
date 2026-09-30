@@ -1,6 +1,8 @@
 <!--
 Entwurf (Stand 30.09.2026), keine Rechtsberatung.
-Vor dem Livegang ausfüllen: [E-MAIL], [TELEFON ODER KONTAKTFORMULAR], [DOMAIN].
+Vor dem Livegang ausfüllen: [DOMAIN].
+Zweiter Kontaktweg neben der E-Mail ist das Kontaktformular (EuGH C-298/07: Telefon nicht nötig).
+Anfragen darüber zeitnah beantworten, sonst zählt es nicht als „schneller“ Kontaktweg.
 Die Postflex-Schreibweise („c/o Postflex #Vertrags-ID“) stammt aus dem Postflex-Gutachten der
 IT-Recht Kanzlei (17.02.2026). Vertrags-ID bitte mit dem Postflex-Kundenkonto abgleichen.
 Kein Link zur EU-OS-Plattform (Streitschlichtung): Die Plattform wurde am 20.07.2025 abgeschaltet.
@@ -18,8 +20,8 @@ Deutschland
 
 ## Kontakt
 
-E-Mail: [E-MAIL]
-Telefon: [TELEFON ODER KONTAKTFORMULAR]
+E-Mail: flpspring@gmail.com
+Kontaktformular: [DOMAIN]/kontakt
 
 ## Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
 

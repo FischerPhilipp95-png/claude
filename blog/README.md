@@ -14,11 +14,11 @@ Punkte unten geklärt sind.
 
 ## Offen vor dem Livegang
 
-- [ ] E-Mail-Adresse fürs Impressum (am besten eigene, z. B. `kontakt@[DOMAIN]`)
-- [ ] zweiter Kontaktweg: Telefonnummer (empfohlen) oder Kontaktformular
+- [x] E-Mail-Adresse fürs Impressum: `flpspring@gmail.com` (später optional `kontakt@[DOMAIN]`)
+- [x] zweiter Kontaktweg: Kontaktformular (keine Telefonnummer nötig)
 - [ ] Postflex: Zustellungsvollmacht erteilt, Vertrags-ID `#PFX-780-231` bestätigt, AV-Vertrag
 - [ ] Markenrecherche „Handwerksdoktor“ (DPMA, EUIPO), danach Domain
-- [ ] Hoster wählen (Deutschland/EU, AV-Vertrag) und in `datenschutz.md` eintragen
+- [ ] Hoster wählen (Deutschland/EU, **mit PHP** fürs Kontaktformular, AV-Vertrag) und in `datenschutz.md` eintragen
 - [ ] Gewerbe anmelden, Kleinunternehmerregelung/USt-IdNr. klären
 - [ ] Amazon-PartnerNet-Konto
 - [ ] Rechtstexte prüfen lassen (Rechtstexte-Abo oder Anwalt), siehe `recht/checkliste.md`
