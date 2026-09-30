@@ -38,3 +38,22 @@ der Cloud-Umgebung freigegeben ist. Ein 403 beim Download bedeutet: Domain nicht
 - Shorts: 1080x1920, 60 fps, ca. 20 s, Labels über y = 1440 (Shorts-Oberfläche verdeckt unten).
 - Zu jedem Video gehört eine `youtube.md` mit Titel, Beschreibung (inkl. Quelle), Tags und angeheftetem Kommentar.
 - Vorlage für neue Projekte: `projects/klima-short/` (build.sh, render.mjs, music.py).
+
+## Thumbnails (Standard, vom Nutzer als „mega“ bestätigt)
+
+Vorlage: `projects/heizung-video/thumbnail_real.mjs` (Thumbnails G/H/I). Zu jedem Video 3 solche Thumbnails, 1280x720:
+- **Echtes Foto als Vollbild** (Wikimedia Commons, bevorzugt CC0/gemeinfrei; CC BY nur mit Nennung in der Beschreibung;
+  CC BY-SA nicht beschneiden). Lizenz in `photos/credits.json` festhalten.
+- **Riesige Schrift** Inter 800, weiß + eine Akzentfarbe (Gelb `#ffd400`, Rot `#e8201c`, Blau `#39a8ff`), dicke schwarze Kontur,
+  max. 2–3 Wörter pro Zeile. Kurze Frage oder Neugier-Lücke: „OBEN KALT?“, „DIESES 1€-TEIL …“, „DAS HIER PRÜFEN!“.
+- **Roter/gelber Kreis** um das entscheidende Detail im Foto, weißer Pfeil mit schwarzem Rand dorthin.
+- **Pill-Badge** mit einer echten Zahl aus der Recherche (z. B. „BIS ZU −15 %“, „1,2–2 bar?“), keine erfundenen Werte.
+- **Kanal-Person** (`assets/channel_person_cutout.png`) mit Schatten am Rand, dazu Vignette und Abdunklung hinter dem Text.
+- Effekte passend zum Thema, z. B. Wärmebild-Look (Farbverlauf per `color`-Blend) oder Figur aus dem Video als Akzent.
+
+## Amazon-Partnerlinks
+
+- StoreID des Nutzers: `rechn24-21`. In jede `youtube.md` einen Block „🛒 Das brauchst du (Amazon)*“ mit passenden Produkten
+  als Suchlinks `https://www.amazon.de/s?k=<Suchbegriff>&tag=rechn24-21`, plus Kennzeichnung
+  „*Affiliate-Links: Als Amazon-Partner verdiene ich an qualifizierten Verkäufen. Für dich ändert sich der Preis nicht.“
+- Zusätzlich eine Variante des angehefteten Kommentars mit dem wichtigsten Produktlink.
