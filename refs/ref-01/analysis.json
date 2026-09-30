@@ -1,0 +1,51 @@
+{
+  "name": "ref-01",
+  "source": "refs/ref-01/video.mp4",
+  "duration": 32.92,
+  "width": 1920,
+  "height": 1080,
+  "fps": 60.0,
+  "has_audio": true,
+  "aspect": "16:9",
+  "frame_step": 0.5,
+  "frames": 66,
+  "cuts": [],
+  "shots": [
+    32.92
+  ],
+  "palette": [
+    {
+      "hex": "#f5f5f0",
+      "share": 0.869
+    },
+    {
+      "hex": "#f4f4ef",
+      "share": 0.047
+    },
+    {
+      "hex": "#efeeeb",
+      "share": 0.02
+    },
+    {
+      "hex": "#f6f7f1",
+      "share": 0.018
+    },
+    {
+      "hex": "#e4e3e1",
+      "share": 0.018
+    },
+    {
+      "hex": "#f8f9f3",
+      "share": 0.011
+    },
+    {
+      "hex": "#d1cdc8",
+      "share": 0.009
+    },
+    {
+      "hex": "#9fa09c",
+      "share": 0.008
+    }
+  ],
+  "audio": null
+}
