@@ -1,20 +1,32 @@
-# YouTube-Video: Titel und Beschreibung
+# YouTube-Paket: „Wie kommt der Strom in dein Haus?“
 
-## Titel
+## Thumbnails (in YouTube Studio → „Testen und vergleichen“ alle drei hochladen)
 
-**Wie kommt der Strom in dein Haus? Vom Kraftwerk bis zur Steckdose – einfach erklärt**
+| Datei | Idee | Warum es klickt |
+|---|---|---|
+| `out/thumbnail_A.png` | **380.000 V ↓ 230 V** + geschockter Funke | Zahl mit Fallhöhe, macht neugierig („wie geht das?“) |
+| `out/thumbnail_B.png` | **Woher kommt dein Strom?** Funke guckt aus der Steckdose | direkte Frage an den Zuschauer, Alltagsbezug |
+| `out/thumbnail_C.png` | **Vom Kraftwerk bis zur Steckdose** + Funke mit Schweif | verspricht die komplette Reise, passt 1:1 zum Titel |
 
-Alternativen:
-- Die Reise des Stroms: Kraftwerk, Umspannwerk, Sicherungskasten, Steckdose ⚡
-- So kommt Strom zu dir nach Hause (380.000 Volt bis 230 Volt einfach erklärt)
+YouTube zeigt die drei gleichmäßig verteilt und wählt nach ein paar Tagen automatisch den Gewinner (nach Wiedergabezeit).
+
+## Titel (unter 60 Zeichen, damit nichts abgeschnitten wird)
+
+**Wie kommt der Strom in dein Haus? (380.000 V → 230 V)**
+
+Alternativen zum Testen:
+- Woher kommt dein Strom wirklich? Vom Kraftwerk bis zur Steckdose
+- Die unglaubliche Reise des Stroms bis in deine Steckdose ⚡
+- Strom einfach erklärt: Kraftwerk, Sicherungskasten, FI-Schalter
 
 ## Beschreibung
 
 ```
-Du drückst auf den Lichtschalter und das Licht ist sofort an. Aber woher kommt der Strom eigentlich? ⚡
-In diesem Video verfolgen wir die komplette Reise: vom Kraftwerk über Hochspannungsleitungen, Umspannwerk und Trafostation bis in deinen Sicherungskasten und zur Steckdose.
+Du drückst auf den Lichtschalter und das Licht ist sofort an. Aber der Strom dafür hat eine unglaubliche Reise hinter sich: von 380.000 Volt im Kraftwerk bis zu 230 Volt in deiner Steckdose. ⚡
 
-Kapitel:
+In 4 Minuten verstehst du, wie Strom vom Kraftwerk über Hochspannungsleitungen, Umspannwerk und Trafostation in dein Haus kommt, was im Sicherungskasten passiert und warum der FI-Schalter dein Leben retten kann.
+
+⏱️ Kapitel
 0:00 Intro
 0:19 Kraftwerk: Turbine, Generator und die Ausnahme Solar
 0:42 Hochspannung: Warum bis zu 380.000 Volt?
@@ -27,38 +39,56 @@ Kapitel:
 3:56 Die ganze Reise in 20 Sekunden
 4:19 Sicherheitshinweis
 
-Das Wichtigste:
+💡 Das Wichtigste in Kürze
 ⚡ Höchstspannung bis 380.000 Volt, weil hohe Spannung weniger Verluste bedeutet
 ⚡ Umspannwerk und Trafostation senken die Spannung Schritt für Schritt
 ⚡ Im Haus: 230 Volt an der Steckdose, 400 Volt für Herd und Durchlauferhitzer
 ⚡ Leitungsschutzschalter schützen die Leitungen, der FI-Schalter schützt dich (30 mA)
 ⚡ Der grün-gelbe Schutzleiter leitet Fehlerströme sicher ab
 
-⚠️ Arbeiten an der Elektroinstallation gehören in die Hände einer Elektrofachkraft.
+⚠️ Arbeiten an der Elektroinstallation gehören immer in die Hände einer Elektrofachkraft.
 
-Welche Station hat dich am meisten überrascht? Schreib's in die Kommentare 👇
-
-Quellen: Wikipedia-Artikel „Stromnetz“, „Umspannwerk“, „Transformatorenstation“, „Hausanschlusskasten“, „Leitungsschutzschalter“, „Fehlerstrom-Schutzschalter“, „Schutzleiter“, „Kraftwerk“
-Inspiriert von „How Electricity Works in a House From Start to Finish“ (ResCom Contractors), angepasst an das deutsche Stromnetz.
+💬 Welche Station hat dich am meisten überrascht? Schreib's in die Kommentare!
 
 🔔 Abonniere @derhandwerksdoktor für mehr Haustechnik und Heimwerker-Wissen, kurz und verständlich erklärt.
 
-#Strom #Elektrik #Haustechnik #Sicherungskasten #Heimwerken
+📚 Quellen: Wikipedia-Artikel „Stromnetz“, „Umspannwerk“, „Transformatorenstation“, „Hausanschlusskasten“, „Leitungsschutzschalter“, „Fehlerstrom-Schutzschalter“, „Schutzleiter“, „Kraftwerk“
+Inspiriert von „How Electricity Works in a House From Start to Finish“ (ResCom Contractors), angepasst an das deutsche Stromnetz.
+
+#Strom #Elektrik #Haustechnik
 ```
 
-## Tags (Feld „Tags“ in YouTube Studio)
+Die ersten zwei Sätze erscheinen in der Suche und unter dem Video, bevor man auf „mehr“ tippt. Deshalb stehen dort Hook und Suchbegriffe.
+Die ersten drei Hashtags zeigt YouTube über dem Titel an. Deshalb sind es nur drei, ohne Hashtag-Spam.
 
-strom, wie kommt der strom ins haus, stromnetz, hochspannung, umspannwerk, trafostation, hausanschluss,
-stromzähler, sicherungskasten, fi schalter, leitungsschutzschalter, schutzleiter, steckdose, elektrik einfach erklärt,
-haustechnik, heimwerken, der handwerksdoktor
+## Tags (Feld „Tags“ in YouTube Studio, unter 500 Zeichen)
+
+```
+wie kommt der strom ins haus, woher kommt der strom, strom einfach erklärt, stromnetz erklärt, hochspannung, 380 kv, umspannwerk, trafostation, hausanschlusskasten, stromzähler, sicherungskasten, fi schalter, leitungsschutzschalter, schutzleiter, schuko steckdose, 230 volt, elektrik grundlagen, haustechnik, heimwerken, der handwerksdoktor
+```
 
 ## Angehefteter Kommentar
 
 ```
-Wusstest du, dass der FI-Schalter bei nur 30 Milliampere abschaltet? ⚡ Soll ich in einem eigenen Video zeigen, wie du ihn richtig testest?
+Wusstest du, dass der FI-Schalter schon bei 30 Milliampere Fehlerstrom abschaltet, in Bruchteilen einer Sekunde? ⚡
+Frage an dich: Wann hast du das letzte Mal die Prüftaste an deinem FI gedrückt? 👇
 ```
 
-## Thumbnail-Idee
+Eine konkrete Frage bringt deutlich mehr Antworten als „Schreibt in die Kommentare“, und Kommentare sind ein starkes Signal für den Algorithmus.
 
-Schwarzer Hintergrund, der hellgraue Strom-Kreis mit `> <`-Augen in der Mitte, links ein orangener Kraftwerk-Kreis mit `+ +`,
-rechts eine Steckdose. Großer Text: **„380.000 V → 230 V“**.
+## Endcard und Karten (YouTube Studio → Editor)
+
+- **Endbildschirm** (letzte 20 s, ab ca. 4:18): „Abonnieren“ und „Bestes für Zuschauer“ (YouTube wählt dein passendstes Video).
+- **Karte** bei 2:14 (Sicherungskasten): Link auf ein späteres Video, z. B. „FI-Schalter richtig testen“, sobald es existiert.
+
+## Reichweite: So pushst du das Video
+
+1. **Shorts als Zubringer:** 2–3 Shorts aus dem Video schneiden, jeder mit Link aufs lange Video („Ganzes Video“ als verknüpftes Video in den Short-Einstellungen). Beste Kandidaten:
+   - **„Warum 380.000 Volt?“** (0:42–1:06)
+   - **„Dieser Schalter rettet Leben“** (FI-Schalter, 2:40–2:51)
+   - **„Die ganze Reise in 20 Sekunden“** (3:56–4:19), schon fast ein fertiger Short
+2. **Community-Post** am Tag davor: Umfrage „Wie viel Volt kommen aus dem Kraftwerk? 230 / 10.000 / 380.000“.
+3. **Uhrzeit:** Für deutsche Heimwerker-Zuschauer eher abends unter der Woche (ca. 17–19 Uhr) oder Samstagvormittag. Am besten in YouTube Studio → Analytics → „Wann deine Zuschauer auf YouTube sind“ nachsehen.
+4. **Erste Stunde:** Kommentare schnell beantworten, das hält die Diskussion am Laufen.
+
+Ehrlich gesagt: Garantieren kann Viralität niemand. Diese Punkte (starkes Thumbnail, klarer Titel, gute Zuschauerbindung durch Kapitel und schnelles Tempo, Shorts als Zubringer) erhöhen aber die Chancen deutlich.
