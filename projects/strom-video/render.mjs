@@ -119,6 +119,101 @@ function spark(ctx, t, x, y, r, expr, o = {}) {
   face(ctx, x, y, r, C.S, expr, { scale: sc, a, seed: 1, squash: 0.045 * kick, look: o.look });
 }
 
+// Stations-Figuren: jede Station hat eine erkennbare Form, dazu Augen aus Zeichen.
+// kind: turbine | pylon | transformer | house | hak | meter | breaker | circuit | socket
+function eyesAt(ctx, expr, x1, y1, x2, y2, s, col) {
+  if (!expr) return;
+  ctx.strokeStyle = col; ctx.lineWidth = s * 0.42; ctx.lineCap = 'butt'; ctx.lineJoin = 'miter';
+  eye(ctx, expr[0], x1, y1, s, -0.1); eye(ctx, expr[1] ?? expr[0], x2, y2, s, 0.1);
+}
+function station(ctx, t, kind, x, y, r, expr, o = {}) {
+  const sc = o.scale ?? 1, a = o.a ?? 1;
+  if (sc <= 0.001 || a <= 0.001) return;
+  const kick = 0.045 * Math.exp(-sinceBeat(t) / 0.06);
+  ctx.save(); ctx.globalAlpha *= a; ctx.translate(x, y); ctx.scale(sc * (1 + kick), sc * (1 - kick));
+  const es = r * 0.17; // Augengröße
+  switch (kind) {
+    case 'turbine': { // drei Schaufeln drehen sich um die Nabe
+      const spin = o.spin ?? t * 2.5;
+      ctx.fillStyle = C.O;
+      for (let k = 0; k < 3; k++) {
+        ctx.save(); ctx.rotate(spin + (k * Math.PI * 2) / 3);
+        ctx.beginPath(); ctx.moveTo(0, -r * 0.2); ctx.bezierCurveTo(r * 0.5, -r * 0.55, r * 1.3, -r * 0.45, r * 1.4, 0);
+        ctx.bezierCurveTo(r * 1.1, r * 0.22, r * 0.5, r * 0.3, 0, r * 0.2); ctx.closePath(); ctx.fill(); ctx.restore();
+      }
+      ctx.fillStyle = C.O; ctx.strokeStyle = '#000'; ctx.lineWidth = r * 0.08;
+      ctx.beginPath(); ctx.arc(0, 0, r * 0.6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      eyesAt(ctx, expr, -r * 0.22, -r * 0.05, r * 0.22, -r * 0.09, r * 0.12, '#000');
+      break;
+    }
+    case 'pylon': { // Gittermast
+      ctx.strokeStyle = C.P; ctx.lineWidth = r * 0.11; ctx.lineCap = 'butt'; ctx.lineJoin = 'miter';
+      ctx.beginPath();
+      ctx.moveTo(-r * 0.6, r * 1.05); ctx.lineTo(0, -r * 1.05); ctx.lineTo(r * 0.6, r * 1.05);
+      ctx.moveTo(-r * 0.85, -r * 0.55); ctx.lineTo(r * 0.85, -r * 0.55);
+      ctx.moveTo(-r * 0.65, -r * 0.18); ctx.lineTo(r * 0.65, -r * 0.18);
+      ctx.moveTo(-r * 0.4, r * 0.35); ctx.lineTo(r * 0.4, r * 0.35);
+      ctx.moveTo(-r * 0.33, r * 0.35); ctx.lineTo(r * 0.5, r * 1.05); ctx.moveTo(r * 0.33, r * 0.35); ctx.lineTo(-r * 0.5, r * 1.05);
+      ctx.stroke();
+      ctx.fillStyle = C.P; for (const [dx, dy] of [[-0.85, -0.55], [0.85, -0.55], [-0.65, -0.18], [0.65, -0.18]]) { ctx.beginPath(); ctx.arc(dx * r, dy * r + r * 0.1, r * 0.09, 0, Math.PI * 2); ctx.fill(); }
+      eyesAt(ctx, expr, -r * 0.14, r * 0.12, r * 0.14, r * 0.1, r * 0.08, C.W);
+      break;
+    }
+    case 'transformer': { // Schaltzeichen Transformator: zwei verschränkte Ringe, in jedem ein Auge
+      ctx.strokeStyle = C.GR; ctx.lineWidth = r * 0.17;
+      for (const dx of [-0.42, 0.42]) { ctx.beginPath(); ctx.arc(dx * r, 0, r * 0.6, 0, Math.PI * 2); ctx.stroke(); }
+      eyesAt(ctx, expr, -r * 0.55, -r * 0.02, r * 0.55, -r * 0.05, es * 0.9, C.W);
+      break;
+    }
+    case 'house': { // Trafostation: Häuschen mit Blitz-Schild
+      rrect(ctx, -r * 0.8, -r * 0.45, r * 1.6, r * 1.25, r * 0.12, C.BL);
+      line(ctx, [[-r * 0.95, -r * 0.35], [0, -r * 1.0], [r * 0.95, -r * 0.35]], C.BL, r * 0.16);
+      ctx.save(); ctx.translate(r * 0.42, r * 0.42); ctx.scale(r * 0.0018, r * 0.0018); ctx.fillStyle = C.S; ctx.beginPath(); BOLT.forEach(([px, py], i) => (i ? ctx.lineTo(px, py) : ctx.moveTo(px, py))); ctx.closePath(); ctx.fill(); ctx.restore();
+      eyesAt(ctx, expr, -r * 0.3, -r * 0.02, r * 0.1, -r * 0.05, es, '#000');
+      break;
+    }
+    case 'hak': { // Hausanschlusskasten mit Plomben-Schloss
+      rrect(ctx, -r * 0.85, -r * 0.65, r * 1.7, r * 1.3, r * 0.14, C.D);
+      eyesAt(ctx, expr, -r * 0.32, -r * 0.05, r * 0.32, -r * 0.08, es, C.W);
+      rrect(ctx, r * 0.45, -r * 0.95, r * 0.4, r * 0.32, r * 0.06, C.O);
+      ctx.strokeStyle = C.O; ctx.lineWidth = r * 0.08; ctx.beginPath(); ctx.arc(r * 0.65, -r * 0.95, r * 0.13, Math.PI, 0); ctx.stroke();
+      break;
+    }
+    case 'meter': { // Stromzähler mit kWh-Anzeige
+      rrect(ctx, -r * 0.75, -r * 0.95, r * 1.5, r * 1.9, r * 0.16, C.P);
+      eyesAt(ctx, expr, -r * 0.28 + (o.look?.[0] ?? 0), -r * 0.45, r * 0.28 + (o.look?.[0] ?? 0), -r * 0.48, es, '#000');
+      rrect(ctx, -r * 0.58, r * 0.05, r * 1.16, r * 0.42, r * 0.06, '#000');
+      ctx.fillStyle = C.S; ctx.font = `500 ${r * 0.3}px Inter`; ctx.textAlign = 'center';
+      ctx.fillText(o.digits ?? '0042', 0, r * 0.37); ctx.font = `500 ${r * 0.2}px Inter`; ctx.fillStyle = '#000'; ctx.fillText('kWh', 0, r * 0.75); ctx.textAlign = 'left';
+      break;
+    }
+    case 'breaker': { // Sicherung: Schalter mit Hebel
+      rrect(ctx, -r * 0.65, -r * 0.95, r * 1.3, r * 1.9, r * 0.14, C.D);
+      eyesAt(ctx, expr, -r * 0.25, -r * 0.55, r * 0.25, -r * 0.58, es * 0.9, C.W);
+      rrect(ctx, -r * 0.22, -r * 0.15, r * 0.44, r * 0.85, r * 0.08, '#000');
+      const up = o.off ? 0.45 : 0;
+      rrect(ctx, -r * 0.18, -r * 0.1 + up * r, r * 0.36, r * 0.36, r * 0.06, o.off ? C.O : C.GR);
+      break;
+    }
+    case 'circuit': { // Stromkreis: geschlossene Leitung mit Lampe
+      ctx.strokeStyle = C.GR; ctx.lineWidth = r * 0.14; ctx.beginPath(); ctx.roundRect(-r * 0.85, -r * 0.6, r * 1.7, r * 1.3, r * 0.3); ctx.stroke();
+      ctx.fillStyle = C.S; ctx.beginPath(); ctx.arc(0, -r * 0.6, r * 0.26, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#000'; ctx.lineWidth = r * 0.07; ctx.beginPath(); ctx.moveTo(-r * 0.13, -r * 0.73); ctx.lineTo(r * 0.13, -r * 0.47); ctx.moveTo(r * 0.13, -r * 0.73); ctx.lineTo(-r * 0.13, -r * 0.47); ctx.stroke();
+      eyesAt(ctx, expr, -r * 0.3, r * 0.08, r * 0.3, r * 0.05, es * 0.9, C.W);
+      break;
+    }
+    case 'socket': { // Schuko-Steckdose: die Löcher sind die Augen, dazu die Schutzkontakte
+      ctx.fillStyle = C.G; ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.fill();
+      rrect(ctx, -r * 0.18, -r * 0.9, r * 0.36, r * 0.16, r * 0.05, C.GR); rrect(ctx, -r * 0.18, r * 0.74, r * 0.36, r * 0.16, r * 0.05, C.GR);
+      if (!expr || expr === 'oo') { ctx.fillStyle = '#000'; for (const dx of [-0.38, 0.38]) { ctx.beginPath(); ctx.arc(dx * r, 0, r * 0.14, 0, Math.PI * 2); ctx.fill(); } }
+      else eyesAt(ctx, expr, -r * 0.38, 0, r * 0.38, 0, es, '#000');
+      break;
+    }
+    default: break;
+  }
+  ctx.restore();
+}
+
 // Ausdruck wechselt auf jedem Beat ab t0, dazu ein kleiner Squash
 const exprAt = (t, seq, t0 = 0, every = 1) => seq[Math.max(0, Math.floor((beatIndex(t) - beatIndex(t0)) / every)) % seq.length];
 const squashAt = (t) => 0.045 * Math.exp(-sinceBeat(t) / 0.06);
@@ -243,11 +338,11 @@ const SCENES = {
     const gather = easeIn(seg(t, Lt(c, 3) + 0.9, Lt(c, 3) + 1.4));
     const zoom = lerp(8, 1, easeOut(seg(t, 0.3, 1.9)));
     ctx.save(); ctx.translate(CX, CY); ctx.scale(zoom, zoom); ctx.translate(-CX, -CY + 40 * (1 - 1 / zoom));
-    const others = [[C.P, 470, 250, 190, 'oo'], [C.O, 1450, 190, 150, '/ '], [C.GR, 1560, 600, 200, '++'], [C.BL, 1180, 960, 170, 'v '], [C.D, 480, 860, 190, '^^']];
+    const others = [['turbine', 470, 260, 150, 'oo'], ['pylon', 1450, 230, 140, '^^'], ['transformer', 1560, 640, 150, '--'], ['house', 1180, 930, 130, 'oo'], ['socket', 480, 860, 150, 'oo']];
     const t2 = Lt(c, 2);
     others.forEach(([col, x, y, r, e], i) => {
       const p = pop(t, onBeat(t2 + i * 0.25)) * (1 - gather);
-      face(ctx, lerp(x, CX, gather), lerp(y, CY, gather) + bob(t, i), r, col, exprAt(t, [e, '--', 'oo', e, '><'], t2 + i * 0.25), { scale: p, seed: i + 3, squash: squashAt(t) });
+      station(ctx, t, col, lerp(x, CX, gather), lerp(y, CY, gather) + bob(t, i), r, exprAt(t, [e, '--', 'oo', e, '><'], t2 + i * 0.25), { scale: p });
     });
     const mainR = lerp(260, 190, easeInOut(seg(t, t2, t2 + 0.6)));
     spark(ctx, t, CX, CY + bob(t, 0) * (zoom > 1.1 ? 0 : 1), mainR, exprAt(t, E, 0.4), { scale: 1 - gather });
@@ -271,7 +366,7 @@ const SCENES = {
       // Generator + Welle
       const gp = pop(t, T3);
       if (gp > 0) { line(ctx, [[760, 560], [1060, 560]], C.W, 14, dim * gp); face(ctx, 1060, 560, 110, C.D, 'oo', { scale: gp, seed: 21, a: dim }); }
-      face(ctx, 760, 560 + bob(t, 1), 190, C.O, '++', { spin, seed: 20, squash: squashAt(t), a: dim });
+      station(ctx, t, 'turbine', 760, 560 + bob(t, 1), 170, exprAt(t, ['oo', '^^', 'oo', '**'], c.scene, 2), { spin, a: dim });
       const sp = pop(t, onBeat(T3 + 0.9));
       if (sp > 0) { flow(ctx, [[1170, 560], [1350, 560]], t, { n: 5, r: 7, a: dim }); spark(ctx, t, 1350, 560 + bob(t, 3), 90, exprAt(t, ['^^', 'oo', '^^', '**'], T3), { scale: sp, a: dim }); }
       ctx.globalAlpha = 1;
@@ -347,7 +442,7 @@ const SCENES = {
     const T1 = Lt(c, 1), T2 = Lt(c, 2), T3 = Lt(c, 3);
     const move = easeInOut(seg(t, T1, T1 + 0.6)), gone = seg(t, T3 - 0.3, T3 + 0.2);
     withCamera(ctx, t, c, [CX, 470], () => {
-      face(ctx, lerp(CX, 1650, move), lerp(470, 230, move), lerp(170, 80, move), C.GR, exprAt(t, ['--', 'oo', '--', '^^'], c.scene, 2), { seed: 50, squash: squashAt(t) });
+      station(ctx, t, 'transformer', lerp(CX, 1650, move), lerp(470, 230, move), lerp(210, 95, move), exprAt(t, ['--', 'oo', '--', '^^'], c.scene, 2));
     });
     const st = easeOut(seg(t, T1 + 0.2, T1 + 0.8)) * (1 - gone);
     if (st > 0) {
@@ -405,19 +500,12 @@ const SCENES = {
       const P = [[120, 830], [690, 830]];
       line(ctx, P, C.D, 20, hp); flow(ctx, P, t, { n: 8, r: 6, a: hp });
       const kp = pop(t, T1);
-      if (kp > 0) {
-        ctx.save(); ctx.translate(760, 830); ctx.scale(kp, kp);
-        rrect(ctx, -80, -60, 160, 120, 18, C.D);
-        ctx.strokeStyle = C.W; ctx.lineWidth = 9; const e = exprAt(t, ['--', '--', 'oo'], T1); eye(ctx, e[0], -34, -6, 18, 0); eye(ctx, e[1], 34, -6, 18, 0);
-        ctx.restore();
-        const lp = pop(t, onBeat(inLine(c, 1, 0.45)));
-        if (lp > 0) { ctx.save(); ctx.translate(760, 725); ctx.scale(lp, lp); rrect(ctx, -26, -14, 52, 40, 8, C.O); ctx.strokeStyle = C.O; ctx.lineWidth = 8; ctx.beginPath(); ctx.arc(0, -14, 17, Math.PI, 0); ctx.stroke(); ctx.restore(); }
-      }
+      station(ctx, t, 'hak', 760, 830, 72, exprAt(t, ['--', '--', 'oo'], T1), { scale: kp });
       const mp = pop(t, T2);
       if (mp > 0) {
         flow(ctx, [[840, 830], [960, 830]], t, { n: 3, r: 6, a: mp });
         const look = [9 * Math.sin(t * 5), 0];
-        face(ctx, 1040, 830, 72, C.P, 'oo', { scale: mp, seed: 70, look, squash: squashAt(t) });
+        station(ctx, t, 'meter', 1040, 820, 62, 'oo', { scale: mp, look, digits: String(Math.floor(1234 + (t - T2) * 0.9)).padStart(4, '0') });
       }
     });
     const cp = seg(t, T2 + 0.5, T2 + 0.8);
@@ -514,7 +602,7 @@ const SCENES = {
       const a0 = t < T2 ? 1 : 1 - seg(t, T2 - 0.35, T2);
       if (a0 > 0) {
         line(ctx, [[120, 900], [660, 900], [660, 690]], C.W, 6, a0 * 0.6); line(ctx, [[660, 900], [1260, 900], [1260, 640]], C.W, 6, a0 * 0.6);
-        face(ctx, 660, 520, 160, C.G, 'oo', { seed: 110, a: a0, squash: squashAt(t), eyeCol: '#000' });
+        station(ctx, t, 'socket', 660, 520, 160, 'oo', { a: a0 });
         ctx.save(); ctx.globalAlpha = a0; ctx.translate(1260, 520); rrect(ctx, -100, -120, 200, 240, 30, C.D); ctx.strokeStyle = C.W; ctx.lineWidth = 12;
         const e = exprAt(t, ['--', 'oo'], c.scene, 2); eye(ctx, e[0], -40, -10, 22, 0); eye(ctx, e[1], 40, -10, 22, 0); ctx.restore();
         buildLine(ctx, [['Steckdose', C.W]], 660, 780, 52, t, c.scene + 0.3, T2 - 0.4);
@@ -580,13 +668,13 @@ const SCENES = {
 
   9(ctx, t, c) { // Die ganze Reise
     const T1 = Lt(c, 1), T2 = Lt(c, 2);
-    const st = [[C.O, '++', 'Turbine'], [C.P, '//', 'Hochspannung'], [C.GR, '--', 'Umspannwerk'], [C.BL, 'oo', 'Trafostation'], [C.D, '--', 'Hausanschluss'], [C.P, 'oo', 'Zähler'], [C.D, '><', 'Sicherung'], [C.GR, '^^', 'Stromkreis'], [C.G, 'oo', 'Steckdose']];
+    const st = [['turbine', 'oo', 'Turbine'], ['pylon', '^^', 'Hochspannung'], ['transformer', '--', 'Umspannwerk'], ['house', 'oo', 'Trafostation'], ['hak', '--', 'Hausanschluss'], ['meter', 'oo', 'Zähler'], ['breaker', '><', 'Sicherung'], ['circuit', '^^', 'Stromkreis'], ['socket', 'oo', 'Steckdose']];
     const gather = easeIn(seg(t, T2 + 0.2, T2 + 0.8));
     withCamera(ctx, t, c, [CX, CY], () => {
       st.forEach(([col, e, name], i) => {
         const x = 170 + i * 197, pass = inLine(c, 1, (i + 0.5) / 9.5), hit = Math.exp(-Math.max(0, t - pass) / 0.12) * (t > pass ? 1 : 0);
         const p = pop(t, onBeat(Lt(c, 0) + 0.2 + i * 0.245)) * (1 - gather);
-        face(ctx, lerp(x, CX, gather), CY + bob(t, i) * 0.5, 62, col, t > pass ? exprAt(t, [e, '^^', e], pass) : e, { scale: p * (1 + 0.25 * hit), seed: 130 + i, spin: i === 0 ? t * 4 : 0 });
+        station(ctx, t, col, lerp(x, CX, gather), CY + bob(t, i) * 0.5, 58, t > pass ? exprAt(t, [e, '^^', e], pass) : e, { scale: p * (1 + 0.25 * hit), spin: t * (t > pass ? 8 : 3) });
         buildText(ctx, name, x - textModel(name, 28).w / 2, CY + 120 + (i % 2) * 44, 28, C.W, t, pass - 0.1, T2 + 0.2);
       });
       if (t > T1 && t < T2 + 0.3) {
@@ -605,8 +693,9 @@ const SCENES = {
       const r = 170 * ap;
       ctx.save(); ctx.beginPath(); ctx.arc(CX, 420, r, 0, Math.PI * 2); ctx.clip();
       ctx.drawImage(avatar, CX - r, 420 - r, 2 * r, 2 * r); ctx.restore();
-      [[C.P, 700, 300, 60, 'oo'], [C.O, 1230, 250, 50, '^^'], [C.GR, 1270, 560, 64, '++'], [C.BL, 640, 580, 48, '><']].forEach(([col, x, y, rr, e], i) =>
-        face(ctx, x, y + bob(t, i), rr, col, exprAt(t, [e, '**', e, '--'], T1 + i * 0.49), { scale: pop(t, onBeat(T1 + 0.5 + i * 0.25)), seed: 140 + i, squash: squashAt(t) }));
+      [['turbine', 690, 300, 55, 'oo'], ['socket', 1240, 260, 50, 'oo'], ['transformer', 1280, 560, 60, '^^'], ['meter', 640, 590, 48, '><']].forEach(([kind, x, y, rr, e], i) =>
+        station(ctx, t, kind, x, y + bob(t, i), rr, exprAt(t, [e, '**', e, '--'], T1 + i * 0.49), { scale: pop(t, onBeat(T1 + 0.5 + i * 0.25)) }));
+      spark(ctx, t, 1180, 430, 44, '^^', { scale: pop(t, onBeat(T1 + 1.5)) });
       buildLine(ctx, [['Der Handwerksdoktor', C.W]], CX, 720, 80, t, T1 + 0.4);
       buildLine(ctx, [['[', C.P], ['@derhandwerksdoktor', C.GR], [']', C.P]], CX, 810, 48, t, T1 + 0.8, Infinity, 0.12);
     }
@@ -699,4 +788,6 @@ async function main() {
   console.log(`\r${out}`);
 }
 
-main();
+// Figuren auch für Thumbnails nutzbar; main() nur beim direkten Aufruf
+export { face, spark, station, rrect, line, C, B as BEAT_TIMES };
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
