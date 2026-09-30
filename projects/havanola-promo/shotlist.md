@@ -1,25 +1,27 @@
-# Shotlist: HAVANOLA Werbevideo
+# Shotlist: HAVANOLA Werbevideo (Instagram)
 
-- **Format:** 1920x1080, 60 fps, **ca. 39 s** (22 Takte bei 136 BPM), danach optional eine 9:16-Fassung für Instagram und Reels.
-- **Ohne Sprecher**, nur Text, Musik und Sounds.
-- Alle Aussagen stammen von havanola.com (Startseite, „Ihre Vorteile“, „Über uns“).
+- **Format:** 1080x1920 (9:16, Reels/Story), 60 fps, **23 Takte à 136 BPM = 40,6 s**.
+- **Sicherheitszone Reels-Anzeigen:** Texte zwischen y ≈ 270 und 1300 (oben 14 %, unten ~35 % verdeckt die Instagram-Oberfläche).
+- **Ohne Sprecher**, nur Text, Musik und Sounds (funktioniert auch stumm).
+- Alle Aussagen stammen von havanola.com (Startseite, „Ihre Vorteile“, „Über uns“) und vom Instagram-Beitrag „Aus alt wird neu“ (@havanola_gmbh).
+- Telefon: **06021 – 44 99 667** (vom Nutzer bestätigt).
 
-| # | Zeit | Takte | Bild (Grammatik aus ref-04) | Text im Bild |
+| # | Takte | Zeit | Bild (Grammatik aus ref-04) | Text im Bild |
 |---|---|---|---|---|
-| 1 | 0:00–0:03 | 1½ | Weicher Verlauf in Petrol und Sand, darin unscharf die Silhouette eines Team-Porträts in einem abgerundeten Rahmen, der kleiner wird. Pixel-Glitch-Streifen zum Abgang. | *Geerbte, abgewohnte oder zu große Wohnung?* |
-| 2 | 0:03–0:05 | 1½ | Off-White, Klammer-Wörter wachsen Wort für Wort, 4 Eck-Marker springen im Takt. | `{ Wir }` → `{ Wir kaufen }` → `{ Wir kaufen direkt. }` |
-| 3 | 0:05–0:07 | 1 | Das Logo-Wort öffnet sich, kleine Team-Fotos schieben sich hinein, Pfeile ← →. | `{HAVA` [Fotos] `NOLA}` |
-| 4 | 0:07–0:10 | 2 | Büro-Foto mit leuchtendem HAVANOLA-Schild erscheint als Falschfarben-Bild und wird dann echt, langsamer Zoom aufs Schild. | – |
-| 5 | 0:10–0:14 | 2 | Halbton-Raster im HAVANOLA-Stil, Eingabezeile mit Cursor, Text wird getippt, Kamera zoomt riesig ins Getippte. | *Wohnung verkaufen – fair, diskret, ohne Umwege* |
-| 6 | 0:14–0:18 | 2 | Status-Liste wie „Building Image“: Einträge ploppen nacheinander auf, das Status-Wort färbt sich Sand, dann Petrol, dann ✓. | **Ihr Verkauf**<br>Provisionsfrei · *Abwicklung ohne Provision*<br>Geringer Aufwand · *wir kümmern uns*<br>Fairer Preis · *ehrlich und transparent*<br>Kein Risiko · *wir kaufen „wie gesehen“* |
-| 7 | 0:18–0:26 | 4 | Punkt-Raster baut ein Porträt, dann erscheint das echte Team-Porträt. Weitere Team-Porträts ploppen auf und stapeln sich schräg zur Kaskade, die sich im Takt nach links schiebt. | *Menschen,* / *nicht Systeme.* → *Ein eingespieltes* / *Team.* |
-| 8 | 0:26–0:29 | 1½ | Wabernder Verlauf (Petrol, Sand, Creme), kleiner Text mit Eck-Markern. | *Ihr regionaler Immobilienankäufer* |
-| 9 | 0:29–0:35 | 3½ | Team-Foto mit Tablet in Perspektive mit 4 Anfassern, klappt gerade und wird zur Karte. Fluss-Linien verbinden: Besprechungsfoto, Zitat-Karte, Anruf-Karte mit Wellenform. | Karte: *Wohnung · Haus · Mehrfamilienhaus* / *Aschaffenburg · Miltenberg*<br>Zitat: *„Alles war klar, ehrlich und ohne Druck.“ – Ulrike M., Eigentümerin aus Aschaffenburg*<br>Anruf: *06021 – 44 99 667* |
-| 10 | 0:35–0:37 | 1½ | Off-White. Wort links, Foto mit Fadenkreuz-Ecken in der Mitte, Wort rechts, dann kippt das Foto weg. | *Wir machen Immobilien* [Foto] *wieder wertvoll.* |
-| 11 | 0:37–0:39 | 1½ | Das HAVANOLA-Logo baut sich auf (Balken zeichnen sich, Buchstaben blenden ein), darunter Kontakt. | *Wir kaufen Ihre Immobilie.*<br>*06021 – 44 99 667 · havanola.com* |
+| 1 | 0–1½ | 0:00 | Weicher Verlauf in Markenfarben, unscharfe Porträt-Silhouette, Rahmen schrumpft, fällt zu einer Linie zusammen, Pixel-Streifen. | *Geerbte, abgewohnte oder zu große Wohnung?* |
+| 2 | 1½–3 | 0:02,6 | Off-White, Klammer-Wörter wachsen auf dem Beat, 4 Eck-Quadrate springen. | `{ Wir }` → `{ Wir kaufen }` → `{ Wir kaufen direkt. }` |
+| 3 | 3–4 | 0:05,3 | Name öffnet sich, Team-Gesichter wechseln in der Lücke, Pfeile ← →, Pixel-Auflösung. | `{HAVA` [Fotos] `NOLA}` |
+| 4 | 4–6 | 0:07,1 | Büro mit Leuchtschild: erst Falschfarben (Petrol/Sand), dann Block für Block echt, Zoom. | – |
+| 5 | 6–8 | 0:10,6 | Halbton-Raster + blasses Logo, Eingabefeld, Text wird getippt, Zoom ins riesige Getippte auf Glas-Band. | *Wohnung verkaufen – fair, diskret, ohne Umwege* |
+| 6 | 8–10 | 0:14,1 | Status-Liste wie „Building Image“: Einträge ploppen auf, Petrol → Sand mit Häkchen. | **Ihr Verkauf** · Provisionsfrei · Geringer Aufwand · Fairer Preis · Kein Risiko („wie gesehen“) → *Fair. Diskret. Ohne Umwege.* |
+| 7 | 10–13 | 0:17,6 | **Vorher/Nachher** (echte Fotos aus dem Instagram-Beitrag): Punkt-Raster → Vorher-Foto → Wisch auf Nachher, dann Kaskade aller 8 Räume im Takt. | *Aus alt* / *wird neu.* |
+| 8 | 13–15 | 0:22,9 | Team-Porträts ploppen auf und stapeln sich schräg, Unschärfe in den Verlauf. | *Menschen,* / *nicht Systeme.* |
+| 9 | 15–16½ | 0:26,5 | Wabernder Verlauf, Eck-Quadrate. | *Ihr regionaler Immobilienankäufer* · *Aschaffenburg · Miltenberg* |
+| 10 | 16½–19½ | 0:29,1 | Team-Foto schräg mit 4 Anfassern → gerade Karte mit Info-Teil, Fluss-Linien zu Besprechungsfoto, Kundenzitat, Anruf-Karte mit Wellenform. | *Wohnung · Haus · Mehrfamilienhaus* · Zitat Ulrike M. · *06021 – 44 99 667* |
+| 11 | 19½–20½ | 0:34,4 | Off-White, Nachher-Foto mit Fadenkreuz-Ecken, kippt weg. | *Wir machen* [Foto: *Immobilien wieder*] *wertvoll.* |
+| 12 | 20½–23 | 0:36,2 | Logo baut sich auf (Balken, Buchstaben, „IMMOBILIEN“), Kontakt. | *Wir kaufen Ihre Immobilie.* · *06021 – 44 99 667* · *havanola.com · @havanola_gmbh* |
 
-## Offene Punkte (bitte kurz bestätigen)
+## Bildquellen
 
-1. **Telefonnummer:** Auf der Website stehen zwei Nummern: **06021 – 44 99 667** (Kontakt, beide Büros) und **06022 – 6521261** (Kopfzeile). Ich nehme **06021 – 44 99 667**, außer du sagst etwas anderes.
-2. **Vorher/Nachher-Fotos:** Auf der Website gibt es keine Fotos von renovierten Wohnungen. Hat HAVANOLA welche (vorher/nachher)? Sonst nehme ich in Szene 10 das moderne Besprechungsfoto.
-3. **Fassungen:** zuerst 16:9, danach gern eine 9:16-Version für Instagram-Werbung.
+- Website havanola.com: Logo, Team-Porträts, Büro, Team mit Tablet, Besprechung.
+- Instagram @havanola_gmbh, Beitrag „Aus alt wird neu“ (27.08.2026): Vorher/Nachher-Fotos von 8 Räumen (Elternzimmer, Esszimmer, Bad, Büro, 2 Kinderzimmer, Treppenhaus, Wohnzimmer), als einzelne Hälften ausgeschnitten.

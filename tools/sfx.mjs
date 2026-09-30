@@ -55,6 +55,27 @@ SOUNDS.gluck = {
   fn: (t) => { const f = 180 + 900 * (t / 0.14) ** 1.5; return Math.sin(2 * Math.PI * f * t) * Math.sin(Math.PI * t / 0.14) ** 1.2; },
 };
 
+// Glitch: zerhacktes, bitreduziertes Digital-Knistern (Pixel-Übergänge)
+SOUNDS.glitch = {
+  len: 0.28,
+  fn: (t) => {
+    const gate = Math.sin(2 * Math.PI * 38 * t) > -0.2 ? 1 : 0.1;
+    const f = 600 + 2600 * Math.floor(t * 40 % 4) / 3;
+    const s = Math.round((0.6 * noise() + 0.5 * Math.sign(Math.sin(2 * Math.PI * f * t))) * 4) / 4;
+    return s * gate * Math.exp(-t / 0.12) * 0.7;
+  },
+};
+// Tastenanschlag: dumpfer Klick, leiser als click
+SOUNDS.key = {
+  len: 0.04,
+  fn: (t) => 0.5 * noise() * Math.exp(-t / 0.004) + 0.4 * Math.sin(2 * Math.PI * 1400 * t) * Math.exp(-t / 0.008),
+};
+// Blip: kurzer heller UI-Ton (Status-Einträge)
+SOUNDS.blip = {
+  len: 0.1,
+  fn: (t) => Math.sin(2 * Math.PI * 1760 * t) * Math.exp(-t / 0.03) * Math.min(1, t / 0.002),
+};
+
 // Whoosh: gefiltertes Rauschen, Filter öffnet und schließt sich, Stereo-Schwenk
 function whoosh(start, gain) {
   const len = 0.55, n = Math.floor(len * SR), i0 = Math.floor(start * SR - 0.35 * SR);
