@@ -24,3 +24,6 @@ projects/*/out/*_chat.mp4
 
 # Große Modelle für die Freistellung
 .rembg/
+
+# Rohdaten von Kunden-Websites (Originale, sehr groß; aufbereitete Kopien liegen in assets/)
+projects/*/site/
