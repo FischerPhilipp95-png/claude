@@ -1,6 +1,6 @@
 # Instagram-Paket: HAVANOLA Werbevideo
 
-Datei: `out/final.mp4` (1080x1920, 40,6 s, Reels und Story). Kanal: @havanola_gmbh.
+Datei: `out/final.mp4` (1080x1920, 30 s, Morph-Stil, Reels und Story). Kanal: @havanola_gmbh.
 
 ## Caption (Reel)
 

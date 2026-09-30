@@ -1,27 +1,19 @@
-# Shotlist: HAVANOLA Werbevideo (Instagram)
+# Shotlist: HAVANOLA Werbevideo (Morph-Stil, eine Einstellung, 9:16, 30 s)
 
-- **Format:** 1080x1920 (9:16, Reels/Story), 60 fps, **23 Takte à 136 BPM = 40,6 s**.
-- **Sicherheitszone Reels-Anzeigen:** Texte zwischen y ≈ 270 und 1300 (oben 14 %, unten ~35 % verdeckt die Instagram-Oberfläche).
-- **Ohne Sprecher**, nur Text, Musik und Sounds (funktioniert auch stumm).
-- Alle Aussagen stammen von havanola.com (Startseite, „Ihre Vorteile“, „Über uns“) und vom Instagram-Beitrag „Aus alt wird neu“ (@havanola_gmbh).
-- Telefon: **06021 – 44 99 667** (vom Nutzer bestätigt).
+Ersetzt Version 1 (Stil ref-04, liegt in der Git-Historie). Grammatik: `refs/ref-05` (siehe `style_guide.md`).
+18 Takte à 144 BPM (Takt = 1,667 s, Beat = 0,417 s). Kein Schnitt: Jedes Objekt verwandelt sich ins nächste.
+Kleine Texte unter dem Objekt (Lato Light), alle Aussagen von havanola.com und aus dem Instagram-Beitrag „Aus alt wird neu“.
 
-| # | Takte | Zeit | Bild (Grammatik aus ref-04) | Text im Bild |
+| # | Takte | Zeit | Objekt und Morph | Kleiner Text |
 |---|---|---|---|---|
-| 1 | 0–1½ | 0:00 | Weicher Verlauf in Markenfarben, unscharfe Porträt-Silhouette, Rahmen schrumpft, fällt zu einer Linie zusammen, Pixel-Streifen. | *Geerbte, abgewohnte oder zu große Wohnung?* |
-| 2 | 1½–3 | 0:02,6 | Off-White, Klammer-Wörter wachsen auf dem Beat, 4 Eck-Quadrate springen. | `{ Wir }` → `{ Wir kaufen }` → `{ Wir kaufen direkt. }` |
-| 3 | 3–4 | 0:05,3 | Name öffnet sich, Team-Gesichter wechseln in der Lücke, Pfeile ← →, Pixel-Auflösung. | `{HAVA` [Fotos] `NOLA}` |
-| 4 | 4–6 | 0:07,1 | Büro mit Leuchtschild: erst Falschfarben (Petrol/Sand), dann Block für Block echt, Zoom. | – |
-| 5 | 6–8 | 0:10,6 | Halbton-Raster + blasses Logo, Eingabefeld, Text wird getippt, Zoom ins riesige Getippte auf Glas-Band. | *Wohnung verkaufen – fair, diskret, ohne Umwege* |
-| 6 | 8–10 | 0:14,1 | Status-Liste wie „Building Image“: Einträge ploppen auf, Petrol → Sand mit Häkchen. | **Ihr Verkauf** · Provisionsfrei · Geringer Aufwand · Fairer Preis · Kein Risiko („wie gesehen“) → *Fair. Diskret. Ohne Umwege.* |
-| 7 | 10–13 | 0:17,6 | **Vorher/Nachher** (echte Fotos aus dem Instagram-Beitrag): Punkt-Raster → Vorher-Foto → Wisch auf Nachher, dann Kaskade aller 8 Räume im Takt. | *Aus alt* / *wird neu.* |
-| 8 | 13–15 | 0:22,9 | Team-Porträts ploppen auf und stapeln sich schräg, Unschärfe in den Verlauf. | *Menschen,* / *nicht Systeme.* |
-| 9 | 15–16½ | 0:26,5 | Wabernder Verlauf, Eck-Quadrate. | *Ihr regionaler Immobilienankäufer* · *Aschaffenburg · Miltenberg* |
-| 10 | 16½–19½ | 0:29,1 | Team-Foto schräg mit 4 Anfassern → gerade Karte mit Info-Teil, Fluss-Linien zu Besprechungsfoto, Kundenzitat, Anruf-Karte mit Wellenform. | *Wohnung · Haus · Mehrfamilienhaus* · Zitat Ulrike M. · *06021 – 44 99 667* |
-| 11 | 19½–20½ | 0:34,4 | Off-White, Nachher-Foto mit Fadenkreuz-Ecken, kippt weg. | *Wir machen* [Foto: *Immobilien wieder*] *wertvoll.* |
-| 12 | 20½–23 | 0:36,2 | Logo baut sich auf (Balken, Buchstaben, „IMMOBILIEN“), Kontakt. | *Wir kaufen Ihre Immobilie.* · *06021 – 44 99 667* · *havanola.com · @havanola_gmbh* |
-
-## Bildquellen
-
-- Website havanola.com: Logo, Team-Porträts, Büro, Team mit Tablet, Besprechung.
-- Instagram @havanola_gmbh, Beitrag „Aus alt wird neu“ (27.08.2026): Vorher/Nachher-Fotos von 8 Räumen (Elternzimmer, Esszimmer, Bad, Büro, 2 Kinderzimmer, Treppenhaus, Wohnzimmer), als einzelne Hälften ausgeschnitten.
+| 1 | 0–1½ | 0:00 | Weiß. Zwei Logo-Balken zeichnen sich, der obere knickt zum Dach, Wände wachsen: **Haus**. Grund wird grau. | – |
+| 2 | 1½–3 | 0:02,5 | Das Haus altert auf dem Beat: Riss, schiefes Fenster, Farbe blättert. | *Geerbt. Abgewohnt. Zu groß?* |
+| 3 | 3–4½ | 0:05 | Zoom in den Türknauf, er wird zum **Schlüssel**, der sich mit Klick dreht. | *Wir kaufen direkt.* |
+| 4 | 4½–6 | 0:07,5 | Schlüsselkopf wird zur **Münze** „0 %“, sie dreht sich, ein Ring schließt sich. | *Provisionsfrei.* |
+| 5 | 6–7½ | 0:10 | Münze wird zum Drehpunkt einer **Waage**, die sich federnd einpendelt. | *Fairer Preis.* |
+| 6 | 7½–9 | 0:12,5 | Waagbalken biegt sich zum **Auge**, blinzelt, schaut umher. | *Wir kaufen „wie gesehen“.* |
+| 7 | 9–11½ | 0:15 | Pupille wird zum **Rahmen** mit echtem Vorher-Foto, Wisch zu Nachher, dann **Raster aus 8 Räumen**. | *Aus alt wird neu.* |
+| 8 | 11½–13 | 0:19,2 | Rahmen werden zu Kreisen: **Ring aus 6 Team-Porträts**, der sich dreht. | *Menschen, nicht Systeme.* |
+| 9 | 13–14½ | 0:21,7 | Ruhige Passage: Kreise verschmelzen zum **Standort-Pin**, der auf eine Linienkarte fällt, Wellenringe. | *Aschaffenburg · Miltenberg* |
+| 10 | 14½–15½ | 0:24,2 | Pin wird zum **Smartphone**, die Nummer tippt sich ein. | *06021 – 44 99 667* |
+| 11 | 15½–18 | 0:25,8 | Telefon kippt flach, die Kanten werden zu den **Logo-Balken**, Musik endet abrupt, **HAVANOLA** in Stille. | *Wir kaufen Ihre Immobilie.* · *havanola.com* |
