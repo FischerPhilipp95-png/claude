@@ -3,8 +3,10 @@
 
     FISH_API_KEY=... python3 tools/tts.py projects/klima-short/vo_script.json audio/vo
 
-Mit FISH_API_KEY: Fish Audio (Stimme per --voice, Standard „Klarer Sprecher“).
-Ohne Key: lokale Piper-Stimme (de_DE-thorsten-high) als Platzhalter.
+--engine fish: Fish Audio (Stimme per --voice, Standard „Klarer Sprecher“). Den Key hängt entweder
+  der Proxy der Cloud-Umgebung an (API-Zugangsdaten für api.fish.audio) oder er kommt aus FISH_API_KEY.
+--engine piper: lokale Piper-Stimme (de_DE-thorsten-high) als kostenloser Platzhalter.
+Standard: fish, wenn FISH_API_KEY gesetzt ist, sonst piper.
 Schreibt zusätzlich <out>/durations.json mit der Länge jedes Satzes.
 """
 import argparse
@@ -22,11 +24,14 @@ PIPER_URL = "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/de/de_DE
 
 
 def fish(text, out, key, voice):
+    headers = {"Content-Type": "application/json", "model": "s1"}
+    if key:  # sonst setzt der Proxy der Umgebung den Authorization-Header
+        headers["Authorization"] = f"Bearer {key}"
     req = urllib.request.Request(
         "https://api.fish.audio/v1/tts",
         data=json.dumps({"text": text, "reference_id": voice, "format": "wav",
                          "sample_rate": 44100, "normalize": True, "latency": "normal"}).encode(),
-        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json", "model": "s1"},
+        headers=headers,
     )
     with urllib.request.urlopen(req, timeout=120) as r:
         out.write_bytes(r.read())
@@ -64,19 +69,20 @@ def main():
     ap.add_argument("script")
     ap.add_argument("out_dir")
     ap.add_argument("--voice", default=FISH_VOICE, help="Fish-Audio-Stimmen-ID")
+    ap.add_argument("--engine", choices=["fish", "piper"], help="Standard: fish mit FISH_API_KEY, sonst piper")
     args = ap.parse_args()
 
     lines = json.loads(Path(args.script).read_text())
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     key = os.environ.get("FISH_API_KEY")
-    engine = "fish" if key else "piper"
-    voice_obj = None if key else load_piper()
+    engine = args.engine or ("fish" if key else "piper")
+    voice_obj = load_piper() if engine == "piper" else None
 
     durations = {}
     for line in lines:
         out = out_dir / f"{line['id']}.wav"
-        if key:
+        if engine == "fish":
             fish(line["text"], out, key, args.voice)
         else:
             piper(line["text"], out, voice_obj)

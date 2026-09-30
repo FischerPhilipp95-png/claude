@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Komplette Pipeline für den Klima-Short. Aufruf aus dem Repo-Root:
 #   bash projects/klima-short/build.sh            (Voiceover wird nur erzeugt, wenn er fehlt)
-#   FISH_API_KEY=... bash projects/klima-short/build.sh --vo   (Voiceover neu, z. B. mit Fish Audio)
+#   bash projects/klima-short/build.sh --vo fish   (Voiceover neu mit Fish Audio)
 set -euo pipefail
 P=projects/klima-short
 if [[ "${1:-}" == "--vo" || ! -f $P/audio/vo/durations.json ]]; then
-  python3 tools/tts.py $P/vo_script.json $P/audio/vo
+  python3 tools/tts.py $P/vo_script.json $P/audio/vo ${2:+--engine $2}
 fi
 python3 $P/music.py                                              # 1. Musik, 120 BPM
 python3 -W ignore tools/beats.py $P/audio/music.wav $P/beats.json  # 2. Beats vermessen
