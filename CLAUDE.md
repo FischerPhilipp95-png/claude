@@ -29,3 +29,12 @@ Regeln:
 `scripts/setup.sh` installiert ffmpeg, numpy, librosa, Pillow und yt-dlp und läuft automatisch beim Sitzungsstart.
 Websites (Kundenseiten, x.com, YouTube) sind nur erreichbar, wenn ihre Domain in den Netzwerk-Einstellungen
 der Cloud-Umgebung freigegeben ist. Ein 403 beim Download bedeutet: Domain nicht freigegeben.
+
+## Standards für neue Videos
+
+- Voiceover: Piper-Stimme `de_DE-thorsten-high` (`tools/tts.py --engine piper`). Der Nutzer ist damit zufrieden.
+  Fish Audio nur auf ausdrücklichen Wunsch (API-Guthaben ist getrennt vom App-Guthaben und steht auf 0).
+- Kanal: „Der Handwerksdoktor“ (@derhandwerksdoktor), Profilbild in `assets/channel_avatar.jpg`.
+- Shorts: 1080x1920, 60 fps, ca. 20 s, Labels über y = 1440 (Shorts-Oberfläche verdeckt unten).
+- Zu jedem Video gehört eine `youtube.md` mit Titel, Beschreibung (inkl. Quelle), Tags und angeheftetem Kommentar.
+- Vorlage für neue Projekte: `projects/klima-short/` (build.sh, render.mjs, music.py).

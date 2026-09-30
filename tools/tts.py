@@ -6,7 +6,7 @@
 --engine fish: Fish Audio (Stimme per --voice, Standard „Klarer Sprecher“). Den Key hängt entweder
   der Proxy der Cloud-Umgebung an (API-Zugangsdaten für api.fish.audio) oder er kommt aus FISH_API_KEY.
 --engine piper: lokale Piper-Stimme (de_DE-thorsten-high) als kostenloser Platzhalter.
-Standard: fish, wenn FISH_API_KEY gesetzt ist, sonst piper.
+Standard: piper. Fish nur mit --engine fish oder gesetztem FISH_API_KEY.
 Schreibt zusätzlich <out>/durations.json mit der Länge jedes Satzes.
 """
 import argparse
