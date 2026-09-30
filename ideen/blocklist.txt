@@ -1,0 +1,6 @@
+# Kanäle, die tools/find_outliers.py ignoriert (Name oder UC-ID, einer pro Zeile).
+# Gedacht für Nachrichtensender und Kanäle ohne Bezug zum Thema.
+ARD Marktcheck
+Hessischer Rundfunk
+BR24
+BILD

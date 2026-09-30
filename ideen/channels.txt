@@ -1,0 +1,21 @@
+# Konkurrenzkanäle, deren letzte Uploads komplett geprüft werden.
+# Pro Zeile: UC-ID, @handle oder Kanal-URL, danach optional # Name.
+# Vorschläge stehen im Bericht unter „Kanäle, die oft auftauchen“.
+
+# Heimwerken allgemein
+UCYgke9pwfK2bIYTbjbnaaDQ  # Onkel Kramer
+UCsZNco1cxrspWzlPX3Kim9g  # Basti HW
+UCxT7z-cifPHSgHIvC3KWqXg  # Helden der Werkstatt
+UC0f53UXX473vA3ZfzbI123w  # Der Fachwerker
+UCaba0JwZkHrUHDIb_hgIuCA  # M1Molter - Der Heimwerker
+UCrTqIAR1vOjaizO8HRk373Q  # Mac Paverick
+UCok0f3eLurtlUzeWJxyCERg  # DIE FESTMACHER
+UCy2Vejpl6vpeJi_hsUt9p0Q  # Jonas Winkler
+UCewU7vV-uVSVCO8Ai1vr6Kw  # ProofWood Elektriker
+
+# Klima, Heizung, Energie
+UCxvPH89247vOLMkVcQenCSg  # HandwerksPapa
+UCzTcb2-Xm-daEWC1nuQg8AQ  # Gadgets Technik Reviews
+UCLS1byX1jZWZ8Vbn0CcYaPA  # schlau energiesparen
+UCMlirlzQIUpfb3uC5LXB17Q  # Felix Goldbach
+UCjSztsVqyiGct5NPXlUk8VA  # Empfehlungsfuchs

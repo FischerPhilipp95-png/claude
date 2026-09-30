@@ -59,3 +59,26 @@ Zustandswechsel liegen auf Beats, große Momente (Logo, CTA) auf Downbeats, SFX 
 
 **API-Keys nie ins Repo schreiben.** Fish Audio: den Key als Umgebungsvariable `FISH_API_KEY` in den
 Einstellungen der Cloud-Umgebung hinterlegen (Environment variables).
+
+## Video-Ideen finden (Outlier-Suche)
+
+```
+python3 tools/find_outliers.py
+```
+
+Sucht Videos, die **viel mehr Aufrufe haben als der Durchschnitt ihres eigenen Kanals**
+(Faktor = Aufrufe ÷ Kanal-Median, Shorts mit Shorts, lange mit langen verglichen).
+Dann hat das Thema gezogen, nicht die Kanalgröße: genau solche Themen lohnen sich.
+
+| Datei | Inhalt |
+|---|---|
+| `ideen/keywords.txt` | Suchbegriffe, ein Begriff pro Zeile |
+| `ideen/channels.txt` | Konkurrenzkanäle, deren letzte Uploads komplett geprüft werden |
+| `ideen/reports/<datum>.html` | Bericht mit Vorschaubildern: Top-Ideen lang und Shorts, eigene Ausreißer, Titelmuster, Kanal-Vorschläge |
+| `ideen/reports/<datum>.md` / `.csv` | dieselben Daten als Tabelle bzw. für Excel |
+
+Nützliche Optionen: `--keyword "Fliesen bohren"` (zusätzlicher Begriff), `--nur-keyword` (nur diesen),
+`--zeitraum woche|monat|jahr|alle`, `--min-views 3000`, `--min-faktor 2`.
+Braucht nur yt-dlp, keinen API-Schlüssel. `youtube.com` muss in den Netzwerk-Einstellungen freigegeben sein.
+
+Ideen daraus immer mit eigenem Inhalt umsetzen: Thema und Titelmuster übernehmen, nie Videos, Bilder oder Texte.

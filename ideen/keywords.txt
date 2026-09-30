@@ -1,0 +1,31 @@
+# Suchbegriffe für tools/find_outliers.py (einer pro Zeile, # = Kommentar)
+# Passend zu den Themen von „Der Handwerksdoktor“.
+
+# Klima & Heizen
+Klimaanlage Test
+Split Klimaanlage
+Heizen mit Klimaanlage
+Klimaanlage ohne Außengerät
+Wärmepumpe Heizkörper
+Heizung entlüften
+Heizkosten sparen
+
+# Strom & Energie
+Balkonkraftwerk Speicher
+Strom sparen Tipps
+dynamischer Stromtarif
+
+# Kaffeevollautomat
+Kaffeevollautomat entkalken
+Brüheinheit reinigen
+Kaffeevollautomat Fehler
+
+# Heimwerken
+Dübel hält nicht
+Fliesen bohren
+Heimwerker Tipps
+Heimwerker Fehler
+Schimmel Bad
+Tür schleift
+Akkuschrauber Test
+Werkzeug Tipps

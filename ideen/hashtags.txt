@@ -1,0 +1,15 @@
+# Hashtags für Shorts-Ideen (ohne #, einer pro Zeile).
+# Ein Short zählt nur, wenn sein Titel ein Themenwort aus keywords.txt oder dieser Datei enthält.
+heimwerken
+heimwerker
+handwerk
+werkzeug
+klimaanlage
+kaffeevollautomat
+wärmepumpe
+balkonkraftwerk
+heizung
+dübel
+bohren
+schimmel
+renovieren
