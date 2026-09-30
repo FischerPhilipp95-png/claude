@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Voiceover aus einer script.json erzeugen, ein WAV pro Satz.
 
-    FISH_API_KEY=... python3 tools/tts.py projects/klima-short/vo_script.json audio/vo
+    python3 tools/tts.py projects/klima-short/vo_script.json projects/klima-short/audio/vo --engine fish
 
 --engine fish: Fish Audio (Stimme per --voice, Standard „Klarer Sprecher“). Den Key hängt entweder
   der Proxy der Cloud-Umgebung an (API-Zugangsdaten für api.fish.audio) oder er kommt aus FISH_API_KEY.
