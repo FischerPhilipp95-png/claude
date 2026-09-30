@@ -1,6 +1,17 @@
 # YouTube-Paket: „Wie kommt der Strom in dein Haus?“
 
-## Thumbnails (in YouTube Studio → „Testen und vergleichen“ alle drei hochladen)
+## Thumbnails im Stil erfolgreicher YouTube-Thumbnails (empfohlen für den Test)
+
+| Datei | Stil | Warum es klickt |
+|---|---|---|
+| `out/thumbnail_D.png` | Schritt-Diagramm wie „How Houses Are Made“: **WIE STROM INS HAUS KOMMT**, 7 nummerierte Stationen, rote Pfeile | zeigt auf einen Blick den ganzen Inhalt, perfekt für Erklärvideos |
+| `out/thumbnail_E.png` | Person + Objekt + Pfeil wie „Peptides“: **380.000 VOLT?** → Steckdose, du rechts im Bild | echtes Gesicht schafft Vertrauen, Zahl plus Frage macht neugierig |
+| `out/thumbnail_F.png` | Person vor leuchtenden Video-Frames + 3D-Button **Strom erklärt** wie „Motion Design“ | zeigt die Animation, wirkt hochwertig |
+
+Dein Foto ist aus dem Kanalbild freigestellt (`assets/channel_person_cutout.png`).
+Tipp: Mit einem neuen Foto mit deutlicherem Gesichtsausdruck (staunend, auf die Steckdose zeigend) wirken E und F noch stärker.
+
+## Figuren-Thumbnails (Alternative, in YouTube Studio → „Testen und vergleichen“ alle drei hochladen)
 
 | Datei | Idee | Warum es klickt |
 |---|---|---|
