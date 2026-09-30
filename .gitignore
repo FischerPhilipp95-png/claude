@@ -1,0 +1,5 @@
+# Aus Referenzvideos erzeugte Einzelbilder (werden jederzeit neu erzeugt)
+refs/*/frames/
+refs/*/audio.wav
+__pycache__/
+node_modules/
