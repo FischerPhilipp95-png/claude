@@ -1,35 +1,24 @@
-<!--
-Entwurf (Stand 30.09.2026), keine Rechtsberatung.
-Dieser Text passt NUR zu dem Aufbau, der in blog/recht/checkliste.md festgelegt ist:
-statische Seite, keine Cookies, keine Google Fonts, keine Amazon-Bilder per Hotlink,
-YouTube nur per Klick, keine Kommentare, kein Newsletter,
-Kontaktformular per PHP auf dem eigenen Hoster (kein Formular-Dienst, kein reCAPTCHA).
-Wird etwas davon geändert (z. B. Analytics, Formular-Dienst, Newsletter), MUSS dieser Text angepasst werden.
-
-Vor dem Livegang ausfüllen: [DOMAIN]. Hoster: IONOS (Webhosting), Rechenzentrum Deutschland im IONOS-Konto prüfen,
-Log-Speicherdauer in Abschnitt 3 mit den IONOS-Einstellungen abgleichen.
-Wechselt die Kontakt-E-Mail von Gmail zu einem Postfach beim Hoster, Abschnitt 4 anpassen.
-Abschnitt 7 (Reichweitenmessung) nur drinlassen, wenn wirklich eingebaut, sonst löschen.
--->
-
-# Datenschutzerklärung
+---
+title: "Datenschutzerklärung"
+description: "Welche Daten handwerksdoktor.de verarbeitet: keine Cookies, kein Tracking, YouTube erst nach Klick."
+---
 
 ## 1. Verantwortlicher
 
 Verantwortlich für die Datenverarbeitung auf dieser Website ist:
 
-Philipp Fischer
-c/o POSTFLEX PFX-780-231
-Emsdettener Straße 10
-48268 Greven
-Deutschland
-E-Mail: flpspring@gmail.com
+Philipp Fischer\
+c/o POSTFLEX PFX-780-231\
+Emsdettener Straße 10\
+48268 Greven\
+Deutschland\
+E-Mail: <flpspring@gmail.com>
 
 Ein Datenschutzbeauftragter ist nicht bestellt und gesetzlich nicht erforderlich.
 
 ## 2. Das Wichtigste in Kürze
 
-- Diese Website setzt **keine Cookies** und nutzt **kein Tracking** durch Dritte.
+- Diese Website setzt **keine Cookies**, nutzt **keine Besucherstatistik** und nutzt **kein Tracking** durch Dritte.
 - Schriftarten, Bilder und Skripte werden **von unserem eigenen Server** geladen, nicht von Google oder anderen Anbietern.
 - YouTube-Videos werden **erst nach deinem Klick** geladen.
 - Beim Klick auf einen Amazon-Link verlässt du diese Website. Ab dann gilt der Datenschutz von Amazon.
@@ -46,8 +35,9 @@ Browser und Betriebssystem.
 
 Zweck: Auslieferung der Website, Stabilität und Sicherheit (z. B. Abwehr von Angriffen).
 Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren Betrieb).
-Speicherdauer: Die Logfiles werden nach spätestens [7] Tagen gelöscht, soweit sie nicht zur
-Aufklärung eines konkreten Sicherheitsvorfalls länger benötigt werden.
+Speicherdauer: Die Logfiles werden von IONOS nach dessen Löschfristen automatisch gelöscht,
+soweit sie nicht zur Aufklärung eines konkreten Sicherheitsvorfalls länger benötigt werden.
+Ich selbst werte die Logfiles nicht aus und führe sie nicht mit anderen Daten zusammen.
 
 ## 4. Kontakt per E-Mail und Kontaktformular
 
@@ -89,14 +79,7 @@ setzen und erkennen, dass du über diese Website gekommen bist, um die Provision
 Dafür ist Amazon verantwortlich. Details stehen in der Datenschutzerklärung von Amazon
 (auf amazon.de ganz unten unter „Datenschutzerklärung“).
 
-## 7. Reichweitenmessung (nur falls eingebaut, sonst Abschnitt löschen)
-
-Zur Messung, welche Artikel gelesen werden, nutze ich [Umami, selbst gehostet auf dem unter
-Nr. 3 genannten Server]. Dabei werden keine Cookies gesetzt und keine Daten an Dritte übertragen.
-IP-Adressen werden nicht gespeichert, sondern nur anonymisiert ausgewertet.
-Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer anonymen Statistik).
-
-## 8. YouTube-Videos
+## 7. YouTube-Videos
 
 In Artikeln binde ich eigene Videos von YouTube ein (Anbieter: Google Ireland Limited,
 Gordon House, Barrow Street, Dublin 4, Irland).
@@ -109,18 +92,18 @@ Google ist unter dem EU-US Data Privacy Framework zertifiziert.
 Rechtsgrundlage: deine Einwilligung durch den Klick, Art. 6 Abs. 1 lit. a DSGVO und
 § 25 Abs. 1 TDDDG. Die Einwilligung gilt nur für das jeweilige Video. Beim nächsten Seitenaufruf
 wird wieder nur das Vorschaubild gezeigt.
-Datenschutzerklärung von Google: https://policies.google.com/privacy
+Datenschutzerklärung von Google: <https://policies.google.com/privacy>
 
-## 9. Schriftarten
+## 8. Schriftarten
 
 Die Schriftarten dieser Website sind lokal auf dem eigenen Server gespeichert.
 Es wird keine Verbindung zu Google Fonts oder anderen Schriftanbietern aufgebaut.
 
-## 10. SSL-/TLS-Verschlüsselung
+## 9. SSL-/TLS-Verschlüsselung
 
 Diese Website nutzt aus Sicherheitsgründen eine TLS-Verschlüsselung (erkennbar an „https://“).
 
-## 11. Deine Rechte
+## 10. Deine Rechte
 
 Du hast jederzeit das Recht auf:
 
@@ -135,14 +118,14 @@ Du hast jederzeit das Recht auf:
 DSGVO verarbeite, kannst du aus Gründen, die sich aus deiner besonderen Situation ergeben,
 jederzeit widersprechen.
 
-Eine formlose E-Mail an flpspring@gmail.com genügt.
+Eine formlose E-Mail an <flpspring@gmail.com> genügt.
 
-## 12. Beschwerderecht bei der Aufsichtsbehörde
+## 11. Beschwerderecht bei der Aufsichtsbehörde
 
 Du kannst dich bei einer Datenschutz-Aufsichtsbehörde beschweren. Für mich zuständig ist:
 Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen,
-Kavalleriestraße 2–4, 40213 Düsseldorf, https://www.ldi.nrw.de
+Kavalleriestraße 2–4, 40213 Düsseldorf, <https://www.ldi.nrw.de>
 
-## 13. Aktualität
+## 12. Aktualität
 
-Stand: [DATUM DES LIVEGANGS]. Wenn sich die Website ändert, wird diese Erklärung angepasst.
+Stand: 30.09.2026. Wenn sich die Website ändert, wird diese Erklärung angepasst.

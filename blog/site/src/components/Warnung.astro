@@ -1,0 +1,5 @@
+---
+interface Props { titel?: string }
+const { titel = 'Achtung' } = Astro.props;
+---
+<div class="box warn" role="note"><strong>⚠ {titel}</strong><slot /></div>

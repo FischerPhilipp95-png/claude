@@ -1,28 +1,30 @@
-# Blog „Der Handwerksdoktor“ (Affiliate)
+# Blog „Der Handwerksdoktor“ (handwerksdoktor.de)
 
-Noch kein Code, erst die Grundlagen. Das Blog-Gerüst (Astro) entsteht, sobald die offenen
-Punkte unten geklärt sind.
-
-| Datei | Inhalt |
+| Ordner / Datei | Inhalt |
 |---|---|
-| `recht/checkliste.md` | Abmahnrisiken nach Priorität + technische Grundregeln für den Aufbau |
-| `recht/impressum.md` | Impressum (Entwurf, Platzhalter füllen) |
-| `recht/datenschutz.md` | Datenschutzerklärung, passend zum geplanten Aufbau |
-| `recht/werbung.md` | Seite „Transparenz & Werbung“ + Textbausteine für Artikel und YouTube |
-| `seo/seo-plan.md` | SEO-Strategie, erste 10 Artikel, GitHub-Werkzeuge, 30-Tage-Plan |
+| `site/` | der Blog selbst (Astro), Anleitung in `site/README.md` |
+| `site/src/content/artikel/` | Artikel (eine `.mdx`-Datei pro Artikel) |
+| `site/src/content/recht/` | Impressum, Datenschutzerklärung, Transparenz & Werbung |
+| `recht/checkliste.md` | Abmahnrisiken nach Priorität + technische Grundregeln |
+| `recht/textbausteine.md` | Werbehinweise für YouTube-Beschreibung und angehefteten Kommentar |
+| `seo/seo-plan.md` | SEO-Strategie, erste 10 Artikel, Werkzeuge, 30-Tage-Plan |
 | `seo/keywords.md` | echte Google-Suchanfragen zu den Kanalthemen (`tools/keywords.py`) |
 
-## Offen vor dem Livegang
+## Stand vor dem Livegang
 
-- [x] E-Mail-Adresse fürs Impressum: `flpspring@gmail.com` (später optional `kontakt@[DOMAIN]`)
-- [x] zweiter Kontaktweg: Kontaktformular (keine Telefonnummer nötig)
+- [x] E-Mail im Impressum: `flpspring@gmail.com`, zweiter Kontaktweg: Kontaktformular
 - [x] Postflex-Adresse aus dem Dashboard übernommen (`c/o POSTFLEX PFX-780-231`)
-- [ ] Postflex: Zustellungsvollmacht und AV-Vertrag in den Vertragsunterlagen nachsehen, MFA einschalten
+- [ ] Postflex: Zustellungsvollmacht in den Vertragsunterlagen nachsehen, MFA einschalten
 - [x] DPMA-Recherche „Handwerksdoktor“: 0 Treffer (30.09.2026)
-- [ ] EUIPO/TMview und ähnliche Schreibweisen prüfen, dann Domain (handwerksdoktor.de war am 30.09.2026 laut DNS noch frei)
-- [x] Hoster: IONOS Webhosting, in `datenschutz.md` eingetragen
+- [ ] EUIPO/TMview prüfen (EU-Marken)
+- [x] Domain `handwerksdoktor.de` bei IONOS (Webhosting)
 - [x] IONOS: AV-Vertrag abgeschlossen am 30.09.2026 (PDF kommt per E-Mail, ablegen)
 - [ ] IONOS: E-Mail bestätigen, Zwei-Faktor-Anmeldung, Erinnerung vor Ablauf der 12 Monate
+- [ ] IONOS: Postfach `kontakt@handwerksdoktor.de` anlegen (Absender des Kontaktformulars)
+- [ ] IONOS: SSL-Zertifikat der Domain zuweisen, Domain auf den Webspace-Ordner zeigen lassen
+- [ ] IONOS: Statistik/„Web Analytics“ im Hosting-Paket ausgeschaltet lassen
+- [ ] Blog hochladen (siehe `site/README.md`), danach Kontaktformular einmal selbst testen
 - [ ] Gewerbe anmelden, Kleinunternehmerregelung/USt-IdNr. klären
-- [ ] Amazon-PartnerNet-Konto
+- [ ] Amazon-PartnerNet-Konto, danach Partner-Tag in `site/src/site.ts` eintragen
+- [ ] Google Search Console + Bing Webmaster Tools, Sitemap einreichen
 - [ ] Rechtstexte prüfen lassen (Rechtstexte-Abo oder Anwalt), siehe `recht/checkliste.md`

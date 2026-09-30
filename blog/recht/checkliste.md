@@ -22,7 +22,7 @@ Deshalb gilt für den Aufbau:
 | Kommentare, Newsletter | vorerst nicht | beides bringt eigene Pflichten (Moderation, Double-Opt-in) |
 | Hosting | deutscher/europäischer Hoster mit AV-Vertrag (Art. 28 DSGVO) | keine Übermittlung in Drittländer |
 
-Datenschutzerklärung (`datenschutz.md`) ist genau auf diesen Aufbau geschrieben.
+Datenschutzerklärung (`site/src/content/recht/datenschutz.md`) ist genau auf diesen Aufbau geschrieben.
 **Jede Abweichung davon heißt: Datenschutzerklärung anpassen.**
 
 ## 🔴 Hohes Risiko
@@ -41,7 +41,7 @@ Datenschutzerklärung (`datenschutz.md`) ist genau auf diesen Aufbau geschrieben
 
 ### 2. Werbekennzeichnung (§ 5a UWG, § 6 DDG)
 - Jeder Affiliate-Link direkt am Link mit `*` markiert, oben im Artikel „Anzeige“-Hinweis,
-  beides fertig in `werbung.md`.
+  beides fertig eingebaut (Bausteine für YouTube in `textbausteine.md`).
 - Amazon-Pflichtsatz sichtbar: „Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.“
   (Footer jeder Seite + Impressum + YouTube-Beschreibung).
 - Gilt genauso für YouTube-Beschreibung und angehefteten Kommentar.
@@ -56,7 +56,7 @@ Datenschutzerklärung (`datenschutz.md`) ist genau auf diesen Aufbau geschrieben
   Anfragen darüber zeitnah beantworten.
 - E-Mail im Impressum: `flpspring@gmail.com`. Rechtlich in Ordnung, steht in der
   Datenschutzerklärung. Zwei Tipps: Die Adresse wird öffentlich und bekommt Spam. Und sauberer
-  ist später ein Postfach beim Hoster (`kontakt@[DOMAIN]`, meist im Paket enthalten), weil dann
+  ist später ein Postfach beim Hoster (`kontakt@handwerksdoktor.de`, meist im Paket enthalten), weil dann
   keine Mails über Google laufen.
 - Von jeder Seite mit einem Klick erreichbar (Footer), Link heißt „Impressum“.
 - **Auch der YouTube-Kanal braucht ein Impressum**, sobald er Geld verdient: Link zum
@@ -82,11 +82,11 @@ Datenschutzerklärung (`datenschutz.md`) ist genau auf diesen Aufbau geschrieben
 ## 🟡 Mittleres Risiko
 
 ### 6. Datenschutz (DSGVO, TDDDG)
-- `datenschutz.md` einbauen, Platzhalter füllen, Hoster eintragen.
+- Datenschutzerklärung ist eingebaut und ausgefüllt (IONOS als Hoster).
 - AV-Verträge abschließen: Hoster und Postflex (macht Postflex standardmäßig).
 - Nach dem Livegang mit dem Browser prüfen: DevTools → Netzwerk → es dürfen **nur Anfragen an
-  die eigene Domain** erscheinen, bis man ein Video anklickt. Das prüfe ich vor dem Livegang
-  automatisch mit Playwright.
+  die eigene Domain** erscheinen, bis man ein Video anklickt. Vor jedem Upload prüft das
+  `npm run check` in `blog/site/` automatisch für alle Seiten.
 
 ### 7. Anleitungen und Haftung
 - Bei Strom, Gas und Trinkwasser klar sagen, was Laien dürfen und was nicht.

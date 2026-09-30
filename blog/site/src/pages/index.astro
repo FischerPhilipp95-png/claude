@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site';
+
+const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6);
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: `${SITE.url}/`, inLanguage: 'de-DE' }];
+---
+<Base title={SITE.name} description={SITE.description} jsonLd={jsonLd}>
+  <section class="hero">
+    <div class="wrap wide">
+      <h1>Haustechnik, <b>einfach erklärt.</b></h1>
+      <p>Warum gluckert die Heizung? Wie kommt der Strom ins Haus? Hier findest du Antworten, die man versteht,
+      und Anleitungen für alles, was du sicher selbst machen kannst.</p>
+      <a class="btn" href="/artikel/">Zu den Artikeln</a>
+    </div>
+  </section>
+  <div class="wrap wide">
+    <h2>Neueste Artikel</h2>
+    <ul class="cards">
+      {posts.map((p) => (
+        <li class="card"><a href={`/artikel/${p.id}/`}>
+          <img src={p.data.bild} alt="" width="1200" height="675" loading="lazy" />
+          <div><span class="tag">{p.data.thema}</span><h3>{p.data.title}</h3><p>{p.data.description}</p></div>
+        </a></li>
+      ))}
+    </ul>
+  </div>
+</Base>
