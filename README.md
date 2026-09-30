@@ -76,9 +76,15 @@ Dann hat das Thema gezogen, nicht die Kanalgröße: genau solche Themen lohnen s
 | `ideen/channels.txt` | Konkurrenzkanäle, deren letzte Uploads komplett geprüft werden |
 | `ideen/reports/<datum>.html` | Bericht mit Vorschaubildern: Top-Ideen lang und Shorts, eigene Ausreißer, Titelmuster, Kanal-Vorschläge |
 | `ideen/reports/<datum>.md` / `.csv` | dieselben Daten als Tabelle bzw. für Excel |
+| `ideen/reports/<datum>_fragen.csv` | Zuschauerfragen aus den Kommentaren der Top-Treffer und deiner eigenen Videos |
+
+**Fragen aus den Kommentaren:** Unter den 25 besten langen Treffern und deinen 10 meistgesehenen Videos
+werden die beliebtesten Kommentare geladen und die Fragen herausgefiltert. Ganz oben im Bericht stehen
+„Konkrete Probleme von Zuschauern“ (Ich-Form: „bei mir blinkt …“, „ich habe …“), jede davon ist ein möglicher
+Videotitel nach dem Muster „Problem? Die Lösung“. Ein Klick führt direkt zum Kommentar.
 
 Nützliche Optionen: `--keyword "Fliesen bohren"` (zusätzlicher Begriff), `--nur-keyword` (nur diesen),
-`--zeitraum woche|monat|jahr|alle`, `--min-views 3000`, `--min-faktor 2`.
-Braucht nur yt-dlp, keinen API-Schlüssel. `youtube.com` muss in den Netzwerk-Einstellungen freigegeben sein.
+`--zeitraum woche|monat|jahr|alle`, `--min-views 3000`, `--min-faktor 2`, `--kommentare 0` (Fragen aus).
+Braucht yt-dlp und youtube-comment-downloader (installiert `scripts/setup.sh`), keinen API-Schlüssel. `youtube.com` muss in den Netzwerk-Einstellungen freigegeben sein.
 
 Ideen daraus immer mit eigenem Inhalt umsetzen: Thema und Titelmuster übernehmen, nie Videos, Bilder oder Texte.

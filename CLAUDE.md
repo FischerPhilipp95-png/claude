@@ -28,7 +28,8 @@ Regeln:
 
 `scripts/setup.sh` installiert ffmpeg, numpy, librosa, Pillow und yt-dlp und läuft automatisch beim Sitzungsstart.
 Video-Ideen: `python3 tools/find_outliers.py` findet Outlier-Videos (Aufrufe weit über dem Kanal-Median)
-zu `ideen/keywords.txt` und `ideen/channels.txt`, Bericht in `ideen/reports/<datum>.html`.
+zu `ideen/keywords.txt` und `ideen/channels.txt`, dazu Zuschauerfragen aus deren Kommentaren.
+Bericht in `ideen/reports/<datum>.html`.
 Websites (Kundenseiten, x.com, YouTube) sind nur erreichbar, wenn ihre Domain in den Netzwerk-Einstellungen
 der Cloud-Umgebung freigegeben ist. Ein 403 beim Download bedeutet: Domain nicht freigegeben.
 

@@ -4,7 +4,7 @@
 set -euo pipefail
 
 pip install -q --disable-pip-version-check \
-  numpy scipy librosa soundfile pillow imageio-ffmpeg yt-dlp piper-tts 2>&1 | grep -v "Running pip as the 'root' user" || true
+  numpy scipy librosa soundfile pillow imageio-ffmpeg yt-dlp youtube-comment-downloader piper-tts 2>&1 | grep -v "Running pip as the 'root' user" || true
 
 # ffmpeg aus imageio-ffmpeg global verfügbar machen, falls kein System-ffmpeg existiert
 if ! command -v ffmpeg >/dev/null 2>&1; then

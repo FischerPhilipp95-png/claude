@@ -21,8 +21,9 @@ Ergebnis in ideen/reports/:
     <datum>.html   Bericht mit Vorschaubildern (zum Durchschauen)
     <datum>.md     dieselben Listen als Tabellen
     <datum>.csv    alle bewerteten Videos (für Excel/Sheets)
+    <datum>_fragen.csv  Zuschauerfragen aus den Kommentaren der Top-Treffer und deines Kanals
 
-Braucht nur yt-dlp (kein API-Schlüssel). youtube.com muss in den
+Braucht yt-dlp und youtube-comment-downloader (kein API-Schlüssel). youtube.com muss in den
 Netzwerk-Einstellungen freigegeben sein. Kanaldaten werden 20 h in
 ideen/.cache/ zwischengespeichert.
 """
@@ -58,6 +59,23 @@ AD_TITLE = re.compile(r"anzeige|werbung|#ad\b|mehr infos unter|gesponsert|sponso
 AD_CHANNEL = re.compile(r"\b(gmbh|ag|kg|se|ltd|inc)\b|deutschland$", re.I)
 CHANNEL_SHORTS_MIN_KEYWORDS = 2  # Kanal-Shorts nur von Kanälen, die zu mehreren Suchbegriffen passen
 HASHTAG_LIMIT = 60  # Shorts pro Hashtag-Seite
+COMMENTS_PER_VIDEO = 300  # beliebteste Kommentare pro Video
+# Ein Kommentar zählt als Frage mit "?" oder einer typischen Problem-/Hilfe-Formulierung
+QUESTION_RX = re.compile(
+    r"\?|geht nicht|funktioniert nicht|klappt nicht|nicht mehr (an|warm|richtig)|blinkt|fehlermeldung|fehlercode"
+    r"|wei(ß|ss) jemand|hat jemand|kann mir (jemand|einer)|brauche hilfe|bitte um hilfe|was (kann|soll) ich", re.I)
+RHETORIC_RX = re.compile(r"^\W*(oder\?|ne\?|gell?\?|oder nicht\?)\W*$|warum nicht gleich so", re.I)
+EN_WORDS = set("the and you your is are this that what how why it my can does with for have".split())
+DE_WORDS = set("""der die das und ich ist nicht wie was ein eine mein meine bei mit auch kann hat habe wo wann
+welche welcher welches man sie du dein deine geht noch oder wenn für auf von im zu wird gibt""".split())
+JOKE_RX = re.compile(r"[😂🤣😆😅]|\blol\b|\bhaha", re.I)
+# Ich-Form plus Hilfe-/Problemwort: ein Zuschauer schildert sein eigenes Problem. Das sind die besten Video-Ideen.
+FIRST_PERSON_RX = re.compile(r"\b(ich habe|ich hab|habe ich|hab ich|bei mir|bei uns|wir haben|haben wir"
+                             r"|unsere?[rnm]?|mein(e|er|en|em)?)\b", re.I)
+NOT_FIRST_PERSON_RX = re.compile(r"\bich meine?\b|mein abo|meine meinung|meiner meinung|meines erachtens", re.I)
+NEED_RX = re.compile(r"\?|geht nicht|funktioniert nicht|klappt nicht|nicht mehr|kaputt|blinkt|tropft|leckt|gluckert"
+                     r"|ursache|was tun|hilfe|kann ich|soll ich|muss ich|darf ich|wie bekomme|woran liegt|problem|fehler"
+                     r"|lohnt|reicht|ersetzen|anschließen|umbauen|nachrüsten", re.I)
 # Zu allgemein, um ein Short als themennah zu erkennen
 GENERIC_WORDS = set("test tipps tipp fehler sparen hält nicht ohne richtig reinigen beste neue".split())
 
@@ -85,6 +103,10 @@ der des die dies diese diesem diesen dieser doch durch ein eine einem einen eine
 gibt hat hier ich ihr ihre ist jetzt kann kein keine mal man mehr mein meine mit nach nicht noch nur
 oder ohne sehr sich sie sind so und uns unter vom von vor was weil wenn wer wie wieder wird wir mit
 zum zur zu über shorts short with your this that from what have will video videos teil
+danke hallo super schon immer einfach warum welche welcher welches wieso weshalb machen macht gemacht
+haben hatte habt können könnte würde wäre dann denn etwas jemand eigentlich genau leider bitte
+werden wurde wurden kommt kommen wirklich viele gerade dafür finde sollte kannst möchte weitere frage
+fragen jahre unten oben immer wieder richtig schön gesagt sieht mache würden
 """.split())
 
 
@@ -192,6 +214,86 @@ def topic_words(keywords, hashtags):
 def on_topic(title, words):
     t = (title or "").lower()
     return any(w in t for w in words)
+
+
+def parse_count(text):
+    """'1,2K' / '1.2K' / '15' -> int"""
+    t = (text or "0").strip().upper().replace(",", ".")
+    mult = 1000 if t.endswith("K") else 1_000_000 if t.endswith("M") else 1
+    try:
+        return int(float(t.rstrip("KM") or 0) * mult)
+    except ValueError:
+        return 0
+
+
+def is_question(text):
+    t = " ".join(text.split())
+    if not 20 <= len(t) <= 500 or RHETORIC_RX.search(t) or JOKE_RX.search(t) or not QUESTION_RX.search(t):
+        return False
+    if re.search(r"[\u0400-\u04FF\u0600-\u06FF\u0E00-\u0E7F\u3040-\u30FF\u4E00-\u9FFF]", t):
+        return False  # kyrillisch, arabisch, thai, japanisch, chinesisch
+    words = re.findall(r"[a-zäöüß]+", t.lower())
+    de = sum(w in DE_WORDS for w in words)
+    return de >= 2 and de > sum(w in EN_WORDS for w in words)
+
+
+def is_problem(text):
+    return bool(FIRST_PERSON_RX.search(NOT_FIRST_PERSON_RX.sub("", text)) and NEED_RX.search(text))
+
+
+def fetch_comments(vid, use_cache=True):
+    path = CACHE / "comments" / f"{vid}.json"
+    if use_cache and path.exists() and time.time() - path.stat().st_mtime < CACHE_HOURS * 3600:
+        return json.loads(path.read_text())
+    from itertools import islice
+    from youtube_comment_downloader import SORT_BY_POPULAR, YoutubeCommentDownloader
+    gen = YoutubeCommentDownloader().get_comments_from_url(f"https://www.youtube.com/watch?v={vid}",
+                                                           sort_by=SORT_BY_POPULAR)
+    out = [{"cid": c["cid"], "text": c["text"], "likes": parse_count(c.get("votes")),
+            "replies": parse_count(c.get("replies")), "channel": c.get("channel"), "reply": c.get("reply"),
+            "time": c.get("time")} for c in islice(gen, COMMENTS_PER_VIDEO)]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(out, ensure_ascii=False))
+    return out
+
+
+def collect_questions(videos, workers, use_cache):
+    """videos: Zeilen aus make_row. Gibt Fragen zurück, beliebteste zuerst."""
+    questions, failed = [], 0
+    with ThreadPoolExecutor(workers) as pool:
+        jobs = {pool.submit(fetch_comments, v["id"], use_cache): v for v in videos}
+        for i, job in enumerate(as_completed(jobs), 1):
+            v = jobs[job]
+            try:
+                comments = job.result()
+            except Exception:
+                failed += 1
+                continue
+            seen = set()
+            for c in comments:
+                key = c["text"].strip().lower()[:80]
+                if c["channel"] == v["channel_id"] or key in seen or not is_question(c["text"]):
+                    continue  # Antworten des Kanalbetreibers und Dubletten weglassen
+                seen.add(key)
+                questions.append({**c, "video": v, "problem": is_problem(c["text"])})
+            print(f"\r  Kommentare: {i}/{len(videos)}", end="", file=sys.stderr, flush=True)
+    print(file=sys.stderr)
+    if failed:
+        print(f"  Kommentare übersprungen: {failed} Videos", file=sys.stderr)
+    questions.sort(key=lambda q: (q["likes"], q["replies"]), reverse=True)
+    return questions
+
+
+def question_words(questions):
+    words = Counter()
+    for q in questions:
+        words.update({w for w in re.findall(r"[a-zäöüß0-9]+", q["text"].lower())
+                      if len(w) >= 5 and w not in STOPWORDS and w not in GENERIC_WORDS and not w.isdigit()})
+    return [(w, c) for w, c in words.most_common(30) if c >= 2]
+
+
+def comment_url(q):
+    return f"https://www.youtube.com/watch?v={q['video']['id']}&lc={q['cid']}"
 
 
 def fetch_many(refs, workers, use_cache):
@@ -337,6 +439,23 @@ def write_md(path, ctx):
     p += ["## Lange Videos: Top-Ideen\n", md_table(ctx["long"])]
     p += ["## Shorts: Top-Ideen\n", md_table(ctx["short"])]
     p += ["## Dein Kanal: Was bei dir überdurchschnittlich lief\n", md_table(ctx["own"], with_source=False)]
+    if ctx["questions"] is not None:
+        p += ["## Fragen aus den Kommentaren\n",
+              f"{len(ctx['questions'])} Fragen aus {ctx['n_comment_videos']} Videos (Top-Treffer und dein Kanal), "
+              "beliebteste zuerst.\n",
+              "Häufige Begriffe: " + ", ".join(f"{w} ({c})" for w, c in ctx["question_words"]) + "\n",
+              "### Konkrete Probleme von Zuschauern (Ich-Form)\n",
+              "| Likes | Frage | Video |", "|---|---|---|"]
+        for q in [q for q in ctx["questions"] if q["problem"]][:30]:
+            text = " ".join(q["text"].split()).replace("|", "/")
+            p.append(f"| {q['likes']} | [{text[:300]}]({comment_url(q)}) | {q['video']['title'][:60].replace('|', '/')} "
+                     f"({q['video']['channel']}) |")
+        p += ["", "### Beliebteste Fragen\n", "| Likes | Frage | Video |", "|---|---|---|"]
+        for q in ctx["questions"][:60]:
+            text = " ".join(q["text"].split()).replace("|", "/")
+            p.append(f"| {q['likes']} | [{text[:300]}]({comment_url(q)}) | {q['video']['title'][:60].replace('|', '/')} "
+                     f"({q['video']['channel']}) |")
+        p.append("")
     p += ["## Titelmuster der Treffer\n",
           "| Muster | Anteil bei Treffern | Anteil bei allen Suchergebnissen |", "|---|---|---|"]
     p += [f"| {n} | {w:.0%} | {b:.0%} |" for n, w, b in ctx["patterns"]]
@@ -376,6 +495,37 @@ def write_html(path, ctx):
         f"<tr><td><a href='https://www.youtube.com/channel/{c['id']}' target='_blank'>{e(c['name'])}</a></td>"
         f"<td>{c['hits']}</td><td>{fmt_int(c['subs'])}</td><td>{fmt_int(c['med_long'])}</td>"
         f"<td>{fmt_int(c['med_short'])}</td><td><code>{c['id']}</code></td></tr>" for c in ctx["suggest"])
+    q_html = ""
+    if ctx["questions"] is not None:
+        qwords = " ".join(f"<span class='chip'>{e(w)} <b>{c}</b></span>" for w, c in ctx["question_words"])
+        items = "".join(
+            f"<li><a href='{comment_url(q)}' target='_blank' rel='noopener'>{e(' '.join(q['text'].split()))}</a>"
+            f"<div class='sub'>👍 {q['likes']} · {q['replies']} Antworten · unter „{e(q['video']['title'])}“ "
+            f"({e(q['video']['channel'])})</div></li>" for q in ctx["questions"][:40])
+        per_video = defaultdict(list)
+        for q in ctx["questions"]:
+            per_video[q["video"]["id"]].append(q)
+        groups = "".join(
+            f"<details><summary>{e(lst[0]['video']['title'])} <span class='muted'>· {e(lst[0]['video']['channel'])} "
+            f"({len(lst)})</span></summary><ul class='qs'>"
+            + "".join(f"<li><a href='{comment_url(q)}' target='_blank' rel='noopener'>{e(' '.join(q['text'].split()))}</a>"
+                      f" <span class='muted'>👍 {q['likes']}</span></li>" for q in lst[:25])
+            + "</ul></details>"
+            for lst in sorted(per_video.values(), key=len, reverse=True))
+        problems = [q for q in ctx["questions"] if q["problem"]]
+        p_items = "".join(
+            f"<li><a href='{comment_url(q)}' target='_blank' rel='noopener'>{e(' '.join(q['text'].split()))}</a>"
+            f"<div class='sub'>👍 {q['likes']} · unter „{e(q['video']['title'])}“ ({e(q['video']['channel'])})</div></li>"
+            for q in problems[:30])
+        q_html = f"""<h2>Fragen aus den Kommentaren</h2>
+<p class="lead">{len(ctx['questions'])} Zuschauerfragen aus {ctx['n_comment_videos']} Videos (lange Top-Treffer und dein Kanal).
+Jede Frage, die viele Likes hat oder öfter auftaucht, ist ein Video, nach dem Leute suchen. Klick führt direkt zum Kommentar.</p>
+<p>{qwords}</p>
+<h3>Konkrete Probleme von Zuschauern ({len(problems)})</h3>
+<p class="lead">Fragen in der Ich-Form („bei mir …“, „ich habe …“). Jede davon ist ein fertiger Videotitel nach dem Muster „Problem? Die Lösung“.</p>
+<ol class="qs">{p_items}</ol>
+<h3>Beliebteste Fragen</h3><ol class="qs">{items}</ol>
+<h3>Nach Video</h3>{groups}"""
     by_kw = "".join(
         f"<details><summary>{e(kw)} <span class='muted'>({len(rows)})</span></summary>{html_cards(rows)}</details>"
         for kw, rows in ctx["by_keyword"])
@@ -407,6 +557,8 @@ td,th{{border-bottom:1px solid var(--line);padding:6px 10px;text-align:left}}th{
 details{{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0}}
 summary{{cursor:pointer;font-weight:600}}details .grid{{margin-top:12px}}
 .table-wrap{{overflow-x:auto}}code{{font-size:12px}}
+.qs{{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px 10px 36px;margin:8px 0}}
+details .qs{{border:0;padding-left:20px}}.qs li{{margin:8px 0}}.qs a{{color:inherit}}h3{{font-size:16px;margin:20px 0 8px}}
 </style></head><body><main>
 <h1>Video-Ideen: Outlier-Bericht</h1>
 <p class="muted">{ctx['date']} · Suche: {e(ctx['zeitraum_text'])} · {ctx['n_scored']} Videos bewertet</p>
@@ -420,6 +572,7 @@ Gezeigt ab {ctx['min_faktor']:g}× und {fmt_int(ctx['min_views'])} Aufrufen, sor
 <h2>Dein Kanal: Was bei dir überdurchschnittlich lief</h2>
 <p class="lead">Deine eigenen Ausreißer. Diese Themen haben bei deinem Publikum schon funktioniert und verdienen Fortsetzungen.</p>
 {html_cards(ctx['own'])}
+{q_html}
 <h2>Titelmuster der Treffer</h2>
 <p class="lead">Wie oft ein Muster in Treffer-Titeln vorkommt, verglichen mit allen Suchergebnissen. Grün heißt: bei Treffern deutlich häufiger.</p>
 <div class="table-wrap"><table><tr><th>Muster</th><th>Treffer</th><th>alle</th><th>Differenz (Punkte)</th></tr>{pat_rows}</table></div>
@@ -443,6 +596,15 @@ def write_csv(path, rows):
                         "" if r["age_days"] is None else f"{r['age_days']:.0f}",
                         "" if r["views_per_day"] is None else f"{r['views_per_day']:.0f}",
                         r["title"], r["channel"], r["subs"] or "", "; ".join(sorted(r["sources"])), url_of(r)])
+
+
+def write_questions_csv(path, questions):
+    with path.open("w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["likes", "antworten", "eigenes_problem", "frage", "video", "kanal", "kommentar_url"])
+        for q in questions:
+            w.writerow([q["likes"], q["replies"], "ja" if q["problem"] else "", " ".join(q["text"].split()), q["video"]["title"],
+                        q["video"]["channel"], comment_url(q)])
 
 
 # --------------------------------------------------------------------------- Ablauf
@@ -473,6 +635,8 @@ def main():
     ap.add_argument("--min-faktor", type=float, default=3.0)
     ap.add_argument("--max-alter", type=int, default=365, help="Tage, für Uploads beobachteter Kanäle")
     ap.add_argument("--top", type=int, default=40, help="Einträge pro Top-Liste")
+    ap.add_argument("--kommentare", type=int, default=25,
+                    help="so viele Top-Treffer auf Zuschauerfragen prüfen (0 = aus); dazu die 10 meistgesehenen eigenen Videos")
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--no-cache", action="store_true")
     ap.add_argument("--out", type=Path, default=IDEEN / "reports")
@@ -630,6 +794,21 @@ def main():
                         "med_short": channel_median(ch, "short", now) if ch else None})
     suggest.sort(key=lambda c: (c["hits"], c["med_long"] or 0), reverse=True)
 
+    questions, comment_videos = None, []
+    if args.kommentare > 0:
+        try:
+            import youtube_comment_downloader  # noqa: F401
+        except ImportError:
+            print("  Kommentare übersprungen: pip install youtube-comment-downloader", file=sys.stderr)
+        else:
+            ranked = sorted((r for r in winners if not r["ad"]), key=lambda r: r["score"], reverse=True)
+            # Nur lange Videos: Unter viralen Shorts stehen fast nur Witze und Reaktionen
+            comment_videos = [r for r in ranked if r["format"] == "long"][:args.kommentare]
+            if own:
+                own_all = [make_row(v, own, fmt, now, "eigener Kanal") for fmt in ("long", "short") for v in own[fmt]]
+                comment_videos += sorted((r for r in own_all if r), key=lambda r: r["views"], reverse=True)[:10]
+            questions = collect_questions(comment_videos, args.workers, use_cache)
+
     ctx = {
         "date": date.today().isoformat(),
         "zeitraum_text": {"woche": "Uploads dieser Woche", "monat": "Uploads dieses Monats",
@@ -638,12 +817,16 @@ def main():
         "long": top("long"), "short": top("short"), "own": own_rows[:20],
         "patterns": patterns, "words": words, "by_keyword": by_keyword, "by_channel": by_channel,
         "suggest": suggest[:30],
+        "questions": questions, "n_comment_videos": len(comment_videos),
+        "question_words": question_words(questions or []),
     }
     args.out.mkdir(parents=True, exist_ok=True)
     stem = args.out / ctx["date"]
     write_html(stem.with_suffix(".html"), ctx)
     write_md(stem.with_suffix(".md"), ctx)
     write_csv(stem.with_suffix(".csv"), all_rows)
+    if questions is not None:
+        write_questions_csv(args.out / f"{ctx['date']}_fragen.csv", questions)
 
     print(f"\n{len(all_rows)} Videos bewertet, {len(winners)} Treffer "
           f"(ab {args.min_faktor:g}× und {fmt_int(args.min_views)} Aufrufen).")
@@ -651,6 +834,10 @@ def main():
         print(f"\n{label}:")
         for r in lst[:10]:
             print(f"  {r['faktor']:5.0f}×  {fmt_int(r['views']):>8}  {r['title'][:70]}  ({r['channel']})")
+    if questions:
+        print(f"\n{len(questions)} Zuschauerfragen, die beliebtesten:")
+        for q in questions[:8]:
+            print(f"  👍{q['likes']:>5}  {' '.join(q['text'].split())[:100]}")
     print(f"\nBericht: {stem.with_suffix('.html').relative_to(ROOT)}")
 
 
