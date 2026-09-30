@@ -35,3 +35,27 @@ Mehrere Referenzen gehen auch, z. B. „Schnittrhythmus von `refs/a`, Typo von `
 
 Daraus schreibt Claude `docs/style_guide.md`. Neue Videos halten sich daran.
 Übernommen wird nur der Stil, nie Inhalte, Logos oder Musik der Referenz.
+
+## Ein Video bauen (Beispiel: `projects/klima-short`)
+
+Jedes Video ist ein Ordner unter `projects/`. Die ganze Pipeline läuft mit einem Befehl:
+
+```
+bash projects/klima-short/build.sh
+```
+
+| Schritt | Datei | Ergebnis |
+|---|---|---|
+| Voiceover | `tools/tts.py` + `vo_script.json` | `audio/vo/*.wav` (Fish Audio mit `FISH_API_KEY`, sonst Piper) |
+| Musik | `music.py` | `audio/music.wav`, 120 BPM, per Code |
+| Beats | `tools/beats.py` | `beats.json`: bpm, beats, downbeats, hits |
+| Timeline + SFX-Cues | `render.mjs --timeline` | `timeline.json`, `cues.json` |
+| UI-Sounds | `tools/sfx.mjs` | `audio/sfx.wav` (click, pop, thump, whoosh) |
+| Abnahme | `render.mjs --contact` | `out/contact_sheet.png`, ein Frame pro Abschnitt |
+| Bild | `render.mjs` | `out/video.mp4` (stumm) |
+| Mischen | `tools/mix.py` | `out/final.mp4` (Musik duckt unter der Stimme, −14 LUFS) |
+
+Zustandswechsel liegen auf Beats, große Momente (Logo, CTA) auf Downbeats, SFX auf Hits.
+
+**API-Keys nie ins Repo schreiben.** Fish Audio: den Key als Umgebungsvariable `FISH_API_KEY` in den
+Einstellungen der Cloud-Umgebung hinterlegen (Environment variables).

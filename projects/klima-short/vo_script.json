@@ -1,0 +1,34 @@
+[
+  {
+    "id": "vo1",
+    "text": "Eine Klimaanlage macht keine Kälte."
+  },
+  {
+    "id": "vo2",
+    "text": "Sie schiebt Wärme nach draußen."
+  },
+  {
+    "id": "vo3",
+    "text": "Drinnen verdampft das Kältemittel und nimmt die Wärme auf."
+  },
+  {
+    "id": "vo4",
+    "text": "Draußen presst der Kompressor es zusammen. Es wird heiß."
+  },
+  {
+    "id": "vo5",
+    "text": "Im Kondensator gibt es die Hitze ab."
+  },
+  {
+    "id": "vo6",
+    "text": "Hinter dem Ventil fällt der Druck. Es wird eiskalt."
+  },
+  {
+    "id": "vo7",
+    "text": "Und alles beginnt von vorn."
+  },
+  {
+    "id": "vo8",
+    "text": "Mehr davon beim Handwerksdoktor."
+  }
+]

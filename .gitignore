@@ -3,3 +3,18 @@ refs/*/frames/
 refs/*/audio.wav
 __pycache__/
 node_modules/
+
+# Erzeugte Zwischenstände (jederzeit per build.sh neu erzeugbar)
+projects/*/out/video.mp4
+projects/*/out/still_*.png
+projects/*/audio/music.wav
+projects/*/audio/sfx.wav
+projects/*/audio/mix.wav
+*.trim.wav
+
+# Große Modelle, werden bei Bedarf geladen
+tools/voices/
+
+# Niemals API-Keys committen
+.env
+*.key
