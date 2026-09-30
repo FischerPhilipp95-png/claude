@@ -6,7 +6,7 @@
 const EMPFAENGER = 'flpspring@gmail.com';
 // Absender muss eine Adresse der eigenen Domain sein, sonst landen die Mails im Spam.
 // Das Postfach im IONOS-Konto anlegen (im Webhosting-Paket enthalten).
-const ABSENDER = 'kontakt@handwerksdoktor.de';
+const ABSENDER = 'info@handwerksdoktor.de';
 
 function weiter(string $pfad): void {
     header('Location: ' . $pfad, true, 303);

@@ -56,7 +56,7 @@ Datenschutzerklärung (`site/src/content/recht/datenschutz.md`) ist genau auf di
   Anfragen darüber zeitnah beantworten.
 - E-Mail im Impressum: `flpspring@gmail.com`. Rechtlich in Ordnung, steht in der
   Datenschutzerklärung. Zwei Tipps: Die Adresse wird öffentlich und bekommt Spam. Und sauberer
-  ist später ein Postfach beim Hoster (`kontakt@handwerksdoktor.de`, meist im Paket enthalten), weil dann
+  ist später ein Postfach beim Hoster (`info@handwerksdoktor.de`, meist im Paket enthalten), weil dann
   keine Mails über Google laufen.
 - Von jeder Seite mit einem Klick erreichbar (Footer), Link heißt „Impressum“.
 - **Auch der YouTube-Kanal braucht ein Impressum**, sobald er Geld verdient: Link zum

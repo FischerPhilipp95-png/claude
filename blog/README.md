@@ -20,7 +20,7 @@
 - [x] Domain `handwerksdoktor.de` bei IONOS (Webhosting)
 - [x] IONOS: AV-Vertrag abgeschlossen am 30.09.2026 (PDF kommt per E-Mail, ablegen)
 - [ ] IONOS: E-Mail bestätigen, Zwei-Faktor-Anmeldung, Erinnerung vor Ablauf der 12 Monate
-- [ ] IONOS: Postfach `kontakt@handwerksdoktor.de` anlegen (Absender des Kontaktformulars)
+- [ ] IONOS: Postfach `info@handwerksdoktor.de` anlegen (Absender des Kontaktformulars)
 - [ ] IONOS: SSL-Zertifikat der Domain zuweisen, Domain auf den Webspace-Ordner zeigen lassen
 - [ ] IONOS: Statistik/„Web Analytics“ im Hosting-Paket ausgeschaltet lassen
 - [ ] Blog hochladen (siehe `site/README.md`), danach Kontaktformular einmal selbst testen

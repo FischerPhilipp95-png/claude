@@ -40,7 +40,7 @@ in `public/bilder/`. Nie Bilder von Amazon, Herstellern oder anderen Seiten.
    sie muss mit hochgeladen werden (https-Umleitung, Sicherheitsregeln).
 3. In IONOS unter Domains prüfen, dass `handwerksdoktor.de` auf genau diesen Ordner zeigt und das
    SSL-Zertifikat aktiv ist.
-4. Kontaktformular einmal selbst ausprobieren. Die Mail kommt von `kontakt@handwerksdoktor.de`
+4. Kontaktformular einmal selbst ausprobieren. Die Mail kommt von `info@handwerksdoktor.de`
    (dieses Postfach muss in IONOS angelegt sein), beim ersten Mal auch im Spam-Ordner nachsehen.
 
 ## Wo was steht
