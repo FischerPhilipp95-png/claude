@@ -20,7 +20,8 @@ Punkte unten geklärt sind.
 - [ ] Postflex: Zustellungsvollmacht und AV-Vertrag in den Vertragsunterlagen nachsehen, MFA einschalten
 - [x] DPMA-Recherche „Handwerksdoktor“: 0 Treffer (30.09.2026)
 - [ ] EUIPO/TMview und ähnliche Schreibweisen prüfen, dann Domain (handwerksdoktor.de war am 30.09.2026 laut DNS noch frei)
-- [ ] Hoster wählen (Deutschland/EU, **mit PHP** fürs Kontaktformular, AV-Vertrag) und in `datenschutz.md` eintragen
+- [x] Hoster: IONOS Webhosting, in `datenschutz.md` eingetragen
+- [ ] IONOS: E-Mail bestätigen, AV-Vertrag abschließen, Zwei-Faktor-Anmeldung, Erinnerung vor Ablauf der 12 Monate
 - [ ] Gewerbe anmelden, Kleinunternehmerregelung/USt-IdNr. klären
 - [ ] Amazon-PartnerNet-Konto
 - [ ] Rechtstexte prüfen lassen (Rechtstexte-Abo oder Anwalt), siehe `recht/checkliste.md`

@@ -6,7 +6,8 @@ YouTube nur per Klick, keine Kommentare, kein Newsletter,
 Kontaktformular per PHP auf dem eigenen Hoster (kein Formular-Dienst, kein reCAPTCHA).
 Wird etwas davon geändert (z. B. Analytics, Formular-Dienst, Newsletter), MUSS dieser Text angepasst werden.
 
-Vor dem Livegang ausfüllen: [DOMAIN], [HOSTER: Name, Anschrift] (Abschnitt 3).
+Vor dem Livegang ausfüllen: [DOMAIN]. Hoster: IONOS (Webhosting), Rechenzentrum Deutschland im IONOS-Konto prüfen,
+Log-Speicherdauer in Abschnitt 3 mit den IONOS-Einstellungen abgleichen.
 Wechselt die Kontakt-E-Mail von Gmail zu einem Postfach beim Hoster, Abschnitt 4 anpassen.
 Abschnitt 7 (Reichweitenmessung) nur drinlassen, wenn wirklich eingebaut, sonst löschen.
 -->
@@ -35,7 +36,8 @@ Ein Datenschutzbeauftragter ist nicht bestellt und gesetzlich nicht erforderlich
 
 ## 3. Hosting und Server-Logfiles
 
-Diese Website wird gehostet bei: [HOSTER: Name, Anschrift].
+Diese Website wird gehostet bei der IONOS SE, Elgendorfer Straße 57, 56410 Montabaur,
+auf Servern in Deutschland.
 Mit dem Hoster besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO.
 
 Beim Aufruf der Website speichert der Server automatisch sogenannte Logfiles:
