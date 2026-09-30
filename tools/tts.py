@@ -37,10 +37,10 @@ def fish(text, out, key, voice):
         out.write_bytes(r.read())
 
 
-def piper(text, out, voice_obj):
+def piper(text, out, voice_obj, length_scale=0.88):
     from piper.config import SynthesisConfig
     with wave.open(str(out), "wb") as w:
-        voice_obj.synthesize_wav(text, w, syn_config=SynthesisConfig(length_scale=0.88))
+        voice_obj.synthesize_wav(text, w, syn_config=SynthesisConfig(length_scale=length_scale))
 
 
 def load_piper():
@@ -69,6 +69,7 @@ def main():
     ap.add_argument("script")
     ap.add_argument("out_dir")
     ap.add_argument("--voice", default=FISH_VOICE, help="Fish-Audio-Stimmen-ID")
+    ap.add_argument("--length-scale", type=float, default=0.88, help="Piper: >1 langsamer, <1 schneller")
     ap.add_argument("--engine", choices=["fish", "piper"], help="Standard: fish mit FISH_API_KEY, sonst piper")
     args = ap.parse_args()
 
@@ -85,7 +86,7 @@ def main():
         if engine == "fish":
             fish(line["text"], out, key, args.voice)
         else:
-            piper(line["text"], out, voice_obj)
+            piper(line["text"], out, voice_obj, args.length_scale)
         durations[line["id"]] = trimmed_duration(out)
         print(f"{line['id']}: {durations[line['id']]:.2f}s  {line['text']}")
     (out_dir / "durations.json").write_text(json.dumps({"engine": engine, **durations}, indent=2))

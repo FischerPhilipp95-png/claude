@@ -1,0 +1,190 @@
+[
+ {
+  "id": "c0_0",
+  "text": "Du drückst auf den Lichtschalter, und zack: Das Licht ist an."
+ },
+ {
+  "id": "c0_1",
+  "text": "Sofort. Unsichtbar. Selbstverständlich."
+ },
+ {
+  "id": "c0_2",
+  "text": "Aber der Strom kommt nicht aus deiner Wand. Er hat eine lange Reise hinter sich."
+ },
+ {
+  "id": "c0_3",
+  "text": "Lass uns diese Reise einmal von Anfang bis Ende verfolgen."
+ },
+ {
+  "id": "c1_0",
+  "text": "Alles beginnt im Kraftwerk."
+ },
+ {
+  "id": "c1_1",
+  "text": "Fast jedes Kraftwerk funktioniert nach demselben Prinzip: Etwas bringt eine Turbine zum Drehen."
+ },
+ {
+  "id": "c1_2",
+  "text": "Das kann Dampf sein, fließendes Wasser oder der Wind."
+ },
+ {
+  "id": "c1_3",
+  "text": "Die Turbine treibt einen Generator an, und der Generator erzeugt den Strom."
+ },
+ {
+  "id": "c1_4",
+  "text": "Die große Ausnahme: Solaranlagen machen Strom direkt aus Licht, ganz ohne Drehen."
+ },
+ {
+  "id": "c2_0",
+  "text": "Vom Kraftwerk geht der Strom mit extrem hoher Spannung auf die Reise."
+ },
+ {
+  "id": "c2_1",
+  "text": "In Deutschland sind das bis zu dreihundertachtzigtausend Volt."
+ },
+ {
+  "id": "c2_2",
+  "text": "Warum so viel? Hohe Spannung heißt: Für dieselbe Leistung fließt weniger Strom."
+ },
+ {
+  "id": "c2_3",
+  "text": "Und weniger Strom bedeutet weniger Verluste in der Leitung."
+ },
+ {
+  "id": "c2_4",
+  "text": "Deshalb siehst du überall riesige Strommasten mit dicken Leitungen quer durchs Land."
+ },
+ {
+  "id": "c3_0",
+  "text": "Irgendwann erreichen diese Leitungen ein Umspannwerk."
+ },
+ {
+  "id": "c3_1",
+  "text": "Seine Aufgabe: die Spannung herunterzusetzen, Stufe für Stufe."
+ },
+ {
+  "id": "c3_2",
+  "text": "Zuerst auf hundertzehntausend Volt für die Regionen, dann auf die Mittelspannung, meist zehn- bis zwanzigtausend Volt."
+ },
+ {
+  "id": "c3_3",
+  "text": "Damit fließt der Strom in deinen Ort, bei uns meistens durch Kabel unter der Erde."
+ },
+ {
+  "id": "c4_0",
+  "text": "Kurz bevor er bei dir ankommt, passiert er eine letzte Station: die Trafostation."
+ },
+ {
+  "id": "c4_1",
+  "text": "Das kleine Häuschen am Straßenrand, das du wahrscheinlich schon hundertmal übersehen hast."
+ },
+ {
+  "id": "c4_2",
+  "text": "Darin senkt ein Transformator die Spannung ein letztes Mal: auf zweihundertdreißig Volt an der Steckdose, und vierhundert Volt für Herd und Durchlauferhitzer."
+ },
+ {
+  "id": "c4_3",
+  "text": "Übrigens: Wenn du gerade was lernst, abonnier den Kanal. Das hilft mir enorm."
+ },
+ {
+  "id": "c5_0",
+  "text": "Von der Trafostation führt ein Kabel direkt in dein Haus, meistens in den Keller."
+ },
+ {
+  "id": "c5_1",
+  "text": "Dort endet es im Hausanschlusskasten. Er gehört dem Netzbetreiber, ist verplombt und enthält die Hauptsicherungen fürs ganze Haus."
+ },
+ {
+  "id": "c5_2",
+  "text": "Danach kommt der Stromzähler. Er misst genau, wie viele Kilowattstunden du verbrauchst, und daraus wird deine Stromrechnung."
+ },
+ {
+  "id": "c6_0",
+  "text": "Direkt dahinter wartet die Kommandozentrale deines Hauses: der Sicherungskasten."
+ },
+ {
+  "id": "c6_1",
+  "text": "Hier teilt sich der Strom in viele einzelne Stromkreise auf."
+ },
+ {
+  "id": "c6_2",
+  "text": "Jeder Stromkreis hat seinen eigenen Leitungsschutzschalter."
+ },
+ {
+  "id": "c6_3",
+  "text": "Fließt zu viel Strom, bei Überlast oder Kurzschluss, schaltet er ab, bevor die Leitung zu heiß wird. Bei einem Kurzschluss in wenigen Millisekunden."
+ },
+ {
+  "id": "c6_4",
+  "text": "Und dann gibt es noch den wichtigsten Lebensretter im Kasten: den FI-Schalter."
+ },
+ {
+  "id": "c6_5",
+  "text": "Er vergleicht ständig den Strom, der hinfließt, mit dem, der zurückkommt."
+ },
+ {
+  "id": "c6_6",
+  "text": "Fehlen irgendwo dreißig Milliampere, zum Beispiel, weil sie durch einen Menschen fließen, schaltet er blitzschnell ab."
+ },
+ {
+  "id": "c7_0",
+  "text": "Von hier laufen die Stromkreise als eigene Leitungen durch Wände, Decken und Böden."
+ },
+ {
+  "id": "c7_1",
+  "text": "Ein Stromkreis versorgt vielleicht die Steckdosen in der Küche, ein anderer nur das Licht im Schlafzimmer."
+ },
+ {
+  "id": "c7_2",
+  "text": "Große Verbraucher wie Herd, Waschmaschine oder Durchlauferhitzer bekommen meist einen eigenen Stromkreis, weil sie viel mehr Leistung brauchen als eine Lampe oder ein Ladegerät."
+ },
+ {
+  "id": "c8_0",
+  "text": "Am Ende kommen die Leitungen an zwei Dingen an: Steckdosen und Schaltern."
+ },
+ {
+  "id": "c8_1",
+  "text": "Die Steckdose ist die Tür, durch die der Strom in dein Gerät kommt: ins Ladegerät, in den Fernseher, in den Toaster."
+ },
+ {
+  "id": "c8_2",
+  "text": "Ein Schalter ist eine gewollte Unterbrechung im Stromkreis. Drückst du ihn, schließt oder öffnest du den Weg, und das Licht geht an oder aus."
+ },
+ {
+  "id": "c8_3",
+  "text": "Und dann ist da noch ein dritter, extrem wichtiger Leiter: der grün-gelbe Schutzleiter."
+ },
+ {
+  "id": "c8_4",
+  "text": "Er versorgt kein einziges Gerät. Sein einziger Job ist deine Sicherheit."
+ },
+ {
+  "id": "c8_5",
+  "text": "Bekommt ein Metallgehäuse durch einen Defekt Strom ab, leitet der Schutzleiter ihn ab, statt durch dich. Und die Sicherung oder der FI schaltet ab."
+ },
+ {
+  "id": "c8_6",
+  "text": "Deshalb hat die Schuko-Steckdose diese Metallbügel am Rand: die Schutzkontakte."
+ },
+ {
+  "id": "c9_0",
+  "text": "Wenn du also das nächste Mal dein Handy einsteckst, denk kurz daran, was gerade passiert ist:"
+ },
+ {
+  "id": "c9_1",
+  "text": "Turbine. Hochspannung quer durchs Land. Umspannwerk. Trafostation. Hausanschluss. Zähler. Sicherungskasten. Ein einzelner Stromkreis. Und am Ende die Steckdose unter deinem Finger."
+ },
+ {
+  "id": "c9_2",
+  "text": "Und die Energie legt diesen Weg fast so schnell wie das Licht zurück. Jedes einzelne Mal."
+ },
+ {
+  "id": "c10_0",
+  "text": "Ganz wichtig: Arbeiten an der Elektroinstallation gehören in die Hände einer Elektrofachkraft."
+ },
+ {
+  "id": "c10_1",
+  "text": "Wenn dir das Video geholfen hat: Daumen hoch, Kommentar da lassen, und abonnieren. Für mehr Wissen rund ums Haus."
+ }
+]

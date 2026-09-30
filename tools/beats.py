@@ -45,6 +45,30 @@ def fit_grid(onset_env, sr, duration, rough_bpm):
     return period, np.arange(phase, duration, period)
 
 
+def refine_grid(env, sr, duration, period, beats, win=0.06):
+    """Periode und Versatz über den ganzen Track nachschärfen (wichtig bei langen Tracks).
+
+    Zu jedem Raster-Beat die stärkste Onset-Spitze in ±win suchen, dann per gewichteter
+    Geradenanpassung t = a + b·k das exakte Raster bestimmen. Zweimal, damit es einrastet.
+    """
+    frame_t = librosa.frames_to_time(np.arange(len(env)), sr=sr, hop_length=HOP)
+    for _ in range(2):
+        ks, ts, ws = [], [], []
+        for k, t in enumerate(beats):
+            lo, hi = np.searchsorted(frame_t, [t - win, t + win])
+            if hi - lo < 2:
+                continue
+            j = lo + int(np.argmax(env[lo:hi]))
+            ks.append(k); ts.append(frame_t[j]); ws.append(env[j])
+        ks, ts, ws = map(np.asarray, (ks, ts, ws))
+        keep = ws > np.percentile(ws, 40)  # nur deutliche Schläge
+        b, a = np.polyfit(ks[keep], ts[keep], 1, w=ws[keep])
+        period = b
+        first = a - np.floor(a / period) * period
+        beats = np.arange(first, duration, period)
+    return period, beats
+
+
 def main(audio_path, out_path):
     y, sr = librosa.load(audio_path, sr=22050, mono=True)
     duration = len(y) / sr
@@ -54,12 +78,20 @@ def main(audio_path, out_path):
     # Das Raster richtet sich nach dem Bass (Kick), sonst rastet es auf Hi-Hats zwischen den Beats ein.
     low = librosa.onset.onset_strength(y=y, sr=sr, hop_length=HOP, fmax=200, n_mels=16)
     period, beats = fit_grid(low, sr, duration, rough_bpm)
+    period, beats = refine_grid(low, sr, duration, period, beats)
     bpm = 60 / period
 
-    # Welcher von 4 möglichen Versätzen ist der Taktanfang? Der mit der meisten Bass-Energie.
+    # Welcher von 4 möglichen Versätzen ist der Taktanfang?
+    # Dort wechseln Akkord/Bass-Ton am stärksten (Chroma-Neuheit), dazu etwas Bass-Energie.
     low_t = librosa.frames_to_time(np.arange(len(low)), sr=sr, hop_length=HOP)
-    at = lambda ts: low[np.clip(np.searchsorted(low_t, ts), 0, len(low) - 1)].mean()
-    phase = int(np.argmax([at(beats[k::4]) for k in range(4)]))
+    at = lambda env, ts: env[np.clip(np.searchsorted(low_t, ts), 0, len(env) - 1)]
+    chroma = librosa.feature.chroma_stft(y=y, sr=sr, hop_length=HOP)
+    w = max(1, int(0.2 * sr / HOP))
+    idx = np.clip(np.searchsorted(low_t, beats), w, chroma.shape[1] - w - 1)
+    novelty = np.array([np.abs(chroma[:, i:i + w].mean(1) - chroma[:, i - w:i].mean(1)).sum() for i in idx])
+    lowv = at(low, beats)
+    score = novelty / (novelty.max() + 1e-9) + 0.3 * lowv / (lowv.max() + 1e-9)
+    phase = int(np.argmax([score[k::4].mean() for k in range(4)]))
     downbeats = beats[phase::4]
 
     hits = librosa.onset.onset_detect(onset_envelope=onset_env, sr=sr, hop_length=HOP, units="time")
