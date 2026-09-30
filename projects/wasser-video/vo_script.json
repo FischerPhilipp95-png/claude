@@ -1,0 +1,174 @@
+[
+ {
+  "id": "c0_0",
+  "text": "Du drehst den Wasserhahn auf, spülst die Toilette, gehst duschen. Jeden Tag."
+ },
+ {
+  "id": "c0_1",
+  "text": "Aber weißt du, was dabei hinter deinen Wänden passiert?"
+ },
+ {
+  "id": "c0_2",
+  "text": "Lass uns dem Wasser einmal folgen, vom Wasserwerk bis in den Kanal."
+ },
+ {
+  "id": "c1_0",
+  "text": "Alles beginnt im Wasserwerk. Dort wird Wasser aufbereitet, bis es sauberes Trinkwasser ist."
+ },
+ {
+  "id": "c1_1",
+  "text": "Übrigens: Leitungswasser gilt in Deutschland als das am besten kontrollierte Lebensmittel."
+ },
+ {
+  "id": "c1_2",
+  "text": "Pumpen drücken es in dicke Versorgungsleitungen unter der Straße. Von dort zweigt eine kleinere Leitung zu deinem Haus ab: der Hausanschluss."
+ },
+ {
+  "id": "c1_3",
+  "text": "Manche Häuser auf dem Land haben stattdessen einen eigenen Brunnen. Eine Pumpe holt das Wasser dann aus der Tiefe."
+ },
+ {
+  "id": "c2_0",
+  "text": "Die Leitung kommt unter der Erde ins Haus, meistens in den Keller."
+ },
+ {
+  "id": "c2_1",
+  "text": "Dort sitzt zuerst der Wasserzähler. Er misst jeden Liter, den du verbrauchst, und daraus wird deine Wasserrechnung."
+ },
+ {
+  "id": "c2_2",
+  "text": "Vor und hinter dem Zähler gibt es eine Absperrung. Das ist dein Hauptabsperrventil."
+ },
+ {
+  "id": "c2_3",
+  "text": "Merk dir, wo es ist! Platzt ein Rohr, drehst du hier zu, und im ganzen Haus fließt kein Wasser mehr."
+ },
+ {
+  "id": "c2_4",
+  "text": "Direkt dahinter sitzen meist ein Rückflussverhinderer und ein Filter. Der Filter hält Sand und Rost aus deinen Leitungen fern."
+ },
+ {
+  "id": "c2_5",
+  "text": "Ist der Druck im Netz zu hoch, bremst ihn ein Druckminderer auf einen sicheren Wert. Zu hoher Druck belastet Rohre und Geräte, zu wenig macht die Dusche zum Tröpfeln."
+ },
+ {
+  "id": "c3_0",
+  "text": "Jetzt verteilt sich das kalte Wasser durchs Haus: zu Toilette, Waschbecken, Dusche, Waschmaschine und zum Gartenhahn."
+ },
+ {
+  "id": "c3_1",
+  "text": "In neuen Häusern sind das meist Kunststoff-Verbundrohre, in älteren oft Kupfer oder verzinkter Stahl. Anderes Material, gleicher Job."
+ },
+ {
+  "id": "c3_2",
+  "text": "Ein Teil des kalten Wassers macht einen Abstecher: zur Warmwasserbereitung."
+ },
+ {
+  "id": "c4_0",
+  "text": "In vielen Häusern ist das ein Warmwasserspeicher, oft direkt an der Heizung."
+ },
+ {
+  "id": "c4_1",
+  "text": "Kaltes Wasser kommt unten rein. Es wird erhitzt, und weil warmes Wasser leichter ist, steigt es nach oben."
+ },
+ {
+  "id": "c4_2",
+  "text": "Drehst du warm auf, wird oben heißes Wasser entnommen, und unten läuft kaltes nach."
+ },
+ {
+  "id": "c4_3",
+  "text": "Wichtig: Der Speicher sollte auf etwa sechzig Grad heizen. Ab da haben Legionellen keine Chance."
+ },
+ {
+  "id": "c4_4",
+  "text": "Die Alternative ist der Durchlauferhitzer: Er erhitzt das Wasser genau dann, wenn es durchfließt. Ganz ohne Speicher."
+ },
+ {
+  "id": "c5_0",
+  "text": "Unter jedem Waschbecken kommen eine Warm- und eine Kaltwasserleitung aus der Wand, jede mit einem Eckventil. Damit drehst du genau dieses Becken ab, ohne das ganze Haus trockenzulegen."
+ },
+ {
+  "id": "c5_1",
+  "text": "In der Armatur mischen sich warm und kalt, bevor das Wasser aus dem Hahn kommt."
+ },
+ {
+  "id": "c5_2",
+  "text": "Die Toilette bekommt nur kaltes Wasser. Ein Schwimmerventil füllt den Spülkasten, bei neuen Toiletten mit rund sechs Litern pro Spülung."
+ },
+ {
+  "id": "c5_3",
+  "text": "Drückst du die Taste, öffnet unten das Ablaufventil, und der Schwall spült das Becken aus. Danach füllt sich der Kasten wieder."
+ },
+ {
+  "id": "c5_4",
+  "text": "Die Dusche mischt warm und kalt schon in der Wand. Ein Thermostat hält die Temperatur konstant, auch wenn nebenan jemand spült."
+ },
+ {
+  "id": "c6_0",
+  "text": "Jetzt die zweite Hälfte: das Abwasser."
+ },
+ {
+  "id": "c6_1",
+  "text": "Der größte Unterschied: Frischwasser steht unter Druck. Abwasser fließt nur durch Schwerkraft."
+ },
+ {
+  "id": "c6_2",
+  "text": "Deshalb brauchen Abwasserrohre Gefälle, mindestens einen Zentimeter pro Meter."
+ },
+ {
+  "id": "c6_3",
+  "text": "Die Toilette bekommt ein dickes Rohr, meist rund zehn Zentimeter, weil hier auch Feststoffe durchmüssen."
+ },
+ {
+  "id": "c7_0",
+  "text": "Unter jedem Waschbecken siehst du ein gebogenes Rohr: den Siphon, auch Geruchsverschluss genannt."
+ },
+ {
+  "id": "c7_1",
+  "text": "In seiner Biegung steht immer etwas Wasser. Dieses Sperrwasser hält die Kanalgase auf, damit es bei dir nicht stinkt."
+ },
+ {
+  "id": "c7_2",
+  "text": "Riecht ein selten genutzter Abfluss, ist oft nur das Wasser im Siphon verdunstet. Einfach Wasser nachgießen, und der Geruch ist weg."
+ },
+ {
+  "id": "c8_0",
+  "text": "Das Abwasser läuft in die senkrechte Fallleitung, und die führt oben übers Dach ins Freie."
+ },
+ {
+  "id": "c8_1",
+  "text": "Warum? Rauscht viel Wasser nach unten, entsteht dahinter ein Sog, der die Siphons leer saugen könnte."
+ },
+ {
+  "id": "c8_2",
+  "text": "Die Lüftung lässt Luft nachströmen und führt die Kanalgase nach draußen. Das Rohr auf deinem Dach ist also kein Schornstein."
+ },
+ {
+  "id": "c8_3",
+  "text": "Gluckert dein Abfluss oder läuft er langsam, kann eine verstopfte Lüftung schuld sein."
+ },
+ {
+  "id": "c9_0",
+  "text": "Unten im Haus sammelt die Grundleitung alles Abwasser und führt es unter der Erde zum öffentlichen Kanal."
+ },
+ {
+  "id": "c9_1",
+  "text": "Von dort fließt es zur Kläranlage. Wo es keinen Kanal gibt, übernimmt das eine Kleinkläranlage im Garten."
+ },
+ {
+  "id": "c9_2",
+  "text": "Für Verstopfungen gibt es Reinigungsöffnungen, zum Beispiel da, wo senkrechte in liegende Rohre übergehen. Auch die solltest du kennen."
+ },
+ {
+  "id": "c10_0",
+  "text": "Also, einmal komplett: Wasserwerk. Hausanschluss. Zähler und Absperrventil. Warm oder kalt zu Hahn, Toilette und Dusche. Durch den Siphon, die Fallleitung hinab, und raus in den Kanal."
+ },
+ {
+  "id": "c10_1",
+  "text": "Und das Wichtigste zum Mitnehmen: Such heute noch dein Hauptabsperrventil. Im Notfall zählt jede Sekunde."
+ },
+ {
+  "id": "c10_2",
+  "text": "Wenn dir das Video geholfen hat: Daumen hoch, abonnieren, und schreib mir, was ich als Nächstes erklären soll."
+ }
+]

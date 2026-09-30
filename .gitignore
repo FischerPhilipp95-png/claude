@@ -21,3 +21,6 @@ tools/voices/
 
 # Komprimierte Kopien nur für den Chat-Versand
 projects/*/out/*_chat.mp4
+
+# Große Modelle für die Freistellung
+.rembg/
