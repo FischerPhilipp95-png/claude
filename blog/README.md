@@ -21,7 +21,8 @@
 - [x] IONOS: AV-Vertrag abgeschlossen am 30.09.2026 (PDF kommt per E-Mail, ablegen)
 - [ ] IONOS: E-Mail bestätigen, Zwei-Faktor-Anmeldung, Erinnerung vor Ablauf der 12 Monate
 - [x] IONOS: Postfach `info@handwerksdoktor.de` angelegt (Absender des Kontaktformulars)
-- [ ] IONOS: SSL-Zertifikat der Domain zuweisen, Domain auf den Webspace-Ordner zeigen lassen
+- [x] IONOS: Domain zeigt auf Webspace-Ordner `/public`
+- [ ] IONOS: SSL-Zertifikat (Wildcard, im Paket) aktivieren
 - [ ] IONOS: Statistik/„Web Analytics“ im Hosting-Paket ausgeschaltet lassen
 - [ ] Blog hochladen (siehe `site/README.md`), danach Kontaktformular einmal selbst testen
 - [ ] Gewerbe anmelden, Kleinunternehmerregelung/USt-IdNr. klären

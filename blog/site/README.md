@@ -34,7 +34,8 @@ in `public/bilder/`. Nie Bilder von Amazon, Herstellern oder anderen Seiten.
 ## Hochladen zu IONOS
 
 1. `npm run build && npm run check`
-2. Den **Inhalt** von `dist/` (nicht den Ordner selbst) per SFTP in den Webspace-Ordner der Domain laden.
+2. Den **Inhalt** von `dist/` (nicht den Ordner selbst) per SFTP in den Webspace-Ordner **`/public`** laden
+   (dorthin zeigt die Domain laut IONOS → Domains & SSL → handwerksdoktor.de → Ziel).
    Zugangsdaten: IONOS → Hosting → SFTP & SSH. Programm z. B. FileZilla (kostenlos).
    Die Datei `.htaccess` ist versteckt: in FileZilla unter „Server → Versteckte Dateien anzeigen“ einblenden,
    sie muss mit hochgeladen werden (https-Umleitung, Sicherheitsregeln).
