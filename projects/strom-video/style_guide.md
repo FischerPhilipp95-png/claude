@@ -23,7 +23,8 @@ Typischer Ablauf der Referenz:
 | Rolle | Hex | Einsatz |
 |---|---|---|
 | Grund | `#000000` | reines Schwarz, immer |
-| Figur Hellgrau | `#e0e0e0` | die Hauptfigur („der Strom“) |
+| **Strom-Gelb** | `#ffd400` | Hauptfigur „Funke“ (gelber Kreis mit Blitz-Tolle, knistert auf dem Beat, Zickzack-Schweif beim Reisen) und alle Strom-Punkte in Leitungen. Eigene Ergänzung, nicht aus der Referenz |
+| Figur Hellgrau | `#e0e0e0` | Nebenfiguren (Dampf, Steckdose, Mensch) |
 | Lila | `#924ef6` | Figur, Akzentwort |
 | Orange | `#ff741c` | Figur, **Konstruktionspunkte der Schrift** |
 | Grün | `#03b84c` | Figur, Akzentwort (sicher, an) |

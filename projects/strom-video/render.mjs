@@ -17,7 +17,7 @@ const W = 1920, H = 1080, FPS = 60, CX = 960, CY = 540;
 GlobalFonts.registerFromPath(path.join(ROOT, 'assets/fonts/Inter-500.ttf'), 'Inter');
 
 // ---------- Palette (style_guide.md) ----------
-const C = { bg: '#000000', G: '#e0e0e0', P: '#924ef6', O: '#ff741c', GR: '#03b84c', BL: '#006aff', D: '#262626', W: '#ffffff', Y: '#ffd400' };
+const C = { bg: '#000000', G: '#e0e0e0', P: '#924ef6', O: '#ff741c', GR: '#03b84c', BL: '#006aff', D: '#262626', W: '#ffffff', S: '#ffd400', PE: '#f3e889' };
 
 // ---------- Helfer ----------
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -87,6 +87,38 @@ function face(ctx, x, y, r, col, expr, o = {}) {
   }
   ctx.restore();
 }
+// Die Strom-Figur „Funke“: gelber Kreis mit Blitz-Tolle, knistert auf dem Beat.
+// o.tail (0..~1.5) zeichnet beim Reisen einen Zickzack-Schweif entgegen o.dir (Bewegungsrichtung in rad).
+const BOLT = [[10, -100], [-45, 10], [-5, 10], [-20, 100], [45, -15], [5, -15], [25, -100]];
+function spark(ctx, t, x, y, r, expr, o = {}) {
+  const sc = o.scale ?? 1, a = o.a ?? 1;
+  if (sc <= 0.001 || a <= 0.001) return;
+  const bi = beatIndex(t), since = sinceBeat(t), kick = Math.exp(-since / 0.09);
+  ctx.save(); ctx.globalAlpha *= a; ctx.translate(x, y); ctx.scale(sc, sc);
+  if (o.tail > 0) { // Zickzack-Schweif hinter der Figur
+    const dir = o.dir ?? 0, len = r * 2.2 * o.tail, amp = r * 0.32;
+    ctx.save(); ctx.rotate(dir + Math.PI);
+    ctx.strokeStyle = C.S; ctx.lineWidth = r * 0.15; ctx.lineJoin = 'miter'; ctx.lineCap = 'butt';
+    ctx.beginPath(); ctx.moveTo(r * 0.8, 0);
+    for (let k = 1; k <= 4; k++) ctx.lineTo(r * 0.8 + (len * k) / 4, (k % 2 ? -amp : amp) * (1 - k * 0.12) * (Math.floor(t * 12) % 2 ? 1 : 0.8));
+    ctx.stroke(); ctx.restore();
+  }
+  // Blitz-Tolle, wippt auf dem Beat
+  ctx.save(); ctx.translate(r * 0.13, -r * 1.12); ctx.rotate(0.25 + 0.18 * kick * (bi % 2 ? 1 : -1)); const bs = r * 0.006; ctx.scale(bs, bs);
+  ctx.fillStyle = C.S; ctx.beginPath(); BOLT.forEach(([px, py], i) => (i ? ctx.lineTo(px, py) : ctx.moveTo(px, py))); ctx.closePath(); ctx.fill(); ctx.restore();
+  // Funken: knistern kurz nach jedem Beat, jedes Mal an anderer Stelle
+  if (since < 0.2) {
+    const R = rand(bi * 7 + 3), k = 1 - since / 0.2;
+    ctx.strokeStyle = C.S; ctx.lineWidth = r * 0.06; ctx.lineCap = 'butt';
+    for (let i = 0; i < 3; i++) {
+      const ang = -Math.PI * 0.9 + R() * Math.PI * 1.8 + Math.PI / 2 * (i - 1), r1 = r * 1.15, len = r * (0.18 + 0.12 * R()) * k;
+      ctx.beginPath(); ctx.moveTo(Math.cos(ang) * r1, Math.sin(ang) * r1); ctx.lineTo(Math.cos(ang) * (r1 + len), Math.sin(ang) * (r1 + len)); ctx.stroke();
+    }
+  }
+  ctx.restore();
+  face(ctx, x, y, r, C.S, expr, { scale: sc, a, seed: 1, squash: 0.045 * kick, look: o.look });
+}
+
 // Ausdruck wechselt auf jedem Beat ab t0, dazu ein kleiner Squash
 const exprAt = (t, seq, t0 = 0, every = 1) => seq[Math.max(0, Math.floor((beatIndex(t) - beatIndex(t0)) / every)) % seq.length];
 const squashAt = (t) => 0.045 * Math.exp(-sinceBeat(t) / 0.06);
@@ -157,7 +189,7 @@ function line(ctx, P, col, w, a = 1, prog = 1) {
   for (let i = 1; i < P.length; i++) { if (L[i] <= end) ctx.lineTo(...P[i]); else { ctx.lineTo(...polyAt(P, L, end)); break; } }
   ctx.stroke(); ctx.globalAlpha = 1;
 }
-function flow(ctx, P, t, { n = 10, speed = 260, r = 6, col = C.G, a = 1, t0 = 0 } = {}) {
+function flow(ctx, P, t, { n = 10, speed = 260, r = 6, col = C.S, a = 1, t0 = 0 } = {}) {
   const L = polyLen(P), len = L.at(-1);
   ctx.globalAlpha = a; ctx.fillStyle = col;
   for (let k = 0; k < n; k++) {
@@ -218,7 +250,7 @@ const SCENES = {
       face(ctx, lerp(x, CX, gather), lerp(y, CY, gather) + bob(t, i), r, col, exprAt(t, [e, '--', 'oo', e, '><'], t2 + i * 0.25), { scale: p, seed: i + 3, squash: squashAt(t) });
     });
     const mainR = lerp(260, 190, easeInOut(seg(t, t2, t2 + 0.6)));
-    face(ctx, CX, CY + bob(t, 0) * (zoom > 1.1 ? 0 : 1), mainR, C.G, exprAt(t, E, 0.4), { scale: 1 - gather, seed: 1, squash: squashAt(t) });
+    spark(ctx, t, CX, CY + bob(t, 0) * (zoom > 1.1 ? 0 : 1), mainR, exprAt(t, E, 0.4), { scale: 1 - gather });
     ctx.restore();
     // „Sofort. Unsichtbar. Selbstverständlich.“
     buildLine(ctx, [['Sofort. ', C.W], ['Unsichtbar. ', C.W], ['Selbstverständlich.', C.GR]], CX, 970, 64, t, Lt(c, 1), Lt(c, 2) - 0.1, c.L[1].dur * 0.3);
@@ -241,7 +273,7 @@ const SCENES = {
       if (gp > 0) { line(ctx, [[760, 560], [1060, 560]], C.W, 14, dim * gp); face(ctx, 1060, 560, 110, C.D, 'oo', { scale: gp, seed: 21, a: dim }); }
       face(ctx, 760, 560 + bob(t, 1), 190, C.O, '++', { spin, seed: 20, squash: squashAt(t), a: dim });
       const sp = pop(t, onBeat(T3 + 0.9));
-      if (sp > 0) { flow(ctx, [[1170, 560], [1350, 560]], t, { n: 5, r: 7, a: dim }); face(ctx, 1350, 560 + bob(t, 3), 90, C.G, exprAt(t, ['^^', 'oo', '^^', '**'], T3), { scale: sp, seed: 1, a: dim, squash: squashAt(t) }); }
+      if (sp > 0) { flow(ctx, [[1170, 560], [1350, 560]], t, { n: 5, r: 7, a: dim }); spark(ctx, t, 1350, 560 + bob(t, 3), 90, exprAt(t, ['^^', 'oo', '^^', '**'], T3), { scale: sp, a: dim }); }
       ctx.globalAlpha = 1;
       // Solar
       const so = pop(t, T4 + 0.3);
@@ -255,7 +287,7 @@ const SCENES = {
         for (let i = 0; i < 5; i++) for (let j = 0; j < 3; j++) rrect(ctx, -150 + i * 62, -60 + j * 44, 54, 36, 6, C.BL);
         ctx.restore();
         const sp2 = pop(t, onBeat(T4 + 1.6));
-        if (sp2 > 0) { flow(ctx, [[1520, 390], [1470, 640]], t, { n: 5, r: 6, col: C.O, a: so }); face(ctx, 1720, 840, 70, C.G, exprAt(t, ['^^', '**'], T4), { scale: sp2, seed: 1 }); }
+        if (sp2 > 0) { flow(ctx, [[1520, 390], [1470, 640]], t, { n: 5, r: 6, col: C.O, a: so }); spark(ctx, t, 1720, 840, 70, exprAt(t, ['^^', '**'], T4), { scale: sp2 }); }
       }
     });
   },
@@ -266,8 +298,7 @@ const SCENES = {
       // Figur schießt los
       if (t < T1 + 0.2) {
         const k = easeInOut(seg(t, c.scene + 0.3, c.scene + 1.3)), x = lerp(260, 1660, k);
-        for (let i = 1; i < 8; i++) face(ctx, x - i * 40 * Math.sin(Math.PI * k), CY, 60 - i * 6, C.G, null, { a: 0.12 * (8 - i) / 8 });
-        face(ctx, x, CY, 80, C.G, k > 0 && k < 1 ? '><' : '^^', { seed: 1, squash: squashAt(t) });
+        spark(ctx, t, x, CY, 80, k > 0 && k < 1 ? '><' : '^^', { tail: Math.sin(Math.PI * k) * 1.4 + 0.25, dir: 0 });
       }
     });
     buildLine(ctx, [['Höchstspannung ', C.GR], ['[380.000 V]', C.P]], CX, CY + 40, 96, t, T1 + 0.2, T2 - 0.2);
@@ -279,11 +310,11 @@ const SCENES = {
       const R = rand(5);
       for (let k = 0; k < 26; k++) { // viele dicke Punkte, die unterwegs verglühen
         const d = fract(k / 26 + (t - T2) * 0.12), x = lerp(260, 1660, d), heat = seg(t, T3, T3 + 1) * d;
-        ctx.globalAlpha = cp * (1 - heat * 0.9); ctx.fillStyle = heat > 0.35 ? C.O : C.G;
+        ctx.globalAlpha = cp * (1 - heat * 0.9); ctx.fillStyle = heat > 0.35 ? C.O : C.S;
         ctx.beginPath(); ctx.arc(x, 400 + (R() - 0.5) * 16, 11, 0, Math.PI * 2); ctx.fill();
         if (heat > 0.4) { ctx.globalAlpha = cp * 0.6 * heat; ctx.beginPath(); ctx.arc(x + 6, 370 - heat * 40, 4, 0, Math.PI * 2); ctx.fill(); }
       }
-      for (let k = 0; k < 6; k++) { const d = fract(k / 6 + (t - T2) * 0.45); ctx.globalAlpha = cp; ctx.fillStyle = C.G; ctx.beginPath(); ctx.arc(lerp(260, 1660, d), 700, 8, 0, Math.PI * 2); ctx.fill(); }
+      for (let k = 0; k < 6; k++) { const d = fract(k / 6 + (t - T2) * 0.45); ctx.globalAlpha = cp; ctx.fillStyle = C.S; ctx.beginPath(); ctx.arc(lerp(260, 1660, d), 700, 8, 0, Math.PI * 2); ctx.fill(); }
       ctx.globalAlpha = 1;
       label(ctx, 'viel Strom, wenig Spannung', 260, 340, 40, cp, C.W, 'left');
       label(ctx, 'wenig Strom, hohe Spannung', 260, 640, 40, cp, C.W, 'left');
@@ -299,7 +330,7 @@ const SCENES = {
         const a = tops[i], b = tops[i + 1]; const k = Math.min(a.p, b.p); if (k <= 0) continue;
         const y = arm < 0 ? 380 : 460, sag = 60 + 6 * Math.sin(t * 2 + i);
         const P = []; for (let j = 0; j <= 20; j++) { const f = j / 20; P.push([lerp(a.x + arm, b.x + arm, f), y + sag * 4 * f * (1 - f)]); }
-        line(ctx, P, C.W, 3, k); flow(ctx, P, t, { n: 4, r: 5, col: C.G, speed: 380, a: k });
+        line(ctx, P, C.W, 3, k); flow(ctx, P, t, { n: 4, r: 5, speed: 380, a: k });
       }
       for (const { x, p } of tops) {
         if (p <= 0) continue;
@@ -324,7 +355,7 @@ const SCENES = {
       line(ctx, steps, C.W, 10, st, st);
       const ride = seg(t, T1 + 0.6, Le(c, 2)), stepK = Math.min(2, Math.floor(ride * 3));
       const px = [480, 920, 1400][stepK], py = [330, 560, 790][stepK] - [80, 60, 42][stepK];
-      face(ctx, px, py, [80, 58, 40][stepK], C.G, exprAt(t, ['oo', '^^'], T1), { seed: 1, squash: squashAt(t), a: st });
+      spark(ctx, t, px, py, [80, 58, 40][stepK], exprAt(t, ['oo', '^^'], T1), { a: st });
       buildLine(ctx, [['[110.000 V]', C.P]], 920, 660, 52, t, inLine(c, 2, 0.1), T3 - 0.3);
       buildLine(ctx, [['[10.000–20.000 V]', C.P]], 1400, 890, 52, t, inLine(c, 2, 0.55), T3 - 0.3);
     }
@@ -333,7 +364,7 @@ const SCENES = {
       line(ctx, [[160, 560], [1760, 560]], C.W, 6, g, g);
       for (let x = 200; x < 1760; x += 80) line(ctx, [[x, 560], [x + 18, 540]], C.W, 4, g * 0.6);
       const P = [[160, 760], [1500, 760], [1500, 600]];
-      line(ctx, P, C.D, 22, g, g); flow(ctx, P, t, { n: 12, r: 7, col: C.G, a: g, speed: 300 });
+      line(ctx, P, C.D, 22, g, g); flow(ctx, P, t, { n: 12, r: 7, a: g, speed: 300 });
       label(ctx, 'Erdkabel', 330, 830, 40, g, C.W, 'left');
       [1380, 1520, 1660].forEach((x, i) => { const p = pop(t, onBeat(T3 + 0.6 + i * 0.25)); if (p > 0) { ctx.save(); ctx.translate(x, 560); ctx.scale(p, p); line(ctx, [[-50, 0], [-50, -80], [0, -130], [50, -80], [50, 0]], C.W, 8); ctx.restore(); } });
     }
@@ -409,10 +440,11 @@ const SCENES = {
       ctx.strokeStyle = C.W; ctx.lineWidth = 16; const e = exprAt(t, ['><', 'oo', '--', 'oo'], c.scene, 2); eye(ctx, e[0], 880, 330, 34, -0.1); eye(ctx, e[1], 1040, 320, 34, 0.1);
       // Aufteilung in Stromkreise
       const sp = easeOut(seg(t, T1, T1 + 0.6));
+      spark(ctx, t, CX, 120, 44, exprAt(t, ['oo', '^^'], c.scene), { scale: pop(t, c.scene + 0.2) });
       for (let i = 0; i < 6; i++) {
         const x = 700 + i * 104, dead = i === 3 && t > trip + 0.1;
         const lane = [[CX, 120], [CX, 400], [x, 480], [x, 1000]];
-        if (sp > 0) { line(ctx, lane, C.W, 4, 0.35 * sp); flow(ctx, lane, dead ? trip : t, { n: 8, r: 6, col: C.G, speed: 240 + (i === 3 && t > inLine(c, 3, 0.2) && !dead ? 280 : 0), a: sp * (dead ? 0.15 : 1) }); }
+        if (sp > 0) { line(ctx, lane, C.W, 4, 0.35 * sp); flow(ctx, lane, dead ? trip : t, { n: 8, r: 6, speed: 240 + (i === 3 && t > inLine(c, 3, 0.2) && !dead ? 280 : 0), a: sp * (dead ? 0.15 : 1) }); }
         const bp = pop(t, onBeat(T2 + i * 0.25)) || (sp > 0 ? 0 : 0);
         let ex = '--';
         if (i === 3 && t > inLine(c, 3, 0.2)) ex = t < trip ? '><' : 'xx';
@@ -513,7 +545,7 @@ const SCENES = {
         Ls.forEach(([col, y, n], k) => {
           const P = [[220, y], [defect ? 1000 : 1700, y]];
           line(ctx, P, col, 14, a2 * dim(k), easeOut(seg(t, T3 + k * 0.25, T3 + k * 0.25 + 0.5)));
-          if (k === 2) { ctx.save(); ctx.setLineDash([20, 20]); line(ctx, P, C.Y, 14, a2 * easeOut(seg(t, T3 + 0.5, T3 + 1))); ctx.restore(); }
+          if (k === 2) { ctx.save(); ctx.setLineDash([20, 20]); line(ctx, P, C.PE, 14, a2 * easeOut(seg(t, T3 + 0.5, T3 + 1))); ctx.restore(); }
           label(ctx, n, 180, y + 14, 40, a2 * dim(k), C.W, 'right');
         });
         if (t > T4) face(ctx, 1780, 660, 60, C.GR, '^^', { scale: pop(t, T4 + 0.3) * (defect ? 0 : 1), seed: 125, a: a2 });
@@ -555,11 +587,11 @@ const SCENES = {
         const x = 170 + i * 197, pass = inLine(c, 1, (i + 0.5) / 9.5), hit = Math.exp(-Math.max(0, t - pass) / 0.12) * (t > pass ? 1 : 0);
         const p = pop(t, onBeat(Lt(c, 0) + 0.2 + i * 0.245)) * (1 - gather);
         face(ctx, lerp(x, CX, gather), CY + bob(t, i) * 0.5, 62, col, t > pass ? exprAt(t, [e, '^^', e], pass) : e, { scale: p * (1 + 0.25 * hit), seed: 130 + i, spin: i === 0 ? t * 4 : 0 });
-        buildText(ctx, name, x - textModel(name, 28).w / 2, CY + 120, 28, C.W, t, pass - 0.1, T2 + 0.2);
+        buildText(ctx, name, x - textModel(name, 28).w / 2, CY + 120 + (i % 2) * 44, 28, C.W, t, pass - 0.1, T2 + 0.2);
       });
       if (t > T1 && t < T2 + 0.3) {
         const k = seg(t, T1, Le(c, 1)), x = lerp(120, 1800, k);
-        face(ctx, x, CY - 130, 44, C.G, '><', { seed: 1, squash: squashAt(t) });
+        spark(ctx, t, x, CY - 150, 50, '><', { tail: 1.2, dir: 0 });
       }
     });
     buildLine(ctx, [['Strom ', C.W], ['[fast Lichtgeschwindigkeit]', C.P]], CX, CY + 30, 84, t, T2 + 0.8, c.end - 0.5);
