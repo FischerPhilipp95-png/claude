@@ -16,4 +16,7 @@ node tools/sfx.mjs $P/cues.json $P/audio/sfx.wav "$DUR"            # 3. UI-Sound
 node $P/render.mjs --contact                                       # Übersicht zur Abnahme
 node $P/render.mjs                                                 # 4. Bild rendern
 python3 tools/mix.py $P                                            #    mischen + muxen
+# Ohne Sprecher ist der Mix sehr laut: auf -14 LUFS (Instagram/YouTube-Norm) bringen
+ffmpeg -hide_banner -loglevel error -y -i $P/out/final.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k -movflags +faststart $P/out/final_norm.mp4
+mv $P/out/final_norm.mp4 $P/out/final.mp4
 echo "Fertig: $P/out/final.mp4"
