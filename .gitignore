@@ -18,3 +18,6 @@ tools/voices/
 # Niemals API-Keys committen
 .env
 *.key
+
+# Komprimierte Kopien nur für den Chat-Versand
+projects/*/out/*_chat.mp4
