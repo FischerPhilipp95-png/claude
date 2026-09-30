@@ -21,7 +21,8 @@ Punkte unten geklärt sind.
 - [x] DPMA-Recherche „Handwerksdoktor“: 0 Treffer (30.09.2026)
 - [ ] EUIPO/TMview und ähnliche Schreibweisen prüfen, dann Domain (handwerksdoktor.de war am 30.09.2026 laut DNS noch frei)
 - [x] Hoster: IONOS Webhosting, in `datenschutz.md` eingetragen
-- [ ] IONOS: E-Mail bestätigen, AV-Vertrag abschließen, Zwei-Faktor-Anmeldung, Erinnerung vor Ablauf der 12 Monate
+- [x] IONOS: AV-Vertrag ist seit 19.07.2022 Teil der IONOS-AGB (im Konto unter Datenschutz & Privatsphäre)
+- [ ] IONOS: E-Mail bestätigen, Zwei-Faktor-Anmeldung, Erinnerung vor Ablauf der 12 Monate
 - [ ] Gewerbe anmelden, Kleinunternehmerregelung/USt-IdNr. klären
 - [ ] Amazon-PartnerNet-Konto
 - [ ] Rechtstexte prüfen lassen (Rechtstexte-Abo oder Anwalt), siehe `recht/checkliste.md`
