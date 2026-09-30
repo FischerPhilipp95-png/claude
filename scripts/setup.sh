@@ -4,12 +4,18 @@
 set -euo pipefail
 
 pip install -q --disable-pip-version-check \
-  numpy scipy librosa soundfile pillow imageio-ffmpeg yt-dlp piper-tts 2>&1 | grep -v "Running pip as the 'root' user" || true
+  numpy scipy librosa soundfile pillow imageio-ffmpeg yt-dlp piper-tts mido 2>&1 | grep -v "Running pip as the 'root' user" || true
 
 # ffmpeg aus imageio-ffmpeg global verfügbar machen, falls kein System-ffmpeg existiert
 if ! command -v ffmpeg >/dev/null 2>&1; then
   FF="$(python3 -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())')"
   ln -sf "$FF" /usr/local/bin/ffmpeg 2>/dev/null || true
+fi
+
+# Echte Instrumente für die Musik: FluidSynth + Soundfont FluidR3_GM (MIT-Lizenz)
+if ! command -v fluidsynth >/dev/null 2>&1 || [ ! -f /usr/share/sounds/sf2/FluidR3_GM.sf2 ]; then
+  (apt-get install -y -q fluidsynth fluid-soundfont-gm >/dev/null 2>&1 || \
+   (apt-get update -q >/dev/null 2>&1 && apt-get install -y -q fluidsynth fluid-soundfont-gm >/dev/null 2>&1)) || true
 fi
 
 # Node-Abhängigkeiten (Canvas-Renderer)

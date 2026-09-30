@@ -26,7 +26,11 @@ Regeln:
 
 ## Werkzeuge
 
-`scripts/setup.sh` installiert ffmpeg, numpy, librosa, Pillow und yt-dlp und läuft automatisch beim Sitzungsstart.
+`scripts/setup.sh` installiert ffmpeg, numpy, librosa, Pillow, yt-dlp, mido und FluidSynth mit der Soundfont FluidR3_GM
+(MIT-Lizenz) und läuft automatisch beim Sitzungsstart.
+
+Musik: Standard ist jetzt echte Instrumente per Soundfont (Vorlage `projects/havanola-promo/music.py`: MIDI komponieren,
+Stems mit FluidSynth rendern, eigene Kick/Sub/Riser dazu, Sidechain, Hall, Mastering). Der Nutzer fand reine Sinus-Synthese zu schwach.
 Websites (Kundenseiten, x.com, YouTube) sind nur erreichbar, wenn ihre Domain in den Netzwerk-Einstellungen
 der Cloud-Umgebung freigegeben ist. Ein 403 beim Download bedeutet: Domain nicht freigegeben.
 

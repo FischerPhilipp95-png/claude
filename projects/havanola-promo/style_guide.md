@@ -18,7 +18,7 @@ Marke, Fotos und Texte kommen von HAVANOLA (`assets/havanola/`, wie in Version 1
 | Echte Bilder | keine Fotos, nur Grafik | **Ausnahme für die Marke:** echte Vorher/Nachher-Fotos und Team-Porträts in Kreisen und Rahmen, damit HAVANOLA echt wirkt |
 | Text | fast keiner. Am Ende 2 kleine, zentrierte Zeilen (dünne Schrift, klein), dann das Logo in Stille | kurze, kleine Zeilen unter den Objekten (1–3 Wörter, Lato Light) + Schluss: 2 Zeilen, dann Logo |
 | Rhythmus | jeder Morph auf dem Beat, große Verwandlungen auf der Takt-Eins, 143,6 BPM | 144 BPM, Morph alle 1–2 Takte |
-| Ton | verspielte Elektronik: leise Arpeggios am Anfang, ab ~15 s Beat, ruhige Passage in der Mitte, dann wieder voll. **Endet abrupt**, Logo steht in Stille. | eigene Komposition mit derselben Dramaturgie |
+| Ton | verspielte Elektronik: leise Arpeggios am Anfang, ab ~15 s Beat, ruhige Passage in der Mitte, dann wieder voll. **Endet abrupt**, Logo steht in Stille. | eigene Komposition mit derselben Dramaturgie, echte Instrumente (Soundfont FluidR3_GM): Klavier, Marimba, Glockenspiel-Hook, Pizzicato, Streicher, Bass, Drums; Drop genau beim Zoom in den Türknauf; ein Glockenton beim Logo |
 
 ## Marke (unverändert)
 
