@@ -50,7 +50,7 @@ Datenschutzerklärung (`datenschutz.md`) ist genau auf diesen Aufbau geschrieben
 - Echter Name, ladungsfähige Anschrift: Postflex erfüllt das nach dem Gutachten der
   IT-Recht Kanzlei (17.02.2026) **nur mit Zustellungsvollmacht**. Die gibst du bei Postflex
   ab, sonst kann der Dienst nicht genutzt werden. Schreibweise genau:
-  `c/o Postflex #PFX-780-231`, Vertrags-ID im Kundenkonto gegenprüfen.
+  `c/o POSTFLEX PFX-780-231`, Vertrags-ID im Kundenkonto gegenprüfen.
 - **E-Mail ist Pflicht**, dazu ein zweiter schneller Kontaktweg: EuGH C-298/07 verlangt keine
   Telefonnummer, aber dann ein Kontaktformular. Wir nehmen das Formular (`/kontakt`).
   Anfragen darüber zeitnah beantworten.

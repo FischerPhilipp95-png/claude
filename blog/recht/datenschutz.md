@@ -18,7 +18,7 @@ Abschnitt 7 (Reichweitenmessung) nur drinlassen, wenn wirklich eingebaut, sonst 
 Verantwortlich für die Datenverarbeitung auf dieser Website ist:
 
 Philipp Fischer
-c/o Postflex #PFX-780-231
+c/o POSTFLEX PFX-780-231
 Emsdettener Straße 10
 48268 Greven
 Deutschland

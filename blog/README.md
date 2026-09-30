@@ -16,8 +16,10 @@ Punkte unten geklärt sind.
 
 - [x] E-Mail-Adresse fürs Impressum: `flpspring@gmail.com` (später optional `kontakt@[DOMAIN]`)
 - [x] zweiter Kontaktweg: Kontaktformular (keine Telefonnummer nötig)
-- [ ] Postflex: Zustellungsvollmacht erteilt, Vertrags-ID `#PFX-780-231` bestätigt, AV-Vertrag
-- [ ] Markenrecherche „Handwerksdoktor“ (DPMA, EUIPO), danach Domain
+- [x] Postflex-Adresse aus dem Dashboard übernommen (`c/o POSTFLEX PFX-780-231`)
+- [ ] Postflex: Zustellungsvollmacht und AV-Vertrag in den Vertragsunterlagen nachsehen, MFA einschalten
+- [x] DPMA-Recherche „Handwerksdoktor“: 0 Treffer (30.09.2026)
+- [ ] EUIPO/TMview und ähnliche Schreibweisen prüfen, dann Domain (handwerksdoktor.de war am 30.09.2026 laut DNS noch frei)
 - [ ] Hoster wählen (Deutschland/EU, **mit PHP** fürs Kontaktformular, AV-Vertrag) und in `datenschutz.md` eintragen
 - [ ] Gewerbe anmelden, Kleinunternehmerregelung/USt-IdNr. klären
 - [ ] Amazon-PartnerNet-Konto
