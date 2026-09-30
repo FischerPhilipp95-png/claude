@@ -12,10 +12,10 @@ Bevor du irgendetwas für ein Video planst oder animierst:
 1. Jede Referenz ohne `analysis.json` analysieren:
    `python3 tools/analyze_ref.py refs/<name>/<datei>` (bei Links: `python3 tools/analyze_ref.py <url> --name <name>`).
 2. `contact_sheet.png` und die Frames in `frames/` wirklich ansehen, nicht nur die Zahlen in `analysis.md`.
-3. `docs/style_guide.md` schreiben bzw. aktualisieren: Palette (Hex), Typo (Familie, Gewicht, Tracking),
+3. `projects/<projekt>/style_guide.md` schreiben (älteres Beispiel: `docs/style_guide.md` für ref-01): Palette (Hex), Typo (Familie, Gewicht, Tracking),
    Shot-Längen und Schnittrhythmus, Kamerabewegungen, Übergänge, Textur/Grain,
    wie Text rein- und rausgeht, Tempo/BPM und worauf Schnitte fallen.
-4. Style Guide und Shotlist dem Nutzer zeigen und auf sein OK warten, bevor Animationscode entsteht.
+4. Style Guide und `projects/<projekt>/shotlist.md` dem Nutzer zeigen und auf sein OK warten, bevor Animationscode entsteht.
 
 Regeln:
 - Von der Referenz nur die Grammatik übernehmen (Rhythmus, Bewegung, Typo-Verhalten, Farbstimmung),
