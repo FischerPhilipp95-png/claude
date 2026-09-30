@@ -38,6 +38,6 @@ Vor dem vollen Rendern kommt, wie im Prompt, ein **Contact Sheet mit einem Frame
 1. **Kanal-Name oder Logo** fürs Schlussbild? Ohne Angabe nehme ich einen neutralen Platzhalter.
 2. **Voiceover?** Die Fish-Audio-Verbindung fehlt noch. Ohne sie machen wir das Video nur mit Text und Musik, wie die Referenz.
 3. **Bosch im Video?** Vorschlag: Bosch nur als Quelle in der Videobeschreibung nennen, kein Bosch-Logo im Bild.
-   Die Seite zeigt nur Fotos und keine Grafik des Kreislaufs, die wir übernehmen könnten. Wir zeichnen den Kreislauf also selbst im Stil der Referenz.
+   Den Kreislauf zeichnen wir ohnehin selbst im Stil der Referenz. Von Bosch übernehmen wir nur die Fakten, keine Bilder.
    Das Logo darf man ohne Erlaubnis nicht einfach für eigene Inhalte verwenden. Falls Bosch dein Kunde ist, sieht das anders aus.
 4. **Länge:** 32 s wie die Referenz, oder lieber kürzer (ca. 20 s) für mehr Wiederholungen bei Shorts?
