@@ -44,6 +44,17 @@ const SOUNDS = {
   },
 };
 
+// Zisch: Luft entweicht aus dem Ventil (helles Rauschen, schneller Anstieg, langsames Ausklingen)
+SOUNDS.hiss = {
+  len: 0.9,
+  fn: (t) => { const e = Math.min(1, t / 0.02) * Math.exp(-t / 0.35); return (noise() - 0.6 * noise()) * e * 0.8; },
+};
+// Gluck: kurzer, tiefer Blubb mit steigender Tonhöhe (Luft im Heizkörper)
+SOUNDS.gluck = {
+  len: 0.14,
+  fn: (t) => { const f = 180 + 900 * (t / 0.14) ** 1.5; return Math.sin(2 * Math.PI * f * t) * Math.sin(Math.PI * t / 0.14) ** 1.2; },
+};
+
 // Whoosh: gefiltertes Rauschen, Filter öffnet und schließt sich, Stereo-Schwenk
 function whoosh(start, gain) {
   const len = 0.55, n = Math.floor(len * SR), i0 = Math.floor(start * SR - 0.35 * SR);
