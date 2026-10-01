@@ -18,4 +18,8 @@ node $P/render.mjs                                                 # 4. Bild ren
 python3 tools/mix.py $P                                            #    mischen + muxen
 ffmpeg -hide_banner -loglevel error -y -i $P/out/final.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k -movflags +faststart $P/out/final_norm.mp4
 mv $P/out/final_norm.mp4 $P/out/final.mp4
+# Filmkorn macht die Datei riesig: auf 13 Mbit/s (2 Durchgänge) bringen, bleibt unter 30 MB und sieht sauber aus
+ffmpeg -hide_banner -loglevel error -y -i $P/out/final.mp4 -c:v libx264 -preset slow -b:v 13M -maxrate 16M -bufsize 26M -pass 1 -passlogfile $P/out/x264 -an -f null /dev/null
+ffmpeg -hide_banner -loglevel error -y -i $P/out/final.mp4 -c:v libx264 -preset slow -b:v 13M -maxrate 16M -bufsize 26M -pass 2 -passlogfile $P/out/x264 -c:a copy -movflags +faststart $P/out/final_13m.mp4
+mv $P/out/final_13m.mp4 $P/out/final.mp4 && rm -f $P/out/x264*
 echo "Fertig: $P/out/final.mp4"

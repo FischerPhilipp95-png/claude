@@ -8,19 +8,19 @@
       0,
       2.5
     ],
-    "produkt": [
+    "hero": [
       2.5,
       5
     ],
-    "daten": [
+    "data": [
       5,
       8.75
     ],
-    "kunststoff": [
+    "plastic": [
       8.75,
       11.25
     ],
-    "finale": [
+    "final": [
       11.25,
       15
     ]
