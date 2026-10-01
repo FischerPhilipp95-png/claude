@@ -1,0 +1,197 @@
+---
+title: "Balkonkraftwerk mit Speicher: Lohnt sich das? Ehrlich gerechnet"
+kurztitel: "Balkonkraftwerk mit Speicher: Lohnt sich das?"
+description: "Balkonkraftwerk mit oder ohne Speicher? Was ein 5-kWh-Akku wirklich spart, wann er sich rechnet, welche Regeln 2026 gelten und welche Versprechen nicht stimmen."
+pubDate: 2026-10-01
+icon: sun
+thema: Strom
+bild: /bilder/titel/balkonkraftwerk-mit-speicher.webp
+bildAlt: "Titelbild: Balkonkraftwerk mit Speicher, lohnt sich das"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import Bild from '../../components/Bild.astro';
+import Balken from '../../components/Balken.astro';
+import Skala from '../../components/Skala.astro';
+import Ablauf from '../../components/Ablauf.astro';
+
+<Antwort>
+**Kurz gesagt:** Mit **zwei Modulen (900 Wp)** spart ein Balkonkraftwerk **ohne Speicher rund 157 € im Jahr** und hat sich nach
+**gut 2 Jahren** bezahlt gemacht. Ein **5-kWh-Speicher** hebt die Ersparnis auf **rund 252 €**, kostet aber so viel, dass es **rund
+7 Jahre** dauert. Für nur zwei Module ist so ein großer Akku also **zu groß**. Er lohnt sich, wenn du **später ausbaust**, einen
+**dynamischen Stromtarif** nutzt oder **Notstrom** willst. Mit deinen eigenen Zahlen rechnest du es im
+[Balkonkraftwerk-Rechner](/rechner/balkonkraftwerk/) aus.
+</Antwort>
+
+<div class="box rechner-hinweis">
+  <p><strong>Selbst nachrechnen:</strong> Modulleistung, Strompreis und Kosten eingeben, sofort Ersparnis und Amortisation sehen.</p>
+  <a class="btn" href="/rechner/balkonkraftwerk/">Zum Balkonkraftwerk-Rechner</a>
+</div>
+
+<Schnellkauf items={[
+  { name: 'Balkonkraftwerk-Set 800 W', warum: 'Für den schnellen Spareffekt. Auf höchstens 960 Wp achten, dann reicht die Schuko-Steckdose.', suche: 'Balkonkraftwerk 800W komplettset 900Wp' },
+  { name: 'Speicher mit eingebautem Wechselrichter', warum: 'Zum Beispiel EcoFlow STREAM 5000: 5 kWh, später erweiterbar.', suche: 'EcoFlow STREAM 5000' },
+]} />
+
+## Warum überhaupt ein Speicher?
+
+Solarmodule liefern **mittags** am meisten Strom. Viele sind dann aber gar nicht zu Hause. Gebraucht wird der Strom vor allem **abends**:
+Fernseher, Herd, Waschmaschine. Ohne Speicher geht der Überschuss vom Mittag ins Netz, und bei Balkonkraftwerken bekommst du dafür in der
+Regel **nichts**. Ein Speicher hebt den Strom vom Mittag für den Abend auf. Dadurch nutzt du mehr deines eigenen Stroms selbst.
+
+<Bild
+  src="/bilder/balkonkraftwerk.webp"
+  alt="Mehrfamilienhaus mit Solarmodulen an mehreren Balkongeländern"
+  width={1200}
+  height={900}
+  nachweis='Foto: Nikolai Twin, „Balkonkraftwerk2“, <a href="https://commons.wikimedia.org/wiki/File:Balkonkraftwerk2.jpg" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>, zugeschnitten'
+/>
+
+## Die Regeln 2026
+
+<Skala
+  titel="Wie viel Modulleistung darf am Balkon hängen?"
+  untertitel="Einspeisung ins Hausnetz in jedem Fall höchstens 800 Watt."
+  einheit="Wp"
+  min={0}
+  max={2600}
+  bereiche={[
+    { bis: 960, label: 'normale Schuko-Steckdose reicht', status: 'gut' },
+    { bis: 2000, label: 'nur mit Wieland-Steckdose vom Elektriker', status: 'achtung' },
+    { bis: 2600, label: 'kein Balkonkraftwerk mehr: normale Solaranlage mit Anmeldung', status: 'kritisch' },
+  ]}
+  quelle="Grafik: Der Handwerksdoktor. Nach DIN VDE V 0126-95, zusammengefasst von balkon-kraft-werke.de."
+/>
+
+- **800 Watt** ist die Grenze für die Einspeisung ins Hausnetz.
+- Bis **960 Wp** Modulleistung genügt eine normale **Schuko-Steckdose**. Zwei Module mit je 450 W (900 Wp) passen also.
+- Bis **2.000 Wp** braucht es eine **Wieland-Steckdose**, die eine Elektrofachkraft setzt.
+- Darüber ist es **kein Balkonkraftwerk mehr**, sondern eine normale Solaranlage mit Anmeldung beim Netzbetreiber.
+- **Jede** Anlage muss im **Marktstammdatenregister** angemeldet werden.
+
+## Ehrlich gerechnet: was ein Speicher bringt
+
+<Balken
+  titel="Ersparnis pro Jahr im Vergleich"
+  untertitel="Annahmen: guter Südbalkon, 850 kWh pro Jahr bei 900 Wp, Strompreis 37 Cent, Eigenverbrauch 50 % ohne und 80 % mit Speicher."
+  einheit="€"
+  sortieren={false}
+  daten={[
+    { label: '900 Wp ohne Speicher', wert: 157, icon: 'sun' },
+    { label: '900 Wp mit 5-kWh-Speicher', wert: 252, icon: 'battery' },
+    { label: 'Ausbau auf 2.000 Wp mit Speicher', wert: 560, icon: 'zap', notiz: 'Annahme: 1.900 kWh, 80 % selbst genutzt' },
+  ]}
+  quelle="Grafik: Der Handwerksdoktor. Rechnung: Ertrag × Eigenverbrauch × 37 ct. Strompreis nach BDEW-Strompreisanalyse 2026."
+/>
+
+| | ohne Speicher | mit 5-kWh-Speicher |
+|---|---|---|
+| selbst genutzt (von 850 kWh) | rund 425 kWh | rund 680 kWh |
+| Ersparnis pro Jahr | **rund 157 €** | **rund 252 €** |
+| Kosten, grob | 300–450 € (Set) | rund 1.750 € (Speicher plus Module und Halterung) |
+| bezahlt nach | **gut 2 Jahren** | **rund 7 Jahren** |
+
+**Das Ergebnis:** Der große Akku bringt bei zwei Modulen **rund 95 € mehr im Jahr**, kostet aber weit über 1.000 € extra. Wie es mit deinen
+Werten aussieht, zeigt der [Balkonkraftwerk-Rechner](/rechner/balkonkraftwerk/).
+
+Nicht eingerechnet sind **Verluste** beim Laden und Entladen und der **Stand-by-Verbrauch** des Speichers. Beides senkt die Ersparnis
+etwas.
+
+## Wann sich der Speicher lohnt und wann nicht
+
+**Eher ja:**
+- Du willst **später ausbauen**, auf bis zu 2.000 Wp mit Wieland-Steckdose.
+- Du nutzt einen **dynamischen Stromtarif** und lädst den Akku, wenn Strom billig ist. Dafür brauchst du aber ein **intelligentes
+  Messsystem** vom Messstellenbetreiber.
+- Dir ist **Notstrom** wichtig.
+
+**Eher nein:**
+- Du hast nur **ein oder zwei Module** und willst vor allem schnell sparen. Dann ist ein einfaches Set die bessere Wahl.
+- Du bist **tagsüber oft zu Hause** und verbrauchst den Strom ohnehin direkt.
+
+## Erweitern: so funktioniert das bei modernen Speichern
+
+<Ablauf
+  titel="Vom Set zum ausbaubaren System"
+  schritte={[
+    { icon: 'sun', titel: 'Module', text: 'Gehen direkt in den Speicher, der Wechselrichter ist eingebaut.' },
+    { icon: 'battery', titel: 'Speicher', text: 'Etwa 5 kWh, Zusatzakkus lassen sich ergänzen.' },
+    { icon: 'house', titel: 'Hausnetz', text: 'Einspeisung am Stecker höchstens 800 W.' },
+    { icon: 'gauge', titel: 'Smart Meter', text: 'Misst am Zählerschrank, Einbau durch den Elektriker.' },
+  ]}
+/>
+
+Neue Speicher wie der **EcoFlow STREAM 5000** haben den **Wechselrichter eingebaut**. Laut Hersteller sind es rund **5 kWh**, vier
+Solareingänge mit zusammen bis zu **5.000 W** und ein Ausbau auf bis zu **90 kWh**. **Am Stecker bleibt es aber bei 800 W.** Mehr Leistung,
+bis 3.000 W, gibt es nur mit **festem Anschluss durch eine Elektrofachkraft**.
+
+Mehrere Geräte im Haus sind **nicht direkt verkabelt**: Der Strom fließt über die **normalen Hausleitungen**, und die Geräte stimmen sich
+per **WLAN** ab. Jede Umwandlung kostet dabei etwas Energie. Damit das System weiß, was im Haus gerade verbraucht wird, misst ein **Smart
+Meter am Zählerschrank**. Den baut eine Elektrofachkraft ein.
+
+<Bild
+  src="/bilder/stromzaehler-digital.webp"
+  alt="Digitaler Stromzähler im Zählerschrank"
+  width={1200}
+  height={1167}
+  schmal
+  nachweis='Foto: RobbieIanMorrison, „Logarex smart household electricity meter build year 2023“, <a href="https://commons.wikimedia.org/wiki/File:Logarex_smart_household_electricity_meter_build_year_2023.jpg" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>'
+/>
+
+## Vier Versprechen, die nicht stimmen
+
+<Warnung titel="Vorsicht bei Werbeaussagen">
+1. **„Rechnet sich in unter zwei Jahren“** gilt höchstens für ein einfaches Set **ohne** Speicher. Mit großem Akku sind es eher **sieben Jahre**.
+2. **„Bis zu 1.000 € im Jahr sparen“** ist mit einem Balkonkraftwerk unrealistisch. Bei 37 Cent müsstest du dafür rund **2.700 kWh** im Jahr
+   selbst verbrauchen. Am Maximum von 2.000 Wp erzeugt ein Balkonkraftwerk grob 1.900 kWh.
+3. **„Später ganz ohne Elektriker erweitern“** stimmt nur bis 960 Wp. Darüber braucht es die Wieland-Steckdose, über 2.000 Wp eine normale Anlage.
+4. **„Mit dem Speicher-Zähler auf dynamischen Tarif umsteigen“** reicht nicht: Dafür braucht es ein intelligentes Messsystem vom
+   Messstellenbetreiber.
+</Warnung>
+
+<Bild
+  src="/bilder/balkonkraftwerk-wohnblock.webp"
+  alt="Altbau mit Solarmodulen an Balkon und Zaun"
+  width={1200}
+  height={800}
+  nachweis='Foto: RobbieIanMorrison, „Balcony solar panels in Wesenberg, Germany a“, <a href="https://commons.wikimedia.org/wiki/File:Balcony_solar_panels_in_Wesenberg,_Germany_a.jpg" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>'
+/>
+
+## Was verbrauchst du tagsüber wirklich?
+
+Ob sich ein Balkonkraftwerk mit oder ohne Speicher lohnt, hängt davon ab, **wann** du Strom brauchst. Miss deine Grundlast, also das, was
+Kühlschrank, Router und Stand-by-Geräte ständig ziehen: [Stromverbrauch messen](/artikel/stromverbrauch-messen/) und
+[Stand-by-Stromfresser finden](/artikel/standby-stromfresser/). Was einzelne Geräte kosten, zeigt der
+[Stromkosten-Rechner](/rechner/stromkosten/).
+
+**Als Video:** Das Thema gibt es auch auf meinem YouTube-Kanal [Der Handwerksdoktor](https://www.youtube.com/@derhandwerksdoktor).
+
+## Häufige Fragen
+
+### Wie groß sollte der Speicher für ein Balkonkraftwerk sein?
+Der ADAC nennt als Faustformel für ein Balkonkraftwerk mit rund 1 kWp **höchstens etwa 1,5 kWh**, bis 2 kWh sind ebenfalls passend.
+5 kWh sind erst sinnvoll, wenn du ausbaust oder einen dynamischen Tarif nutzt.
+
+### Muss ich ein Balkonkraftwerk mit Speicher anmelden?
+Ja, im **Marktstammdatenregister**, das gilt für jede Anlage. Beim Netzbetreiber musst du ein Balkonkraftwerk bis 800 W in der Regel nicht
+mehr extra anmelden.
+
+### Darf ich als Mieter ein Balkonkraftwerk aufstellen?
+Grundsätzlich ja, Vermieter dürfen es nur aus wichtigen Gründen verweigern. Wie und wo die Module befestigt werden, solltest du trotzdem
+vorher mit dem Vermieter klären.
+
+### Wie viel Strom erzeugt ein Balkonkraftwerk mit 900 Wp?
+Auf einem guten Südbalkon rund **850 kWh im Jahr**. Senkrecht am Geländer oder nach Osten oder Westen ist es weniger. Für deinen Standort
+hilft der kostenlose [PVGIS-Rechner der EU](https://re.jrc.ec.europa.eu/pvg_tools/de/).
+
+## Quellen
+
+- EcoFlow: [STREAM 5000, die wichtigsten Fragen](https://www.ecoflow.com/de/blog/ecoflow-stream-5000)
+- teltarif: [EcoFlow STREAM 5000 mit 5.000 W Solarleistung](https://www.teltarif.de/ecoflow-stream5000-speicher/news/106234.html)
+- balkon-kraft-werke.de: [Schuko oder Wieland 2026 (DIN VDE V 0126-95)](https://balkon-kraft-werke.de/ratgeber/schuko-oder-wieland-vde-0126-95/)
+- BDEW: [Strompreisanalyse](https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/)
+- ADAC: [Speicher für Balkonkraftwerk](https://www.adac.de/rund-ums-haus/energie/versorgung/balkonkraftwerk-speicher/)
+- ADAC: [Balkonkraftwerk kaufen](https://www.adac.de/rund-ums-haus/energie/versorgung/balkonkraftwerk/)

@@ -18,7 +18,7 @@ const fmt = new Intl.NumberFormat('de-DE', { minimumFractionDigits: stellen, max
   <div class="bars">
     {zeilen.map((d) => (
       <div class="bar-row" title={`${d.label}: ${fmt.format(d.wert)} ${einheit}${d.notiz ? ` (${d.notiz})` : ''}`}>
-        <span class="bar-label">{d.icon && <Icon name={d.icon} size={16} />}{d.label}{d.notiz && <small>{d.notiz}</small>}</span>
+        <span class="bar-label">{d.icon && <Icon name={d.icon} size={16} />}<span class="bar-name">{d.label}</span>{d.notiz && <small>{d.notiz}</small>}</span>
         <span class="bar-track"><span class="bar" style={`--p:${(d.wert / max).toFixed(4)}`}></span><span class="bar-val">{fmt.format(d.wert)} {einheit}</span></span>
       </div>
     ))}

@@ -349,3 +349,6 @@ form textarea { min-height: 160px; }
 .mainnav .nav-suche span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 @media (min-width: 861px) { .mainnav { gap: 2px; } .mainnav a { font-size: 0.85rem; padding: 7px 8px; gap: 5px; } .header-row { gap: 12px; } }
 @media (min-width: 861px) and (max-width: 1240px) { .logo span { display: none; } }
+.rechner-hinweis { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; border-left: 6px solid #ff741c; }
+.rechner-hinweis p { margin: 0; flex: 1 1 260px; }
+.bar-name { flex: 1 1 0; min-width: 0; }
