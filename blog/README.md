@@ -12,7 +12,7 @@
 
 ## Stand vor dem Livegang
 
-- [x] E-Mail im Impressum: `flpspring@gmail.com`, zweiter Kontaktweg: Kontaktformular
+- [x] E-Mail im Impressum und Empfänger des Kontaktformulars: `info@handwerksdoktor.de` (IONOS-Postfach)
 - [x] Postflex-Adresse aus dem Dashboard übernommen (`c/o POSTFLEX PFX-780-231`)
 - [ ] Postflex: Zustellungsvollmacht in den Vertragsunterlagen nachsehen, MFA einschalten
 - [x] DPMA-Recherche „Handwerksdoktor“: 0 Treffer (30.09.2026)

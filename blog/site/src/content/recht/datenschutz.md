@@ -12,7 +12,7 @@ c/o POSTFLEX PFX-780-231\
 Emsdettener Straße 10\
 48268 Greven\
 Deutschland\
-E-Mail: <flpspring@gmail.com>
+E-Mail: <info@handwerksdoktor.de>
 
 Ein Datenschutzbeauftragter ist nicht bestellt und gesetzlich nicht erforderlich.
 
@@ -49,10 +49,8 @@ Das Kontaktformular wird direkt auf dem unter Nr. 3 genannten Server verarbeitet
 als E-Mail an mich geschickt. Es wird kein externer Formular-Dienst und kein Captcha-Dienst
 eingesetzt.
 
-Mein E-Mail-Postfach wird bei Google (Gmail, Google Ireland Limited, Gordon House,
-Barrow Street, Dublin 4, Irland) geführt. Deine Nachricht wird daher auf Servern von Google
-gespeichert. Eine Übermittlung in die USA ist möglich. Google ist unter dem
-EU-US Data Privacy Framework zertifiziert (Art. 45 DSGVO).
+Mein E-Mail-Postfach wird ebenfalls bei der unter Nr. 3 genannten IONOS SE geführt.
+Mit IONOS besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO.
 Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO, bei vertragsbezogenen Anfragen Art. 6 Abs. 1 lit. b DSGVO.
 Die Daten werden gelöscht, sobald die Anfrage erledigt ist und keine gesetzlichen
 Aufbewahrungspflichten entgegenstehen.
@@ -118,7 +116,7 @@ Du hast jederzeit das Recht auf:
 DSGVO verarbeite, kannst du aus Gründen, die sich aus deiner besonderen Situation ergeben,
 jederzeit widersprechen.
 
-Eine formlose E-Mail an <flpspring@gmail.com> genügt.
+Eine formlose E-Mail an <info@handwerksdoktor.de> genügt.
 
 ## 11. Beschwerderecht bei der Aufsichtsbehörde
 
@@ -128,4 +126,4 @@ Kavalleriestraße 2–4, 40213 Düsseldorf, <https://www.ldi.nrw.de>
 
 ## 12. Aktualität
 
-Stand: 30.09.2026. Wenn sich die Website ändert, wird diese Erklärung angepasst.
+Stand: 01.10.2026. Wenn sich die Website ändert, wird diese Erklärung angepasst.

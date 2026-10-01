@@ -5,7 +5,7 @@ export const SITE = {
   url: 'https://handwerksdoktor.de',
   description: 'Haustechnik einfach erklärt: Heizung, Strom, Wasser und Geräte im Haushalt verstehen und kleine Probleme selbst lösen.',
   author: 'Philipp Fischer',
-  email: 'flpspring@gmail.com',
+  email: 'info@handwerksdoktor.de',
   youtube: 'https://www.youtube.com/@derhandwerksdoktor',
   amazonTag: 'rechn24-21',
 };

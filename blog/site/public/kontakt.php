@@ -3,7 +3,7 @@
 // Kein externer Dienst, kein Captcha, keine Speicherung: Die Nachricht wird nur per E-Mail weitergeleitet.
 // Spamschutz: verstecktes Feld (Honeypot) + Mindestzeit zwischen Seitenaufruf und Absenden.
 
-const EMPFAENGER = 'flpspring@gmail.com';
+const EMPFAENGER = 'info@handwerksdoktor.de';
 // Absender muss eine Adresse der eigenen Domain sein, sonst landen die Mails im Spam.
 // Das Postfach im IONOS-Konto anlegen (im Webhosting-Paket enthalten).
 const ABSENDER = 'info@handwerksdoktor.de';

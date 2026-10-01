@@ -15,7 +15,7 @@ Bitte keine Pakete oder Päckchen an diese Anschrift senden.
 
 ## Kontakt
 
-E-Mail: <flpspring@gmail.com>\
+E-Mail: <info@handwerksdoktor.de>\
 Kontaktformular: [handwerksdoktor.de/kontakt](/kontakt/)
 
 ## Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
