@@ -22,9 +22,11 @@
 - [ ] IONOS: E-Mail bestätigen, Zwei-Faktor-Anmeldung, Erinnerung vor Ablauf der 12 Monate
 - [x] IONOS: Postfach `info@handwerksdoktor.de` angelegt (Absender des Kontaktformulars)
 - [x] IONOS: Domain zeigt auf Webspace-Ordner `/public`
-- [ ] IONOS: SSL-Zertifikat (Wildcard, im Paket) aktivieren
+- [x] IONOS: SSL-Zertifikat aktiv (gültig bis 30.03.2027, 180-Tage-Erneuerung automatisch)
 - [ ] IONOS: Statistik/„Web Analytics“ im Hosting-Paket ausgeschaltet lassen
-- [ ] Blog hochladen (siehe `site/README.md`), danach Kontaktformular einmal selbst testen
+- [x] Blog hochgeladen und live (01.10.2026): https, Umleitungen, Sicherheits-Header, 404, keine fremden Anfragen geprüft
+- [ ] Kontaktformular einmal selbst testen
+- [ ] Alten Ordner `handwerksdoktor-upload-final-1` im Webspace löschen, überzählige SFTP-Zugänge löschen
 - [ ] Gewerbe anmelden, Kleinunternehmerregelung/USt-IdNr. klären
 - [x] Amazon-Partner-Tag `rechn24-21` in `site/src/site.ts` eingetragen
 - [ ] Google Search Console + Bing Webmaster Tools, Sitemap einreichen
