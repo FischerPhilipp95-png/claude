@@ -2,7 +2,47 @@
 
 Datei: `out/final.mp4` (1080x1920, 22 s, Reels und Story). Kanal: **@hech.bau**.
 
-## Caption (Reel)
+## Perfekter Post (empfohlen)
+
+```
+Bagger, Zaun oder Tor geplant? Ein Foto per WhatsApp genügt. 📸🚜
+
+Ich bin HECH aus Erlenbach am Main und mache Erdarbeiten und Zaunbau, direkt mit dem Inhaber abgestimmt:
+
+🚜 Pool- & Fundamentaushub, Wurzeln, Entwässerung
+🧱 Doppelstabmatten, Sichtschutz, Toranlagen, Gabionen
+🌿 Garten, Wegebau, Abriss
+
+⭐ 5,0 Sterne aus 15 Google-Bewertungen
+
+So einfach geht's:
+1️⃣ Link in der Bio antippen
+2️⃣ Foto oder Eckdaten per WhatsApp senden
+3️⃣ Kostenlos & unverbindlich ein Angebot erhalten
+
+📲 WhatsApp: 0170 8122657
+📍 Landkreis Miltenberg & Aschaffenburg, von Erbach bis Wertheim
+
+👇 Was steht bei dir an: Pool, Zaun oder Einfahrt?
+
+#baggerarbeiten #zaunbau #erlenbachammain #miltenberg #aschaffenburg
+```
+
+**Hashtags:** Instagram empfiehlt heute 3–5 passende Hashtags statt 30. Die fünf oben sind die stärksten Kombination aus Leistung und Region.
+Wer mehr will, setzt diese zusätzlich in den **ersten Kommentar**:
+
+```
+#minibagger #erdarbeiten #poolbau #poolaushub #doppelstabmattenzaun #sichtschutzzaun #toranlage #gabionen #gartenbau #einfahrt #hausbau #eigenheim #landkreismiltenberg #untermain #hechbau
+```
+
+**Alt-Text** (Erweiterte Einstellungen → Barrierefreiheit):
+`Animiertes Vorstellungsvideo von HECH Baggerarbeiten & Zaunbau aus Erlenbach am Main mit Projektfotos von Minibagger, Zäunen und Toranlagen und WhatsApp-Kontakt.`
+
+**Titelbild (Cover):** Frame bei ca. 4 s („BAGGERN.“ auf Orange) oder bei ca. 18 s (Logo + „LINK IN DER BIO“).
+**Ort:** Erlenbach am Main markieren (bringt lokale Reichweite).
+**Beste Zeit:** Di–Do 18–20 Uhr oder Sa 9–11 Uhr (Hausbesitzer planen abends und am Wochenende).
+
+## Caption (Reel, frühere Fassung)
 
 ```
 Baggern. Zäune. & mehr. 🚜
