@@ -29,8 +29,11 @@ npm run check      # prüft dist/: keine Anfragen an fremde Server, nichts zu br
    - `<YouTube id="VIDEO-ID" titel="..." vorschau="/bilder/<thumbnail>.webp">` bettet ein Video erst nach Klick ein.
      Das Vorschaubild ist das eigene Thumbnail, als Datei in `public/bilder/`.
 4. `entwurf: true` versteckt einen Artikel, bis er fertig ist.
-5. Titelbild: `bild: /bilder/titel/<url-name>.webp` eintragen (optional `kurztitel` für einen kürzeren Text auf dem Bild),
-   dann `npm run titelbilder`. Erzeugt ein eigenes Bild im Kanal-Look (eigenes Urheberrecht).
+5. Titelbild: `bild: /bilder/titel/<url-name>.webp` eintragen, optional `kurztitel` (kürzerer Text auf dem Bild) und
+   `icon` (Name eines Lucide-Icons, siehe lucide.dev), dann `npm run titelbilder`. Rendert ein eigenes Bild im Kanal-Look
+   mit Themenfarbe (eigenes Urheberrecht). Es erscheint oben im Artikel, auf den Karten und beim Teilen.
+   Fotos im Text: `python3 tools/commons_bild.py suche "Begriff"` und `… laden "File:…" public/bilder/<name>.webp`
+   (nur CC0/gemeinfrei/CC BY/CC BY-SA, der ausgegebene Bildnachweis kommt in `<Bild nachweis=…>`).
 6. Pro Artikel mindestens 2 interne Links auf passende Artikel und 1 Link auf den Hauptartikel des Themas setzen.
    Inhaltsverzeichnis, „Das könnte dich auch interessieren“ und die Themenseite (`/thema/<thema>/`) entstehen automatisch.
 

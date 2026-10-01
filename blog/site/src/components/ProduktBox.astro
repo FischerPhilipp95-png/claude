@@ -2,6 +2,7 @@
 // Produkt-Empfehlung als Kaufkriterien + Amazon-Suchlink.
 // Keine Amazon-Bilder (würden die IP-Adresse an Amazon übertragen) und keine festen Preise.
 import { amazonSearch } from '../site';
+import Icon from './Icon.astro';
 
 interface Props {
   titel: string;
@@ -11,10 +12,10 @@ interface Props {
 }
 const { titel, suche, kriterien, button = 'Aktuelle Preise bei Amazon prüfen' } = Astro.props;
 ---
-<aside class="box product" aria-label={`Empfehlung: ${titel}`}>
-  <h3>{titel}</h3>
+<aside class="product" aria-label={`Empfehlung: ${titel}`}>
+  <p class="product-title"><Icon name="list-checks" size={18} /> {titel}</p>
   <p>Darauf solltest du achten:</p>
   <ul>{kriterien.map((k) => <li>{k}</li>)}</ul>
-  <a class="btn" href={amazonSearch(suche)} rel="sponsored nofollow noopener" target="_blank">{button}*</a>
+  <a class="btn" href={amazonSearch(suche)} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> {button}*</a>
   <p class="small">*Affiliate-Link. Kaufst du darüber, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.</p>
 </aside>

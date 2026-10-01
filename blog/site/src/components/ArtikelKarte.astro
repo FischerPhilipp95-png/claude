@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { THEMEN } from '../themen';
+import Icon from './Icon.astro';
+interface Props { post: CollectionEntry<'artikel'>; kurz?: boolean }
+const { post, kurz = false } = Astro.props;
+const t = THEMEN[post.data.thema];
+---
+<li class="card" style={`--akzent:${t.farbe}`}>
+  <a href={`/artikel/${post.id}/`}>
+    <div class="card-img"><img src={post.data.bild} alt="" width="1200" height="675" loading="lazy" decoding="async" /></div>
+    <div class="card-body">
+      <span class="chip"><Icon name={t.icon} size={14} /> {t.titel}</span>
+      <h3>{post.data.title}</h3>
+      {!kurz && <p>{post.data.description}</p>}
+      <span class="more">Weiterlesen <Icon name="chevron-right" size={16} /></span>
+    </div>
+  </a>
+</li>

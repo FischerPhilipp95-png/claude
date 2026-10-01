@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import { SITE } from '../site';
+import { THEMEN } from '../themen';
+import Icon from '../components/Icon.astro';
 
 interface Props {
   title: string;
@@ -43,13 +45,11 @@ const ogImage = new URL(image, SITE.url).toString();
 <body>
   <a class="skip" href="#inhalt">Zum Inhalt springen</a>
   <header class="site-header">
-    <div class="wrap wide">
+    <div class="wrap wide header-row">
       <a class="logo" href="/"><img src="/bilder/autor.webp" alt="" width="36" height="36" /><span>Der <b>Handwerksdoktor</b></span></a>
-      <nav aria-label="Hauptmenü">
-        <a href="/thema/heizung/">Heizung</a>
-        <a href="/thema/strom/">Strom</a>
-        <a href="/thema/raumklima/">Raumklima</a>
-        <a href="/rechner/stromkosten/">Stromrechner</a>
+      <nav aria-label="Hauptmenü" class="mainnav">
+        {Object.values(THEMEN).map((t) => <a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}><Icon name={t.icon} size={16} />{t.titel}</a>)}
+        <a href="/rechner/stromkosten/" class="nav-rechner"><Icon name="calculator" size={16} />Stromrechner</a>
       </nav>
     </div>
   </header>
@@ -57,16 +57,27 @@ const ogImage = new URL(image, SITE.url).toString();
     <slot />
   </main>
   <footer class="site-footer">
-    <div class="wrap wide">
-      <p>Als Amazon-Partner verdiene ich an qualifizierten Verkäufen. Links mit * sind Affiliate-Links.</p>
+    <div class="wrap wide footer-grid">
+      <div>
+        <a class="logo" href="/"><img src="/bilder/autor.webp" alt="" width="36" height="36" loading="lazy" /><span>Der <b>Handwerksdoktor</b></span></a>
+        <p>Haustechnik einfach erklärt, als Video auf <a href={SITE.youtube} rel="noopener">YouTube</a> und hier zum Nachlesen.</p>
+      </div>
+      <nav aria-label="Themen">
+        <p class="foot-h">Themen</p>
+        {Object.values(THEMEN).map((t) => <a href={`/thema/${t.slug}/`}>{t.titel}</a>)}
+        <a href="/rechner/stromkosten/">Stromkosten-Rechner</a>
+      </nav>
       <nav aria-label="Rechtliches">
+        <p class="foot-h">Rechtliches</p>
         <a href="/impressum/">Impressum</a>
         <a href="/datenschutz/">Datenschutz</a>
         <a href="/werbung/">Transparenz &amp; Werbung</a>
         <a href="/kontakt/">Kontakt</a>
-        <a href={SITE.youtube} rel="noopener">YouTube</a>
       </nav>
-      <p class="small">© {new Date().getFullYear()} {SITE.author}</p>
+    </div>
+    <div class="wrap wide footer-note">
+      <p>Als Amazon-Partner verdiene ich an qualifizierten Verkäufen. Links mit * sind Affiliate-Links.</p>
+      <p>© {new Date().getFullYear()} {SITE.author}</p>
     </div>
   </footer>
 </body>

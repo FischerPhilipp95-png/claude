@@ -9,7 +9,9 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
 const d = post.data;
+const woerter = (post.body ?? '').replace(/<[^>]+>|\{[^}]*\}/g, ' ').split(/\s+/).filter(Boolean).length;
+const lesezeit = Math.max(1, Math.round(woerter / 200));
 ---
-<Artikel title={d.title} description={d.description} pubDate={d.pubDate} updatedDate={d.updatedDate} thema={d.thema} bild={d.bild} affiliate={d.affiliate} id={post.id} headings={headings}>
+<Artikel title={d.title} description={d.description} pubDate={d.pubDate} updatedDate={d.updatedDate} thema={d.thema} bild={d.bild} affiliate={d.affiliate} id={post.id} headings={headings} bildAlt={d.bildAlt} lesezeit={lesezeit}>
   <Content />
 </Artikel>

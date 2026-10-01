@@ -1,33 +1,52 @@
 ---
-import { THEMEN } from '../themen';
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import ArtikelKarte from '../components/ArtikelKarte.astro';
+import Icon from '../components/Icon.astro';
 import { SITE } from '../site';
+import { THEMEN } from '../themen';
 
 const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 6);
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const anzahl = (name: string) => posts.filter((p) => p.data.thema === name).length;
 const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: `${SITE.url}/`, inLanguage: 'de-DE' }];
 ---
 <Base title={SITE.name} description={SITE.description} jsonLd={jsonLd}>
   <section class="hero">
-    <div class="wrap wide">
-      <h1>Haustechnik, <b>einfach erklärt.</b></h1>
-      <p>Warum gluckert die Heizung? Wie kommt der Strom ins Haus? Hier findest du Antworten, die man versteht,
-      und Anleitungen für alles, was du sicher selbst machen kannst.</p>
-      <a class="btn" href="/artikel/">Zu den Artikeln</a>
-      <a class="btn btn-ghost" href="/rechner/stromkosten/">Stromkosten-Rechner</a>
+    <div class="wrap wide hero-grid">
+      <div>
+        <p class="eyebrow"><Icon name="sparkles" size={16} /> {posts.length} Anleitungen, alle mit Quellen</p>
+        <h1>Haustechnik, <b>einfach erklärt.</b></h1>
+        <p class="hero-lead">Warum gluckert die Heizung? Was kostet der Heizlüfter? Wie bekomme ich den Abfluss frei?
+        Antworten, die man versteht, und Anleitungen für alles, was du sicher selbst machen kannst.</p>
+        <div class="hero-cta">
+          <a class="btn" href="/artikel/"><Icon name="book-open" size={18} /> Alle Anleitungen</a>
+          <a class="btn btn-ghost" href="/rechner/stromkosten/"><Icon name="calculator" size={18} /> Stromkosten-Rechner</a>
+        </div>
+      </div>
+      <img class="hero-avatar" src="/bilder/autor.webp" alt="Philipp Fischer, Der Handwerksdoktor" width="256" height="256" />
     </div>
   </section>
-  <div class="wrap wide">
-    <h2>Neueste Artikel</h2>
-    <ul class="cards">
-      {posts.map((p) => (
-        <li class="card"><a href={`/artikel/${p.id}/`}>
-          <img src={p.data.bild} alt="" width="1200" height="675" loading="lazy" />
-          <div><span class="tag">{THEMEN[p.data.thema].titel}</span><h3>{p.data.title}</h3><p>{p.data.description}</p></div>
+
+  <section class="wrap wide">
+    <h2 class="section-h">Wobei brauchst du Hilfe?</h2>
+    <ul class="tiles">
+      {Object.entries(THEMEN).filter(([n]) => anzahl(n) > 0).map(([n, t]) => (
+        <li><a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}>
+          <span class="tile-icon"><Icon name={t.icon} size={28} /></span>
+          <span class="tile-name">{t.titel}</span>
+          <span class="tile-count">{anzahl(n)} {anzahl(n) === 1 ? 'Artikel' : 'Artikel'}</span>
         </a></li>
       ))}
+      <li><a href="/rechner/stromkosten/" style="--akzent:#ffd400">
+        <span class="tile-icon"><Icon name="calculator" size={28} /></span>
+        <span class="tile-name">Stromrechner</span>
+        <span class="tile-count">Kosten sofort berechnen</span>
+      </a></li>
     </ul>
-  </div>
+
+    <h2 class="section-h">Neueste Anleitungen</h2>
+    <ul class="cards">{posts.slice(0, 6).map((p) => <ArtikelKarte post={p} />)}</ul>
+    <p class="center"><a class="btn btn-dark" href="/artikel/">Alle {posts.length} Anleitungen ansehen <Icon name="chevron-right" size={18} /></a></p>
+  </section>
 </Base>

@@ -1,4 +1,5 @@
 ---
 // Kurze Antwort ganz oben: die Stelle, die Google gern als hervorgehobenes Snippet zeigt.
+import Icon from './Icon.astro';
 ---
-<div class="box answer"><slot /></div>
+<div class="answer"><p class="answer-label"><Icon name="lightbulb" size={18} /> Kurze Antwort</p><slot /></div>

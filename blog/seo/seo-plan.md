@@ -150,3 +150,12 @@ im Fließtext genau dort, wo das Werkzeug gebraucht wird.
 
 Nächste Artikel: Heizungsdruck zu niedrig (Wasser nachfüllen), Thermostatkopf wechseln, Stand-by-Stromfresser finden,
 Kaffeevollautomat entkalken (ohne Entkalker / trotz Filter), ab März: mobile Klimaanlage ohne Abluftschlauch.
+
+## Stand 01.10.2026, Runde 3
+
+Neu: Abfluss verstopft · Schimmel entfernen · Waschmaschine reinigen · Spülmaschine reinigen · Kaffeevollautomat entkalken
+(Themen 1–5 aus `themen-ranking.md`). Neue Themenseiten: Wasser, Haushaltsgeräte. Neues Design mit Themenfarben, Icons
+(Lucide, ISC-Lizenz), gerenderten Titelbildern und frei lizenzierten Fotos von Wikimedia Commons.
+
+Nächste Kandidaten aus dem Ranking: hydraulischer Abgleich · Wasserhahn tropft · smartes Thermostat · Heizkurve einstellen ·
+Stand-by-Stromverbrauch · Duschkopf/Wasserkocher entkalken. Ab März: mobile Klimaanlage.

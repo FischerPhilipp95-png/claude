@@ -1,4 +1,5 @@
 ---
+import ArtikelKarte from '../../components/ArtikelKarte.astro';
 import { THEMEN } from '../../themen';
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
@@ -9,13 +10,6 @@ const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
 <Base title="Alle Artikel" description="Alle Anleitungen und Erklärungen vom Handwerksdoktor: Heizung, Strom, Wasser, Klima und Küche.">
   <div class="wrap wide">
     <h1>Alle Artikel</h1>
-    <ul class="cards">
-      {posts.map((p) => (
-        <li class="card"><a href={`/artikel/${p.id}/`}>
-          <img src={p.data.bild} alt="" width="1200" height="675" loading="lazy" />
-          <div><span class="tag">{THEMEN[p.data.thema].titel}</span><h3>{p.data.title}</h3><p>{p.data.description}</p></div>
-        </a></li>
-      ))}
-    </ul>
+    <ul class="cards">{posts.map((p) => <ArtikelKarte post={p} />)}</ul>
   </div>
 </Base>

@@ -3,6 +3,7 @@ import Base from './Base.astro';
 import { SITE } from '../site';
 import { THEMEN, type Thema } from '../themen';
 import Verwandt from '../components/Verwandt.astro';
+import Icon from '../components/Icon.astro';
 
 interface Props {
   title: string;
@@ -14,8 +15,12 @@ interface Props {
   affiliate: boolean;
   id: string;
   headings: { depth: number; slug: string; text: string }[];
+  bildAlt: string;
+  lesezeit: number;
 }
-const { title, description, pubDate, updatedDate, thema, bild, affiliate, id, headings } = Astro.props;
+const { title, description, pubDate, updatedDate, thema, bild, affiliate, id, headings, bildAlt, lesezeit } = Astro.props;
+const akzent = THEMEN[thema as Thema].farbe;
+const themaIcon = THEMEN[thema as Thema].icon;
 const themaSlug = THEMEN[thema as Thema].slug;
 const themaTitel = THEMEN[thema as Thema].titel;
 const toc = headings.filter((h) => h.depth === 2 && h.text !== 'Quellen');
@@ -48,19 +53,23 @@ const jsonLd = [
 ];
 ---
 <Base title={title} description={description} image={bild} jsonLd={jsonLd} type="article">
-  <article class="wrap">
-    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › <a href={`/thema/${themaSlug}/`}>{themaTitel}</a></nav>
+  <article class="wrap article" style={`--akzent:${akzent}`}>
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> <Icon name="chevron-right" size={14} /> <a href={`/thema/${themaSlug}/`}>{themaTitel}</a></nav>
+    <a class="chip chip-lg" href={`/thema/${themaSlug}/`}><Icon name={themaIcon} size={16} /> {themaTitel}</a>
     <h1>{title}</h1>
-    <p class="meta">
-      Von {SITE.author} · {updatedDate ? `Aktualisiert am ${datum(updatedDate)}` : `Veröffentlicht am ${datum(pubDate)}`}
-    </p>
+    <p class="lead">{description}</p>
+    <div class="byline">
+      <img src="/bilder/autor.webp" alt="" width="40" height="40" />
+      <span><strong>{SITE.author}</strong><br /><span class="small">{updatedDate ? `Aktualisiert am ${datum(updatedDate)}` : `Veröffentlicht am ${datum(pubDate)}`} · <Icon name="clock" size={13} /> {lesezeit} Min. Lesezeit</span></span>
+    </div>
+    <figure class="hero-img"><img src={bild} alt={bildAlt} width="1200" height="675" fetchpriority="high" decoding="async" /></figure>
     {affiliate && (
       <p class="ad-note"><strong>Anzeige:</strong> Dieser Artikel enthält Affiliate-Links (mit * markiert). Kaufst du darüber ein,
       bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts. <a href="/werbung/">Mehr dazu</a></p>
     )}
     {toc.length >= 3 && (
       <details class="toc">
-        <summary>Inhalt</summary>
+        <summary><Icon name="list-checks" size={18} /> Inhalt dieses Artikels</summary>
         <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
       </details>
     )}

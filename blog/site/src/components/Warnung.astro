@@ -1,5 +1,6 @@
 ---
+import Icon from './Icon.astro';
 interface Props { titel?: string }
 const { titel = 'Achtung' } = Astro.props;
 ---
-<div class="box warn" role="note"><strong>⚠ {titel}</strong><slot /></div>
+<div class="warn" role="note"><p class="warn-title"><Icon name="triangle-alert" size={18} /> {titel}</p><slot /></div>
