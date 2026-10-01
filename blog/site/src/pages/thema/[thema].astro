@@ -25,6 +25,6 @@ const jsonLd = [{
     <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › {t.titel}</nav>
     <h1>{t.titel}: Anleitungen und Ratgeber</h1>
     <p class="lead">{t.intro}</p>
-    <ul class="cards">{liste.map((p) => <ArtikelKarte post={p} />)}</ul>
+    <ul class="cards">{liste.map((p) => <ArtikelKarte post={p} ebene={2} />)}</ul>
   </div>
 </Base>

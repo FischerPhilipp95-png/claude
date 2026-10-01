@@ -114,7 +114,7 @@ main { padding: 0 0 72px; }
 .card:hover .card-img img { transform: scale(1.04); }
 .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .card-body .chip { align-self: flex-start; }
-.card h3 { margin: 2px 0 0; font-size: 1.12rem; }
+.card :is(h2, h3) { margin: 2px 0 0; font-size: 1.12rem; }
 .card p { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.55; }
 .more { margin-top: auto; padding-top: 6px; font-weight: 800; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 2px; color: var(--link); }
 
@@ -154,7 +154,7 @@ figure img { border-radius: var(--radius); box-shadow: var(--shadow); }
 /* Kästen */
 .box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; margin: 1.6em 0; box-shadow: var(--shadow); }
 .box > :last-child { margin-bottom: 0; }
-.answer { background: linear-gradient(135deg, #fffbe0, #fff); border: 1px solid #f2e2a0; border-left: 6px solid var(--yellow); border-radius: var(--radius); padding: 18px 22px; margin: 1.4em 0; box-shadow: var(--shadow); }
+.answer { background: #fffbe7; border: 1px solid #f2e2a0; border-left: 6px solid var(--yellow); border-radius: var(--radius); padding: 18px 22px; margin: 1.4em 0; box-shadow: var(--shadow); }
 .answer > :last-child { margin-bottom: 0; }
 .answer-label { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #8a6d00; margin-bottom: 6px; }
 .warn { background: #fff4eb; border: 1px solid #ffc9a3; border-left: 6px solid #ff741c; border-radius: var(--radius); padding: 16px 20px; margin: 1.6em 0; }
@@ -193,7 +193,7 @@ figure img { border-radius: var(--radius); box-shadow: var(--shadow); }
 .author p { margin: 0; }
 .related { margin-top: 3em; }
 .related .cards { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-.related h3 { font-size: 1rem; }
+.related .card :is(h2, h3) { font-size: 1rem; }
 
 /* Video (Zwei-Klick) */
 .video { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); }
@@ -375,4 +375,14 @@ form textarea { min-height: 160px; }
 .calc-check { display: flex; align-items: center; gap: 8px; font-weight: 500; margin: 12px 0 0; }
 .calc-check input { width: 18px; height: 18px; accent-color: #111; }
 .calc .result th, .calc .result td { overflow-wrap: normal; hyphens: manual; }
+table.result tbody th[scope="row"] { font-weight: 400; background: none; }
 @media (max-width: 560px) { .calc .result { font-size: 0.82em; } }
+/* Links im Fließtext der Fußzeile unterstreichen, damit sie nicht nur an der Farbe erkennbar sind */
+.site-footer p a { text-decoration: underline; text-underline-offset: 3px; }
+/* Wer im System „Bewegung reduzieren“ eingestellt hat, bekommt kein weiches Scrollen und keine Animationen */
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+.checkliste { list-style: none; padding: 0; margin: 0 0 1.2em; }
+.checkliste li { margin: 0 0 6px; }
+.checkliste label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; }
+.checkliste input { width: 20px; height: 20px; margin-top: 3px; accent-color: #0ca30c; flex: none; }
+.checkliste input:checked + span { text-decoration: line-through; color: var(--muted); }

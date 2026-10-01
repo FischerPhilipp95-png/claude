@@ -37,11 +37,11 @@ const jsonLd = [{
         <label>Wasser und Abwasser in €/m³<input id="wasser" type="number" inputmode="decimal" min="0" step="any" value="4.5" /></label>
       </div>
       <table class="result" aria-live="polite">
-        <thead><tr><th></th><th>dein Duschkopf</th><th>Sparduschkopf</th></tr></thead>
+        <thead><tr><td></td><th scope="col">dein Duschkopf</th><th scope="col">Sparduschkopf</th></tr></thead>
         <tbody>
-          <tr><td>Liter pro Dusche</td><td id="l_alt">–</td><td id="l_neu">–</td></tr>
-          <tr><td>Kosten pro Dusche</td><td id="d_alt">–</td><td id="d_neu">–</td></tr>
-          <tr><td><strong>Kosten pro Jahr</strong></td><td id="j_alt"><strong>–</strong></td><td id="j_neu"><strong>–</strong></td></tr>
+          <tr><th scope="row">Liter pro Dusche</th><td id="l_alt">–</td><td id="l_neu">–</td></tr>
+          <tr><th scope="row">Kosten pro Dusche</th><td id="d_alt">–</td><td id="d_neu">–</td></tr>
+          <tr><th scope="row"><strong>Kosten pro Jahr</strong></th><td id="j_alt"><strong>–</strong></td><td id="j_neu"><strong>–</strong></td></tr>
         </tbody>
       </table>
       <p class="calc-gross">Ersparnis pro Jahr: <strong id="spar">–</strong> und <span id="spar_l">–</span> weniger Wasser</p>

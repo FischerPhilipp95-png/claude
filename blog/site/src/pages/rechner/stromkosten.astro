@@ -41,11 +41,11 @@ const jsonLd = [{
         <label>Strompreis in Cent/kWh<input id="preis" type="number" inputmode="decimal" min="0" step="any" value="35" /></label>
       </div>
       <table class="result" aria-live="polite">
-        <thead><tr><th></th><th>Verbrauch</th><th>Kosten</th></tr></thead>
+        <thead><tr><td></td><th scope="col">Verbrauch</th><th scope="col">Kosten</th></tr></thead>
         <tbody>
-          <tr><td>pro Tag</td><td id="kwh-tag">–</td><td id="eur-tag">–</td></tr>
-          <tr><td>pro Monat</td><td id="kwh-monat">–</td><td id="eur-monat">–</td></tr>
-          <tr><td><strong>pro Jahr</strong></td><td id="kwh-jahr">–</td><td id="eur-jahr"><strong>–</strong></td></tr>
+          <tr><th scope="row">pro Tag</th><td id="kwh-tag">–</td><td id="eur-tag">–</td></tr>
+          <tr><th scope="row">pro Monat</th><td id="kwh-monat">–</td><td id="eur-monat">–</td></tr>
+          <tr><th scope="row"><strong>pro Jahr</strong></th><td id="kwh-jahr">–</td><td id="eur-jahr"><strong>–</strong></td></tr>
         </tbody>
       </table>
       <p class="small">Den Strompreis findest du auf deiner Stromrechnung (Arbeitspreis in ct/kWh). „Monat“ = Jahr ÷ 12.</p>

@@ -42,5 +42,5 @@ Im Zweifel: Finger weg und Fachbetrieb rufen.
 
 ## Bildnachweise
 
-Eigene Grafiken und Animationen: Philipp Fischer.
+Eigene Grafiken und Animationen: Der Handwerksdoktor.
 Fremde Fotos sind direkt am Bild mit Urheber, Lizenz und Quelle gekennzeichnet.

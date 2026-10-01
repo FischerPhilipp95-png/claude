@@ -10,7 +10,13 @@ npm install        # einmalig
 npm run dev        # Vorschau unter http://localhost:4321
 npm run build      # fertige Seite nach dist/
 npm run check      # prüft dist/: keine Anfragen an fremde Server, nichts zu breit fürs Handy
+npm run qualitaet  # html-validate (HTML-Fehler) und pa11y-ci (Barrierefreiheit, WCAG 2 AA) für alle Seiten
+npm run lighthouse # Unlighthouse: Lighthouse-Werte jeder Seite, Bericht in .unlighthouse/
 ```
+
+Für `npm run lighthouse` muss die gebaute Seite lokal laufen: `python3 -m http.server 4399 -d dist`.
+`qualitaet` startet seinen Server selbst. Beide nutzen das vorinstallierte Chromium (`CHROME_PATH` überschreibt den Pfad).
+Seiten mit `noindex` (Impressum, Datenschutz, Werbung, Suche) bekommen bei Lighthouse-SEO absichtlich weniger Punkte.
 
 ## Neuer Artikel
 
@@ -42,7 +48,7 @@ in `public/bilder/`. Nie Bilder von Amazon, Herstellern oder anderen Seiten.
 
 ## Hochladen zu IONOS
 
-1. `npm run build && npm run check`
+1. `npm run build && npm run check && npm run qualitaet`
 2. Den **Inhalt** von `dist/` (nicht den Ordner selbst) per SFTP in den Webspace-Ordner **`/public`** laden
    (dorthin zeigt die Domain laut IONOS → Domains & SSL → handwerksdoktor.de → Ziel).
    Zugangsdaten: IONOS → Hosting → SFTP & SSH. Programm z. B. FileZilla (kostenlos).

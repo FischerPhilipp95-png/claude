@@ -4,7 +4,7 @@ export const SITE = {
   name: 'Der Handwerksdoktor',
   url: 'https://handwerksdoktor.de',
   description: 'Haustechnik einfach erklärt: Heizung, Strom, Wasser und Geräte im Haushalt verstehen und kleine Probleme selbst lösen.',
-  author: 'Philipp Fischer',
+  author: 'Der Handwerksdoktor',  // Anzeigename überall auf der Seite. Der echte Name steht nur im Impressum und in der Datenschutzerklärung.
   email: 'info@handwerksdoktor.de',
   youtube: 'https://www.youtube.com/@derhandwerksdoktor',
   amazonTag: 'rechn24-21',

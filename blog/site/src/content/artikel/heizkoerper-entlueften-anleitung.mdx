@@ -11,6 +11,7 @@ bildNachweis: "Grafik: Der Handwerksdoktor"
 affiliate: true
 ---
 import Antwort from '../../components/Antwort.astro';
+import Checkliste from '../../components/Checkliste.astro';
 import Warnung from '../../components/Warnung.astro';
 import ProduktBox from '../../components/ProduktBox.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
@@ -97,12 +98,14 @@ Beim Entlüften geht etwas Wasser verloren, dadurch sinkt der Druck in der Anlag
 
 ## Checkliste zum Abhaken
 
-- [ ] Thermostate voll auf
-- [ ] Heizung/Pumpe aus, 30 bis 60 Minuten gewartet
-- [ ] Gefäß und Lappen bereit
-- [ ] Unten angefangen, Heizkörper für Heizkörper nach oben
-- [ ] Ventil nur ¼ bis ½ Umdrehung geöffnet und geschlossen, sobald Wasser kommt
-- [ ] Heizung wieder an, Druck geprüft
+<Checkliste id="entlueften" punkte={[
+  'Thermostate voll auf',
+  'Heizung/Pumpe aus, 30 bis 60 Minuten gewartet',
+  'Gefäß und Lappen bereit',
+  'Unten angefangen, Heizkörper für Heizkörper nach oben',
+  'Ventil nur ¼ bis ½ Umdrehung geöffnet und geschlossen, sobald Wasser kommt',
+  'Heizung wieder an, Druck geprüft',
+]} />
 
 <ProduktBox
   titel="Entlüftungsschlüssel: worauf du achten solltest"

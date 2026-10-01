@@ -12,6 +12,6 @@ const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
   <div class="wrap wide">
     <h1>Alle Artikel</h1>
     <SuchFeld id="suche-artikel" />
-    <ul class="cards">{posts.map((p) => <ArtikelKarte post={p} />)}</ul>
+    <ul class="cards">{posts.map((p) => <ArtikelKarte post={p} ebene={2} />)}</ul>
   </div>
 </Base>

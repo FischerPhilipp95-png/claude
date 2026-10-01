@@ -30,11 +30,11 @@ const jsonLd = [{
 
     <section class="box calc" aria-label="Rechner">
       <table class="result standby-tabelle">
-        <thead><tr><th>Gerät</th><th>Watt im Stand-by</th><th>abschaltbar</th></tr></thead>
+        <thead><tr><th scope="col">Gerät</th><th scope="col">Watt im Stand-by</th><th scope="col">abschaltbar</th></tr></thead>
         <tbody>
           {geraete.map((g) => (
             <tr>
-              <td>{g.name}</td>
+              <th scope="row">{g.name}</th>
               <td><input id={`w_${g.id}`} type="number" inputmode="decimal" min="0" step="any" value={g.watt} aria-label={`${g.name}, Watt`} /></td>
               <td><input id={`a_${g.id}`} type="checkbox" checked={g.aus} aria-label={`${g.name} abschaltbar`} /></td>
             </tr>
