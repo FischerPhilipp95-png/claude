@@ -76,6 +76,15 @@ SOUNDS.blip = {
   fn: (t) => Math.sin(2 * Math.PI * 1760 * t) * Math.exp(-t / 0.03) * Math.min(1, t / 0.002),
 };
 
+// Bloop: kurzer, freundlicher Zweiton wie bei einer Chat-Nachricht (selbst erzeugt)
+SOUNDS.bloop = {
+  len: 0.22,
+  fn: (t) => {
+    const f = t < 0.07 ? 880 : 1320;
+    return Math.sin(2 * Math.PI * f * t) * Math.exp(-((t < 0.07 ? t : t - 0.07)) / 0.05) * Math.min(1, t / 0.003) * 0.8;
+  },
+};
+
 // Whoosh: gefiltertes Rauschen, Filter öffnet und schließt sich, Stereo-Schwenk
 function whoosh(start, gain) {
   const len = 0.55, n = Math.floor(len * SR), i0 = Math.floor(start * SR - 0.35 * SR);

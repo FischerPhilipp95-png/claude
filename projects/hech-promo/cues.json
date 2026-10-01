@@ -1,0 +1,182 @@
+[
+ {
+  "t": 0.05,
+  "type": "pop",
+  "gain": 0.5
+ },
+ {
+  "t": 0.556,
+  "type": "whoosh",
+  "gain": 0.35
+ },
+ {
+  "t": 1.111,
+  "type": "key",
+  "gain": 0.45
+ },
+ {
+  "t": 1.25,
+  "type": "key",
+  "gain": 0.45
+ },
+ {
+  "t": 1.389,
+  "type": "key",
+  "gain": 0.45
+ },
+ {
+  "t": 1.528,
+  "type": "key",
+  "gain": 0.45
+ },
+ {
+  "t": 2.222,
+  "type": "pop",
+  "gain": 0.55
+ },
+ {
+  "t": 3.133,
+  "type": "whoosh",
+  "gain": 0.5
+ },
+ {
+  "t": 3.483,
+  "type": "pop",
+  "gain": 0.4
+ },
+ {
+  "t": 3.889,
+  "type": "click",
+  "gain": 0.35
+ },
+ {
+  "t": 4.444,
+  "type": "click",
+  "gain": 0.35
+ },
+ {
+  "t": 4.494,
+  "type": "pop",
+  "gain": 0.35
+ },
+ {
+  "t": 5,
+  "type": "click",
+  "gain": 0.35
+ },
+ {
+  "t": 5.556,
+  "type": "click",
+  "gain": 0.35
+ },
+ {
+  "t": 5.556,
+  "type": "whoosh",
+  "gain": 0.3
+ },
+ {
+  "t": 6.111,
+  "type": "click",
+  "gain": 0.35
+ },
+ {
+  "t": 7.222,
+  "type": "whoosh",
+  "gain": 0.3
+ },
+ {
+  "t": 7.778,
+  "type": "whoosh",
+  "gain": 0.3
+ },
+ {
+  "t": 8.333,
+  "type": "whoosh",
+  "gain": 0.3
+ },
+ {
+  "t": 8.889,
+  "type": "whoosh",
+  "gain": 0.3
+ },
+ {
+  "t": 9.444,
+  "type": "whoosh",
+  "gain": 0.3
+ },
+ {
+  "t": 10,
+  "type": "pop",
+  "gain": 0.35
+ },
+ {
+  "t": 10.12,
+  "type": "pop",
+  "gain": 0.35
+ },
+ {
+  "t": 10.24,
+  "type": "pop",
+  "gain": 0.35
+ },
+ {
+  "t": 12.5,
+  "type": "blip",
+  "gain": 0.35
+ },
+ {
+  "t": 12.722,
+  "type": "blip",
+  "gain": 0.35
+ },
+ {
+  "t": 12.944,
+  "type": "blip",
+  "gain": 0.35
+ },
+ {
+  "t": 13.167,
+  "type": "blip",
+  "gain": 0.35
+ },
+ {
+  "t": 13.389,
+  "type": "blip",
+  "gain": 0.35
+ },
+ {
+  "t": 14.444,
+  "type": "pop",
+  "gain": 0.4
+ },
+ {
+  "t": 15,
+  "type": "pop",
+  "gain": 0.35
+ },
+ {
+  "t": 16.111,
+  "type": "bloop",
+  "gain": 0.6
+ },
+ {
+  "t": 17.5,
+  "type": "bloop",
+  "gain": 0.55
+ },
+ {
+  "t": 18.056,
+  "type": "pop",
+  "gain": 0.45
+ },
+ {
+  "t": 18.806,
+  "type": "click",
+  "gain": 0.7
+ },
+ {
+  "t": 18.889,
+  "type": "whoosh",
+  "gain": 0.5
+ }
+]
