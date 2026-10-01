@@ -1,0 +1,109 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProduktFokus from '../../components/ProduktFokus.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import { SITE } from '../../site';
+
+const title = 'Heizkosten-Vergleich: Klimaanlage, Gas oder Heizlüfter?';
+const description = 'Was kostet Heizen mit Klimaanlage, Gas oder Heizlüfter? Kosten pro kWh Wärme, pro Tag und pro Heizperiode mit deinen Preisen ausrechnen.';
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Heizkosten-Vergleich',
+  url: `${SITE.url}/rechner/heizkosten-vergleich/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Heizung" style="--akzent:#ff741c">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Heizkosten-Vergleich</nav>
+    <h1>{title}</h1>
+    <p class="lead">Wie viel Wärme braucht dein Raum, und was kostet sie mit Klimaanlage, Gasheizung oder Elektroheizung? Die Voreinstellungen
+    sind die Durchschnittspreise 2026. Trag am besten deine eigenen Preise aus der Abrechnung ein.</p>
+
+    <section class="box calc" aria-label="Rechner">
+      <div class="calc-grid">
+        <label>Heizleistung in kW<input id="kw" type="number" inputmode="decimal" min="0" step="any" value="2" /></label>
+        <label>Stunden pro Tag<input id="std" type="number" inputmode="decimal" min="0" max="24" step="any" value="5" /></label>
+        <label>Heiztage pro Jahr<input id="tage" type="number" inputmode="decimal" min="0" max="365" step="1" value="150" /></label>
+      </div>
+      <div class="calc-grid">
+        <label>Strompreis in Cent/kWh<input id="strom" type="number" inputmode="decimal" min="0" step="any" value="37" /></label>
+        <label>Gaspreis in Cent/kWh<input id="gas" type="number" inputmode="decimal" min="0" step="any" value="11.93" /></label>
+      </div>
+      <div class="calc-grid">
+        <label>SCOP der Klimaanlage<input id="scop" type="number" inputmode="decimal" min="1" max="8" step="0.1" value="4" /></label>
+        <label>Nutzungsgrad Gasheizung in %<input id="eta" type="number" inputmode="decimal" min="50" max="110" step="1" value="90" /></label>
+      </div>
+
+      <p class="calc-gross">Wärme pro Tag: <strong id="waerme">–</strong>, am günstigsten: <strong id="beste">–</strong></p>
+      <table class="result" aria-live="polite">
+        <thead><tr><th scope="col">Heizung</th><th scope="col">pro kWh Wärme</th><th scope="col">pro Tag</th><th scope="col">pro Jahr</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Klimaanlage</th><td id="k_kwh">–</td><td id="k_tag">–</td><td id="k_jahr">–</td></tr>
+          <tr><th scope="row">Gasheizung</th><td id="g_kwh">–</td><td id="g_tag">–</td><td id="g_jahr">–</td></tr>
+          <tr><th scope="row">Heizlüfter</th><td id="e_kwh">–</td><td id="e_tag">–</td><td id="e_jahr">–</td></tr>
+        </tbody>
+      </table>
+      <div class="rbars" aria-hidden="true">
+        <div class="rbar"><span>Klimaanlage</span><span class="rbar-track"><span class="rbar-fill" id="b_k"></span></span><span id="bt_k">–</span></div>
+        <div class="rbar"><span>Gasheizung</span><span class="rbar-track"><span class="rbar-fill" id="b_g"></span></span><span id="bt_g">–</span></div>
+        <div class="rbar"><span>Heizlüfter</span><span class="rbar-track"><span class="rbar-fill" id="b_e"></span></span><span id="bt_e">–</span></div>
+      </div>
+      <p class="small">„Heizlüfter“ steht für alle Elektro-Direktheizungen: Heizlüfter, Ölradiator, Infrarotheizung und Konvektor. Sie alle machen aus
+      1 kWh Strom 1 kWh Wärme. Nur Betriebskosten: Anschaffung, Wartung und Grundgebühren sind nicht eingerechnet.</p>
+      <RechnerTeilen />
+    </section>
+
+    <ProduktFokus id="midea-portasplit" titel="Klimaanlage, die auch heizt" />
+
+    <h2>So rechnet der Rechner</h2>
+    <ul>
+      <li><strong>Wärme:</strong> Heizleistung × Stunden = kWh Wärme pro Tag. 2 kW über 5 Stunden sind 10 kWh.</li>
+      <li><strong>Klimaanlage:</strong> Strompreis ÷ SCOP. Ein SCOP von 4 heißt: aus 1 kWh Strom werden im Schnitt 4 kWh Wärme. Den Wert
+      findest du auf dem Energielabel beim Heizen. Bei Frost ist die Effizienz niedriger, dann rechne mit 2 bis 3.</li>
+      <li><strong>Gasheizung:</strong> Gaspreis ÷ Nutzungsgrad. Ältere Kessel liegen eher bei 80 %, gut eingestellte Brennwertgeräte höher.</li>
+      <li><strong>Heizlüfter:</strong> 1 kWh Strom = 1 kWh Wärme, egal welches Gerät.</li>
+    </ul>
+    <p>Ausführlich mit Vor- und Nachteilen: <a href="/artikel/heizen-mit-klimaanlage/">Heizen mit Klimaanlage: Kosten, Stromverbrauch, Split oder
+    mobil?</a> und <a href="/artikel/heizluefter-oelradiator-infrarot/">Heizlüfter, Ölradiator oder Infrarotheizung</a>. Wann die Heizung
+    überhaupt an sein sollte: <a href="/artikel/ab-wann-heizen/">Ab wann heizen?</a></p>
+
+    <h2>Quellen</h2>
+    <ul class="small">
+      <li>BDEW: <a href="https://www.bdew.de/service/daten-und-grafiken/bdew-gaspreisanalyse/" rel="noopener">Gaspreisanalyse 2026</a> (11,93 Cent im Einfamilienhaus)</li>
+      <li>ADAC: <a href="https://www.adac.de/rund-ums-haus/energie/versorgung/heizen-mit-klimaanlage/" rel="noopener">Mit Klimaanlage heizen</a></li>
+      <li>Verbraucherzentrale Energieberatung: <a href="https://verbraucherzentrale-energieberatung.de/heizen/neue-heiztechnik/elektrische-direktheizung/" rel="noopener">Elektrische Direktheizung</a></li>
+    </ul>
+  </div>
+</Base>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const zahl = (id: string) => Math.max(0, parseFloat($(id).value.replace(',', '.')) || 0);
+  const eur = (x: number, st = 0) => x.toLocaleString('de-DE', { minimumFractionDigits: st, maximumFractionDigits: st }) + ' €';
+  const cent = (x: number) => x.toLocaleString('de-DE', { maximumFractionDigits: 1 }) + ' ct';
+  const set = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  function rechnen() {
+    const waerme = zahl('kw') * zahl('std');
+    const tage = zahl('tage');
+    const preise = {
+      k: zahl('strom') / Math.max(zahl('scop'), 1),
+      g: zahl('gas') / Math.max(zahl('eta'), 1) * 100,
+      e: zahl('strom'),
+    };
+    set('waerme', waerme.toLocaleString('de-DE', { maximumFractionDigits: 1 }) + ' kWh');
+    const namen = { k: 'Klimaanlage', g: 'Gasheizung', e: 'Heizlüfter' };
+    const beste = (Object.keys(preise) as (keyof typeof preise)[]).reduce((a, b) => (preise[b] < preise[a] ? b : a));
+    set('beste', namen[beste]);
+    const max = Math.max(preise.k, preise.g, preise.e, 0.0001);
+    (Object.keys(preise) as (keyof typeof preise)[]).forEach((k) => {
+      const tag = waerme * preise[k] / 100;
+      set(`${k}_kwh`, cent(preise[k]));
+      set(`${k}_tag`, eur(tag, 2));
+      set(`${k}_jahr`, eur(tag * tage));
+      (document.getElementById(`b_${k}`) as HTMLElement).style.setProperty('--p', String(preise[k] / max));
+      set(`bt_${k}`, eur(tag * tage));
+    });
+  }
+  document.querySelectorAll('section.calc input').forEach((i) => { i.addEventListener('input', rechnen); i.addEventListener('change', rechnen); });
+  rechnen();
+</script>

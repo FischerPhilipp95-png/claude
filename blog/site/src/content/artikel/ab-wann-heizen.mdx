@@ -1,0 +1,215 @@
+---
+title: "Ab wann heizen? Außentemperatur, Heizperiode, was der Vermieter muss"
+kurztitel: "Ab wann heizen?"
+description: "Ab welcher Außentemperatur heizen, wann beginnt die Heizperiode und wann muss der Vermieter die Heizung einschalten? Mit Grad-Tabelle für jeden Raum."
+pubDate: 2026-10-01
+icon: thermometer-snowflake
+thema: Heizung
+bild: /bilder/titel/ab-wann-heizen.webp
+bildAlt: "Titelbild: Ab wann heizen?"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import ProduktFokus from '../../components/ProduktFokus.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import Skala from '../../components/Skala.astro';
+import Ablauf from '../../components/Ablauf.astro';
+
+<Antwort>
+**Kurz gesagt:** Heizen solltest du, wenn es **draußen tagsüber mehrere Tage unter etwa 15 °C** bleibt. In gut gedämmten Häusern
+reicht oft 12 °C, im unsanierten Altbau eher schon 16 bis 17 °C. Drinnen gilt: Sinkt die Temperatur im Wohnzimmer **unter 19 bis 20 °C**,
+wird es Zeit. Die **Heizperiode** läuft nach gängiger Rechtsprechung vom **1. Oktober bis 30. April**. In dieser Zeit muss der Vermieter
+dafür sorgen, dass du tagsüber **mindestens 20 °C** (Bad 21 °C) erreichst, nachts mindestens etwa 18 °C. Auch **außerhalb der
+Heizperiode** muss er heizen, wenn es länger kalt ist.
+</Antwort>
+
+<Schnellkauf items={[
+  { name: 'Thermometer mit Min-/Max-Speicher', warum: 'Zeigt, wie warm es wirklich ist, und hilft beim Protokoll für den Vermieter.', suche: 'Thermo Hygrometer digital innen' },
+  { name: 'Smartes Heizkörperthermostat', warum: 'Heizt nach Zeitplan und senkt ab, wenn niemand da ist.', suche: 'smartes Heizkörperthermostat' },
+  { name: 'Fensterdichtband', warum: 'Zugluft stoppen, dann reicht oft ein Grad weniger.', suche: 'tesamoll P-Profil' },
+]} />
+
+## Ab welcher Außentemperatur sollte man heizen?
+
+Fachleute sprechen von der **Heizgrenztemperatur**: Unter dieser Außentemperatur reicht die Wärme von Sonne, Geräten und Menschen nicht
+mehr aus, um die Räume warm zu halten. Als Faustwert für normale Wohnhäuser gelten **etwa 15 °C**. Wie früh du heizen musst, hängt aber
+stark davon ab, wie gut dein Haus gedämmt ist:
+
+| Gebäude | Heizen ab Außentemperatur (Tagesmittel) |
+|---|---|
+| Altbau vor 1977, unsaniert | etwa 15 bis 17 °C |
+| Gebäude von 1977 bis 1995 | etwa 14 bis 16 °C |
+| Gebäude ab 1995 | etwa 12 bis 15 °C |
+| Niedrig­energie­haus | etwa 11,5 bis 14 °C |
+| Passivhaus | etwa 9,5 bis 11 °C |
+
+Wichtig ist nicht ein einzelner kühler Morgen, sondern der **Durchschnitt über den Tag** und **mehrere Tage am Stück**. Im
+Einfamilienhaus erledigt das die Heizungsregelung: Die **Heizkurve** und die **Sommer-/Winter-Umschaltung** entscheiden, ab welcher
+Außentemperatur die Heizung anspringt. Wie du das einstellst: [Heizkurve einstellen](/artikel/heizkurve-einstellen/).
+
+## Ab wie viel Grad Raumtemperatur heizen?
+
+Die bessere Frage ist oft: **Wie warm ist es drinnen?** Das Umweltbundesamt empfiehlt **20 °C im Wohnzimmer, 18 °C in der Küche und
+17 °C im Schlafzimmer**. Fällt die Temperatur in den Wohnräumen tagsüber darunter, ist es Zeit, die Heizung anzumachen.
+
+<Skala
+  titel="Raumtemperatur im Wohnzimmer tagsüber"
+  untertitel="Orientierung für Wohnräume. Im Schlafzimmer sind 17 °C in Ordnung, im Bad eher 21 bis 22 °C."
+  einheit="°C"
+  min={12}
+  max={26}
+  bereiche={[
+    { bis: 16, label: 'zu kalt, Schimmelgefahr. Als Mieter: Vermieter muss heizen', status: 'kritisch' },
+    { bis: 18, label: 'zu kühl zum Wohnen, heizen', status: 'erhoeht' },
+    { bis: 20, label: 'kühl, Heizung anmachen', status: 'achtung' },
+    { bis: 22, label: 'gut, so empfohlen', status: 'gut' },
+    { bis: 26, label: 'warm, jedes Grad weniger spart Energie', status: 'achtung' },
+  ]}
+  quelle="Grafik: Der Handwerksdoktor. Werte nach Umweltbundesamt (Empfehlung) und gängiger Rechtsprechung zu Mietwohnungen (Mindestwerte)."
+/>
+
+| Raum | Empfehlung UBA | Mindestwert Miete |
+|---|---|---|
+| Wohnzimmer | 20 °C | 20 °C |
+| Küche | 18 °C | 20 °C |
+| Schlaf­zimmer | 17 °C | 20 °C |
+| Bad | – | 21 °C |
+| Flur | – | 18 °C |
+| nachts | – | etwa 18 °C |
+
+UBA steht für Umweltbundesamt. Die rechte Spalte zeigt, was Gerichte für Mietwohnungen tagsüber (6 bis 23 Uhr) verlangen, nachts von 23 bis
+6 Uhr. Das ist keine Empfehlung zum Heizen, sondern das, was **du einstellen können musst**. Wie warm du es
+tatsächlich machst, entscheidest du selbst. Jedes Grad weniger spart laut Verbraucherzentrale und co2online **bis zu 6 % Heizenergie**.
+Was das bei dir ausmacht: [Heizkosten-Rechner](/rechner/heizkosten-sparen/).
+
+## Wann beginnt die Heizperiode?
+
+Die **Heizperiode** dauert nach gängiger Rechtsprechung vom **1. Oktober bis zum 30. April**. Ein Gesetz dazu gibt es nicht, die Zeitspanne
+stammt aus Gerichtsurteilen, etwa vom Landgericht Berlin (Az. 64 S 266/97). Die Heizperiode 2026/27 hat also am **1. Oktober 2026**
+begonnen und endet am **30. April 2027**.
+
+Das heißt **nicht**, dass vorher nicht geheizt werden darf oder danach nicht mehr geheizt werden muss. Entscheidend ist, wie kalt es ist.
+
+## Wann muss der Vermieter die Heizung einschalten?
+
+### In der Heizperiode (1. Oktober bis 30. April)
+
+Die Heizung muss so laufen, dass du in deiner Wohnung **zwischen 6 und 23 Uhr mindestens 20 °C** in den Wohnräumen und **21 °C im Bad**
+erreichen kannst. So hat es zum Beispiel das Landgericht Landshut entschieden (Az. 1 S 1222/85), der Bundesgerichtshof hält 20 °C
+tagsüber ebenfalls für angemessen (Az. VIII ZR 38/90). **Nachts** ist eine Absenkung erlaubt, Gerichte nennen etwa **18 °C** (AG Köln,
+Az. 205 C 36/16), teils auch 16 bis 17 °C zwischen 0 und 6 Uhr (AG Bonn, Az. 206 C 18/19).
+
+Eine Klausel im Mietvertrag, nach der tagsüber nur 18 °C erreicht werden müssen, hat das Landgericht Heidelberg für **unwirksam** erklärt
+(Az. 5 S 80/81).
+
+### Außerhalb der Heizperiode
+
+Auch im September oder Mai muss der Vermieter heizen, wenn es kalt ist. Gerichte haben das zum Beispiel angenommen, wenn die
+**Außentemperatur mehr als drei Tage unter 12 °C** liegt (AG Köln, Az. 220 C 152/07). Fällt die Temperatur **in der Wohnung unter
+16 °C**, muss laut gängigen Ratgebern **sofort** geheizt werden. Zwischen 16 und 18 °C kommt es darauf an, ob es in den nächsten Tagen
+wärmer wird.
+
+<Warnung titel="Keine Rechtsberatung">
+Die genannten Urteile sind Einzelfallentscheidungen und zeigen, wie Gerichte oft entscheiden. Ein Gesetz mit festen Grad-Zahlen gibt es nicht.
+Wenn es Streit gibt, lass dich vom örtlichen **Mieterverein** oder einer Anwältin bzw. einem Anwalt beraten.
+</Warnung>
+
+### Es bleibt kalt: Was du als Mieter tun kannst
+
+<Ablauf
+  titel="Wenn die Wohnung kalt bleibt"
+  schritte={[
+    { icon: 'wrench', titel: 'Selbst prüfen', text: 'Thermostat auf, Heizkörper entlüftet? Druck in Ordnung?' },
+    { icon: 'thermometer', titel: 'Messen', text: 'Mehrere Tage morgens, mittags, abends Temperatur notieren.' },
+    { icon: 'mail', titel: 'Melden', text: 'Vermieter schriftlich informieren, Frist setzen.' },
+    { icon: 'users', titel: 'Beraten lassen', text: 'Mieterverein fragen, bevor du die Miete kürzt.' },
+  ]}
+/>
+
+1. **Erst selbst prüfen:** Ist der Thermostatkopf aufgedreht? Gluckert der Heizkörper oder ist er oben kalt? Dann ist oft nur Luft drin:
+   [Heizkörper entlüften](/artikel/heizkoerper-entlueften-anleitung/) und [Heizkörper wird nicht warm](/artikel/heizkoerper-wird-nicht-warm/).
+2. **Temperatur protokollieren:** Über mehrere Tage zu festen Uhrzeiten messen, in der Raummitte und nicht direkt am Fenster. Ein
+   Thermometer mit **Min-/Max-Speicher** zeigt auch, wie kalt es nachts wurde.
+3. **Schriftlich melden:** Den Vermieter oder die Hausverwaltung per Brief oder E-Mail informieren und eine angemessene Frist setzen.
+   Protokoll beilegen.
+4. **Mietminderung nur nach Beratung:** Gerichte haben zum Beispiel **5 %** zugesprochen, wenn es 1 °C unter dem Mindestwert lag
+   (LG Berlin, Az. 63 S 423/11), **10 %** bei 2 °C darunter (AG Potsdam, Az. 23 C 236/10) und bis zu **70 %** bei komplettem Ausfall
+   (AG Charlottenburg, Az. 216 C 7/13). Kurze Ausfälle gelten oft als Bagatelle.
+
+<ProduktFokus id="thermopro-tp50" titel="Zum Messen und fürs Protokoll" />
+
+## Wann wird die Heizung angestellt?
+
+- **Im Mehrfamilienhaus mit Zentralheizung** schaltet der Vermieter oder die Hausverwaltung die Anlage auf **Winterbetrieb**. Das passiert
+  meist rund um den 1. Oktober oder automatisch, sobald die Außentemperatur unter die eingestellte Grenze fällt.
+- **Im eigenen Haus** stellst du an der Heizung von **Sommerbetrieb** (nur Warmwasser) auf **Winterbetrieb** (Heizen und Warmwasser).
+  Bei vielen Anlagen gibt es dafür eine **Sommer-/Winter-Umschalttemperatur**, die du an der Regelung einstellst. Orientiere dich an der
+  Tabelle oben.
+- **Mit Gasetagenheizung** in der Mietwohnung schaltest du selbst um, der Vermieter muss nur dafür sorgen, dass sie funktioniert.
+
+## Heizung anmachen: Das solltest du zum Start tun
+
+<Ablauf
+  titel="Fit für die Heizperiode in 5 Schritten"
+  schritte={[
+    { icon: 'gauge', titel: 'Druck prüfen', text: 'Am Manometer, meist 1 bis 2 bar bei kalter Anlage.' },
+    { icon: 'wind', titel: 'Entlüften', text: 'Gluckert es? Heizkörper entlüften.' },
+    { icon: 'rotate-cw', titel: 'Ventile lösen', text: 'Thermostate einmal ganz auf- und zudrehen.' },
+    { icon: 'thermometer', titel: 'Stufe 3', text: 'Thermostat auf 3, das sind etwa 20 °C.' },
+    { icon: 'calendar-clock', titel: 'Absenken', text: 'Nachts und bei Abwesenheit kühler.' },
+  ]}
+/>
+
+- **Druck prüfen:** Ist er zu niedrig, musst du nachfüllen: [Heizung Wasser nachfüllen](/artikel/heizung-wasser-nachfuellen/).
+- **Entlüften:** Nach dem Sommer sammelt sich oft Luft: [Heizkörper entlüften in 7 Schritten](/artikel/heizkoerper-entlueften-anleitung/).
+- **Festsitzende Ventile:** Nach Monaten Stillstand klemmt manchmal der Ventilstift. Thermostatkopf abnehmen und den Stift vorsichtig
+  bewegen: [Thermostatkopf wechseln](/artikel/thermostatkopf-wechseln/).
+- **Richtige Stufe:** Stufe 3 entspricht bei den meisten Thermostatköpfen etwa 20 °C. Die 5 heizt nicht schneller, sie hört nur später auf.
+
+## Wie warm nachts und wenn du weg bist?
+
+Laut Umweltbundesamt reichen bei einigen Stunden Abwesenheit **etwa 18 °C**, bei mehreren Tagen **etwa 15 °C**. Ganz auskühlen sollten die
+Räume nicht, sonst schlägt sich Feuchtigkeit an kalten Wänden nieder und es droht Schimmel. Zweimal bis mehrmals täglich **5 Minuten
+stoßlüften** ist besser als ein dauerhaft gekipptes Fenster. Mehr dazu: [Luftfeuchtigkeit in der Wohnung](/artikel/luftfeuchtigkeit-wohnung/).
+
+Wer einzelne Räume nur zeitweise nutzt, spart mit Zeitplänen: [Smartes Thermostat: Lohnt es sich?](/artikel/smartes-thermostat/)
+
+Du willst nur kurz einen Raum warm bekommen, ohne die ganze Heizung anzuwerfen? Was das kostet: [Heizen mit Klimaanlage](/artikel/heizen-mit-klimaanlage/)
+und [Heizlüfter, Ölradiator oder Infrarot](/artikel/heizluefter-oelradiator-infrarot/).
+
+## Häufige Fragen
+
+### Ab wann sollte man die Heizung anmachen?
+Wenn es draußen über mehrere Tage im Mittel unter etwa 15 °C bleibt oder drinnen im Wohnzimmer unter 19 bis 20 °C. Ein fester Tag im
+Kalender ist dafür nicht nötig.
+
+### Ab wann darf ich die Heizung anmachen?
+Jederzeit. Eine Regel, ab wann du heizen darfst, gibt es nicht. Die Heizperiode vom 1. Oktober bis 30. April legt nur fest, wann der
+Vermieter die Heizung auf jeden Fall bereithalten muss.
+
+### Wann muss der Vermieter die Heizung einschalten?
+In der Heizperiode so, dass tagsüber mindestens 20 °C (Bad 21 °C) erreichbar sind. Außerhalb der Heizperiode, wenn es länger kalt ist,
+etwa bei mehr als drei Tagen unter 12 °C draußen oder unter 16 °C in der Wohnung.
+
+### Ab welcher Außentemperatur muss geheizt werden?
+Für normale Wohnhäuser gelten etwa 15 °C im Tagesmittel als Richtwert. Gut gedämmte Häuser brauchen die Heizung oft erst unter 12 °C.
+
+### Sind 18 Grad in der Wohnung zu kalt?
+Im Schlafzimmer, Flur oder nachts sind 17 bis 18 °C in Ordnung. Für Wohnräume tagsüber ist es den meisten zu kühl. Dauerhaft unter 16 °C
+sollte es nirgends sein, sonst steigt die Schimmelgefahr.
+
+### Was tun, wenn der Vermieter nicht heizt?
+Temperaturen über mehrere Tage notieren, den Vermieter schriftlich mit Frist informieren und vor einer Mietminderung den Mieterverein fragen.
+Ein <AmazonLink suche="Thermo Hygrometer digital innen">Thermometer mit Min-/Max-Anzeige</AmazonLink> hilft beim Protokoll.
+
+## Quellen
+
+- Umweltbundesamt: [Richtiges Heizen und Raumtemperatur](https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/heizen-bauen/heizen-raumtemperatur)
+- Haufe: [Mindesttemperatur in Wohnungen: Die Rechtslage](https://www.haufe.de/immobilien/wirtschaft-politik/mindesttemperatur-rechtlich-knifflige-fragen-fuer-vermieter_84342_571228.html)
+- mietrecht.com: [Heizperiode: Wann beginnt diese meist?](https://www.mietrecht.com/heizperiode/)
+- heizung.de: [Mietwohnung: Wann muss der Vermieter heizen?](https://www.heizung.de/ratgeber/diverses/mietwohnung-wann-muss-der-vermieter-heizen.html)
+- heizungssysteme.org: [Heizgrenztemperatur: Definition und Werte](https://heizungssysteme.org/heizgrenztemperatur/)
+- co2online: [Heizkosten sparen: Die 10 besten Tipps](https://www.co2online.de/energie-sparen/heizenergie-sparen/heizkosten-sparen/richtig-heizen-die-10-besten-tipps/)

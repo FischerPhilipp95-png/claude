@@ -205,3 +205,16 @@ Rauchmelder piept (Fehlerbehebung), eigenes YouTube-Video zur Plissee-Montage mi
 - 4 neue Rechner: Heizkosten sparen, Duschkosten, Stand-by, tropfender Wasserhahn. Rechner-Übersicht mit 6 Rechnern.
 - Alle Rechner teilbar: Eingaben stehen im #-Teil der Adresse (geht nicht an den Server), „Link kopieren“ und „Teilen“ (Handy).
 - Jeder Rechner mit passenden Amazon-Links, verlinkt aus den passenden Artikeln.
+
+## Stand 01.10.2026, Runde 8 (Google Trends Heizperiode)
+
+- Qualitätsprüfung: `npm run qualitaet` (html-validate, pa11y-ci WCAG 2 AA) und `npm run lighthouse` (Unlighthouse, alle Seiten 100 außer noindex).
+- Anzeigename überall „Der Handwerksdoktor“, echter Name nur in Impressum und Datenschutz.
+- Trend-Cluster „ab wann heizen“ (ab wann Heizung anmachen, ab welcher Außentemperatur, ab wie viel Grad, wann muss der Vermieter
+  die Heizung einschalten): Artikel `/artikel/ab-wann-heizen/`. H2/FAQ nutzen die Suchformulierungen wörtlich. Jährlich ab September
+  aktualisieren (Heizperiode-Jahreszahlen, Urteile).
+- Trend-Cluster „heizen mit Klimaanlage“ (Split-Klimaanlage zum Heizen, mobile Split-Klimaanlage): Artikel `/artikel/heizen-mit-klimaanlage/`
+  mit Midea PortaSplit (B0D3PP64JS) und neuer Rechner `/rechner/heizkosten-vergleich/` (Klimaanlage, Gas, Heizlüfter; deckt auch
+  „was kostet Gas zum Heizen“ ab).
+- Offen aus den Trends: „thermostat heizung wechseln“ und „heizung richtig entlüften“ in vorhandene Titel/H2 einarbeiten,
+  „Strangregulierventil“ im Abgleich-Artikel, „Gartenhaus heizen / Heizstrahler“ im Heizgeräte-Vergleich, Short „Ab wann heizen?“.

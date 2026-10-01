@@ -145,6 +145,11 @@ export const PRODUKTE = {
     kurz: 'Mobile Infrarotheizung mit Füßen und Thermostat. Wärmt Personen und Flächen, lautlos, ohne Luftzug.',
     passt: 'Laut Hersteller für etwa 10 bis 18 m². Für größere Räume reicht die Leistung nicht.',
   },
+  'midea-portasplit': {
+    name: 'Midea PortaSplit 12.000 BTU (mobile Split-Klimaanlage mit Heizfunktion)', marke: 'Midea', asin: 'B0D3PP64JS', thema: 'Heizung', artikel: 'heizen-mit-klimaanlage',
+    kurz: 'Mobile Split-Klimaanlage, die auch heizt (Wärmepumpe, Heizen A+, 3,5 kW). Außengerät hängt am Fenster, ohne Wanddurchbruch und ohne Fachbetrieb.',
+    passt: 'Laut Hersteller für Räume bis etwa 42 m². Am stärksten in der Übergangszeit, bei Frost lässt die Heizleistung nach.',
+  },
 } satisfies Record<string, Produkt>;
 
 export type ProduktId = keyof typeof PRODUKTE;

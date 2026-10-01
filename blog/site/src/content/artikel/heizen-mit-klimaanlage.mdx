@@ -1,0 +1,203 @@
+---
+title: "Heizen mit Klimaanlage: Kosten, Stromverbrauch, Split oder mobil?"
+kurztitel: "Heizen mit Klimaanlage"
+description: "Lohnt sich Heizen mit Klimaanlage? Was eine kWh Wärme kostet, Split oder mobile Split-Klimaanlage, Vergleich mit Gas und Heizlüfter. Mit Rechner."
+pubDate: 2026-10-01
+icon: air-vent
+thema: Heizung
+bild: /bilder/titel/heizen-mit-klimaanlage.webp
+bildAlt: "Titelbild: Heizen mit Klimaanlage"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import ProduktBox from '../../components/ProduktBox.astro';
+import ProduktFokus from '../../components/ProduktFokus.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import Balken from '../../components/Balken.astro';
+import Ablauf from '../../components/Ablauf.astro';
+
+<Antwort>
+**Kurz gesagt:** Ja, mit einer **Split-Klimaanlage** kannst du günstig heizen. Sie arbeitet wie eine **Luft-Luft-Wärmepumpe** und macht
+aus 1 kWh Strom im Schnitt **3 bis 4 kWh Wärme**. Bei 37 Cent Strompreis kostet eine Kilowattstunde Wärme dann rund **9 Cent**, mit einer
+Gasheizung sind es rund 13 Cent, mit einem Heizlüfter 37 Cent. **Mobile Monoblock-Geräte** mit Abluftschlauch eignen sich zum Heizen kaum.
+Eine **mobile Split-Klimaanlage** hängt das Außengerät ans Fenster und heizt ohne Wanddurchbruch, am besten in der Übergangszeit.
+</Antwort>
+
+<Schnellkauf items={[
+  { name: 'Mobile Split-Klimaanlage mit Heizfunktion', warum: 'Heizt als Wärmepumpe, Außengerät am Fenster, kein Fachbetrieb nötig.', suche: 'mobile Split Klimaanlage heizen' },
+  { name: 'Energiekostenmessgerät', warum: 'Zeigt, wie viel Strom die Klimaanlage beim Heizen wirklich zieht.', suche: 'Energiekostenmessgerät Steckdose' },
+  { name: 'Thermometer für innen', warum: 'Damit du siehst, ob 20 bis 21 °C wirklich erreicht werden.', suche: 'Thermo Hygrometer digital innen' },
+]} />
+
+## Wie funktioniert Heizen mit Klimaanlage?
+
+Eine Klimaanlage pumpt Wärme von einer Seite auf die andere. Im Sommer holt sie die Wärme aus dem Zimmer und gibt sie draußen ab. Viele
+**Split-Klimaanlagen** können den Kreislauf **umdrehen**: Dann entzieht das Außengerät der **Außenluft Wärme**, auch wenn es draußen kühl
+ist, und das Innengerät bläst sie ins Zimmer. Technisch ist das dasselbe wie eine **Luft-Luft-Wärmepumpe**.
+
+Der Vorteil gegenüber einem Heizlüfter: Der Strom wird nicht direkt in Wärme verwandelt, er treibt nur den Verdichter an. Deshalb kommt
+**mehr Wärme heraus, als Strom hineingeht**. Wie viel mehr, zeigen zwei Kennzahlen:
+
+- **COP:** Wärme pro kWh Strom unter festen Prüfbedingungen.
+- **SCOP:** der Durchschnitt über eine ganze Heizperiode. Ein **SCOP von 4** heißt: aus 1 kWh Strom werden im Mittel 4 kWh Wärme. Diesen
+  Wert findest du auf dem Energielabel beim Heizen, er ist der beste Vergleichswert.
+
+## Was kostet Heizen mit Klimaanlage?
+
+Entscheidend ist, was **eine Kilowattstunde Wärme** kostet. Die Grafik vergleicht Klimaanlage, Gasheizung und Heizlüfter:
+
+<Balken
+  titel="Was 1 kWh Wärme kostet"
+  untertitel="Strom 37 Cent, Gas 11,93 Cent pro kWh. Je kürzer der Balken, desto günstiger."
+  einheit="Cent"
+  stellen={1}
+  sortieren={false}
+  daten={[
+    { label: 'Split-Klimaanlage (SCOP 4)', wert: 9.3, icon: 'air-vent', notiz: '37 ÷ 4' },
+    { label: 'Gasheizung (90 % Nutzungsgrad)', wert: 13.3, icon: 'flame', notiz: '11,93 ÷ 0,9' },
+    { label: 'Klimaanlage bei Frost (COP 2,5)', wert: 14.8, icon: 'snowflake', notiz: 'Effizienz sinkt bei Kälte' },
+    { label: 'Heizlüfter, Ölradiator, Infrarot', wert: 37, icon: 'heater', notiz: '1 kWh Strom = 1 kWh Wärme' },
+  ]}
+  quelle="Grafik: Der Handwerksdoktor. Eigene Rechnung mit Preisen aus BDEW-Strom- und Gaspreisanalyse 2026. Der ADAC kommt bei 30 Cent Strom und Arbeitszahl 4 auf 7,5 Cent."
+/>
+
+**Rechenbeispiel für ein Zimmer:** Braucht ein Raum an einem kalten Tag **10 kWh Wärme** (etwa 2 kW über 5 Stunden), kostet das
+mit dem Heizlüfter **3,70 €**, mit der Gasheizung rund **1,33 €** und mit einer Split-Klimaanlage (SCOP 4) rund **0,93 €**. Aufs Jahr
+gerechnet sind das schnell **mehrere Hundert Euro Unterschied** zum Heizlüfter.
+
+Mit deinen eigenen Preisen und Werten: **[Heizkosten-Vergleich: Klimaanlage, Gas oder Heizlüfter](/rechner/heizkosten-vergleich/)**.
+
+<Warnung titel="Die Anschaffung gehört dazu">
+Die niedrigen Betriebskosten sind nur die halbe Rechnung. Eine fest installierte Split-Anlage kostet laut ADAC mit Montage etwa
+**1.500 bis 7.000 Euro**, dazu kommt die Wartung. Am ehesten rechnet sie sich als **Zusatzheizung** für ein oder zwei Räume, weniger als
+Ersatz für eine funktionierende Zentralheizung.
+</Warnung>
+
+## Wie viel Strom verbraucht eine Klimaanlage beim Heizen?
+
+Das hängt von der Wärme ab, die der Raum braucht, und vom SCOP. Faustregel: **Wärmebedarf ÷ SCOP = Stromverbrauch.** Der ADAC rechnet
+ein Beispiel mit einem Gerät, das **2,5 kW Wärme** liefert und dabei **0,8 kW Strom** braucht: Bei 10 Stunden am Tag sind das 8 kWh Strom.
+Mit 37 Cent pro kWh kostet das rund **2,96 € am Tag**.
+
+Ob deine Anlage so sparsam läuft, siehst du am einfachsten mit einem
+<AmazonLink suche="Energiekostenmessgerät Steckdose">Energiekostenmessgerät</AmazonLink> zwischen Steckdose und Gerät. Bei fest
+angeschlossenen Geräten hilft der Stromzähler: einmal vorher, einmal nachher ablesen. Mehr dazu:
+[Stromverbrauch messen](/artikel/stromverbrauch-messen/).
+
+## Welche Klimaanlage zum Heizen? Split, mobile Split oder Monoblock
+
+| Gerät | Zum Heizen | Montage |
+|---|---|---|
+| **Split-Klimaanlage** (fest) | ja, am effizientesten, förderfähig | Fachbetrieb, kleiner Wanddurchbruch, als Mieter Erlaubnis nötig |
+| **Mobile Split-Klimaanlage** | ja, gut in der Übergangszeit | selbst, Außengerät hängt am Fenster |
+| **Monoblock** mit Schlauch | kaum geeignet | selbst, Schlauch durchs Fenster |
+
+### Split-Klimaanlage: am effizientesten
+
+Fest installierte Split-Geräte sind laut Verbraucherzentrale und ADAC **deutlich effizienter** als mobile Geräte. Wintertaugliche Modelle heizen
+laut ADAC bis **minus 15 oder minus 20 Grad**, bei Frost sinken aber Effizienz und Leistung. Weil Kältemittel im Spiel ist, muss ein
+**zertifizierter Fachbetrieb** die Anlage installieren und in Betrieb nehmen.
+
+<ProduktBox
+  titel="Split-Klimaanlage zum Heizen: darauf achten"
+  suche="Split Klimaanlage Wärmepumpe heizen"
+  kriterien={[
+    'Effizienzklasse beim Heizen (nicht nur beim Kühlen): A++ oder besser, hoher SCOP.',
+    'Heizleistung bei Minusgraden im Datenblatt prüfen, nicht nur die Nennleistung.',
+    'Inverter-Technik, damit das Gerät stufenlos und sparsam läuft.',
+    'Schallleistung des Außengeräts auf dem Energielabel, wichtig für Nachbarn und Schlafzimmer.',
+    'Kältemittel R32 oder R290 statt älterem R410A.',
+  ]}
+/>
+
+### Mobile Split-Klimaanlage: heizen ohne Wanddurchbruch
+
+Neu sind **mobile Split-Klimaanlagen**: Das Außengerät wird außen ans Fenster gehängt, ein flacher Verbindungsschlauch läuft durch den
+Fensterspalt zum Innengerät. Die Geräte sind **ab Werk mit Kältemittel befüllt**, du steckst sie einfach in die Steckdose. Das bekannteste
+Modell ist die **Midea PortaSplit**: Sie heizt laut Hersteller mit **3,5 kW**, Effizienzklasse **A+** beim Heizen und einem **SCOP von 4,0**.
+
+Laut Testberichten heizt sie in der **Übergangszeit** gut. Um den Gefrierpunkt lässt die Leistung spürbar nach, und beim Abtauen wird das
+Außengerät laut. Als Zusatzheizung im Herbst und Frühjahr oder für ein einzelnes Zimmer passt das gut, als einzige Heizung im
+tiefen Winter eher nicht.
+
+<ProduktFokus id="midea-portasplit" titel="Beispiel: mobile Split-Klimaanlage mit Heizfunktion" />
+
+### Mobile Klimaanlage (Monoblock) zum Heizen?
+
+Die üblichen **mobilen Klimageräte mit Abluftschlauch** sind zum Heizen **kaum geeignet**. Laut Verbraucherzentrale haben sie meist gar keine
+echte Heizfunktion, laut ADAC entstehen durch Schlauch und gekipptes Fenster zusätzliche Wärmeverluste. Hat ein Monoblock einen eingebauten
+Heizstab, heizt er wie ein Heizlüfter: **1 kWh Strom ergibt 1 kWh Wärme**. Warum das teuer ist:
+[Heizlüfter, Ölradiator oder Infrarot](/artikel/heizluefter-oelradiator-infrarot/).
+
+## Lohnt sich eine Klimaanlage zum Heizen?
+
+<Ablauf
+  titel="In 4 Fragen zur Entscheidung"
+  schritte={[
+    { icon: 'house', titel: 'Wofür?', text: 'Ein Raum zusätzlich oder in der Übergangszeit: gut.' },
+    { icon: 'flame', titel: 'Hauptheizung?', text: 'Gas oder Öl läuft gut: Klima als Ergänzung.' },
+    { icon: 'key-round', titel: 'Mieter?', text: 'Fest nur mit Erlaubnis, mobil meist ohne.' },
+    { icon: 'sun', titel: 'Solarstrom?', text: 'Mit Balkonkraftwerk tagsüber noch günstiger.' },
+  ]}
+/>
+
+**Es lohnt sich vor allem, wenn**
+
+- du ein **einzelnes Zimmer** heizen willst, etwa Arbeitszimmer, Dachgeschoss oder Wintergarten,
+- du in der **Übergangszeit** die Zentralheizung noch nicht anwerfen willst (wann sie an sein sollte: [Ab wann heizen?](/artikel/ab-wann-heizen/)),
+- du bisher mit **Heizlüfter oder Ölradiator** zuheizt, denn für dieselbe Wärme zahlst du dann nur rund ein Viertel,
+- du im Sommer ohnehin **kühlen** willst. Dann hast du ein Gerät für beides.
+
+Mit einem **Balkonkraftwerk** wird der Strom tagsüber noch günstiger. Was das bringt: [Balkonkraftwerk-Rechner](/rechner/balkonkraftwerk/).
+
+## Tipps: So heizt die Klimaanlage sparsam
+
+- **20 bis 21 °C** einstellen, wie der ADAC empfiehlt. Höher bringt kaum mehr Behaglichkeit, kostet aber.
+- **Durchlaufen lassen** statt ständig an und aus. Inverter-Geräte regeln die Leistung stufenlos und arbeiten im Teillastbetrieb am
+  sparsamsten.
+- **Lamellen nach unten** richten. Warme Luft steigt von selbst nach oben.
+- **Türen schließen**, damit die Wärme im Raum bleibt. Für mehrere Räume gibt es Multi-Split-Anlagen.
+- **Filter regelmäßig reinigen**, sonst sinkt die Leistung.
+- **Zugluft stoppen:** [Fenster abdichten](/artikel/fenster-abdichten/).
+
+## Förderung für eine Klimaanlage zum Heizen
+
+Gefördert werden laut ADAC nur **fest installierte Luft-Luft-Wärmepumpen**, die vorrangig zum **Heizen** ausgelegt sind, über das KfW-Programm 458.
+Bedingungen sind unter anderem Effizienzklasse **A++ oder A+++** und ein Eintrag in der Liste förderfähiger Geräte. **Reine Kühlgeräte
+und mobile Geräte** werden nicht gefördert. Die Bedingungen ändern sich immer wieder, prüfe sie vor dem Kauf direkt bei der KfW.
+
+## Häufige Fragen
+
+### Ist Heizen mit Klimaanlage günstiger als mit Gas?
+Mit einer Split-Klimaanlage mit SCOP 4 meist ja: rund 9 Cent pro kWh Wärme gegenüber rund 13 Cent mit Gas bei den Preisen von 2026. Bei Frost
+sinkt die Effizienz, dann ist der Vorteil kleiner. Die Anschaffung musst du dazurechnen.
+
+### Wie viel Strom braucht eine Klimaanlage zum Heizen?
+Wärmebedarf geteilt durch den SCOP. Braucht ein Raum 10 kWh Wärme am Tag, sind es bei SCOP 4 etwa 2,5 kWh Strom, also rund 0,93 €.
+
+### Kann eine Klimaanlage die Heizung ersetzen?
+In gut gedämmten Wohnungen und mit fest installierten Geräten teilweise ja, das ist dann eine Luft-Luft-Wärmepumpe. Warmes Wasser macht sie
+aber nicht. Mobile Geräte eignen sich eher als Zusatzheizung.
+
+### Bis zu welcher Außentemperatur heizt eine Klimaanlage?
+Wintertaugliche Split-Geräte laut ADAC bis minus 15 bis minus 20 °C, mit sinkender Effizienz. Die mobile Midea PortaSplit ist laut Hersteller bis
+minus 10 °C ausgelegt, in Tests ließ die Leistung schon um den Gefrierpunkt nach.
+
+### Darf ich als Mieter eine Klimaanlage zum Heizen einbauen?
+Für eine fest installierte Split-Anlage brauchst du die Erlaubnis des Vermieters, in der Eigentümergemeinschaft einen Beschluss. Mobile
+Split-Geräte kommen ohne Wanddurchbruch aus. Frag trotzdem kurz nach, weil außen ein Gerät am Fenster hängt.
+
+### Wie laut ist eine Klimaanlage beim Heizen?
+Innengeräte von Split-Anlagen sind leise, das Außengerät kann lauter sein, besonders beim Abtauen im Winter. Den Wert findest du als
+Schallleistung auf dem Energielabel.
+
+## Quellen
+
+- ADAC: [Mit Klimaanlage heizen: Wann es sich lohnt und was es kostet](https://www.adac.de/rund-ums-haus/energie/versorgung/heizen-mit-klimaanlage/)
+- Verbraucherzentrale: [Klimaanlage installieren: Was ist zu beachten?](https://www.verbraucherzentrale.de/wissen/energie/energetische-sanierung/klimaanlage-installieren-was-ist-zu-beachten-10525)
+- BDEW: [Gaspreisanalyse 2026](https://www.bdew.de/service/daten-und-grafiken/bdew-gaspreisanalyse/)
+- android-digital: [Midea PortaSplit im Test](https://www.android-digital.de/reviews/midea-portasplit-test-120694/)
+- GIGA: [Midea PortaSplit als Heizung nutzen](https://www.giga.de/tech/midea-portasplit-als-heizung-nutzen-kann-die-klimaanlage-eine-echte-heizung-ersetzen--01KXMWGQEZCHRDSEHRQYTWJ5Y4)
