@@ -1,0 +1,328 @@
+//@version=6
+// ════════════════════════════════════════════════════════════════════════════
+//  London Breakout Gold – INDIKATOR (Box, Signale, Alarme, Statistik)
+//
+//  Regeln (identisch mit der Strategie "London Breakout Gold [Backtest]")
+//   1. Box = High und Low der ersten zwei 15-Min-Kerzen ab London-Open
+//      (08:00–08:30 Londoner Zeit = 09:00–09:30 deutsche Zeit).
+//   2. Kurs bricht über das Box-High aus → Long, unter das Box-Low → Short.
+//   3. Stop-Loss = andere Seite der Box, Take-Profit = 1 × Risiko (CRV 1:1).
+//   4. Höchstens 1 Trade pro Tag. Kein Ausbruch bis 12:00 → kein Trade.
+//      Noch offene Trades werden um 20:00 (London) geschlossen.
+//
+//  Die Tabelle zählt die Trades in R (1 R = Abstand Einstieg ↔ Stop-Loss),
+//  abzüglich der eingestellten Kosten pro Trade.
+//  Alarme: "Alarm erstellen" → Bedingung "London Breakout Gold" → "Jeder alert()-Funktionsaufruf".
+// ════════════════════════════════════════════════════════════════════════════
+indicator("London Breakout Gold [Box + Signale]", "LBO Gold", overlay = true,
+     max_boxes_count = 500, max_lines_count = 500, max_labels_count = 500)
+
+// ───────────── Konstanten ─────────────
+const string G_TIME  = "⏰ Zeiten"
+const string G_TRADE = "🎯 Einstieg & Ausstieg"
+const string G_FILT  = "🧹 Filter"
+const string G_STAT  = "📊 Statistik"
+const string G_VIS   = "🎨 Darstellung"
+
+const string M_STOP  = "Sofort beim Ausbruch (Stop-Order)"
+const string M_CLOSE = "Kerzenschluss außerhalb der Box"
+const string D_BOTH  = "Long & Short"
+const string D_LONG  = "Nur Long"
+const string D_SHORT = "Nur Short"
+
+// ───────────── Einstellungen ─────────────
+string tz         = input.string("Europe/London", "Zeitzone", options = ["Europe/London", "Europe/Berlin", "UTC", "America/New_York"], group = G_TIME,
+     tooltip = "Alle Uhrzeiten unten gelten in dieser Zeitzone. 08:00 London = 09:00 deutsche Zeit, Sommer-/Winterzeit wird automatisch berücksichtigt.")
+int    boxHour    = input.int(8, "Box-Start: Stunde", minval = 0, maxval = 23, inline = "box", group = G_TIME)
+int    boxMinute  = input.int(0, "Minute", minval = 0, maxval = 59, inline = "box", group = G_TIME)
+int    boxBars    = input.int(2, "Anzahl 15-Min-Kerzen in der Box", minval = 1, maxval = 16, group = G_TIME)
+int    endHour    = input.int(12, "Einstieg nur bis: Stunde", minval = 0, maxval = 23, inline = "end", group = G_TIME)
+int    endMinute  = input.int(0, "Minute", minval = 0, maxval = 59, inline = "end", group = G_TIME)
+bool   useExit    = input.bool(true, "Offene Trades zur Uhrzeit schließen", group = G_TIME)
+int    exitHour   = input.int(20, "Schließen um: Stunde", minval = 0, maxval = 23, inline = "exit", group = G_TIME)
+int    exitMinute = input.int(0, "Minute", minval = 0, maxval = 59, inline = "exit", group = G_TIME)
+
+string entryMode  = input.string(M_STOP, "Einstieg", options = [M_STOP, M_CLOSE], group = G_TRADE,
+     tooltip = "Stop-Order: Einstieg, sobald der Kurs das Box-High/-Low überschreitet.\nKerzenschluss: Einstieg erst, wenn eine 15-Min-Kerze außerhalb der Box schließt.")
+string direction  = input.string(D_BOTH, "Richtung", options = [D_BOTH, D_LONG, D_SHORT], group = G_TRADE)
+float  rr         = input.float(1.0, "Chance-Risiko-Verhältnis 1 :", minval = 0.1, step = 0.1, group = G_TRADE,
+     tooltip = "1 = Take-Profit ist genauso weit entfernt wie der Stop-Loss (CRV 1:1).")
+float  bufferPx   = input.float(0.0, "Ausbruchs-Puffer in $", minval = 0, step = 0.05, group = G_TRADE,
+     tooltip = "Optional: Einstieg erst X $ über dem High bzw. unter dem Low. 0 = direkt beim Ausbruch.")
+
+float  minBox     = input.float(0.0, "Min. Boxgröße in $ (0 = aus)", minval = 0, step = 0.5, group = G_FILT,
+     tooltip = "Tage mit kleinerer Box werden ausgelassen (Spread frisst dort einen großen Teil des Risikos).")
+float  maxBox     = input.float(0.0, "Max. Boxgröße in $ (0 = aus)", minval = 0, step = 0.5, group = G_FILT,
+     tooltip = "Tage mit größerer Box werden ausgelassen.")
+
+float  costPx     = input.float(0.30, "Kosten pro Trade in $ (Spread + Gebühr)", minval = 0, step = 0.05, group = G_STAT,
+     tooltip = "Pro Unze, Ein- und Ausstieg zusammen. Wird in der Statistik von jedem Trade abgezogen.")
+bool   showStats  = input.bool(true, "Statistik-Tabelle anzeigen", group = G_STAT)
+string statsPos   = input.string("Oben rechts", "Position der Tabelle", options = ["Oben rechts", "Unten rechts", "Oben links", "Unten links"], group = G_STAT)
+
+bool   showBox    = input.bool(true, "Box und Ausbruchs-Linien zeichnen", group = G_VIS)
+bool   showTrades = input.bool(true, "Trades einzeichnen (Einstieg, SL, TP)", group = G_VIS)
+color  boxCol     = input.color(color.new(color.orange, 85), "Box", inline = "col", group = G_VIS)
+color  tpCol      = input.color(color.new(color.teal, 0), "Take-Profit", inline = "col", group = G_VIS)
+color  slCol      = input.color(color.new(color.red, 0), "Stop-Loss", inline = "col", group = G_VIS)
+
+// ───────────── Hilfswerte ─────────────
+bool stopMode   = entryMode == M_STOP
+bool allowLong  = direction != D_SHORT
+bool allowShort = direction != D_LONG
+
+if barstate.isfirst and (timeframe.isdwm or timeframe.in_seconds() > 15 * 60)
+    runtime.error("London Breakout: Bitte einen Chart mit 15 Minuten oder kleiner verwenden (z. B. 15m, 5m, 1m).")
+
+fmt(float price) =>
+    str.tostring(price, format.mintick)
+
+statRow(table t, int row, string key, string val, color valCol) =>
+    table.cell(t, 0, row, key, text_color = color.new(color.white, 30), text_size = size.small, text_halign = text.align_left)
+    table.cell(t, 1, row, val, text_color = valCol, text_size = size.small, text_halign = text.align_right)
+
+// ───────────── Uhrzeiten des aktuellen Tages (in der gewählten Zeitzone) ─────────────
+int yy        = year(time, tz)
+int mm        = month(time, tz)
+int dd        = dayofmonth(time, tz)
+int tBoxStart = timestamp(tz, yy, mm, dd, boxHour, boxMinute)
+int tBoxEnd   = tBoxStart + boxBars * 15 * 60 * 1000
+int tEntryEnd = timestamp(tz, yy, mm, dd, endHour, endMinute)
+int tExit     = timestamp(tz, yy, mm, dd, exitHour, exitMinute)
+
+bool inBox    = time >= tBoxStart and time < tBoxEnd
+bool newBox   = inBox and not inBox[1]
+
+// ───────────── Zustand ─────────────
+var float boxHi       = na
+var float boxLo       = na
+var bool  boxDone     = false   // Box für heute fertig
+var bool  armed       = false   // Ausbruch wird beobachtet (Orders liegen im Markt)
+var int   armBar      = -1
+var bool  tradedToday = false
+var float longEntry   = na
+var float shortEntry  = na
+var float longSL      = na
+var float shortSL     = na
+var float longTP      = na
+var float shortTP     = na
+
+var int   pos         = 0       // 1 = Long offen, -1 = Short offen, 0 = keine Position
+var float entryPx     = na
+var float slPx        = na
+var float tpPx        = na
+
+// Statistik in R (1 R = Abstand Einstieg ↔ Stop-Loss)
+var int   nTrades     = 0
+var int   nWins       = 0
+var int   nTP         = 0
+var int   nSL         = 0
+var int   nTime       = 0
+var float sumR        = 0.0
+var float sumCostR    = 0.0
+var float grossWinR   = 0.0
+var float grossLossR  = 0.0
+var float peakR       = 0.0
+var float maxDDR      = 0.0
+var int   firstTime   = na
+
+var box   rangeBox    = na
+var line  hiLine      = na
+var line  loLine      = na
+var box   rewardBox   = na
+var box   riskBox     = na
+
+// ───────────── 1) Box aufbauen ─────────────
+if newBox
+    boxHi       := high
+    boxLo       := low
+    boxDone     := false
+    armed       := false
+    tradedToday := false
+    if showBox
+        rangeBox := box.new(tBoxStart, boxHi, tBoxEnd, boxLo, xloc = xloc.bar_time, border_color = color.new(boxCol, 30), bgcolor = boxCol)
+        hiLine   := line.new(tBoxEnd, boxHi, tEntryEnd, boxHi, xloc = xloc.bar_time, color = color.new(boxCol, 30), style = line.style_dashed)
+        loLine   := line.new(tBoxEnd, boxLo, tEntryEnd, boxLo, xloc = xloc.bar_time, color = color.new(boxCol, 30), style = line.style_dashed)
+else if inBox
+    boxHi := math.max(boxHi, high)
+    boxLo := math.min(boxLo, low)
+    if showBox
+        box.set_top(rangeBox, boxHi)
+        box.set_bottom(rangeBox, boxLo)
+        line.set_y1(hiLine, boxHi)
+        line.set_y2(hiLine, boxHi)
+        line.set_y1(loLine, boxLo)
+        line.set_y2(loLine, boxLo)
+
+// ───────────── 2) Kerze durchspielen: Stop-Orders, Stop-Loss, Take-Profit ─────────────
+// Gleiche Annahme wie der TradingView-Strategietester: Liegt das Open näher am High,
+// lief der Kurs Open → High → Low → Close, sonst Open → Low → High → Close.
+bool  ordersLive = stopMode and armed and not tradedToday and pos == 0 and bar_index > armBar
+int   evEntry    = 0      // 1 / -1 = auf dieser Kerze Long / Short eröffnet
+int   evExit     = 0      // 1 = Take-Profit, -1 = Stop-Loss, 2 = Zeit-Exit
+float exitPx     = na
+bool  highFirst  = high - open <= open - low
+float p1         = highFirst ? high : low
+float p2         = highFirst ? low : high
+
+// Kurslücke zur Eröffnung: Orders werden zum Open ausgeführt
+float a = open
+if ordersLive
+    if allowLong and a >= longEntry
+        evEntry := 1
+    else if allowShort and a <= shortEntry
+        evEntry := -1
+    if evEntry != 0
+        pos     := evEntry
+        entryPx := a
+        slPx    := evEntry == 1 ? longSL : shortSL
+        tpPx    := evEntry == 1 ? longTP : shortTP
+if pos != 0
+    if pos * (a - slPx) <= 0
+        evExit := -1
+        exitPx := a
+    else if pos * (a - tpPx) >= 0
+        evExit := 1
+        exitPx := a
+
+// Die drei Teilstrecken der Kerze nacheinander
+for i = 0 to 2
+    if evExit != 0
+        break
+    float b = i == 0 ? p1 : i == 1 ? p2 : close
+    if ordersLive and evEntry == 0
+        if b > a and allowLong and longEntry >= a and longEntry <= b
+            evEntry := 1
+        else if b < a and allowShort and shortEntry <= a and shortEntry >= b
+            evEntry := -1
+        if evEntry != 0
+            pos     := evEntry
+            entryPx := evEntry == 1 ? longEntry : shortEntry
+            slPx    := evEntry == 1 ? longSL : shortSL
+            tpPx    := evEntry == 1 ? longTP : shortTP
+    if pos != 0
+        // Take-Profit liegt in Trade-Richtung, Stop-Loss dagegen
+        bool towardsTP = pos * (b - a) > 0
+        if towardsTP and pos * (b - tpPx) >= 0
+            evExit := 1
+            exitPx := tpPx
+        else if not towardsTP and b != a and pos * (b - slPx) <= 0
+            evExit := -1
+            exitPx := slPx
+    a := b
+
+// ───────────── 3) Zeit-Exit zum Kerzenschluss ─────────────
+if evExit == 0 and pos != 0 and useExit and time_close >= tExit
+    evExit := 2
+    exitPx := close
+
+// ───────────── 4) Einstieg per Kerzenschluss (nur im Modus "Kerzenschluss") ─────────────
+// Auch auf 1-/5-Min-Charts zählt nur der Schluss einer vollen 15-Min-Kerze.
+bool closeOf15m = (time_close - tBoxStart) % (15 * 60 * 1000) == 0
+if not stopMode and armed and not tradedToday and pos == 0 and bar_index > armBar and time < tEntryEnd and closeOf15m
+    if allowLong and close > boxHi + bufferPx
+        evEntry := 1
+        tpPx    := math.round_to_mintick(close + (close - longSL) * rr)
+    else if allowShort and close < boxLo - bufferPx
+        evEntry := -1
+        tpPx    := math.round_to_mintick(close - (shortSL - close) * rr)
+    if evEntry != 0
+        pos     := evEntry
+        entryPx := close
+        slPx    := evEntry == 1 ? longSL : shortSL
+
+// ───────────── 5) Trades verbuchen, zeichnen, Alarme ─────────────
+if evEntry != 0
+    tradedToday := true
+    if na(firstTime)
+        firstTime := time
+    string side = evEntry == 1 ? "LONG" : "SHORT"
+    if showTrades
+        rewardBox := box.new(time, math.max(entryPx, tpPx), time_close, math.min(entryPx, tpPx), xloc = xloc.bar_time, border_color = color.new(tpCol, 60), bgcolor = color.new(tpCol, 85))
+        riskBox   := box.new(time, math.max(entryPx, slPx), time_close, math.min(entryPx, slPx), xloc = xloc.bar_time, border_color = color.new(slCol, 60), bgcolor = color.new(slCol, 85))
+        label.new(time, entryPx, side, xloc = xloc.bar_time, style = label.style_label_right, color = evEntry == 1 ? tpCol : slCol, textcolor = color.white, size = size.small)
+    string msg = syminfo.ticker + " " + side + "-Ausbruch @ " + fmt(entryPx) + " | SL " + fmt(slPx) + " | TP " + fmt(tpPx)
+    if stopMode
+        alert(msg, alert.freq_once_per_bar)
+    else
+        alert(msg, alert.freq_once_per_bar_close)
+
+if pos != 0 and showTrades
+    box.set_right(rewardBox, time_close)
+    box.set_right(riskBox, time_close)
+
+if evExit != 0
+    float risk = math.abs(entryPx - slPx)
+    float r    = risk > 0 ? (pos * (exitPx - entryPx) - costPx) / risk : 0.0
+    nTrades    += 1
+    nWins      += r > 0 ? 1 : 0
+    nTP        += evExit == 1 ? 1 : 0
+    nSL        += evExit == -1 ? 1 : 0
+    nTime      += evExit == 2 ? 1 : 0
+    sumR       += r
+    sumCostR   += risk > 0 ? costPx / risk : 0.0
+    grossWinR  += math.max(r, 0.0)
+    grossLossR += math.max(-r, 0.0)
+    peakR      := math.max(peakR, sumR)
+    maxDDR     := math.max(maxDDR, peakR - sumR)
+    string res  = evExit == 1 ? "TP" : evExit == -1 ? "SL" : "Zeit-Exit"
+    string rTxt = (r >= 0 ? "+" : "") + str.tostring(r, "0.00") + " R"
+    if showTrades
+        label.new(time, exitPx, res + " " + rTxt, xloc = xloc.bar_time, style = label.style_label_left, color = r > 0 ? tpCol : slCol, textcolor = color.white, size = size.small)
+    string msg = syminfo.ticker + " " + res + " @ " + fmt(exitPx) + " (" + rTxt + ")"
+    if evExit == 2
+        alert(msg, alert.freq_once_per_bar_close)
+    else
+        alert(msg, alert.freq_once_per_bar)
+    pos := 0
+
+// ───────────── 6) Einstiegsfenster vorbei → nicht mehr einsteigen ─────────────
+if armed and time_close >= tEntryEnd
+    armed := false
+
+// ───────────── 7) Box fertig → Ausbruchs-Levels setzen ─────────────
+bool boxComplete = not boxDone and ((inBox and time_close >= tBoxEnd) or (not inBox and inBox[1]))
+if boxComplete
+    boxDone := true
+    float rng    = boxHi - boxLo
+    bool  sizeOk = rng > 0 and (minBox <= 0 or rng >= minBox) and (maxBox <= 0 or rng <= maxBox)
+    if showBox
+        label.new(tBoxStart, boxHi, str.tostring(rng, "0.00") + " $" + (sizeOk ? "" : " (gefiltert)"), xloc = xloc.bar_time,
+             style = label.style_label_down, color = color.new(color.black, 100), textcolor = color.new(boxCol, 0), size = size.small)
+    if sizeOk and pos == 0 and tBoxEnd < tEntryEnd
+        armed      := true
+        armBar     := bar_index
+        longSL     := boxLo
+        shortSL    := boxHi
+        // Ausbruch = 1 Tick über dem High / unter dem Low (+ optionaler Puffer)
+        longEntry  := math.round_to_mintick(boxHi + bufferPx + syminfo.mintick)
+        shortEntry := math.round_to_mintick(boxLo - bufferPx - syminfo.mintick)
+        longTP     := math.round_to_mintick(longEntry + (longEntry - longSL) * rr)
+        shortTP    := math.round_to_mintick(shortEntry - (shortSL - shortEntry) * rr)
+        string boxMsg = syminfo.ticker + " London-Box fertig: High " + fmt(boxHi) + " / Low " + fmt(boxLo) + " (" + str.tostring(rng, "0.00") + " $)"
+        if stopMode
+            boxMsg += ". Long ab " + fmt(longEntry) + " (SL " + fmt(longSL) + ", TP " + fmt(longTP) + "), Short ab " + fmt(shortEntry) + " (SL " + fmt(shortSL) + ", TP " + fmt(shortTP) + ")"
+        alert(boxMsg, alert.freq_once_per_bar_close)
+
+// ───────────── 8) Statistik-Tabelle ─────────────
+var table tbl = table.new(statsPos == "Oben rechts" ? position.top_right : statsPos == "Unten rechts" ? position.bottom_right : statsPos == "Oben links" ? position.top_left : position.bottom_left,
+     2, 9, bgcolor = color.new(#131722, 10), frame_color = color.new(color.gray, 60), frame_width = 1, border_color = color.new(color.gray, 85), border_width = 1)
+
+if showStats and barstate.islast
+    color cText = color.new(color.white, 0)
+    float wr    = nTrades > 0 ? 100.0 * nWins / nTrades : 0.0
+    float avgR  = nTrades > 0 ? sumR / nTrades : 0.0
+    float avgC  = nTrades > 0 ? sumCostR / nTrades : 0.0
+    float be    = 100.0 * (1.0 + avgC) / (1.0 + rr)
+    string pf   = grossLossR > 0 ? str.tostring(grossWinR / grossLossR, "0.00") : "–"
+    string span = na(firstTime) ? "noch keine Trades" : str.format_time(firstTime, "dd.MM.yyyy", tz) + " – " + str.format_time(time, "dd.MM.yyyy", tz)
+    table.cell(tbl, 0, 0, "London Breakout", text_color = cText, text_size = size.small, bgcolor = color.new(color.orange, 45), text_halign = text.align_left)
+    table.cell(tbl, 1, 0, syminfo.ticker, text_color = cText, text_size = size.small, bgcolor = color.new(color.orange, 45), text_halign = text.align_right)
+    statRow(tbl, 1, "Zeitraum", span, cText)
+    statRow(tbl, 2, "Trades", str.tostring(nTrades) + "  (TP " + str.tostring(nTP) + " · SL " + str.tostring(nSL) + " · Zeit " + str.tostring(nTime) + ")", cText)
+    statRow(tbl, 3, "Trefferquote", str.tostring(wr, "0.0") + " %  (Break-even " + str.tostring(be, "0.0") + " %)", wr > be ? tpCol : slCol)
+    statRow(tbl, 4, "Ergebnis", (sumR >= 0 ? "+" : "") + str.tostring(sumR, "0.00") + " R", sumR >= 0 ? tpCol : slCol)
+    statRow(tbl, 5, "Ø pro Trade", (avgR >= 0 ? "+" : "") + str.tostring(avgR, "0.00") + " R", avgR >= 0 ? tpCol : slCol)
+    statRow(tbl, 6, "Profit-Faktor", pf, cText)
+    statRow(tbl, 7, "Max. Drawdown", "-" + str.tostring(maxDDR, "0.00") + " R", slCol)
+    statRow(tbl, 8, "Bei 1 % Risiko/Trade", "≈ " + (sumR >= 0 ? "+" : "") + str.tostring(sumR, "0.0") + " % (ohne Zinseszins)", sumR >= 0 ? tpCol : slCol)

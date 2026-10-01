@@ -1,0 +1,214 @@
+//@version=6
+// ════════════════════════════════════════════════════════════════════════════
+//  London Breakout Gold – BACKTEST (Strategie für den Strategietester)
+//
+//  Regeln
+//   1. Box = High und Low der ersten zwei 15-Min-Kerzen ab London-Open
+//      (08:00–08:30 Londoner Zeit = 09:00–09:30 deutsche Zeit).
+//   2. Kurs bricht über das Box-High aus → Long, unter das Box-Low → Short.
+//   3. Stop-Loss = andere Seite der Box, Take-Profit = 1 × Risiko (CRV 1:1).
+//   4. Höchstens 1 Trade pro Tag. Kein Ausbruch bis 12:00 → kein Trade.
+//      Noch offene Trades werden um 20:00 (London) geschlossen.
+//
+//  Chart: XAUUSD (z. B. OANDA:XAUUSD), 15 Minuten oder kleiner.
+//  Alle Zeiten, CRV, Richtung, Filter und Positionsgröße sind einstellbar.
+// ════════════════════════════════════════════════════════════════════════════
+strategy("London Breakout Gold [Backtest]", "LBO Gold BT", overlay = true,
+     initial_capital = 10000, currency = currency.USD, pyramiding = 0,
+     default_qty_type = strategy.fixed, default_qty_value = 1,
+     commission_type = strategy.commission.cash_per_contract, commission_value = 0.15,
+     slippage = 0, process_orders_on_close = true, margin_long = 0, margin_short = 0,
+     max_boxes_count = 500, max_lines_count = 500, max_labels_count = 500)
+
+// ───────────── Konstanten ─────────────
+const string G_TIME  = "⏰ Zeiten"
+const string G_TRADE = "🎯 Einstieg & Ausstieg"
+const string G_RISK  = "💰 Positionsgröße"
+const string G_FILT  = "🧹 Filter"
+const string G_VIS   = "🎨 Darstellung"
+
+const string M_STOP  = "Sofort beim Ausbruch (Stop-Order)"
+const string M_CLOSE = "Kerzenschluss außerhalb der Box"
+const string D_BOTH  = "Long & Short"
+const string D_LONG  = "Nur Long"
+const string D_SHORT = "Nur Short"
+const string S_RISK  = "Risiko % vom Konto"
+const string S_FIXED = "Feste Menge"
+
+// ───────────── Einstellungen ─────────────
+string tz         = input.string("Europe/London", "Zeitzone", options = ["Europe/London", "Europe/Berlin", "UTC", "America/New_York"], group = G_TIME,
+     tooltip = "Alle Uhrzeiten unten gelten in dieser Zeitzone. 08:00 London = 09:00 deutsche Zeit, Sommer-/Winterzeit wird automatisch berücksichtigt.")
+int    boxHour    = input.int(8, "Box-Start: Stunde", minval = 0, maxval = 23, inline = "box", group = G_TIME)
+int    boxMinute  = input.int(0, "Minute", minval = 0, maxval = 59, inline = "box", group = G_TIME)
+int    boxBars    = input.int(2, "Anzahl 15-Min-Kerzen in der Box", minval = 1, maxval = 16, group = G_TIME)
+int    endHour    = input.int(12, "Einstieg nur bis: Stunde", minval = 0, maxval = 23, inline = "end", group = G_TIME)
+int    endMinute  = input.int(0, "Minute", minval = 0, maxval = 59, inline = "end", group = G_TIME)
+bool   useExit    = input.bool(true, "Offene Trades zur Uhrzeit schließen", group = G_TIME)
+int    exitHour   = input.int(20, "Schließen um: Stunde", minval = 0, maxval = 23, inline = "exit", group = G_TIME)
+int    exitMinute = input.int(0, "Minute", minval = 0, maxval = 59, inline = "exit", group = G_TIME)
+
+string entryMode  = input.string(M_STOP, "Einstieg", options = [M_STOP, M_CLOSE], group = G_TRADE,
+     tooltip = "Stop-Order: Einstieg, sobald der Kurs das Box-High/-Low überschreitet.\nKerzenschluss: Einstieg erst, wenn eine 15-Min-Kerze außerhalb der Box schließt.")
+string direction  = input.string(D_BOTH, "Richtung", options = [D_BOTH, D_LONG, D_SHORT], group = G_TRADE)
+float  rr         = input.float(1.0, "Chance-Risiko-Verhältnis 1 :", minval = 0.1, step = 0.1, group = G_TRADE,
+     tooltip = "1 = Take-Profit ist genauso weit entfernt wie der Stop-Loss (CRV 1:1).")
+float  bufferPx   = input.float(0.0, "Ausbruchs-Puffer in $", minval = 0, step = 0.05, group = G_TRADE,
+     tooltip = "Optional: Einstieg erst X $ über dem High bzw. unter dem Low. 0 = direkt beim Ausbruch.")
+
+string sizing     = input.string(S_RISK, "Positionsgröße", options = [S_RISK, S_FIXED], group = G_RISK)
+float  riskPct    = input.float(1.0, "Risiko pro Trade in %", minval = 0.01, maxval = 100, step = 0.25, group = G_RISK)
+float  fixedQty   = input.float(1.0, "Feste Menge (Unzen / Kontrakte)", minval = 0.01, step = 1, group = G_RISK)
+
+float  minBox     = input.float(0.0, "Min. Boxgröße in $ (0 = aus)", minval = 0, step = 0.5, group = G_FILT,
+     tooltip = "Tage mit kleinerer Box werden ausgelassen (Spread frisst dort einen großen Teil des Risikos).")
+float  maxBox     = input.float(0.0, "Max. Boxgröße in $ (0 = aus)", minval = 0, step = 0.5, group = G_FILT,
+     tooltip = "Tage mit größerer Box werden ausgelassen.")
+
+bool   showBox    = input.bool(true, "Box und Ausbruchs-Linien zeichnen", group = G_VIS)
+color  boxCol     = input.color(color.new(color.orange, 85), "Box", inline = "col", group = G_VIS)
+color  tpCol      = input.color(color.new(color.teal, 0), "Take-Profit", inline = "col", group = G_VIS)
+color  slCol      = input.color(color.new(color.red, 0), "Stop-Loss", inline = "col", group = G_VIS)
+
+// ───────────── Hilfswerte ─────────────
+bool stopMode   = entryMode == M_STOP
+bool allowLong  = direction != D_SHORT
+bool allowShort = direction != D_LONG
+
+if barstate.isfirst and (timeframe.isdwm or timeframe.in_seconds() > 15 * 60)
+    runtime.error("London Breakout: Bitte einen Chart mit 15 Minuten oder kleiner verwenden (z. B. 15m, 5m, 1m).")
+
+// Positionsgröße so, dass am Stop-Loss genau riskPct % des Kontos verloren gehen
+calcQty(float riskPerUnit) =>
+    float q = sizing == S_FIXED ? fixedQty : strategy.equity * riskPct / 100.0 / (riskPerUnit * syminfo.pointvalue)
+    syminfo.type == "futures" ? math.max(1.0, math.floor(q)) : math.max(0.01, math.floor(q * 100.0) / 100.0)
+
+// ───────────── Uhrzeiten des aktuellen Tages (in der gewählten Zeitzone) ─────────────
+int yy        = year(time, tz)
+int mm        = month(time, tz)
+int dd        = dayofmonth(time, tz)
+int tBoxStart = timestamp(tz, yy, mm, dd, boxHour, boxMinute)
+int tBoxEnd   = tBoxStart + boxBars * 15 * 60 * 1000
+int tEntryEnd = timestamp(tz, yy, mm, dd, endHour, endMinute)
+int tExit     = timestamp(tz, yy, mm, dd, exitHour, exitMinute)
+
+bool inBox    = time >= tBoxStart and time < tBoxEnd
+bool newBox   = inBox and not inBox[1]
+
+// ───────────── Zustand ─────────────
+var float boxHi       = na
+var float boxLo       = na
+var bool  boxDone     = false   // Box für heute fertig
+var bool  armed       = false   // Ausbruch wird beobachtet (Orders liegen im Markt)
+var int   armBar      = -1
+var int   tradesAtArm = 0
+var bool  tradedToday = false
+var float longEntry   = na
+var float shortEntry  = na
+var float longSL      = na
+var float shortSL     = na
+var float longTP      = na
+var float shortTP     = na
+
+var box   rangeBox    = na
+var line  hiLine      = na
+var line  loLine      = na
+
+// ───────────── 1) Box aufbauen ─────────────
+if newBox
+    boxHi       := high
+    boxLo       := low
+    boxDone     := false
+    armed       := false
+    tradedToday := false
+    if showBox
+        rangeBox := box.new(tBoxStart, boxHi, tBoxEnd, boxLo, xloc = xloc.bar_time, border_color = color.new(boxCol, 30), bgcolor = boxCol)
+        hiLine   := line.new(tBoxEnd, boxHi, tEntryEnd, boxHi, xloc = xloc.bar_time, color = color.new(boxCol, 30), style = line.style_dashed)
+        loLine   := line.new(tBoxEnd, boxLo, tEntryEnd, boxLo, xloc = xloc.bar_time, color = color.new(boxCol, 30), style = line.style_dashed)
+else if inBox
+    boxHi := math.max(boxHi, high)
+    boxLo := math.min(boxLo, low)
+    if showBox
+        box.set_top(rangeBox, boxHi)
+        box.set_bottom(rangeBox, boxLo)
+        line.set_y1(hiLine, boxHi)
+        line.set_y2(hiLine, boxHi)
+        line.set_y1(loLine, boxLo)
+        line.set_y2(loLine, boxLo)
+
+// ───────────── 2) Zeit-Exit ─────────────
+if useExit and strategy.position_size != 0 and time_close >= tExit
+    strategy.close_all(comment = "Zeit-Exit")
+
+// Sicherheitsnetz zusätzlich zur OCA-Gruppe: nach dem ersten Trade des Tages keine weiteren Einstiege
+if armed and strategy.opentrades + strategy.closedtrades > tradesAtArm
+    armed       := false
+    tradedToday := true
+    strategy.cancel("Long")
+    strategy.cancel("Short")
+
+// SL/TP bei offener Position jede Kerze erneuern (gleiche Werte → in TradingView ohne Wirkung,
+// macht das Script aber unabhängig davon, wie lange eine vorab gesetzte Exit-Order gehalten wird)
+if strategy.position_size > 0
+    strategy.exit("Long Exit", "Long", stop = longSL, limit = longTP, comment_profit = "TP", comment_loss = "SL")
+else if strategy.position_size < 0
+    strategy.exit("Short Exit", "Short", stop = shortSL, limit = shortTP, comment_profit = "TP", comment_loss = "SL")
+
+// ───────────── 3) Einstieg per Kerzenschluss (nur im Modus "Kerzenschluss") ─────────────
+// Auch auf 1-/5-Min-Charts zählt nur der Schluss einer vollen 15-Min-Kerze.
+bool closeOf15m = (time_close - tBoxStart) % (15 * 60 * 1000) == 0
+if not stopMode and armed and not tradedToday and strategy.position_size == 0 and bar_index > armBar and time < tEntryEnd and closeOf15m
+    if allowLong and close > boxHi + bufferPx
+        float risk = close - longSL
+        longEntry   := close
+        longTP      := math.round_to_mintick(close + risk * rr)
+        tradedToday := true
+        strategy.entry("Long", strategy.long, qty = calcQty(risk), comment = "Long")
+        strategy.exit("Long Exit", "Long", stop = longSL, limit = longTP, comment_profit = "TP", comment_loss = "SL")
+    else if allowShort and close < boxLo - bufferPx
+        float risk = shortSL - close
+        shortEntry  := close
+        shortTP     := math.round_to_mintick(close - risk * rr)
+        tradedToday := true
+        strategy.entry("Short", strategy.short, qty = calcQty(risk), comment = "Short")
+        strategy.exit("Short Exit", "Short", stop = shortSL, limit = shortTP, comment_profit = "TP", comment_loss = "SL")
+
+// ───────────── 4) Einstiegsfenster vorbei → offene Orders löschen ─────────────
+if armed and time_close >= tEntryEnd
+    armed := false
+    strategy.cancel("Long")
+    strategy.cancel("Short")
+
+// ───────────── 5) Box fertig → Ausbruchs-Orders platzieren ─────────────
+bool boxComplete = not boxDone and ((inBox and time_close >= tBoxEnd) or (not inBox and inBox[1]))
+if boxComplete
+    boxDone := true
+    float rng    = boxHi - boxLo
+    bool  sizeOk = rng > 0 and (minBox <= 0 or rng >= minBox) and (maxBox <= 0 or rng <= maxBox)
+    if showBox
+        label.new(tBoxStart, boxHi, str.tostring(rng, "0.00") + " $" + (sizeOk ? "" : " (gefiltert)"), xloc = xloc.bar_time,
+             style = label.style_label_down, color = color.new(color.black, 100), textcolor = color.new(boxCol, 0), size = size.small)
+    if sizeOk and strategy.position_size == 0 and tBoxEnd < tEntryEnd
+        armed       := true
+        armBar      := bar_index
+        tradesAtArm := strategy.opentrades + strategy.closedtrades
+        longSL      := boxLo
+        shortSL     := boxHi
+        // Ausbruch = 1 Tick über dem High / unter dem Low (+ optionaler Puffer)
+        longEntry   := math.round_to_mintick(boxHi + bufferPx + syminfo.mintick)
+        shortEntry  := math.round_to_mintick(boxLo - bufferPx - syminfo.mintick)
+        longTP      := math.round_to_mintick(longEntry + (longEntry - longSL) * rr)
+        shortTP     := math.round_to_mintick(shortEntry - (shortSL - shortEntry) * rr)
+        if stopMode
+            // OCA: Sobald eine Seite ausgelöst wird, wird die andere Order gelöscht → max. 1 Trade
+            if allowLong
+                strategy.entry("Long", strategy.long, qty = calcQty(longEntry - longSL), stop = longEntry, oca_name = "LBO", oca_type = strategy.oca.cancel, comment = "Long")
+                strategy.exit("Long Exit", "Long", stop = longSL, limit = longTP, comment_profit = "TP", comment_loss = "SL")
+            if allowShort
+                strategy.entry("Short", strategy.short, qty = calcQty(shortSL - shortEntry), stop = shortEntry, oca_name = "LBO", oca_type = strategy.oca.cancel, comment = "Short")
+                strategy.exit("Short Exit", "Short", stop = shortSL, limit = shortTP, comment_profit = "TP", comment_loss = "SL")
+
+// ───────────── Levels der offenen Position ─────────────
+float posSL = strategy.position_size > 0 ? longSL : strategy.position_size < 0 ? shortSL : na
+float posTP = strategy.position_size > 0 ? longTP : strategy.position_size < 0 ? shortTP : na
+plot(posSL, "Stop-Loss", color = slCol, style = plot.style_linebr, linewidth = 2)
+plot(posTP, "Take-Profit", color = tpCol, style = plot.style_linebr, linewidth = 2)
