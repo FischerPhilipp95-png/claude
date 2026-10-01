@@ -7,9 +7,9 @@ export async function getStaticPaths() {
   return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
 }
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 const d = post.data;
 ---
-<Artikel title={d.title} description={d.description} pubDate={d.pubDate} updatedDate={d.updatedDate} thema={d.thema} bild={d.bild} affiliate={d.affiliate}>
+<Artikel title={d.title} description={d.description} pubDate={d.pubDate} updatedDate={d.updatedDate} thema={d.thema} bild={d.bild} affiliate={d.affiliate} id={post.id} headings={headings}>
   <Content />
 </Artikel>

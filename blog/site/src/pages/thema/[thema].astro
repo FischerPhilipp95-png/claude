@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { THEMEN } from '../../themen';
+import { SITE } from '../../site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('artikel', ({ data }) => !data.entwurf);
+  return Object.entries(THEMEN)
+    .map(([name, t]) => ({ name, t, posts: posts.filter((p) => p.data.thema === name) }))
+    .filter((x) => x.posts.length > 0)
+    .map(({ name, t, posts }) => ({ params: { thema: t.slug }, props: { name, t, posts } }));
+}
+const { name, t, posts } = Astro.props;
+const liste = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${t.titel}: Anleitungen und Ratgeber`,
+  url: `${SITE.url}/thema/${t.slug}/`, inLanguage: 'de-DE',
+  hasPart: liste.map((p) => ({ '@type': 'Article', headline: p.data.title, url: `${SITE.url}/artikel/${p.id}/` })),
+}];
+---
+<Base title={`${t.titel}: Anleitungen und Ratgeber`} description={t.intro.slice(0, 155)} jsonLd={jsonLd}>
+  <div class="wrap wide">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › {name}</nav>
+    <h1>{t.titel}: Anleitungen und Ratgeber</h1>
+    <p class="lead">{t.intro}</p>
+    <ul class="cards">
+      {liste.map((p) => (
+        <li class="card"><a href={`/artikel/${p.id}/`}>
+          <img src={p.data.bild} alt="" width="1200" height="675" loading="lazy" />
+          <div><span class="tag">{p.data.thema}</span><h3>{p.data.title}</h3><p>{p.data.description}</p></div>
+        </a></li>
+      ))}
+    </ul>
+  </div>
+</Base>

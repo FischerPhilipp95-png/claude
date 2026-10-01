@@ -14,6 +14,7 @@ import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
 import ProduktBox from '../../components/ProduktBox.astro';
 import Bild from '../../components/Bild.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
 
 <Antwort>
 **Kurz gesagt: Pumpe aus.** Schalte die Heizung bzw. die Umwälzpumpe vor dem Entlüften ab und warte
@@ -21,6 +22,11 @@ import Bild from '../../components/Bild.astro';
 einer Viertel- bis halben Umdrehung am Ventil heraus. In der Mietwohnung mit Zentralheizung, wo du
 die Pumpe nicht abschalten kannst, drehst du stattdessen die Thermostatventile zu.
 </Antwort>
+
+<Schnellkauf items={[
+  { name: 'Entlüftungsschlüssel-Set', warum: 'Passt auf die meisten Ventile, kostet nur ein paar Euro.', suche: 'Entlüftungsschlüssel Heizkörper Set' },
+  { name: 'Entlüftungsschlüssel mit Auffangbehälter', warum: 'Fängt das Wasser direkt am Ventil auf.', suche: 'Entlüftungsschlüssel mit Auffangbehälter' },
+]} />
 
 <Bild
   src={frontmatter.bild}
@@ -38,7 +44,7 @@ Heizkörpern und wieder zurück. Die Umwälzpumpe drückt dieses Wasser ständig
 
 Luft ist leichter als Wasser und steigt nach oben. Das klappt aber nur, wenn das Wasser zur Ruhe
 kommt. Läuft die Pumpe, wirbelt sie die Luftblasen immer wieder mit durch den Kreislauf. Du
-entlüftest dann nur einen Teil, und ein paar Tage später gluckert es wieder.
+entlüftest dann nur einen Teil, und ein paar Tage später [gluckert es wieder](/artikel/heizung-gluckert/).
 
 Ist die Pumpe aus, sammelt sich die Luft an der höchsten Stelle, also genau oben am
 Entlüftungsventil. Dort lässt sie sich in einem Rutsch ablassen.
@@ -50,6 +56,8 @@ Stunde, der ADAC eine halbe bis eine Stunde, Thermondo 30 bis 60 Minuten. Wer au
 gehen will, wartet die volle Stunde.
 
 ## Schritt für Schritt: Heizkörper richtig entlüften
+
+Ausführlich mit Checkliste: [Heizkörper entlüften: Anleitung in 7 Schritten](/artikel/heizkoerper-entlueften-anleitung/).
 
 1. **Thermostate voll aufdrehen,** damit alle Ventile offen sind.
 2. **Heizung bzw. Umwälzpumpe ausschalten** und 30 bis 60 Minuten warten.
@@ -71,7 +79,7 @@ ganz herausdrehen. An der Heizungsanlage selbst (Therme, Kessel) nichts öffnen.
   titel="Das brauchst du: einen Entlüftungsschlüssel"
   suche="Entlüftungsschlüssel Heizkörper mit Auffangbehälter"
   kriterien={[
-    'Passend zu deinem Ventil: meist ein Vierkant (häufig 5 mm). Manche Ventile haben einen Schlitz, dann reicht ein Schraubendreher.',
+    'Passend zu deinem Ventil: meist ein Vierkant (häufig 5 mm). Manche Ventile haben einen Schlitz, dann reicht ein Schraubendreher (mehr dazu: Heizung entlüften ohne Schlüssel).',
     'Praktisch: Modelle mit kleinem Auffangbehälter, dann tropft nichts auf den Boden.',
     'Kostet nur ein paar Euro. Lieber zwei kaufen, einer geht erfahrungsgemäß verloren.',
   ]}
@@ -107,7 +115,7 @@ Anlage. Schau deshalb am Manometer der Heizung nach:
 ## Wann lohnt sich das Entlüften?
 
 Typische Zeichen für Luft im Heizkörper: Er **gluckert** oder bleibt **oben kalt**, obwohl er unten warm
-ist. Am besten entlüftest du **vor der Heizperiode, also im Oktober oder November**. Laut ADAC lassen
+ist. Bleibt er ganz kalt, steckt oft etwas anderes dahinter: [Heizkörper wird nicht warm](/artikel/heizkoerper-wird-nicht-warm/). Am besten entlüftest du **vor der Heizperiode, also im Oktober oder November**. Laut ADAC lassen
 sich mit gut entlüfteten Heizkörpern bis zu 15 % Heizkosten sparen.
 
 ## Wann du einen Fachbetrieb rufen solltest

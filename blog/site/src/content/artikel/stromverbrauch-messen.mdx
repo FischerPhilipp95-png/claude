@@ -1,0 +1,137 @@
+---
+title: "Stromverbrauch messen: 4 einfache Wege, auch ohne Smart Meter"
+kurztitel: "Stromverbrauch messen: 4 einfache Wege"
+description: "Wie viel Strom verbraucht ein Gerät wirklich? Mit Messgerät, smarter Steckdose, am Zähler oder per Rechnung. Mit Rechenbeispiel."
+pubDate: 2026-10-01
+thema: Strom
+bild: /bilder/titel/stromverbrauch-messen.webp
+bildAlt: "Titelbild: Stromverbrauch messen, 4 einfache Wege"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import ProduktBox from '../../components/ProduktBox.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import Bild from '../../components/Bild.astro';
+
+<Antwort>
+**Am einfachsten mit einem Energiekostenmessgerät:** Es wird als Zwischenstecker zwischen Steckdose und Gerät
+gesteckt und zeigt Leistung (Watt) und Verbrauch (kWh) an, auch im Stand-by. Für Geräte ohne Stecker, etwa Herd oder
+Durchlauferhitzer, liest du den **Stromzähler** vor und nach der Nutzung ab. Ohne jedes Gerät geht es per Rechnung:
+**Leistung in Watt × Stunden ÷ 1.000 = kWh**.
+</Antwort>
+
+<Schnellkauf items={[
+  { name: 'Energiekostenmessgerät', warum: 'Einfachste Methode. Zeigt Watt, kWh und Kosten.', suche: 'Energiekostenmessgerät Steckdose' },
+  { name: 'Smarte Steckdose mit Verbrauchsmessung', warum: 'Zeichnet den Verbrauch über Tage in einer App auf.', suche: 'WLAN Steckdose mit Strommessung' },
+]} />
+
+<Bild
+  src={frontmatter.bild}
+  alt={frontmatter.bildAlt}
+  width={1200}
+  height={675}
+  nachweis={frontmatter.bildNachweis}
+  eager
+/>
+
+## Die 4 Wege im Überblick
+
+| Methode | Geeignet für | Kosten | Genauigkeit |
+|---|---|---|---|
+| **Energiekostenmessgerät** | einzelne Geräte mit Stecker | gering | gut |
+| **Smarte Steckdose** | Geräte mit Stecker, Verlauf über Tage | mittel | gut |
+| **Stromzähler ablesen** | ganzer Haushalt, fest angeschlossene Geräte | kostenlos | grob bis gut |
+| **Ausrechnen** | schnelle Schätzung | kostenlos | grob |
+
+## Weg 1: Energiekostenmessgerät (empfohlen)
+
+Das Messgerät steckst du in die Steckdose und das Gerät in das Messgerät. Es zeigt die aktuelle **Leistung in Watt**,
+den aufsummierten **Verbrauch in kWh** und nach Eingabe deines Strompreises oft auch direkt die **Kosten**.
+
+So misst du richtig:
+
+- **Lange genug messen.** Ein Kühlschrank schaltet sich immer wieder an und aus. Miss mindestens 24 Stunden, besser eine Woche,
+  und rechne dann aufs Jahr hoch.
+- **Stand-by mitmessen.** Fernseher, Router, Spielekonsole: Gerade der Verbrauch im „Aus“-Zustand überrascht oft.
+- **Auf niedrige Werte achten.** Für Stand-by braucht das Messgerät eine gute Genauigkeit bei kleinen Leistungen.
+
+<ProduktBox
+  titel="Energiekostenmessgerät: darauf achten"
+  suche="Energiekostenmessgerät Steckdose"
+  kriterien={[
+    'Misst auch kleine Leistungen genau (Stand-by-Werte unter 1 Watt).',
+    'Zeigt kWh und Kosten mit einstellbarem Strompreis.',
+    'Belastbar bis 3.680 W (16 A), damit auch Wasserkocher und Heizlüfter gehen.',
+    'Gut ablesbares Display, idealerweise mit Beleuchtung.',
+  ]}
+/>
+
+**Tipp:** Manche Verbraucherzentralen und Stadtbibliotheken verleihen Strommessgeräte. Frag dort einfach nach.
+
+## Weg 2: Smarte Steckdose mit Verbrauchsmessung
+
+Eine <AmazonLink suche="WLAN Steckdose mit Strommessung">smarte Steckdose mit Messfunktion</AmazonLink> macht im
+Prinzip dasselbe, speichert die Werte aber in einer App. So siehst du, **wann** ein Gerät wie viel verbraucht, etwa
+die Waschmaschine pro Waschgang. Außerdem kannst du Geräte zeitgesteuert ganz abschalten.
+
+Achte darauf, ob die Steckdose eine Cloud des Herstellers braucht oder auch lokal funktioniert, und ob sie mit
+deinem System (z. B. Alexa, Apple Home) zusammenarbeitet.
+
+## Weg 3: Am Stromzähler ablesen
+
+Für Geräte ohne Stecker und für den ganzen Haushalt:
+
+1. **Zählerstand notieren** (in kWh).
+2. Das Gerät eine bestimmte Zeit nutzen, zum Beispiel einen Waschgang lang.
+3. **Zählerstand wieder notieren.** Die Differenz ist der Verbrauch in dieser Zeit.
+
+Damit das Ergebnis aussagekräftig ist, sollten in der Zeit möglichst wenig andere Geräte laufen.
+
+**Grundlast finden:** Lies den Zähler abends ab, bevor du schlafen gehst, und morgens wieder. Was nachts verbraucht
+wurde, sind Kühlschrank, Router und alle Geräte im Stand-by. Das ist dein Einsparpotenzial.
+
+Hast du einen digitalen Zähler oder ein Smart Meter, zeigt das Display oft direkt die aktuelle Leistung an.
+
+<Warnung titel="Finger weg vom Sicherungskasten">
+Zum Messen einzelner Stromkreise mit Stromzange oder Einbau-Zähler muss der Sicherungskasten geöffnet werden.
+Das ist Arbeit für eine Elektrofachkraft. Ablesen am Zähler darfst du natürlich jederzeit.
+</Warnung>
+
+## Weg 4: Verbrauch ausrechnen
+
+Die Formel der Verbraucherzentrale:
+
+**Verbrauch (kWh) = Leistung (W) × Nutzungsdauer (h) ÷ 1.000**
+
+**Beispiel:** Ein Fernseher mit 100 Watt läuft 4 Stunden am Tag.
+100 W × 4 h ÷ 1.000 = **0,4 kWh pro Tag**, also **146 kWh im Jahr**.
+Bei einem angenommenen Strompreis von 35 Cent pro kWh sind das rund **51 € im Jahr**.
+
+Die Leistung steht auf dem Typenschild des Geräts. Das ist aber meist die **Höchstleistung**. Der echte Verbrauch
+liegt oft darunter. Deshalb ist Messen genauer als Rechnen.
+
+## Wie kommt der Strom überhaupt ins Haus?
+
+Vom Kraftwerk bis zur Steckdose ist es ein weiter Weg mit mehreren Spannungsebenen. Das erklärt der Handwerksdoktor
+im Video auf [YouTube](https://www.youtube.com/@derhandwerksdoktor).
+
+## Häufige Fragen
+
+### Wie genau sind Strommessgeräte für die Steckdose?
+Gute Geräte messen auf wenige Prozent genau und erfassen auch Stand-by-Werte unter 1 Watt. Achte beim Kauf auf
+Angaben zur Genauigkeit bei kleinen Leistungen.
+
+### Kann ich den Stromverbrauch mit dem Handy messen?
+Nicht direkt. Das Handy braucht dafür eine smarte Steckdose mit Messfunktion (Weg 2) oder einen auslesbaren
+digitalen Zähler.
+
+### Wie messe ich den Verbrauch von Herd oder Durchlauferhitzer?
+Diese Geräte sind fest angeschlossen. Nutze die Zähler-Methode (Weg 3): Zählerstand vorher und nachher ablesen.
+
+## Quellen
+
+- Verbraucherzentrale Energieberatung: [Stromverbrauch messen](https://verbraucherzentrale-energieberatung.de/energie-sparen/allgemeines/stromverbrauch-messen/)
+- ENTEGA: [Stromverbrauch messen und aufzeichnen](https://www.entega.de/ratgeber/strom/stromverbrauch/stromverbrauch-messen/)

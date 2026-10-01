@@ -6,10 +6,13 @@
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
     "preview": "astro preview",
-    "check": "node scripts/check-external.mjs"
+    "check": "node scripts/check-external.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
+    "titelbilder": "python3 scripts/titelbilder.py"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.2",
+    "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.3.5"
   },

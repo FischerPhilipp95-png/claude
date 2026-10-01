@@ -110,3 +110,28 @@ form textarea { min-height: 160px; }
 .site-footer { border-top: 1px solid var(--line); padding: 28px 0 40px; font-size: 0.9rem; color: var(--muted); }
 .site-footer nav { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
 .site-footer a { color: var(--muted); }
+
+/* Schnellkauf-Kasten direkt nach der Antwort */
+.quick { border-color: var(--yellow); border-width: 2px; }
+.quick-title { font-weight: 800; margin-bottom: 8px; }
+.quick ul { list-style: none; padding: 0; margin: 0 0 8px; }
+.quick li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); margin: 0; }
+.quick li:last-child { border-bottom: 0; }
+.btn-sm { padding: 7px 14px; font-size: 0.9rem; white-space: nowrap; flex: none; }
+
+/* Inhaltsverzeichnis */
+.toc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 18px; margin: 0 0 1.5em; }
+.toc summary { cursor: pointer; font-weight: 800; }
+.toc ol { margin: 10px 0 4px; padding-left: 1.2em; }
+.toc li { margin-bottom: 4px; }
+
+.related h3 { font-size: 1rem; }
+.faq h3 { font-size: 1.05rem; }
+.site-header nav { flex-wrap: wrap; }
+
+/* Tabellen auf dem Handy: lange deutsche Wörter umbrechen statt die Seite zu verbreitern */
+th, td { overflow-wrap: anywhere; hyphens: auto; }
+@media (max-width: 560px) { table { font-size: 0.85em; } th, td { padding: 0.4em 0.35em; } }
+.quick li > span { flex: 1 1 180px; min-width: 0; }
+.quick li { flex-wrap: wrap; }
+.quick .small { line-height: 1.45; }

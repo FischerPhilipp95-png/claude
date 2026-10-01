@@ -1,6 +1,8 @@
 ---
 import Base from './Base.astro';
 import { SITE } from '../site';
+import { THEMEN, type Thema } from '../themen';
+import Verwandt from '../components/Verwandt.astro';
 
 interface Props {
   title: string;
@@ -10,8 +12,12 @@ interface Props {
   thema: string;
   bild: string;
   affiliate: boolean;
+  id: string;
+  headings: { depth: number; slug: string; text: string }[];
 }
-const { title, description, pubDate, updatedDate, thema, bild, affiliate } = Astro.props;
+const { title, description, pubDate, updatedDate, thema, bild, affiliate, id, headings } = Astro.props;
+const themaSlug = THEMEN[thema as Thema].slug;
+const toc = headings.filter((h) => h.depth === 2 && h.text !== 'Quellen');
 const url = new URL(Astro.url.pathname, SITE.url).toString();
 const datum = (d: Date) => d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
 const person = { '@type': 'Person', name: SITE.author, url: `${SITE.url}/impressum/`, sameAs: [SITE.youtube] };
@@ -34,7 +40,7 @@ const jsonLd = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Start', item: `${SITE.url}/` },
-      { '@type': 'ListItem', position: 2, name: 'Artikel', item: `${SITE.url}/artikel/` },
+      { '@type': 'ListItem', position: 2, name: thema, item: `${SITE.url}/thema/${themaSlug}/` },
       { '@type': 'ListItem', position: 3, name: title, item: url },
     ],
   },
@@ -42,7 +48,7 @@ const jsonLd = [
 ---
 <Base title={title} description={description} image={bild} jsonLd={jsonLd} type="article">
   <article class="wrap">
-    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › <a href="/artikel/">Artikel</a> › {thema}</nav>
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › <a href={`/thema/${themaSlug}/`}>{thema}</a></nav>
     <h1>{title}</h1>
     <p class="meta">
       Von {SITE.author} · {updatedDate ? `Aktualisiert am ${datum(updatedDate)}` : `Veröffentlicht am ${datum(pubDate)}`}
@@ -51,7 +57,14 @@ const jsonLd = [
       <p class="ad-note"><strong>Anzeige:</strong> Dieser Artikel enthält Affiliate-Links (mit * markiert). Kaufst du darüber ein,
       bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts. <a href="/werbung/">Mehr dazu</a></p>
     )}
+    {toc.length >= 3 && (
+      <details class="toc">
+        <summary>Inhalt</summary>
+        <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+      </details>
+    )}
     <slot />
+    <Verwandt id={id} thema={thema} />
     <section class="box author" aria-label="Über den Autor">
       <img src="/bilder/autor.webp" alt="Philipp Fischer, Der Handwerksdoktor" width="64" height="64" loading="lazy" />
       <p><strong>{SITE.author}</strong> erklärt als „Der Handwerksdoktor“ auf <a href={SITE.youtube} rel="noopener">YouTube</a>,

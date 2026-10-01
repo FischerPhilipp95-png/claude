@@ -9,7 +9,7 @@ interface Props {
   kriterien: string[];
   button?: string;
 }
-const { titel, suche, kriterien, button = 'Bei Amazon ansehen' } = Astro.props;
+const { titel, suche, kriterien, button = 'Aktuelle Preise bei Amazon prüfen' } = Astro.props;
 ---
 <aside class="box product" aria-label={`Empfehlung: ${titel}`}>
   <h3>{titel}</h3>

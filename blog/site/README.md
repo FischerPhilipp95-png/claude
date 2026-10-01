@@ -20,6 +20,8 @@ npm run check      # prüft dist/: keine Anfragen an fremde Server, nichts zu br
    `pubDate`, `thema`, `bild` + `bildAlt` + `bildNachweis`, `affiliate: true`, wenn Amazon-Links drin sind.
 3. Bausteine:
    - `<Antwort>` ganz oben: die Antwort in 2–3 Sätzen.
+   - `<Schnellkauf items={[{ name, warum, suche }]}>` direkt nach der Antwort: „Das brauchst du“ mit Amazon-Buttons
+     (höchste Klickrate, weil Leser hier schon wissen, dass sie das Werkzeug brauchen).
    - `<Warnung titel="...">` für Sicherheitshinweise.
    - `<ProduktBox titel suche kriterien>` für Produktempfehlungen (Amazon-Suchlink mit * und Hinweis).
    - `<AmazonLink suche="...">Text</AmazonLink>` für einen Link im Fließtext.
@@ -27,6 +29,10 @@ npm run check      # prüft dist/: keine Anfragen an fremde Server, nichts zu br
    - `<YouTube id="VIDEO-ID" titel="..." vorschau="/bilder/<thumbnail>.webp">` bettet ein Video erst nach Klick ein.
      Das Vorschaubild ist das eigene Thumbnail, als Datei in `public/bilder/`.
 4. `entwurf: true` versteckt einen Artikel, bis er fertig ist.
+5. Titelbild: `bild: /bilder/titel/<url-name>.webp` eintragen (optional `kurztitel` für einen kürzeren Text auf dem Bild),
+   dann `npm run titelbilder`. Erzeugt ein eigenes Bild im Kanal-Look (eigenes Urheberrecht).
+6. Pro Artikel mindestens 2 interne Links auf passende Artikel und 1 Link auf den Hauptartikel des Themas setzen.
+   Inhaltsverzeichnis, „Das könnte dich auch interessieren“ und die Themenseite (`/thema/<thema>/`) entstehen automatisch.
 
 Bilder: nur eigene oder frei lizenzierte (CC0, CC BY, CC BY-SA mit Nennung), als `.webp` mit max. 1200 px Breite
 in `public/bilder/`. Nie Bilder von Amazon, Herstellern oder anderen Seiten.
@@ -41,7 +47,8 @@ in `public/bilder/`. Nie Bilder von Amazon, Herstellern oder anderen Seiten.
    sie muss mit hochgeladen werden (https-Umleitung, Sicherheitsregeln).
 3. In IONOS unter Domains prüfen, dass `handwerksdoktor.de` auf genau diesen Ordner zeigt und das
    SSL-Zertifikat aktiv ist.
-4. Kontaktformular einmal selbst ausprobieren. Die Mail kommt von `info@handwerksdoktor.de`
+4. `npm run indexnow` meldet alle URLs an Bing & Co. (erst nach dem Upload, die Schlüsseldatei muss online sein).
+5. Kontaktformular einmal selbst ausprobieren. Die Mail kommt von `info@handwerksdoktor.de`
    (dieses Postfach muss in IONOS angelegt sein), beim ersten Mal auch im Spam-Ordner nachsehen.
 
 ## Wo was steht

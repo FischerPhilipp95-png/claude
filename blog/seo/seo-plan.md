@@ -129,3 +129,24 @@ wertvollste Keyword-Quelle überhaupt, weil sie auf unsere eigene Seite zugeschn
 - VideoObject-Markup: https://developers.google.com/search/docs/appearance/structured-data/video
 - Astro-SEO-Projekte auf GitHub: https://github.com/topics/astro-seo
 - advertools: https://advertools.readthedocs.io/
+
+## Stand 01.10.2026
+
+Veröffentlicht (Cluster Heizung + Strom):
+
+| Artikel | Suchanfrage | Rolle |
+|---|---|---|
+| Heizkörper entlüften: Anleitung in 7 Schritten | heizkörper entlüften (anleitung) | Hauptartikel Heizung |
+| Heizung entlüften: Pumpe an oder aus? | heizung entlüften pumpe an oder aus | Detailfrage |
+| Heizung entlüften ohne Schlüssel | heizung entlüften ohne schlüssel | Detailfrage, Affiliate Schlüssel |
+| Heizung gluckert: 6 Ursachen | heizung gluckert (was tun, trotz entlüften) | Problemlöser |
+| Heizkörper wird nicht warm: 6 Ursachen | heizkörper wird nicht warm | Problemlöser, Affiliate Thermostatkopf |
+| Stromverbrauch messen: 4 Wege | stromverbrauch messen (ohne smart meter) | Hauptartikel Strom, Affiliate Messgerät |
+
+Eingebaut für Ranking und Klickrate: Themenseiten (`/thema/heizung/`, `/thema/strom/`), Inhaltsverzeichnis,
+„Das könnte dich auch interessieren“, Breadcrumb mit Thema (auch als strukturierte Daten), RSS-Feed (`/rss.xml`),
+IndexNow (`npm run indexnow`), eigene Titelbilder, Schnellkauf-Kasten direkt nach der Antwort, Affiliate-Link
+im Fließtext genau dort, wo das Werkzeug gebraucht wird.
+
+Nächste Artikel: Heizungsdruck zu niedrig (Wasser nachfüllen), Thermostatkopf wechseln, Stand-by-Stromfresser finden,
+Kaffeevollautomat entkalken (ohne Entkalker / trotz Filter), ab März: mobile Klimaanlage ohne Abluftschlauch.
