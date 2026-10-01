@@ -10,7 +10,7 @@ export const SITE = {
   amazonTag: 'rechn24-21',
 };
 
-/** Amazon-Suchlink. Bewusst Suche statt einzelner Produkte, solange keine Produkte selbst geprüft sind. */
+/** Amazon-Suchlink für allgemeine Empfehlungen. Konkrete Produkte stehen in src/produkte.ts (Direktlink per ASIN). */
 export function amazonSearch(query: string): string {
   const url = new URL('https://www.amazon.de/s');
   url.searchParams.set('k', query);

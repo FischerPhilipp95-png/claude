@@ -16,6 +16,6 @@ const { titel, suche, kriterien, button = 'Aktuelle Preise bei Amazon prüfen' }
   <p class="product-title"><Icon name="list-checks" size={18} /> {titel}</p>
   <p>Darauf solltest du achten:</p>
   <ul>{kriterien.map((k) => <li>{k}</li>)}</ul>
-  <a class="btn" href={amazonSearch(suche)} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> {button}*</a>
-  <p class="small">*Affiliate-Link. Kaufst du darüber, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.</p>
+  <a class="btn" data-pagefind-ignore href={amazonSearch(suche)} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> {button}*</a>
+  <p class="small" data-pagefind-ignore>*Affiliate-Link. Kaufst du darüber, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.</p>
 </aside>

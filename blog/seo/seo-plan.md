@@ -172,3 +172,20 @@ Alle älteren Artikel haben jetzt mindestens eine Grafik, Artikel ohne Foto habe
 
 Nächste Kandidaten: Duschkopf entkalken · Wasserkocher entkalken · Heizung richtig einstellen · Heizkörper tauschen (Kosten) ·
 ab März: mobile Klimaanlage.
+
+## Stand 01.10.2026, Runde 5
+
+**Suche:** Pagefind, läuft komplett im Browser, Suchbegriff bleibt im Browser (Übergabe per `#q=`). Suchfeld auf Startseite,
+Artikelübersicht und 404-Seite, Lupe in der Kopfzeile. CSP um `'wasm-unsafe-eval'` erweitert.
+
+**Produkte erklärt** (`/produkte/`): zentrale Liste `site/src/produkte.ts`, Komponente `ProduktFokus` mit Direktlink (ASIN + Tag).
+Keine Test-Urteile, keine Preise, keine Amazon-Bilder. Jede Produktseite ist eine Anleitung zu einer Suchanfrage mit Kaufabsicht.
+
+**Neue Kategorie:** Sicherheit (Rauchmelder, Video-Türklingel).
+
+**15 neue Artikel:** Plissee ohne Bohren · Siemens EQ entkalken · De'Longhi entkalken · Jura reinigen und Filter · Philips AquaClean ·
+Dampfglätter · Licht mit Bewegungsmelder · Lebensmittelmotten · Fruchtfliegen · Isopropanol · Sparduschkopf · Video-Türklingel ·
+Rauchmelder · WAGO-Klemmen · Handy lädt langsam. Hub „Kaffeevollautomat entkalken“ verlinkt alle Marken-Anleitungen.
+
+Nächste Ideen: Duschkopf entkalken (passt zu Sparduschkopf), Wasserkocher entkalken, Plissee mit oder ohne Bohren (Vergleich),
+Rauchmelder piept (Fehlerbehebung), eigenes YouTube-Video zur Plissee-Montage mit echtem Produkt.

@@ -4,6 +4,7 @@
 |---|---|
 | `site/` | der Blog selbst (Astro), Anleitung in `site/README.md` |
 | `site/src/content/artikel/` | Artikel (eine `.mdx`-Datei pro Artikel) |
+| `site/src/produkte.ts` | alle Amazon-Produkte (Name, ASIN, Kategorie, Artikel). Neue Produkt-Links hier eintragen |
 | `site/src/content/recht/` | Impressum, Datenschutzerklärung, Transparenz & Werbung |
 | `recht/checkliste.md` | Abmahnrisiken nach Priorität + technische Grundregeln |
 | `recht/textbausteine.md` | Werbehinweise für YouTube-Beschreibung und angehefteten Kommentar |

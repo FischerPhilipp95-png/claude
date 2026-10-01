@@ -7,7 +7,7 @@ interface Item { name: string; warum: string; suche: string }
 interface Props { titel?: string; items: Item[] }
 const { titel = 'Das brauchst du', items } = Astro.props;
 ---
-<aside class="box quick" aria-label={titel}>
+<aside class="box quick" aria-label={titel} data-pagefind-ignore>
   <p class="quick-title"><Icon name="wrench" size={18} /> {titel}</p>
   <ul>
     {items.map((i) => (

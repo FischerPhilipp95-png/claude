@@ -3,6 +3,7 @@ import ArtikelKarte from '../../components/ArtikelKarte.astro';
 import { THEMEN } from '../../themen';
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import SuchFeld from '../../components/SuchFeld.astro';
 
 const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -10,6 +11,7 @@ const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
 <Base title="Alle Artikel" description="Alle Anleitungen und Erklärungen vom Handwerksdoktor: Heizung, Strom, Wasser, Klima und Küche.">
   <div class="wrap wide">
     <h1>Alle Artikel</h1>
+    <SuchFeld id="suche-artikel" />
     <ul class="cards">{posts.map((p) => <ArtikelKarte post={p} />)}</ul>
   </div>
 </Base>

@@ -53,29 +53,29 @@ const jsonLd = [
 ];
 ---
 <Base title={title} description={description} image={bild} jsonLd={jsonLd} type="article">
-  <article class="wrap article" style={`--akzent:${akzent}`}>
-    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> <Icon name="chevron-right" size={14} /> <a href={`/thema/${themaSlug}/`}>{themaTitel}</a></nav>
-    <a class="chip chip-lg" href={`/thema/${themaSlug}/`}><Icon name={themaIcon} size={16} /> {themaTitel}</a>
+  <article class="wrap article" style={`--akzent:${akzent}`} data-pagefind-body>
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> <Icon name="chevron-right" size={14} /> <a href={`/thema/${themaSlug}/`}>{themaTitel}</a></nav>
+    <a class="chip chip-lg" href={`/thema/${themaSlug}/`} data-pagefind-meta="thema" data-pagefind-ignore><Icon name={themaIcon} size={16} /> {themaTitel}</a>
     <h1>{title}</h1>
     <p class="lead">{description}</p>
-    <div class="byline">
+    <div class="byline" data-pagefind-ignore>
       <img src="/bilder/autor.webp" alt="" width="40" height="40" />
       <span><strong>{SITE.author}</strong><br /><span class="small">{updatedDate ? `Aktualisiert am ${datum(updatedDate)}` : `Veröffentlicht am ${datum(pubDate)}`} · <Icon name="clock" size={13} /> {lesezeit} Min. Lesezeit</span></span>
     </div>
-    <figure class="hero-img"><img src={bild} alt={bildAlt} width="1200" height="675" fetchpriority="high" decoding="async" /></figure>
+    <figure class="hero-img"><img data-pagefind-meta="image[src], image_alt[alt]" src={bild} alt={bildAlt} width="1200" height="675" fetchpriority="high" decoding="async" /></figure>
     {affiliate && (
-      <p class="ad-note"><strong>Anzeige:</strong> Dieser Artikel enthält Affiliate-Links (mit * markiert). Kaufst du darüber ein,
+      <p class="ad-note" data-pagefind-ignore><strong>Anzeige:</strong> Dieser Artikel enthält Affiliate-Links (mit * markiert). Kaufst du darüber ein,
       bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts. <a href="/werbung/">Mehr dazu</a></p>
     )}
     {toc.length >= 3 && (
-      <details class="toc">
+      <details class="toc" data-pagefind-ignore>
         <summary><Icon name="list-checks" size={18} /> Inhalt dieses Artikels</summary>
         <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
       </details>
     )}
     <slot />
-    <Verwandt id={id} thema={thema} />
-    <section class="box author" aria-label="Über den Autor">
+    <div data-pagefind-ignore><Verwandt id={id} thema={thema} /></div>
+    <section class="box author" aria-label="Über den Autor" data-pagefind-ignore>
       <img src="/bilder/autor.webp" alt="Philipp Fischer, Der Handwerksdoktor" width="64" height="64" loading="lazy" />
       <p><strong>{SITE.author}</strong> erklärt als „Der Handwerksdoktor“ auf <a href={SITE.youtube} rel="noopener">YouTube</a>,
       wie Heizung, Strom und Wasser im Haus funktionieren, einfach und ohne Fachchinesisch.</p>

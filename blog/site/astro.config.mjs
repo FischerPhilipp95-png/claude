@@ -10,6 +10,6 @@ export default defineConfig({
   devToolbar: { enabled: false },
   integrations: [
     mdx(),
-    sitemap({ filter: (page) => !/\/kontakt\/(danke|fehler)\//.test(page) }),
+    sitemap({ filter: (page) => !/\/(kontakt\/(danke|fehler)|suche)\//.test(page) }),
   ],
 });

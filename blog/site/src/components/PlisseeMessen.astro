@@ -1,0 +1,34 @@
+---
+// Skizze: Wo misst man für ein Klemm-Plissee? Schematisch, nicht maßstäblich.
+import Icon from './Icon.astro';
+---
+<figure class="flow skizze" role="group" aria-label="Skizze: Plissee ohne Bohren richtig messen">
+  <p class="flow-title"><Icon name="ruler" size={18} /> So misst du für ein Klemm-Plissee</p>
+  <svg viewBox="0 0 440 380" role="img" aria-label="Fensterflügel von innen: Breite des Plissees gleich Glasbreite plus etwa 4 Zentimeter, Länge mindestens so groß wie die Höhe des Fensterflügels, Klemmträger oben am Flügelrahmen">
+    <rect x="120" y="40" width="200" height="290" rx="8" fill="#f4f3ee" stroke="#17171a" stroke-width="3" />
+    <rect x="142" y="62" width="156" height="246" rx="3" fill="#dcecff" stroke="#9cbbe0" stroke-width="1.5" />
+    <rect x="136" y="56" width="168" height="120" fill="#ffe7d4" stroke="#ff741c" stroke-width="2" opacity="0.95" />
+    {Array.from({ length: 11 }, (_, i) => <line x1="136" x2="304" y1={66 + i * 10} y2={66 + i * 10} stroke="#ff741c" stroke-width="1" opacity="0.55" />)}
+    <rect x="132" y="50" width="176" height="8" rx="2" fill="#17171a" />
+    <rect x="132" y="172" width="176" height="8" rx="2" fill="#17171a" />
+    <rect x="128" y="30" width="16" height="24" rx="3" fill="#ffd400" stroke="#17171a" stroke-width="2" />
+    <rect x="296" y="30" width="16" height="24" rx="3" fill="#ffd400" stroke="#17171a" stroke-width="2" />
+    <rect x="128" y="318" width="16" height="22" rx="3" fill="#ffd400" stroke="#17171a" stroke-width="2" />
+    <rect x="296" y="318" width="16" height="22" rx="3" fill="#ffd400" stroke="#17171a" stroke-width="2" />
+    <rect x="326" y="170" width="10" height="44" rx="4" fill="#5d5d66" />
+    <text x="342" y="196" class="sk-t">Griff</text>
+    <line x1="132" x2="308" y1="356" y2="356" stroke="#17171a" stroke-width="2" marker-start="url(#pf)" marker-end="url(#pf)" />
+    <text x="220" y="376" text-anchor="middle" class="sk-t sk-b">Breite: Glas + ca. 4 cm</text>
+    <line x1="142" x2="298" y1="244" y2="244" stroke="#3b6ea8" stroke-width="1.5" stroke-dasharray="4 3" marker-start="url(#pb)" marker-end="url(#pb)" />
+    <text x="220" y="238" text-anchor="middle" class="sk-t" fill="#3b6ea8">Glasbreite</text>
+    <line x1="92" x2="92" y1="40" y2="330" stroke="#17171a" stroke-width="2" marker-start="url(#pf)" marker-end="url(#pf)" />
+    <text x="80" y="185" text-anchor="middle" class="sk-t sk-b" transform="rotate(-90 80 185)">Höhe Fensterflügel</text>
+    <text x="352" y="44" class="sk-t">Klemmträger</text>
+    <line x1="350" y1="40" x2="314" y2="40" stroke="#17171a" stroke-width="1" />
+    <defs>
+      <marker id="pf" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#17171a" /></marker>
+      <marker id="pb" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3b6ea8" /></marker>
+    </defs>
+  </svg>
+  <figcaption>Grafik: Der Handwerksdoktor, schematisch. Gelb: Klemmträger oben und unten am Flügelrahmen. Der Griff darf das Plissee nicht behindern.</figcaption>
+</figure>

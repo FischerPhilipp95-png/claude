@@ -39,6 +39,10 @@ Speicherdauer: Die Logfiles werden von IONOS nach dessen Löschfristen automatis
 soweit sie nicht zur Aufklärung eines konkreten Sicherheitsvorfalls länger benötigt werden.
 Ich selbst werte die Logfiles nicht aus und führe sie nicht mit anderen Daten zusammen.
 
+**Suchfunktion:** Die Suche auf dieser Website läuft vollständig in deinem Browser. Dein Browser lädt dafür
+Teile eines Suchverzeichnisses von diesem Server, der Suchbegriff selbst wird weder an mich noch an Dritte
+übertragen und nicht gespeichert.
+
 ## 4. Kontakt per E-Mail und Kontaktformular
 
 Wenn du mir eine E-Mail schreibst oder das Kontaktformular nutzt, verarbeite ich deine Angaben

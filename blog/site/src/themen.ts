@@ -6,5 +6,6 @@ export const THEMEN = {
   Wasser: { slug: 'wasser', titel: 'Wasser', icon: 'droplets', farbe: '#39a8ff', intro: 'Verstopfte Abflüsse, tropfende Hähne, Wasserdruck: wie die Wasserversorgung im Haus funktioniert und was du selbst tun kannst.' },
   Klima: { slug: 'raumklima', titel: 'Raumklima', icon: 'wind', farbe: '#03b84c', intro: 'Luftfeuchtigkeit, Lüften, Zugluft und Schimmel: wie du in deiner Wohnung ein gesundes Raumklima bekommst und dabei Heizkosten sparst.' },
   Küche: { slug: 'haushalt', titel: 'Haushaltsgeräte', icon: 'washing-machine', farbe: '#924ef6', intro: 'Waschmaschine, Spülmaschine, Kaffeevollautomat: reinigen, entkalken und pflegen, damit die Geräte lange halten und nichts müffelt.' },
+  Sicherheit: { slug: 'sicherheit', titel: 'Sicherheit', icon: 'shield-check', farbe: '#d6336c', intro: 'Rauchmelder, Türklingel mit Kamera und sichere Elektrik: was Pflicht ist, was erlaubt ist und wie du dein Zuhause mit wenig Aufwand sicherer machst.' },
 } as const;
 export type Thema = keyof typeof THEMEN;

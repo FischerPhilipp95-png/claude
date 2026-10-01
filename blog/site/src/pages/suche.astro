@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import SuchFeld from '../components/SuchFeld.astro';
+const beliebt = ['Heizung entlüften', 'Kalk', 'Strom sparen', 'Schimmel', 'Abfluss', 'Thermostat'];
+---
+<Base title="Suche" description="Alle Anleitungen vom Handwerksdoktor durchsuchen." noindex>
+  <div class="wrap search-page">
+    <h1>Anleitungen durchsuchen</h1>
+    <SuchFeld id="suche-seite" autofocus />
+    <p class="search-pop">Beliebt: {beliebt.map((b) => <a class="chip" href={`/suche/#q=${encodeURIComponent(b)}`}>{b}</a>)}</p>
+    <p class="search-status" aria-live="polite"></p>
+    <ul class="search-results"></ul>
+    <noscript><p>Die Suche braucht JavaScript. Alle Anleitungen findest du auch in der <a href="/artikel/">Artikelübersicht</a>.</p></noscript>
+    <p class="small search-note">Die Suche läuft komplett in deinem Browser. Dein Suchbegriff wird nicht an mich oder Dritte übertragen.</p>
+  </div>
+</Base>
+<script is:inline type="module">
+  // Pagefind-Index liegt unter /pagefind/ und wird erst beim Build erzeugt.
+  const pf = await import('/pagefind/pagefind.js');
+  await pf.options({ excerptLength: 22 });
+  pf.init();
+  const input = document.getElementById('suche-seite');
+  const status = document.querySelector('.search-status');
+  const liste = document.querySelector('.search-results');
+  const ausHash = () => new URLSearchParams(location.hash.slice(1)).get('q') || '';
+  const text = (tag, cls, inhalt) => { const el = document.createElement(tag); if (cls) el.className = cls; el.textContent = inhalt; return el; };
+
+  async function suchen(q, ausEingabe) {
+    if (ausEingabe) history.replaceState(null, '', q.trim() ? '#q=' + encodeURIComponent(q.trim()) : location.pathname);
+    if (!q.trim()) { status.textContent = ''; liste.replaceChildren(); return; }
+    const suche = await pf.debouncedSearch(q, {}, 200);
+    if (suche === null) return;
+    const daten = await Promise.all(suche.results.slice(0, 20).map((r) => r.data()));
+    liste.replaceChildren();
+    if (!daten.length) {
+      status.replaceChildren(`Nichts gefunden für „${q.trim()}“. Versuch ein anderes Wort oder stöbere in `, Object.assign(document.createElement('a'), { href: '/artikel/', textContent: 'allen Anleitungen' }), '.');
+      return;
+    }
+    status.textContent = `${suche.results.length} ${suche.results.length === 1 ? 'Treffer' : 'Treffer'} für „${q.trim()}“`;
+    for (const d of daten) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.className = 'result';
+      a.href = d.url;
+      if (d.meta.image) {
+        const img = Object.assign(document.createElement('img'), { src: d.meta.image, alt: '', width: 160, height: 90, loading: 'lazy', decoding: 'async' });
+        a.append(img);
+      }
+      const box = document.createElement('span');
+      box.className = 'result-text';
+      if (d.meta.thema) box.append(text('span', 'result-thema', d.meta.thema));
+      box.append(text('strong', '', d.meta.title));
+      const auszug = document.createElement('span');
+      auszug.className = 'result-excerpt';
+      auszug.innerHTML = d.excerpt; // von Pagefind aus unseren eigenen Seiten erzeugt, nur <mark> als HTML
+      box.append(auszug);
+      a.append(box);
+      li.append(a);
+      liste.append(li);
+    }
+  }
+  input.addEventListener('input', () => suchen(input.value, true));
+  addEventListener('hashchange', () => { input.value = ausHash(); suchen(input.value, false); });
+  if (ausHash()) { input.value = ausHash(); suchen(input.value, false); }
+</script>

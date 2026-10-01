@@ -11,7 +11,7 @@ const artikel = defineCollection({
     description: z.string().max(160),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    thema: z.enum(['Heizung', 'Strom', 'Wasser', 'Klima', 'Küche']),
+    thema: z.enum(['Heizung', 'Strom', 'Wasser', 'Klima', 'Küche', 'Sicherheit']),
     bild: z.string(),
     bildAlt: z.string(),
     bildBreite: z.number().default(1200),
