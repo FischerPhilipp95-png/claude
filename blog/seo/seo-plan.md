@@ -189,3 +189,12 @@ Rauchmelder · WAGO-Klemmen · Handy lädt langsam. Hub „Kaffeevollautomat ent
 
 Nächste Ideen: Duschkopf entkalken (passt zu Sparduschkopf), Wasserkocher entkalken, Plissee mit oder ohne Bohren (Vergleich),
 Rauchmelder piept (Fehlerbehebung), eigenes YouTube-Video zur Plissee-Montage mit echtem Produkt.
+
+## Stand 01.10.2026, Runde 6
+
+- Balkonkraftwerk-Rechner (`/rechner/balkonkraftwerk/`) auf Basis der Rechnung aus `projects/balkonkraftwerk-video/research.md`
+  (Branch der Video-Sitzung): ohne/mit Speicher, Amortisation, Regel-Hinweis Schuko/Wieland/Anlage. Rechner-Übersicht `/rechner/`.
+- 8 weitere Produkte mit Direktlink: Brennenstuhl PM 231 E, ThermoPro TP50 und TP30, tesamoll P-Profil, Heimeier K, Ei650,
+  Dr. Beckmann Waschmaschinenreiniger, Finish Maschinenpfleger.
+- Neue Artikel: Duschkopf entkalken, Rauchmelder piept, Plissee mit oder ohne Bohren.
+- Nächster Schritt mit viel Suchvolumen: eigener Artikel „Balkonkraftwerk mit Speicher: lohnt sich das?“ passend zum Video.

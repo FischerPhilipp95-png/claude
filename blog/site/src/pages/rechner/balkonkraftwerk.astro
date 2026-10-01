@@ -1,0 +1,189 @@
+---
+import Base from '../../layouts/Base.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../site';
+
+const title = 'Balkonkraftwerk-Rechner: Lohnt sich ein Speicher?';
+const description = 'Balkonkraftwerk mit oder ohne Speicher? Ertrag, Ersparnis und Amortisation sofort ausrechnen, mit den Regeln 2026 zu 800 Watt, Schuko und Wieland.';
+const vorlagen = [
+  { name: '2 Module (900 Wp)', wp: 900 },
+  { name: '1 Modul (450 Wp)', wp: 450 },
+  { name: 'Ausbau 2.000 Wp', wp: 2000 },
+];
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Balkonkraftwerk-Rechner',
+  url: `${SITE.url}/rechner/balkonkraftwerk/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Strom">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Balkonkraftwerk</nav>
+    <h1>{title}</h1>
+    <p class="lead">Modulleistung, Strompreis und Kosten eingeben: Der Rechner zeigt, was ein Balkonkraftwerk ohne und mit Speicher im Jahr
+    spart und wann es sich bezahlt macht. Alles wird nur in deinem Browser berechnet.</p>
+
+    <Antwort>
+    <p><strong>Kurz gesagt:</strong> Mit <strong>zwei Modulen (900 Wp)</strong> auf einem guten Südbalkon und <strong>37 Cent pro kWh</strong>
+    spart ein Balkonkraftwerk <strong>ohne Speicher rund 157 €</strong> im Jahr und hat sich nach <strong>gut 2 Jahren</strong> bezahlt gemacht.
+    Ein großer <strong>5-kWh-Speicher</strong> bringt nur <strong>rund 95 € mehr</strong>, kostet aber deutlich mehr: <strong>rund 7 Jahre</strong>
+    bis zur Amortisation. Der Speicher lohnt sich vor allem, wenn du <strong>später ausbaust</strong>.</p>
+    </Antwort>
+
+    <section class="box calc" aria-label="Rechner">
+      <p class="small">Beispiel laden:</p>
+      <div class="presets">
+        {vorlagen.map((v) => <button type="button" class="chip" data-wp={v.wp}>{v.name}</button>)}
+      </div>
+      <div class="calc-grid">
+        <label>Modulleistung in Wp<input id="wp" type="number" inputmode="decimal" min="0" step="any" value="900" /></label>
+        <label>Ertrag in kWh pro 1.000 Wp<input id="spez" type="number" inputmode="decimal" min="0" step="any" value="945" /></label>
+        <label>Strompreis in Cent/kWh<input id="preis" type="number" inputmode="decimal" min="0" step="any" value="37" /></label>
+        <label>Eigenverbrauch ohne Speicher in %<input id="ohne" type="number" inputmode="decimal" min="0" max="100" step="any" value="50" /></label>
+        <label>Eigenverbrauch mit Speicher in %<input id="mit" type="number" inputmode="decimal" min="0" max="100" step="any" value="80" /></label>
+        <label>Kosten ohne Speicher in €<input id="kosten-ohne" type="number" inputmode="decimal" min="0" step="any" value="350" /></label>
+        <label>Kosten mit Speicher in €<input id="kosten-mit" type="number" inputmode="decimal" min="0" step="any" value="1750" /></label>
+      </div>
+
+      <p class="bkw-regel" id="regel" aria-live="polite"></p>
+
+      <p class="bkw-ertrag">Erwarteter Ertrag: <strong id="ertrag">–</strong> pro Jahr</p>
+      <table class="result" aria-live="polite">
+        <thead><tr><th></th><th>ohne Speicher</th><th>mit Speicher</th></tr></thead>
+        <tbody>
+          <tr><td>selbst genutzt</td><td id="kwh-ohne">–</td><td id="kwh-mit">–</td></tr>
+          <tr><td><strong>Ersparnis pro Jahr</strong></td><td id="eur-ohne"><strong>–</strong></td><td id="eur-mit"><strong>–</strong></td></tr>
+          <tr><td>bezahlt nach</td><td id="jahre-ohne">–</td><td id="jahre-mit">–</td></tr>
+        </tbody>
+      </table>
+      <div class="bkw-bars" aria-hidden="true">
+        <div class="bkw-bar"><span>ohne Speicher</span><span class="bkw-track"><span class="bkw-fill" id="bar-ohne"></span></span><span id="bar-ohne-t">–</span></div>
+        <div class="bkw-bar"><span>mit Speicher</span><span class="bkw-track"><span class="bkw-fill" id="bar-mit"></span></span><span id="bar-mit-t">–</span></div>
+      </div>
+      <p class="small">Der Speicher bringt <strong id="mehr">–</strong> mehr pro Jahr. Ertrag und Eigenverbrauch sind Annahmen: Ein Südbalkon
+      mit schräg aufgestellten Modulen schafft mehr als Module senkrecht am Geländer. Für deinen Standort kannst du den Ertrag mit dem
+      kostenlosen <a href="https://re.jrc.ec.europa.eu/pvg_tools/de/" rel="noopener">PVGIS-Rechner der EU</a> schätzen.</p>
+    </section>
+
+    <Schnellkauf titel="Passende Produkte" items={[
+      { name: 'Balkonkraftwerk-Set 800 W', warum: 'Module, Wechselrichter und Kabel im Set. Auf 800 W Einspeisung und höchstens 960 Wp für Schuko achten.', suche: 'Balkonkraftwerk 800W komplettset 900Wp' },
+      { name: 'EcoFlow STREAM 5000', warum: 'Speicher mit eingebautem Wechselrichter, 5 kWh, später erweiterbar.', suche: 'EcoFlow STREAM 5000' },
+      { name: 'Energiekostenmessgerät', warum: 'Zeigt, was deine Geräte tagsüber wirklich verbrauchen.', suche: 'Energiekostenmessgerät Steckdose' },
+    ]} />
+
+    <h2>Die Regeln 2026 auf einen Blick</h2>
+    <ul class="bkw-regeln">
+      <li><Icon name="zap" size={18} /> <span>Ein Balkonkraftwerk darf höchstens <strong>800 Watt</strong> ins Hausnetz einspeisen.</span></li>
+      <li><Icon name="plug" size={18} /> <span>Bis <strong>960 Wp</strong> Modulleistung reicht eine normale <strong>Schuko-Steckdose</strong>.</span></li>
+      <li><Icon name="wrench" size={18} /> <span>Bis <strong>2.000 Wp</strong> nur mit <strong>Wieland-Steckdose</strong>, die eine Elektrofachkraft setzt.</span></li>
+      <li><Icon name="house" size={18} /> <span>Darüber ist es <strong>kein Balkonkraftwerk mehr</strong>, sondern eine normale Solaranlage mit Anmeldung beim Netzbetreiber.</span></li>
+      <li><Icon name="clipboard-list" size={18} /> <span>Jede Anlage muss im <strong>Marktstammdatenregister</strong> angemeldet werden.</span></li>
+    </ul>
+
+    <h2>Wann lohnt sich der Speicher?</h2>
+    <p>Solarmodule liefern mittags am meisten Strom, gebraucht wird er oft abends. Ohne Speicher geht der Überschuss ins Netz, meist ohne
+    Vergütung. Ein Speicher hebt den Eigenverbrauch, im Beispiel von 50 auf 80 Prozent. Bei <strong>nur zwei Modulen</strong> ist ein
+    5-kWh-Speicher aber zu groß: Er bringt rund 95 € im Jahr mehr, kostet aber über 1.000 € extra.</p>
+    <p><strong>Sinnvoll wird er</strong>, wenn du auf bis zu 2.000 Wp ausbaust (mit Wieland-Steckdose), einen dynamischen Stromtarif mit
+    intelligentem Messsystem nutzt oder Notstrom willst.</p>
+
+    <Warnung titel="Vorsicht bei großen Versprechen">
+    Aussagen wie „1.000 € im Jahr sparen mit einem Balkonkraftwerk“ sind unrealistisch. Bei 37 Cent pro kWh müsstest du dafür rund
+    <strong>2.700 kWh</strong> im Jahr selbst verbrauchen. Ein Balkonkraftwerk am Maximum von 2.000 Wp erzeugt grob 1.900 kWh.
+    </Warnung>
+
+    <h2>So rechnet der Rechner</h2>
+    <ul>
+      <li><strong>Ertrag</strong> = Modulleistung (Wp) ÷ 1.000 × Ertrag pro 1.000 Wp. Voreingestellt: 945 kWh, also rund 850 kWh für 900 Wp
+      auf einem guten Südbalkon.</li>
+      <li><strong>Ersparnis</strong> = Ertrag × Eigenverbrauch × Strompreis. Eingespeister Strom bringt bei Balkonkraftwerken meist nichts.</li>
+      <li><strong>Bezahlt nach</strong> = Kosten ÷ Ersparnis pro Jahr. Ohne Zinsen, ohne Preisänderungen.</li>
+      <li>Nicht enthalten: Verluste und Stand-by-Verbrauch des Speichers sowie die Begrenzung auf 800 W bei viel Sonne.</li>
+    </ul>
+    <p>Was deine Geräte tagsüber verbrauchen, rechnest du mit dem <a href="/rechner/stromkosten/">Stromkosten-Rechner</a> aus oder misst es:
+    <a href="/artikel/stromverbrauch-messen/">Stromverbrauch messen</a>.</p>
+
+    <h2>Quellen</h2>
+    <ul class="small">
+      <li>EcoFlow: <a href="https://www.ecoflow.com/de/blog/ecoflow-stream-5000" rel="noopener">STREAM 5000, die wichtigsten Fragen</a></li>
+      <li>balkon-kraft-werke.de: <a href="https://balkon-kraft-werke.de/ratgeber/schuko-oder-wieland-vde-0126-95/" rel="noopener">Schuko oder Wieland 2026 (DIN VDE V 0126-95)</a></li>
+      <li>BDEW: <a href="https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/" rel="noopener">Strompreisanalyse</a></li>
+      <li>ADAC: <a href="https://www.adac.de/rund-ums-haus/energie/versorgung/balkonkraftwerk-speicher/" rel="noopener">Speicher für Balkonkraftwerk</a></li>
+    </ul>
+  </div>
+</Base>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const zahl = (id: string) => Math.max(0, parseFloat($(id).value.replace(',', '.')) || 0);
+  const kwh = (x: number) => Math.round(x).toLocaleString('de-DE') + ' kWh';
+  const eur = (x: number) => Math.round(x).toLocaleString('de-DE') + ' €';
+  const jahre = (k: number, e: number) => {
+    if (e <= 0) return '–';
+    const j = k / e;
+    return j < 1 ? 'unter 1 Jahr' : 'ca. ' + j.toLocaleString('de-DE', { maximumFractionDigits: 1 }) + (j < 1.05 ? ' Jahr' : ' Jahren');
+  };
+  const set = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  function regel(wp: number) {
+    const el = document.getElementById('regel');
+    if (!el) return;
+    const [cls, text] = wp <= 960
+      ? ['gut', `${wp.toLocaleString('de-DE')} Wp: passt mit normaler Schuko-Steckdose (höchstens 960 Wp).`]
+      : wp <= 2000
+        ? ['achtung', `${wp.toLocaleString('de-DE')} Wp: nur mit Wieland-Steckdose, gesetzt von einer Elektrofachkraft. Kosten für Module und Elektriker oben anpassen.`]
+        : ['kritisch', `${wp.toLocaleString('de-DE')} Wp: kein Balkonkraftwerk mehr, sondern eine normale Solaranlage mit Anmeldung.`];
+    el.className = 'bkw-regel ' + cls;
+    el.textContent = text;
+  }
+  function rechnen() {
+    const wp = zahl('wp');
+    const ertrag = (wp / 1000) * zahl('spez');
+    const preis = zahl('preis') / 100;
+    const ohne = ertrag * Math.min(zahl('ohne'), 100) / 100;
+    const mit = ertrag * Math.min(zahl('mit'), 100) / 100;
+    const eOhne = ohne * preis, eMit = mit * preis;
+    set('ertrag', kwh(ertrag));
+    set('kwh-ohne', kwh(ohne)); set('kwh-mit', kwh(mit));
+    set('eur-ohne', eur(eOhne)); set('eur-mit', eur(eMit));
+    set('jahre-ohne', jahre(zahl('kosten-ohne'), eOhne)); set('jahre-mit', jahre(zahl('kosten-mit'), eMit));
+    set('mehr', eur(eMit - eOhne));
+    const max = Math.max(eOhne, eMit, 1);
+    (document.getElementById('bar-ohne') as HTMLElement).style.setProperty('--p', String(eOhne / max));
+    (document.getElementById('bar-mit') as HTMLElement).style.setProperty('--p', String(eMit / max));
+    set('bar-ohne-t', eur(eOhne)); set('bar-mit-t', eur(eMit));
+    regel(wp);
+  }
+  ['wp', 'spez', 'preis', 'ohne', 'mit', 'kosten-ohne', 'kosten-mit'].forEach((id) => $(id).addEventListener('input', rechnen));
+  document.querySelectorAll<HTMLButtonElement>('.presets .chip').forEach((b) => b.addEventListener('click', () => { $('wp').value = b.dataset.wp || '0'; rechnen(); }));
+  rechnen();
+</script>
+
+<style>
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .presets .chip { font: inherit; font-size: 0.9rem; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); cursor: pointer; text-transform: none; letter-spacing: 0; font-weight: 500; }
+  .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0 16px; }
+  .calc-grid label { display: block; font-weight: 500; margin: 12px 0 0; font-size: 0.92rem; line-height: 1.3; }
+  .calc-grid input { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid #bdbab2; border-radius: 8px; margin-top: 6px; background: #fff; color: var(--ink); }
+  .bkw-regel { margin: 18px 0 0; padding: 10px 14px; border-radius: var(--radius-sm); font-weight: 500; border-left: 5px solid; }
+  .bkw-regel.gut { background: #ecf8ec; border-color: #0ca30c; }
+  .bkw-regel.achtung { background: #fff6e0; border-color: #fab219; }
+  .bkw-regel.kritisch { background: #fdecec; border-color: #d03b3b; }
+  .bkw-regel::before { font-weight: 800; margin-right: 6px; }
+  .bkw-regel.gut::before { content: '✓ Erlaubt:'; }
+  .bkw-regel.achtung::before { content: '! Achtung:'; }
+  .bkw-regel.kritisch::before { content: '✕ Grenze:'; }
+  .bkw-ertrag { margin: 14px 0 0; font-size: 1.05rem; }
+  .result { margin-top: 10px; }
+  .result td:not(:first-child), .result th:not(:first-child) { text-align: right; }
+  .bkw-bars { display: grid; gap: 8px; margin: 4px 0 12px; }
+  .bkw-bar { display: grid; grid-template-columns: 110px 1fr 64px; align-items: center; gap: 10px; font-size: 0.88rem; }
+  .bkw-bar span:last-child { text-align: right; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .bkw-track { height: 14px; background: #f0eee8; border-radius: 0 4px 4px 0; }
+  .bkw-fill { display: block; height: 100%; width: calc(100% * var(--p, 0)); background: #ffd400; border-radius: 0 4px 4px 0; transition: width .2s; }
+  .bkw-regeln { list-style: none; padding: 0; }
+  .bkw-regeln li { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
+  .bkw-regeln .icon { margin-top: 4px; color: #b38f00; flex: none; }
+</style>

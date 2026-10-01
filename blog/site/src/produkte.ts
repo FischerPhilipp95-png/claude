@@ -98,6 +98,40 @@ export const PRODUKTE = {
     kurz: 'Hebelklemmen für drei Leiter: Drähte ohne Werkzeug sicher verbinden, zum Beispiel beim Lampenanschluss.',
     passt: 'Für Leiter von 0,2 bis 4 mm². Arbeiten an der Elektroinstallation nur spannungsfrei und im Zweifel durch die Elektrofachkraft.',
   },
+  'brennenstuhl-pm231e': {
+    name: 'Brennenstuhl Energiemessgerät PM 231 E', marke: 'Brennenstuhl', asin: 'B007459MH6', thema: 'Strom', artikel: 'stromverbrauch-messen',
+    kurz: 'Zwischenstecker, der Watt, Verbrauch und Kosten eines Geräts anzeigt. Zwei Stromtarife einstellbar.',
+  },
+  'thermopro-tp50': {
+    name: 'ThermoPro TP50 Hygrometer (2er-Set)', marke: 'ThermoPro', asin: 'B07P996ZKJ', thema: 'Klima', artikel: 'luftfeuchtigkeit-wohnung',
+    kurz: 'Digitales Thermo-Hygrometer mit Komfortanzeige und Min-/Max-Werten, im Doppelpack für zwei Räume.',
+  },
+  'thermopro-tp30': {
+    name: 'ThermoPro TP30 Infrarot-Thermometer', marke: 'ThermoPro', asin: 'B0BGGJH3G2', thema: 'Heizung', artikel: 'hydraulischer-abgleich',
+    kurz: 'Misst Oberflächentemperaturen per Laser, etwa oben und unten am Heizkörper. Emissionsgrad einstellbar.',
+  },
+  'tesamoll-p-profil': {
+    name: 'tesamoll P-Profil Gummidichtung', marke: 'tesa', asin: 'B000QB303W', thema: 'Klima', artikel: 'fenster-abdichten',
+    kurz: 'Selbstklebendes Dichtband für Spalten von etwa 2 bis 5 mm an Fenstern und Türen.',
+    passt: 'Erst die Spaltbreite messen: Für größere Spalten gibt es andere Profile.',
+  },
+  'heimeier-k': {
+    name: 'Heimeier Thermostatkopf K', marke: 'IMI Heimeier', asin: 'B002BESA6Y', thema: 'Heizung', artikel: 'thermostatkopf-wechseln',
+    kurz: 'Klassischer Thermostatkopf mit Flüssigkeitsfühler für Ventile mit Gewinde M30x1,5.',
+    passt: 'Nur für Ventile mit M30x1,5-Gewinde, für andere Ventile Adapter nötig.',
+  },
+  'ei650-rauchmelder': {
+    name: 'Ei Electronics Ei650 Rauchmelder', marke: 'Ei Electronics', asin: 'B007IGQ5SK', thema: 'Sicherheit', artikel: 'rauchmelder-piept',
+    kurz: 'Rauchmelder mit fest eingebauter 10-Jahres-Batterie: kein Batteriewechsel, kein nächtliches Piepen wegen leerer Batterie.',
+  },
+  'dr-beckmann-waschmaschine': {
+    name: 'Dr. Beckmann Waschmaschinen Hygiene-Reiniger', marke: 'Dr. Beckmann', asin: 'B082VPYRJH', thema: 'Küche', artikel: 'waschmaschine-reinigen',
+    kurz: 'Reiniger für einen Leerlauf-Waschgang gegen Gerüche und Beläge in Trommel und Leitungen.',
+  },
+  'finish-maschinenpfleger': {
+    name: 'Finish Maschinenpfleger (2er-Pack)', marke: 'Finish', asin: 'B013P0SJ5O', thema: 'Küche', artikel: 'spuelmaschine-reinigen',
+    kurz: 'Flüssiger Reiniger für einen Leerlauf der Spülmaschine gegen Fett und Kalk.',
+  },
 } satisfies Record<string, Produkt>;
 
 export type ProduktId = keyof typeof PRODUKTE;

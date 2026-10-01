@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+const rechner = [
+  { href: '/rechner/stromkosten/', icon: 'calculator', farbe: '#ffd400', titel: 'Stromkosten-Rechner', text: 'Was kostet mein Gerät pro Tag, Monat und Jahr? Watt und Nutzungsdauer eingeben, fertig.' },
+  { href: '/rechner/balkonkraftwerk/', icon: 'sun', farbe: '#ff741c', titel: 'Balkonkraftwerk-Rechner', text: 'Ertrag, Ersparnis und Amortisation, ohne und mit Speicher, mit den Regeln 2026.' },
+];
+---
+<Base title="Rechner: Stromkosten und Balkonkraftwerk" description="Kostenlose Rechner vom Handwerksdoktor: Stromkosten von Geräten und Ersparnis eines Balkonkraftwerks mit oder ohne Speicher. Alles läuft nur im Browser.">
+  <div class="wrap wide">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Rechner</nav>
+    <h1>Rechner</h1>
+    <p class="lead">Schnell ausrechnen statt schätzen. Alle Rechner laufen nur in deinem Browser, es wird nichts gespeichert oder übertragen.</p>
+    <ul class="tiles rechner-tiles">
+      {rechner.map((r) => (
+        <li><a href={r.href} style={`--akzent:${r.farbe}`}>
+          <span class="tile-icon"><Icon name={r.icon} size={28} /></span>
+          <span class="tile-name">{r.titel}</span>
+          <span class="tile-count">{r.text}</span>
+        </a></li>
+      ))}
+    </ul>
+  </div>
+</Base>
