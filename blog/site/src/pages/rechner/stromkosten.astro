@@ -1,0 +1,106 @@
+---
+import Base from '../../layouts/Base.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import { SITE } from '../../site';
+
+const title = 'Stromkosten-Rechner: Was kostet mein Gerät?';
+const description = 'Kostenloser Stromkosten-Rechner: Watt, Nutzungsdauer und Strompreis eingeben und sofort Verbrauch und Kosten pro Tag, Monat und Jahr sehen.';
+// Beispielwerte (typische Leistung laut Typenschild bzw. übliche Größenordnung). Der echte Verbrauch kann abweichen.
+const vorlagen = [
+  { name: 'Heizlüfter', watt: 2000, stunden: 2 },
+  { name: 'Wasserkocher', watt: 2000, stunden: 0.2 },
+  { name: 'Fernseher', watt: 100, stunden: 4 },
+  { name: 'Router (24 h)', watt: 10, stunden: 24 },
+  { name: 'PC + Monitor', watt: 150, stunden: 5 },
+  { name: 'LED-Lampe', watt: 8, stunden: 5 },
+];
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Stromkosten-Rechner',
+  url: `${SITE.url}/rechner/stromkosten/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › <a href="/thema/strom/">Strom</a> › Stromkosten-Rechner</nav>
+    <h1>{title}</h1>
+    <p class="lead">Leistung des Geräts, Nutzungsdauer und deinen Strompreis eingeben, das Ergebnis erscheint sofort.
+    Alles wird nur in deinem Browser berechnet, nichts wird gespeichert oder übertragen.</p>
+
+    <section class="box calc" aria-label="Rechner">
+      <p class="small">Beispiel laden:</p>
+      <div class="presets">
+        {vorlagen.map((v) => <button type="button" class="chip" data-watt={v.watt} data-stunden={v.stunden}>{v.name}</button>)}
+      </div>
+      <div class="calc-grid">
+        <label>Leistung in Watt<input id="watt" type="number" inputmode="decimal" min="0" step="any" value="2000" /></label>
+        <label>Stunden pro Tag<input id="stunden" type="number" inputmode="decimal" min="0" max="24" step="any" value="2" /></label>
+        <label>Tage pro Jahr<input id="tage" type="number" inputmode="numeric" min="0" max="366" step="1" value="365" /></label>
+        <label>Strompreis in Cent/kWh<input id="preis" type="number" inputmode="decimal" min="0" step="any" value="35" /></label>
+      </div>
+      <table class="result" aria-live="polite">
+        <thead><tr><th></th><th>Verbrauch</th><th>Kosten</th></tr></thead>
+        <tbody>
+          <tr><td>pro Tag</td><td id="kwh-tag">–</td><td id="eur-tag">–</td></tr>
+          <tr><td>pro Monat</td><td id="kwh-monat">–</td><td id="eur-monat">–</td></tr>
+          <tr><td><strong>pro Jahr</strong></td><td id="kwh-jahr">–</td><td id="eur-jahr"><strong>–</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="small">Den Strompreis findest du auf deiner Stromrechnung (Arbeitspreis in ct/kWh). „Monat“ = Jahr ÷ 12.</p>
+    </section>
+
+    <Schnellkauf titel="Echten Verbrauch messen statt schätzen" items={[
+      { name: 'Energiekostenmessgerät', warum: 'Zeigt den tatsächlichen Verbrauch, auch im Stand-by.', suche: 'Energiekostenmessgerät Steckdose' },
+      { name: 'Schaltbare Steckdosenleiste', warum: 'Stand-by-Geräte mit einem Klick ganz ausschalten.', suche: 'Steckdosenleiste mit Schalter einzeln schaltbar' },
+    ]} />
+
+    <h2>So rechnet der Rechner</h2>
+    <p>Die Formel der Verbraucherzentrale: <strong>Verbrauch (kWh) = Leistung (W) × Nutzungsdauer (h) ÷ 1.000</strong>.
+    Die Kosten sind Verbrauch × Strompreis.</p>
+    <p><strong>Beispiel:</strong> Ein Fernseher mit 100 W läuft 4 Stunden am Tag: 100 × 4 ÷ 1.000 = 0,4 kWh pro Tag,
+    also 146 kWh im Jahr. Bei 35 Cent pro kWh sind das rund 51 € im Jahr.</p>
+
+    <h2>Warum das Ergebnis vom echten Verbrauch abweichen kann</h2>
+    <ul>
+      <li>Die Watt-Angabe auf dem Typenschild ist meist die <strong>Höchstleistung</strong>. Viele Geräte brauchen im Betrieb weniger.</li>
+      <li>Geräte mit Thermostat (Kühlschrank, Heizlüfter, Backofen) schalten sich an und aus.</li>
+      <li>Der <strong>Stand-by-Verbrauch</strong> fehlt, wenn du nur die Nutzungsdauer einträgst.</li>
+    </ul>
+    <p>Genauer geht es mit einem Messgerät: <a href="/artikel/stromverbrauch-messen/">Stromverbrauch messen: 4 einfache Wege</a>.
+    Für Heizlüfter gibt es eine eigene Übersicht: <a href="/artikel/heizluefter-stromverbrauch/">Heizlüfter: Was kostet eine Stunde?</a></p>
+  </div>
+</Base>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const zahl = (id: string) => Math.max(0, parseFloat($(id).value.replace(',', '.')) || 0);
+  const kwh = (x: number) => x.toLocaleString('de-DE', { maximumFractionDigits: x < 10 ? 2 : 0 }) + ' kWh';
+  const eur = (x: number) => x.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
+  function rechnen() {
+    const tag = (zahl('watt') * Math.min(zahl('stunden'), 24)) / 1000;
+    const jahr = tag * Math.min(zahl('tage'), 366);
+    const preis = zahl('preis') / 100;
+    const set = (id: string, text: string) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+    set('kwh-tag', kwh(tag)); set('eur-tag', eur(tag * preis));
+    set('kwh-monat', kwh(jahr / 12)); set('eur-monat', eur((jahr / 12) * preis));
+    set('kwh-jahr', kwh(jahr)); set('eur-jahr', eur(jahr * preis));
+  }
+  ['watt', 'stunden', 'tage', 'preis'].forEach((id) => $(id).addEventListener('input', rechnen));
+  document.querySelectorAll<HTMLButtonElement>('.chip').forEach((b) => b.addEventListener('click', () => {
+    $('watt').value = b.dataset.watt || '0';
+    $('stunden').value = b.dataset.stunden || '0';
+    rechnen();
+  }));
+  rechnen();
+</script>
+
+<style>
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .chip { font: inherit; font-size: 0.9rem; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); cursor: pointer; }
+  .chip:hover { border-color: var(--ink); }
+  .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0 16px; }
+  .calc-grid label { display: block; font-weight: 500; margin: 12px 0 0; }
+  .calc-grid input { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid #bdbab2; border-radius: 8px; margin-top: 6px; background: #fff; color: var(--ink); }
+  .result { margin-top: 18px; }
+  .result td:not(:first-child), .result th:not(:first-child) { text-align: right; }
+</style>

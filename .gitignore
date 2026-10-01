@@ -24,3 +24,6 @@ projects/*/out/*_chat.mp4
 
 # Große Modelle für die Freistellung
 .rembg/
+
+# Themenfinder-Zwischenspeicher
+blog/seo/.themenfinder-cache.json

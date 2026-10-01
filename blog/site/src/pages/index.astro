@@ -1,4 +1,5 @@
 ---
+import { THEMEN } from '../themen';
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { SITE } from '../site';
@@ -15,6 +16,7 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
       <p>Warum gluckert die Heizung? Wie kommt der Strom ins Haus? Hier findest du Antworten, die man versteht,
       und Anleitungen für alles, was du sicher selbst machen kannst.</p>
       <a class="btn" href="/artikel/">Zu den Artikeln</a>
+      <a class="btn btn-ghost" href="/rechner/stromkosten/">Stromkosten-Rechner</a>
     </div>
   </section>
   <div class="wrap wide">
@@ -23,7 +25,7 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
       {posts.map((p) => (
         <li class="card"><a href={`/artikel/${p.id}/`}>
           <img src={p.data.bild} alt="" width="1200" height="675" loading="lazy" />
-          <div><span class="tag">{p.data.thema}</span><h3>{p.data.title}</h3><p>{p.data.description}</p></div>
+          <div><span class="tag">{THEMEN[p.data.thema].titel}</span><h3>{p.data.title}</h3><p>{p.data.description}</p></div>
         </a></li>
       ))}
     </ul>

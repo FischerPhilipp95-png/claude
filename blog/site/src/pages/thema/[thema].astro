@@ -21,14 +21,14 @@ const jsonLd = [{
 ---
 <Base title={`${t.titel}: Anleitungen und Ratgeber`} description={t.intro.slice(0, 155)} jsonLd={jsonLd}>
   <div class="wrap wide">
-    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › {name}</nav>
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › {t.titel}</nav>
     <h1>{t.titel}: Anleitungen und Ratgeber</h1>
     <p class="lead">{t.intro}</p>
     <ul class="cards">
       {liste.map((p) => (
         <li class="card"><a href={`/artikel/${p.id}/`}>
           <img src={p.data.bild} alt="" width="1200" height="675" loading="lazy" />
-          <div><span class="tag">{p.data.thema}</span><h3>{p.data.title}</h3><p>{p.data.description}</p></div>
+          <div><span class="tag">{THEMEN[p.data.thema].titel}</span><h3>{p.data.title}</h3><p>{p.data.description}</p></div>
         </a></li>
       ))}
     </ul>

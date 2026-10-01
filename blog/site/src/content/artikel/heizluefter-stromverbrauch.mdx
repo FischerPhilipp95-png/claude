@@ -1,0 +1,110 @@
+---
+title: "Heizlüfter Stromverbrauch: Was kostet eine Stunde?"
+kurztitel: "Heizlüfter: Was kostet eine Stunde?"
+description: "Ein Heizlüfter mit 2.000 Watt verbraucht 2 kWh pro Stunde, bei 35 Cent also 70 Cent. Kosten pro Tag, Monat und Jahr, mit Rechner und Spartipps."
+pubDate: 2026-10-01
+thema: Strom
+bild: /bilder/titel/heizluefter-stromverbrauch.webp
+bildAlt: "Titelbild: Heizlüfter Stromverbrauch, was kostet eine Stunde"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import ProduktBox from '../../components/ProduktBox.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import Bild from '../../components/Bild.astro';
+
+<Antwort>
+**Kurz gesagt:** Ein Heizlüfter mit **2.000 Watt** verbraucht auf voller Stufe **2 kWh pro Stunde**. Bei einem Strompreis von
+35 Cent pro kWh kostet das **70 Cent pro Stunde**. Läuft er jeden Tag 2 Stunden, sind das rund **42 € im Monat**. Die
+Verbraucherzentrale rät deshalb, Heizlüfter nur kurz und gezielt einzusetzen.
+</Antwort>
+
+<Schnellkauf items={[
+  { name: 'Energiekostenmessgerät', warum: 'Zeigt, was dein Heizlüfter wirklich verbraucht.', suche: 'Energiekostenmessgerät Steckdose' },
+  { name: 'Heizlüfter mit Thermostat und Kippschutz', warum: 'Falls doch nötig: regelt ab und schaltet beim Umfallen aus.', suche: 'Heizlüfter Thermostat Kippschutz Überhitzungsschutz' },
+]} />
+
+<Bild
+  src={frontmatter.bild}
+  alt={frontmatter.bildAlt}
+  width={1200}
+  height={675}
+  nachweis={frontmatter.bildNachweis}
+  eager
+/>
+
+## Kosten-Tabelle: Heizlüfter mit 2.000 Watt
+
+Bei einem angenommenen Strompreis von **35 Cent pro kWh**. Deinen eigenen Preis findest du auf der Stromrechnung.
+
+| Nutzung | Verbrauch | Kosten |
+|---|---|---|
+| 1 Stunde | 2 kWh | 0,70 € |
+| 2 Stunden pro Tag, 1 Monat (30 Tage) | 120 kWh | 42 € |
+| 2 Stunden pro Tag, Heizperiode (ca. 6 Monate) | 360 kWh | 126 € |
+| 8 Stunden pro Tag, 1 Monat | 480 kWh | 168 € |
+
+Auf kleiner Stufe, oft 1.000 W, halbieren sich die Werte. Mit Thermostat schaltet das Gerät ab, wenn der Raum warm ist, und
+verbraucht dann weniger.
+
+**Selbst ausrechnen:** Mit unserem [Stromkosten-Rechner](/rechner/stromkosten/) gibst du Watt, Stunden und deinen Strompreis
+ein und bekommst sofort die Kosten pro Tag, Monat und Jahr.
+
+## Warum Heizen mit Strom so teuer ist
+
+Ein Heizlüfter macht aus einer Kilowattstunde Strom eine Kilowattstunde Wärme, effizienter geht es mit dieser Technik nicht.
+Strom ist pro Kilowattstunde aber deutlich teurer als Gas oder Öl. Die Verbraucherzentrale schätzt, dass die Stromrechnung auf ein
+**Fünf- bis Zehnfaches** steigen würde, wenn man die ganze Wohnung elektrisch direkt heizen würde.
+
+**Sinnvoll** ist ein Heizlüfter deshalb nur **kurz und gezielt**: im Bad am Morgen, im Arbeitszimmer an einzelnen kalten Tagen
+oder als Notlösung, wenn die Heizung ausfällt.
+
+## So findest du heraus, was dein Heizlüfter wirklich verbraucht
+
+Die Watt-Angabe auf dem Typenschild ist die **Höchstleistung**. Was er tatsächlich verbraucht, zeigt ein
+<AmazonLink suche="Energiekostenmessgerät Steckdose">Energiekostenmessgerät</AmazonLink> zwischen Steckdose und Gerät.
+Wie das geht: [Stromverbrauch messen: 4 einfache Wege](/artikel/stromverbrauch-messen/).
+
+<ProduktBox
+  titel="Falls ein Heizlüfter nötig ist: darauf achten"
+  suche="Heizlüfter Thermostat Kippschutz Überhitzungsschutz"
+  kriterien={[
+    'Thermostat: schaltet ab, wenn die Wunschtemperatur erreicht ist.',
+    'Kippschutz und Überhitzungsschutz.',
+    'Mehrere Leistungsstufen, z. B. 1.000 und 2.000 W.',
+    'Für das Bad nur Geräte, die ausdrücklich dafür zugelassen sind (Spritzwasserschutz, siehe Anleitung).',
+  ]}
+/>
+
+<Warnung titel="Sicherheit">
+Heizlüfter direkt in die **Wandsteckdose** stecken, nicht in Mehrfachstecker oder dünne Verlängerungskabel. 2.000 Watt sind eine
+hohe Dauerlast. Abstand zu Vorhängen, Möbeln und Textilien halten, nie unbeaufsichtigt oder über Nacht laufen lassen, nichts darüberlegen.
+</Warnung>
+
+## Günstiger warm werden: Alternativen
+
+- **Zentralheizung richtig nutzen:** Ein Heizkörper, der [nicht richtig warm wird](/artikel/heizkoerper-wird-nicht-warm/) oder
+  [gluckert](/artikel/heizung-gluckert/), ist oft schnell repariert und heizt dann deutlich günstiger als ein Heizlüfter.
+- **Zugluft stoppen:** [Fenster abdichten](/artikel/fenster-abdichten/) bringt bei alten Fenstern spürbar mehr Wärme.
+- **Gezielt wärmen statt Raum heizen:** Wärmflasche, Decke oder ein Heizkissen verbrauchen nur einen Bruchteil.
+
+## Häufige Fragen
+
+### Was kostet ein Heizlüfter pro Tag?
+Bei 2.000 W und 35 ct/kWh: **0,70 € pro Stunde**. Bei 3 Stunden täglich also 2,10 € am Tag.
+
+### Verbraucht ein Heizlüfter mit Thermostat weniger?
+Ja, weil er abschaltet, sobald der Raum warm ist. Wie viel, hängt von Raumgröße, Dämmung und Außentemperatur ab. Messen bringt Klarheit.
+
+### Sind Mini-Heizlüfter für die Steckdose sparsamer?
+Kleine Geräte haben weniger Leistung und verbrauchen deshalb pro Stunde weniger, sie heizen aber auch kaum. Die Verbraucherzentrale
+hält solche Steckdosen-Heizlüfter als Heizungsalternative für ungeeignet.
+
+## Quellen
+
+- Verbraucherzentrale: [Stromsparboxen und Heizlüfter für Steckdosen ohne Spareffekt](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/stromsparboxen-und-heizluefter-fuer-steckdosen-ohne-spareffekt-78391)
+- Verbraucherzentrale Energieberatung: [Elektrische Direktheizung](https://verbraucherzentrale-energieberatung.de/heizen/neue-heiztechnik/elektrische-direktheizung/)
+- Verbraucherzentrale Energieberatung: [Stromverbrauch messen](https://verbraucherzentrale-energieberatung.de/energie-sparen/allgemeines/stromverbrauch-messen/)

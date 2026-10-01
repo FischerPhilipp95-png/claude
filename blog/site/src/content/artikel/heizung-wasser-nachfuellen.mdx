@@ -1,0 +1,121 @@
+---
+title: "Heizung Wasser nachfüllen: Anleitung und richtiger Druck in bar"
+kurztitel: "Heizung Wasser nachfüllen: so geht's"
+description: "Druck zu niedrig? So füllst du Wasser in die Heizung nach: welcher Druck richtig ist, was du brauchst und warum ein Systemtrenner Pflicht ist."
+pubDate: 2026-10-01
+thema: Heizung
+bild: /bilder/titel/heizung-wasser-nachfuellen.webp
+bildAlt: "Titelbild: Heizung Wasser nachfüllen"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import ProduktBox from '../../components/ProduktBox.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import Bild from '../../components/Bild.astro';
+
+<Antwort>
+**Kurz gesagt:** Einen mit Wasser gefüllten Schlauch mit **Systemtrenner** an Wasserhahn und **KFE-Hahn** (Kessel-Füll-Entleer-Hahn)
+der Heizung anschließen, erst den Wasserhahn, dann den KFE-Hahn öffnen und so lange nachfüllen, bis das Manometer den
+richtigen Druck zeigt. Das sind in Einfamilienhäusern meist **1 bis 2 bar**. Dann beide Hähne schließen und die Heizkörper entlüften.
+</Antwort>
+
+<Schnellkauf items={[
+  { name: 'Heizungs-Füllset mit Systemtrenner', warum: 'Schlauch plus Rückflusssperre, damit kein Heizungswasser ins Trinkwasser kommt.', suche: 'Heizung Füllschlauch Systemtrenner' },
+  { name: 'Entlüftungsschlüssel-Set', warum: 'Nach dem Nachfüllen müssen die Heizkörper entlüftet werden.', suche: 'Entlüftungsschlüssel Heizkörper Set' },
+]} />
+
+<Bild
+  src={frontmatter.bild}
+  alt={frontmatter.bildAlt}
+  width={1200}
+  height={675}
+  nachweis={frontmatter.bildNachweis}
+  eager
+/>
+
+<Warnung titel="Mietwohnung und Wartungsvertrag">
+In der Mietwohnung ist das Nachfüllen Sache des Vermieters bzw. Hausmeisters. Auch im Eigenheim gilt: Halte dich an die
+Anleitung deiner Heizung. Manche Anlagen haben eine eingebaute Füllvorrichtung oder brauchen aufbereitetes Wasser.
+Im Zweifel den Heizungsbauer fragen.
+</Warnung>
+
+## Wann muss Wasser nachgefüllt werden?
+
+- Das **Manometer** zeigt weniger als den Sollwert, oft unter 1 bar.
+- Heizkörper im Obergeschoss [werden nicht warm](/artikel/heizkoerper-wird-nicht-warm/).
+- Die Heizung [gluckert](/artikel/heizung-gluckert/), oder sie zeigt eine Störung wegen zu niedrigen Drucks an.
+- Du hast gerade [die Heizkörper entlüftet](/artikel/heizkoerper-entlueften-anleitung/). Dabei geht immer etwas Wasser verloren.
+
+<Bild
+  src="/bilder/manometer-heizung.webp"
+  alt="Manometer einer Heizungsanlage mit Anzeige in bar"
+  width={1000}
+  height={813}
+  nachweis='Foto: Shixart1985, „A pressure gauge attached to a heating system“, <a href="https://commons.wikimedia.org/wiki/File:A_pressure_gauge_attached_to_a_heating_system.jpg" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/2.0/" rel="noopener">CC BY 2.0</a>, zugeschnitten'
+/>
+
+## Welcher Druck ist richtig?
+
+In Einfamilienhäusern liegt der Druck meist zwischen **1,0 und 2,0 bar**. Er hängt davon ab, wie hoch der oberste
+Heizkörper über der Heizung sitzt. Eine verbreitete Faustregel:
+
+**Höhe des obersten Heizkörpers über der Heizung (in Metern) × 0,1 bar + 0,5 bar**
+
+Beispiel: Der oberste Heizkörper hängt 8 m über dem Kessel → 8 × 0,1 + 0,5 = **1,3 bar**.
+Am verbindlichsten ist der **grüne Bereich** am Manometer bzw. der Wert in der Anleitung deiner Heizung.
+
+## Das brauchst du
+
+- Einen **Füllschlauch**, der auf Wasserhahn und KFE-Hahn passt
+- Einen **Systemtrenner** zwischen Wasserhahn und Schlauch. Er verhindert, dass Heizungswasser zurück ins Trinkwasser fließt.
+  Praktisch sind <AmazonLink suche="Heizung Füllschlauch Systemtrenner">Füllsets, bei denen der Systemtrenner schon dabei ist</AmazonLink>.
+- Eimer und Lappen
+
+## Anleitung: Heizungswasser nachfüllen in 7 Schritten
+
+1. **Heizung bzw. Umwälzpumpe ausschalten** und die Thermostate an den Heizkörpern voll aufdrehen.
+2. **KFE-Hahn suchen.** Er sitzt meist an der tiefsten Stelle der Anlage, oft direkt an oder unter dem Kessel.
+3. **Schlauch komplett mit Wasser füllen**, bevor du ihn am KFE-Hahn anschließt. So gelangt keine Luft in die Heizung.
+4. **Schlauch anschließen:** Wasserhahn (mit Systemtrenner) und KFE-Hahn.
+5. **Erst den Wasserhahn, dann den KFE-Hahn langsam öffnen.** Das Wasser fließt in die Anlage.
+6. **Manometer beobachten** und schließen, sobald der Solldruck erreicht ist: erst den KFE-Hahn, dann den Wasserhahn.
+7. **Schlauch abnehmen, Heizung einschalten, Heizkörper entlüften**, wie in der
+   [Anleitung zum Entlüften](/artikel/heizkoerper-entlueften-anleitung/) beschrieben, und den Druck danach noch einmal prüfen.
+
+<ProduktBox
+  titel="Füllset für die Heizung: darauf achten"
+  suche="Heizung Füllschlauch Systemtrenner"
+  kriterien={[
+    'Mit Systemtrenner bzw. Rückflussverhinderer für den Anschluss am Trinkwasser.',
+    'Anschlüsse passend zu Wasserhahn und KFE-Hahn (meist ½ Zoll, im Zweifel vorher messen).',
+    'Schlauch lang genug vom Wasserhahn bis zur Heizung.',
+  ]}
+/>
+
+## Druck fällt immer wieder? Dann steckt mehr dahinter
+
+Musst du ständig nachfüllen, verliert die Anlage irgendwo Wasser, oder das **Ausdehnungsgefäß** ist defekt. Das sollte
+ein Heizungsbauer prüfen. Dauerndes Nachfüllen bringt immer wieder frisches, sauerstoffreiches Wasser ins System, und das
+ist auf Dauer schlecht für die Anlage.
+
+## Häufige Fragen
+
+### Kann ich normales Leitungswasser nehmen?
+In vielen Anlagen ja, bei kleinen Mengen zum Nachfüllen. Manche Hersteller schreiben aber aufbereitetes Wasser vor,
+etwa bei Aluminium-Wärmetauschern. Das steht in der Anleitung deiner Heizung.
+
+### Wie viel Druck ist zu viel?
+Zeigt das Manometer deutlich mehr als den Sollwert, etwa im roten Bereich, kannst du über einen Heizkörper vorsichtig
+etwas Wasser ablassen. Liegt der Druck dauerhaft zu hoch, sollte der Heizungsbauer das prüfen.
+
+### Wie oft muss man Wasser nachfüllen?
+Normalerweise selten, etwa nach dem Entlüften. Musst du mehrmals im Jahr nachfüllen, lass die Anlage prüfen.
+
+## Quellen
+
+- Buderus: [Heizung Wasser nachfüllen](https://www.buderus.de/de/heiztechnik-verstehen/heizungen/heizung-wasser-nachfuellen-11216)
+- Thermondo: [Heizungswasser nachfüllen](https://www.thermondo.de/info/rat/heizen/wasser-nachfuellen/) und [Wasserdruck der Heizung](https://www.thermondo.de/info/rat/heizen/wasserdruck/)
+- EnBW: [Heizungswasser selbst nachfüllen](https://www.enbw.com/blog/wohnen/energie-sparen/heizungswasser-selbst-nachfuellen-das-sollten-sie-beachten/)

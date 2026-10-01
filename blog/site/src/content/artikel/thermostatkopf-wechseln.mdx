@@ -1,0 +1,106 @@
+---
+title: "Thermostatkopf wechseln: in 5 Minuten, ohne Wasser abzulassen"
+kurztitel: "Thermostatkopf wechseln in 5 Minuten"
+description: "Heizkörperthermostat tauschen ohne Werkzeug und ohne Wasser abzulassen: welcher Anschluss passt (M30 × 1,5, Danfoss), wann du einen Adapter brauchst."
+pubDate: 2026-10-01
+thema: Heizung
+bild: /bilder/titel/thermostatkopf-wechseln.webp
+bildAlt: "Titelbild: Thermostatkopf wechseln in 5 Minuten"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import ProduktBox from '../../components/ProduktBox.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import Bild from '../../components/Bild.astro';
+
+<Antwort>
+**Kurz gesagt:** Alten Thermostatkopf auf **Stufe 5** drehen, Überwurfmutter lösen und abziehen. Neuen Kopf ebenfalls auf
+Stufe 5 aufsetzen und **handfest** anziehen. Das Ventil bleibt dabei geschlossen, es läuft **kein Wasser aus**. Wichtig ist nur,
+dass der neue Kopf auf dein Ventil passt. Am häufigsten ist **M30 × 1,5**, für andere Ventile, etwa von Danfoss, gibt es Adapter.
+</Antwort>
+
+<Schnellkauf items={[
+  { name: 'Thermostatkopf M30 × 1,5', warum: 'Passt auf die meisten Ventile, ohne Adapter.', suche: 'Thermostatkopf Heizkörper M30x1,5' },
+  { name: 'Smartes Heizkörperthermostat', warum: 'Zeitpläne per App, Absenkung nachts und bei Abwesenheit.', suche: 'smartes Heizkörperthermostat' },
+  { name: 'Adapter-Set für Thermostatventile', warum: 'Für Danfoss- und andere Ventile ohne M30-Gewinde.', suche: 'Adapter Set Thermostatventil Danfoss' },
+]} />
+
+<Bild
+  src={frontmatter.bild}
+  alt={frontmatter.bildAlt}
+  width={1200}
+  height={675}
+  nachweis={frontmatter.bildNachweis}
+  eager
+/>
+
+## Wann sich ein neuer Thermostatkopf lohnt
+
+- Der Heizkörper [wird nicht warm](/artikel/heizkoerper-wird-nicht-warm/), obwohl der Ventilstift frei ist. Dann ist meist der Kopf defekt.
+- Der Kopf regelt nicht mehr richtig, der Raum wird zu warm oder zu kalt.
+- Du willst auf ein **programmierbares bzw. smartes Thermostat** umsteigen und die Temperatur nachts oder bei Abwesenheit automatisch absenken.
+
+## Schritt 1: Welchen Anschluss hat dein Ventil?
+
+Schau dir an, wie der alte Kopf befestigt ist:
+
+| Befestigung | Typisch für | Was du brauchst |
+|---|---|---|
+| **Überwurfmutter mit Gewinde M30 × 1,5** | viele Ventile, z. B. von Heimeier und Oventrop | Kopf mit M30 × 1,5, kein Adapter |
+| **Klemm- bzw. Klickverschluss** | Danfoss (z. B. RA, RAV, RAVL) | passender **Adapter** auf M30 × 1,5 |
+| **anderes Gewinde** | ältere oder seltene Ventile | Adapter nach Hersteller des Ventils |
+
+Der Hersteller steht oft klein auf dem Ventilkörper. Mach im Zweifel ein Foto und vergleiche mit Adapter-Übersichten.
+Viele <AmazonLink suche="smartes Heizkörperthermostat">smarte Thermostate</AmazonLink> liegen gleich mehrere Adapter bei.
+
+## Schritt 2: Alten Kopf abnehmen
+
+1. **Thermostat auf Stufe 5 drehen.** Dann ist der Stift im Ventil entlastet, und der Kopf lässt sich leicht lösen.
+2. **Überwurfmutter gegen den Uhrzeigersinn lösen**, meist von Hand, sonst vorsichtig mit einer Zange. Bei Danfoss-Köpfen
+   den Klemmring lösen.
+3. **Kopf abziehen.** Darunter siehst du den kleinen Ventilstift. Drück ihn kurz hinein, er sollte zurückfedern. Klemmt er,
+   [so machst du ihn gängig](/artikel/heizkoerper-wird-nicht-warm/).
+
+## Schritt 3: Neuen Kopf aufsetzen
+
+1. Falls nötig, **zuerst den Adapter** auf das Ventil setzen und festziehen.
+2. Neuen Kopf **auf Stufe 5 bzw. „offen“** stellen. Smarte Thermostate fahren dafür meist in eine Montageposition, siehe Anleitung.
+3. Aufsetzen und die Mutter **handfest** anziehen. Nicht mit der Zange festknallen.
+4. Gewünschte Stufe einstellen und testen, ob der Heizkörper warm wird.
+
+<Warnung titel="Mietwohnung">
+Ein Thermostatkopf ist schnell getauscht und wieder zurückgebaut. Frag in der Mietwohnung trotzdem kurz den Vermieter
+und heb den alten Kopf auf, für den Auszug.
+</Warnung>
+
+<ProduktBox
+  titel="Neuer Thermostatkopf: darauf achten"
+  suche="Thermostatkopf Heizkörper M30x1,5"
+  kriterien={[
+    'Anschluss passend zum Ventil (M30 × 1,5 oder mit dem richtigen Adapter).',
+    'Frostschutzstellung (Schneeflocke) und Nullstellung zum Abschalten.',
+    'Smart: mit Zeitplänen, Fenster-offen-Erkennung und Bedienung am Gerät, nicht nur per App.',
+    'Smart: Batterielaufzeit und ob eine Zentrale (Bridge) nötig ist.',
+  ]}
+/>
+
+## Häufige Fragen
+
+### Muss ich beim Thermostatwechsel Wasser ablassen?
+Nein. Der Thermostatkopf sitzt nur außen auf dem Ventil. Das Ventil selbst bleibt geschlossen und dicht.
+
+### Passt jedes Thermostat auf jeden Heizkörper?
+Nicht ohne Weiteres. Entscheidend ist der Anschluss des **Ventils**, nicht der Heizkörper. M30 × 1,5 ist am häufigsten,
+für Danfoss und andere gibt es Adapter.
+
+### Wie oft sollte man Thermostate tauschen?
+Eine verbreitete Faustregel sind etwa **10 bis 15 Jahre**, oder wenn sie nicht mehr richtig regeln.
+
+## Quellen
+
+- Danfoss: [Datenblätter Heizkörperthermostate und Adapter](https://assets.danfoss.com/documents/latest/99923/AF179586475449de-DE0101.pdf)
+- Haustechnik verstehen: [Übersicht Adapter für Thermostatventile](https://www.haustechnikverstehen.de/die-grosse-uebersicht-adapter-fuer-thermostatventile/)
+- t-online: [Heizung gluckert trotz Entlüftung (Thermostat-Alter)](https://www.t-online.de/heim-garten/energie/heizung/id_100243404/heizung-gluckert-trotz-entlueftung-so-beheben-sie-die-haeufigsten-fehler.html)

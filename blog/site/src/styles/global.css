@@ -135,3 +135,7 @@ th, td { overflow-wrap: anywhere; hyphens: auto; }
 .quick li > span { flex: 1 1 180px; min-width: 0; }
 .quick li { flex-wrap: wrap; }
 .quick .small { line-height: 1.45; }
+
+.btn-ghost { background: transparent; color: #fff; border: 2px solid var(--yellow); margin-left: 8px; }
+.hero .btn { margin-top: 6px; }
+.calc-grid { align-items: end; }
