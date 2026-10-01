@@ -31,6 +31,9 @@ Regeln:
 
 Musik: Standard ist jetzt echte Instrumente per Soundfont (Vorlage `projects/havanola-promo/music.py`: MIDI komponieren,
 Stems mit FluidSynth rendern, eigene Kick/Sub/Riser dazu, Sidechain, Hall, Mastering). Der Nutzer fand reine Sinus-Synthese zu schwach.
+Für orchestral/episch: Soundfont MuseScore General (`/usr/share/sounds/sf2/MuseScore_General_Full.sf2`, Sektionen wie Violins Fast,
+Celli Trem usw.), Vorlage `projects/wika-radar/music.py`. Für „hochwertig“: Bewegungsunschärfe, Filmkorn, Spiegelungen,
+echte Perspektive, Beschriftungen aus Datenblättern (Vorlage `projects/wika-radar/render.mjs`).
 Websites (Kundenseiten, x.com, YouTube) sind nur erreichbar, wenn ihre Domain in den Netzwerk-Einstellungen
 der Cloud-Umgebung freigegeben ist. Ein 403 beim Download bedeutet: Domain nicht freigegeben.
 

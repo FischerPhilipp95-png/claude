@@ -42,3 +42,19 @@ Die Referenz hat leichte Elektronik. Auf Wunsch wird es eine **epische Trailer-M
 
 - **1920x1080 (16:9), 60 fps, 15 s** (6 Takte à 96 BPM), wie die Referenz (LinkedIn, Website, YouTube).
   Auf Wunsch zusätzlich 9:16 für Instagram.
+
+## Version 2 („viel hochwertiger“)
+
+Gleicher Ablauf und gleiche Aussagen wie Version 1 (shotlist.md), aber deutlich mehr Produktionswert:
+
+| Bereich | Version 1 | Version 2 |
+|---|---|---|
+| Bild | flache Formen, harte Schnitte | **Bewegungsunschärfe** (4 Unterbilder pro Frame, 180°-Verschluss), **Filmkorn**, Vignette, schwebende Lichtpunkte für Tiefe |
+| Produkt | Foto mit Kasten-Schatten | Foto 2× hochgerechnet (Lanczos + Schärfen), **Lichtkante** nur auf dem Metall, blaues Gegenlicht, **Spiegelung** auf glänzendem Boden |
+| Technik | – | **Beschriftungen wie in einer technischen Zeichnung** (Datenblatt LM 50.17): Rundstecker M12 × 1, CrNi-Stahl 1.4404, G½A, Sensorlinse PEEK · 60 GHz; **Live-Messwert** am Radarstrahl |
+| Radar | einfache Bögen | FMCW-**Chirp** (Sinus mit steigender Frequenz), Ringe mit Glühen, Kegel mit wandernden Wellenfronten |
+| Flüssigkeit/Tank | Linien | Glas-Tank mit Glanzstreifen, Flüssigkeit mit Wellen, Lichtbändern und Bläschen |
+| Daten | 2D-Karten | **echte 3D-Perspektive** (Homographie), Tiefenunschärfe beim Anflug, Zahlen zählen hoch, Mini-Grafiken (Lineal, Maßpfeil, Temperaturverlauf, Schwingung, IP-Symbole), Kamera fliegt am Ende hindurch |
+| Typo | Inter 500 | Inter 300–800, Wörter gleiten aus einer Maske, gesperrte Versal-Labels in WIKA-Blau |
+| Schluss | Logo + Pille | weißer Blitz, Logo wird scharf, Glanz läuft über das Logo, Funkenring, Glas-Button mit Klick-Welle |
+| Musik | FluidR3 GM | **MuseScore General** (MIT-Lizenz) mit echten Orchester-Sektionen: 22 Spuren, Hall 3 s, Rückwärts-Becken auf die Hits, Braams, Sub-Booms, Chirp |

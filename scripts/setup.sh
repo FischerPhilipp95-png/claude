@@ -13,9 +13,11 @@ if ! command -v ffmpeg >/dev/null 2>&1; then
 fi
 
 # Echte Instrumente für die Musik: FluidSynth + Soundfont FluidR3_GM (MIT-Lizenz)
-if ! command -v fluidsynth >/dev/null 2>&1 || [ ! -f /usr/share/sounds/sf2/FluidR3_GM.sf2 ]; then
-  (apt-get install -y -q fluidsynth fluid-soundfont-gm >/dev/null 2>&1 || \
-   (apt-get update -q >/dev/null 2>&1 && apt-get install -y -q fluidsynth fluid-soundfont-gm >/dev/null 2>&1)) || true
+# + MuseScore General (MIT-Lizenz, echte Orchester-Sektionen) für hochwertige/epische Musik
+PKGS="fluidsynth fluid-soundfont-gm musescore-general-soundfont-lossless"
+if ! command -v fluidsynth >/dev/null 2>&1 || [ ! -f /usr/share/sounds/sf2/FluidR3_GM.sf2 ] || [ ! -f /usr/share/sounds/sf2/MuseScore_General_Full.sf2 ]; then
+  (apt-get install -y -q $PKGS >/dev/null 2>&1 || \
+   (apt-get update -q >/dev/null 2>&1 && apt-get install -y -q $PKGS >/dev/null 2>&1)) || true
 fi
 
 # Node-Abhängigkeiten (Canvas-Renderer)
