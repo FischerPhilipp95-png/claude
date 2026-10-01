@@ -72,7 +72,9 @@ def main():
         for t, lizenz, autor, ii in info({'titles': titel}):
             if not OK.match(lizenz):
                 sys.exit(f'Lizenz nicht erlaubt: {lizenz}')
-            req = urllib.request.Request(ii['thumburl'], headers={'User-Agent': 'handwerksdoktor-blog/1.0'})
+            # Wikimedia liefert nur Standard-Vorschaugrößen; ist das Original schmaler, das Original nehmen.
+            quelle = ii['thumburl'] if ii.get('width', 0) > 1280 else ii['url']
+            req = urllib.request.Request(quelle, headers={'User-Agent': 'handwerksdoktor-blog/1.0 (info@handwerksdoktor.de)'})
             im = Image.open(io.BytesIO(urllib.request.urlopen(req, timeout=30).read())).convert('RGB')
             im.thumbnail((1200, 1200))
             im.save(ziel, 'WEBP', quality=80)

@@ -1,0 +1,152 @@
+---
+title: "Smartes Thermostat: Lohnt es sich? Ersparnis, Datenschutz, Einbau"
+kurztitel: "Smartes Thermostat: Lohnt es sich?"
+description: "Wie viel sparen smarte Heizkörperthermostate wirklich, worauf du beim Datenschutz achten solltest und wie du sie in 5 Minuten selbst montierst."
+pubDate: 2026-10-01
+icon: house-wifi
+thema: Heizung
+bild: /bilder/titel/smartes-thermostat.webp
+bildAlt: "Titelbild: Smartes Thermostat, lohnt es sich"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import ProduktBox from '../../components/ProduktBox.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import Bild from '../../components/Bild.astro';
+import Ablauf from '../../components/Ablauf.astro';
+import Balken from '../../components/Balken.astro';
+
+<Antwort>
+**Kurz gesagt:** Smarte Heizkörperthermostate lohnen sich vor allem, wenn du **tagsüber oft nicht zu Hause** bist oder Räume nur
+zeitweise nutzt. Dann senken sie die Temperatur automatisch ab. Je nach Untersuchung sind **etwa 6 bis 15 % Heizenergie** drin.
+Wer schon diszipliniert von Hand runterdreht, spart weniger. Achte beim Kauf auf den **Datenschutz**: Es gibt Systeme, die ganz ohne
+Cloud des Herstellers auskommen.
+</Antwort>
+
+<Schnellkauf items={[
+  { name: 'Smartes Heizkörperthermostat', warum: 'Senkt die Temperatur nach Zeitplan. Ventilanschluss vorher prüfen.', suche: 'smartes Heizkörperthermostat' },
+  { name: 'Ventil-Adapter-Set', warum: 'Für Ventile, die nicht das übliche M30x1,5-Gewinde haben.', suche: 'Adapter Set Heizkörperthermostat Danfoss' },
+  { name: 'Fensterkontakt', warum: 'Dreht die Heizung beim Lüften automatisch runter.', suche: 'Fensterkontakt smart home Heizung' },
+]} />
+
+## Was ein smartes Thermostat anders macht
+
+Ein normaler Thermostatkopf hält die Temperatur, die du einstellst, **rund um die Uhr**. Ein smartes Thermostat folgt einem
+**Zeitplan**: morgens warm im Bad, tagsüber kühler, abends warm im Wohnzimmer, nachts abgesenkt. Viele Modelle erkennen außerdem
+**offene Fenster** an einem Temperatursturz oder über einen Fensterkontakt und drehen dann zu.
+
+<Bild
+  src="/bilder/smartes-thermostat.webp"
+  alt="Elektronisches Heizkörperthermostat mit Display und Drehrad"
+  width={900}
+  height={1200}
+  schmal
+  nachweis='Foto: Raimond Spekking, „EQ-3 CC-RT-BLE-EQ-9828“, <a href="https://commons.wikimedia.org/wiki/File:EQ-3_CC-RT-BLE-EQ-9828.jpg" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>'
+/>
+
+## Wie viel spart ein smartes Thermostat?
+
+Die Zahlen gehen auseinander. Laut ADAC nennt die Stiftung Warentest **6 bis 10 %** der Heizkosten, Verbraucherzentrale und
+co2online **9 bis 15 %**. Am meisten ist drin, wenn Räume regelmäßig leer stehen und konsequent abgesenkt wird. Was das in Euro heißt:
+
+<Balken
+  titel="Mögliche Ersparnis bei 1.200 € Heizkosten im Jahr"
+  untertitel="Rechenbeispiel. Wie viel es bei dir ist, hängt von Gebäude, Gewohnheiten und Zeitplan ab."
+  einheit="€ pro Jahr"
+  sortieren={false}
+  daten={[
+    { label: '6 % Ersparnis', wert: 72, notiz: 'untere Schätzung' },
+    { label: '10 % Ersparnis', wert: 120 },
+    { label: '15 % Ersparnis', wert: 180, notiz: 'obere Schätzung' },
+  ]}
+  quelle="Grafik: Der Handwerksdoktor. Spannen laut ADAC: Stiftung Warentest 6–10 %, Verbraucherzentrale/co2online 9–15 %."
+/>
+
+Laut ADAC kosten Einstiegsgeräte **ab etwa 30 Euro**, Markengeräte meist **50 bis 80 Euro pro Thermostat**, je nach System
+kommt eine Zentrale dazu. Mit mehreren Räumen dauert es also meist einige
+Heizperioden, bis sich die Anschaffung bezahlt hat.
+
+## Welche Art passt zu dir?
+
+| System | So funktioniert es | Gut zu wissen |
+|---|---|---|
+| Bluetooth | Steuerung per App in der Nähe | Günstig, aber von unterwegs meist nicht erreichbar |
+| Funk mit Zentrale (Bridge) | Thermostate funken zu einer Zentrale im Router-Bereich | Zuverlässig, Steuerung auch von unterwegs |
+| Über den Router | Thermostate funken direkt zum passenden Router | Keine zusätzliche Zentrale nötig, nur mit kompatiblem Router |
+| WLAN direkt | Jedes Thermostat ist im WLAN | Höherer Batterieverbrauch, oft Cloud-Pflicht |
+
+Ein smartes Thermostat ersetzt nur den **Thermostatkopf**, das Ventil bleibt. Wie der Tausch geht, steht ausführlich hier:
+[Thermostatkopf wechseln](/artikel/thermostatkopf-wechseln/).
+
+## Datenschutz: darauf achten
+
+Ein Thermostat weiß, **wann du zu Hause bist**. Einige Geräte schicken diese Daten in die Cloud des Herstellers, manche verlangen
+dafür sogar ein Konto. Das Bundesamt für Sicherheit in der Informationstechnik (BSI) sah 2024 bei vielen Geräten zwar die
+Basis-Sicherheitsanforderungen erfüllt, aber noch Verbesserungsbedarf, etwa beim Produktsupport.
+
+- **Lokale Steuerung** bevorzugen: Manche Systeme laufen über eine Zentrale oder den Router im eigenen Netz und brauchen keine
+  Hersteller-Cloud.
+- **Ohne Konto nutzbar?** In der Produktbeschreibung oder Anleitung nachsehen.
+- **Updates:** Der Hersteller sollte Sicherheitsupdates liefern.
+
+<ProduktBox
+  titel="Smartes Thermostat: darauf achten"
+  suche="smartes Heizkörperthermostat"
+  kriterien={[
+    'Passt auf dein Ventil: M30x1,5 ist am häufigsten, sonst Adapter nötig.',
+    'Zeitpläne direkt am Gerät gespeichert, damit es auch ohne Internet weiterläuft.',
+    'Lokale Steuerung ohne Hersteller-Cloud möglich, wenn dir Datenschutz wichtig ist.',
+    'Fenster-offen-Erkennung und Kinderschutz (Tastensperre).',
+    'Batterielaufzeit von mindestens einer Heizperiode, übliche AA-Batterien.',
+  ]}
+/>
+
+## Einbau in 5 Minuten
+
+<Ablauf
+  titel="Smartes Thermostat montieren"
+  schritte={[
+    { icon: 'rotate-ccw', titel: 'Alten Kopf ab', text: 'Auf Stufe 5 drehen, Überwurfmutter lösen.' },
+    { icon: 'wrench', titel: 'Adapter', text: 'Falls nötig, passenden Adapter aufs Ventil setzen.' },
+    { icon: 'battery', titel: 'Batterien', text: 'Einlegen, Gerät fährt den Stellmotor zurück.' },
+    { icon: 'thermometer', titel: 'Aufsetzen', text: 'Aufschrauben, Gerät lernt den Ventilhub.' },
+    { icon: 'calendar-clock', titel: 'Zeitplan', text: 'Zeiten und Temperaturen festlegen.' },
+  ]}
+/>
+
+<Warnung titel="Adapter vorher prüfen">
+Nicht jedes Ventil hat das Standardgewinde M30x1,5. Vor allem ältere Danfoss- und Heimeier-Ventile brauchen einen Adapter. Ein
+Foto vom Ventil hilft beim Kauf. Mehr dazu im Artikel [Thermostatkopf wechseln](/artikel/thermostatkopf-wechseln/).
+</Warnung>
+
+## Wann lohnt es sich nicht?
+
+- Du bist **fast immer zu Hause** und heizst alle Räume ähnlich.
+- Deine Heizung hat bereits eine **gut eingestellte Nachtabsenkung** und du drehst konsequent von Hand runter.
+- Einzelne Heizkörper werden ohnehin **nicht richtig warm**. Dann zuerst die Ursache beheben:
+  [Heizkörper wird nicht warm](/artikel/heizkoerper-wird-nicht-warm/).
+
+Mehr spart oft die richtige Einstellung der Heizung selbst:
+[Heizkurve einstellen](/artikel/heizkurve-einstellen/) und [hydraulischer Abgleich](/artikel/hydraulischer-abgleich/).
+
+## Häufige Fragen
+
+### Darf ich als Mieter smarte Thermostate einbauen?
+In der Regel ja, denn nur der Kopf wird getauscht. Bewahre die alten Köpfe auf und setz sie beim Auszug wieder ein.
+
+### Wie weit sollte ich die Temperatur absenken?
+Nicht zu stark. Räume sollten nicht dauerhaft auskühlen, sonst steigt die Schimmelgefahr. Mehr dazu:
+[Luftfeuchtigkeit in der Wohnung](/artikel/luftfeuchtigkeit-wohnung/).
+
+### Funktioniert ein smartes Thermostat ohne Internet?
+Viele ja: Der Zeitplan ist im Gerät gespeichert. Ohne Internet fehlt dann nur die Fernsteuerung per App.
+
+## Quellen
+
+- ADAC: [Smarte Heizkörperthermostate](https://www.adac.de/rund-ums-haus/energie/versorgung/smarte-heizkoerperthermostate/)
+- t-online: [Stiftung Warentest: Smarte Heizkörperthermostate im Test](https://www.t-online.de/ratgeber/technik/smarthome-und-sicherheit/id_86156788/stiftung-warentest-smarte-heizkoerperthermostate-im-test-i-geld-sparen.html)
+- notebookcheck: [Warentest testet 11 smarte Heizkörperthermostate](https://www.notebookcheck.com/Warentest-testet-11-smarte-Heizkoerperthermostate-Nur-2-lassen-sich-einfach-bedienen-Sparpotenzial-erst-langfristig.748402.0.html)
+- EnBW: [Smarte Heizkörperthermostate](https://www.enbw.com/blog/wohnen/smart-home/ganz-schoen-smart-dieser-heizkoerperthermostat/)

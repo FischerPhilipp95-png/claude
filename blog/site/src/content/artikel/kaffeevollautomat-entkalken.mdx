@@ -15,6 +15,8 @@ import Warnung from '../../components/Warnung.astro';
 import ProduktBox from '../../components/ProduktBox.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
+import Bild from '../../components/Bild.astro';
+import Ablauf from '../../components/Ablauf.astro';
 
 <Antwort>
 **Kurz gesagt:** Entkalke mit dem **Entkalker, den dein Hersteller empfiehlt**, und starte das **Entkalkungsprogramm** der Maschine. Sie
@@ -34,9 +36,29 @@ Im Leitungswasser ist Kalk gelöst. Beim Erhitzen setzt er sich im **Heizsystem 
 Kaffee wird nicht mehr richtig heiß, die Maschine wird langsamer, braucht mehr Strom, und im schlimmsten Fall verstopfen Leitungen oder
 die Heizung geht kaputt. Schäden durch Kalk sind oft nicht von der Garantie abgedeckt. Ein Blick in die Garantiebedingungen deiner Maschine lohnt sich.
 
+<Bild
+  src="/bilder/kaffeevollautomat.webp"
+  alt="Kaffeevollautomat mit Tasse unter dem Auslauf"
+  width={1111}
+  height={1200}
+  schmal
+  nachweis='Foto: Johann H. Addicks, „Espressovollautomat für Heimgebrauch“, <a href="https://commons.wikimedia.org/wiki/File:Espressovollautomat_f%C3%BCr_Heimgebrauch.jpg" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>'
+/>
+
 ## Anleitung: Kaffeevollautomat entkalken
 
 Die genauen Schritte unterscheiden sich je nach Modell, das Prinzip ist bei fast allen gleich:
+
+<Ablauf
+  titel="Entkalken auf einen Blick"
+  schritte={[
+    { icon: 'filter', titel: 'Filter raus', text: 'Wasserfilter entfernen.' },
+    { icon: 'droplets', titel: 'Entkalker rein', text: 'Nach Packungsangabe in den Tank.' },
+    { icon: 'play', titel: 'Programm starten', text: 'Entkalkungsprogramm im Menü wählen.' },
+    { icon: 'rotate-ccw', titel: 'Spülen', text: 'Tank ausspülen, Programm spült nach.' },
+    { icon: 'coffee', titel: 'Erster Kaffee weg', text: 'Filter wieder rein, ersten Kaffee wegschütten.' },
+  ]}
+/>
 
 1. **Wasserfilter herausnehmen**, falls einer eingesetzt ist. Während des Entkalkens darf er meist nicht drin sein.
 2. **Wassertank leeren** und den Entkalker nach Packungsangabe mit Wasser in den Tank füllen, bis zur angegebenen Markierung.

@@ -1,0 +1,160 @@
+---
+title: "Wasserhahn tropft: Kartusche oder Dichtung selbst wechseln"
+kurztitel: "Wasserhahn tropft: selbst reparieren"
+description: "Wasserhahn tropft? Meist ist die Kartusche oder eine Dichtung schuld. So findest du die Ursache und tauschst das Teil in rund 20 Minuten selbst."
+pubDate: 2026-10-01
+icon: droplet
+thema: Wasser
+bild: /bilder/titel/wasserhahn-tropft.webp
+bildAlt: "Titelbild: Wasserhahn tropft, selbst reparieren"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import ProduktBox from '../../components/ProduktBox.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import Bild from '../../components/Bild.astro';
+import Ablauf from '../../components/Ablauf.astro';
+import Balken from '../../components/Balken.astro';
+
+<Antwort>
+**Kurz gesagt:** Bei einem **Einhebelmischer** ist fast immer die **Kartusche** verschlissen. Kalk zerkratzt die Keramikscheiben
+darin, dann dichten sie nicht mehr. Bei alten **Armaturen mit zwei Drehgriffen** ist meist eine **Dichtung** im Ventiloberteil
+porös. Beides kannst du selbst tauschen: Wasser am **Eckventil** abdrehen, Griff abnehmen, altes Teil raus, gleiches Teil rein.
+Nimm das alte Teil mit in den Baumarkt oder vergleiche Maße und Hersteller genau.
+</Antwort>
+
+<Schnellkauf items={[
+  { name: 'Ersatzkartusche für Einhebelmischer', warum: 'Häufigster Grund fürs Tropfen. Durchmesser und Hersteller vorher prüfen.', suche: 'Kartusche Einhebelmischer 35 mm' },
+  { name: 'Armaturenzange', warum: 'Löst die Überwurfmutter, ohne die Oberfläche zu zerkratzen.', suche: 'Armaturenzange Kunststoffbacken' },
+  { name: 'Dichtungs-Set für Wasserhähne', warum: 'Für ältere Armaturen mit zwei Drehgriffen.', suche: 'Dichtungen Set Wasserhahn Ventiloberteil' },
+]} />
+
+## Warum der Wasserhahn tropft
+
+<Bild
+  src="/bilder/wasserhahn-kueche.webp"
+  alt="Einhebelmischer an einer Küchenspüle mit laufendem Wasser"
+  width={1048}
+  height={786}
+  nachweis='Foto: Riki1979 at German Wikipedia, „Drehbarer Wasserhahn“, <a href="https://commons.wikimedia.org/wiki/File:Drehbarer_Wasserhahn.jpg" rel="noopener">Wikimedia Commons</a>, gemeinfrei'
+/>
+
+| Wo tropft es? | Wahrscheinliche Ursache |
+|---|---|
+| Aus dem Auslauf, Hebel-Armatur | Kartusche verschlissen (Keramikscheiben verkalkt oder zerkratzt) |
+| Aus dem Auslauf, Armatur mit zwei Drehgriffen | Dichtung im Ventiloberteil porös |
+| Am Hebel oder unter dem Griff | O-Ring an der Kartusche oder am Ventiloberteil |
+| Am Fuß der Armatur | Dichtung zwischen Armatur und Becken oder am schwenkbaren Auslauf |
+| Unter dem Becken | Anschlussschläuche oder Eckventil, dann sofort zudrehen |
+
+Ein tropfender Hahn klingt harmlos, kostet aber Wasser. Die Grafik zeigt, was dabei grob zusammenkommt:
+
+<Balken
+  titel="So viel Wasser verliert ein tropfender Hahn"
+  untertitel="Rechenbeispiele pro Jahr. Ein Tropfen hat grob 0,05 Milliliter, die tatsächliche Menge schwankt stark."
+  einheit="Liter"
+  sortieren={false}
+  daten={[
+    { label: '1 Tropfen alle 5 Sekunden', wert: 315 },
+    { label: '1 Tropfen pro Sekunde', wert: 1577 },
+    { label: '2 Tropfen pro Sekunde', wert: 3154 },
+  ]}
+  quelle="Grafik: Der Handwerksdoktor. Eigene Rechnung: Tropfen pro Sekunde × 0,05 ml × 31.536.000 Sekunden im Jahr."
+/>
+
+## Vorher: Was du brauchst
+
+- Passende **Ersatzkartusche** oder **Dichtungen**
+- <AmazonLink suche="Armaturenzange Kunststoffbacken">Armaturenzange</AmazonLink> oder Maulschlüssel, dazu ein Tuch gegen Kratzer
+- Kleiner Schlitz-Schraubendreher und Inbusschlüssel
+- Ein Lappen, um den **Abfluss abzudecken**, damit keine Schraube verschwindet
+- Gegen Kalk: <AmazonLink suche="Entkalker Armaturen Zitronensäure">Entkalker</AmazonLink> und eine alte Zahnbürste
+
+## Anleitung: Kartusche im Einhebelmischer wechseln
+
+<Ablauf
+  titel="Kartusche wechseln in 5 Schritten"
+  schritte={[
+    { icon: 'droplet-off', titel: 'Wasser zu', text: 'Beide Eckventile unter dem Becken zudrehen, Hahn öffnen.' },
+    { icon: 'circle-dot', titel: 'Kappe ab', text: 'Zierkappe am Hebel vorsichtig abhebeln.' },
+    { icon: 'wrench', titel: 'Hebel ab', text: 'Schraube lösen, Hebel und Abdeckhülse abziehen.' },
+    { icon: 'rotate-ccw', titel: 'Mutter lösen', text: 'Überwurfmutter gegen den Uhrzeigersinn abschrauben.' },
+    { icon: 'circle-check', titel: 'Tauschen', text: 'Neue Kartusche einsetzen, Noppen in die Aussparungen.' },
+  ]}
+/>
+
+1. **Wasser abdrehen.** Unter dem Waschbecken sitzen meist zwei **Eckventile** (kalt und warm). Beide im Uhrzeigersinn zudrehen.
+   Dann den Hahn öffnen, damit der Druck entweicht.
+2. **Zierkappe abnehmen.** Am Hebel sitzt meist eine kleine Kappe mit Blau-Rot-Markierung. Mit einem kleinen Schraubendreher
+   vorsichtig abhebeln.
+3. **Hebel abschrauben.** Darunter ist eine Schraube oder ein Inbus. Lösen und den Hebel nach oben abziehen. Oft folgt noch eine
+   Abdeckhülse.
+4. **Überwurfmutter lösen.** Mit der Armaturenzange **gegen den Uhrzeigersinn** drehen. Mit der zweiten Hand die Armatur festhalten,
+   damit sie sich nicht mitdreht.
+5. **Kartusche herausziehen** und mit ins Geschäft nehmen. Achte auf **Durchmesser** (häufig 35 oder 40 mm), Höhe und Hersteller.
+6. **Neue Kartusche einsetzen.** Die **Noppen** an der Unterseite müssen genau in die Aussparungen im Armaturenkörper greifen. Die
+   Dichtungen unten müssen sauber sitzen.
+7. **Alles wieder zusammenbauen**, Mutter fest, aber nicht mit Gewalt anziehen. Eckventile langsam öffnen und auf Dichtheit prüfen.
+
+<Warnung titel="Kartusche nur mit passendem Ersatz tauschen">
+Kartuschen sind nicht genormt. Eine falsche Kartusche dichtet nicht oder vertauscht warm und kalt. Bei Markenarmaturen bekommst du
+das Originalteil über den Hersteller oder den Fachhandel. Die Modellnummer steht oft in der Anleitung oder unter dem Becken auf dem
+Armaturenkörper.
+</Warnung>
+
+<ProduktBox
+  titel="Ersatzkartusche: darauf achten"
+  suche="Kartusche Einhebelmischer 35 mm"
+  kriterien={[
+    'Gleicher Durchmesser wie die alte (häufig 35 oder 40 mm) und gleiche Bauhöhe.',
+    'Gleiche Anordnung der Noppen unten, sonst sitzt sie nicht dicht.',
+    'Am besten Original vom Hersteller deiner Armatur oder ausdrücklich als passend angegeben.',
+    'Bei Niederdruck-Armaturen (über einem kleinen Boiler) nur eine dafür geeignete Kartusche.',
+  ]}
+/>
+
+## Anleitung: Ältere Armatur mit zwei Drehgriffen
+
+<Bild
+  src="/bilder/ventiloberteile.webp"
+  alt="Drei ausgebaute Ventiloberteile einer alten Armatur mit Griffrosette"
+  width={1200}
+  height={899}
+  nachweis='Foto: Alan Levine from Strawberry, United States, „Three Cartridges (28352215663)“, <a href="https://commons.wikimedia.org/wiki/File:Three_Cartridges_(28352215663).jpg" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/2.0/" rel="noopener">CC BY 2.0</a>'
+/>
+
+Hier sitzt unter jedem Griff ein **Ventiloberteil** mit einer Gummidichtung unten. Wird sie hart oder rissig, tropft es.
+
+1. Wasser am Eckventil abdrehen, Hahn öffnen.
+2. Kappe am Griff abnehmen, Schraube lösen, **Griff abziehen**.
+3. Das **Ventiloberteil** mit einem Maulschlüssel herausdrehen (gegen den Uhrzeigersinn).
+4. **Dichtung unten** am Ventiloberteil tauschen oder gleich ein neues Ventiloberteil einsetzen. Gewinde vorher entkalken.
+5. Wieder einschrauben, Wasser langsam aufdrehen, prüfen.
+
+## Wann besser den Fachbetrieb rufen?
+
+- Das **Eckventil lässt sich nicht schließen** oder tropft selbst.
+- Wasser kommt **aus der Wand** oder aus dem Anschluss.
+- Die Armatur sitzt fest und **dreht sich mit**, sodass Leitungen in der Wand belastet würden.
+
+## Häufige Fragen
+
+### Wie lange hält eine Kartusche?
+Das hängt vor allem vom Kalk im Wasser ab. Viele halten zehn Jahre und mehr, in Gegenden mit sehr hartem Wasser auch deutlich kürzer.
+
+### Lohnt sich eine Reparatur oder gleich eine neue Armatur?
+Eine Kartusche kostet meist deutlich weniger als eine neue Armatur. Ist die Armatur sehr alt, verkalkt oder gibt es keine Ersatzteile
+mehr, ist eine neue oft die bessere Wahl.
+
+### Was ist das Eckventil?
+Das kleine Ventil unter dem Waschbecken, an dem der Schlauch zur Armatur hängt. Damit drehst du das Wasser nur für diesen Hahn ab.
+Lässt es sich nicht schließen, den Haupthahn der Wohnung zudrehen.
+
+## Quellen
+
+- Westfalia: [Wasserhahn tropft: So wechseln Sie Dichtungen und Ventile selbst](https://www.westfalia.de/blog/blog-13/wasserhahn-tropft-so-wechseln-sie-dichtungen-und-ventile-selbst-4738)
+- talu: [Tropfender Wasserhahn](https://www.talu.de/tropfender-wasserhahn/)
+- hagebau: [Wasserhahn reparieren](https://www.hagebau.de/beratung-wasserhahn-reparieren/)

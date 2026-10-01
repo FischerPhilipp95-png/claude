@@ -16,6 +16,7 @@ import ProduktBox from '../../components/ProduktBox.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Bild from '../../components/Bild.astro';
+import Ablauf from '../../components/Ablauf.astro';
 
 <Antwort>
 **Kurz gesagt:** Zieht es am Fenster, liegt es fast immer an einer von drei Stellen: an der **Dichtung am Flügel**, an der
@@ -28,6 +29,16 @@ selbstklebendem **Dichtband** ab: **E-Profil** für kleine (bis ca. 3,5 mm), **P
   { name: 'Fenster-Dichtband (E-, P- oder D-Profil)', warum: 'Selbstklebend, in 10 Minuten angebracht.', suche: 'Fensterdichtband selbstklebend P-Profil' },
   { name: 'Zugluftstopper', warum: 'Gegen Zugluft unter Türen und auf der Fensterbank.', suche: 'Zugluftstopper Tür' },
 ]} />
+
+<Ablauf
+  titel="Fenster abdichten in 4 Schritten"
+  schritte={[
+    { icon: 'search', titel: 'Stelle finden', text: 'Papier- oder Kerzentest am geschlossenen Fenster.' },
+    { icon: 'ruler', titel: 'Spalt messen', text: 'Spaltbreite bestimmt das passende Dichtband.' },
+    { icon: 'scissors', titel: 'Dichtband kleben', text: 'Falz reinigen, Band in den Rahmen kleben.' },
+    { icon: 'settings-2', titel: 'Nachstellen', text: 'Beschlag justieren, wenn das Fenster zu locker schließt.' },
+  ]}
+/>
 
 ## Schritt 1: Die undichte Stelle finden
 

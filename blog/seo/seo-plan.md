@@ -159,3 +159,16 @@ Neu: Abfluss verstopft · Schimmel entfernen · Waschmaschine reinigen · Spülm
 
 Nächste Kandidaten aus dem Ranking: hydraulischer Abgleich · Wasserhahn tropft · smartes Thermostat · Heizkurve einstellen ·
 Stand-by-Stromverbrauch · Duschkopf/Wasserkocher entkalken. Ab März: mobile Klimaanlage.
+
+## Stand 01.10.2026, Runde 4
+
+Neu: Hydraulischer Abgleich · Wasserhahn tropft · Smartes Thermostat · Heizkurve einstellen · Stand-by-Stromfresser
+(Themen 9–12 und Stand-by aus `themen-ranking.md`).
+
+Eigene Grafiken, ohne fremde Server, als HTML/SVG direkt in der Seite (Hover zeigt genaue Werte, Zahlen stehen immer auch als Text da):
+`Balken` (eine Datenreihe in der Themenfarbe), `Skala` (Bereiche mit Statusfarbe, immer mit Symbol und Text), `DruckSkala`
+(Heizungsdruck, in allen Heizungs-Artikeln gleich), `Ablauf` (Schritte mit Icons) und `Heizkurve` (Prinzip-Darstellung mit Tabelle).
+Alle älteren Artikel haben jetzt mindestens eine Grafik, Artikel ohne Foto haben ein Commons-Foto bekommen, wo es ein brauchbares gab.
+
+Nächste Kandidaten: Duschkopf entkalken · Wasserkocher entkalken · Heizung richtig einstellen · Heizkörper tauschen (Kosten) ·
+ab März: mobile Klimaanlage.

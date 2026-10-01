@@ -16,6 +16,7 @@ import ProduktBox from '../../components/ProduktBox.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Bild from '../../components/Bild.astro';
+import Ablauf from '../../components/Ablauf.astro';
 
 <Antwort>
 **Kurz gesagt:** Alten Thermostatkopf auf **Stufe 5** drehen, Überwurfmutter lösen und abziehen. Neuen Kopf ebenfalls auf
@@ -35,6 +36,16 @@ dass der neue Kopf auf dein Ventil passt. Am häufigsten ist **M30 × 1,5**, fü
 - Der Kopf regelt nicht mehr richtig, der Raum wird zu warm oder zu kalt.
 - Du willst auf ein **programmierbares bzw. smartes Thermostat** umsteigen und die Temperatur nachts oder bei Abwesenheit automatisch absenken.
 
+<Ablauf
+  titel="Thermostatkopf wechseln in 4 Schritten"
+  schritte={[
+    { icon: 'search', titel: 'Anschluss prüfen', text: 'Gewinde oder Klemmanschluss? Ggf. Adapter kaufen.' },
+    { icon: 'rotate-ccw', titel: 'Alten Kopf ab', text: 'Auf Stufe 5 drehen, Mutter lösen.' },
+    { icon: 'circle-dot', titel: 'Stift testen', text: 'Ventilstift muss zurückfedern.' },
+    { icon: 'circle-check', titel: 'Neuen Kopf drauf', text: 'Auf Stufe 5 aufsetzen, handfest anziehen.' },
+  ]}
+/>
+
 ## Schritt 1: Welchen Anschluss hat dein Ventil?
 
 Schau dir an, wie der alte Kopf befestigt ist:
@@ -47,6 +58,14 @@ Schau dir an, wie der alte Kopf befestigt ist:
 
 Der Hersteller steht oft klein auf dem Ventilkörper. Mach im Zweifel ein Foto und vergleiche mit Adapter-Übersichten.
 Viele <AmazonLink suche="smartes Heizkörperthermostat">smarte Thermostate</AmazonLink> liegen gleich mehrere Adapter bei.
+
+<Bild
+  src="/bilder/thermostatkopf.webp"
+  alt="Thermostatkopf mit Zahlenskala an einem Heizkörperventil"
+  width={1200}
+  height={795}
+  nachweis='Foto: USA-Reiseblogger / Simon, „Heimeier-Thermostat-1687928“, <a href="https://commons.wikimedia.org/wiki/File:Heimeier-Thermostat-1687928.jpg" rel="noopener">Wikimedia Commons</a>, CC0'
+/>
 
 ## Schritt 2: Alten Kopf abnehmen
 

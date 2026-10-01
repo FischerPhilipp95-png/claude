@@ -16,6 +16,7 @@ import ProduktBox from '../../components/ProduktBox.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Bild from '../../components/Bild.astro';
+import Ablauf from '../../components/Ablauf.astro';
 
 <Antwort>
 **Kurz gesagt:** Hat das Entlüftungsventil einen **Schlitz**, reicht ein flacher Schraubendreher oder sogar eine
@@ -38,6 +39,16 @@ Das Entlüftungsventil sitzt oben seitlich am Heizkörper. Schau es dir genau an
 | **Vierkant** | kleiner quadratischer Zapfen in der Mitte | vorsichtig mit kleiner Zange |
 | **Schlitz** | Kerbe wie bei einer Schraube | Schraubendreher oder Münze |
 | **Automatischer Entlüfter** | kleines Ventil mit Kappe, oft an Badheizkörpern | entlüftet von selbst, nichts zu tun |
+
+<Ablauf
+  titel="Ohne Schlüssel: was zu welchem Ventil passt"
+  schritte={[
+    { icon: 'search', titel: 'Ventil ansehen', text: 'Schlitz, Vierkant oder Innensechskant?' },
+    { icon: 'wrench', titel: 'Schlitz', text: 'Flacher Schraubendreher oder Münze.' },
+    { icon: 'square', titel: 'Vierkant', text: 'Kleine Zange, sehr vorsichtig drehen.' },
+    { icon: 'key-round', titel: 'Dauerlösung', text: 'Universal-Entlüftungsschlüssel für ein paar Euro.' },
+  ]}
+/>
 
 ## Weg 1: Schlitz-Schraubendreher
 

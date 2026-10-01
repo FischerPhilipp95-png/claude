@@ -16,6 +16,7 @@ import ProduktBox from '../../components/ProduktBox.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Bild from '../../components/Bild.astro';
+import Ablauf from '../../components/Ablauf.astro';
 
 <Antwort>
 **Mechanisch statt Chemie.** Arbeite dich in dieser Reihenfolge vor: **heißes Wasser** → **Saugglocke** (Pümpel) →
@@ -28,6 +29,17 @@ Dusche und Spüle selbst frei. Das Umweltbundesamt rät, Abflüsse mechanisch zu
   { name: 'Rohrreinigungsspirale', warum: 'Für Verstopfungen, die tiefer im Rohr sitzen.', suche: 'Rohrreinigungsspirale 5m' },
   { name: 'Haarsieb für Dusche und Waschbecken', warum: 'Verhindert die nächste Verstopfung. Kostet fast nichts.', suche: 'Haarsieb Abfluss Dusche' },
 ]} />
+
+<Ablauf
+  titel="Die richtige Reihenfolge bei verstopftem Abfluss"
+  schritte={[
+    { icon: 'flame', titel: 'Heißes Wasser', text: 'Löst leichte Fett- und Seifenreste.' },
+    { icon: 'circle-dot', titel: 'Saugglocke', text: 'Überlauf zuhalten, kräftig pumpen.' },
+    { icon: 'wrench', titel: 'Siphon', text: 'Abschrauben, Haare und Reste entfernen.' },
+    { icon: 'rotate-ccw', titel: 'Spirale', text: 'Für Verstopfungen tiefer im Rohr.' },
+    { icon: 'phone', titel: 'Fachbetrieb', text: 'Wenn alles nichts hilft oder mehrere Abflüsse betroffen sind.' },
+  ]}
+/>
 
 ## Schritt 1: Heißes Wasser
 

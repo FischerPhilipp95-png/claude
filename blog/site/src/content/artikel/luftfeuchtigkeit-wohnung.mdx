@@ -16,6 +16,7 @@ import ProduktBox from '../../components/ProduktBox.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Bild from '../../components/Bild.astro';
+import Skala from '../../components/Skala.astro';
 
 <Antwort>
 **Kurz gesagt:** In Wohnräumen gelten **etwa 40 bis 60 % relative Luftfeuchtigkeit** als angenehm und gesund. Laut
@@ -38,6 +39,21 @@ Wand über 80 %, droht Schimmel, dann mehrmals täglich kurz stoßlüften.
 | Küche | ca. 50–60 %, beim Kochen kurz mehr |
 | Bad | kurzzeitig deutlich mehr, danach wieder runter auf unter 70 % |
 
+<Skala
+  titel="Luftfeuchtigkeit in Wohnräumen: so liest du dein Hygrometer"
+  untertitel="Relative Luftfeuchtigkeit als Dauerwert im Raum, nicht kurz nach dem Duschen oder Kochen."
+  einheit="%"
+  min={20}
+  max={90}
+  bereiche={[
+    { bis: 40, label: 'eher trocken: weniger lange lüften, nicht überheizen', status: 'achtung' },
+    { bis: 60, label: 'angenehm und gesund', status: 'gut' },
+    { bis: 70, label: 'erhöht: öfter stoßlüften', status: 'erhoeht' },
+    { bis: 90, label: 'zu feucht: Schimmelgefahr, sofort lüften', status: 'kritisch' },
+  ]}
+  quelle="Grafik: Der Handwerksdoktor. Werte nach Umweltbundesamt und Verbraucherzentrale."
+/>
+
 **Entscheidend ist der Dauerwert.** Nach dem Duschen oder Kochen ist mehr normal. Wichtig ist, dass die Feuchtigkeit danach
 durch Lüften wieder sinkt.
 
@@ -52,6 +68,14 @@ Fensterlaibungen. Dort ist die Luft kühler und damit feuchter als in der Raummi
 ## Luftfeuchtigkeit messen: so geht's richtig
 
 Ein <AmazonLink suche="Hygrometer digital Thermometer innen">digitales Hygrometer</AmazonLink> zeigt dir die relative Luftfeuchtigkeit an.
+
+<Bild
+  src="/bilder/hygrometer.webp"
+  alt="Digitales Hygrometer mit Anzeige von Temperatur und Luftfeuchtigkeit"
+  width={1200}
+  height={891}
+  nachweis='Foto: Jacek Halicki, „2023 Czujnik temperatury i wilgotności Xiaomi (1)“, <a href="https://commons.wikimedia.org/wiki/File:2023_Czujnik_temperatury_i_wilgotno%C5%9Bci_Xiaomi_(1).jpg" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>'
+/>
 
 - **Nicht direkt** neben Heizkörper, Fenster oder Wasserkocher stellen. Dort sind die Werte verfälscht.
 - **In Brust- bis Kopfhöhe** im Raum aufstellen.

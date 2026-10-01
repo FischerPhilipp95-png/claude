@@ -16,6 +16,7 @@ import ProduktBox from '../../components/ProduktBox.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Bild from '../../components/Bild.astro';
+import Skala from '../../components/Skala.astro';
 
 <Antwort>
 **Kurz gesagt:** Oberflächlichen Schimmel **bis etwa 0,5 m²** darfst du selbst entfernen. Am besten mit **70- bis 80-prozentigem
@@ -77,6 +78,21 @@ Reinigungsmittel mischen. Alkohol ist brennbar: nicht rauchen, keine offene Flam
 />
 
 ## Die Ursache finden: meist zu viel Feuchtigkeit
+<Skala
+  titel="Luftfeuchtigkeit und Schimmelgefahr"
+  untertitel="Relative Luftfeuchtigkeit als Dauerwert im Raum. Direkt an kalten Wänden ist sie deutlich höher."
+  einheit="%"
+  min={20}
+  max={90}
+  bereiche={[
+    { bis: 40, label: 'eher trocken', status: 'achtung' },
+    { bis: 60, label: 'angenehm, kaum Schimmelgefahr', status: 'gut' },
+    { bis: 70, label: 'erhöht: öfter stoßlüften', status: 'erhoeht' },
+    { bis: 90, label: 'zu feucht: Schimmelgefahr', status: 'kritisch' },
+  ]}
+  quelle="Grafik: Der Handwerksdoktor. Werte nach Umweltbundesamt. Mehr dazu im Artikel Luftfeuchtigkeit in der Wohnung."
+/>
+
 
 Schimmel wächst dort, wo es dauerhaft feucht ist, vor allem an **kalten Außenwänden, in Ecken, hinter Möbeln und im Bad**.
 

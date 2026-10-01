@@ -16,6 +16,7 @@ import ProduktBox from '../../components/ProduktBox.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Bild from '../../components/Bild.astro';
+import Ablauf from '../../components/Ablauf.astro';
 
 <Antwort>
 **Die zwei häufigsten Ursachen:** Luft im Heizkörper oder ein **klemmender Ventilstift** unter dem Thermostatkopf.
@@ -40,6 +41,17 @@ oder am fehlenden hydraulischen Abgleich.
 | Mehrere Heizkörper, vor allem oben im Haus, kalt | **Druck zu niedrig** (Ursache 4) |
 | Heizkörper weit weg vom Kessel kalt, nahe zu heiß | **hydraulischer Abgleich** (Ursache 5) |
 | Alle kalt | **Heizung selbst** prüfen (Ursache 6) |
+
+<Ablauf
+  titel="In dieser Reihenfolge prüfen"
+  schritte={[
+    { icon: 'wind', titel: 'Luft', text: 'Heizkörper entlüften.' },
+    { icon: 'circle-dot', titel: 'Ventilstift', text: 'Kopf ab, Stift gangbar machen.' },
+    { icon: 'thermometer', titel: 'Thermostatkopf', text: 'Defekten Kopf tauschen.' },
+    { icon: 'gauge', titel: 'Druck', text: 'Manometer prüfen, nachfüllen.' },
+    { icon: 'phone', titel: 'Fachbetrieb', text: 'Abgleich oder Heizung prüfen lassen.' },
+  ]}
+/>
 
 ## Ursache 1: Luft im Heizkörper
 

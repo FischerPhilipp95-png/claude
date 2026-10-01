@@ -16,6 +16,7 @@ import ProduktBox from '../../components/ProduktBox.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Bild from '../../components/Bild.astro';
+import Ablauf from '../../components/Ablauf.astro';
 
 <Antwort>
 **Am einfachsten mit einem Energiekostenmessgerät:** Es wird als Zwischenstecker zwischen Steckdose und Gerät
@@ -39,6 +40,25 @@ Durchlauferhitzer, liest du den **Stromzähler** vor und nach der Nutzung ab. Oh
 | **Ausrechnen** | schnelle Schätzung | kostenlos | grob |
 
 ## Weg 1: Energiekostenmessgerät (empfohlen)
+<Bild
+  src="/bilder/strommessgeraet-steckdose.webp"
+  alt="Energiekostenmessgerät mit Display und Steckdose"
+  width={900}
+  height={1200}
+  schmal
+  nachweis='Foto: Retired electrician, „Generic Chinese wall power meter for Schuko plug (1)“, <a href="https://commons.wikimedia.org/wiki/File:Generic_Chinese_wall_power_meter_for_Schuko_plug_(1).jpg" rel="noopener">Wikimedia Commons</a>, CC0'
+/>
+
+<Ablauf
+  titel="So misst du mit dem Energiekostenmessgerät"
+  schritte={[
+    { icon: 'settings-2', titel: 'Strompreis', text: 'Deinen Preis pro kWh im Gerät einstellen.' },
+    { icon: 'plug', titel: 'Einstecken', text: 'Messgerät in die Steckdose, Gerät daran.' },
+    { icon: 'timer', titel: 'Laufen lassen', text: 'Einen typischen Zeitraum, etwa einen Tag oder Waschgang.' },
+    { icon: 'gauge', titel: 'Ablesen', text: 'kWh und Kosten ablesen, aufs Jahr hochrechnen.' },
+  ]}
+/>
+
 
 Das Messgerät steckst du in die Steckdose und das Gerät in das Messgerät. Es zeigt die aktuelle **Leistung in Watt**,
 den aufsummierten **Verbrauch in kWh** und nach Eingabe deines Strompreises oft auch direkt die **Kosten**.

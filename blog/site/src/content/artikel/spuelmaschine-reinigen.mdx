@@ -16,6 +16,7 @@ import ProduktBox from '../../components/ProduktBox.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Bild from '../../components/Bild.astro';
+import Ablauf from '../../components/Ablauf.astro';
 
 <Antwort>
 **Kurz gesagt:** Die meisten Gerüche und schlechten Spülergebnisse kommen von einem **verstopften Sieb**. Sieb herausnehmen und
@@ -38,6 +39,17 @@ Gerät bei hoher Temperatur laufen lassen. Essig ist keine gute Idee, er kann di
 />
 
 ## Spülmaschine reinigen in 5 Schritten
+
+<Ablauf
+  titel="Spülmaschine reinigen auf einen Blick"
+  schritte={[
+    { icon: 'arrow-down-to-line', titel: 'Unterkorb raus', text: 'Damit du an den Boden kommst.' },
+    { icon: 'filter', titel: 'Sieb', text: 'Herausdrehen, unter Wasser ausspülen.' },
+    { icon: 'fan', titel: 'Sprüharme', text: 'Abnehmen, Düsen freimachen.' },
+    { icon: 'circle-dot', titel: 'Türdichtung', text: 'Mit feuchtem Tuch abwischen.' },
+    { icon: 'sparkles', titel: 'Reiniger', text: 'Maschinenreiniger im heißen Programm.' },
+  ]}
+/>
 
 1. **Unterkorb herausziehen**, damit du an den Boden der Maschine kommst.
 2. **Sieb reinigen:** Das Sieb sitzt am Boden, meist in der Mitte. Herausdrehen (oft eine Vierteldrehung) und herausheben. Fein- und

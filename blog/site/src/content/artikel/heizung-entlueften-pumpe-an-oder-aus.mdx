@@ -15,6 +15,7 @@ import Warnung from '../../components/Warnung.astro';
 import ProduktBox from '../../components/ProduktBox.astro';
 import Bild from '../../components/Bild.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
+import Ablauf from '../../components/Ablauf.astro';
 
 <Antwort>
 **Kurz gesagt: Pumpe aus.** Schalte die Heizung bzw. die Umwälzpumpe vor dem Entlüften ab und warte
@@ -57,6 +58,17 @@ gehen will, wartet die volle Stunde.
 ## Schritt für Schritt: Heizkörper richtig entlüften
 
 Ausführlich mit Checkliste: [Heizkörper entlüften: Anleitung in 7 Schritten](/artikel/heizkoerper-entlueften-anleitung/).
+
+<Ablauf
+  titel="Entlüften mit ausgeschalteter Pumpe"
+  schritte={[
+    { icon: 'power-off', titel: 'Pumpe aus', text: 'Heizung bzw. Umwälzpumpe ausschalten.' },
+    { icon: 'timer', titel: 'Warten', text: '30 bis 60 Minuten, damit die Luft nach oben steigt.' },
+    { icon: 'wrench', titel: 'Entlüften', text: 'Unten anfangen, Ventil auf, bis nur Wasser kommt.' },
+    { icon: 'power', titel: 'Pumpe an', text: 'Heizung wieder einschalten.' },
+    { icon: 'gauge', titel: 'Druck prüfen', text: 'Am Manometer, bei Bedarf nachfüllen.' },
+  ]}
+/>
 
 1. **Thermostate voll aufdrehen,** damit alle Ventile offen sind.
 2. **Heizung bzw. Umwälzpumpe ausschalten** und 30 bis 60 Minuten warten.

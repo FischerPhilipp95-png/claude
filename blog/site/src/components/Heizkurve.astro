@@ -1,0 +1,62 @@
+---
+// Prinzip-Darstellung Heizkurve: Vorlauftemperatur über der Außentemperatur für drei Steilheiten.
+// Näherungsformel, wie sie mehrere Hersteller verwenden (Raum-Soll 20 °C, Niveau 0):
+// VL = RT − S · DAR · (1,4347 + 0,021 · DAR + 247,9e-6 · DAR²), DAR = AT − RT
+// Farben: ein Farbton (Orange) von dunkel nach hell = flach nach steil, geprüft gegen die dunkle Fläche.
+import Icon from './Icon.astro';
+const RT = 20;
+const vl = (s: number, at: number) => { const dar = at - RT; return RT - s * dar * (1.4347 + 0.021 * dar + 247.9e-6 * dar * dar); };
+const KURVEN = [
+  { s: 0.6, farbe: '#b35210' },
+  { s: 1.0, farbe: '#ff741c' },
+  { s: 1.4, farbe: '#ffb27a' },
+];
+const W = 480, H = 320, L = 46, R = 92, T = 16, B = 44;
+const x = (at: number) => L + ((20 - at) / 40) * (W - L - R);   // +20 °C links, −20 °C rechts
+const y = (v: number) => T + ((80 - v) / 60) * (H - T - B);       // 20…80 °C
+const ats = Array.from({ length: 41 }, (_, i) => 20 - i);
+const de = (n: number) => new Intl.NumberFormat('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(n);
+const rund = (n: number) => Math.round(n);
+const punkte = [10, 0, -10];
+---
+<figure class="chart" role="group" aria-label="Heizkurve: Vorlauftemperatur je nach Außentemperatur">
+  <div class="chart-head">
+    <span class="chart-kicker"><Icon name="chart-line" size={15} /> Grafik</span>
+    <p class="chart-title">So hängt die Vorlauftemperatur von der Steilheit ab</p>
+    <p class="chart-sub">Prinzip-Darstellung für 20 °C Raumtemperatur und Niveau 0. Je kälter es draußen ist, desto heißer das Heizwasser. Eine steilere Kurve heizt bei Frost stärker nach.</p>
+  </div>
+  <ul class="chart-legend">
+    {KURVEN.map((k) => <li><span class="swatch" style={`background:${k.farbe}`}></span>Steilheit {de(k.s)}</li>)}
+  </ul>
+  <svg viewBox={`0 0 ${W} ${H}`} class="curve" role="img" aria-label="Linien für Steilheit 0,6, 1,0 und 1,4: Vorlauftemperatur steigt mit sinkender Außentemperatur">
+    {[20, 30, 40, 50, 60, 70, 80].map((v) => (
+      <g>
+        <line x1={L} x2={W - R} y1={y(v)} y2={y(v)} class="grid" />
+        <text x={L - 8} y={y(v) + 4} text-anchor="end" class="tick">{v}</text>
+      </g>
+    ))}
+    {[20, 10, 0, -10, -20].map((a) => <text x={x(a)} y={H - B + 18} text-anchor="middle" class="tick">{a > 0 ? `+${a}` : a === 0 ? '0' : `−${-a}`}</text>)}
+    <text x={(L + W - R) / 2} y={H - 6} text-anchor="middle" class="axis">Außentemperatur in °C</text>
+    <text x={12} y={T + 4} class="axis" transform={`rotate(-90 12 ${T + 4})`} text-anchor="end">Vorlauf in °C</text>
+    {KURVEN.map((k) => (
+      <g>
+        <polyline points={ats.map((a) => `${x(a).toFixed(1)},${y(vl(k.s, a)).toFixed(1)}`).join(' ')} fill="none" stroke={k.farbe} stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>Steilheit {de(k.s)}: bei −20 °C außen ca. {rund(vl(k.s, -20))} °C Vorlauf</title>
+        </polyline>
+        {punkte.map((a) => (
+          <circle cx={x(a)} cy={y(vl(k.s, a))} r="5" fill={k.farbe} stroke="#17171a" stroke-width="2">
+            <title>Steilheit {de(k.s)}, {a > 0 ? `+${a}` : a === 0 ? '0' : `−${-a}`} °C außen: ca. {rund(vl(k.s, a))} °C Vorlauf</title>
+          </circle>
+        ))}
+        <text x={W - R + 8} y={y(vl(k.s, -20)) + 4} class="direct">{de(k.s)} · {rund(vl(k.s, -20))} °C</text>
+      </g>
+    ))}
+  </svg>
+  <table class="chart-table">
+    <thead><tr><th>Außen</th>{KURVEN.map((k) => <th>Steilheit {de(k.s)}</th>)}</tr></thead>
+    <tbody>
+      {punkte.map((a) => <tr><td>{a > 0 ? `+${a}` : a === 0 ? '0' : `−${-a}`} °C</td>{KURVEN.map((k) => <td>ca. {rund(vl(k.s, a))} °C</td>)}</tr>)}
+    </tbody>
+  </table>
+  <figcaption>Grafik: Der Handwerksdoktor. Berechnet mit einer gängigen Näherungsformel für Heizkurven. Deine Anlage kann andere Werte haben, maßgeblich ist die Anleitung deines Herstellers.</figcaption>
+</figure>

@@ -1,0 +1,18 @@
+---
+// Heizungsdruck als Skala, gleich in allen Heizungs-Artikeln.
+import Skala from './Skala.astro';
+---
+<Skala
+  titel="Heizungsdruck: welcher Wert ist richtig?"
+  untertitel="Typische Werte im Einfamilienhaus, abgelesen bei kalter Heizung. Maßgeblich sind der grüne Bereich auf deinem Manometer und die Anleitung deiner Heizung."
+  einheit="bar"
+  min={0}
+  max={3}
+  bereiche={[
+    { bis: 1, label: 'zu niedrig: Wasser nachfüllen', status: 'achtung' },
+    { bis: 2, label: 'üblicher Bereich', status: 'gut' },
+    { bis: 2.5, label: 'eher hoch: Sollwert in der Anleitung prüfen', status: 'erhoeht' },
+    { bis: 3, label: 'zu hoch: Fachbetrieb fragen, Sicherheitsventile öffnen meist bei 2,5 bis 3 bar', status: 'kritisch' },
+  ]}
+  quelle="Grafik: Der Handwerksdoktor. Faustformel für den Sollwert: Höhe des obersten Heizkörpers über der Heizung in Metern × 0,1 bar + 0,5 bar."
+/>

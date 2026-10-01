@@ -1,0 +1,128 @@
+---
+title: "Heizkurve einstellen: Steilheit und Niveau einfach erklärt"
+kurztitel: "Heizkurve einstellen: einfach erklärt"
+description: "Heizkurve richtig einstellen: Was Steilheit und Niveau bedeuten, welche Werte typisch sind und wie du Schritt für Schritt die passende Einstellung findest."
+pubDate: 2026-10-01
+icon: chart-line
+thema: Heizung
+bild: /bilder/titel/heizkurve-einstellen.webp
+bildAlt: "Titelbild: Heizkurve einstellen, einfach erklärt"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import ProduktBox from '../../components/ProduktBox.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import Heizkurve from '../../components/Heizkurve.astro';
+import Ablauf from '../../components/Ablauf.astro';
+
+<Antwort>
+**Kurz gesagt:** Die Heizkurve legt fest, **wie heiß das Heizwasser bei welcher Außentemperatur** wird. Die **Steilheit** (auch
+Neigung) bestimmt, wie stark die Heizung bei Kälte nachlegt. Das **Niveau** verschiebt die ganze Kurve nach oben oder unten.
+Faustregel: Ist es **nur bei Frost** zu kalt oder zu warm, die **Steilheit** ändern. Ist es **in der Übergangszeit** falsch, das
+**Niveau** ändern. Immer in kleinen Schritten und dann mindestens einen Tag abwarten.
+</Antwort>
+
+<Schnellkauf items={[
+  { name: 'Thermometer-Hygrometer-Set', warum: 'Raumtemperatur in mehreren Räumen vergleichen, bevor du an der Kurve drehst.', suche: 'Thermometer Hygrometer Set 3 Stück' },
+  { name: 'Infrarot-Thermometer', warum: 'Vorlauf und Heizkörper messen, ohne etwas abzubauen.', suche: 'Infrarot Thermometer Heizung' },
+]} />
+
+## Was ist die Heizkurve?
+
+Die meisten Heizungen arbeiten **witterungsgeführt**: Ein Fühler an der Außenwand misst die Außentemperatur. Daraus berechnet die
+Regelung über die Heizkurve die **Vorlauftemperatur**, also wie warm das Wasser ist, das zu den Heizkörpern fließt. Je kälter es
+draußen ist, desto heißer das Wasser.
+
+<Heizkurve />
+
+## Steilheit und Niveau: der Unterschied
+
+| Einstellung | Was sie macht | Wann anpassen? |
+|---|---|---|
+| **Steilheit / Neigung** | Wie stark die Vorlauftemperatur steigt, wenn es draußen kälter wird | Wenn es **an kalten Tagen** (unter etwa 5 °C) zu kalt oder zu warm ist |
+| **Niveau / Parallelverschiebung** | Verschiebt die ganze Kurve gleichmäßig nach oben oder unten | Wenn es **in der Übergangszeit** (etwa 5 bis 15 °C) nicht passt |
+
+**Typische Werte** laut Viessmann: Gut gedämmte Häuser mit **Fußbodenheizung** kommen mit einer Steilheit von etwa **0,3 bis 0,5**
+aus. **Ältere Gebäude mit Heizkörpern** brauchen eher **1,4 bis 1,6**. Die Bezeichnungen und Skalen unterscheiden sich je nach
+Hersteller, schau in die Anleitung deiner Heizung.
+
+## Heizkurve einstellen: Schritt für Schritt
+
+<Ablauf
+  titel="So findest du die passende Heizkurve"
+  schritte={[
+    { icon: 'thermometer', titel: 'Messen', text: 'Raumtemperatur ein paar Tage beobachten.' },
+    { icon: 'sliders-horizontal', titel: 'Thermostate auf', text: 'Im Referenzraum Thermostat ganz öffnen.' },
+    { icon: 'chart-line', titel: 'Eine Größe ändern', text: 'Steilheit oder Niveau, nie beides.' },
+    { icon: 'timer', titel: 'Abwarten', text: 'Mindestens 12 bis 24 Stunden, Fußboden länger.' },
+    { icon: 'circle-check', titel: 'Wiederholen', text: 'Bis es mit offenem Thermostat gerade warm genug ist.' },
+  ]}
+/>
+
+1. **Ausgangswerte notieren.** Fotografiere die aktuellen Einstellungen, bevor du etwas änderst. So kommst du jederzeit zurück.
+2. **Referenzraum wählen**, meist das Wohnzimmer. Dort das Thermostat **ganz aufdrehen**, damit die Heizkurve allein bestimmt, wie
+   warm es wird.
+3. **Eine Größe ändern**, abhängig vom Wetter:
+   - Kalter Tag (unter etwa 5 °C) und zu kalt: **Steilheit** etwas erhöhen. Zu warm: etwas senken.
+   - Übergangszeit und zu kalt oder zu warm: **Niveau** um ein bis zwei Stufen anpassen.
+4. **Abwarten.** Viessmann rät, **mindestens 12 bis 24 Stunden** zu warten, bei Fußbodenheizung deutlich länger.
+5. **Wiederholen**, bis der Raum mit offenem Thermostat gerade die gewünschte Temperatur erreicht. Dann ist die Kurve so niedrig wie
+   möglich und die Heizung arbeitet am sparsamsten.
+
+Wo die Einstellung im Menü steht, ist je nach Gerät verschieden. Bei vielen Geräten findest du sie unter **Heizung** oder **Heizkreis**,
+oft im Fachhandwerker-Bereich. Im Zweifel: Anleitung oder Fachbetrieb.
+
+<Warnung titel="Nicht bei allen Heizungen selbst ändern">
+Manche Regelungen erlauben die Änderung nur im Fachhandwerker-Menü. Ändere dort **nur Steilheit und Niveau** und keine anderen
+Parameter. In Mietwohnungen mit Zentralheizung ist die Heizkurve Sache des Vermieters oder der Hausverwaltung.
+</Warnung>
+
+## Typische Probleme und was hilft
+
+| Problem | Wahrscheinliche Lösung |
+|---|---|
+| Bei Frost zu kalt, sonst okay | Steilheit etwas erhöhen |
+| Bei Frost zu warm, sonst okay | Steilheit etwas senken |
+| Immer etwas zu kalt | Niveau etwas erhöhen |
+| Immer etwas zu warm | Niveau etwas senken |
+| Nur ein Raum zu kalt | Kein Fall für die Heizkurve: Heizkörper entlüften, Thermostat oder [hydraulischen Abgleich](/artikel/hydraulischer-abgleich/) prüfen |
+
+Wird ein einzelner Heizkörper nicht warm, liegt es meist an Luft oder einem klemmenden Ventil:
+[Heizkörper wird nicht warm](/artikel/heizkoerper-wird-nicht-warm/).
+
+## Warum sich die Mühe lohnt
+
+Eine zu hoch eingestellte Heizkurve heizt das Wasser stärker auf als nötig. Die Thermostate drosseln dann zwar die Räume, aber der
+Kessel arbeitet ineffizienter, und bei **Wärmepumpen** sinkt die Effizienz deutlich mit jedem unnötigen Grad Vorlauf. Laut
+Umweltbundesamt spart **jedes Grad weniger** Raumtemperatur Heizenergie. Empfohlen werden im Wohnbereich **höchstens 20 °C**.
+
+<ProduktBox
+  titel="Thermometer für den Abgleich der Heizkurve"
+  suche="Thermometer Hygrometer Set 3 Stück"
+  kriterien={[
+    'Mehrere Geräte, damit du Referenzraum und andere Räume vergleichen kannst.',
+    'Min-/Max-Speicher, um die Temperatur über Nacht zu sehen.',
+    'Gut ablesbares Display, Anzeige auf 0,1 °C genau.',
+  ]}
+/>
+
+## Häufige Fragen
+
+### Was ist besser: hohe Steilheit oder hohes Niveau?
+Keins von beiden ist „besser“. Die Steilheit regelt das Verhalten bei Kälte, das Niveau die Grundtemperatur. Ziel ist die
+**niedrigste** Kurve, bei der es warm genug wird.
+
+### Wie lange dauert es, bis eine Änderung wirkt?
+Bei Heizkörpern einige Stunden, aussagekräftig ist erst der nächste Tag. Bei Fußbodenheizung auch mehrere Tage.
+
+### Hat die Heizkurve etwas mit der Nachtabsenkung zu tun?
+Die Nachtabsenkung verschiebt die Kurve nachts nach unten. Die Grundeinstellung der Kurve bleibt gleich.
+
+## Quellen
+
+- Viessmann: [Heizkurve einstellen](https://www.viessmann.de/de/wissen/anleitungen-und-tipps/heizkurve-einstellen.html)
+- energie-experten.org: [Heizkurve](https://www.energie-experten.org/heizung/heizungstechnik/heizungssteuerung/heizkurve)
+- Umweltbundesamt: [Heizen und Raumtemperatur](https://www.umweltbundesamt.de/umwelttipps-fuer-den-alltag/heizen-bauen/heizen-raumtemperatur)

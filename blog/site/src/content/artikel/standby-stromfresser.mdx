@@ -1,0 +1,142 @@
+---
+title: "Stand-by-Stromfresser finden: Was Geräte im Stand-by kosten"
+kurztitel: "Stand-by-Stromfresser finden"
+description: "Stand-by kann einen Haushalt bis zu 115 Euro im Jahr kosten. So findest du die Stromfresser mit einem Messgerät und schaltest sie mit wenig Aufwand ab."
+pubDate: 2026-10-01
+icon: power
+thema: Strom
+bild: /bilder/titel/standby-stromfresser.webp
+bildAlt: "Titelbild: Stand-by-Stromfresser finden"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import ProduktBox from '../../components/ProduktBox.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import Bild from '../../components/Bild.astro';
+import Balken from '../../components/Balken.astro';
+import Ablauf from '../../components/Ablauf.astro';
+
+<Antwort>
+**Kurz gesagt:** Geräte im Stand-by verbrauchen rund um die Uhr Strom. Laut co2online kommen in einem Einfamilienhaus **bis zu
+360 kWh und 115 Euro im Jahr** zusammen. Die größten Stromfresser findest du mit einem **Strommessgerät für die Steckdose**.
+Abschalten geht am einfachsten mit einer **schaltbaren Steckdosenleiste**, etwa für Fernseher, Spielkonsole und Musikanlage.
+</Antwort>
+
+<Schnellkauf items={[
+  { name: 'Energiekostenmessgerät', warum: 'Zeigt, wie viel Watt ein Gerät im Stand-by wirklich zieht.', suche: 'Energiekostenmessgerät Steckdose' },
+  { name: 'Schaltbare Steckdosenleiste', warum: 'Fernseher, Konsole und Co. mit einem Klick komplett vom Netz.', suche: 'Steckdosenleiste einzeln schaltbar' },
+  { name: 'Master-Slave-Steckdosenleiste', warum: 'Schaltet Zubehör automatisch ab, wenn das Hauptgerät aus ist.', suche: 'Master Slave Steckdosenleiste' },
+]} />
+
+## Was kostet Stand-by wirklich?
+
+Ein Watt klingt nach wenig. Aber ein Gerät im Stand-by läuft **8.760 Stunden im Jahr**. Die Grafik zeigt, was typische
+Stand-by-Werte kosten, wenn das Gerät rund um die Uhr am Netz hängt:
+
+<Balken
+  titel="Stand-by-Kosten pro Jahr, Beispielwerte"
+  untertitel="Bei 35 Cent pro kWh und Stand-by rund um die Uhr. Neuere Geräte liegen oft deutlich darunter, miss deine eigenen nach."
+  einheit="€"
+  daten={[
+    { label: 'Stereoanlage', wert: 46, icon: 'speaker', notiz: '15 W' },
+    { label: 'Fernseher (LCD)', wert: 43, icon: 'tv', notiz: '14 W' },
+    { label: 'Router', wert: 25, icon: 'router', notiz: '8 W, läuft meist ohnehin durch' },
+    { label: 'Spielekonsole', wert: 9, icon: 'gamepad-2', notiz: '3 W' },
+    { label: 'Waschmaschine', wert: 9, icon: 'washing-machine', notiz: '3 W' },
+  ]}
+  quelle="Grafik: Der Handwerksdoktor. Watt-Werte laut entega, Kosten eigene Rechnung: Watt × 8.760 h ÷ 1.000 × 0,35 €."
+/>
+
+Die Rechnung dahinter: **Watt × 8.760 Stunden ÷ 1.000 = kWh pro Jahr**, mal deinen Strompreis. Für eigene Werte kannst du unseren
+[Stromkostenrechner](/rechner/stromkosten/) nutzen.
+
+## Stromfresser finden in 4 Schritten
+
+<Bild
+  src="/bilder/energiekostenmessgeraet.webp"
+  alt="Energiekostenmessgerät in einer Wandsteckdose neben einem Lichtschalter"
+  width={1200}
+  height={959}
+  nachweis='Foto: Zátonyi Sándor (ifj.), „Fogyasztasmero“, <a href="https://commons.wikimedia.org/wiki/File:Fogyasztasmero.jpg" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>'
+/>
+
+<Ablauf
+  titel="Stand-by-Stromfresser aufspüren"
+  schritte={[
+    { icon: 'plug', titel: 'Messgerät rein', text: 'Messgerät in die Steckdose, Gerät daran anschließen.' },
+    { icon: 'power-off', titel: 'Ausschalten', text: 'Gerät mit Fernbedienung oder Taste ausschalten.' },
+    { icon: 'gauge', titel: 'Watt ablesen', text: 'Einige Minuten warten, dann Watt ablesen.' },
+    { icon: 'calculator', titel: 'Hochrechnen', text: 'Watt × 8.760 ÷ 1.000 = kWh pro Jahr.' },
+  ]}
+/>
+
+1. Ein <AmazonLink suche="Energiekostenmessgerät Steckdose">Energiekostenmessgerät</AmazonLink> in die Steckdose stecken und das Gerät daran
+   anschließen.
+2. Gerät **ausschalten**, so wie du es sonst tust (Fernbedienung, Taste).
+3. **Einige Minuten warten** und die Watt-Anzeige ablesen. Manche Geräte brauchen kurz nach dem Ausschalten mehr.
+4. **Hochrechnen** und die Geräte nach Kosten sortieren. Wie das Messen genau geht, steht hier:
+   [Stromverbrauch messen](/artikel/stromverbrauch-messen/).
+
+**Typische Kandidaten:** Fernseher mit Schnellstart, Spielkonsolen im „Ruhemodus“, ältere Stereoanlagen, Drucker, Kaffeemaschinen mit
+Uhr, Steckernetzteile, die immer stecken, und alles mit leuchtenden Lämpchen.
+
+## So schaltest du Stand-by ab
+
+- **Schaltbare Steckdosenleiste** hinter Fernseher und Spielkonsole: Abends ein Klick, und alles ist aus.
+- **Master-Slave-Leiste:** Schaltet Soundbar, Receiver oder Monitor automatisch mit ab, wenn das Hauptgerät aus ist.
+- **Schnellstart abschalten:** Bei Fernsehern und Konsolen heißt das oft „Schnellstart“, „Instant-On“ oder „Ruhemodus“. Kostet ein paar
+  Sekunden beim Einschalten, spart aber dauerhaft.
+- **Netzteile ziehen**, wenn sie nicht gebraucht werden.
+
+<Bild
+  src="/bilder/steckdosenleiste.webp"
+  alt="Steckdosenleiste mit rotem Schalter und mehreren eingesteckten Steckern"
+  width={1200}
+  height={623}
+  nachweis='Foto: unbekannt, „German power strip“, <a href="https://commons.wikimedia.org/wiki/File:German_power_strip.JPG" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>'
+/>
+
+<ProduktBox
+  titel="Schaltbare Steckdosenleiste: darauf achten"
+  suche="Steckdosenleiste einzeln schaltbar"
+  kriterien={[
+    'Schalter gut erreichbar, gerne einzeln schaltbare Steckplätze.',
+    'Prüfzeichen wie GS oder VDE und ein ausreichend dickes Kabel.',
+    'Überspannungsschutz ist praktisch für Fernseher und Computer.',
+    'Leistung beachten: Heizlüfter und Wasserkocher gehören nicht an Mehrfachleisten.',
+  ]}
+/>
+
+<Warnung titel="Nicht alles vom Netz nehmen">
+**Router, Kühlschrank, Gefriertruhe, Alarmanlagen** und Geräte mit wichtigen Aufnahmen oder Updates sollten am Netz bleiben. Manche
+Drucker reinigen beim Einschalten die Düsen und verbrauchen dann Tinte. Schau im Zweifel in die Anleitung. Mehrfachleisten nie
+hintereinander stecken.
+</Warnung>
+
+## Wie viel Stand-by ist erlaubt?
+
+Für neue Geräte gelten in der EU Grenzwerte. Laut entega dürfen Geräte ohne Statusanzeige im Stand-by **höchstens 0,5 Watt**
+verbrauchen, vernetzte Geräte **höchstens 2 Watt**. Ältere Geräte liegen oft deutlich darüber. Gerade bei Geräten von vor zehn oder
+mehr Jahren lohnt sich das Nachmessen.
+
+Mehr zum Stromsparen im Winter: [Heizlüfter: Stromverbrauch und Kosten](/artikel/heizluefter-stromverbrauch/).
+
+## Häufige Fragen
+
+### Wie viel Strom verbraucht ein Fernseher im Stand-by?
+Neue Fernseher meist unter 1 Watt, ältere oder mit aktiviertem Schnellstart auch deutlich mehr. Miss am besten mit einem Messgerät nach.
+
+### Lohnt sich eine Steckdosenleiste mit Schalter?
+Ja, sie kostet wenig. Schon bei 10 Watt Stand-by sparst du rund 30 Euro im Jahr bei 35 Cent pro kWh.
+
+### Verbraucht ein Ladegerät ohne Handy Strom?
+Ja, aber bei modernen Netzteilen sehr wenig. Bei alten, warmen Netzteilen lohnt es sich, sie herauszuziehen.
+
+## Quellen
+
+- entega: [Stromverbrauch von Stand-by-Geräten](https://www.entega.de/ratgeber/strom/stromverbrauch/stromverbrauch-stand-by-geraete/)
+- EnBW: [Bye-bye Standby: Stromverbrauch senken und Geld sparen](https://www.enbw.com/blog/wohnen/energie-sparen/bye-bye-standby-stromverbrauch-senken-und-geld-sparen/)
+- Verivox: [Standby-Modus: Wie hoch ist der Stromverbrauch?](https://www.verivox.de/strom/ratgeber/standby-modus-wie-hoch-ist-der-stromverbrauch-1001003/)

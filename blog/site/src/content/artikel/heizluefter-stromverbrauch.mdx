@@ -16,6 +16,7 @@ import ProduktBox from '../../components/ProduktBox.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Bild from '../../components/Bild.astro';
+import Balken from '../../components/Balken.astro';
 
 <Antwort>
 **Kurz gesagt:** Ein Heizlüfter mit **2.000 Watt** verbraucht auf voller Stufe **2 kWh pro Stunde**. Bei einem Strompreis von
@@ -45,6 +46,22 @@ verbraucht dann weniger.
 **Selbst ausrechnen:** Mit unserem [Stromkosten-Rechner](/rechner/stromkosten/) gibst du Watt, Stunden und deinen Strompreis
 ein und bekommst sofort die Kosten pro Tag, Monat und Jahr.
 
+<Balken
+  titel="Heizlüfter: Stromkosten pro Monat je nach Leistung"
+  untertitel="Bei 2 Stunden täglich auf voller Stufe, 30 Tage, 35 Cent pro kWh."
+  einheit="€"
+  sortieren={false}
+  daten={[
+    { label: '500 Watt', wert: 10.5 },
+    { label: '1.000 Watt', wert: 21 },
+    { label: '1.500 Watt', wert: 31.5 },
+    { label: '2.000 Watt', wert: 42 },
+    { label: '3.000 Watt', wert: 63 },
+  ]}
+  stellen={2}
+  quelle="Grafik: Der Handwerksdoktor. Rechnung: Watt ÷ 1.000 × 2 h × 30 Tage × 0,35 €."
+/>
+
 ## Warum Heizen mit Strom so teuer ist
 
 Ein Heizlüfter macht aus einer Kilowattstunde Strom eine Kilowattstunde Wärme, effizienter geht es mit dieser Technik nicht.
@@ -55,6 +72,15 @@ Strom ist pro Kilowattstunde aber deutlich teurer als Gas oder Öl. Die Verbrauc
 oder als Notlösung, wenn die Heizung ausfällt.
 
 ## So findest du heraus, was dein Heizlüfter wirklich verbraucht
+<Bild
+  src="/bilder/heizluefter.webp"
+  alt="Keramik-Heizlüfter mit Tragegriff"
+  width={872}
+  height={1200}
+  schmal
+  nachweis='Foto: Benchill, „Goldair GCH200 ceramic heater“, <a href="https://commons.wikimedia.org/wiki/File:Goldair_GCH200_ceramic_heater.jpg" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>'
+/>
+
 
 Die Watt-Angabe auf dem Typenschild ist die **Höchstleistung**. Was er tatsächlich verbraucht, zeigt ein
 <AmazonLink suche="Energiekostenmessgerät Steckdose">Energiekostenmessgerät</AmazonLink> zwischen Steckdose und Gerät.
