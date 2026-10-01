@@ -352,3 +352,27 @@ form textarea { min-height: 160px; }
 .rechner-hinweis { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; border-left: 6px solid #ff741c; }
 .rechner-hinweis p { margin: 0; flex: 1 1 260px; }
 .bar-name { flex: 1 1 0; min-width: 0; }
+
+/* ---------- Rechner (gemeinsam) ---------- */
+.teilen { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 14px 0 0; padding-top: 14px; border-top: 1px solid var(--line); }
+.teilen-text { font-weight: 500; font-size: 0.92rem; }
+.teilen-status { color: #0a7a0a; font-weight: 500; font-size: 0.9rem; }
+.calc .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.calc .presets button { font: inherit; font-size: 0.9rem; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+.calc .presets button:hover { border-color: var(--ink); }
+.calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0 16px; }
+.calc-grid label { display: block; font-weight: 500; margin: 12px 0 0; font-size: 0.92rem; line-height: 1.3; }
+.calc-grid input, .calc-grid select { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid #bdbab2; border-radius: 8px; margin-top: 6px; background: #fff; color: var(--ink); }
+.calc .result { margin-top: 12px; }
+.calc .result td:not(:first-child), .calc .result th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+.calc-gross { font-size: 1.05rem; margin: 16px 0 0; }
+.calc-gross strong { font-size: 1.25rem; }
+.rbars { display: grid; gap: 8px; margin: 10px 0 12px; }
+.rbar { display: grid; grid-template-columns: minmax(90px, 34%) 1fr 72px; align-items: center; gap: 10px; font-size: 0.88rem; }
+.rbar > span:last-child { text-align: right; font-weight: 500; font-variant-numeric: tabular-nums; }
+.rbar-track { height: 14px; background: #f0eee8; border-radius: 0 4px 4px 0; }
+.rbar-fill { display: block; height: 100%; width: calc(100% * var(--p, 0)); background: var(--akzent, #ffd400); border-radius: 0 4px 4px 0; transition: width .2s; }
+.calc-check { display: flex; align-items: center; gap: 8px; font-weight: 500; margin: 12px 0 0; }
+.calc-check input { width: 18px; height: 18px; accent-color: #111; }
+.calc .result th, .calc .result td { overflow-wrap: normal; hyphens: manual; }
+@media (max-width: 560px) { .calc .result { font-size: 0.82em; } }

@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import ProduktFokus from '../../components/ProduktFokus.astro';
 import { SITE } from '../../site';
 
 const title = 'Stromkosten-Rechner: Was kostet mein Gerät?';
@@ -47,9 +49,12 @@ const jsonLd = [{
         </tbody>
       </table>
       <p class="small">Den Strompreis findest du auf deiner Stromrechnung (Arbeitspreis in ct/kWh). „Monat“ = Jahr ÷ 12.</p>
+      <RechnerTeilen />
     </section>
 
-    <Schnellkauf titel="Echten Verbrauch messen statt schätzen" items={[
+    <ProduktFokus id="brennenstuhl-pm231e" titel="Echten Verbrauch messen statt schätzen" />
+
+    <Schnellkauf titel="Weitere Helfer" items={[
       { name: 'Energiekostenmessgerät', warum: 'Zeigt den tatsächlichen Verbrauch, auch im Stand-by.', suche: 'Energiekostenmessgerät Steckdose' },
       { name: 'Schaltbare Steckdosenleiste', warum: 'Stand-by-Geräte mit einem Klick ganz ausschalten.', suche: 'Steckdosenleiste mit Schalter einzeln schaltbar' },
     ]} />

@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
 import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
 import Icon from '../../components/Icon.astro';
@@ -66,6 +67,7 @@ const jsonLd = [{
       <p class="small">Der Speicher bringt <strong id="mehr">–</strong> mehr pro Jahr. Ertrag und Eigenverbrauch sind Annahmen: Ein Südbalkon
       mit schräg aufgestellten Modulen schafft mehr als Module senkrecht am Geländer. Für deinen Standort kannst du den Ertrag mit dem
       kostenlosen <a href="https://re.jrc.ec.europa.eu/pvg_tools/de/" rel="noopener">PVGIS-Rechner der EU</a> schätzen.</p>
+      <RechnerTeilen />
     </section>
 
     <Schnellkauf titel="Passende Produkte" items={[

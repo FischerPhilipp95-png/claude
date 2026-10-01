@@ -1,0 +1,49 @@
+---
+// Teilen für Rechner: Alle Eingaben im Rechner (section.calc) landen im #-Teil der Adresse.
+// Der #-Teil wird nie an den Server geschickt. Wer den Link öffnet, sieht dieselbe Rechnung.
+import Icon from './Icon.astro';
+---
+<div class="teilen" data-pagefind-ignore>
+  <span class="teilen-text">Ergebnis teilen:</span>
+  <button type="button" class="btn btn-sm btn-ghost-dark" data-kopieren><Icon name="link" size={16} /> Link kopieren</button>
+  <button type="button" class="btn btn-sm btn-ghost-dark" data-teilen hidden><Icon name="share-2" size={16} /> Teilen</button>
+  <span class="teilen-status" aria-live="polite"></span>
+</div>
+<script>
+  const calc = document.querySelector('section.calc');
+  const felder = calc ? [...calc.querySelectorAll<HTMLInputElement | HTMLSelectElement>('input[id], select[id]')] : [];
+  const lesen = (f: HTMLInputElement | HTMLSelectElement) => (f instanceof HTMLInputElement && f.type === 'checkbox' ? (f.checked ? '1' : '0') : f.value);
+  function merken() {
+    const p = new URLSearchParams();
+    felder.forEach((f) => p.set(f.id, lesen(f)));
+    history.replaceState(null, '', '#' + p.toString());
+  }
+  function laden() {
+    const p = new URLSearchParams(location.hash.slice(1));
+    let geaendert = false;
+    felder.forEach((f) => {
+      const v = p.get(f.id);
+      if (v === null) return;
+      if (f instanceof HTMLInputElement && f.type === 'checkbox') f.checked = v === '1';
+      else f.value = v;
+      geaendert = true;
+    });
+    if (geaendert) felder.forEach((f) => { f.dispatchEvent(new Event('input', { bubbles: true })); f.dispatchEvent(new Event('change', { bubbles: true })); });
+  }
+  if (calc) {
+    laden();
+    ['input', 'change', 'click'].forEach((t) => calc.addEventListener(t, () => setTimeout(merken, 0)));
+  }
+  const status = document.querySelector('.teilen-status');
+  const melden = (t: string) => { if (status) { status.textContent = t; setTimeout(() => (status.textContent = ''), 2500); } };
+  document.querySelector('[data-kopieren]')?.addEventListener('click', async () => {
+    merken();
+    try { await navigator.clipboard.writeText(location.href); melden('Link kopiert'); }
+    catch { window.prompt('Link zum Kopieren:', location.href); }
+  });
+  const teilen = document.querySelector<HTMLButtonElement>('[data-teilen]');
+  if (teilen && 'share' in navigator) {
+    teilen.hidden = false;
+    teilen.addEventListener('click', () => { merken(); navigator.share({ title: document.title, url: location.href }).catch(() => {}); });
+  }
+</script>

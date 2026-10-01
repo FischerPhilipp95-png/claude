@@ -198,3 +198,10 @@ Rauchmelder piept (Fehlerbehebung), eigenes YouTube-Video zur Plissee-Montage mi
   Dr. Beckmann Waschmaschinenreiniger, Finish Maschinenpfleger.
 - Neue Artikel: Duschkopf entkalken, Rauchmelder piept, Plissee mit oder ohne Bohren.
 - Nächster Schritt mit viel Suchvolumen: eigener Artikel „Balkonkraftwerk mit Speicher: lohnt sich das?“ passend zum Video.
+
+## Stand 01.10.2026, Runde 7
+
+- Artikel „Heizlüfter, Ölradiator oder Infrarotheizung“ mit Rowenta SO2320, De'Longhi Radia S, Könighaus Infrarot 600 W.
+- 4 neue Rechner: Heizkosten sparen, Duschkosten, Stand-by, tropfender Wasserhahn. Rechner-Übersicht mit 6 Rechnern.
+- Alle Rechner teilbar: Eingaben stehen im #-Teil der Adresse (geht nicht an den Server), „Link kopieren“ und „Teilen“ (Handy).
+- Jeder Rechner mit passenden Amazon-Links, verlinkt aus den passenden Artikeln.

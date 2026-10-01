@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProduktFokus from '../../components/ProduktFokus.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import { SITE } from '../../site';
+
+const title = 'Stand-by-Rechner: Was kosten deine Geräte im Stand-by?';
+const description = 'Stand-by-Kosten ausrechnen: Watt deiner Geräte eintragen und sehen, was der Dauerverbrauch im Jahr kostet und wie viel eine schaltbare Steckdosenleiste spart.';
+// Beispielwerte laut entega (ältere Geräte). Neuere liegen oft deutlich darunter, besser nachmessen.
+const geraete = [
+  { id: 'tv', name: 'Fernseher', watt: 14, aus: true },
+  { id: 'stereo', name: 'Stereoanlage', watt: 15, aus: true },
+  { id: 'konsole', name: 'Spielekonsole', watt: 3, aus: true },
+  { id: 'router', name: 'Router', watt: 8, aus: false },
+  { id: 'wm', name: 'Waschmaschine', watt: 3, aus: true },
+  { id: 'sonst', name: 'Weitere Geräte', watt: 5, aus: true },
+];
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Stand-by-Rechner',
+  url: `${SITE.url}/rechner/standby/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Strom" style="--akzent:#ffd400">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Stand-by</nav>
+    <h1>{title}</h1>
+    <p class="lead">Trag ein, wie viel Watt deine Geräte im Stand-by ziehen, und hake an, welche du mit einer Steckdosenleiste ganz abschalten
+    könntest. Die Beispielwerte gelten eher für ältere Geräte, am genauesten ist Nachmessen.</p>
+
+    <section class="box calc" aria-label="Rechner">
+      <table class="result standby-tabelle">
+        <thead><tr><th>Gerät</th><th>Watt im Stand-by</th><th>abschaltbar</th></tr></thead>
+        <tbody>
+          {geraete.map((g) => (
+            <tr>
+              <td>{g.name}</td>
+              <td><input id={`w_${g.id}`} type="number" inputmode="decimal" min="0" step="any" value={g.watt} aria-label={`${g.name}, Watt`} /></td>
+              <td><input id={`a_${g.id}`} type="checkbox" checked={g.aus} aria-label={`${g.name} abschaltbar`} /></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div class="calc-grid">
+        <label>Stunden im Stand-by pro Tag<input id="stunden" type="number" inputmode="decimal" min="0" max="24" step="any" value="20" /></label>
+        <label>Strompreis in Cent/kWh<input id="preis" type="number" inputmode="decimal" min="0" step="any" value="37" /></label>
+      </div>
+      <p class="calc-gross">Stand-by kostet dich <strong id="gesamt">–</strong> pro Jahr (<span id="kwh">–</span>).</p>
+      <p class="calc-gross">Mit Abschalten sparst du <strong id="spar">–</strong> pro Jahr.</p>
+      <div class="rbars" aria-hidden="true" id="balken"></div>
+      <RechnerTeilen />
+    </section>
+
+    <ProduktFokus id="hama-steckdosenleiste" titel="Einfachste Lösung: Leiste mit Schalter" />
+    <ProduktFokus id="brennenstuhl-pm231e" titel="Stand-by nachmessen" />
+
+    <h2>So rechnet der Rechner</h2>
+    <p><strong>Watt × Stunden pro Tag × 365 ÷ 1.000 = kWh pro Jahr</strong>, mal Strompreis. Router, Kühlschrank und Geräte, die Aufnahmen oder
+    Updates machen, solltest du nicht vom Netz nehmen. Deshalb ist der Router im Beispiel nicht angehakt.</p>
+    <p>Alles zum Messen und Abschalten: <a href="/artikel/standby-stromfresser/">Stand-by-Stromfresser finden</a> und
+    <a href="/artikel/stromverbrauch-messen/">Stromverbrauch messen</a>.</p>
+    <p class="small">Beispielwerte: entega, <a href="https://www.entega.de/ratgeber/strom/stromverbrauch/stromverbrauch-stand-by-geraete/" rel="noopener">Stromverbrauch von Stand-by-Geräten</a>.</p>
+  </div>
+</Base>
+
+<script>
+  const ids = ['tv', 'stereo', 'konsole', 'router', 'wm', 'sonst'];
+  const namen: Record<string, string> = { tv: 'Fernseher', stereo: 'Stereoanlage', konsole: 'Spielekonsole', router: 'Router', wm: 'Waschmaschine', sonst: 'Weitere' };
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const zahl = (id: string) => Math.max(0, parseFloat($(id).value.replace(',', '.')) || 0);
+  const eur = (x: number) => x.toLocaleString('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+  const set = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  function rechnen() {
+    const h = Math.min(zahl('stunden'), 24), p = zahl('preis') / 100;
+    const werte = ids.map((i) => ({ i, eur: (zahl('w_' + i) * h * 365) / 1000 * p, kwh: (zahl('w_' + i) * h * 365) / 1000, aus: $('a_' + i).checked }));
+    const sum = werte.reduce((a, w) => a + w.eur, 0);
+    set('gesamt', eur(sum));
+    set('kwh', Math.round(werte.reduce((a, w) => a + w.kwh, 0)).toLocaleString('de-DE') + ' kWh');
+    set('spar', eur(werte.filter((w) => w.aus).reduce((a, w) => a + w.eur, 0)));
+    const max = Math.max(...werte.map((w) => w.eur), 1);
+    const box = document.getElementById('balken');
+    if (box) box.innerHTML = werte.sort((a, b) => b.eur - a.eur).map((w) =>
+      `<div class="rbar"><span>${namen[w.i]}</span><span class="rbar-track"><span class="rbar-fill" style="--p:${(w.eur / max).toFixed(3)}"></span></span><span>${eur(w.eur)}</span></div>`).join('');
+  }
+  document.querySelectorAll('section.calc input').forEach((i) => { i.addEventListener('input', rechnen); i.addEventListener('change', rechnen); });
+  rechnen();
+</script>
+
+<style>
+  .standby-tabelle input[type='number'] { width: 90px; font: inherit; padding: 6px 8px; border: 1px solid #bdbab2; border-radius: 8px; text-align: right; }
+  .standby-tabelle input[type='checkbox'] { width: 18px; height: 18px; accent-color: #111; }
+  .standby-tabelle td { vertical-align: middle; }
+</style>

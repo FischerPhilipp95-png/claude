@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import { SITE } from '../../site';
+
+const title = 'Tropfender Wasserhahn: Wie viel Wasser und Geld geht verloren?';
+const description = 'Rechner für den tropfenden Wasserhahn: Tropfen zählen, Wasserpreis eintragen und sehen, wie viele Liter und Euro im Jahr verloren gehen, auch bei Warmwasser.';
+const vorlagen = [
+  { name: '1 Tropfen alle 5 Sekunden', tpm: 12 },
+  { name: '1 Tropfen pro Sekunde', tpm: 60 },
+  { name: '2 Tropfen pro Sekunde', tpm: 120 },
+];
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Rechner tropfender Wasserhahn',
+  url: `${SITE.url}/rechner/tropfender-wasserhahn/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Wasser" style="--akzent:#39a8ff">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Tropfender Wasserhahn</nav>
+    <h1>{title}</h1>
+    <p class="lead">Zähl eine Minute lang die Tropfen oder wähl ein Beispiel. Der Rechner zeigt, was im Jahr zusammenkommt.</p>
+
+    <section class="box calc" aria-label="Rechner">
+      <p class="small">Beispiel laden:</p>
+      <div class="presets">
+        {vorlagen.map((v) => <button type="button" data-tpm={v.tpm}>{v.name}</button>)}
+      </div>
+      <div class="calc-grid">
+        <label>Tropfen pro Minute<input id="tpm" type="number" inputmode="decimal" min="0" step="any" value="60" /></label>
+        <label>Milliliter pro Tropfen<input id="ml" type="number" inputmode="decimal" min="0" step="any" value="0.05" /></label>
+        <label>Wasser und Abwasser in €/m³<input id="wasser" type="number" inputmode="decimal" min="0" step="any" value="4.5" /></label>
+      </div>
+      <label class="calc-check"><input id="warm" type="checkbox" /> Es tropft warmes Wasser</label>
+      <div class="calc-grid">
+        <label>Energiepreis Warmwasser in Cent/kWh<input id="preis" type="number" inputmode="decimal" min="0" step="any" value="13" /></label>
+      </div>
+      <table class="result" aria-live="polite">
+        <thead><tr><th></th><th>Liter</th><th>Kosten</th></tr></thead>
+        <tbody>
+          <tr><td>pro Tag</td><td id="l_tag">–</td><td id="e_tag">–</td></tr>
+          <tr><td>pro Monat</td><td id="l_monat">–</td><td id="e_monat">–</td></tr>
+          <tr><td><strong>pro Jahr</strong></td><td id="l_jahr">–</td><td id="e_jahr"><strong>–</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="small">Ein Tropfen hat grob 0,05 ml, die echte Menge schwankt stark. Bei Warmwasser: Erwärmung um etwa 40 °C angenommen, ohne
+      Leitungsverluste. Wasserpreise sind regional verschieden, deinen findest du auf der Abrechnung.</p>
+      <RechnerTeilen />
+    </section>
+
+    <Schnellkauf titel="Das brauchst du zum Reparieren" items={[
+      { name: 'Ersatzkartusche für Einhebelmischer', warum: 'Häufigster Grund fürs Tropfen. Durchmesser und Hersteller vorher prüfen.', suche: 'Kartusche Einhebelmischer 35 mm' },
+      { name: 'Armaturenzange', warum: 'Löst die Überwurfmutter, ohne die Oberfläche zu zerkratzen.', suche: 'Armaturenzange Kunststoffbacken' },
+      { name: 'Dichtungs-Set für Wasserhähne', warum: 'Für ältere Armaturen mit zwei Drehgriffen.', suche: 'Dichtungen Set Wasserhahn Ventiloberteil' },
+    ]} />
+
+    <h2>So rechnet der Rechner</h2>
+    <p><strong>Tropfen pro Minute × Milliliter pro Tropfen × 1.440 Minuten</strong> ergibt die Menge pro Tag. Bei Warmwasser kommt die Energie
+    dazu: Liter × 40 °C × 1,163 Wh.</p>
+    <p>So reparierst du den Hahn in rund 20 Minuten selbst: <a href="/artikel/wasserhahn-tropft/">Wasserhahn tropft: Kartusche oder Dichtung wechseln</a>.</p>
+  </div>
+</Base>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const zahl = (id: string) => Math.max(0, parseFloat($(id).value.replace(',', '.')) || 0);
+  const eur = (x: number) => x.toLocaleString('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 });
+  const liter = (x: number) => (x < 10 ? x.toLocaleString('de-DE', { maximumFractionDigits: 1 }) : Math.round(x).toLocaleString('de-DE')) + ' l';
+  const set = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  function rechnen() {
+    const lTag = (zahl('tpm') * zahl('ml') * 1440) / 1000;
+    const proLiter = zahl('wasser') / 1000 + ($('warm').checked ? (40 * 1.163 / 1000) * zahl('preis') / 100 : 0);
+    [['tag', 1], ['monat', 365 / 12], ['jahr', 365]].forEach(([k, f]) => {
+      set('l_' + k, liter(lTag * (f as number)));
+      set('e_' + k, eur(lTag * (f as number) * proLiter));
+    });
+  }
+  document.querySelectorAll('section.calc input').forEach((i) => { i.addEventListener('input', rechnen); i.addEventListener('change', rechnen); });
+  document.querySelectorAll<HTMLButtonElement>('.presets button').forEach((b) => b.addEventListener('click', () => { $('tpm').value = b.dataset.tpm || '60'; rechnen(); }));
+  rechnen();
+</script>

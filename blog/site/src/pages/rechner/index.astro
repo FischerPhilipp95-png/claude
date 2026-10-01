@@ -4,13 +4,17 @@ import Icon from '../../components/Icon.astro';
 const rechner = [
   { href: '/rechner/stromkosten/', icon: 'calculator', farbe: '#ffd400', titel: 'Stromkosten-Rechner', text: 'Was kostet mein Gerät pro Tag, Monat und Jahr? Watt und Nutzungsdauer eingeben, fertig.' },
   { href: '/rechner/balkonkraftwerk/', icon: 'sun', farbe: '#ff741c', titel: 'Balkonkraftwerk-Rechner', text: 'Ertrag, Ersparnis und Amortisation, ohne und mit Speicher, mit den Regeln 2026.' },
+  { href: '/rechner/heizkosten-sparen/', icon: 'thermometer', farbe: '#ff741c', titel: 'Heizkosten-Rechner', text: 'Was bringen ein Grad weniger, smarte Thermostate und der hydraulische Abgleich?' },
+  { href: '/rechner/standby/', icon: 'power', farbe: '#ffd400', titel: 'Stand-by-Rechner', text: 'Was kosten deine Geräte im Stand-by, und was spart eine Leiste mit Schalter?' },
+  { href: '/rechner/duschkosten/', icon: 'shower-head', farbe: '#39a8ff', titel: 'Duschkosten-Rechner', text: 'Was kostet eine Dusche, und wie viel spart ein Sparduschkopf?' },
+  { href: '/rechner/tropfender-wasserhahn/', icon: 'droplet', farbe: '#39a8ff', titel: 'Tropfender Wasserhahn', text: 'Wie viel Wasser und Geld geht im Jahr verloren?' },
 ];
 ---
-<Base title="Rechner: Stromkosten und Balkonkraftwerk" description="Kostenlose Rechner vom Handwerksdoktor: Stromkosten von Geräten und Ersparnis eines Balkonkraftwerks mit oder ohne Speicher. Alles läuft nur im Browser.">
+<Base title="Rechner: Strom, Heizung, Wasser" description="Kostenlose Rechner vom Handwerksdoktor: Stromkosten, Stand-by, Balkonkraftwerk, Heizkosten, Duschkosten und tropfender Wasserhahn. Alles läuft nur im Browser.">
   <div class="wrap wide">
     <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Rechner</nav>
     <h1>Rechner</h1>
-    <p class="lead">Schnell ausrechnen statt schätzen. Alle Rechner laufen nur in deinem Browser, es wird nichts gespeichert oder übertragen.</p>
+    <p class="lead">Schnell ausrechnen statt schätzen. Alle Rechner laufen nur in deinem Browser, es wird nichts gespeichert oder übertragen. Jedes Ergebnis kannst du als Link teilen.</p>
     <ul class="tiles rechner-tiles">
       {rechner.map((r) => (
         <li><a href={r.href} style={`--akzent:${r.farbe}`}>

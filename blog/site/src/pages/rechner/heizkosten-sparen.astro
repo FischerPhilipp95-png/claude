@@ -1,0 +1,112 @@
+---
+import Base from '../../layouts/Base.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import ProduktFokus from '../../components/ProduktFokus.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import { SITE } from '../../site';
+
+const title = 'Heizkosten-Rechner: Was sparen weniger Grad, Thermostat und Abgleich?';
+const description = 'Heizkosten sparen ausrechnen: Raumtemperatur senken, smarte Thermostate, hydraulischer Abgleich. Ersparnis pro Jahr und wann sich die Kosten bezahlt machen.';
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Heizkosten-Rechner',
+  url: `${SITE.url}/rechner/heizkosten-sparen/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Heizung" style="--akzent:#ff741c">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Heizkosten sparen</nav>
+    <h1>{title}</h1>
+    <p class="lead">Trag deine Heizkosten pro Jahr ein und wähle die Maßnahmen. Der Rechner zeigt, was jede bringt und wann sie sich bezahlt
+    macht. Die Prozentwerte sind Erfahrungswerte, die du anpassen kannst.</p>
+
+    <section class="box calc" aria-label="Rechner">
+      <div class="calc-grid">
+        <label>Heizkosten pro Jahr in €<input id="kosten" type="number" inputmode="decimal" min="0" step="any" value="1200" /></label>
+        <label>Raumtemperatur senken um °C<input id="grad" type="number" inputmode="decimal" min="0" max="5" step="0.5" value="1" /></label>
+        <label>Ersparnis pro Grad in %<input id="prograd" type="number" inputmode="decimal" min="0" max="15" step="any" value="6" /></label>
+      </div>
+      <label class="calc-check"><input id="t_an" type="checkbox" checked /> Smarte Heizkörperthermostate</label>
+      <div class="calc-grid">
+        <label>Ersparnis in %<input id="t_proz" type="number" inputmode="decimal" min="0" max="30" step="any" value="8" /></label>
+        <label>Kosten in € (alle Thermostate)<input id="t_kosten" type="number" inputmode="decimal" min="0" step="any" value="250" /></label>
+      </div>
+      <label class="calc-check"><input id="a_an" type="checkbox" /> Hydraulischer Abgleich</label>
+      <div class="calc-grid">
+        <label>Ersparnis in %<input id="a_proz" type="number" inputmode="decimal" min="0" max="30" step="any" value="10" /></label>
+        <label>Kosten in € (nach Förderung)<input id="a_kosten" type="number" inputmode="decimal" min="0" step="any" value="700" /></label>
+      </div>
+
+      <p class="calc-gross">Ersparnis zusammen: <strong id="summe">–</strong> pro Jahr</p>
+      <table class="result" aria-live="polite">
+        <thead><tr><th>Maßnahme</th><th>spart/Jahr</th><th>Kosten</th><th>bezahlt</th></tr></thead>
+        <tbody>
+          <tr><td>Temperatur</td><td id="e_grad">–</td><td>0 €</td><td>sofort</td></tr>
+          <tr><td>Thermostate</td><td id="e_t">–</td><td id="k_t">–</td><td id="j_t">–</td></tr>
+          <tr><td>Abgleich</td><td id="e_a">–</td><td id="k_a">–</td><td id="j_a">–</td></tr>
+        </tbody>
+      </table>
+      <div class="rbars" aria-hidden="true">
+        <div class="rbar"><span>Temperatur</span><span class="rbar-track"><span class="rbar-fill" id="b_grad"></span></span><span id="bt_grad">–</span></div>
+        <div class="rbar"><span>Thermostate</span><span class="rbar-track"><span class="rbar-fill" id="b_t"></span></span><span id="bt_t">–</span></div>
+        <div class="rbar"><span>Abgleich</span><span class="rbar-track"><span class="rbar-fill" id="b_a"></span></span><span id="bt_a">–</span></div>
+      </div>
+      <p class="small">Mehrere Maßnahmen addieren sich nicht einfach: Jede spart einen Anteil der Kosten, die nach der vorherigen übrig bleiben.
+      Deshalb ist die Summe etwas kleiner als die Einzelwerte zusammen.</p>
+      <RechnerTeilen />
+    </section>
+
+    <ProduktFokus id="thermopro-tp50" titel="Erst messen: Wie warm ist es wirklich?" />
+
+    <Schnellkauf titel="Passende Helfer" items={[
+      { name: 'Smartes Heizkörperthermostat', warum: 'Senkt die Temperatur nach Zeitplan, wenn niemand da ist.', suche: 'smartes Heizkörperthermostat' },
+      { name: 'Fensterdichtband', warum: 'Zugluft stoppen, damit es auch bei weniger Grad behaglich bleibt.', suche: 'tesamoll P-Profil' },
+    ]} />
+
+    <h2>Woher die Prozentwerte kommen</h2>
+    <ul>
+      <li><strong>Temperatur:</strong> Pro Grad weniger sind laut Verbraucherzentrale und co2online <strong>bis zu 6 %</strong> Heizenergie drin,
+      wenn es im ganzen Haus und rund um die Uhr ein Grad kühler ist.</li>
+      <li><strong>Smarte Thermostate:</strong> Laut ADAC nennt die Stiftung Warentest 6 bis 10 %, Verbraucherzentrale und co2online 9 bis 15 %.
+      Mehr dazu: <a href="/artikel/smartes-thermostat/">Smartes Thermostat: Lohnt es sich?</a></li>
+      <li><strong>Hydraulischer Abgleich:</strong> Häufig genannt werden rund 10 bis 15 %, je nach Zustand der Anlage. Kosten und Förderung:
+      <a href="/artikel/hydraulischer-abgleich/">Hydraulischer Abgleich</a>.</li>
+    </ul>
+    <p>Kostenlos und sofort wirksam ist auch eine passend eingestellte <a href="/artikel/heizkurve-einstellen/">Heizkurve</a>. Wie warm einzelne
+    Räume sein sollten und wie du Schimmel vermeidest: <a href="/artikel/luftfeuchtigkeit-wohnung/">Luftfeuchtigkeit in der Wohnung</a>.</p>
+
+    <h2>Quellen</h2>
+    <ul class="small">
+      <li>Verbraucherzentrale Rheinland-Pfalz: <a href="https://www.verbraucherzentrale-rlp.de/20-prozent-weniger-heizenergie-nr2-raumtemperaturen-und-heizzeiten-82589" rel="noopener">Raumtemperaturen und Heizzeiten</a></li>
+      <li>co2online: <a href="https://www.co2online.de/energie-sparen/heizenergie-sparen/heizkosten-sparen/richtig-heizen-die-10-besten-tipps/" rel="noopener">Heizkosten sparen: Die 10 besten Tipps</a></li>
+      <li>ADAC: <a href="https://www.adac.de/rund-ums-haus/energie/versorgung/smarte-heizkoerperthermostate/" rel="noopener">Smarte Heizkörperthermostate</a></li>
+    </ul>
+  </div>
+</Base>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const zahl = (id: string) => Math.max(0, parseFloat($(id).value.replace(',', '.')) || 0);
+  const eur = (x: number) => Math.round(x).toLocaleString('de-DE') + ' €';
+  const set = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  const jahre = (k: number, e: number) => (e <= 0 ? '–' : k / e < 1 ? '< 1 Jahr' : (k / e).toLocaleString('de-DE', { maximumFractionDigits: 1 }) + ' J.');
+  function rechnen() {
+    const k = zahl('kosten');
+    const pGrad = Math.min(zahl('grad') * zahl('prograd'), 90) / 100;
+    const pT = $('t_an').checked ? Math.min(zahl('t_proz'), 90) / 100 : 0;
+    const pA = $('a_an').checked ? Math.min(zahl('a_proz'), 90) / 100 : 0;
+    const eGrad = k * pGrad, eT = k * pT, eA = k * pA;
+    const summe = k * (1 - (1 - pGrad) * (1 - pT) * (1 - pA));
+    set('summe', eur(summe));
+    set('e_grad', eur(eGrad)); set('e_t', $('t_an').checked ? eur(eT) : '–'); set('e_a', $('a_an').checked ? eur(eA) : '–');
+    set('k_t', $('t_an').checked ? eur(zahl('t_kosten')) : '–'); set('k_a', $('a_an').checked ? eur(zahl('a_kosten')) : '–');
+    set('j_t', $('t_an').checked ? jahre(zahl('t_kosten'), eT) : '–'); set('j_a', $('a_an').checked ? jahre(zahl('a_kosten'), eA) : '–');
+    const max = Math.max(eGrad, eT, eA, 1);
+    [['b_grad', 'bt_grad', eGrad], ['b_t', 'bt_t', eT], ['b_a', 'bt_a', eA]].forEach(([b, t, v]) => {
+      (document.getElementById(b as string) as HTMLElement).style.setProperty('--p', String((v as number) / max));
+      set(t as string, eur(v as number));
+    });
+  }
+  document.querySelectorAll('section.calc input').forEach((i) => { i.addEventListener('input', rechnen); i.addEventListener('change', rechnen); });
+  rechnen();
+</script>

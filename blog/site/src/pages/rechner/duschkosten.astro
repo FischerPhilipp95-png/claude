@@ -1,0 +1,88 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProduktFokus from '../../components/ProduktFokus.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import { SITE } from '../../site';
+
+const title = 'Duschkosten-Rechner: Was kostet Duschen, was spart ein Sparduschkopf?';
+const description = 'Was kostet eine Dusche an Wasser und Energie? Mit deinem Duschkopf, deiner Duschzeit und deinem Warmwasser rechnen, plus Ersparnis durch einen Sparduschkopf.';
+const vorlagen = [
+  { name: 'Gasheizung (13 ct)', preis: 13 },
+  { name: 'Durchlauferhitzer (37 ct)', preis: 37 },
+];
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Duschkosten-Rechner',
+  url: `${SITE.url}/rechner/duschkosten/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Wasser" style="--akzent:#39a8ff">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Duschkosten</nav>
+    <h1>{title}</h1>
+    <p class="lead">Wie viel dein Duschkopf durchlässt, misst du mit einem Eimer: 10 Sekunden laufen lassen, Liter mal 6. Den Rest trägst du hier
+    ein.</p>
+
+    <section class="box calc" aria-label="Rechner">
+      <p class="small">Warmwasser über:</p>
+      <div class="presets">
+        {vorlagen.map((v) => <button type="button" data-preis={v.preis}>{v.name}</button>)}
+      </div>
+      <div class="calc-grid">
+        <label>Dein Duschkopf in Liter/Minute<input id="alt" type="number" inputmode="decimal" min="0" step="any" value="15" /></label>
+        <label>Sparduschkopf in Liter/Minute<input id="neu" type="number" inputmode="decimal" min="0" step="any" value="8" /></label>
+        <label>Minuten pro Dusche<input id="min" type="number" inputmode="decimal" min="0" step="any" value="5" /></label>
+        <label>Duschen pro Woche (alle Personen)<input id="woche" type="number" inputmode="decimal" min="0" step="any" value="7" /></label>
+        <label>Energiepreis für Warmwasser in Cent/kWh<input id="preis" type="number" inputmode="decimal" min="0" step="any" value="13" /></label>
+        <label>Wasser und Abwasser in €/m³<input id="wasser" type="number" inputmode="decimal" min="0" step="any" value="4.5" /></label>
+      </div>
+      <table class="result" aria-live="polite">
+        <thead><tr><th></th><th>dein Duschkopf</th><th>Sparduschkopf</th></tr></thead>
+        <tbody>
+          <tr><td>Liter pro Dusche</td><td id="l_alt">–</td><td id="l_neu">–</td></tr>
+          <tr><td>Kosten pro Dusche</td><td id="d_alt">–</td><td id="d_neu">–</td></tr>
+          <tr><td><strong>Kosten pro Jahr</strong></td><td id="j_alt"><strong>–</strong></td><td id="j_neu"><strong>–</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="calc-gross">Ersparnis pro Jahr: <strong id="spar">–</strong> und <span id="spar_l">–</span> weniger Wasser</p>
+      <p class="small">Annahme: Das Wasser wird von etwa 10 °C auf 38 °C erwärmt. Verluste der Heizung sind nicht eingerechnet, der echte
+      Energiebedarf ist also eher etwas höher. Wasserpreise sind regional sehr unterschiedlich, deinen findest du auf der Abrechnung.</p>
+      <RechnerTeilen />
+    </section>
+
+    <ProduktFokus id="hansgrohe-pulsify" titel="Beispiel: Sparduschkopf" />
+
+    <h2>So rechnet der Rechner</h2>
+    <ul>
+      <li><strong>Liter pro Dusche</strong> = Durchfluss × Minuten.</li>
+      <li><strong>Energie</strong> = Liter × 28 °C Erwärmung × 1,163 Wh. Das ist die Wärme, die nötig ist, um Wasser zu erwärmen.</li>
+      <li><strong>Kosten</strong> = Energie × Energiepreis plus Liter × Wasserpreis.</li>
+    </ul>
+    <p>Mehr zum Tausch und worauf du beim Kauf achten solltest: <a href="/artikel/sparduschkopf/">Sparduschkopf: Wie viel spart er?</a>
+    Spritzt dein Duschkopf schief? <a href="/artikel/duschkopf-entkalken/">Duschkopf entkalken</a>.</p>
+  </div>
+</Base>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const zahl = (id: string) => Math.max(0, parseFloat($(id).value.replace(',', '.')) || 0);
+  const eur = (x: number, d = 0) => x.toLocaleString('de-DE', { style: 'currency', currency: 'EUR', minimumFractionDigits: d, maximumFractionDigits: d });
+  const set = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  function kosten(lpm: number) {
+    const liter = lpm * zahl('min');
+    const kwh = (liter * 28 * 1.163) / 1000;
+    return { liter, dusche: kwh * zahl('preis') / 100 + (liter / 1000) * zahl('wasser') };
+  }
+  function rechnen() {
+    const a = kosten(zahl('alt')), n = kosten(zahl('neu'));
+    const proJahr = zahl('woche') * 52;
+    set('l_alt', Math.round(a.liter) + ' l'); set('l_neu', Math.round(n.liter) + ' l');
+    set('d_alt', eur(a.dusche, 2)); set('d_neu', eur(n.dusche, 2));
+    set('j_alt', eur(a.dusche * proJahr)); set('j_neu', eur(n.dusche * proJahr));
+    set('spar', eur((a.dusche - n.dusche) * proJahr));
+    set('spar_l', (((a.liter - n.liter) * proJahr) / 1000).toLocaleString('de-DE', { maximumFractionDigits: 1 }) + ' m³');
+  }
+  document.querySelectorAll('section.calc input').forEach((i) => i.addEventListener('input', rechnen));
+  document.querySelectorAll<HTMLButtonElement>('.presets button').forEach((b) => b.addEventListener('click', () => { $('preis').value = b.dataset.preis || '13'; rechnen(); }));
+  rechnen();
+</script>

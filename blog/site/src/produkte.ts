@@ -132,6 +132,19 @@ export const PRODUKTE = {
     name: 'Finish Maschinenpfleger (2er-Pack)', marke: 'Finish', asin: 'B013P0SJ5O', thema: 'Küche', artikel: 'spuelmaschine-reinigen',
     kurz: 'Flüssiger Reiniger für einen Leerlauf der Spülmaschine gegen Fett und Kalk.',
   },
+  'rowenta-so2320': {
+    name: 'Rowenta Heizlüfter Instant Comfort Compact SO2320', marke: 'Rowenta', asin: 'B00MFEHQMO', thema: 'Heizung', artikel: 'heizluefter-oelradiator-infrarot',
+    kurz: 'Kompakter Heizlüfter mit 2.000 W, zwei Heizstufen, Thermostat und Frostschutz. Für schnelle Wärme zwischendurch.',
+  },
+  'delonghi-radia-s': {
+    name: "De'Longhi Ölradiator Radia S TRRS0920", marke: "De'Longhi", asin: 'B00ZUUEBOQ', thema: 'Heizung', artikel: 'heizluefter-oelradiator-infrarot',
+    kurz: 'Ölradiator mit 2.000 W und drei Leistungsstufen. Leise, gibt die Wärme gleichmäßig und mit Nachwärme ab.',
+  },
+  'koenighaus-infrarot-600': {
+    name: 'Könighaus Infrarotheizung 600 W (Standgerät)', marke: 'Könighaus', asin: 'B01A3L5S3E', thema: 'Heizung', artikel: 'heizluefter-oelradiator-infrarot',
+    kurz: 'Mobile Infrarotheizung mit Füßen und Thermostat. Wärmt Personen und Flächen, lautlos, ohne Luftzug.',
+    passt: 'Laut Hersteller für etwa 10 bis 18 m². Für größere Räume reicht die Leistung nicht.',
+  },
 } satisfies Record<string, Produkt>;
 
 export type ProduktId = keyof typeof PRODUKTE;

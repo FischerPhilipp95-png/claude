@@ -67,8 +67,7 @@ const ogImage = new URL(image, SITE.url).toString();
       <nav aria-label="Themen">
         <p class="foot-h">Themen</p>
         {Object.values(THEMEN).map((t) => <a href={`/thema/${t.slug}/`}>{t.titel}</a>)}
-        <a href="/rechner/stromkosten/">Stromkosten-Rechner</a>
-        <a href="/rechner/balkonkraftwerk/">Balkonkraftwerk-Rechner</a>
+        <a href="/rechner/">Alle Rechner</a>
         <a href="/produkte/">Produkte erklärt</a>
       </nav>
       <nav aria-label="Rechtliches">
