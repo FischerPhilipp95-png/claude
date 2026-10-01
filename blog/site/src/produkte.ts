@@ -145,6 +145,38 @@ export const PRODUKTE = {
     kurz: 'Mobile Infrarotheizung mit Füßen und Thermostat. Wärmt Personen und Flächen, lautlos, ohne Luftzug.',
     passt: 'Laut Hersteller für etwa 10 bis 18 m². Für größere Räume reicht die Leistung nicht.',
   },
+  'sanitop-entlueftungsschluessel': {
+    name: 'Sanitop-Wingenroth Entlüftungsschlüssel für Heizkörper (2 Stück)', marke: 'Sanitop-Wingenroth', asin: 'B000V7G7Z4', thema: 'Heizung', artikel: 'heizkoerper-entlueften-anleitung',
+    kurz: 'Zwei Metall-Entlüftungsschlüssel mit 5-mm-Innenvierkant für die üblichen Entlüftungsventile und -stopfen. Einen für den Werkzeugkasten, einen für den Heizungsraum.',
+    passt: 'Passt auf Ventile mit 5-mm-Vierkant, das ist die häufigste Größe. Ventile mit Schlitz oder anderem Vierkant brauchen ein Set.',
+  },
+  'brushyz-heizkoerperbuerste': {
+    name: 'BRUSHYZ Heizkörperbürste 115 cm mit Entlüftungsschlüssel', marke: 'BRUSHYZ', asin: 'B0C98X7M4X', thema: 'Heizung', artikel: 'heizkoerper-reinigen',
+    kurz: 'Lange, biegsame Bürste für die Zwischenräume von Plattenheizkörpern. Ein Entlüftungsschlüssel liegt bei.',
+  },
+  'bosch-ixo-7': {
+    name: 'Bosch IXO Akkuschrauber (7. Generation)', marke: 'Bosch', asin: 'B0BCH64SVG', thema: 'Werkzeug', artikel: 'akkuschrauber-kaufen',
+    kurz: 'Kleiner Akkuschrauber mit 3,6 V und 5,5 Nm, Akku fest eingebaut, Laden per Micro-USB. Für Möbelaufbau und kleine Schraubarbeiten.',
+    passt: 'Nicht zum Bohren in Wände und nicht für lange Holzschrauben. Dafür ist ein Bohrschrauber mit 18 V da.',
+  },
+  'bosch-easydrill-18v40': {
+    name: 'Bosch EasyDrill 18V-40 mit 241-teiligem Bit-Set in SystemBox', marke: 'Bosch', asin: 'B0BYCFRQR2', thema: 'Werkzeug', artikel: 'werkzeugkoffer-mit-akkuschrauber',
+    kurz: 'Akku-Bohrschrauber mit 18 V, bis 40 Nm, 2 Gängen und 20 Drehmomentstufen. Mit Akku 1,5 Ah, Ladegerät und großem Bit-Set in Aufbewahrungsboxen.',
+    passt: 'Für Holz, Metall und Kunststoff. Zum Bohren in Beton braucht es einen Bohrhammer.',
+  },
+  'metabo-bs18l-set': {
+    name: 'Metabo BS 18 L Akku-Bohrschrauber-Set mit 2 Akkus und Koffer', marke: 'Metabo', asin: 'B0D6NMDCYN', thema: 'Werkzeug', artikel: 'werkzeugkoffer-mit-akkuschrauber',
+    kurz: '18-V-Bohrschrauber mit zwei Akkus (2,0 Ah), Ladegerät und Zubehör im Koffer. Mit zweitem Akku kein Warten beim Laden.',
+  },
+  'makita-ddf485': {
+    name: 'Makita DDF485 Akku-Bohrschrauber 18 V', marke: 'Makita', asin: 'B07NQJRT16', thema: 'Werkzeug', artikel: 'akkuschrauber-kaufen',
+    kurz: 'Bürstenloser 18-V-Bohrschrauber mit 2-Gang-Metallgetriebe und 13-mm-Bohrfutter. Teil des Makita-LXT-Akkusystems.',
+    passt: 'Lieferumfang (Akku, Ladegerät, Koffer) unterscheidet sich je nach Angebot, vor dem Kauf prüfen.',
+  },
+  'bohrbuerste-set': {
+    name: 'Bürstenaufsatz-Set für Akkuschrauber (3 Bürsten)', marke: 'INF', asin: 'B08PFZP9ZN', thema: 'Werkzeug', artikel: 'akkuschrauber-zubehoer',
+    kurz: 'Drei Nylonbürsten in verschiedenen Größen mit 1/4-Zoll-Sechskantschaft. Für Fugen, Fliesen, Felgen und Grillrost.',
+  },
   'midea-portasplit': {
     name: 'Midea PortaSplit 12.000 BTU (mobile Split-Klimaanlage mit Heizfunktion)', marke: 'Midea', asin: 'B0D3PP64JS', thema: 'Heizung', artikel: 'heizen-mit-klimaanlage',
     kurz: 'Mobile Split-Klimaanlage, die auch heizt (Wärmepumpe, Heizen A+, 3,5 kW). Außengerät hängt am Fenster, ohne Wanddurchbruch und ohne Fachbetrieb.',

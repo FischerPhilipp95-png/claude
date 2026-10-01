@@ -218,3 +218,16 @@ Rauchmelder piept (Fehlerbehebung), eigenes YouTube-Video zur Plissee-Montage mi
   „was kostet Gas zum Heizen“ ab).
 - Offen aus den Trends: „thermostat heizung wechseln“ und „heizung richtig entlüften“ in vorhandene Titel/H2 einarbeiten,
   „Strangregulierventil“ im Abgleich-Artikel, „Gartenhaus heizen / Heizstrahler“ im Heizgeräte-Vergleich, Short „Ab wann heizen?“.
+
+## Stand 01.10.2026, Runde 9 (Google Trends Heizung, Klima, Akkuschrauber)
+
+- Klima-Artikel: Abschnitte „Klimaanlage mit Heizfunktion“, „Luft-Luft-Wärmepumpe“, „Eurom mobile Split: kann sie heizen?“ (nein,
+  laut Hersteller nur Kühlen), Förderung KfW 458 mit Sätzen und NRW-Hinweis.
+- Entlüften: Titel „Heizung richtig entlüften“, FAQ „Wie entlüfte ich die Heizung richtig?“, Sanitop-Wingenroth Entlüftungsschlüssel (B000V7G7Z4).
+- Ölradiator vorn im Titel des Heizgeräte-Vergleichs, FAQ Stromverbrauch Ölradiator.
+- Neue Heizungsartikel: Heizkörper reinigen (Heizkörperbürste B0C98X7M4X), Opferanode prüfen (bewusst ohne festes Produkt, Teile müssen passen),
+  Heizkörperverkleidung.
+- Neue Kategorie Werkzeug (#12b5a5, Icon drill) mit 4 Artikeln: Akkuschrauber kaufen, Akkuschrauber oder Bohrmaschine, Akkuschrauber-Zubehör,
+  Werkzeugkoffer mit Akkuschrauber. Produkte: Bosch IXO 7, Bosch EasyDrill 18V-40 Set, Metabo BS 18 L Set, Makita DDF485, Bürstenaufsatz-Set.
+- Kopfzeile: Logo-Text am Desktop nur für Screenreader, Themen-Icons zwischen 861 und 1079 px aus, damit „Rechner“ immer sichtbar bleibt.
+- Nicht gemacht (bewusst): Online-Casino, Markensuchen (Seven Oaks, Puls Air, Vivax), Parkside (nicht bei Amazon), beheizte Handschuhe, Poolheizung.
