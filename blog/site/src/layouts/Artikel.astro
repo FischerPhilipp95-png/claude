@@ -5,7 +5,6 @@ import { THEMEN, type Thema } from '../themen';
 import Verwandt from '../components/Verwandt.astro';
 import Icon from '../components/Icon.astro';
 import PinterestMerken from '../components/PinterestMerken.astro';
-import VideoBox from '../components/VideoBox.astro';
 import { videoFuerArtikel, videoSchema } from '../videos';
 import { CHECKLISTEN } from '../checklisten.mjs';
 import { existsSync } from 'node:fs';
@@ -84,7 +83,6 @@ if (vSchema) jsonLd.push(vSchema as any);
         <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
       </details>
     )}
-    {video && <VideoBox video={video} />}
     <slot />
     {checklisten.map((c) => (
       <aside class="box druck-checkliste" aria-label={`Checkliste zum Ausdrucken: ${c.kurz}`} data-pagefind-ignore>

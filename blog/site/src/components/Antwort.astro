@@ -1,5 +1,11 @@
 ---
 // Kurze Antwort ganz oben: die Stelle, die Google gern als hervorgehobenes Snippet zeigt.
+// Hat der Artikel ein passendes Video vom Kanal (src/videos.ts), steht es direkt darunter: erst die Antwort, dann das Video.
 import Icon from './Icon.astro';
+import VideoBox from './VideoBox.astro';
+import { videoFuerArtikel } from '../videos';
+const id = Astro.url.pathname.match(/^\/artikel\/([^/]+)\//)?.[1];
+const video = id ? videoFuerArtikel(id) : undefined;
 ---
 <div class="answer"><p class="answer-label"><Icon name="lightbulb" size={18} /> Kurze Antwort</p><slot /></div>
+{video && <VideoBox video={video} />}

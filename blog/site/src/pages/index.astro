@@ -8,6 +8,7 @@ import { SITE } from '../site';
 import { THEMEN } from '../themen';
 import { SAISON } from '../saison';
 import { RECHNER } from '../rechner';
+import { CHECKLISTEN } from '../checklisten.mjs';
 
 const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -60,6 +61,16 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
         <span class="tile-icon"><Icon name="sun" size={28} /></span>
         <span class="tile-name">Balkonkraftwerk</span>
         <span class="tile-count">Lohnt sich ein Speicher?</span>
+      </a></li>
+      <li><a href="/rechner/duebel/" style="--akzent:#12b5a5">
+        <span class="tile-icon"><Icon name="brick-wall" size={28} /></span>
+        <span class="tile-name">Dübel-Finder</span>
+        <span class="tile-count">Welcher Dübel für welche Wand?</span>
+      </a></li>
+      <li><a href="/checklisten/" style="--akzent:#03b84c">
+        <span class="tile-icon"><Icon name="printer" size={28} /></span>
+        <span class="tile-name">Checklisten</span>
+        <span class="tile-count">{CHECKLISTEN.length} zum Ausdrucken (PDF)</span>
       </a></li>
     </ul>
 
