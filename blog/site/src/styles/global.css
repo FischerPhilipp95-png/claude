@@ -405,3 +405,10 @@ table.result tbody th[scope="row"] { font-weight: 400; background: none; }
 .pfeil-liste li::before { content: '▸'; position: absolute; left: 0; color: #d9590b; }
 .ueber-kopf h1 { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
 @media (max-width: 560px) { .ueber-kopf { gap: 14px; } .ueber-kopf img { width: 64px; height: 64px; } .ueber-kopf h1 { font-size: 1.7rem; } }
+
+/* Taupunkt-Rechner: Ergebnis mit Status (Farbe plus Text, nie Farbe allein) */
+.taupunkt-status { margin: 14px 0 6px; padding: 12px 14px; border-radius: var(--radius-sm); border-left: 5px solid; font-weight: 600; font-size: 0.95rem; line-height: 1.45; }
+.taupunkt-status[data-status="gut"] { background: #e9f7e9; border-color: #0ca30c; }
+.taupunkt-status[data-status="achtung"] { background: #fff6dd; border-color: #fab219; }
+.taupunkt-status[data-status="erhoeht"] { background: #fdeee7; border-color: #ec835a; }
+.taupunkt-status[data-status="kritisch"] { background: #fbe7e7; border-color: #d03b3b; }

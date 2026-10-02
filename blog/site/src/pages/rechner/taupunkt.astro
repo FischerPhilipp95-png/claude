@@ -1,0 +1,138 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProduktFokus from '../../components/ProduktFokus.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import { SITE } from '../../site';
+
+const title = 'Taupunkt-Rechner: Ab wann wird die Wand nass und schimmelt?';
+const description = 'Taupunkt berechnen: Raumtemperatur und Luftfeuchtigkeit eingeben und sehen, ab welcher Wandtemperatur Kondenswasser und Schimmel drohen. Mit Tabelle.';
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Taupunkt- und Schimmel-Rechner',
+  url: `${SITE.url}/rechner/taupunkt/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+
+// Magnus-Formel (Koeffizienten nach Sonntag 1990, über Wasser): Sättigungsdampfdruck in hPa.
+const es = (t: number) => 6.112 * Math.exp((17.62 * t) / (243.12 + t));
+const tempBei = (e: number) => { const v = Math.log(e / 6.112); return (243.12 * v) / (17.62 - v); };
+const fmt = (x: number) => x.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const tabelle = [40, 50, 60, 70, 80].map((rf) => {
+  const e = (rf / 100) * es(20);
+  return { rf, tau: fmt(tempBei(e)), schimmel: fmt(tempBei(e / 0.8)) };
+});
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Raumklima" style="--akzent:#03b84c">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Taupunkt</nav>
+    <h1>{title}</h1>
+    <p class="lead">Warme Luft trägt Wasserdampf. Kühlt sie an einer kalten Wand ab, wird die Wand feucht. Gib Raumtemperatur und
+    Luftfeuchtigkeit ein, dann siehst du, wie kalt eine Wand oder ein Fenster werden darf. Die Wandtemperatur misst du am einfachsten mit
+    einem Infrarot-Thermometer.</p>
+
+    <section class="box calc" aria-label="Rechner">
+      <div class="calc-grid">
+        <label>Raumtemperatur in °C<input id="raum" type="number" inputmode="decimal" min="-10" max="40" step="0.5" value="20" /></label>
+        <label>Luftfeuchtigkeit in %<input id="rf" type="number" inputmode="decimal" min="1" max="100" step="1" value="60" /></label>
+        <label>Wandtemperatur in °C (gemessen)<input id="wand" type="number" inputmode="decimal" min="-20" max="40" step="0.5" value="14" /></label>
+      </div>
+
+      <table class="result" aria-live="polite">
+        <thead><tr><td></td><th scope="col">Temperatur</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Taupunkt: hier wird die Fläche nass</th><td id="tau">–</td></tr>
+          <tr><th scope="row"><strong>Schimmelgrenze: Wand mindestens</strong></th><td id="grenze"><strong>–</strong></td></tr>
+          <tr><th scope="row">Luftfeuchtigkeit direkt an der Wand</th><td id="wandrf">–</td></tr>
+        </tbody>
+      </table>
+      <p class="taupunkt-status" id="status" data-status="gut" aria-live="polite">–</p>
+      <p class="small">Schimmel braucht keine nasse Wand: Liegt die Luftfeuchtigkeit direkt an der Oberfläche über mehrere Tage bei 80 % oder
+      mehr, kann er wachsen. Deshalb zeigt der Rechner neben dem Taupunkt auch die Schimmelgrenze.</p>
+      <RechnerTeilen />
+    </section>
+
+    <ProduktFokus id="thermopro-tp30" titel="Wandtemperatur messen: Infrarot-Thermometer" />
+
+    <h2>Taupunkt-Tabelle bei 20 °C Raumtemperatur</h2>
+    <table>
+      <thead><tr><th scope="col">Feuchte</th><th scope="col">Taupunkt</th><th scope="col">Schimmel­grenze</th></tr></thead>
+      <tbody>
+        {tabelle.map((z) => <tr><th scope="row">{z.rf}&nbsp;%</th><td>{z.tau}&nbsp;°C</td><td>{z.schimmel}&nbsp;°C</td></tr>)}
+      </tbody>
+    </table>
+    <p>Bei 20 °C und 50 % Luftfeuchtigkeit sollte keine Stelle der Wand kälter als etwa 12,6 °C werden. Diesen Wert nennt auch die Norm
+    für den Mindestwärmeschutz (DIN 4108-2). Bei 60 % sind es schon gut 15 °C, und das schaffen Außenecken in schlecht gedämmten
+    Altbauten im Winter oft nicht.</p>
+
+    <h2>So nutzt du den Rechner</h2>
+    <ol>
+      <li><strong>Luftfeuchtigkeit messen</strong> mit einem Hygrometer, am besten in der Raummitte.</li>
+      <li><strong>Wandtemperatur messen</strong> an der kältesten Stelle: Außenecke, hinter dem Schrank, unter dem Fenster, Fensterlaibung.
+      Mit einem Infrarot-Thermometer geht das in Sekunden.</li>
+      <li>Werte eintragen. Liegt die Wand unter der Schimmelgrenze, musst du die Luftfeuchtigkeit senken oder die Wand wärmer bekommen.</li>
+    </ol>
+
+    <ProduktFokus id="thermopro-tp50" titel="Luftfeuchtigkeit im Blick: Hygrometer" />
+
+    <h2>Was hilft, wenn die Wand zu kalt ist?</h2>
+    <ul>
+      <li><strong>Luftfeuchtigkeit senken:</strong> 3- bis 4-mal täglich stoßlüften, Wäsche nicht in der Wohnung trocknen.
+      <a href="/artikel/fenster-beschlagen/">Fenster beschlagen innen: was hilft</a></li>
+      <li><strong>Wand wärmer machen:</strong> Raum gleichmäßig heizen, nicht unter 16 °C auskühlen lassen, Möbel einige Zentimeter von
+      Außenwänden abrücken. <a href="/artikel/ab-wann-heizen/">Ab wann heizen?</a></li>
+      <li><strong>Wenn Lüften nicht reicht:</strong> ein elektrischer Luftentfeuchter.
+      <a href="/artikel/luftentfeuchter/">Luftentfeuchter: welcher hilft?</a></li>
+      <li><strong>Schimmel schon da?</strong> <a href="/artikel/schimmel-entfernen/">Schimmel entfernen: was du selbst darfst</a></li>
+    </ul>
+    <p>Welche Luftfeuchtigkeit in welchem Raum richtig ist: <a href="/artikel/luftfeuchtigkeit-wohnung/">Luftfeuchtigkeit in der Wohnung</a>.</p>
+
+    <h2>So rechnet der Rechner</h2>
+    <p class="small">Sättigungsdampfdruck nach der Magnus-Formel (Koeffizienten nach Sonntag 1990, wie im DWD-Wetterlexikon):
+    E(T) = 6,112 hPa · e<sup>17,62·T / (243,12 + T)</sup>. Der Dampfdruck im Raum ist e = Luftfeuchtigkeit × E(Raumtemperatur).
+    Der Taupunkt ist die Temperatur, bei der E = e. Die Schimmelgrenze ist die Temperatur, bei der die Luftfeuchtigkeit an der Oberfläche
+    80 % erreicht (E = e ÷ 0,8). Das ist das Kriterium aus DIN 4108-2. Die Ergebnisse sind Richtwerte, keine Bauwerksdiagnose.</p>
+
+    <h2>Quellen</h2>
+    <ul class="small">
+      <li>Umweltbundesamt: <a href="https://www.umweltbundesamt.de/system/files/medien/3521/dokumente/schimmelpilze_leitfaden.pdf" rel="noopener">Leitfaden zur Vorbeugung, Erfassung und Sanierung von Schimmelbefall in Gebäuden</a> (PDF)</li>
+      <li>Bayerisches Wirtschaftsministerium: <a href="https://www.stmwi.bayern.de/fileadmin/user_upload/stmwi/Energie/Energiewende/Energieeffizienz/08_Hinweise_Energiesparen_Feuchte_Waende_und_Schimmelbildung_gesichert.pdf" rel="noopener">Feuchte Wände und Schimmelbildung</a> (PDF)</li>
+      <li>Deutscher Wetterdienst: Wetterlexikon, Stichwort Taupunkt (Magnus-Formel)</li>
+    </ul>
+  </div>
+</Base>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const zahl = (id: string, def: number) => { const v = parseFloat($(id).value.replace(',', '.')); return Number.isFinite(v) ? v : def; };
+  const es = (t: number) => 6.112 * Math.exp((17.62 * t) / (243.12 + t));
+  const tempBei = (e: number) => { const v = Math.log(e / 6.112); return (243.12 * v) / (17.62 - v); };
+  const grad = (x: number) => x.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '\u00a0°C';
+  const set = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  function rechnen() {
+    const raum = zahl('raum', 20);
+    const rf = Math.min(100, Math.max(1, zahl('rf', 60)));
+    const wand = zahl('wand', raum);
+    const e = (rf / 100) * es(raum);
+    const tau = tempBei(e);
+    const grenze = tempBei(e / 0.8);
+    const wandrf = Math.min(100, (e / es(wand)) * 100);
+    set('tau', grad(tau));
+    const g = document.querySelector('#grenze strong'); if (g) g.textContent = grad(grenze);
+    set('wandrf', Math.round(wandrf) + ' %');
+    const status = document.getElementById('status') as HTMLElement;
+    if (wand <= tau) {
+      status.dataset.status = 'kritisch';
+      status.textContent = 'Kritisch: Die Wand ist kälter als der Taupunkt, dort entsteht Kondenswasser. Sofort lüften und die Feuchtigkeit senken.';
+    } else if (wandrf >= 80) {
+      status.dataset.status = 'erhoeht';
+      status.textContent = 'Schimmelgefahr: An der Wand liegt die Luftfeuchtigkeit bei 80 % oder mehr. Bleibt das über Tage so, kann Schimmel wachsen.';
+    } else if (wandrf >= 70) {
+      status.dataset.status = 'achtung';
+      status.textContent = 'Achtung: Knapp unter der Schimmelgrenze. Öfter lüften oder die Wand etwas wärmer bekommen.';
+    } else {
+      status.dataset.status = 'gut';
+      status.textContent = 'Gut: Die Wand ist warm genug, Kondenswasser und Schimmel sind bei diesen Werten nicht zu erwarten.';
+    }
+  }
+  document.querySelectorAll('section.calc input').forEach((i) => { i.addEventListener('input', rechnen); i.addEventListener('change', rechnen); });
+  rechnen();
+</script>

@@ -241,3 +241,14 @@ Rauchmelder piept (Fehlerbehebung), eigenes YouTube-Video zur Plissee-Montage mi
 - Neue Artikel: Fenster beschlagen innen (Kärcher WV 2), Luftentfeuchter (Comfee MDDF-16DEN7), Geschenke für Heimwerker
   (12 Produkte, neu: Bosch Truvo, Ledlenser HF4R Core). Geschenke-Artikel Ende Oktober noch einmal prüfen und in den Saison-Bereich nehmen.
 - Fehlende Leerzeichen vor/nach Links in .astro-Vorlagen behoben (Astro entfernt Zeilenumbrüche zwischen Text und Inline-Elementen).
+
+## Stand 02.10.2026, Runde 11
+
+- Automatischer Upload per GitHub Actions (`.github/workflows/website.yml`): prüfen → hochladen (SFTP, Hauptordner /) → Live-Check → IndexNow.
+  Neu im Ablauf: interne Links (lychee, blockiert), Bericht zu externen Quellen, Rechtschreibung geänderter Artikel und npm audit (blockiert nicht).
+- Rechtschreibprüfung `npm run rechtschreibung` (LanguageTool), Wörterbuch `site/scripts/woerterbuch.txt`. Erster Lauf: 9 echte Fehler behoben.
+- Linkprüfung: kaputter Link in der Datenschutzerklärung („https://“ als Autolink) und veralteter Jura-Link behoben.
+- Neu: Taupunkt- und Schimmel-Rechner `/rechner/taupunkt/`, Artikel „Rohre frostsicher machen“ (Kerbl-Heizkabel) und „Heizung im Urlaub“.
+  Ab Dezember beide in den Saison-Bereich nehmen (`site/src/saison.ts`).
+- Dependabot geht nicht ohne Weiteres: Er liest nur den Standard-Branch des Repos, die Website liegt auf claude/serene-darwin-f9rggj.
+  Ersatz: npm audit im Bericht bei jedem Push.

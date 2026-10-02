@@ -196,6 +196,11 @@ export const PRODUKTE = {
     name: 'Ledlenser HF4R Core Stirnlampe (wiederaufladbar)', marke: 'Ledlenser', asin: 'B0CF9Q3Z4F', thema: 'Werkzeug', artikel: 'geschenke-fuer-heimwerker',
     kurz: 'Leichte Akku-Stirnlampe mit bis zu 500 Lumen und Rotlicht, wasserdicht nach IP68. Beide Hände bleiben frei, etwa unter der Spüle oder im Keller.',
   },
+  'kerbl-heizkabel-8m': {
+    name: 'Kerbl Frostschutz-Heizkabel 8 m (Rohrbegleitheizung)', marke: 'Kerbl', asin: 'B005LFS6C8', thema: 'Wasser', artikel: 'rohre-frostsicher',
+    kurz: 'Heizkabel zum Anlegen an Wasserleitungen, 8 m lang, 117 Watt. Hält gefährdete Leitungen in Garage, Keller oder Gartenhaus frostfrei.',
+    passt: 'Länge passend zur Leitung wählen und nur nach Anleitung montieren. Nicht kürzen, nicht überkreuzen, nur an eine geeignete Steckdose.',
+  },
   'midea-portasplit': {
     name: 'Midea PortaSplit 12.000 BTU (mobile Split-Klimaanlage mit Heizfunktion)', marke: 'Midea', asin: 'B0D3PP64JS', thema: 'Heizung', artikel: 'heizen-mit-klimaanlage',
     kurz: 'Mobile Split-Klimaanlage, die auch heizt (Wärmepumpe, Heizen A+, 3,5 kW). Außengerät hängt am Fenster, ohne Wanddurchbruch und ohne Fachbetrieb.',

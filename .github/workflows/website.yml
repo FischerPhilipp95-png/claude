@@ -3,8 +3,12 @@
 # Ablauf:
 #   1. prüfen:     npm ci, Build (Astro + Pagefind), check (fremde Server, seitliches Scrollen),
 #                  qualitaet (html-validate, pa11y-ci). Schlägt etwas fehl, wird NICHT hochgeladen.
+#                  Dazu interne Links (lychee, offline): Ein kaputter Link auf der eigenen Seite verhindert den Upload.
 #   2. hochladen:  dist/ per SFTP nach IONOS (Hauptordner /) (nur hinzufügen und überschreiben, nichts auf dem Server löschen),
 #                  danach Live-Check und IndexNow.
+#   3. berichte:   nur zur Info, blockiert nichts: externe Quellenlinks (lychee, ohne Amazon), Rechtschreibung der
+#                  geänderten Artikel (LanguageTool) und Sicherheitslücken in den npm-Paketen (npm audit).
+#                  Ergebnis steht in der Zusammenfassung des Laufs. Beim manuellen Start mit „alle_artikel“ alle Artikel prüfen.
 #
 # Zugangsdaten stehen ausschließlich als GitHub-Secrets im Repository (Settings → Secrets and variables → Actions):
 #   IONOS_SFTP_HOST, IONOS_SFTP_USER, IONOS_SFTP_PASSWORD
@@ -24,6 +28,10 @@ on:
         description: 'Nach den Prüfungen zu IONOS hochladen?'
         type: boolean
         default: true
+      alle_artikel:
+        description: 'Rechtschreibung aller Artikel prüfen (dauert einige Minuten)?'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -45,9 +53,9 @@ jobs:
       ASTRO_TELEMETRY_DISABLED: '1'
       PUPPETEER_SKIP_DOWNLOAD: '1'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
@@ -70,8 +78,21 @@ jobs:
       - name: Prüfen (HTML und Barrierefreiheit)
         run: npm run qualitaet
 
+      - name: Prüfen (interne Links)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Offline: nur Links innerhalb der Seite. Links mit „#…=“ sind Rechner- und Such-Parameter, keine Sprungmarken.
+          args: >-
+            --offline --no-progress --include-fragments
+            --root-dir ${{ github.workspace }}/blog/site/dist
+            --exclude-path blog/site/dist/pagefind
+            --exclude '#[^/]*='
+            'blog/site/dist/**/*.html'
+          fail: true
+          jobSummary: false
+
       - name: Fertige Seite für den Upload ablegen
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: website
           path: blog/site/dist
@@ -99,14 +120,14 @@ jobs:
             echo "ok=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         if: steps.zugang.outputs.ok == 'true'
         with:
           sparse-checkout: blog/site/scripts
 
       - name: Fertige Seite holen
         if: steps.zugang.outputs.ok == 'true'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: website
           path: blog/site/dist
@@ -175,3 +196,66 @@ jobs:
         continue-on-error: true
         working-directory: blog/site
         run: node scripts/indexnow.mjs
+
+  berichte:
+    name: Berichte (Quellen, Rechtschreibung, Pakete)
+    needs: pruefen
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Nur zur Info: Fehler hier stoppen keinen Upload und färben den Lauf nicht rot.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Fertige Seite holen
+        uses: actions/download-artifact@v7
+        with:
+          name: website
+          path: blog/site/dist
+
+      - name: Externe Quellenlinks prüfen
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Amazon bewusst ausgenommen: kein automatisches Abrufen von Amazon-Seiten (Partnerprogramm).
+          # 403 und 429 gelten als erreichbar, viele Seiten blocken Prüfprogramme.
+          args: >-
+            --no-progress --max-concurrency 8 --timeout 25 --max-retries 2
+            --accept '200..=299,403,429'
+            --root-dir ${{ github.workspace }}/blog/site/dist
+            --exclude '^file://' --exclude 'amazon\.' --exclude 'handwerksdoktor\.de' --exclude 'youtube\.com'
+            --exclude-path blog/site/dist/pagefind
+            'blog/site/dist/**/*.html'
+          fail: false
+          jobSummary: true
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Rechtschreibung (LanguageTool)
+        working-directory: blog/site
+        env:
+          ALLE: ${{ github.event_name != 'push' && inputs.alle_artikel || 'false' }}
+          VORHER: ${{ github.event.before }}
+        run: |
+          if [ "$ALLE" = "true" ] || [ -z "$VORHER" ] || [ "$VORHER" = "0000000000000000000000000000000000000000" ]; then
+            ARTIKEL=""
+            echo "Prüfe alle Artikel."
+          else
+            ARTIKEL=$(git diff --name-only "$VORHER" "$GITHUB_SHA" -- src/content/artikel | sed -n 's|^blog/site/src/content/artikel/\(.*\)\.mdx$|\1|p' | tr '\n' ' ')
+            if [ -z "$ARTIKEL" ]; then echo "Keine Artikel geändert."; exit 0; fi
+            echo "Geänderte Artikel: $ARTIKEL"
+          fi
+          node scripts/rechtschreibung.mjs --nur-bericht $ARTIKEL
+
+      - name: Sicherheitslücken in Paketen (npm audit)
+        working-directory: blog/site
+        run: |
+          {
+            echo "### npm audit (nur Prüf- und Bauwerkzeuge, nichts davon läuft auf der Website)"
+            echo '```'
+            npm audit --omit=optional 2>&1 | tail -25
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

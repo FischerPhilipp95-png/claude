@@ -1,0 +1,115 @@
+# Wörter, die LanguageTool als Rechtschreibfehler meldet, die bei uns aber richtig sind (eins pro Zeile).
+# Marken, Produktnamen, Fachbegriffe, Abkürzungen. Groß-/Kleinschreibung egal.
+# Zeilen mit „= “ am Anfang: ganze Fundstellen, die fälschlich als Grammatikfehler gemeldet werden.
+
+# Seite und Quellen
+Handwerksdoktor
+co2online
+co
+Haufe
+entega
+Thermondo
+progres.nrw
+PVGIS-Rechner
+VdZ
+VdZ-Formular
+iSFP
+RAVL
+NAV
+
+# Marken und Produkte
+hansgrohe
+EcoDecalk
+calc
+nClean
+PortaSplit
+Eurom
+Eurom-Gerät
+Midea
+CLARIS
+CLARIS-Filter
+AquaClean
+AquaClean-Filter
+AquaClean-Anschluss
+Makita
+Makita-System
+IXO
+Sonello
+Saeco
+Saeco-Vollautomaten
+Saeco-Geräte
+Metabo
+EcoFlow
+EcoSmart
+Oventrop
+Blink
+Doorbell
+Longhi-Vollautomaten
+Longhi-Geräte
+Magnifica-Reihe
+AUVON-Modell
+Torx
+Allround
+
+# Technik und Einheiten
+Wp
+SCOP
+BTU
+max
+KFE-Hahn
+Kessel-Füll-Entleer-Hahn
+Magnesiumanode
+SDS-plus
+SDS-plus-Bohrer
+SDS-plus-Aufnahme
+V-LXT-System
+mm-Vierkant
+Zoll-Sechskantschaft
+Brushless
+Brush
+Instant-On
+Eco
+Eco-Funktion
+Master-Slave-Steckdosenleiste
+Master-Slave-Leiste
+Adsorptions-Luftentfeuchter
+witterungsgeführt
+Trichogramma
+Chlorbleichlauge
+Amidosulfonsäure-Basis
+Zitronensäurebasis
+Zitronensäurepulver
+Tresterbehälter
+Befallsfläche
+Klettaufnahme
+Zentrierspitze
+
+# Wörter, die es gibt, die LanguageTool aber nicht kennt
+Dampfglätter
+Hand-Dampfglätter
+Pümpel
+zurückfedern
+zurückfedert
+feindrähtig
+feindrähtigen
+eingeklipst
+abhebeln
+zuheizt
+überstreichbar
+rückstandsarm
+mitheizen
+hineinsprühen
+festknallen
+aufgespleißt
+aufgeklemmt
+schraub
+Hak
+Lüft-Tabelle
+
+# Fehlalarme bei Grammatik („der Bit“ ist das Werkzeug, „das“ hier Demonstrativpronomen)
+= den passenden Bit
+= einen Bit
+= das Sache
+= die Ärger
+= zusätzlich Mauerwerk
+= Heimeier

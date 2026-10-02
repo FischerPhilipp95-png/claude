@@ -7,4 +7,5 @@ export const RECHNER = [
   { href: '/rechner/standby/', icon: 'power', farbe: '#ffd400', titel: 'Stand-by-Rechner', text: 'Was kosten deine Geräte im Stand-by, und was spart eine Leiste mit Schalter?' },
   { href: '/rechner/duschkosten/', icon: 'shower-head', farbe: '#39a8ff', titel: 'Duschkosten-Rechner', text: 'Was kostet eine Dusche, und wie viel spart ein Sparduschkopf?' },
   { href: '/rechner/tropfender-wasserhahn/', icon: 'droplet', farbe: '#39a8ff', titel: 'Tropfender Wasserhahn', text: 'Wie viel Wasser und Geld geht im Jahr verloren?' },
+  { href: '/rechner/taupunkt/', icon: 'droplets', farbe: '#03b84c', titel: 'Taupunkt- und Schimmel-Rechner', text: 'Ab welcher Wandtemperatur wird es nass? Taupunkt und Schimmelgrenze aus Temperatur und Luftfeuchtigkeit.' },
 ];

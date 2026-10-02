@@ -103,7 +103,7 @@ Es wird keine Verbindung zu Google Fonts oder anderen Schriftanbietern aufgebaut
 
 ## 9. SSL-/TLS-Verschlüsselung
 
-Diese Website nutzt aus Sicherheitsgründen eine TLS-Verschlüsselung (erkennbar an „https://“).
+Diese Website nutzt aus Sicherheitsgründen eine TLS-Verschlüsselung (erkennbar an „https“ am Anfang der Adresse und dem Schloss-Symbol im Browser).
 
 ## 10. Deine Rechte
 

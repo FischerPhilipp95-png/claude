@@ -10,7 +10,8 @@
     "indexnow": "node scripts/indexnow.mjs",
     "titelbilder": "node scripts/titelbilder.mjs",
     "qualitaet": "node scripts/qualitaet.mjs",
-    "lighthouse": "unlighthouse-ci --config-file unlighthouse.config.mjs"
+    "lighthouse": "unlighthouse-ci --config-file unlighthouse.config.mjs",
+    "rechtschreibung": "node scripts/rechtschreibung.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.2",
