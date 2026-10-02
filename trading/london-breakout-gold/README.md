@@ -122,6 +122,51 @@ Was das heißt:
 Die Zahlen sind ein Backtest auf historischen Daten und keine Anlageberatung. Auf deinem TradingView-Chart
 weichen sie leicht ab: anderer Datenfeed, anderer Spread, und je nach Abo ein kürzerer Zeitraum.
 
+## Lässt sich die Strategie verbessern? (Test vom 02.10.2026)
+
+Vorgehen gegen Überanpassung: Ideen wurden nur auf **2019–2022** ausgewählt und danach einmal auf
+**2023 – Mai 2026** geprüft. Insgesamt rund 150 Varianten, alle mit 0,30 $ Kosten, Ergebnis in R netto.
+
+**1. Bester Kandidat aus 2019–2022 hält im Prüfzeitraum nicht**
+
+| Variante | 2019–2022 | 2023 – Mai 2026 |
+|---|---:|---:|
+| Basis (CRV 1:1) | −43 R | −12 R |
+| CRV 1:3 + Stop auf Einstand ab +1R | **+59 R** (alle 4 Jahre im Plus) | **−8 R** |
+| dasselbe, nur Boxen ab 3 $ | +60 R | −17 R |
+| CRV 1:2,5 bzw. 1:4 + Stop auf Einstand | +32 R / +31 R | +7 R / −1 R |
+
+Trendfilter (Vortagesschluss über/unter EMA 10–200), Boxgröße im Verhältnis zur Tages-ATR und ein früheres
+oder späteres Einstiegsende brachten schon 2019–2022 nichts.
+
+**2. Andere Ansätze, Bedingung: in beiden Hälften im Plus**
+
+| Variante | 2019–2022 | 2023 – Mai 2026 |
+|---|---:|---:|
+| Umkehr-Trade nach Fehlausbruch | −101 R | −60 R |
+| Nur in Richtung der Asia-Bewegung (00:00–08:30) | −57 R | −16 R |
+| Nur gegen die Asia-Bewegung | −51 R | −37 R |
+| Box aus 1 Kerze (08:00–08:15) | −136 R | −83 R |
+| Box aus 4 Kerzen (08:00–09:00) | −41 R | −6 R |
+| Asia-Range 00:00–07:00 als Box | −38 R | +33 R |
+
+Keine Variante besteht.
+
+**3. Der eigentliche Hebel sind die Kosten**
+
+Vor Kosten bringt der Basis-Ausbruch in beiden Zeiträumen fast denselben kleinen Vorteil (+0,065 bzw. +0,058 R
+pro Trade). Der Effekt ist also stabil, aber kleiner als übliche CFD-Spreads.
+
+| Kosten je Unze und Trade | 2019–2022 | 2023 – Mai 2026 | gesamt | pro Jahr bei 1 % Risiko | Max. Drawdown |
+|---|---:|---:|---:|---:|---:|
+| 0,10 $ | +29 R | +30 R | +59 R | +6,9 % | 31 R |
+| 0,15 $ | +11 R | +19 R | +31 R | +2,9 % | 34 R |
+| 0,20 $ | −7 R | +9 R | +2 R | −1,0 % | 38 R |
+| 0,30 $ | −43 R | −12 R | −55 R | −8,4 % | 70 R |
+
+Profitabel war die Strategie nur mit Gesamtkosten unter etwa 0,15–0,20 $ je Unze. Selbst bei 0,10 $ stehen
+knapp 7 % pro Jahr einem Drawdown von rund 30 % gegenüber.
+
 ## Wie die Scripts geprüft wurden
 
 TradingView selbst ließ sich von hier nicht bedienen. Geprüft wurde deshalb so:
