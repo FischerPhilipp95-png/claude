@@ -132,13 +132,31 @@ jobs:
           SFTP_USER: ${{ secrets.IONOS_SFTP_USER }}
           LFTP_PASSWORD: ${{ secrets.IONOS_SFTP_PASSWORD }}
           SFTP_ZIEL: ${{ vars.IONOS_SFTP_ZIEL || '/' }}
+        # Eingaben bereinigen, falls beim Eintragen der Secrets „sftp://“, ein Port, Leerzeichen oder ein Zeilenumbruch mitkopiert wurde.
+        # Die Werte selbst werden nie ausgegeben, nur Hinweise, was korrigiert wurde.
         # mirror --reverse lädt den Inhalt von dist/ in das Zielverzeichnis. Ohne --delete: Auf dem Server wird nichts gelöscht.
         run: |
+          HOST="$(printf '%s' "$SFTP_HOST" | tr -d '[:space:]')"
+          [ "$HOST" != "$SFTP_HOST" ] && echo "Hinweis: Leerzeichen oder Zeilenumbruch im Servernamen entfernt."
+          case "$HOST" in *://*) echo "Hinweis: Protokoll (z. B. sftp://) vor dem Servernamen entfernt."; HOST="${HOST#*://}";; esac
+          HOST="${HOST%%/*}"
+          PORT=22
+          case "$HOST" in *:*) PORT="${HOST##*:}"; HOST="${HOST%%:*}"; echo "Hinweis: Port aus dem Servernamen übernommen.";; esac
+          echo "::add-mask::$HOST"
+          BENUTZER="$(printf '%s' "$SFTP_USER" | tr -d '[:space:]')"
+          [ "$BENUTZER" != "$SFTP_USER" ] && echo "Hinweis: Leerzeichen im Benutzernamen entfernt."
+          echo "::add-mask::$BENUTZER"
+          LFTP_PASSWORD="$(printf '%s' "$LFTP_PASSWORD" | tr -d '\r\n')"
+          export LFTP_PASSWORD
+          if ! getent hosts "$HOST" > /dev/null; then
+            echo "::error::Der Servername aus IONOS_SFTP_HOST ist nicht erreichbar. Bitte nur den Namen eintragen, z. B. access-123456.webspace-host.com"
+            exit 1
+          fi
           lftp -c "
             set sftp:auto-confirm yes;
             set net:max-retries 3;
             set net:timeout 30;
-            open --env-password -u \"$SFTP_USER\" sftp://$SFTP_HOST;
+            open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST;
             mirror --reverse --no-perms --parallel=4 --verbose=1 blog/site/dist \"$SFTP_ZIEL\";
             bye"
 
