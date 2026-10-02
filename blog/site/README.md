@@ -57,7 +57,7 @@ Wird ein Artikel überarbeitet, `updatedDate: JJJJ-MM-TT` im Kopf setzen: Das Da
 `.github/workflows/website.yml` (im Hauptordner des Repos) läuft bei jedem Push, der `blog/site/` ändert:
 
 1. **Prüfen:** `npm ci`, `npm run build`, `npm run check`, `npm run qualitaet`. Schlägt etwas fehl, wird nichts hochgeladen.
-2. **Hochladen:** `dist/` per SFTP nach IONOS (`/public`). Es wird nur hinzugefügt und überschrieben, auf dem Server wird nichts gelöscht.
+2. **Hochladen:** `dist/` per SFTP nach IONOS in den Hauptordner `/` (dort, wo `artikel/`, `bilder/` und `.htaccess` liegen). Es wird nur hinzugefügt und überschrieben, auf dem Server wird nichts gelöscht.
    Danach Live-Check der Startseite und IndexNow.
 
 Einmalig einrichten (nur im Browser auf github.com, Passwörter nie in Chat oder Code):
@@ -69,7 +69,7 @@ Repository → **Settings** → **Secrets and variables** → **Actions** → **
 | `IONOS_SFTP_USER` | Benutzername |
 | `IONOS_SFTP_PASSWORD` | Passwort |
 
-Liegt die Website nicht in `/public`, unter **Variables** `IONOS_SFTP_ZIEL` anlegen (z. B. `/mein-ordner`).
+Liegt die Website in einem anderen Ordner, unter **Variables** `IONOS_SFTP_ZIEL` anlegen (z. B. `/mein-ordner`).
 Ohne Secrets laufen nur die Prüfungen. Manuell starten: Reiter **Actions** → „Website prüfen und hochladen“ → **Run workflow**.
 Gelöschte oder umbenannte Seiten bleiben auf dem Server liegen und müssen bei Bedarf per FileZilla entfernt werden.
 

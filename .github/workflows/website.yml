@@ -3,12 +3,13 @@
 # Ablauf:
 #   1. prüfen:     npm ci, Build (Astro + Pagefind), check (fremde Server, seitliches Scrollen),
 #                  qualitaet (html-validate, pa11y-ci). Schlägt etwas fehl, wird NICHT hochgeladen.
-#   2. hochladen:  dist/ per SFTP nach IONOS (nur hinzufügen und überschreiben, nichts auf dem Server löschen),
+#   2. hochladen:  dist/ per SFTP nach IONOS (Hauptordner /) (nur hinzufügen und überschreiben, nichts auf dem Server löschen),
 #                  danach Live-Check und IndexNow.
 #
 # Zugangsdaten stehen ausschließlich als GitHub-Secrets im Repository (Settings → Secrets and variables → Actions):
 #   IONOS_SFTP_HOST, IONOS_SFTP_USER, IONOS_SFTP_PASSWORD
-# Optional als Variable (Reiter „Variables“): IONOS_SFTP_ZIEL, Standard ist /public.
+# Optional als Variable (Reiter „Variables“): IONOS_SFTP_ZIEL. Standard ist /, denn bei IONOS liegt die Website
+# für diesen SFTP-Benutzer direkt im Hauptordner (artikel/, bilder/, .htaccess …).
 # Fehlen die Secrets, laufen nur die Prüfungen, der Upload wird mit einem Hinweis übersprungen.
 
 name: Website prüfen und hochladen
@@ -130,7 +131,7 @@ jobs:
           SFTP_HOST: ${{ secrets.IONOS_SFTP_HOST }}
           SFTP_USER: ${{ secrets.IONOS_SFTP_USER }}
           LFTP_PASSWORD: ${{ secrets.IONOS_SFTP_PASSWORD }}
-          SFTP_ZIEL: ${{ vars.IONOS_SFTP_ZIEL || '/public' }}
+          SFTP_ZIEL: ${{ vars.IONOS_SFTP_ZIEL || '/' }}
         # mirror --reverse lädt den Inhalt von dist/ in das Zielverzeichnis. Ohne --delete: Auf dem Server wird nichts gelöscht.
         run: |
           lftp -c "
