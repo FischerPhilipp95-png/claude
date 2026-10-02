@@ -1,0 +1,196 @@
+---
+import Base from '../../layouts/Base.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import VideoBox from '../../components/VideoBox.astro';
+import AmazonLink from '../../components/AmazonLink.astro';
+import { SITE, amazonSearch } from '../../site';
+import { videoFuerSeite, videoSchema } from '../../videos';
+
+const title = 'Dübel-Finder: Welcher Dübel für welche Wand?';
+const description = 'Welcher Dübel hält in Beton, Ziegel, Lochziegel, Porenbeton oder Rigips? Wand und Gewicht wählen und sehen, welcher Dübel, welche Schraube und wie bohren.';
+const video = videoFuerSeite('/rechner/duebel/');
+const jsonLd: object[] = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Dübel-Finder',
+  url: `${SITE.url}/rechner/duebel/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+const vSchema = video && videoSchema(video, description);
+if (vSchema) jsonLd.push(vSchema);
+
+// Richtwerte für Heimwerker, nach Herstellerangaben (fischer, tox) und gängigen Ratgebern zusammengefasst.
+// Maßgeblich ist immer die Angabe auf der Dübelpackung.
+const WAENDE = {
+  beton: { name: 'Beton', erkennen: 'Graues Bohrmehl. Der Bohrer kommt nur mit Schlag oder Bohrhammer voran.', bohren: 'Mit Schlag oder Bohrhammer und Steinbohrer.' },
+  vollstein: { name: 'Vollziegel oder Kalksandstein', erkennen: 'Rotes (Ziegel) oder weißes, griesiges Bohrmehl (Kalksandstein), gleichmäßiger Widerstand.', bohren: 'Mit Schlag und Steinbohrer.' },
+  lochziegel: { name: 'Lochziegel (Hochlochziegel)', erkennen: 'Rotes Bohrmehl, der Bohrer „fällt“ immer wieder kurz ins Leere.', bohren: 'Ohne Schlag, nur drehend. Mit Schlag brechen die dünnen Stege und der Dübel findet keinen Halt.' },
+  porenbeton: { name: 'Porenbeton (Gasbeton)', erkennen: 'Feines, weißes Mehl, der Bohrer geht fast ohne Druck durch.', bohren: 'Ohne Schlag. Bohrerdurchmesser genau nach Packung, das Loch darf nicht ausleiern.' },
+  gipskarton: { name: 'Gipskarton (Rigips, Trockenbau)', erkennen: 'Klingt beim Klopfen hohl. Nach 1 bis 2,5 cm ist der Bohrer im Hohlraum.', bohren: 'Ohne Schlag. Selbstbohrende Gipskartondübel gar nicht vorbohren.' },
+  holz: { name: 'Holz (Balken, Ständer, OSB-Platte)', erkennen: 'Helle Späne statt Mehl.', bohren: 'Kein Dübel nötig. Direkt mit Holzschraube, bei dicken Schrauben vorbohren.' },
+} as const;
+const GEWICHTE = {
+  leicht: { name: 'Leicht: bis 5 kg', bsp: 'Bild, Uhr, Handtuchhaken' },
+  mittel: { name: 'Mittel: 5 bis 20 kg', bsp: 'Regal, Spiegel, Garderobe' },
+  schwer: { name: 'Schwer: 20 bis 50 kg', bsp: 'Hängeschrank, TV-Halterung' },
+  sehrschwer: { name: 'Sehr schwer: über 50 kg', bsp: 'Waschtisch, voller Oberschrank' },
+} as const;
+type E = { duebel: string; beispiel: string; suche: string; groesse: string; hinweis?: string; stufe: 'gut' | 'achtung' | 'kritisch' };
+const E: Record<keyof typeof WAENDE, Record<keyof typeof GEWICHTE, E>> = {
+  beton: {
+    leicht: { duebel: 'Spreizdübel', beispiel: 'fischer SX Plus oder DuoPower', suche: 'fischer SX Plus 6', groesse: 'Dübel 6 mm, Schraube 4 bis 5 mm', stufe: 'gut' },
+    mittel: { duebel: 'Spreizdübel', beispiel: 'fischer SX Plus oder DuoPower', suche: 'fischer DuoPower 8', groesse: 'Dübel 8 mm, Schraube 5 bis 6 mm', hinweis: 'Mindestens zwei Befestigungspunkte.', stufe: 'gut' },
+    schwer: { duebel: 'Spreizdübel groß oder Langschaftdübel', beispiel: 'fischer SX Plus 10 oder Rahmendübel', suche: 'fischer SX Plus 10', groesse: 'Dübel 10 mm, Schraube 6 bis 8 mm', hinweis: 'Gewicht auf mehrere Dübel verteilen.', stufe: 'gut' },
+    sehrschwer: { duebel: 'Schwerlastanker aus Stahl (Bolzenanker)', beispiel: 'Bolzenanker oder Schwerlastdübel', suche: 'Bolzenanker verzinkt 10', groesse: 'Größe und Last laut Hersteller', hinweis: 'Zulässige Last auf der Packung prüfen. Für Waschtische das Montageset des Herstellers verwenden.', stufe: 'achtung' },
+  },
+  vollstein: {
+    leicht: { duebel: 'Spreiz- oder Universaldübel', beispiel: 'fischer SX Plus oder DuoPower', suche: 'fischer DuoPower 6', groesse: 'Dübel 6 mm, Schraube 4 bis 5 mm', stufe: 'gut' },
+    mittel: { duebel: 'Spreiz- oder Universaldübel', beispiel: 'fischer DuoPower 8', suche: 'fischer DuoPower 8', groesse: 'Dübel 8 mm, Schraube 5 bis 6 mm', hinweis: 'Mindestens zwei Befestigungspunkte.', stufe: 'gut' },
+    schwer: { duebel: 'Langschaftdübel oder großer Spreizdübel', beispiel: 'Rahmendübel 10 mm', suche: 'fischer Rahmendübel 10', groesse: 'Dübel 10 mm, Schraube 7 bis 8 mm', hinweis: 'Gewicht auf mehrere Dübel verteilen.', stufe: 'gut' },
+    sehrschwer: { duebel: 'Injektionsmörtel mit Gewindestange', beispiel: 'Verbundmörtel (z. B. fischer FIS) mit Ankerstange', suche: 'Injektionsmörtel Mauerwerk Ankerstange', groesse: 'Laut Hersteller', hinweis: 'Aushärtezeit beachten. Bei Unsicherheit einen Fachbetrieb fragen.', stufe: 'achtung' },
+  },
+  lochziegel: {
+    leicht: { duebel: 'Universaldübel', beispiel: 'fischer DuoPower oder UX', suche: 'fischer DuoPower 6', groesse: 'Dübel 6 mm, Schraube 4 bis 5 mm', hinweis: 'Ohne Schlag bohren.', stufe: 'gut' },
+    mittel: { duebel: 'Langer Universaldübel', beispiel: 'fischer DuoPower 8 x 65 oder Langschaftdübel', suche: 'fischer DuoPower 8x65', groesse: 'Dübel 8 mm lang, Schraube 5 bis 6 mm', hinweis: 'Ohne Schlag bohren. Lange Dübel greifen über mehrere Stege.', stufe: 'gut' },
+    schwer: { duebel: 'Langschaftdübel oder Injektionsmörtel mit Siebhülse', beispiel: 'Rahmendübel 10 mm oder Verbundmörtel mit Siebhülse', suche: 'Injektionsmörtel Siebhülse Lochziegel', groesse: 'Dübel 10 mm bzw. laut Hersteller', hinweis: 'Ohne Schlag bohren, Last auf mehrere Punkte verteilen.', stufe: 'achtung' },
+    sehrschwer: { duebel: 'Injektionsmörtel mit Siebhülse und Gewindestange', beispiel: 'Verbundmörtel (z. B. fischer FIS) mit Siebhülse', suche: 'Injektionsmörtel Siebhülse Ankerstange', groesse: 'Laut Hersteller', hinweis: 'In Lochziegeln hält ein normaler Dübel so viel nicht sicher. Bei Unsicherheit einen Fachbetrieb fragen.', stufe: 'achtung' },
+  },
+  porenbeton: {
+    leicht: { duebel: 'Universal- oder Porenbetondübel', beispiel: 'fischer DuoPower oder GB', suche: 'fischer Porenbetondübel GB', groesse: 'Dübel 6 bis 8 mm, Schraube laut Packung', hinweis: 'Ohne Schlag bohren.', stufe: 'gut' },
+    mittel: { duebel: 'Porenbetondübel', beispiel: 'fischer GB 8 oder 10', suche: 'fischer Porenbetondübel GB 10', groesse: 'Dübel 8 bis 10 mm, Schraube laut Packung', hinweis: 'Ohne Schlag bohren, Bohrerdurchmesser genau nach Packung.', stufe: 'gut' },
+    schwer: { duebel: 'Großer Porenbetondübel oder Injektionsmörtel', beispiel: 'fischer GB 14 oder Verbundmörtel', suche: 'fischer Porenbetondübel GB 14', groesse: 'Laut Hersteller', hinweis: 'Last auf mehrere Punkte verteilen.', stufe: 'achtung' },
+    sehrschwer: { duebel: 'Injektionsmörtel mit Gewindestange', beispiel: 'Verbundmörtel mit Ankerstange', suche: 'Injektionsmörtel Porenbeton Ankerstange', groesse: 'Laut Hersteller', hinweis: 'Porenbeton ist weich. So viel Gewicht nur mit Injektionssystem, bei Unsicherheit Fachbetrieb.', stufe: 'achtung' },
+  },
+  gipskarton: {
+    leicht: { duebel: 'Gipskartondübel (selbstbohrend) oder Universaldübel', beispiel: 'fischer GKM, DuoBlade oder DuoPower', suche: 'fischer Gipskartondübel GKM', groesse: 'Schraube laut Packung, meist 4 bis 5 mm', hinweis: 'Selbstbohrende Dübel ohne Vorbohren eindrehen, nicht überdrehen.', stufe: 'gut' },
+    mittel: { duebel: 'Kipp- oder Hohlraum-Metalldübel', beispiel: 'fischer DuoTec oder Hohlraumdübel HM', suche: 'fischer DuoTec 10', groesse: 'Dübel 8 bis 10 mm, Schraube laut Packung', hinweis: 'Plattendicke beachten (einfach oder doppelt beplankt). Mehrere Befestigungspunkte.', stufe: 'gut' },
+    schwer: { duebel: 'In die Ständer schrauben oder Hohlraumdübel an vielen Punkten', beispiel: 'Ständerprofil suchen, sonst Hohlraum-Metalldübel', suche: 'Hohlraumdübel Metall Gipskarton', groesse: 'Laut Hersteller', hinweis: 'Hängeschränke und TV-Halterungen möglichst an den Ständern befestigen (meist alle 62,5 cm). Zulässige Last der Wand beachten.', stufe: 'achtung' },
+    sehrschwer: { duebel: 'Nur mit Unterkonstruktion', beispiel: 'Tragständer oder Holztraverse in der Wand', suche: 'Montageplatte Trockenbau', groesse: '–', hinweis: 'Eine Gipskartonplatte allein trägt das nicht sicher. Unterkonstruktion einbauen lassen, am besten vom Fachbetrieb.', stufe: 'kritisch' },
+  },
+  holz: {
+    leicht: { duebel: 'Kein Dübel: Holzschraube', beispiel: 'Spanplattenschraube 3,5 bis 4 mm', suche: 'Spanplattenschrauben Sortiment', groesse: 'Schraube 3,5 bis 4 mm', stufe: 'gut' },
+    mittel: { duebel: 'Kein Dübel: Holzschraube', beispiel: 'Spanplattenschraube 5 mm', suche: 'Spanplattenschrauben 5 mm', groesse: 'Schraube 5 mm, vorbohren', stufe: 'gut' },
+    schwer: { duebel: 'Kein Dübel: kräftige Holzschraube', beispiel: 'Tellerkopfschraube 6 mm', suche: 'Tellerkopfschrauben 6 mm', groesse: 'Schraube 6 mm, vorbohren', hinweis: 'In massives Holz oder Balken schrauben, nicht nur in eine dünne Platte.', stufe: 'gut' },
+    sehrschwer: { duebel: 'Kein Dübel: Schlüsselschrauben in tragendes Holz', beispiel: 'Sechskant-Holzschraube 8 mm', suche: 'Sechskant Holzschrauben 8 mm', groesse: 'Schraube 8 mm, vorbohren', hinweis: 'Nur in tragende Balken oder Ständer.', stufe: 'achtung' },
+  },
+};
+const daten = Object.fromEntries(Object.entries(E).map(([w, g]) => [w, Object.fromEntries(Object.entries(g).map(([k, e]) => [k, { ...e, link: amazonSearch(e.suche) }]))]));
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Werkzeug" style="--akzent:#12b5a5">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Dübel-Finder</nav>
+    <h1>{title}</h1>
+    <p class="lead">Dübel hält nicht? Meist passt er nicht zur Wand. Wähle deine Wand und das Gewicht, dann siehst du, welcher Dübel
+    passt, welche Schraube du brauchst und wie du bohrst.</p>
+
+    <section class="box calc" aria-label="Rechner">
+      <div class="calc-grid">
+        <label>Welche Wand?
+          <select id="wand">
+            {Object.entries(WAENDE).map(([k, w]) => <option value={k}>{w.name}</option>)}
+          </select>
+        </label>
+        <label>Wie schwer?
+          <select id="gewicht">
+            {Object.entries(GEWICHTE).map(([k, g]) => <option value={k} selected={k === 'mittel'}>{g.name} ({g.bsp})</option>)}
+          </select>
+        </label>
+      </div>
+      <div class="duebel-ergebnis" aria-live="polite">
+        <p class="duebel-typ"><span class="small">Passender Dübel</span><strong id="d-typ">–</strong></p>
+        <table class="result">
+          <tbody>
+            <tr><th scope="row">Zum Beispiel</th><td id="d-bsp">–</td></tr>
+            <tr><th scope="row">Größe</th><td id="d-groesse">–</td></tr>
+            <tr><th scope="row">So bohren</th><td id="d-bohren">–</td></tr>
+          </tbody>
+        </table>
+        <p class="taupunkt-status" id="d-status" data-status="gut">–</p>
+        <p><a id="d-link" class="btn btn-sm" href="#" rel="sponsored nofollow noopener" target="_blank">Passende Dübel bei Amazon*</a></p>
+      </div>
+      <RechnerTeilen />
+    </section>
+    <script type="application/json" id="duebel-daten" set:html={JSON.stringify({ e: daten, w: WAENDE })} />
+
+    {video && <VideoBox video={video} ueberschrift="Dübel hält nicht? Das Video dazu" />}
+
+    <h2>Welche Wand habe ich?</h2>
+    <p>Bohr an einer unauffälligen Stelle ein kleines Probeloch und schau dir das Bohrmehl an. Klopf außerdem auf die Wand: Klingt sie
+    hohl, ist es meist Gipskarton.</p>
+    <table>
+      <thead><tr><th scope="col">Wand</th><th scope="col">So erkennst du sie</th></tr></thead>
+      <tbody>{Object.values(WAENDE).map((w) => <tr><th scope="row">{w.name}</th><td>{w.erkennen}</td></tr>)}</tbody>
+    </table>
+
+    <h2>Alle Empfehlungen auf einen Blick</h2>
+    {Object.entries(WAENDE).map(([k, w]) => (
+      <>
+        <h3>{w.name}</h3>
+        <ul>
+          {Object.entries(GEWICHTE).map(([g, gw]) => <li><strong>{gw.name.split(':')[0]}</strong> ({gw.name.split(': ')[1]}): {E[k as keyof typeof E][g as keyof typeof GEWICHTE].duebel}, z. B. {E[k as keyof typeof E][g as keyof typeof GEWICHTE].beispiel}</li>)}
+        </ul>
+      </>
+    ))}
+
+    <h2>Die 6 häufigsten Gründe, warum ein Dübel nicht hält</h2>
+    <ol>
+      <li><strong>Falscher Dübel für die Wand:</strong> Ein normaler Spreizdübel spreizt in Lochziegel oder Gipskarton ins Leere.</li>
+      <li><strong>Mit Schlag in Lochziegel oder Porenbeton gebohrt:</strong> Das Loch wird zu groß, die Stege brechen.</li>
+      <li><strong>Bohrloch zu groß:</strong> Bohrer genau so dick wie der Dübel, bei Porenbeton genau nach Packung.</li>
+      <li><strong>Bohrmehl im Loch:</strong> Loch aussaugen oder auspusten, sonst sitzt der Dübel nicht tief genug.</li>
+      <li><strong>Schraube zu dünn oder zu kurz:</strong> Die Schraube muss durch den ganzen Dübel gehen, erst dann spreizt er.
+      Faustregel: Schraubenlänge = Dübellänge + Dicke des Gegenstands + etwa 5 mm.</li>
+      <li><strong>Zu wenige Befestigungspunkte:</strong> Schwere Dinge immer an mehreren Dübeln aufhängen.</li>
+    </ol>
+
+    <h2>So setzt du einen Dübel richtig</h2>
+    <ol>
+      <li><strong>Leitungen suchen:</strong> Mit einem <AmazonLink suche="Leitungssucher">Leitungssucher</AmazonLink> prüfen. Nie senkrecht über
+      oder waagerecht neben Steckdosen und Schaltern bohren, dort verlaufen häufig Leitungen.</li>
+      <li><strong>Bohren:</strong> Bohrerdurchmesser = Dübeldurchmesser, Loch etwa 1 cm tiefer als der Dübel lang ist. Fliesen erst ohne
+      Schlag anbohren.</li>
+      <li><strong>Loch säubern:</strong> Bohrmehl aussaugen.</li>
+      <li><strong>Dübel einsetzen:</strong> bündig mit der Wand, notfalls leicht mit dem Hammer.</li>
+      <li><strong>Schrauben:</strong> durch den Gegenstand in den Dübel, fest, aber nicht überdrehen.</li>
+    </ol>
+    <p>Welches Gerät du für welche Wand brauchst: <a href="/artikel/akkuschrauber-oder-bohrmaschine/">Akkuschrauber oder Bohrmaschine?</a>
+    Passende Bits und Bohrer: <a href="/artikel/akkuschrauber-zubehoer/">Akkuschrauber-Zubehör</a>.</p>
+
+    <h2>Häufige Fragen</h2>
+    <h3>Welche Schraube passt in einen 6er- oder 8er-Dübel?</h3>
+    <p>In einen 6-mm-Dübel meist eine Schraube mit 4 bis 5 mm, in einen 8-mm-Dübel 5 bis 6 mm, in einen 10-mm-Dübel 6 bis 8 mm. Die genaue
+    Angabe steht auf der Packung.</p>
+    <h3>Wie tief muss ich für einen Dübel bohren?</h3>
+    <p>Etwa 1 cm tiefer, als der Dübel lang ist. So hat Bohrmehl Platz und der Dübel sitzt bündig.</p>
+    <h3>Kann ich einen Hängeschrank an eine Rigipswand hängen?</h3>
+    <p>Leichte Schränke mit Hohlraum-Metalldübeln an vielen Punkten, besser an den Ständern dahinter. Schwere Schränke brauchen eine
+    Unterkonstruktion in der Wand.</p>
+    <h3>Was mache ich, wenn das Loch zu groß geworden ist?</h3>
+    <p>Ein Stück daneben neu bohren, einen dickeren Dübel nehmen oder das Loch mit Injektionsmörtel bzw. Reparaturmörtel füllen und neu bohren.</p>
+
+    <p class="small">Richtwerte für Heimwerker, zusammengefasst aus Herstellerangaben (u. a. fischer) und gängigen Ratgebern. Maßgeblich ist
+    immer die Angabe auf der Dübelpackung. Mit * markierte Links sind Affiliate-Links: Kaufst du darüber ein, bekomme ich eine kleine
+    Provision, für dich ändert sich am Preis nichts. <a href="/werbung/">Mehr dazu</a></p>
+  </div>
+</Base>
+
+<script>
+  const d = JSON.parse(document.getElementById('duebel-daten')?.textContent || '{}');
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const wand = $<HTMLSelectElement>('wand');
+  const gewicht = $<HTMLSelectElement>('gewicht');
+  const STATUS: Record<string, string> = { gut: 'Passt', achtung: 'Achtung', kritisch: 'Nicht ohne Unterkonstruktion' };
+  function zeigen() {
+    const e = d.e?.[wand.value]?.[gewicht.value];
+    const w = d.w?.[wand.value];
+    if (!e || !w) return;
+    $('d-typ').textContent = e.duebel;
+    $('d-bsp').textContent = e.beispiel;
+    $('d-groesse').textContent = e.groesse;
+    $('d-bohren').textContent = w.bohren;
+    const s = $('d-status');
+    s.dataset.status = e.stufe;
+    s.textContent = `${STATUS[e.stufe]}: ${e.hinweis || 'Dieser Dübel ist für diese Wand und dieses Gewicht üblich. Maßgeblich ist die Angabe auf der Packung.'}`;
+    $<HTMLAnchorElement>('d-link').href = e.link;
+  }
+  [wand, gewicht].forEach((el) => { el.addEventListener('input', zeigen); el.addEventListener('change', zeigen); });
+  zeigen();
+</script>

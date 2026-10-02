@@ -91,6 +91,22 @@ Auf der Website selbst:
 Einrichtung (erledigt): Website in Pinterest bestätigt (`pinterestVerify` in `src/site.ts`), Feeds unter Einstellungen →
 „Inhalte importieren“ → „Automatisch veröffentlichen“ mit den Pinnwänden verbunden.
 
+## YouTube-Videos in Artikeln (automatisch)
+
+`npm run videos` (`scripts/videos.mjs`) holt die Videos des Kanals (yt-dlp, falls installiert, und den RSS-Feed des Kanals, kein
+API-Schlüssel) und schreibt `src/videos.json`. Vorschaubilder landen auf dem eigenen Server (`public/bilder/videos/<id>.webp`),
+YouTube lädt erst nach Klick (`src/components/YouTube.astro`, Datenschutzerklärung Nr. 7).
+
+- Von Hand geprüfte Zuordnung: `src/videos-zuordnung.json` (Artikel → Video, Seiten wie `/thema/wasser/` → Video, `null` = nie ein Video).
+- Neue Videos ordnet das Skript automatisch einem Artikel zu, wenn der Titel eindeutig passt (Stichwörter). GitHub führt das bei
+  jedem Lauf aus, auch nachts. Neue Zuordnungen stehen in der Zusammenfassung des Laufs.
+- Angezeigt wird das Video oben im Artikel („Lieber als Video?“, `VideoBox.astro`), mit VideoObject-Markup, wenn das Datum bekannt ist.
+
+## Dübel-Finder
+
+`/rechner/duebel/`: Wand (6 Arten) und Gewicht (4 Klassen) wählen, Empfehlung mit Größe, Bohrhinweis und Amazon-Suchlink.
+Die Tabelle steht in `src/pages/rechner/duebel.astro` (Richtwerte nach Herstellerangaben, die Packung hat Vorrang).
+
 ## Automatisch hochladen (GitHub Actions)
 
 `.github/workflows/website.yml` (im Hauptordner des Repos) läuft bei jedem Push, der `blog/site/` ändert:

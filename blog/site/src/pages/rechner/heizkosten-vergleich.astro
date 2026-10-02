@@ -3,6 +3,9 @@ import Base from '../../layouts/Base.astro';
 import ProduktFokus from '../../components/ProduktFokus.astro';
 import RechnerTeilen from '../../components/RechnerTeilen.astro';
 import { SITE } from '../../site';
+import VideoBox from '../../components/VideoBox.astro';
+import { videoFuerSeite } from '../../videos';
+const video = videoFuerSeite('/rechner/heizkosten-vergleich/');
 
 const title = 'Heizkosten-Vergleich: Klimaanlage, Gas oder Heizlüfter?';
 const description = 'Was kostet Heizen mit Klimaanlage, Gas oder Heizlüfter? Kosten pro kWh Wärme, pro Tag und pro Heizperiode mit deinen Preisen ausrechnen.';
@@ -52,6 +55,7 @@ const jsonLd = [{
       1 kWh Strom 1 kWh Wärme. Nur Betriebskosten: Anschaffung, Wartung und Grundgebühren sind nicht eingerechnet.</p>
       <RechnerTeilen />
     </section>
+    {video && <VideoBox video={video} />}
 
     <ProduktFokus id="midea-portasplit" titel="Klimaanlage, die auch heizt" />
 

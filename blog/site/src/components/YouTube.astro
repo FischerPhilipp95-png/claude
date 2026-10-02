@@ -5,16 +5,13 @@ interface Props { id: string; titel: string; vorschau: string }
 const { id, titel, vorschau } = Astro.props;
 ---
 <div class="video" data-yt={id} data-title={titel}>
-  <img src={vorschau} alt={`Vorschau: ${titel}`} loading="lazy" width="1280" height="720" />
-  <button class="load" type="button">
-    <span class="play">▶ Video laden</span>
-    <small>Beim Laden werden Daten an YouTube (Google) übertragen, u. a. deine IP-Adresse. Mehr in der <a href="/datenschutz/#7-youtube-videos" style="color:#fff">Datenschutzerklärung</a>.</small>
-  </button>
+  <img src={vorschau} alt={`Vorschau: ${titel}`} loading="lazy" width="1280" height="720" data-pin-nopin="true" />
+  <button class="load" type="button"><span class="play">▶ Video laden</span><span class="sr-only">: {titel}</span></button>
 </div>
+<p class="video-hinweis">Beim Laden werden Daten an YouTube (Google) übertragen, u. a. deine IP-Adresse. Mehr in der <a href="/datenschutz/#7-youtube-videos">Datenschutzerklärung</a>.</p>
 <script>
   document.querySelectorAll<HTMLElement>('.video[data-yt]').forEach((box) => {
     box.querySelector('button')?.addEventListener('click', (e) => {
-      if ((e.target as HTMLElement).closest('a')) return;
       const f = document.createElement('iframe');
       f.src = `https://www.youtube-nocookie.com/embed/${box.dataset.yt}?autoplay=1&rel=0`;
       f.title = box.dataset.title || 'YouTube-Video';

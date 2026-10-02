@@ -12,7 +12,8 @@
     "qualitaet": "node scripts/qualitaet.mjs",
     "lighthouse": "unlighthouse-ci --config-file unlighthouse.config.mjs",
     "rechtschreibung": "node scripts/rechtschreibung.mjs",
-    "pins": "node scripts/pins.mjs"
+    "pins": "node scripts/pins.mjs",
+    "videos": "node scripts/videos.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.2",

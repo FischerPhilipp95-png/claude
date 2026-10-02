@@ -418,3 +418,17 @@ table.result tbody th[scope="row"] { font-weight: 400; background: none; }
 .btn-pinterest:hover { background: #ad081b; color: #fff; }
 .merken { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin: 28px 0; }
 .merken p { margin: 0; flex: 1 1 280px; }
+
+/* Video vom eigenen Kanal (VideoBox.astro) */
+.video-box { margin: 26px 0 30px; }
+.video-h { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 0 0 10px; }
+.video-h .icon { color: #e00; }
+.video-h span { color: var(--muted, #555); font-size: 0.92rem; }
+.video-link { margin: 8px 0 0; }
+.video-schmal { max-width: 760px; margin: 10px auto 0; }
+
+/* Dübel-Finder */
+.duebel-ergebnis { margin-top: 16px; }
+.duebel-typ { display: flex; flex-direction: column; gap: 2px; margin: 0 0 8px; }
+.duebel-typ strong { font-size: 1.35rem; line-height: 1.25; }
+.video-hinweis { margin: 6px 0 0; font-size: 0.8rem; color: var(--muted); }
