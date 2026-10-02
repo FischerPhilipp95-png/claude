@@ -183,6 +183,23 @@ Die Strategie verdient vor Kosten etwa 0,06 R pro Trade, Bitget kostet rund das 
 rechnet, müsste die Box im Schnitt über 50 $ groß sein (Median 2026: 14 $). Für diese Strategie ist Bitget
 deshalb ungeeignet.
 
+### Gegenprobe: Trendfolge auf Tagesbasis (geprüft am 02.10.2026)
+
+Gold-Tageskurse März 2009 – Mai 2026, Signal zum Tagesschluss, Ausführung zum nächsten Open.
+Getestet: Kurs über/unter SMA 20/50/100/200, SMA 50/200, 12-Monats-Momentum, Donchian 20/10 und 55/20,
+jeweils Long/Flat und Long/Short. Ausgewählt auf 2010–2017, geprüft auf 2018 – Mai 2026.
+Kosten „CFD“: 0,30 $ Spread, Swap Long −4 %/Jahr, Short −1 %/Jahr. „Bitget“: 0,06 % je Order,
+Funding 9,6 %/Jahr (Long zahlt, Short bekommt, Durchschnitt Juli–Okt. 2026).
+
+| Strategie (CAGR / max. Drawdown) | 2010–2017 CFD | 2018–2026 CFD | 2010–2017 Bitget | 2018–2026 Bitget |
+|---|---:|---:|---:|---:|
+| Kaufen & Halten | −1,8 % / 53 % | +11,1 % / 28 % | −7,0 % / 64 % | +5,2 % / 36 % |
+| SMA200 Long/Flat (bester im Suchzeitraum) | +0,7 % / 37 % | +8,9 % / 32 % | −2,6 % / 46 % | +4,0 % / 40 % |
+| Donchian 20/10 Long/Flat (zweitbester) | +0,5 % / 24 % | +4,6 % / 22 % | −1,8 % / 31 % | +1,5 % / 29 % |
+
+Trendfolge dämpft Crashs etwas (2013–2015), bleibt im Aufwärtstrend aber hinter Kaufen-und-Halten zurück.
+Einen verlässlichen Vorsprung gibt es nicht. Bei Bitget macht das Funding langes Halten von Long-Positionen teuer.
+
 ## Wie die Scripts geprüft wurden
 
 TradingView selbst ließ sich von hier nicht bedienen. Geprüft wurde deshalb so:
