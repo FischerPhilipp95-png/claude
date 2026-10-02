@@ -172,6 +172,7 @@ jobs:
         # Eingaben bereinigen, falls beim Eintragen der Secrets „sftp://“, ein Port, Leerzeichen oder ein Zeilenumbruch mitkopiert wurde.
         # Die Werte selbst werden nie ausgegeben, nur Hinweise, was korrigiert wurde.
         # mirror --reverse lädt den Inhalt von dist/ in das Zielverzeichnis. Ohne --delete: Auf dem Server wird nichts gelöscht.
+        # Zwei Durchgänge: erst Bilder, PDFs, CSS usw., dann die HTML-Seiten. So zeigt keine neue Seite auf ein Bild, das noch fehlt.
         run: |
           HOST="$(printf '%s' "$SFTP_HOST" | tr -d '[:space:]')"
           [ "$HOST" != "$SFTP_HOST" ] && echo "Hinweis: Leerzeichen oder Zeilenumbruch im Servernamen entfernt."
@@ -194,7 +195,8 @@ jobs:
             set net:max-retries 3;
             set net:timeout 30;
             open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST;
-            mirror --reverse --no-perms --parallel=4 --verbose=1 blog/site/dist \"$SFTP_ZIEL\";
+            mirror --reverse --no-perms --parallel=4 --verbose=1 --exclude-glob *.html blog/site/dist \"$SFTP_ZIEL\";
+            mirror --reverse --no-perms --parallel=4 --verbose=1 --include-glob *.html blog/site/dist \"$SFTP_ZIEL\";
             bye"
 
       - name: Live-Check
