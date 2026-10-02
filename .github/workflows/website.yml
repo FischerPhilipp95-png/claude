@@ -1,0 +1,158 @@
+# Website handwerksdoktor.de: bei jedem Push bauen, prüfen und danach per SFTP zu IONOS hochladen.
+#
+# Ablauf:
+#   1. prüfen:     npm ci, Build (Astro + Pagefind), check (fremde Server, seitliches Scrollen),
+#                  qualitaet (html-validate, pa11y-ci). Schlägt etwas fehl, wird NICHT hochgeladen.
+#   2. hochladen:  dist/ per SFTP nach IONOS (nur hinzufügen und überschreiben, nichts auf dem Server löschen),
+#                  danach Live-Check und IndexNow.
+#
+# Zugangsdaten stehen ausschließlich als GitHub-Secrets im Repository (Settings → Secrets and variables → Actions):
+#   IONOS_SFTP_HOST, IONOS_SFTP_USER, IONOS_SFTP_PASSWORD
+# Optional als Variable (Reiter „Variables“): IONOS_SFTP_ZIEL, Standard ist /public.
+# Fehlen die Secrets, laufen nur die Prüfungen, der Upload wird mit einem Hinweis übersprungen.
+
+name: Website prüfen und hochladen
+
+on:
+  push:
+    branches: [claude/serene-darwin-f9rggj, main]
+    paths: ['blog/site/**', '.github/workflows/website.yml']
+  workflow_dispatch:
+    inputs:
+      hochladen:
+        description: 'Nach den Prüfungen zu IONOS hochladen?'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+# Nie zwei Uploads gleichzeitig. Ein neuer Push wartet, bis der laufende fertig ist.
+concurrency:
+  group: website
+  cancel-in-progress: false
+
+jobs:
+  pruefen:
+    name: Bauen und prüfen
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: blog/site
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+      PUPPETEER_SKIP_DOWNLOAD: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: blog/site/package-lock.json
+
+      - name: Pakete installieren
+        run: npm ci
+
+      - name: Chromium für die Prüfungen installieren
+        run: |
+          npx playwright install --with-deps chromium
+          echo "CHROME_PATH=$(node -e "console.log(require('playwright').chromium.executablePath())")" >> "$GITHUB_ENV"
+
+      - name: Bauen
+        run: npm run build
+
+      - name: Prüfen (fremde Server, Handy-Breite)
+        run: npm run check
+
+      - name: Prüfen (HTML und Barrierefreiheit)
+        run: npm run qualitaet
+
+      - name: Fertige Seite für den Upload ablegen
+        uses: actions/upload-artifact@v4
+        with:
+          name: website
+          path: blog/site/dist
+          include-hidden-files: true
+          retention-days: 7
+
+  hochladen:
+    name: Zu IONOS hochladen
+    needs: pruefen
+    if: github.event_name == 'push' || inputs.hochladen
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Zugangsdaten vorhanden?
+        id: zugang
+        env:
+          SFTP_HOST: ${{ secrets.IONOS_SFTP_HOST }}
+          SFTP_USER: ${{ secrets.IONOS_SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.IONOS_SFTP_PASSWORD }}
+        run: |
+          if [ -n "$SFTP_HOST" ] && [ -n "$SFTP_USER" ] && [ -n "$SFTP_PASSWORD" ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::IONOS-Zugangsdaten fehlen (Secrets IONOS_SFTP_HOST, IONOS_SFTP_USER, IONOS_SFTP_PASSWORD). Upload übersprungen."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.zugang.outputs.ok == 'true'
+        with:
+          sparse-checkout: blog/site/scripts
+
+      - name: Fertige Seite holen
+        if: steps.zugang.outputs.ok == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: website
+          path: blog/site/dist
+
+      - name: Sicherheitsprüfung vor dem Upload
+        if: steps.zugang.outputs.ok == 'true'
+        working-directory: blog/site/dist
+        run: |
+          test -s index.html
+          test -s sitemap-0.xml
+          test -s .htaccess
+          test "$(find . -name index.html | wc -l)" -ge 50
+          echo "OK: $(find . -name index.html | wc -l) Seiten, $(du -sh . | cut -f1) insgesamt."
+
+      - name: lftp installieren
+        if: steps.zugang.outputs.ok == 'true'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Per SFTP hochladen
+        if: steps.zugang.outputs.ok == 'true'
+        env:
+          SFTP_HOST: ${{ secrets.IONOS_SFTP_HOST }}
+          SFTP_USER: ${{ secrets.IONOS_SFTP_USER }}
+          LFTP_PASSWORD: ${{ secrets.IONOS_SFTP_PASSWORD }}
+          SFTP_ZIEL: ${{ vars.IONOS_SFTP_ZIEL || '/public' }}
+        # mirror --reverse lädt den Inhalt von dist/ in das Zielverzeichnis. Ohne --delete: Auf dem Server wird nichts gelöscht.
+        run: |
+          lftp -c "
+            set sftp:auto-confirm yes;
+            set net:max-retries 3;
+            set net:timeout 30;
+            open --env-password -u \"$SFTP_USER\" sftp://$SFTP_HOST;
+            mirror --reverse --no-perms --parallel=4 --verbose=1 blog/site/dist \"$SFTP_ZIEL\";
+            bye"
+
+      - name: Live-Check
+        if: steps.zugang.outputs.ok == 'true'
+        run: |
+          sleep 5
+          for pfad in / /artikel/ /rechner/ /sitemap-index.xml; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://handwerksdoktor.de$pfad")
+            echo "$code  $pfad"
+            test "$code" = 200
+          done
+
+      - name: Bei IndexNow melden (Bing & Co.)
+        if: steps.zugang.outputs.ok == 'true'
+        continue-on-error: true
+        working-directory: blog/site
+        run: node scripts/indexnow.mjs

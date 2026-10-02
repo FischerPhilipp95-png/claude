@@ -52,7 +52,28 @@ in `public/bilder/`. Nie Bilder von Amazon, Herstellern oder anderen Seiten.
 Je nach Jahreszeit austauschen, zum Beispiel Heizung im Winter, Klima und Balkonkraftwerk im Sommer, Geschenke ab November.
 Wird ein Artikel überarbeitet, `updatedDate: JJJJ-MM-TT` im Kopf setzen: Das Datum erscheint im Artikel und in der Sitemap.
 
-## Hochladen zu IONOS
+## Automatisch hochladen (GitHub Actions)
+
+`.github/workflows/website.yml` (im Hauptordner des Repos) läuft bei jedem Push, der `blog/site/` ändert:
+
+1. **Prüfen:** `npm ci`, `npm run build`, `npm run check`, `npm run qualitaet`. Schlägt etwas fehl, wird nichts hochgeladen.
+2. **Hochladen:** `dist/` per SFTP nach IONOS (`/public`). Es wird nur hinzugefügt und überschrieben, auf dem Server wird nichts gelöscht.
+   Danach Live-Check der Startseite und IndexNow.
+
+Einmalig einrichten (nur im Browser auf github.com, Passwörter nie in Chat oder Code):
+Repository → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**:
+
+| Name | Inhalt (aus IONOS → Hosting → SFTP & SSH) |
+|---|---|
+| `IONOS_SFTP_HOST` | Server, z. B. `access-123456.webspace-host.com` (ohne `sftp://`) |
+| `IONOS_SFTP_USER` | Benutzername |
+| `IONOS_SFTP_PASSWORD` | Passwort |
+
+Liegt die Website nicht in `/public`, unter **Variables** `IONOS_SFTP_ZIEL` anlegen (z. B. `/mein-ordner`).
+Ohne Secrets laufen nur die Prüfungen. Manuell starten: Reiter **Actions** → „Website prüfen und hochladen“ → **Run workflow**.
+Gelöschte oder umbenannte Seiten bleiben auf dem Server liegen und müssen bei Bedarf per FileZilla entfernt werden.
+
+## Hochladen zu IONOS (von Hand)
 
 1. `npm run build && npm run check && npm run qualitaet`
 2. Den **Inhalt** von `dist/` (nicht den Ordner selbst) per SFTP in den Webspace-Ordner **`/public`** laden
