@@ -7,6 +7,9 @@ P=projects/klima-probleme
 if [[ "${1:-}" == "--vo" || ! -f $P/audio/vo/durations.json ]]; then
   python3 tools/tts.py $P/vo_script.json $P/audio/vo --engine piper
 fi
+if [[ "${1:-}" == "--vo" || ! -f $P/captions.json ]]; then
+  python3 $P/captions.py                                           # Wort-Timing für die Untertitel (faster-whisper)
+fi
 python3 $P/layout.py                                               # Sätze + Kapitel aufs 124-BPM-Raster
 python3 $P/music.py                                                # 1. Musik (FluidR3, E-Piano, Pluck, Drums)
 python3 - <<PY                                                     # 2. Beat-Raster exakt aus dem Tempo
@@ -28,7 +31,7 @@ enc() { for pass in 1 2; do
   out=$([[ $pass == 1 ]] && echo /dev/null || echo "$5"); fmt=$([[ $pass == 1 ]] && echo "-an -f null" || echo "$4 -movflags +faststart")
   ffmpeg -hide_banner -loglevel error -y -i $P/out/final.mp4 -c:v libx264 -preset slow -tune animation -b:v $1 -maxrate $2 -bufsize $3 -pass $pass -passlogfile $P/out/x264 $fmt "$out"
 done; }
-enc 950k 2M 4M "-c:a aac -b:a 128k" $P/out/klima_probleme_chat.mp4
+enc 950k 2M 4M "-c:a aac -b:a 128k" $P/out/Klimaanlage_5_Probleme.mp4
 enc 3200k 6M 12M "-c:a copy" $P/out/final_3m.mp4
 mv $P/out/final_3m.mp4 $P/out/final.mp4 && rm -f $P/out/x264*
 echo "Fertig: $P/out/final.mp4"

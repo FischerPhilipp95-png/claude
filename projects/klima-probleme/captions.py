@@ -1,0 +1,82 @@
+#!/usr/bin/env python3
+"""Wort-Timing für die mitlaufenden Untertitel.
+
+Whisper (faster-whisper, Modell „small“) hört jede Sprecher-Datei ab und liefert Zeitstempel pro Wort.
+Angezeigt wird aber der Text aus vo_script.json (Whisper verhört sich manchmal); die Zeitstempel werden
+per Abgleich (difflib) auf die Skript-Wörter übertragen, Lücken werden interpoliert.
+Zahlwörter werden für die Anzeige zu Ziffern („fünfundfünfzig“ → „55“).
+Schreibt captions.json: [{id, words: [{w, s, e}]}] mit Zeiten relativ zum Satzanfang.
+"""
+import difflib
+import json
+import re
+from pathlib import Path
+
+from faster_whisper import WhisperModel
+
+DIR = Path(__file__).parent
+SCRIPT = json.loads((DIR / "vo_script.json").read_text())
+SHOW = {
+    "eins": "1", "zwei": "2", "drei": "3", "vier": "4", "fünf": "5", "sechs": "6",
+    "fünfundfünfzig": "55", "vierzig": "40", "fünfundvierzig": "45", "sechzig": "60", "hundert": "100",
+    "zweihundertfünfzig": "250", "zehntausend": "10.000", "fünfzehnhundert": "1.500", "dreitausendfünfhundert": "3.500",
+    "hundertdreißig": "130", "achtzig": "80", "dreißig": "30", "fünfzig": "50",
+    "zweitausendzwanzig": "2020", "zweitausendsechsundzwanzig": "2026", "dezibel": "dB",
+}
+
+
+def norm(w):
+    return re.sub(r"[^a-zäöüß0-9]", "", w.lower())
+
+
+def show(w):
+    core = norm(w)
+    if core in SHOW:
+        lead = re.match(r"^\W*", w).group(0); trail = re.search(r"\W*$", w).group(0)
+        return lead + SHOW[core] + trail
+    return w
+
+
+model = WhisperModel("small", device="cpu", compute_type="int8")
+out = []
+for line in SCRIPT:
+    segs, _ = model.transcribe(str(DIR / "audio" / "vo" / f"{line['id']}.wav"), language="de", word_timestamps=True,
+                               initial_prompt=line["text"])
+    heard = [w for s in segs for w in s.words]
+    words = line["text"].split()
+    times = [None] * len(words)
+    sm = difflib.SequenceMatcher(a=[norm(w) for w in words], b=[norm(w.word) for w in heard], autojunk=False)
+    for a, b, n in sm.get_matching_blocks():
+        for i in range(n):
+            times[a + i] = (heard[b + i].start, heard[b + i].end)
+    # nicht erkannte Wörter: zwischen den Nachbarn nach Buchstabenzahl verteilen
+    end_all = heard[-1].end if heard else 0.3 * len(words)
+    i = 0
+    while i < len(words):
+        if times[i] is not None:
+            i += 1; continue
+        j = i
+        while j < len(words) and times[j] is None: j += 1
+        t0 = times[i - 1][1] if i > 0 else 0.0
+        t1 = times[j][0] if j < len(words) else end_all
+        lens = [max(2, len(norm(w))) for w in words[i:j]]; tot = sum(lens); acc = t0
+        for k in range(i, j):
+            d = (t1 - t0) * lens[k - i] / tot; times[k] = (acc, acc + d); acc += d
+        i = j
+    # Wörter ohne Dauer (Whisper setzt sie manchmal auf 0) mit dem folgenden Wort zusammen neu verteilen
+    i = 0
+    while i < len(words):
+        if times[i][1] - times[i][0] >= 0.06:
+            i += 1; continue
+        j = i
+        while j < len(words) - 1 and times[j][1] - times[j][0] < 0.06: j += 1
+        t0 = times[i - 1][1] if i > 0 else min(times[i][0], times[j][0]); t1 = max(times[j][1], t0 + 0.12 * (j - i + 1))
+        lens = [max(2, len(norm(w))) for w in words[i:j + 1]]; tot = sum(lens); acc = t0
+        for k in range(i, j + 1):
+            d = (t1 - t0) * lens[k - i] / tot; times[k] = (acc, acc + d); acc += d
+        i = j + 1
+    out.append({"id": line["id"], "words": [{"w": show(w), "s": round(s, 3), "e": round(e, 3)} for w, (s, e) in zip(words, times)]})
+    matched = sum(n for _, _, n in sm.get_matching_blocks())
+    print(f"{line['id']}: {matched}/{len(words)} Wörter erkannt")
+(DIR / "captions.json").write_text(json.dumps(out, ensure_ascii=False, indent=1))
+print(DIR / "captions.json")

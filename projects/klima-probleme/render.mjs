@@ -438,6 +438,52 @@ function outroOverlay(ctx, t) {
   }
 }
 
+// ---------- Mitlaufende Untertitel (Wort-Timing aus captions.py / Whisper) ----------
+// Häppchen aus max. 3 Wörtern, Umbruch nach Satzzeichen; das gesprochene Wort leuchtet Limette und ploppt.
+const CAPS = (() => {
+  const f = path.join(DIR, 'captions.json');
+  if (!fs.existsSync(f)) return [];
+  const start = Object.fromEntries(SEC.chapters.flatMap((c) => c.lines.map((l) => [l.id, l.t])));
+  const chunks = [];
+  for (const line of JSON.parse(fs.readFileSync(f, 'utf8'))) {
+    let cur = [];
+    const flush = () => { if (cur.length) chunks.push(cur); cur = []; };
+    for (const w of line.words) {
+      const word = { w: w.w.toUpperCase(), s: start[line.id] + w.s, e: start[line.id] + w.e };
+      if (cur.length && (cur.length >= 3 || [...cur, word].map((x) => x.w).join(' ').length > 22)) flush();
+      cur.push(word);
+      if (/[.,:;?!]$/.test(w.w)) flush();
+    }
+    flush();
+  }
+  return chunks.map((ws, i) => {
+    const next = chunks[i + 1], end = ws[ws.length - 1].e;
+    return { ws, t0: ws[0].s - 0.05, t1: next && next[0].s - end < 0.6 ? next[0].s - 0.05 : end + 0.3 };
+  });
+})();
+function captions(ctx, t) {
+  const c = CAPS.find((k) => t >= k.t0 && t < k.t1);
+  if (!c) return;
+  const size = 58, gap = 18, padX = 34, y = 1000;
+  ctx.font = `${size}px IXB`; ctx.letterSpacing = '-1px';
+  const ws = c.ws.map((w) => ({ ...w, wd: ctx.measureText(w.w).width }));
+  const total = ws.reduce((a, w) => a + w.wd, 0) + gap * (ws.length - 1);
+  const pop = spring(seg(t, c.t0, c.t0 + 0.18));
+  ctx.save(); ctx.translate(W / 2, y); ctx.scale(lerp(0.8, 1, pop), lerp(0.8, 1, pop)); ctx.globalAlpha = clamp(pop * 1.5);
+  shadow(ctx, 0.28, 24, 8); ctx.fillStyle = C.panel; rrect(ctx, -total / 2 - padX, -size * 0.92, total + padX * 2, size * 1.5, 22); ctx.fill(); noShadow(ctx);
+  let x = -total / 2;
+  ws.forEach((w, i) => {
+    const active = t >= w.s && (i === ws.length - 1 || t < ws[i + 1].s), said = t >= w.s;
+    const sc = active ? 1 + 0.14 * (1 - easeOut(seg(t, w.s, w.s + 0.16))) : 1;
+    ctx.save(); ctx.translate(x + w.wd / 2, -size * 0.17); ctx.scale(sc, sc);
+    ctx.globalAlpha = clamp(pop * 1.5) * (said ? 1 : 0.42);
+    ctx.fillStyle = active ? C.lime : C.white; ctx.fillText(w.w, -w.wd / 2, size * 0.36);
+    ctx.restore();
+    x += w.wd + gap;
+  });
+  ctx.letterSpacing = '0px'; ctx.restore();
+}
+
 let BLUR_CANVAS = null;
 function drawFrame(out, t) {
   const cam = camera(t);
@@ -467,6 +513,7 @@ function drawFrame(out, t) {
     out.filter = `blur(${cam.blur.toFixed(1)}px)`; out.drawImage(BLUR_CANVAS, 0, 0); out.filter = 'none';
   }
   if (t >= CH[6].start) outroOverlay(out, t);
+  captions(out, t);
 }
 
 // ---------- Sounds ----------
