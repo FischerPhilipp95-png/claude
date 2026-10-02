@@ -46,17 +46,36 @@ der Cloud-Umgebung freigegeben ist. Ein 403 beim Download bedeutet: Domain nicht
 - Zu jedem Video gehört eine `youtube.md` mit Titel, Beschreibung (inkl. Quelle), Tags und angeheftetem Kommentar.
 - Vorlage für neue Projekte: `projects/klima-short/` (build.sh, render.mjs, music.py).
 
-## Thumbnails (Standard, vom Nutzer als „mega“ bestätigt)
+## Thumbnails (Standard: Profi-Look J/K/L, vom Nutzer so festgelegt)
 
-Vorlage: `projects/heizung-video/thumbnail_real.mjs` (Thumbnails G/H/I). Zu jedem Video 3 solche Thumbnails, 1280x720:
-- **Echtes Foto als Vollbild** (Wikimedia Commons, bevorzugt CC0/gemeinfrei; CC BY nur mit Nennung in der Beschreibung;
-  CC BY-SA nicht beschneiden). Lizenz in `photos/credits.json` festhalten.
-- **Riesige Schrift** Inter 800, weiß + eine Akzentfarbe (Gelb `#ffd400`, Rot `#e8201c`, Blau `#39a8ff`), dicke schwarze Kontur,
-  max. 2–3 Wörter pro Zeile. Kurze Frage oder Neugier-Lücke: „OBEN KALT?“, „DIESES 1€-TEIL …“, „DAS HIER PRÜFEN!“.
-- **Roter/gelber Kreis** um das entscheidende Detail im Foto, weißer Pfeil mit schwarzem Rand dorthin.
-- **Pill-Badge** mit einer echten Zahl aus der Recherche (z. B. „BIS ZU −15 %“, „1,2–2 bar?“), keine erfundenen Werte.
-- **Kanal-Person** (`assets/channel_person_cutout.png`) mit Schatten am Rand, dazu Vignette und Abdunklung hinter dem Text.
-- Effekte passend zum Thema, z. B. Wärmebild-Look (Farbverlauf per `color`-Blend) oder Figur aus dem Video als Akzent.
+Vorlage: `projects/klima-probleme/thumbnail_pro.mjs` (Thumbnails J/K/L). Zu jedem Video 3 Thumbnails, 1280x720.
+Der ältere Stil G/H/I (`projects/heizung-video/thumbnail_real.mjs`, dicke schwarze Konturen, Kreise und Pfeile) war dem Nutzer
+zu unprofessionell und wird nicht mehr verwendet.
+
+Aufbau, Ebenen von hinten nach vorn:
+1. **Hintergrund:** echtes Foto zum Thema, stark unscharf (`blur` 14–20 px) und abgedunkelt. Farbgrading in einer Themenfarbe
+   per `color`-Blend (z. B. Blau = Nacht/Lärm, Orange = Hitze, Grün = Geld), dazu ein weiches Licht (`screen`).
+2. **Hauptmotiv:** ein Gegenstand, mit rembg freigestellt (`isnet-general-use`, Modelle in `.rembg/`), scharf, groß, leicht gedreht.
+   Dazu Bodenschatten (flache radiale Ellipse) und ein farbiger Glow in der Themenfarbe dahinter.
+   Optional ein grafischer Effekt zum Thema (z. B. leuchtende Schallwellen).
+3. **Vignette**, und zwar vor Person und Schrift, damit die Schrift reinweiß bleibt.
+4. **Kanal-Person** (`assets/channel_person_cutout.png`) rechts, groß und unten angeschnitten, als **Sticker**:
+   - weiße Kontur ca. 9 px
+   - weicher Schlagschatten
+   - farbige Lichtkante in der Themenfarbe
+5. **Schrift:** Inter 800, max. 2 Wörter pro Zeile, ca. 140–150 px. Weiß plus ein Akzentwort mit Farbverlauf
+   (Gelb `#ffd400`, Blau `#39a8ff`, Rot `#e8201c`, Limette `#CFF72A`).
+   Tiefe durch dunkle Extrusion und weichen Schatten, **keine** dicke schwarze Kontur.
+   Kurze Frage oder Neugier-Lücke: „ZU LAUT?“, „KÜHLT NICHT?“, „10.000 €“ durchgestrichen.
+6. **Ein Glas-Badge:** dunkel, halbtransparent, mit farbigem Akzentstrich, kleinem Label in Versalien und einer **echten Zahl**
+   aus der Recherche (z. B. „NACHTS ERLAUBT · nur 40 dB(A)“). Keine erfundenen Werte.
+7. **Leichtes Filmkorn** zum Schluss.
+
+Regeln:
+- Wenige Elemente: ein Motiv, eine Schrift, ein Badge, die Person. Keine Kreise und Pfeile.
+- Fotos von Wikimedia Commons (bevorzugt CC0/gemeinfrei; CC BY nur mit Nennung in der Beschreibung; CC BY-SA nicht beschneiden),
+  Lizenz in `photos/credits.json`.
+- Eigene Fotos des Nutzers mit Ausdruck (genervt, schwitzend …) wirken noch stärker, wenn vorhanden.
 
 ## Amazon-Partnerlinks
 
