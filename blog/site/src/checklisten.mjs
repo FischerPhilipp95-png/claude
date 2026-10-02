@@ -1,9 +1,10 @@
 // Checklisten zum Ausdrucken (PDF, erzeugt von scripts/checklisten.mjs nach public/checklisten/<id>.pdf).
 // Jeder Punkt stammt aus einem Artikel der Website, „artikel“ verlinkt dorthin (im PDF als QR-Code und Adresse).
-// thema: Pinnwand bzw. Themen-Feed für den Pinterest-Pin der Checkliste.
+// thema: Pinnwand bzw. Themen-Feed für den Pinterest-Pin der Checkliste. datum: ab dann steht der Pin im Feed.
 export const CHECKLISTEN = [
   {
     id: 'heizung-winterfest',
+    datum: '2026-10-02',
     titel: 'Heizung winterfest: 10 Punkte vor der Heizperiode',
     kurz: 'Heizung winterfest',
     thema: 'Heizung',
@@ -25,6 +26,7 @@ export const CHECKLISTEN = [
   },
   {
     id: 'urlaub-frostsicher',
+    datum: '2026-10-02',
     titel: 'Wohnung frostsicher: Checkliste vor dem Winterurlaub',
     kurz: 'Frostsicher in den Urlaub',
     thema: 'Heizung',
@@ -46,6 +48,7 @@ export const CHECKLISTEN = [
   },
   {
     id: 'heizkoerper-entlueften',
+    datum: '2026-10-02',
     titel: 'Heizkörper entlüften: Checkliste zum Abhaken',
     kurz: 'Heizkörper entlüften',
     thema: 'Heizung',
@@ -64,6 +67,7 @@ export const CHECKLISTEN = [
   },
   {
     id: 'schimmel-vorbeugen',
+    datum: '2026-10-02',
     titel: 'Lüften gegen Schimmel: Checkliste für den Winter',
     kurz: 'Schimmel vorbeugen',
     thema: 'Klima',
@@ -83,6 +87,7 @@ export const CHECKLISTEN = [
   },
   {
     id: 'werkzeug-grundausstattung',
+    datum: '2026-10-02',
     titel: 'Werkzeug-Grundausstattung: 15 Teile für jeden Haushalt',
     kurz: 'Werkzeug-Grundausstattung',
     thema: 'Werkzeug',

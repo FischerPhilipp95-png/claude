@@ -63,7 +63,7 @@ export async function GET(context) {
   }
   for (const c of CHECKLISTEN) {
     if (thema && c.thema !== thema[0]) continue;
-    const datum = rechnerFreigabe(`checkliste-${c.id}`);
+    const datum = new Date(c.datum);
     if (datum > jetzt) continue;
     items.push(eintrag({
       titel: `${c.titel} (PDF zum Ausdrucken)`.slice(0, 100), text: kuerzen(`${c.intro} Kostenlos als PDF, ohne Anmeldung: ${c.punkte.map((p) => p[0]).join(' · ')}`, 500),
