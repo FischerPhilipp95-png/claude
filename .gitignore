@@ -27,3 +27,6 @@ projects/*/out/*_chat.mp4
 
 # Themenfinder-Zwischenspeicher
 blog/seo/.themenfinder-cache.json
+
+# Impeccable: Analyse-Programm lädt sich bei Bedarf selbst (geprüft per SHA-256)
+.claude/skills/impeccable/scripts/bin/
