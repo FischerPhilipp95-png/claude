@@ -58,16 +58,38 @@ Wird ein Artikel überarbeitet, `updatedDate: JJJJ-MM-TT` im Kopf setzen: Das Da
 
 ## Pinterest (automatisch)
 
-Für jeden Artikel erzeugt `npm run pins` ein Pin-Bild im Hochformat (`public/bilder/pins/<artikel>.jpg`, 1000×1500).
-GitHub macht das bei jedem Push für neue Artikel selbst. Die Feeds unter `/pinterest/` liefern die Pins an Pinterest:
+`npm run pins` erzeugt die Pin-Bilder im Hochformat (1000×1500) in `public/bilder/pins/`, GitHub macht das bei jedem Push
+für fehlende Bilder selbst. Pro Artikel gibt es bis zu drei Designs, alle Texte stammen aus dem Artikel
+(Logik und Zeitplan: `scripts/pin-varianten.mjs`):
 
-- `https://handwerksdoktor.de/pinterest/alle.xml`: alle Artikel
+| Datei | Design | Inhalt | im Feed ab |
+|---|---|---|---|
+| `<artikel>.jpg` | dunkel | Kurztitel und Beschreibung | Veröffentlichung |
+| `<artikel>-2.jpg` | Themenfarbe | erste Frage aus „Häufige Fragen“ mit Antwort | +14 bis 27 Tage |
+| `<artikel>-3.jpg` | hell | Schritte aus `<Ablauf>`, sonst `<Checkliste>`, sonst Zwischenüberschriften | +28 bis 41 Tage |
+| `rechner-<name>.jpg` | dunkel | Rechner aus `src/rechner.ts` (Feld `thema` = Pinnwand) | erste Woche |
+
+Artikel von vor dem 02.10.2026 zählen ab diesem Tag. Ändert sich eine FAQ oder ein Ablauf, das Bild löschen oder
+`npm run pins -- --alle` ausführen. `PIN_STICHTAG=2026-12-01 npm run build` zeigt, wie die Feeds an einem Tag aussehen.
+
+Die Feeds unter `/pinterest/` liefern die Pins an Pinterest (die Varianten mit eigener guid, Link immer zum Artikel):
+
 - `https://handwerksdoktor.de/pinterest/heizung.xml`, `strom.xml`, `wasser.xml`, `raumklima.xml`, `haushalt.xml`,
-  `sicherheit.xml`, `werkzeug.xml`: je ein Thema, für eine eigene Pinnwand
+  `sicherheit.xml`, `werkzeug.xml`: je ein Thema, verbunden mit der gleichnamigen Pinnwand (Haushalt → „Haushaltsgeräte“)
+- `https://handwerksdoktor.de/pinterest/alle.xml`: alles (nicht zusätzlich verbinden, sonst kommen Pins doppelt)
 
-Einmalig in Pinterest (Unternehmenskonto): Website beanspruchen (HTML-Tag, den Wert aus `content="…"` in `src/site.ts` bei
-`pinterestVerify` eintragen), dann unter Einstellungen → „Pins in großer Menge erstellen“ → „RSS-Feed verbinden“ die Feeds
-mit je einer Pinnwand verbinden. Pinterest holt neue Artikel danach selbst ab (innerhalb von 24 Stunden, bis 200 Pins pro Tag).
+Zeitversetzte Pins erscheinen nur, wenn die Website neu gebaut wird: bei jedem Push und jede Nacht (geplanter Lauf in
+`.github/workflows/website.yml`; GitHub führt geplante Läufe nur auf dem Standard-Branch des Repositorys aus).
+
+Auf der Website selbst:
+- **Artikel-Rich-Pins:** `article:published_time`, `article:modified_time`, `article:author`, `article:section` (Base.astro).
+- **Hochformat beim Merken:** Das Titelbild trägt `data-pin-media` (Pin-Bild) und `data-pin-description`, Profilbilder
+  `data-pin-nopin`.
+- **„Auf Pinterest merken“** (`src/components/PinterestMerken.astro`) unter jedem Artikel und in der Teilen-Leiste der Rechner:
+  ein einfacher Link ohne Pinterest-Skript, es wird nichts von Pinterest geladen (Datenschutzerklärung Nr. 8).
+
+Einrichtung (erledigt): Website in Pinterest bestätigt (`pinterestVerify` in `src/site.ts`), Feeds unter Einstellungen →
+„Inhalte importieren“ → „Automatisch veröffentlichen“ mit den Pinnwänden verbunden.
 
 ## Automatisch hochladen (GitHub Actions)
 

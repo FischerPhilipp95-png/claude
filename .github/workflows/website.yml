@@ -1,4 +1,5 @@
 # Website handwerksdoktor.de: bei jedem Push bauen, prüfen und danach per SFTP zu IONOS hochladen.
+# Läuft außerdem auf Knopfdruck und jede Nacht um etwa 3:17 Uhr UTC (dann ohne Berichte und ohne IndexNow).
 #
 # Ablauf:
 #   1. prüfen:     npm ci, fehlende Titel- und Pin-Bilder erzeugen, Build (Astro + Pagefind), check (fremde Server, seitliches Scrollen),
@@ -22,6 +23,10 @@ on:
   push:
     branches: [claude/serene-darwin-f9rggj, main]
     paths: ['blog/site/**', '.github/workflows/website.yml']
+  # Jede Nacht neu bauen und hochladen, damit zeitversetzte Pinterest-Pins (scripts/pin-varianten.mjs) im Feed erscheinen.
+  # Hinweis: GitHub startet geplante Läufe nur aus dem Standard-Branch des Repositorys.
+  schedule:
+    - cron: '17 3 * * *'
   workflow_dispatch:
     inputs:
       hochladen:
@@ -107,7 +112,7 @@ jobs:
   hochladen:
     name: Zu IONOS hochladen
     needs: pruefen
-    if: github.event_name == 'push' || inputs.hochladen
+    if: github.event_name == 'push' || github.event_name == 'schedule' || inputs.hochladen
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -197,7 +202,8 @@ jobs:
           done
 
       - name: Bei IndexNow melden (Bing & Co.)
-        if: steps.zugang.outputs.ok == 'true'
+        # Nachts ändern sich nur die Pinterest-Feeds, dafür nicht alle Seiten neu melden.
+        if: steps.zugang.outputs.ok == 'true' && github.event_name != 'schedule'
         continue-on-error: true
         working-directory: blog/site
         run: node scripts/indexnow.mjs
@@ -205,6 +211,8 @@ jobs:
   berichte:
     name: Berichte (Quellen, Rechtschreibung, Pakete)
     needs: pruefen
+    # Nachts nicht: Es hat sich am Inhalt nichts geändert.
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     # Nur zur Info: Fehler hier stoppen keinen Upload und färben den Lauf nicht rot.

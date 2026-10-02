@@ -412,3 +412,9 @@ table.result tbody th[scope="row"] { font-weight: 400; background: none; }
 .taupunkt-status[data-status="achtung"] { background: #fff6dd; border-color: #fab219; }
 .taupunkt-status[data-status="erhoeht"] { background: #fdeee7; border-color: #ec835a; }
 .taupunkt-status[data-status="kritisch"] { background: #fbe7e7; border-color: #d03b3b; }
+
+/* Auf Pinterest merken (reiner Link, kein Pinterest-Skript) */
+.btn-pinterest { background: #e60023; color: #fff; }
+.btn-pinterest:hover { background: #ad081b; color: #fff; }
+.merken { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin: 28px 0; }
+.merken p { margin: 0; flex: 1 1 280px; }

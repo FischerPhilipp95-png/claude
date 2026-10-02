@@ -20,7 +20,7 @@ Ein Datenschutzbeauftragter ist nicht bestellt und gesetzlich nicht erforderlich
 
 - Diese Website setzt **keine Cookies**, nutzt **keine Besucherstatistik** und nutzt **kein Tracking** durch Dritte.
 - Schriftarten, Bilder und Skripte werden **von unserem eigenen Server** geladen, nicht von Google oder anderen Anbietern.
-- YouTube-Videos werden **erst nach deinem Klick** geladen.
+- YouTube-Videos werden **erst nach deinem Klick** geladen. Auch Pinterest erfährt erst etwas, wenn du auf „Auf Pinterest merken“ klickst.
 - Beim Klick auf einen Amazon-Link verlässt du diese Website. Ab dann gilt der Datenschutz von Amazon.
 
 ## 3. Hosting und Server-Logfiles
@@ -96,16 +96,25 @@ Rechtsgrundlage: deine Einwilligung durch den Klick, Art. 6 Abs. 1 lit. a DSGVO 
 wird wieder nur das Vorschaubild gezeigt.
 Datenschutzerklärung von Google: <https://policies.google.com/privacy>
 
-## 8. Schriftarten
+## 8. „Auf Pinterest merken“
+
+Unter Artikeln und Rechnern steht ein Link „Auf Pinterest merken“. Das ist ein **einfacher Link**, kein
+eingebundenes Pinterest-Skript: Beim Aufruf dieser Website wird nichts von Pinterest geladen und nichts an
+Pinterest übertragen. **Erst wenn du auf den Link klickst**, öffnet sich Pinterest (Anbieter: Pinterest Europe
+Limited, Palmerston House, Fenian Street, Dublin 2, Irland) in einem neuen Tab. Dabei übergibt der Link nur die Adresse
+der Seite, das Pin-Bild und eine Beschreibung. Ab dann gilt der Datenschutz von Pinterest:
+<https://policy.pinterest.com/de/privacy-policy>
+
+## 9. Schriftarten
 
 Die Schriftarten dieser Website sind lokal auf dem eigenen Server gespeichert.
 Es wird keine Verbindung zu Google Fonts oder anderen Schriftanbietern aufgebaut.
 
-## 9. SSL-/TLS-Verschlüsselung
+## 10. SSL-/TLS-Verschlüsselung
 
 Diese Website nutzt aus Sicherheitsgründen eine TLS-Verschlüsselung (erkennbar an „https“ am Anfang der Adresse und dem Schloss-Symbol im Browser).
 
-## 10. Deine Rechte
+## 11. Deine Rechte
 
 Du hast jederzeit das Recht auf:
 
@@ -122,12 +131,12 @@ jederzeit widersprechen.
 
 Eine formlose E-Mail an <info@handwerksdoktor.de> genügt.
 
-## 11. Beschwerderecht bei der Aufsichtsbehörde
+## 12. Beschwerderecht bei der Aufsichtsbehörde
 
 Du kannst dich bei einer Datenschutz-Aufsichtsbehörde beschweren. Für mich zuständig ist:
 Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen,
 Kavalleriestraße 2–4, 40213 Düsseldorf, <https://www.ldi.nrw.de>
 
-## 12. Aktualität
+## 13. Aktualität
 
-Stand: 01.10.2026. Wenn sich die Website ändert, wird diese Erklärung angepasst.
+Stand: 02.10.2026. Wenn sich die Website ändert, wird diese Erklärung angepasst.

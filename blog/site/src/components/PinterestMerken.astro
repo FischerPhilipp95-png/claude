@@ -1,0 +1,16 @@
+---
+// „Auf Pinterest merken“ als einfacher Link, ohne Pinterest-Skript: Beim Seitenaufruf wird nichts zu Pinterest geladen.
+// Erst wer klickt, öffnet Pinterest in einem neuen Tab, mit Hochformat-Bild (scripts/pins.mjs), Link und Beschreibung.
+import Icon from './Icon.astro';
+interface Props { url: string; bild: string; text: string; kompakt?: boolean }
+const { url, bild, text, kompakt = false } = Astro.props;
+const href = 'https://www.pinterest.de/pin/create/button/?' + new URLSearchParams({ url, media: bild, description: text.slice(0, 500) }).toString();
+---
+{kompakt ? (
+  <a class="btn btn-sm btn-pinterest" href={href} target="_blank" rel="noopener nofollow"><Icon name="pin" size={16} /> Auf Pinterest merken<span class="sr-only"> (öffnet Pinterest in neuem Tab)</span></a>
+) : (
+  <aside class="box merken" aria-label="Auf Pinterest merken" data-pagefind-ignore>
+    <p><strong>Für später merken?</strong> Speicher dir die Anleitung auf Pinterest, dann findest du sie wieder, wenn es so weit ist.</p>
+    <a class="btn btn-sm btn-pinterest" href={href} target="_blank" rel="noopener nofollow"><Icon name="pin" size={16} /> Auf Pinterest merken<span class="sr-only"> (öffnet Pinterest in neuem Tab)</span></a>
+  </aside>
+)}

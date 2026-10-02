@@ -4,6 +4,8 @@ import { SITE } from '../site';
 import { THEMEN, type Thema } from '../themen';
 import Verwandt from '../components/Verwandt.astro';
 import Icon from '../components/Icon.astro';
+import PinterestMerken from '../components/PinterestMerken.astro';
+import { existsSync } from 'node:fs';
 
 interface Props {
   title: string;
@@ -26,6 +28,8 @@ const themaTitel = THEMEN[thema as Thema].titel;
 const toc = headings.filter((h) => h.depth === 2 && h.text !== 'Quellen');
 const url = new URL(Astro.url.pathname, SITE.url).toString();
 const datum = (d: Date) => d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+// Hochformat-Pin (scripts/pins.mjs): Wer den Artikel bei Pinterest merkt, bekommt dieses Bild statt des breiten Titelbilds.
+const pin = existsSync(`public/bilder/pins/${id}.jpg`) ? `${SITE.url}/bilder/pins/${id}.jpg` : new URL(bild, SITE.url).toString();
 const person = { '@type': 'Person', name: SITE.author, url: `${SITE.url}/ueber/`, sameAs: [SITE.youtube] };
 const jsonLd = [
   {
@@ -52,17 +56,17 @@ const jsonLd = [
   },
 ];
 ---
-<Base title={title} description={description} image={bild} jsonLd={jsonLd} type="article">
+<Base title={title} description={description} image={bild} jsonLd={jsonLd} type="article" artikel={{ veroeffentlicht: pubDate, geaendert: updatedDate, rubrik: themaTitel }}>
   <article class="wrap article" style={`--akzent:${akzent}`} data-pagefind-body>
     <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> <Icon name="chevron-right" size={14} /> <a href={`/thema/${themaSlug}/`}>{themaTitel}</a></nav>
     <a class="chip chip-lg" href={`/thema/${themaSlug}/`} data-pagefind-meta="thema" data-pagefind-ignore><Icon name={themaIcon} size={16} /> {themaTitel}</a>
     <h1>{title}</h1>
     <p class="lead">{description}</p>
     <div class="byline" data-pagefind-ignore>
-      <img src="/bilder/autor.webp" alt="" width="40" height="40" />
+      <img src="/bilder/autor.webp" alt="" width="40" height="40" data-pin-nopin="true" />
       <span><strong>{SITE.author}</strong><br /><span class="small">{updatedDate ? `Aktualisiert am ${datum(updatedDate)}` : `Veröffentlicht am ${datum(pubDate)}`} · <Icon name="clock" size={13} /> {lesezeit} Min. Lesezeit</span></span>
     </div>
-    <figure class="hero-img"><img data-pagefind-meta="image[src], image_alt[alt]" src={bild} alt={bildAlt} width="1200" height="675" fetchpriority="high" decoding="async" /></figure>
+    <figure class="hero-img"><img data-pagefind-meta="image[src], image_alt[alt]" src={bild} alt={bildAlt} width="1200" height="675" fetchpriority="high" decoding="async" data-pin-media={pin} data-pin-description={`${title}: ${description}`} data-pin-url={url} /></figure>
     {affiliate && (
       <p class="ad-note" data-pagefind-ignore><strong>Anzeige:</strong> Dieser Artikel enthält Affiliate-Links (mit * markiert). Kaufst du darüber ein,
       bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts. <a href="/werbung/">Mehr dazu</a></p>
@@ -74,9 +78,10 @@ const jsonLd = [
       </details>
     )}
     <slot />
+    <PinterestMerken url={url} bild={pin} text={`${title}: ${description}`} />
     <div data-pagefind-ignore><Verwandt id={id} thema={thema} /></div>
     <section class="box author" aria-label="Über den Autor" data-pagefind-ignore>
-      <img src="/bilder/autor.webp" alt="Der Handwerksdoktor" width="64" height="64" loading="lazy" />
+      <img src="/bilder/autor.webp" alt="Der Handwerksdoktor" width="64" height="64" loading="lazy" data-pin-nopin="true" />
       <p><strong>{SITE.author}</strong> erklärt auf <a href={SITE.youtube} rel="noopener">YouTube</a> und hier im Blog,
       wie Heizung, Strom und Wasser im Haus funktionieren, einfach und ohne Fachchinesisch.
       {' '}<a href="/ueber/">Mehr über den Handwerksdoktor</a></p>
