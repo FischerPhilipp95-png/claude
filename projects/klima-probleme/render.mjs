@@ -40,8 +40,6 @@ function camera(t) {
     x = lerp(ZONES[prev][0], ZONES[z][0], q); y = lerp(ZONES[prev][1], ZONES[z][1], q);
     zoom = 1 - 0.32 * Math.sin(Math.PI * u); blur = Math.sin(Math.PI * u) ** 2 * 9;
   }
-  // leichtes Atmen der Kamera
-  x += Math.sin(t * 0.35) * 14; y += Math.cos(t * 0.3) * 9; zoom *= 1 + 0.012 * Math.sin(t * 0.25);
   const out = CH[6];
   if (t >= out.start) {   // Fazit: ganzes Board von oben
     const u = quint(seg(t, out.start, out.start + 1.8));
@@ -200,7 +198,7 @@ function checklist(ctx, t, k, x, y, w, T) {
     rrect(ctx, 28, yy - 4, 30, 30, 8); ctx.fill(); ctx.stroke();
     if (on > 0) { ctx.strokeStyle = C.ink; ctx.lineWidth = 3.5; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(35, yy + 11); ctx.lineTo(41, yy + 17); ctx.lineTo(51 * 1 - (1 - on) * 6, yy + 4 + (1 - on) * 6); ctx.stroke(); }
     text(ctx, s, 74, yy + 20, 24, on > 0.5 ? 'ISB' : 'IM', C.ink);
-    if (t >= ti && t < ti + T.checkStep) { cx = 50; cy = yy + 16; }
+    if (i === 0 || t >= ti) { cx = 50; cy = yy + 16; }   // Cursor bleibt auf dem zuletzt abgehakten Punkt
   });
   ctx.restore();
   return [x + cx, y + cy];
@@ -342,18 +340,18 @@ function zone(ctx, t, k) {
   // rechte Seite: dunkles Diagnose-Panel
   const pn = panel(ctx, t, k, 20, -400, 900, 760, T);
   // Cursor: Persona tippt das Zitat, Doc tippt die Frage und klickt, danach hakt Doc die Liste ab
-  const who = d.who, wx = t < T.qEnd + 0.5 ? q.cx : -300 + Math.sin(t * 0.9) * 60, wy = t < T.qEnd + 0.5 ? q.cy : 330 + Math.cos(t * 0.7) * 40;
-  cursor(ctx, wx, wy, who, easeOut(seg(t, T.start + 0.3, T.start + 0.9)));
+  // nur Cursor zeigen, die gerade etwas tun: die Persona nur beim Tippen des Zitats
+  const who = d.who;
+  cursor(ctx, q.cx, q.cy, who, easeOut(seg(t, T.start + 0.3, T.start + 0.9)) * (1 - easeOut(seg(t, T.qEnd + 0.3, T.qEnd + 0.8))));
   let dx, dy, press = 0;
-  if (t < T.pStart) { dx = 600 + Math.sin(t) * 40; dy = 420; }
+  if (t < T.pStart) { dx = 600; dy = 420; }
   else if (t < T.click) { const u = easeOut(seg(t, T.pStart, T.typeStart)); dx = lerp(600, pn.tx ?? 400, u); dy = lerp(420, (pn.ty ?? 300) + 10, u); }
   else if (t < T.click + 0.5) { const u = easeOut(seg(t, T.typeEnd, T.click)); dx = lerp(pn.tx ?? 400, pn.bx, u); dy = lerp((pn.ty ?? 300) + 10, pn.by, u); press = t >= T.click ? Math.sin(Math.PI * seg(t, T.click, T.click + 0.2)) : 0; }
-  else if (t < T.checkStart) { dx = pn.bx + Math.sin(t * 0.8) * 30 - 60; dy = pn.by - 60 + Math.cos(t) * 20; }
+  else if (t < T.checkStart) { dx = pn.bx - 60; dy = pn.by - 60; }
   else { const u = easeOut(seg(t, T.checkStart - 0.4, T.checkStart)); dx = lerp(pn.bx - 60, ck[0], u); dy = lerp(pn.by - 60, ck[1], u); }
-  cursor(ctx, dx, dy, 'Doc', 1, press);
-  // ein dritter Cursor schaut zu
-  const other = ['Nachbar', 'Mieterin', 'Techniker'].find((n) => n !== who);
-  cursor(ctx, 760 + Math.sin(t * 0.6 + k) * 70, 420 + Math.cos(t * 0.5 + k) * 40, other, 0.9 * easeOut(seg(t, T.start + 1, T.start + 1.6)));
+  // Doc erscheint erst, wenn er die Frage tippt, und verschwindet nach dem letzten Häkchen
+  const lastCheck = T.checkStart + (d.check.length - 1) * T.checkStep + 0.6;
+  cursor(ctx, dx, dy, 'Doc', easeOut(seg(t, T.pStart - 0.4, T.pStart)) * (1 - easeOut(seg(t, lastCheck, lastCheck + 0.5))), press);
 }
 
 // ----- Intro-Zone -----
@@ -404,11 +402,7 @@ function zoneIntro(ctx, t) {
   ctx.restore();
   // Cursor: Doc tippt, die anderen kommen dazu
   const dx = t < 3.4 ? -495 + tw + 10 : lerp(-495 + tw + 10, 500, easeOut(seg(t, 3.4, 4.2))), dy = t < 3.4 ? -230 : lerp(-230, 220, easeOut(seg(t, 3.4, 4.2)));
-  cursor(ctx, dx, dy, 'Doc');
-  [['Nachbar', 6.0, [-760, 420], [-200, 260]], ['Mieterin', 6.8, [900, -500], [620, -40]], ['Techniker', 7.6, [900, 520], [180, 300]]].forEach(([n, ts, a, b]) => {
-    const u = easeOut(seg(t, ts, ts + 1.2)); if (u <= 0) return;
-    cursor(ctx, lerp(a[0], b[0], u) + Math.sin(t + ts) * 20 * u, lerp(a[1], b[1], u) + Math.cos(t * 0.8 + ts) * 14 * u, n, u);
-  });
+  cursor(ctx, dx, dy, 'Doc', 1 - easeOut(seg(t, 4.6, 5.1)));
 }
 
 // ----- Fazit: Übersicht + Checkliste + Endkarte (Bildschirm-Ebene) -----
