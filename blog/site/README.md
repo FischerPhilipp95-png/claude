@@ -56,6 +56,19 @@ in `public/bilder/`. Nie Bilder von Amazon, Herstellern oder anderen Seiten.
 Je nach Jahreszeit austauschen, zum Beispiel Heizung im Winter, Klima und Balkonkraftwerk im Sommer, Geschenke ab November.
 Wird ein Artikel überarbeitet, `updatedDate: JJJJ-MM-TT` im Kopf setzen: Das Datum erscheint im Artikel und in der Sitemap.
 
+## Pinterest (automatisch)
+
+Für jeden Artikel erzeugt `npm run pins` ein Pin-Bild im Hochformat (`public/bilder/pins/<artikel>.jpg`, 1000×1500).
+GitHub macht das bei jedem Push für neue Artikel selbst. Die Feeds unter `/pinterest/` liefern die Pins an Pinterest:
+
+- `https://handwerksdoktor.de/pinterest/alle.xml`: alle Artikel
+- `https://handwerksdoktor.de/pinterest/heizung.xml`, `strom.xml`, `wasser.xml`, `raumklima.xml`, `haushalt.xml`,
+  `sicherheit.xml`, `werkzeug.xml`: je ein Thema, für eine eigene Pinnwand
+
+Einmalig in Pinterest (Unternehmenskonto): Website beanspruchen (HTML-Tag, den Wert aus `content="…"` in `src/site.ts` bei
+`pinterestVerify` eintragen), dann unter Einstellungen → „Pins in großer Menge erstellen“ → „RSS-Feed verbinden“ die Feeds
+mit je einer Pinnwand verbinden. Pinterest holt neue Artikel danach selbst ab (innerhalb von 24 Stunden, bis 200 Pins pro Tag).
+
 ## Automatisch hochladen (GitHub Actions)
 
 `.github/workflows/website.yml` (im Hauptordner des Repos) läuft bei jedem Push, der `blog/site/` ändert:

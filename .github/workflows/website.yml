@@ -1,7 +1,7 @@
 # Website handwerksdoktor.de: bei jedem Push bauen, prüfen und danach per SFTP zu IONOS hochladen.
 #
 # Ablauf:
-#   1. prüfen:     npm ci, Build (Astro + Pagefind), check (fremde Server, seitliches Scrollen),
+#   1. prüfen:     npm ci, fehlende Titel- und Pin-Bilder erzeugen, Build (Astro + Pagefind), check (fremde Server, seitliches Scrollen),
 #                  qualitaet (html-validate, pa11y-ci). Schlägt etwas fehl, wird NICHT hochgeladen.
 #                  Dazu interne Links (lychee, offline): Ein kaputter Link auf der eigenen Seite verhindert den Upload.
 #   2. hochladen:  dist/ per SFTP nach IONOS (Hauptordner /) (nur hinzufügen und überschreiben, nichts auf dem Server löschen),
@@ -68,6 +68,11 @@ jobs:
         run: |
           npx playwright install --with-deps chromium
           echo "CHROME_PATH=$(node -e "console.log(require('playwright').chromium.executablePath())")" >> "$GITHUB_ENV"
+
+      - name: Fehlende Titel- und Pinterest-Bilder erzeugen
+        run: |
+          npm run titelbilder
+          npm run pins
 
       - name: Bauen
         run: npm run build

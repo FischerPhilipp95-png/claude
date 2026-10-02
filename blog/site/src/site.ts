@@ -8,6 +8,8 @@ export const SITE = {
   email: 'info@handwerksdoktor.de',
   youtube: 'https://www.youtube.com/@derhandwerksdoktor',
   amazonTag: 'rechn24-21',
+  // Bestätigungscode von Pinterest („Website beanspruchen“ → HTML-Tag), nur der Wert aus content="…". Leer = kein Tag.
+  pinterestVerify: '',
 };
 
 /** Amazon-Suchlink für allgemeine Empfehlungen. Konkrete Produkte stehen in src/produkte.ts (Direktlink per ASIN). */

@@ -44,6 +44,7 @@ const ogImage = new URL(image, SITE.url).toString();
   <link rel="preload" href="/fonts/inter-500.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/inter-800.woff2" as="font" type="font/woff2" crossorigin />
   <meta name="theme-color" content="#111111" />
+  {SITE.pinterestVerify && <meta name="p:domain_verify" content={SITE.pinterestVerify} />}
   {jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
 </head>
 <body>
