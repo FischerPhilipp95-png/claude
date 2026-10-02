@@ -167,6 +167,22 @@ pro Trade). Der Effekt ist also stabil, aber kleiner als übliche CFD-Spreads.
 Profitabel war die Strategie nur mit Gesamtkosten unter etwa 0,15–0,20 $ je Unze. Selbst bei 0,10 $ stehen
 knapp 7 % pro Jahr einem Drawdown von rund 30 % gegenüber.
 
+### Bitget XAUUSDT-Futures (geprüft am 02.10.2026)
+
+Bitget nimmt für XAUUSDT keine Spread-, sondern Prozentgebühren: Taker 0,06 %, Maker 0,02 % vom Positionswert
+(Spread live nur 0,01 $). Bei Gold um 4.190 $ kostet allein der Einstieg per Stop-Order etwa 2,50 $ je Unze.
+Dazu kommt Funding alle 4 Stunden (zuletzt im Schnitt 0,013 %, Long zahlt).
+
+| Regeln | Gebühren | 2019–2022 | 2023 – Mai 2026 | Kosten je Trade |
+|---|---|---:|---:|---:|
+| CRV 1:1 (Original) | Standard 0,06 % / 0,02 % | −518 R | −453 R | ≈ 0,58 R |
+| CRV 1:1 (Original) | mit Rabatt 0,04 % / 0,014 % | −326 R | −288 R | ≈ 0,39 R |
+| CRV 1:3 + Einstand | Standard | −497 R | −527 R | ≈ 0,66 R |
+
+Die Strategie verdient vor Kosten etwa 0,06 R pro Trade, Bitget kostet rund das Zehnfache. Damit sich das
+rechnet, müsste die Box im Schnitt über 50 $ groß sein (Median 2026: 14 $). Für diese Strategie ist Bitget
+deshalb ungeeignet.
+
 ## Wie die Scripts geprüft wurden
 
 TradingView selbst ließ sich von hier nicht bedienen. Geprüft wurde deshalb so:
