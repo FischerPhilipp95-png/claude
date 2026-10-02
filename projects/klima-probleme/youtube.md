@@ -2,6 +2,16 @@
 
 ## Thumbnails (in YouTube Studio → „Testen und vergleichen“ alle drei hochladen)
 
+**Neu: Profi-Look J/K/L** (`thumbnail_pro.mjs`): unscharfer, farbig gegradeter Hintergrund, freigestelltes Gerät mit Schatten, Kanal-Person als Sticker mit Lichtkante, Schrift mit Tiefe, Glas-Pill mit echter Zahl.
+
+| Datei | Motiv | Zahl |
+|---|---|---|
+| `out/thumbnail_J.png` | Nacht-Blau, Schallwellen: **ZU LAUT?** | „nur 40 dB(A)“ nachts (TA Lärm) |
+| `out/thumbnail_K.png` | Hitze-Orange: **KÜHLT NICHT?** | „Dreckiger Filter“ (Bosch: häufige Ursache) |
+| `out/thumbnail_L.png` | Grün, **10.000 €** durchgestrichen | „1.500–3.500 €“ realistisch mit Montage |
+
+Empfehlung für den A/B-Test: J, K und L. Ältere Varianten G/H/I:
+
 | Datei | Stil | Warum es klickt |
 |---|---|---|
 | `out/thumbnail_G.png` | **echtes Foto**: Außengeräte an der Fassade, Schallwellen, roter Kreis: **ZU LAUT?** + Pill „NACHTS NUR 40 dB(A)“ | Lärm ist der häufigste Streitpunkt, die echte Zahl macht neugierig |
