@@ -5,6 +5,7 @@
 //   <artikel>-2.jpg   in der Themenfarbe, erste Frage aus „Häufige Fragen“ mit Antwort
 //   <artikel>-3.jpg   hell, Schritte aus dem Ablauf, Checkliste oder Überblick
 //   rechner-<name>.jpg  dunkel, für jeden Rechner
+//   checkliste-<id>.jpg hell, für jede Checkliste zum Ausdrucken (src/checklisten.mjs)
 // Die Pins landen über die Feeds unter /pinterest/ automatisch bei Pinterest (siehe README).
 //   npm run pins          (fehlende Pins)
 //   npm run pins -- --alle (alle neu, z. B. nach Änderungen am Design oder an den FAQ)
@@ -13,6 +14,7 @@ import { createRequire } from 'node:module';
 import { chromium } from 'playwright';
 import sharp from 'sharp';
 import { varianten } from './pin-varianten.mjs';
+import { CHECKLISTEN } from '../src/checklisten.mjs';
 
 const require = createRequire(import.meta.url);
 const ROOT = new URL('../', import.meta.url).pathname;
@@ -98,10 +100,10 @@ async function frage({ farbe, t, titel, text }) {
 }
 
 // Design 3: hell, Schritte oder Checkliste mit Nummern bzw. Haken in der Themenfarbe.
-async function liste({ farbe, t, art, kicker, titel, punkte }) {
+async function liste({ farbe, t, art, kicker, titel, punkte, ctaText }) {
   const haken = await icon('check', 36, 3.2);
   const items = punkte.map((p, i) => `<li><span class="nr">${art === 'checkliste' ? haken : i + 1}</span><span class="tx">${p.titel ? `<b>${esc(p.titel)}:</b> ` : ''}${esc(p.text)}</span></li>`).join('');
-  const cta = art === 'checkliste' ? 'Checkliste im Artikel' : art === 'schritte' ? 'Ganze Anleitung lesen' : 'Ganzen Artikel lesen';
+  const cta = ctaText ?? (art === 'checkliste' ? 'Checkliste im Artikel' : art === 'schritte' ? 'Ganze Anleitung lesen' : 'Ganzen Artikel lesen');
   return `${kopf('color:#111;background:#f6f4ef')}<style>
   .bar{position:absolute;left:0;right:0;top:0;height:16px;background:${farbe}}
   .chip{padding:12px 22px;border-radius:999px;background:${farbe};color:#111;font-size:30px}
@@ -203,5 +205,12 @@ for (const r of RECHNER) {
     farbe: t.farbe, chipIcon: 'calculator', chipText: `Rechner · ${t.titel}`, bigIcon: r.icon,
     titel: r.titel, text: `${r.text} Kostenlos und ohne Anmeldung.`, cta: 'Jetzt ausrechnen',
   }), 'dunkel');
+}
+for (const c of CHECKLISTEN) {
+  const t = THEMEN[c.thema];
+  await speichern(`${ZIEL}checkliste-${c.id}.jpg`, await liste({
+    farbe: t.farbe, t, art: 'checkliste', kicker: 'Gratis zum Ausdrucken (PDF)', titel: c.kurz,
+    punkte: c.punkte.map(([text]) => ({ text })), ctaText: 'Checkliste herunterladen',
+  }), 'liste');
 }
 await browser.close();

@@ -79,10 +79,11 @@ jobs:
         continue-on-error: true
         run: npm run videos
 
-      - name: Fehlende Titel- und Pinterest-Bilder erzeugen
+      - name: Fehlende Titel- und Pinterest-Bilder und Checklisten-PDFs erzeugen
         run: |
           npm run titelbilder
           npm run pins
+          npm run checklisten
 
       - name: Bauen
         run: npm run build

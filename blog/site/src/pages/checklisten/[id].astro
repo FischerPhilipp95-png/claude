@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import { statSync } from 'node:fs';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Checkliste from '../../components/Checkliste.astro';
+import ArtikelKarte from '../../components/ArtikelKarte.astro';
+import PinterestMerken from '../../components/PinterestMerken.astro';
+import { CHECKLISTEN } from '../../checklisten.mjs';
+import { THEMEN } from '../../themen';
+import { SITE } from '../../site';
+
+export function getStaticPaths() {
+  return CHECKLISTEN.map((c) => ({ params: { id: c.id }, props: { c } }));
+}
+const { c } = Astro.props;
+const t = THEMEN[c.thema as keyof typeof THEMEN];
+const pdf = `/checklisten/${c.id}.pdf`;
+let kb = 0;
+try { kb = Math.round(statSync(`public${pdf}`).size / 1024); } catch {}
+const artikel = (await getCollection('artikel', ({ id, data }) => !data.entwurf && c.artikel.includes(id)))
+  .sort((a, b) => c.artikel.indexOf(a.id) - c.artikel.indexOf(b.id));
+const url = `${SITE.url}/checklisten/${c.id}/`;
+const description = `${c.titel.split(':')[0]}: Checkliste als PDF zum Ausdrucken und Abhaken. ${c.intro}`.slice(0, 158);
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: `${SITE.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Checklisten', item: `${SITE.url}/checklisten/` },
+    { '@type': 'ListItem', position: 3, name: c.kurz, item: url },
+  ],
+}];
+---
+<Base title={c.titel} description={description} jsonLd={jsonLd} image={`/bilder/pins/checkliste-${c.id}.jpg`}>
+  <div class="wrap" style={`--akzent:${t.farbe}`} data-pagefind-body data-pagefind-meta={`thema:${t.titel}`}>
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/checklisten/">Checklisten</a> › {c.kurz}</nav>
+    <h1>{c.titel}</h1>
+    <p class="lead">{c.intro}</p>
+    <p class="checkliste-pdf" data-pagefind-ignore>
+      <a class="btn" href={pdf} download><Icon name="file-down" size={18} /> PDF herunterladen{kb ? ` (${kb} KB)` : ''}</a>
+      <span class="small">A4, kostenlos, ohne Anmeldung</span>
+    </p>
+    <h2>Zum Abhaken</h2>
+    <Checkliste id={`cl-${c.id}`} punkte={c.punkte.map(([titel, text]) => (text ? `${titel}: ${text}` : titel))} />
+    {artikel.length > 0 && (
+      <>
+        <h2>Die ausführliche Anleitung</h2>
+        <ul class="cards">{artikel.map((p) => <ArtikelKarte post={p} />)}</ul>
+      </>
+    )}
+    <PinterestMerken url={url} bild={`${SITE.url}/bilder/pins/checkliste-${c.id}.jpg`} text={`${c.titel}: Checkliste zum Ausdrucken (PDF)`} />
+    <p class="small">Alle Angaben ohne Gewähr. Bei Gas, Strom und wenn du unsicher bist, einen Fachbetrieb fragen.
+    Mehr Checklisten: <a href="/checklisten/">alle Checklisten zum Ausdrucken</a>.</p>
+  </div>
+</Base>

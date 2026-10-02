@@ -8,7 +8,7 @@ const { id, titel, vorschau } = Astro.props;
   <img src={vorschau} alt={`Vorschau: ${titel}`} loading="lazy" width="1280" height="720" data-pin-nopin="true" />
   <button class="load" type="button"><span class="play">▶ Video laden</span><span class="sr-only">: {titel}</span></button>
 </div>
-<p class="video-hinweis">Beim Laden werden Daten an YouTube (Google) übertragen, u. a. deine IP-Adresse. Mehr in der <a href="/datenschutz/#7-youtube-videos">Datenschutzerklärung</a>.</p>
+<p class="video-hinweis">Beim Laden werden Daten an YouTube (Google) übertragen, u. a. deine IP-Adresse. Mehr in der <a href="/datenschutz/">Datenschutzerklärung</a> (Nr. 7).</p>
 <script>
   document.querySelectorAll<HTMLElement>('.video[data-yt]').forEach((box) => {
     box.querySelector('button')?.addEventListener('click', (e) => {

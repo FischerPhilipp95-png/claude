@@ -7,6 +7,7 @@ import Icon from '../components/Icon.astro';
 import PinterestMerken from '../components/PinterestMerken.astro';
 import VideoBox from '../components/VideoBox.astro';
 import { videoFuerArtikel, videoSchema } from '../videos';
+import { CHECKLISTEN } from '../checklisten.mjs';
 import { existsSync } from 'node:fs';
 
 interface Props {
@@ -33,6 +34,7 @@ const datum = (d: Date) => d.toLocaleDateString('de-DE', { day: '2-digit', month
 // Hochformat-Pin (scripts/pins.mjs): Wer den Artikel bei Pinterest merkt, bekommt dieses Bild statt des breiten Titelbilds.
 const pin = existsSync(`public/bilder/pins/${id}.jpg`) ? `${SITE.url}/bilder/pins/${id}.jpg` : new URL(bild, SITE.url).toString();
 const video = videoFuerArtikel(id);
+const checklisten = CHECKLISTEN.filter((c) => c.artikel.includes(id));
 const person = { '@type': 'Person', name: SITE.author, url: `${SITE.url}/ueber/`, sameAs: [SITE.youtube] };
 const jsonLd = [
   {
@@ -84,6 +86,13 @@ if (vSchema) jsonLd.push(vSchema as any);
     )}
     {video && <VideoBox video={video} />}
     <slot />
+    {checklisten.map((c) => (
+      <aside class="box druck-checkliste" aria-label={`Checkliste zum Ausdrucken: ${c.kurz}`} data-pagefind-ignore>
+        <Icon name="printer" size={28} />
+        <p><strong>Checkliste zum Ausdrucken:</strong> {c.titel}. Als PDF, kostenlos, mit QR-Code zu dieser Anleitung.</p>
+        <a class="btn btn-sm" href={`/checklisten/${c.id}/`}>Zur Checkliste</a>
+      </aside>
+    ))}
     <PinterestMerken url={url} bild={pin} text={`${title}: ${description}`} />
     <div data-pagefind-ignore><Verwandt id={id} thema={thema} /></div>
     <section class="box author" aria-label="Über den Autor" data-pagefind-ignore>

@@ -432,3 +432,9 @@ table.result tbody th[scope="row"] { font-weight: 400; background: none; }
 .duebel-typ { display: flex; flex-direction: column; gap: 2px; margin: 0 0 8px; }
 .duebel-typ strong { font-size: 1.35rem; line-height: 1.25; }
 .video-hinweis { margin: 6px 0 0; font-size: 0.8rem; color: var(--muted); }
+
+/* Checklisten zum Ausdrucken */
+.checkliste-pdf { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 18px 0 8px; }
+.druck-checkliste { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 28px 0; }
+.druck-checkliste p { margin: 0; flex: 1 1 260px; }
+.druck-checkliste .icon { color: var(--akzent, #111); flex: none; }

@@ -79,6 +79,7 @@ const ogImage = new URL(image, SITE.url).toString();
         <p class="foot-h">Themen</p>
         {Object.values(THEMEN).map((t) => <a href={`/thema/${t.slug}/`}>{t.titel}</a>)}
         <a href="/rechner/">Alle Rechner</a>
+        <a href="/checklisten/">Checklisten zum Ausdrucken</a>
         <a href="/produkte/">Produkte erklärt</a>
       </nav>
       <nav aria-label="Rechtliches">

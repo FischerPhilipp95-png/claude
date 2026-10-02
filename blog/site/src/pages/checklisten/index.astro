@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { CHECKLISTEN } from '../../checklisten.mjs';
+import { THEMEN } from '../../themen';
+import { SITE } from '../../site';
+const title = 'Checklisten zum Ausdrucken: Heizung, Frost, Schimmel, Werkzeug';
+const description = 'Kostenlose Checklisten als PDF zum Ausdrucken und Abhaken: Heizung winterfest, frostsicher in den Urlaub, Heizkörper entlüften, Schimmel vorbeugen und Werkzeug-Grundausstattung.';
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, url: `${SITE.url}/checklisten/`, inLanguage: 'de-DE',
+  hasPart: CHECKLISTEN.map((c) => ({ '@type': 'CreativeWork', name: c.titel, url: `${SITE.url}/checklisten/${c.id}/` })),
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap wide">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Checklisten</nav>
+    <h1>Checklisten zum Ausdrucken</h1>
+    <p class="lead">Ausdrucken, an den Kühlschrank hängen, abhaken. Jede Checkliste gibt es als PDF, kostenlos und ohne Anmeldung, mit QR-Code
+    zur ausführlichen Anleitung.</p>
+    <ul class="tiles rechner-tiles">
+      {CHECKLISTEN.map((c) => {
+        const t = THEMEN[c.thema as keyof typeof THEMEN];
+        return (
+          <li><a href={`/checklisten/${c.id}/`} style={`--akzent:${t.farbe}`}>
+            <span class="tile-icon"><Icon name={c.icon} size={28} /></span>
+            <span class="tile-name">{c.kurz}</span>
+            <span class="tile-count">{c.punkte.length} Punkte · PDF zum Ausdrucken</span>
+          </a></li>
+        );
+      })}
+    </ul>
+  </div>
+</Base>

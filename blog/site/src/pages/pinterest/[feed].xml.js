@@ -3,13 +3,14 @@
 //   /pinterest/<thema>.xml   nur ein Thema, z. B. /pinterest/heizung.xml (für eine eigene Pinnwand)
 // Pro Artikel bis zu drei Pins mit eigenem Bild (scripts/pins.mjs, Texte und Zeitplan in scripts/pin-varianten.mjs):
 // Variante 1 sofort, Varianten 2 und 3 zeitversetzt. Was noch nicht dran ist, steht erst nach einem späteren Build im Feed.
-// Dazu je Rechner ein Pin im Feed seines Themas.
+// Dazu je Rechner und je Checkliste zum Ausdrucken (src/checklisten.mjs) ein Pin im Feed seines Themas.
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import { statSync } from 'node:fs';
 import { SITE } from '../../site';
 import { THEMEN } from '../../themen';
 import { RECHNER } from '../../rechner';
+import { CHECKLISTEN } from '../../checklisten.mjs';
 import { varianten, freigabe, rechnerFreigabe, kuerzen } from '../../../scripts/pin-varianten.mjs';
 
 export function getStaticPaths() {
@@ -58,6 +59,15 @@ export async function GET(context) {
     items.push(eintrag({
       titel: r.titel, text: kuerzen(`${r.text} Kostenlos und ohne Anmeldung, direkt im Browser.`, 500),
       datum, link: `${SITE.url}${r.href}`, guid: `${SITE.url}${r.href}#pin`, datei: `rechner-${name}.jpg`,
+    }));
+  }
+  for (const c of CHECKLISTEN) {
+    if (thema && c.thema !== thema[0]) continue;
+    const datum = rechnerFreigabe(`checkliste-${c.id}`);
+    if (datum > jetzt) continue;
+    items.push(eintrag({
+      titel: `${c.titel} (PDF zum Ausdrucken)`.slice(0, 100), text: kuerzen(`${c.intro} Kostenlos als PDF, ohne Anmeldung: ${c.punkte.map((p) => p[0]).join(' · ')}`, 500),
+      datum, link: `${SITE.url}/checklisten/${c.id}/`, guid: `${SITE.url}/checklisten/${c.id}/#pin`, datei: `checkliste-${c.id}.jpg`,
     }));
   }
   return rss({

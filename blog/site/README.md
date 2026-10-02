@@ -107,6 +107,13 @@ YouTube lädt erst nach Klick (`src/components/YouTube.astro`, Datenschutzerklä
 `/rechner/duebel/`: Wand (6 Arten) und Gewicht (4 Klassen) wählen, Empfehlung mit Größe, Bohrhinweis und Amazon-Suchlink.
 Die Tabelle steht in `src/pages/rechner/duebel.astro` (Richtwerte nach Herstellerangaben, die Packung hat Vorrang).
 
+## Checklisten zum Ausdrucken
+
+Daten in `src/checklisten.mjs` (jeder Punkt stammt aus einem Artikel). `npm run checklisten` erzeugt daraus A4-PDFs mit QR-Code
+zur Anleitung (`public/checklisten/<id>.pdf`, nur fehlende, `-- --alle` für alle). Seiten: `/checklisten/` und `/checklisten/<id>/`.
+Artikel, die in `artikel` stehen, zeigen automatisch einen Hinweiskasten. Jede Checkliste hat einen Pin (`checkliste-<id>.jpg`)
+im Feed ihres Themas. GitHub erzeugt fehlende PDFs beim Bauen selbst.
+
 ## Automatisch hochladen (GitHub Actions)
 
 `.github/workflows/website.yml` (im Hauptordner des Repos) läuft bei jedem Push, der `blog/site/` ändert:
