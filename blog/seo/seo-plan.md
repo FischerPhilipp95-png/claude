@@ -231,3 +231,13 @@ Rauchmelder piept (Fehlerbehebung), eigenes YouTube-Video zur Plissee-Montage mi
   Werkzeugkoffer mit Akkuschrauber. Produkte: Bosch IXO 7, Bosch EasyDrill 18V-40 Set, Metabo BS 18 L Set, Makita DDF485, Bürstenaufsatz-Set.
 - Kopfzeile: Logo-Text am Desktop nur für Screenreader, Themen-Icons zwischen 861 und 1079 px aus, damit „Rechner“ immer sichtbar bleibt.
 - Nicht gemacht (bewusst): Online-Casino, Markensuchen (Seven Oaks, Puls Air, Vivax), Parkside (nicht bei Amazon), beheizte Handschuhe, Poolheizung.
+
+## Stand 02.10.2026, Runde 10
+
+- Startseite: Saison-Bereich aus `site/src/saison.ts` (jetzt „Jetzt in der Heizperiode“). Im Frühjahr auf Klima/Balkonkraftwerk umstellen.
+- Neue Seite `/ueber/` (Über den Handwerksdoktor) mit Kanaltext, Arbeitsweise und Produktauswahl, AboutPage-Schema.
+  Autor-URL in den Artikel-Daten zeigt jetzt dorthin. Tipp: echte Erfahrung (Beruf, Jahre, Projekte) ergänzen, das stärkt E-E-A-T.
+- Sitemap mit `lastmod` (updatedDate, sonst pubDate). Bei jeder inhaltlichen Überarbeitung `updatedDate` im Artikel setzen.
+- Neue Artikel: Fenster beschlagen innen (Kärcher WV 2), Luftentfeuchter (Comfee MDDF-16DEN7), Geschenke für Heimwerker
+  (12 Produkte, neu: Bosch Truvo, Ledlenser HF4R Core). Geschenke-Artikel Ende Oktober noch einmal prüfen und in den Saison-Bereich nehmen.
+- Fehlende Leerzeichen vor/nach Links in .astro-Vorlagen behoben (Astro entfernt Zeilenumbrüche zwischen Text und Inline-Elementen).

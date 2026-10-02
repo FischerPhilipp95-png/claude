@@ -46,6 +46,12 @@ Seiten mit `noindex` (Impressum, Datenschutz, Werbung, Suche) bekommen bei Light
 Bilder: nur eigene oder frei lizenzierte (CC0, CC BY, CC BY-SA mit Nennung), als `.webp` mit max. 1200 px Breite
 in `public/bilder/`. Nie Bilder von Amazon, Herstellern oder anderen Seiten.
 
+## Startseite: Saison-Bereich
+
+`src/saison.ts` legt fest, welche Artikel oben auf der Startseite stehen (Titel, Text, Artikel-IDs = Dateiname ohne `.mdx`).
+Je nach Jahreszeit austauschen, zum Beispiel Heizung im Winter, Klima und Balkonkraftwerk im Sommer, Geschenke ab November.
+Wird ein Artikel überarbeitet, `updatedDate: JJJJ-MM-TT` im Kopf setzen: Das Datum erscheint im Artikel und in der Sitemap.
+
 ## Hochladen zu IONOS
 
 1. `npm run build && npm run check && npm run qualitaet`

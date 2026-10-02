@@ -6,10 +6,14 @@ import ArtikelKarte from '../components/ArtikelKarte.astro';
 import Icon from '../components/Icon.astro';
 import { SITE } from '../site';
 import { THEMEN } from '../themen';
+import { SAISON } from '../saison';
+import { RECHNER } from '../rechner';
 
 const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const anzahl = (name: string) => posts.filter((p) => p.data.thema === name).length;
+const saison = SAISON.artikel.map((id) => posts.find((p) => p.id === id)).filter((p) => p !== undefined);
+const neueste = posts.filter((p) => !SAISON.artikel.includes(p.id)).slice(0, 6);
 const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: `${SITE.url}/`, inLanguage: 'de-DE' }];
 ---
 <Base title={SITE.name} description={SITE.description} jsonLd={jsonLd}>
@@ -30,6 +34,13 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
     </div>
   </section>
 
+  <section class="wrap wide saison" aria-labelledby="saison-h">
+    <h2 class="section-h" id="saison-h"><Icon name={SAISON.icon} size={26} /> {SAISON.titel}</h2>
+    <p class="saison-text">{SAISON.text}</p>
+    <ul class="cards">{saison.map((p) => <ArtikelKarte post={p} />)}</ul>
+    <p class="saison-rechner"><a href={SAISON.rechner.href}><Icon name="calculator" size={18} /> {SAISON.rechner.titel}</a></p>
+  </section>
+
   <section class="wrap wide">
     <h2 class="section-h">Wobei brauchst du Hilfe?</h2>
     <ul class="tiles">
@@ -43,7 +54,7 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
       <li><a href="/rechner/" style="--akzent:#ffd400">
         <span class="tile-icon"><Icon name="calculator" size={28} /></span>
         <span class="tile-name">Rechner</span>
-        <span class="tile-count">6 Rechner für Strom, Heizung, Wasser</span>
+        <span class="tile-count">{RECHNER.length} Rechner für Strom, Heizung, Wasser</span>
       </a></li>
       <li><a href="/rechner/balkonkraftwerk/" style="--akzent:#ff741c">
         <span class="tile-icon"><Icon name="sun" size={28} /></span>
@@ -53,7 +64,7 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
     </ul>
 
     <h2 class="section-h">Neueste Anleitungen</h2>
-    <ul class="cards">{posts.slice(0, 6).map((p) => <ArtikelKarte post={p} />)}</ul>
+    <ul class="cards">{neueste.map((p) => <ArtikelKarte post={p} />)}</ul>
     <p class="center"><a class="btn btn-dark" href="/artikel/">Alle {posts.length} Anleitungen ansehen <Icon name="chevron-right" size={18} /></a></p>
   </section>
 </Base>

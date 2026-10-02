@@ -388,3 +388,20 @@ table.result tbody th[scope="row"] { font-weight: 400; background: none; }
 .checkliste label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; }
 .checkliste input { width: 20px; height: 20px; margin-top: 3px; accent-color: #0ca30c; flex: none; }
 .checkliste input:checked + span { text-decoration: line-through; color: var(--muted); }
+
+/* Saison-Bereich auf der Startseite */
+.saison .section-h { display: flex; align-items: center; gap: 10px; }
+.saison .section-h .icon { color: #d9590b; flex: none; }
+.saison-text { color: var(--muted); margin: -0.3em 0 1.1em; }
+.saison-rechner { margin: 1.4em 0 0; }
+.saison-rechner a { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; color: var(--ink); background: #fff3c4; border: 1px solid #f1d36b; padding: 10px 16px; border-radius: 999px; text-decoration: none; }
+.saison-rechner a:hover { background: #ffe98a; }
+
+/* Über-Seite */
+.ueber-kopf { display: flex; gap: 20px; align-items: center; margin-bottom: 0.5em; }
+.ueber-kopf img { width: 96px; height: 96px; border-radius: 50%; border: 3px solid var(--yellow); flex: none; }
+.pfeil-liste { list-style: none; padding: 0; }
+.pfeil-liste li { padding-left: 1.4em; position: relative; margin: 0.35em 0; }
+.pfeil-liste li::before { content: '▸'; position: absolute; left: 0; color: #d9590b; }
+.ueber-kopf h1 { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
+@media (max-width: 560px) { .ueber-kopf { gap: 14px; } .ueber-kopf img { width: 64px; height: 64px; } .ueber-kopf h1 { font-size: 1.7rem; } }

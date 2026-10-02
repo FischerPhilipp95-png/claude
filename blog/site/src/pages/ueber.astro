@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../site';
+import { THEMEN } from '../themen';
+
+const title = 'Über den Handwerksdoktor';
+const description = 'Der Handwerksdoktor: schnelle, verständliche Anleitungen für Heimwerker. Wer hinter der Seite steht, wie die Anleitungen entstehen und wie Produkte ausgewählt werden.';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: title,
+    url: `${SITE.url}/ueber/`,
+    inLanguage: 'de-DE',
+    mainEntity: {
+      '@type': 'Organization',
+      name: SITE.name,
+      url: `${SITE.url}/`,
+      logo: `${SITE.url}/bilder/autor.webp`,
+      sameAs: [SITE.youtube],
+    },
+  },
+];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Über den Handwerksdoktor</nav>
+    <div class="ueber-kopf">
+      <img src="/bilder/autor.webp" alt="Der Handwerksdoktor" width="96" height="96" />
+      <h1>Über den Handwerksdoktor</h1>
+    </div>
+
+    <p class="lead"><strong>Der Handwerksdoktor</strong>: schnelle, verständliche Anleitungen für Heimwerker. Reparieren, renovieren, bauen
+    und typische Probleme lösen. Von Holz und Werkzeugen über Trockenbau, Sanitär und Elektro bis zu Haus und Garten.</p>
+
+    <p>Hier findest du Lösungen Schritt für Schritt: praxisnah, verständlich und ohne unnötiges Fachchinesisch.</p>
+
+    <ul class="pfeil-liste">
+      <li>Reparaturen und Renovierungen</li>
+      <li>Werkzeuge richtig nutzen und warten</li>
+      <li>Sägen, Bohren, Schleifen, Schrauben</li>
+      <li>Fehler erkennen und beheben</li>
+      <li>Kaufberatung für Werkzeug und Material</li>
+    </ul>
+
+    <h2>Auf YouTube und hier zum Nachlesen</h2>
+    <p>Zur Website gehört der YouTube-Kanal <a href={SITE.youtube} rel="noopener">„Der Handwerksdoktor“ (@derhandwerksdoktor)</a>.
+    Viele Fragen lassen sich in einem Video gut zeigen, aber schlecht nachschlagen, wenn man gerade vor dem tropfenden Wasserhahn steht.
+    Deshalb gibt es diese Website: Hier stehen die Anleitungen zum Nachlesen, mit Grafiken, Checklisten und
+    {' '}<a href="/rechner/">Rechnern</a>, mit denen du deine eigenen Zahlen ausrechnen kannst.</p>
+    <p><a class="btn" href={SITE.youtube} rel="noopener"><Icon name="circle-play" size={18} /> Zum YouTube-Kanal</a></p>
+    <p class="small">Abonnier den Kanal, damit du bei deinem nächsten Projekt sofort die passende Lösung findest.</p>
+
+    <h2>So entstehen die Anleitungen</h2>
+    <ul>
+      <li><strong>Mit Quellen:</strong> Jede Anleitung nennt am Ende ihre Quellen, zum Beispiel Verbraucherzentrale, Umweltbundesamt,
+      Herstellerangaben oder Gerichtsurteile. Zahlen ohne Quelle kennzeichnen wir als Rechenbeispiel oder Schätzung.</li>
+      <li><strong>Erst die kurze Antwort:</strong> Oben in jedem Artikel steht in wenigen Sätzen, was du wissen musst. Danach kommen die
+      Einzelheiten.</li>
+      <li><strong>Ehrlich bei den Grenzen:</strong> Arbeiten an Gasleitungen, am Stromnetz oder an der Trinkwasser-Installation gehören zum
+      Fachbetrieb. Das sagen wir deutlich, statt dich in Gefahr zu bringen.</li>
+      <li><strong>Aktuell gehalten:</strong> Wenn sich Preise, Regeln oder Förderungen ändern, überarbeiten wir die Artikel. Das Datum
+      „Aktualisiert am“ zeigt, wann das zuletzt passiert ist.</li>
+    </ul>
+
+    <h2>So werden Produkte ausgewählt</h2>
+    <ul>
+      <li><strong>Erklären statt Testsieger:</strong> Wir testen keine Geräte im Labor und vergeben keine Noten. Wir erklären, worauf es
+      ankommt, und nennen Beispiele, die diese Kriterien laut Hersteller erfüllen.</li>
+      <li><strong>Keine bezahlten Platzierungen:</strong> Kein Hersteller kann sich in einen Artikel einkaufen.</li>
+      <li><strong>Keine Preise:</strong> Preise ändern sich ständig. Den aktuellen Preis siehst du direkt bei Amazon.</li>
+      <li><strong>Transparent:</strong> Links mit Sternchen (*) sind Affiliate-Links. Als Amazon-Partner verdiene ich an qualifizierten
+      Verkäufen. Für dich ändert sich am Preis nichts. Alles dazu: <a href="/werbung/">Transparenz und Werbung</a>.</li>
+    </ul>
+
+    <h2>Die Themen</h2>
+    <ul class="tiles">
+      {Object.values(THEMEN).map((t) => (
+        <li><a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}>
+          <span class="tile-icon"><Icon name={t.icon} size={28} /></span>
+          <span class="tile-name">{t.titel}</span>
+        </a></li>
+      ))}
+    </ul>
+
+    <h2>Kontakt</h2>
+    <p>Fragen, Fehler gefunden oder ein Thema, das hier fehlt? Schreib über das <a href="/kontakt/">Kontaktformular</a>.
+    Die Anbieterkennzeichnung steht im <a href="/impressum/">Impressum</a>.</p>
+  </div>
+</Base>

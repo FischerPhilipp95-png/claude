@@ -177,6 +177,25 @@ export const PRODUKTE = {
     name: 'Bürstenaufsatz-Set für Akkuschrauber (3 Bürsten)', marke: 'INF', asin: 'B08PFZP9ZN', thema: 'Werkzeug', artikel: 'akkuschrauber-zubehoer',
     kurz: 'Drei Nylonbürsten in verschiedenen Größen mit 1/4-Zoll-Sechskantschaft. Für Fugen, Fliesen, Felgen und Grillrost.',
   },
+  'comfee-mddf16den7': {
+    name: 'Comfee Luftentfeuchter MDDF-16DEN7 (16 Liter)', marke: 'Comfee', asin: 'B07KK4KV4D', thema: 'Klima', artikel: 'luftentfeuchter',
+    kurz: 'Kompressor-Luftentfeuchter, laut Hersteller bis 16 Liter am Tag, für Räume bis etwa 32 m². 3-Liter-Tank und 24-Stunden-Timer.',
+    passt: 'Für Wohnräume, Keller und Wäschetrocknen. In sehr kalten Räumen arbeiten Kompressorgeräte schlechter.',
+  },
+  'kaercher-wv2': {
+    name: 'Kärcher Akku-Fenstersauger WV 2 Plus N', marke: 'Kärcher', asin: 'B084SN9HQV', thema: 'Klima', artikel: 'fenster-beschlagen',
+    kurz: 'Akku-Fenstersauger, der Wasser von Scheiben, Spiegeln und Fliesen absaugt, auch Kondenswasser morgens am Fenster.',
+    passt: 'Entfernt das Wasser, behebt aber nicht die Ursache. Lüften bleibt nötig.',
+  },
+  'bosch-truvo': {
+    name: 'Bosch Ortungsgerät Truvo (2. Generation)', marke: 'Bosch', asin: 'B0CFVVN65B', thema: 'Werkzeug', artikel: 'akkuschrauber-oder-bohrmaschine',
+    kurz: 'Leitungssucher mit einer Taste: findet laut Hersteller stromführende Leitungen bis 50 mm und Metall bis 70 mm Tiefe, warnt mit Licht und Ton.',
+    passt: 'Ersetzt keine Vorsicht: Wasserrohre aus Kunststoff erkennt ein solches Gerät nicht.',
+  },
+  'ledlenser-hf4r-core': {
+    name: 'Ledlenser HF4R Core Stirnlampe (wiederaufladbar)', marke: 'Ledlenser', asin: 'B0CF9Q3Z4F', thema: 'Werkzeug', artikel: 'geschenke-fuer-heimwerker',
+    kurz: 'Leichte Akku-Stirnlampe mit bis zu 500 Lumen und Rotlicht, wasserdicht nach IP68. Beide Hände bleiben frei, etwa unter der Spüle oder im Keller.',
+  },
   'midea-portasplit': {
     name: 'Midea PortaSplit 12.000 BTU (mobile Split-Klimaanlage mit Heizfunktion)', marke: 'Midea', asin: 'B0D3PP64JS', thema: 'Heizung', artikel: 'heizen-mit-klimaanlage',
     kurz: 'Mobile Split-Klimaanlage, die auch heizt (Wärmepumpe, Heizen A+, 3,5 kW). Außengerät hängt am Fenster, ohne Wanddurchbruch und ohne Fachbetrieb.',
