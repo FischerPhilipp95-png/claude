@@ -1,0 +1,17 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const seiten = await getCollection('recht');
+  return seiten.map((seite) => ({ params: { recht: seite.id }, props: { seite } }));
+}
+const { seite } = Astro.props;
+const { Content } = await render(seite);
+---
+<Base title={seite.data.title} description={seite.data.description} noindex>
+  <div class="wrap">
+    <h1>{seite.data.title}</h1>
+    <Content />
+  </div>
+</Base>

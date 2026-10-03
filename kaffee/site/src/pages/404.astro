@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import SuchFeld from '../components/SuchFeld.astro';
+---
+<Base title="Seite nicht gefunden" description="Diese Seite gibt es nicht (mehr)." noindex>
+  <div class="wrap">
+    <h1>Seite nicht gefunden</h1>
+    <p>Diese Seite gibt es nicht oder nicht mehr. Vielleicht hilft dir ein Blick in die <a href="/artikel/">Artikelübersicht</a> oder in die Suche:</p>
+    <SuchFeld id="suche-404" />
+  </div>
+</Base>

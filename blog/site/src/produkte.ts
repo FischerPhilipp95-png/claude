@@ -19,29 +19,6 @@ export const PRODUKTE = {
     kurz: 'Plissee zum Klemmen: Sicht- und Sonnenschutz ohne Bohren, ideal für Mietwohnungen.',
     passt: 'Für Dreh-Kipp-Fenster mit Flügelrahmen. Breite nach Glasbreite wählen.',
   },
-  'siemens-tz80002a': {
-    name: 'Siemens Entkalkungstabletten TZ80002A', marke: 'Siemens', asin: 'B07WWGKRHL', thema: 'Küche', artikel: 'siemens-kaffeevollautomat-entkalken',
-    kurz: 'Original-Entkalker für Siemens-Kaffeevollautomaten der EQ-Serie.',
-    passt: 'Laut Händlerangaben für EQ-Serie, surpresso und Siemens-Einbauvollautomaten.',
-  },
-  'delonghi-ecodecalk': {
-    name: "De'Longhi EcoDecalk", marke: "De'Longhi", asin: 'B008YETL18', thema: 'Küche', artikel: 'delonghi-kaffeevollautomat-entkalken',
-    kurz: "Flüssiger Original-Entkalker für De'Longhi-Kaffeevollautomaten und Siebträger.",
-  },
-  'jura-reinigungstabletten': {
-    name: 'JURA 3-Phasen-Reinigungstabletten', marke: 'JURA', asin: 'B09F98MMVC', thema: 'Küche', artikel: 'jura-kaffeevollautomat-reinigen',
-    kurz: 'Für das Reinigungsprogramm: entfernt Kaffeefett aus Brüheinheit und Leitungen.',
-  },
-  'jura-claris-smart': {
-    name: 'JURA CLARIS Smart+ Filterpatrone', marke: 'JURA', asin: 'B0BF9W3WC4', thema: 'Küche', artikel: 'jura-kaffeevollautomat-reinigen',
-    kurz: 'Wasserfilter mit automatischer Filtererkennung, damit seltener entkalkt werden muss.',
-    passt: 'Nur für JURA-Geräte, die für CLARIS Smart ausgelegt sind. Steht in der Anleitung.',
-  },
-  'philips-aquaclean': {
-    name: 'Philips AquaClean CA6903', marke: 'Philips', asin: 'B074M9DZ4M', thema: 'Küche', artikel: 'philips-aquaclean-filter',
-    kurz: 'Kalk- und Wasserfilter für Philips- und Saeco-Vollautomaten mit AquaClean.',
-    passt: 'Nur für Geräte mit AquaClean-Filteranschluss.',
-  },
   'philips-dampfglaetter': {
     name: 'Philips Dampfglätter 3000 Serie', marke: 'Philips', asin: 'B0CTS1WBTH', thema: 'Küche', artikel: 'dampfglaetter-richtig-benutzen',
     kurz: 'Kompakter Hand-Dampfglätter: Falten am Bügel glätten, ohne Bügelbrett.',

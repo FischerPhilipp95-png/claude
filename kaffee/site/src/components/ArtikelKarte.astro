@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { THEMEN } from '../themen';
+import Icon from './Icon.astro';
+// ebene: Überschriften-Ebene des Kartentitels. 2 auf Listen direkt unter der h1, sonst 3.
+interface Props { post: CollectionEntry<'artikel'>; kurz?: boolean; ebene?: 2 | 3 }
+const { post, kurz = false, ebene = 3 } = Astro.props;
+const H = `h${ebene}`;
+const t = THEMEN[post.data.thema];
+---
+<li class="card" style={`--akzent:${t.farbe}`}>
+  <a href={`/artikel/${post.id}/`}>
+    <div class="card-img"><img src={post.data.bild} alt="" width="1200" height="675" loading="lazy" decoding="async" /></div>
+    <div class="card-body">
+      <span class="chip"><Icon name={t.icon} size={14} /> {t.titel}</span>
+      <H>{post.data.title}</H>
+      {!kurz && <p>{post.data.description}</p>}
+      <span class="more">Weiterlesen <Icon name="chevron-right" size={16} /></span>
+    </div>
+  </a>
+</li>

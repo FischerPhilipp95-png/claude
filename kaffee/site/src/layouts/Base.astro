@@ -18,7 +18,7 @@ const { title, description, image = '/bilder/autor.webp', noindex = false, jsonL
 const canonical = new URL(Astro.url.pathname, SITE.url).toString();
 // Google zeigt etwa 60 bis 70 Zeichen. Passt der Seitenname nicht mehr dazu, nur den Titel verwenden.
 const mitName = `${title} | ${SITE.name}`;
-const fullTitle = Astro.url.pathname === '/' ? `${SITE.name}: Haustechnik einfach erklärt` : mitName.length <= 70 ? mitName : title;
+const fullTitle = Astro.url.pathname === '/' ? `${SITE.name}: Hilfe für deinen Kaffeevollautomaten` : mitName.replace(/&/g, '&amp;').length <= 70 ? mitName : title;  // & zählt im HTML als &amp;
 const ogImage = new URL(image, SITE.url).toString();
 ---
 <!doctype html>
@@ -45,11 +45,11 @@ const ogImage = new URL(image, SITE.url).toString();
   <link rel="icon" href="/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="sitemap" href="/sitemap-index.xml" />
-  <link rel="alternate" type="application/rss+xml" title="Der Handwerksdoktor" href="/rss.xml" />
+  <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
   <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/inter-500.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/inter-800.woff2" as="font" type="font/woff2" crossorigin />
-  <meta name="theme-color" content="#111111" />
+  <meta name="theme-color" content="#1c1410" />
   {SITE.pinterestVerify && <meta name="p:domain_verify" content={SITE.pinterestVerify} />}
   {jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
 </head>
@@ -57,12 +57,11 @@ const ogImage = new URL(image, SITE.url).toString();
   <a class="skip" href="#inhalt">Zum Inhalt springen</a>
   <header class="site-header">
     <div class="wrap wide header-row">
-      <a class="logo" href="/"><img src="/bilder/autor.webp" alt="" width="36" height="36" data-pin-nopin="true" /><span>Der <b>Handwerksdoktor</b></span></a>
+      <a class="logo" href="/"><img src="/bilder/autor.webp" alt="" width="36" height="36" data-pin-nopin="true" /><span>Der <b>Vollautomaten</b>-Doktor</span></a>
       <nav aria-label="Hauptmenü" class="mainnav">
         {Object.values(THEMEN).map((t) => <a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}><Icon name={t.icon} size={16} />{t.titel}</a>)}
-        <a href="/produkte/" class="nav-produkte"><Icon name="package" size={16} />Produkte</a>
+        <a href="/videos/" class="nav-produkte"><Icon name="circle-play" size={16} />Videos</a>
         <a href="/suche/" class="nav-suche" aria-label="Suche"><Icon name="search" size={18} /><span>Suche</span></a>
-        <a href="/rechner/" class="nav-rechner"><Icon name="calculator" size={16} />Rechner</a>
       </nav>
     </div>
   </header>
@@ -72,20 +71,18 @@ const ogImage = new URL(image, SITE.url).toString();
   <footer class="site-footer">
     <div class="wrap wide footer-grid">
       <div>
-        <a class="logo" href="/"><img src="/bilder/autor.webp" alt="" width="36" height="36" loading="lazy" data-pin-nopin="true" /><span>Der <b>Handwerksdoktor</b></span></a>
-        <p>Haustechnik einfach erklärt, als Video auf <a href={SITE.youtube} rel="noopener">YouTube</a> und hier zum Nachlesen.</p>
+        <a class="logo" href="/"><img src="/bilder/autor.webp" alt="" width="36" height="36" loading="lazy" data-pin-nopin="true" /><span>Der <b>Vollautomaten</b>-Doktor</span></a>
+        <p>Hilfe für Kaffeevollautomaten, als Video auf dem YouTube-Kanal <a href={SITE.youtube} rel="noopener">„{SITE.kanal}“</a> und hier zum Nachlesen.</p>
       </div>
       <nav aria-label="Themen">
         <p class="foot-h">Themen</p>
         {Object.values(THEMEN).map((t) => <a href={`/thema/${t.slug}/`}>{t.titel}</a>)}
-        <a href="/rechner/">Alle Rechner</a>
-        <a href="/checklisten/">Checklisten zum Ausdrucken</a>
-        <a href="/produkte/">Produkte erklärt</a>
-        <a href="https://vollautomatendoktor.de/">Kaffeevollautomaten: vollautomatendoktor.de</a>
+        <a href="/videos/">Alle Video-Anleitungen</a>
+        <a href="/produkte/">Entkalker und Filter erklärt</a>
       </nav>
       <nav aria-label="Rechtliches">
         <p class="foot-h">Rechtliches</p>
-        <a href="/ueber/">Über den Handwerksdoktor</a>
+        <a href="/ueber/">Über den Vollautomaten-Doktor</a>
         <a href="/impressum/">Impressum</a>
         <a href="/datenschutz/">Datenschutz</a>
         <a href="/werbung/">Transparenz &amp; Werbung</a>
@@ -94,6 +91,8 @@ const ogImage = new URL(image, SITE.url).toString();
     </div>
     <div class="wrap wide footer-note">
       <p>Als Amazon-Partner verdiene ich an qualifizierten Verkäufen. Links mit * sind Affiliate-Links.</p>
+      <p>Unabhängige Seite, nicht verbunden mit De'Longhi, Philips, Saeco, Siemens, Bosch, Jura oder anderen Herstellern.
+      Marken- und Produktnamen gehören ihren Inhabern und dienen nur der Beschreibung, für welche Geräte eine Anleitung gilt.</p>
       <p>© {new Date().getFullYear()} {SITE.author}</p>
     </div>
   </footer>

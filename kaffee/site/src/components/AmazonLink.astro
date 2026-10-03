@@ -1,0 +1,6 @@
+---
+import { amazonSearch } from '../site';
+interface Props { suche: string }
+const { suche } = Astro.props;
+---
+<a href={amazonSearch(suche)} rel="sponsored nofollow noopener" target="_blank"><slot />*</a>

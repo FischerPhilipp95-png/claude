@@ -1,0 +1,11 @@
+---
+// Checkliste zum Abhaken. Jedes Kästchen hat eine echte Beschriftung (label), damit Screenreader es vorlesen.
+// Abhaken funktioniert nur im Browser und wird nirgends gespeichert.
+interface Props { punkte: string[]; id: string }
+const { punkte, id } = Astro.props;
+---
+<ul class="checkliste">
+  {punkte.map((p, i) => (
+    <li><label><input type="checkbox" id={`${id}-${i}`} /> <span>{p}</span></label></li>
+  ))}
+</ul>

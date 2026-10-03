@@ -1,0 +1,15 @@
+---
+// Lucide-Icon (ISC-Lizenz) direkt ins HTML eingebettet: keine Icon-Schrift, kein externer Server.
+import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+interface Props { name: string; size?: number; class?: string }
+const { name, size = 20, class: cls = '' } = Astro.props;
+const require = createRequire(import.meta.url);
+const pfad = require.resolve(`lucide-static/icons/${name}.svg`);
+const svg = readFileSync(pfad, 'utf8')
+  .replace(/<!--.*?-->/s, '')
+  .replace(/width="24"/, `width="${size}"`)
+  .replace(/height="24"/, `height="${size}"`)
+  .replace(/class="([^"]*)"/, `class="$1 icon ${cls}" aria-hidden="true" focusable="false"`);
+---
+<Fragment set:html={svg} />

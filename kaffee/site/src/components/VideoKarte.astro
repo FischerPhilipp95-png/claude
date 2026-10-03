@@ -1,0 +1,21 @@
+---
+// Karte für ein Video vom eigenen Kanal. Verlinkt auf YouTube (ein normaler Link, es wird vorher nichts von YouTube geladen)
+// und, falls es zum Video eine Anleitung gibt, auf den Artikel.
+import Icon from './Icon.astro';
+import { vorschau, artikelZuVideo, type Video } from '../videos';
+interface Props { video: Video; farbe: string; ebene?: 2 | 3 }
+const { video, farbe, ebene = 3 } = Astro.props;
+const H = `h${ebene}`;
+const artikel = artikelZuVideo(video.id);
+const dauer = video.dauer ? `${Math.floor(video.dauer / 60)}:${String(video.dauer % 60).padStart(2, '0')} Min.` : '';
+---
+<li class="card video-karte" style={`--akzent:${farbe}`}>
+  <a href={artikel ? `/artikel/${artikel}/` : `https://www.youtube.com/watch?v=${video.id}`} rel={artikel ? undefined : 'noopener'}>
+    <div class="card-img"><img src={vorschau(video)} alt="" width="1280" height="720" loading="lazy" decoding="async" /></div>
+    <div class="card-body">
+      <span class="chip"><Icon name={artikel ? 'book-open' : 'circle-play'} size={14} /> {artikel ? 'Anleitung + Video' : `Video${dauer ? ' · ' + dauer : ''}`}</span>
+      <H>{video.titel}</H>
+      <span class="more">{artikel ? 'Anleitung lesen' : 'Auf YouTube ansehen'} <Icon name="chevron-right" size={16} /></span>
+    </div>
+  </a>
+</li>

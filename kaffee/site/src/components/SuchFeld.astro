@@ -1,0 +1,26 @@
+---
+// Suchfeld. Der Suchbegriff wird als #q=… übergeben, damit er nie zum Server geht
+// (der Teil hinter # bleibt im Browser). Gesucht wird auf /suche/ mit Pagefind, komplett im Browser.
+import Icon from './Icon.astro';
+interface Props { id: string; variante?: 'hero' | 'normal'; autofocus?: boolean }
+const { id, variante = 'normal', autofocus = false } = Astro.props;
+---
+<form class={`search-form search-${variante}`} role="search" action="/suche/" data-suche>
+  <label class="sr-only" for={id}>Anleitungen durchsuchen</label>
+  <span class="search-icon"><Icon name="search" size={20} /></span>
+  <input id={id} type="search" name="q" placeholder="z. B. Entkalken, Magnifica, Filter" autocomplete="off" enterkeyhint="search" autofocus={autofocus} />
+  <button class="btn" type="submit">Suchen</button>
+</form>
+<script>
+  for (const form of document.querySelectorAll<HTMLFormElement>('form[data-suche]')) {
+    if (form.dataset.bereit) continue;
+    form.dataset.bereit = '1';
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = (form.querySelector('input') as HTMLInputElement).value.trim();
+      const ziel = '/suche/' + (q ? '#q=' + encodeURIComponent(q) : '');
+      if (location.pathname === '/suche/') history.replaceState(null, '', ziel), dispatchEvent(new HashChangeEvent('hashchange'));
+      else location.href = ziel;
+    });
+  }
+</script>

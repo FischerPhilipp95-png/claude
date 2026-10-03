@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../site';
+import { THEMEN } from '../themen';
+
+const title = 'Über den Vollautomaten-Doktor';
+const description = 'Der Vollautomaten-Doktor: Anleitungen für Kaffeevollautomaten nach Herstellerangaben, mit Video. Wer dahintersteht, wie die Anleitungen entstehen und wie Produkte ausgewählt werden.';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: title,
+    url: `${SITE.url}/ueber/`,
+    inLanguage: 'de-DE',
+    mainEntity: {
+      '@type': 'Organization',
+      name: SITE.name,
+      url: `${SITE.url}/`,
+      logo: `${SITE.url}/bilder/autor.webp`,
+      sameAs: [SITE.youtube, 'https://handwerksdoktor.de/'],
+    },
+  },
+];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Über den Vollautomaten-Doktor</nav>
+    <div class="ueber-kopf">
+      <img src="/bilder/autor.webp" alt={SITE.author} width="96" height="96" />
+      <h1>Über den Vollautomaten-Doktor</h1>
+    </div>
+
+    <p class="lead"><strong>Der Vollautomaten-Doktor</strong> hilft, wenn der Kaffeevollautomat streikt: Lampe blinkt, Kaffee wird wässrig,
+    Milchschaum kommt nicht oder die Maschine will entkalkt werden. Für jedes Problem eine Anleitung, passend zu deinem Modell.</p>
+
+    <ul class="pfeil-liste">
+      <li>Entkalken und reinigen nach Herstellerangaben</li>
+      <li>Wasserfilter einsetzen, aktivieren und wechseln</li>
+      <li>Brühgruppe und Milchsystem pflegen</li>
+      <li>Warnlampen und Fehlermeldungen verstehen</li>
+      <li>Das richtige Pflegemittel für deine Maschine</li>
+    </ul>
+
+    <h2>Vom YouTube-Kanal „{SITE.kanal}“</h2>
+    <p>Hinter dieser Seite steht der YouTube-Kanal <a href={SITE.youtube} rel="noopener">„{SITE.kanal}“ (@derhandwerksdoktor)</a>.
+    Die Anleitungen zu Kaffeevollautomaten sind dort die meistgesehenen Videos. Weil man vor der blinkenden Maschine lieber nachliest
+    als vorspult, gibt es sie hier zum Nachlesen, sortiert nach Marke. Alles andere rund um Haus und Haushalt steht auf
+    {' '}<a href="https://handwerksdoktor.de/" rel="noopener">handwerksdoktor.de</a>.</p>
+    <p><a class="btn" href={SITE.youtube} rel="noopener"><Icon name="circle-play" size={18} /> Zum YouTube-Kanal</a>
+    {' '}<a class="btn btn-dark" href="/videos/"><Icon name="list-video" size={18} /> Alle Video-Anleitungen</a></p>
+
+    <h2>So entstehen die Anleitungen</h2>
+    <ul>
+      <li><strong>Nach Herstellerangaben:</strong> Schritte, Programme und Mittel stammen aus der Bedienungsanleitung und von den Seiten
+      der Hersteller. Jede Anleitung nennt am Ende ihre Quellen.</li>
+      <li><strong>Erst die kurze Antwort:</strong> Oben in jedem Artikel steht in wenigen Sätzen, was du tun musst. Danach kommen die Einzelheiten.</li>
+      <li><strong>Ehrlich bei den Grenzen:</strong> Was ins Innere der Maschine geht, gehört zum Kundendienst. Das sagen wir deutlich,
+      statt dich die Garantie kosten zu lassen.</li>
+      <li><strong>Aktuell gehalten:</strong> Das Datum „Aktualisiert am“ zeigt, wann eine Anleitung zuletzt überarbeitet wurde.</li>
+    </ul>
+
+    <h2>So werden Produkte ausgewählt</h2>
+    <ul>
+      <li><strong>Erst das Original:</strong> Wir nennen zuerst das Pflegemittel, das der Hersteller für deine Maschine vorsieht,
+      und sagen, worauf du bei anderen Mitteln achten musst.</li>
+      <li><strong>Keine bezahlten Platzierungen:</strong> Kein Hersteller kann sich in einen Artikel einkaufen.</li>
+      <li><strong>Keine Preise:</strong> Preise ändern sich ständig. Den aktuellen Preis siehst du direkt bei Amazon.</li>
+      <li><strong>Transparent:</strong> Links mit Sternchen (*) sind Affiliate-Links. Als Amazon-Partner verdiene ich an qualifizierten
+      Verkäufen. Für dich ändert sich am Preis nichts. Alles dazu: <a href="/werbung/">Transparenz und Werbung</a>.</li>
+      <li><strong>Unabhängig:</strong> Diese Seite gehört zu keinem Hersteller. Markennamen stehen hier nur, damit du die Anleitung für dein Gerät findest.</li>
+    </ul>
+
+    <h2>Die Marken</h2>
+    <ul class="tiles">
+      {Object.values(THEMEN).map((t) => (
+        <li><a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}>
+          <span class="tile-icon"><Icon name={t.icon} size={28} /></span>
+          <span class="tile-name">{t.titel}</span>
+        </a></li>
+      ))}
+    </ul>
+
+    <h2>Kontakt</h2>
+    <p>Fragen, Fehler gefunden oder eine Anleitung für dein Modell fehlt? Schreib über das <a href="/kontakt/">Kontaktformular</a>.
+    Die Anbieterkennzeichnung steht im <a href="/impressum/">Impressum</a>.</p>
+  </div>
+</Base>

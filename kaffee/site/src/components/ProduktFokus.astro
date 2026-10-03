@@ -1,0 +1,16 @@
+---
+// Hervorgehobenes Produkt mit direktem Amazon-Link. Daten kommen aus src/produkte.ts.
+import Icon from './Icon.astro';
+import { PRODUKTE, amazonProdukt, type ProduktId } from '../produkte';
+interface Props { id: ProduktId; titel?: string }
+const { id, titel = 'Das Produkt aus diesem Artikel' } = Astro.props;
+const p = PRODUKTE[id];
+---
+<aside class="fokus" aria-label={`Produkt: ${p.name}`} data-pagefind-ignore>
+  <p class="fokus-kicker"><Icon name="package" size={16} /> {titel}</p>
+  <p class="fokus-name">{p.name}</p>
+  <p class="fokus-kurz">{p.kurz}</p>
+  {'passt' in p && p.passt && <p class="fokus-passt"><Icon name="info" size={16} /> {p.passt}</p>}
+  <a class="btn" href={amazonProdukt(p.asin)} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> Bei Amazon ansehen*</a>
+  <p class="small">*Affiliate-Link. Kaufst du darüber, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.</p>
+</aside>

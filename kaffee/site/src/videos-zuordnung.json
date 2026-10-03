@@ -1,0 +1,12 @@
+{
+  "_hinweis": "Welches YouTube-Video zu welchem Artikel oder welcher Seite gehört. Von Hand geprüft. Neue Videos ordnet scripts/videos.mjs automatisch zu, wenn sie eindeutig passen. Ein Artikel mit null bekommt nie ein Video, Videos unter ignorieren werden nie automatisch zugeordnet.",
+  "artikel": {
+    "delonghi-kaffeevollautomat-entkalken": "LLl4Ocv-0tM",
+    "jura-kaffeevollautomat-reinigen": "rb1vi2R1zs4",
+    "kaffeevollautomat-entkalken": "7S7ecYJs4P4",
+    "philips-aquaclean-filter": "-EdeoVb8Qpk",
+    "siemens-kaffeevollautomat-entkalken": "VtUr64BkUqk"
+  },
+  "seiten": {},
+  "ignorieren": []
+}

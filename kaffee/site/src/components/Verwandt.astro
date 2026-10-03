@@ -1,0 +1,16 @@
+---
+import ArtikelKarte from './ArtikelKarte.astro';
+// „Das könnte dich auch interessieren“: zuerst Artikel aus demselben Thema, dann die neuesten.
+import { getCollection } from 'astro:content';
+interface Props { id: string; thema: string }
+const { id, thema } = Astro.props;
+const alle = (await getCollection('artikel', ({ data }) => !data.entwurf)).filter((p) => p.id !== id)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const liste = [...alle.filter((p) => p.data.thema === thema), ...alle.filter((p) => p.data.thema !== thema)].slice(0, 4);
+---
+{liste.length > 0 && (
+  <section class="related" aria-label="Weitere Artikel">
+    <h2>Das könnte dich auch interessieren</h2>
+    <ul class="cards">{liste.map((p) => <ArtikelKarte post={p} kurz />)}</ul>
+  </section>
+)}

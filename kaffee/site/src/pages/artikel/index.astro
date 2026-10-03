@@ -1,0 +1,17 @@
+---
+import ArtikelKarte from '../../components/ArtikelKarte.astro';
+import { THEMEN } from '../../themen';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SuchFeld from '../../components/SuchFeld.astro';
+
+const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<Base title="Alle Artikel" description="Alle Anleitungen für Kaffeevollautomaten: entkalken, reinigen, Filter und Fehler bei De'Longhi, Philips, Siemens, Jura und mehr.">
+  <div class="wrap wide">
+    <h1>Alle Artikel</h1>
+    <SuchFeld id="suche-artikel" />
+    <ul class="cards">{posts.map((p) => <ArtikelKarte post={p} ebene={2} />)}</ul>
+  </div>
+</Base>

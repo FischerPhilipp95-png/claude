@@ -1,0 +1,34 @@
+{
+  "name": "vollautomatendoktor",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build && pagefind --site dist --silent",
+    "preview": "astro preview",
+    "check": "node scripts/check-external.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
+    "titelbilder": "node scripts/titelbilder.mjs",
+    "qualitaet": "node scripts/qualitaet.mjs",
+    "lighthouse": "unlighthouse-ci --config-file unlighthouse.config.mjs",
+    "rechtschreibung": "node scripts/rechtschreibung.mjs",
+    "pins": "node scripts/pins.mjs",
+    "videos": "node scripts/videos.mjs",
+    "checklisten": "node scripts/checklisten.mjs"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^8.0.2",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.5"
+  },
+  "devDependencies": {
+    "@unlighthouse/cli": "^0.19.0",
+    "html-validate": "^11.16.1",
+    "lucide-static": "^1.49.0",
+    "pa11y-ci": "^4.1.1",
+    "pagefind": "^1.5.2",
+    "playwright": "^1.56.1",
+    "uqr": "^0.1.3"
+  }
+}

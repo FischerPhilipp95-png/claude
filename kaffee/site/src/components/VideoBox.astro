@@ -1,0 +1,14 @@
+---
+// Passendes Video vom eigenen Kanal (src/videos.ts). Lädt erst nach Klick etwas von YouTube.
+import YouTube from './YouTube.astro';
+import Icon from './Icon.astro';
+import { SITE } from '../site';
+import { vorschau, type Video } from '../videos';
+interface Props { video: Video; ueberschrift?: string }
+const { video, ueberschrift = 'Lieber als Video?' } = Astro.props;
+---
+<section class="video-box" aria-label="Video zum Thema" data-pagefind-ignore>
+  <p class="video-h"><Icon name="circle-play" size={20} /> <strong>{ueberschrift}</strong> <span>Das Video vom Kanal „{SITE.kanal}“ auf YouTube</span></p>
+  <YouTube id={video.id} titel={video.titel} vorschau={vorschau(video)} />
+  <p class="small video-link">{video.titel} · <a href={`https://www.youtube.com/watch?v=${video.id}`} rel="noopener">Auf YouTube ansehen</a> · <a href={`${SITE.youtube}?sub_confirmation=1`} rel="noopener">Kanal abonnieren</a></p>
+</section>

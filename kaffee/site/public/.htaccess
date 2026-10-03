@@ -1,21 +1,15 @@
-# handwerksdoktor.de auf IONOS (Apache)
+# vollautomatendoktor.de auf IONOS (Apache)
 
 ErrorDocument 404 /404.html
 # Suchindex (Pagefind) braucht den richtigen Typ für WebAssembly
 AddType application/wasm .wasm
 Options -Indexes
 
-# Kaffee-Artikel sind auf die eigene Seite vollautomatendoktor.de umgezogen (03.10.2026): dauerhaft umleiten.
-# Steht vor der https-Regel, damit es nur eine Umleitung gibt.
-RewriteEngine On
-RewriteRule ^artikel/(kaffeevollautomat-entkalken|delonghi-kaffeevollautomat-entkalken|siemens-kaffeevollautomat-entkalken|jura-kaffeevollautomat-reinigen|philips-aquaclean-filter)/?$ https://vollautomatendoktor.de/artikel/$1/ [R=301,L]
-RewriteRule ^bilder/(titel|pins)/(kaffeevollautomat-entkalken|delonghi-kaffeevollautomat-entkalken|siemens-kaffeevollautomat-entkalken|jura-kaffeevollautomat-reinigen|philips-aquaclean-filter)(-[23])?\.(webp|jpg)$ https://vollautomatendoktor.de/bilder/$1/$2$3.$4 [R=301,L]
-
 # Immer https und ohne www
 RewriteEngine On
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]
-RewriteRule ^ https://handwerksdoktor.de%{REQUEST_URI} [L,R=301]
+RewriteRule ^ https://vollautomatendoktor.de%{REQUEST_URI} [L,R=301]
 
 <IfModule mod_headers.c>
   Header always set Strict-Transport-Security "max-age=31536000"

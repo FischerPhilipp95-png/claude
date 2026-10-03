@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { THEMEN, type Thema } from '../themen';
+import { PRODUKTE, amazonProdukt, type Produkt } from '../produkte';
+import { SITE } from '../site';
+import { getCollection } from 'astro:content';
+
+const artikel = await getCollection('artikel', ({ data }) => !data.entwurf);
+const titelVon = (slug: string) => artikel.find((a) => a.id === slug)?.data.kurztitel ?? artikel.find((a) => a.id === slug)?.data.title;
+const liste = Object.values(PRODUKTE) as Produkt[];
+const gruppen = (Object.keys(THEMEN) as Thema[])
+  .map((k) => ({ k, t: THEMEN[k], items: liste.filter((p) => p.thema === k && titelVon(p.artikel)) }))
+  .filter((g) => g.items.length);
+const title = 'Entkalker, Filter und Reiniger erklärt';
+const description = 'Entkalker, Wasserfilter und Reinigungstabletten für Kaffeevollautomaten erklärt: welches Mittel zu welcher Maschine passt und wie du es richtig benutzt.';
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, url: `${SITE.url}/produkte/`, inLanguage: 'de-DE',
+  hasPart: [...new Set(liste.map((p) => p.artikel))].filter(titelVon).map((s) => ({ '@type': 'Article', headline: titelVon(s), url: `${SITE.url}/artikel/${s}/` })),
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap wide">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Entkalker und Filter</nav>
+    <h1>Entkalker, Filter und Reiniger erklärt</h1>
+    <p class="lead">Keine Testsieger-Listen, sondern Erklärungen: wofür ein Produkt gut ist, ob es zu deinem Gerät passt und wie du
+    es richtig benutzt. Zu jedem Produkt gibt es eine Anleitung.</p>
+    <p class="ad-note"><strong>Anzeige:</strong> Die Amazon-Links auf dieser Seite sind Affiliate-Links (mit * markiert). Kaufst du
+    darüber ein, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts. <a href="/werbung/">Mehr dazu</a></p>
+    {gruppen.map((g) => (
+      <section class="produkt-gruppe" style={`--akzent:${g.t.farbe}`}>
+        <h2><Icon name={g.t.icon} size={22} /> {g.t.titel}</h2>
+        <ul class="produkt-liste">
+          {g.items.map((p) => (
+            <li class="produkt-karte">
+              <span class="produkt-marke">{p.marke}</span>
+              <strong class="produkt-name">{p.name}</strong>
+              <span class="produkt-kurz">{p.kurz}</span>
+              {p.passt && <span class="produkt-passt"><Icon name="info" size={15} /> {p.passt}</span>}
+              <span class="produkt-links">
+                <a class="btn btn-sm" href={`/artikel/${p.artikel}/`}><Icon name="book-open" size={16} /> Anleitung lesen</a>
+                <a class="btn btn-sm btn-ghost-dark" href={amazonProdukt(p.asin)} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> Bei Amazon*</a>
+              </span>
+              <span class="small produkt-artikel">Erklärt in: <a href={`/artikel/${p.artikel}/`}>{titelVon(p.artikel)}</a></span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Base>

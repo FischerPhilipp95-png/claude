@@ -1,0 +1,279 @@
+# Website vollautomatendoktor.de: bei jedem Push bauen, prüfen und danach per SFTP zu IONOS hochladen.
+# Gleicher Ablauf wie .github/workflows/website.yml (handwerksdoktor.de), nur für den Ordner kaffee/site.
+# Läuft außerdem auf Knopfdruck und jede Nacht um etwa 3:47 Uhr UTC (geplante Läufe nur auf dem Standard-Branch).
+#
+# Zugangsdaten ausschließlich als GitHub-Secrets (Settings → Secrets and variables → Actions):
+#   KAFFEE_SFTP_USER, KAFFEE_SFTP_PASSWORD   eigener SFTP-Benutzer für den Webspace-Ordner dieser Domain
+#   KAFFEE_SFTP_HOST                          optional, sonst wird IONOS_SFTP_HOST verwendet (gleicher IONOS-Webspace)
+# Optional als Variable: KAFFEE_SFTP_ZIEL (Standard /, wenn der SFTP-Benutzer direkt im Ordner der Seite landet).
+# Fehlen die Secrets, laufen nur die Prüfungen, der Upload wird mit einem Hinweis übersprungen.
+
+name: Kaffee-Website prüfen und hochladen
+
+on:
+  push:
+    branches: [claude/peaceful-fermat-5yqdfd, main]
+    paths: ['kaffee/site/**', '.github/workflows/kaffee-website.yml']
+  # Jede Nacht neu bauen und hochladen, damit zeitversetzte Pinterest-Pins (scripts/pin-varianten.mjs) im Feed erscheinen.
+  # Hinweis: GitHub startet geplante Läufe nur aus dem Standard-Branch des Repositorys.
+  schedule:
+    - cron: '47 3 * * *'
+  workflow_dispatch:
+    inputs:
+      hochladen:
+        description: 'Nach den Prüfungen zu IONOS hochladen?'
+        type: boolean
+        default: true
+      alle_artikel:
+        description: 'Rechtschreibung aller Artikel prüfen (dauert einige Minuten)?'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# Nie zwei Uploads gleichzeitig. Ein neuer Push wartet, bis der laufende fertig ist.
+concurrency:
+  group: kaffee-website
+  cancel-in-progress: false
+
+jobs:
+  pruefen:
+    name: Bauen und prüfen
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: kaffee/site
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+      PUPPETEER_SKIP_DOWNLOAD: '1'
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: kaffee/site/package-lock.json
+
+      - name: Pakete installieren
+        run: npm ci
+
+      - name: Chromium für die Prüfungen installieren
+        run: |
+          npx playwright install --with-deps chromium
+          echo "CHROME_PATH=$(node -e "console.log(require('playwright').chromium.executablePath())")" >> "$GITHUB_ENV"
+
+      - name: Neue YouTube-Videos holen und Artikeln zuordnen
+        # RSS-Feed des Kanals, kein Schlüssel nötig. Ist YouTube nicht erreichbar, bleibt der Stand aus src/videos.json.
+        continue-on-error: true
+        run: npm run videos
+
+      - name: Fehlende Titel- und Pinterest-Bilder und Checklisten-PDFs erzeugen
+        run: |
+          npm run titelbilder
+          npm run pins
+          npm run checklisten
+
+      - name: Bauen
+        run: npm run build
+
+      - name: Prüfen (fremde Server, Handy-Breite)
+        run: npm run check
+
+      - name: Prüfen (HTML und Barrierefreiheit)
+        run: npm run qualitaet
+
+      - name: Prüfen (interne Links)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Offline: nur Links innerhalb der Seite. Links mit „#…=“ sind Rechner- und Such-Parameter, keine Sprungmarken.
+          args: >-
+            --offline --no-progress --include-fragments
+            --root-dir ${{ github.workspace }}/kaffee/site/dist
+            --exclude-path kaffee/site/dist/pagefind
+            --exclude '#[^/]*='
+            'kaffee/site/dist/**/*.html'
+          fail: true
+          jobSummary: false
+
+      - name: Fertige Seite für den Upload ablegen
+        uses: actions/upload-artifact@v6
+        with:
+          name: kaffee-website
+          path: kaffee/site/dist
+          include-hidden-files: true
+          retention-days: 7
+
+  hochladen:
+    name: Zu IONOS hochladen
+    needs: pruefen
+    if: github.event_name == 'push' || github.event_name == 'schedule' || inputs.hochladen
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Zugangsdaten vorhanden?
+        id: zugang
+        env:
+          SFTP_HOST: ${{ secrets.KAFFEE_SFTP_HOST || secrets.IONOS_SFTP_HOST }}
+          SFTP_USER: ${{ secrets.KAFFEE_SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.KAFFEE_SFTP_PASSWORD }}
+        run: |
+          if [ -n "$SFTP_HOST" ] && [ -n "$SFTP_USER" ] && [ -n "$SFTP_PASSWORD" ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::IONOS-Zugangsdaten fehlen (Secrets KAFFEE_SFTP_USER, KAFFEE_SFTP_PASSWORD, dazu KAFFEE_SFTP_HOST oder IONOS_SFTP_HOST). Upload übersprungen."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v5
+        if: steps.zugang.outputs.ok == 'true'
+        with:
+          sparse-checkout: kaffee/site/scripts
+
+      - name: Fertige Seite holen
+        if: steps.zugang.outputs.ok == 'true'
+        uses: actions/download-artifact@v7
+        with:
+          name: kaffee-website
+          path: kaffee/site/dist
+
+      - name: Sicherheitsprüfung vor dem Upload
+        if: steps.zugang.outputs.ok == 'true'
+        working-directory: kaffee/site/dist
+        run: |
+          test -s index.html
+          test -s sitemap-0.xml
+          test -s .htaccess
+          test "$(find . -name index.html | wc -l)" -ge 15
+          echo "OK: $(find . -name index.html | wc -l) Seiten, $(du -sh . | cut -f1) insgesamt."
+
+      - name: lftp installieren
+        if: steps.zugang.outputs.ok == 'true'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Per SFTP hochladen
+        if: steps.zugang.outputs.ok == 'true'
+        env:
+          SFTP_HOST: ${{ secrets.KAFFEE_SFTP_HOST || secrets.IONOS_SFTP_HOST }}
+          SFTP_USER: ${{ secrets.KAFFEE_SFTP_USER }}
+          LFTP_PASSWORD: ${{ secrets.KAFFEE_SFTP_PASSWORD }}
+          SFTP_ZIEL: ${{ vars.KAFFEE_SFTP_ZIEL || '/' }}
+        # Eingaben bereinigen, falls beim Eintragen der Secrets „sftp://“, ein Port, Leerzeichen oder ein Zeilenumbruch mitkopiert wurde.
+        # Die Werte selbst werden nie ausgegeben, nur Hinweise, was korrigiert wurde.
+        # mirror --reverse lädt den Inhalt von dist/ in das Zielverzeichnis. Ohne --delete: Auf dem Server wird nichts gelöscht.
+        # Zwei Durchgänge: erst Bilder, PDFs, CSS usw., dann die HTML-Seiten. So zeigt keine neue Seite auf ein Bild, das noch fehlt.
+        run: |
+          HOST="$(printf '%s' "$SFTP_HOST" | tr -d '[:space:]')"
+          [ "$HOST" != "$SFTP_HOST" ] && echo "Hinweis: Leerzeichen oder Zeilenumbruch im Servernamen entfernt."
+          case "$HOST" in *://*) echo "Hinweis: Protokoll (z. B. sftp://) vor dem Servernamen entfernt."; HOST="${HOST#*://}";; esac
+          HOST="${HOST%%/*}"
+          PORT=22
+          case "$HOST" in *:*) PORT="${HOST##*:}"; HOST="${HOST%%:*}"; echo "Hinweis: Port aus dem Servernamen übernommen.";; esac
+          echo "::add-mask::$HOST"
+          BENUTZER="$(printf '%s' "$SFTP_USER" | tr -d '[:space:]')"
+          [ "$BENUTZER" != "$SFTP_USER" ] && echo "Hinweis: Leerzeichen im Benutzernamen entfernt."
+          echo "::add-mask::$BENUTZER"
+          LFTP_PASSWORD="$(printf '%s' "$LFTP_PASSWORD" | tr -d '\r\n')"
+          export LFTP_PASSWORD
+          if ! getent hosts "$HOST" > /dev/null; then
+            echo "::error::Der Servername aus KAFFEE_SFTP_HOST bzw. IONOS_SFTP_HOST ist nicht erreichbar. Bitte nur den Namen eintragen, z. B. access-123456.webspace-host.com"
+            exit 1
+          fi
+          # Schutz: Liegt im Zielordner schon der Handwerksdoktor (falscher SFTP-Benutzer oder Ordner), nichts hochladen.
+          ROBOTS="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cat \"$SFTP_ZIEL/robots.txt\"" 2>/dev/null || true)"
+          if printf '%s' "$ROBOTS" | grep -q 'handwerksdoktor\.de'; then
+            echo "::error::Im Zielordner liegt handwerksdoktor.de. Für vollautomatendoktor.de einen eigenen SFTP-Benutzer bzw. Ordner eintragen (KAFFEE_SFTP_USER, KAFFEE_SFTP_ZIEL). Nichts hochgeladen."
+            exit 1
+          fi
+          lftp -c "
+            set sftp:auto-confirm yes;
+            set net:max-retries 3;
+            set net:timeout 30;
+            open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST;
+            mirror --reverse --no-perms --parallel=4 --verbose=1 --exclude-glob *.html kaffee/site/dist \"$SFTP_ZIEL\";
+            mirror --reverse --no-perms --parallel=4 --verbose=1 --include-glob *.html kaffee/site/dist \"$SFTP_ZIEL\";
+            bye"
+
+      - name: Live-Check
+        if: steps.zugang.outputs.ok == 'true'
+        run: |
+          sleep 5
+          for pfad in / /artikel/ /videos/ /sitemap-index.xml; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://vollautomatendoktor.de$pfad")
+            echo "$code  $pfad"
+            test "$code" = 200
+          done
+
+      - name: Bei IndexNow melden (Bing & Co.)
+        # Nachts ändern sich nur die Pinterest-Feeds, dafür nicht alle Seiten neu melden.
+        if: steps.zugang.outputs.ok == 'true' && github.event_name != 'schedule'
+        continue-on-error: true
+        working-directory: kaffee/site
+        run: node scripts/indexnow.mjs
+
+  berichte:
+    name: Berichte (Quellen, Rechtschreibung, Pakete)
+    needs: pruefen
+    # Nachts nicht: Es hat sich am Inhalt nichts geändert.
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Nur zur Info: Fehler hier stoppen keinen Upload und färben den Lauf nicht rot.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Fertige Seite holen
+        uses: actions/download-artifact@v7
+        with:
+          name: kaffee-website
+          path: kaffee/site/dist
+
+      - name: Externe Quellenlinks prüfen
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Amazon bewusst ausgenommen: kein automatisches Abrufen von Amazon-Seiten (Partnerprogramm).
+          # 403 und 429 gelten als erreichbar, viele Seiten blocken Prüfprogramme.
+          args: >-
+            --no-progress --max-concurrency 8 --timeout 25 --max-retries 2
+            --accept '200..=299,403,429'
+            --root-dir ${{ github.workspace }}/kaffee/site/dist
+            --exclude '^file://' --exclude 'amazon\.' --exclude 'vollautomatendoktor\.de' --exclude 'youtube\.com'
+            --exclude-path kaffee/site/dist/pagefind
+            'kaffee/site/dist/**/*.html'
+          fail: false
+          jobSummary: true
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Rechtschreibung (LanguageTool)
+        working-directory: kaffee/site
+        env:
+          ALLE: ${{ github.event_name != 'push' && inputs.alle_artikel || 'false' }}
+          VORHER: ${{ github.event.before }}
+        run: |
+          if [ "$ALLE" = "true" ] || [ -z "$VORHER" ] || [ "$VORHER" = "0000000000000000000000000000000000000000" ]; then
+            ARTIKEL=""
+            echo "Prüfe alle Artikel."
+          else
+            ARTIKEL=$(git diff --name-only "$VORHER" "$GITHUB_SHA" -- src/content/artikel | sed -n 's|^kaffee/site/src/content/artikel/\(.*\)\.mdx$|\1|p' | tr '\n' ' ')
+            if [ -z "$ARTIKEL" ]; then echo "Keine Artikel geändert."; exit 0; fi
+            echo "Geänderte Artikel: $ARTIKEL"
+          fi
+          node scripts/rechtschreibung.mjs --nur-bericht $ARTIKEL
+
+      - name: Sicherheitslücken in Paketen (npm audit)
+        working-directory: kaffee/site
+        run: |
+          {
+            echo "### npm audit (nur Prüf- und Bauwerkzeuge, nichts davon läuft auf der Website)"
+            echo '```'
+            npm audit --omit=optional 2>&1 | tail -25
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

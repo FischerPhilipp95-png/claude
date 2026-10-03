@@ -1,0 +1,27 @@
+---
+// Balkengrafik für eine Datenreihe: eine Farbe (Themenfarbe), Werte direkt am Balken, keine Legende.
+// Hover zeigt den genauen Wert (title), die Zahlen stehen ohnehin als Text da.
+import Icon from './Icon.astro';
+interface Zeile { label: string; wert: number; icon?: string; notiz?: string }
+interface Props { titel: string; untertitel?: string; einheit: string; daten: Zeile[]; quelle: string; stellen?: number; sortieren?: boolean }
+const { titel, untertitel, einheit, daten, quelle, stellen = 0, sortieren = true } = Astro.props;
+const zeilen = sortieren ? [...daten].sort((a, b) => b.wert - a.wert) : daten;
+const max = Math.max(...zeilen.map((d) => d.wert));
+const fmt = new Intl.NumberFormat('de-DE', { minimumFractionDigits: stellen, maximumFractionDigits: stellen });
+---
+<figure class="chart" role="group" aria-label={titel}>
+  <div class="chart-head">
+    <span class="chart-kicker"><Icon name="chart-bar" size={15} /> Grafik</span>
+    <p class="chart-title">{titel}</p>
+    {untertitel && <p class="chart-sub">{untertitel}</p>}
+  </div>
+  <div class="bars">
+    {zeilen.map((d) => (
+      <div class="bar-row" title={`${d.label}: ${fmt.format(d.wert)} ${einheit}${d.notiz ? ` (${d.notiz})` : ''}`}>
+        <span class="bar-label">{d.icon && <Icon name={d.icon} size={16} />}<span class="bar-name">{d.label}</span>{d.notiz && <small>{d.notiz}</small>}</span>
+        <span class="bar-track"><span class="bar" style={`--p:${(d.wert / max).toFixed(4)}`}></span><span class="bar-val">{fmt.format(d.wert)} {einheit}</span></span>
+      </div>
+    ))}
+  </div>
+  <figcaption set:html={quelle} />
+</figure>

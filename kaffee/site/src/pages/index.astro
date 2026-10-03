@@ -1,0 +1,68 @@
+---
+import SuchFeld from '../components/SuchFeld.astro';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ArtikelKarte from '../components/ArtikelKarte.astro';
+import VideoKarte from '../components/VideoKarte.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../site';
+import { THEMEN, type Thema } from '../themen';
+import { SAISON } from '../saison';
+import { mediathekVideos } from '../videos';
+
+const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const anzahl = (name: string) => posts.filter((p) => p.data.thema === name).length;
+const videoAnzahl = (name: string) => mediathekVideos(name).length;
+const saison = SAISON.artikel.map((id) => posts.find((p) => p.id === id)).filter((p) => p !== undefined);
+const neueVideos = mediathekVideos('DeLonghi').slice(1, 4);
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: `${SITE.url}/`, inLanguage: 'de-DE' }];
+---
+<Base title={SITE.name} description={SITE.description} jsonLd={jsonLd}>
+  <section class="hero">
+    <div class="wrap wide hero-grid">
+      <div>
+        <p class="eyebrow"><Icon name="coffee" size={16} /> Anleitungen nach Herstellerangaben, mit Video</p>
+        <h1>Dein Kaffeevollautomat <b>macht Probleme?</b></h1>
+        <p class="hero-lead">Rote Lampe blinkt, Kaffee wässrig, Milchschaum kommt nicht: Hier findest du die Lösung für dein Modell.
+        Entkalken, reinigen, Filter wechseln, Schritt für Schritt erklärt.</p>
+        <SuchFeld id="suche-start" variante="hero" />
+        <div class="hero-cta">
+          <a class="btn" href="/artikel/"><Icon name="book-open" size={18} /> Alle Anleitungen</a>
+          <a class="btn btn-ghost" href="/videos/"><Icon name="circle-play" size={18} /> Video-Anleitungen</a>
+        </div>
+      </div>
+      <img class="hero-avatar" src="/bilder/autor.webp" alt={SITE.author} width="256" height="256" />
+    </div>
+  </section>
+
+  <section class="wrap wide">
+    <h2 class="section-h">Welche Maschine hast du?</h2>
+    <ul class="tiles">
+      {(Object.entries(THEMEN) as [Thema, (typeof THEMEN)[Thema]][]).filter(([n]) => anzahl(n) + videoAnzahl(n) > 0).map(([n, t]) => (
+        <li><a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}>
+          <span class="tile-icon"><Icon name={t.icon} size={28} /></span>
+          <span class="tile-name">{t.titel}</span>
+          <span class="tile-count">{anzahl(n)} {anzahl(n) === 1 ? 'Anleitung' : 'Anleitungen'}{videoAnzahl(n) ? `, ${videoAnzahl(n)} ${videoAnzahl(n) === 1 ? 'Video' : 'Videos'}` : ''}</span>
+        </a></li>
+      ))}
+      <li><a href="/produkte/" style="--akzent:#d08a3a">
+        <span class="tile-icon"><Icon name="package" size={28} /></span>
+        <span class="tile-name">Entkalker &amp; Filter</span>
+        <span class="tile-count">Welches Mittel passt zu deiner Maschine?</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="wrap wide saison" aria-labelledby="saison-h">
+    <h2 class="section-h" id="saison-h"><Icon name={SAISON.icon} size={26} /> {SAISON.titel}</h2>
+    <p class="saison-text">{SAISON.text}</p>
+    <ul class="cards">{saison.map((p) => <ArtikelKarte post={p} />)}</ul>
+  </section>
+
+  <section class="wrap wide">
+    <h2 class="section-h">De’Longhi im Video</h2>
+    <ul class="cards">{neueVideos.map((v) => <VideoKarte video={v} farbe={THEMEN.DeLonghi.farbe} />)}</ul>
+    <p class="center"><a class="btn btn-dark" href="/videos/">Alle Video-Anleitungen <Icon name="chevron-right" size={18} /></a></p>
+  </section>
+</Base>

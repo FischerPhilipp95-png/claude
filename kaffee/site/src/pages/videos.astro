@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import VideoKarte from '../components/VideoKarte.astro';
+import { THEMEN, type Thema } from '../themen';
+import { SITE } from '../site';
+import { mediathekVideos, MEDIATHEK_WEITERE } from '../videos';
+
+const gruppen = [
+  ...(Object.keys(THEMEN) as Thema[]).map((k) => ({ ...THEMEN[k], id: THEMEN[k].slug, videos: mediathekVideos(k) })),
+  { ...MEDIATHEK_WEITERE, id: 'weitere', intro: '', slug: '', videos: mediathekVideos('Weitere') },
+].filter((g) => g.videos.length);
+const anzahl = gruppen.reduce((n, g) => n + g.videos.length, 0);
+const title = 'Video-Anleitungen für Kaffeevollautomaten';
+const description = `${anzahl} Video-Anleitungen: entkalken, Brühgruppe reinigen, Milchschaum und Fehlermeldungen bei De'Longhi, Philips, Siemens, Jura und mehr.`;
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, url: `${SITE.url}/videos/`, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap wide">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Videos</nav>
+    <h1>Video-Anleitungen</h1>
+    <p class="lead">{anzahl} Anleitungen vom YouTube-Kanal <a href={SITE.youtube} rel="noopener">„{SITE.kanal}“</a>, sortiert nach Marke.
+    Wo es schon eine Anleitung zum Nachlesen gibt, führt die Karte dorthin, sonst direkt zum Video auf YouTube.</p>
+    <nav class="sprung" aria-label="Marken">
+      {gruppen.map((g) => <a class="chip" href={`#${g.id}`} style={`--akzent:${g.farbe}`}><Icon name={g.icon} size={14} /> {g.titel}</a>)}
+    </nav>
+    {gruppen.map((g) => (
+      <section aria-labelledby={`h-${g.id}`}>
+        <h2 class="section-h" id={g.id}><span id={`h-${g.id}`}>{g.titel}</span></h2>
+        <ul class="cards">{g.videos.map((v) => <VideoKarte video={v} farbe={g.farbe} />)}</ul>
+      </section>
+    ))}
+    <p class="center"><a class="btn btn-dark" href={`${SITE.youtube}?sub_confirmation=1`} rel="noopener"><Icon name="circle-play" size={18} /> Kanal abonnieren</a></p>
+  </div>
+</Base>
