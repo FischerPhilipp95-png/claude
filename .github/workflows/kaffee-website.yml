@@ -5,7 +5,8 @@
 # Zugangsdaten ausschließlich als GitHub-Secrets (Settings → Secrets and variables → Actions):
 #   KAFFEE_SFTP_USER, KAFFEE_SFTP_PASSWORD   eigener SFTP-Benutzer für den Webspace-Ordner dieser Domain
 #   KAFFEE_SFTP_HOST                          optional, sonst wird IONOS_SFTP_HOST verwendet (gleicher IONOS-Webspace)
-# Optional als Variable: KAFFEE_SFTP_ZIEL (Standard /, wenn der SFTP-Benutzer direkt im Ordner der Seite landet).
+# Zielordner: Variable KAFFEE_SFTP_ZIEL, sonst automatisch: Sieht der SFTP-Benutzer den ganzen Webspace (Ordner public/ im
+# Startverzeichnis), wird nach /vollautomatendoktor hochgeladen (der Ordner wird bei Bedarf angelegt), sonst direkt in sein Startverzeichnis.
 # Fehlen die Secrets, laufen nur die Prüfungen, der Upload wird mit einem Hinweis übersprungen.
 
 name: Kaffee-Website prüfen und hochladen
@@ -159,7 +160,7 @@ jobs:
           SFTP_HOST: ${{ secrets.KAFFEE_SFTP_HOST || secrets.IONOS_SFTP_HOST }}
           SFTP_USER: ${{ secrets.KAFFEE_SFTP_USER }}
           LFTP_PASSWORD: ${{ secrets.KAFFEE_SFTP_PASSWORD }}
-          SFTP_ZIEL: ${{ vars.KAFFEE_SFTP_ZIEL || '/' }}
+          SFTP_ZIEL: ${{ vars.KAFFEE_SFTP_ZIEL }}
         # Eingaben bereinigen, falls beim Eintragen der Secrets „sftp://“, ein Port, Leerzeichen oder ein Zeilenumbruch mitkopiert wurde.
         # Die Werte selbst werden nie ausgegeben, nur Hinweise, was korrigiert wurde.
         # mirror --reverse lädt den Inhalt von dist/ in das Zielverzeichnis. Ohne --delete: Auf dem Server wird nichts gelöscht.
@@ -180,6 +181,17 @@ jobs:
           if ! getent hosts "$HOST" > /dev/null; then
             echo "::error::Der Servername aus KAFFEE_SFTP_HOST bzw. IONOS_SFTP_HOST ist nicht erreichbar. Bitte nur den Namen eintragen, z. B. access-123456.webspace-host.com"
             exit 1
+          fi
+          # Zielordner bestimmen (siehe Kopf der Datei).
+          if [ -z "$SFTP_ZIEL" ]; then
+            LISTE="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cls -1 /" 2>/dev/null || true)"
+            if printf '%s\n' "$LISTE" | grep -qx 'public/\?'; then
+              SFTP_ZIEL=/vollautomatendoktor
+              echo "SFTP-Benutzer sieht den ganzen Webspace: Ziel ist $SFTP_ZIEL"
+            else
+              SFTP_ZIEL=/
+              echo "SFTP-Benutzer startet im Ordner der Seite: Ziel ist /"
+            fi
           fi
           # Schutz: Liegt im Zielordner schon der Handwerksdoktor (falscher SFTP-Benutzer oder Ordner), nichts hochladen.
           ROBOTS="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cat \"$SFTP_ZIEL/robots.txt\"" 2>/dev/null || true)"

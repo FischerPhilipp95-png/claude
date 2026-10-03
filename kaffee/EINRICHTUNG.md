@@ -12,8 +12,9 @@ Passwörter nie in den Chat oder in den Code, nur in GitHub-Secrets.
 3. **Domain auf den Ordner zeigen lassen:** *Domains & SSL* → `vollautomatendoktor.de` → *Ziel* / *Nutzungsart* → *Webspace* →
    Ordner `/vollautomatendoktor`.
 4. **SSL:** beim Ziel das (kostenlose) SSL-Zertifikat aktivieren.
-5. **SFTP-Benutzer:** *Hosting* → *SFTP & SSH* → *Benutzer hinzufügen* → Verzeichnis `/vollautomatendoktor`, Passwort vergeben.
-   Benutzername und Passwort brauchst du gleich für GitHub.
+5. **SFTP-Benutzer:** *Hosting* → *SFTP & SSH* → *Benutzer hinzufügen*, langes Passwort vergeben. Als Verzeichnis `/vollautomatendoktor`
+   wählen. Bietet IONOS den Ordner nicht an (er entsteht erst beim ersten Upload), einfach `/` wählen: Der Upload erkennt das und
+   lädt dann selbst in `/vollautomatendoktor`. Benutzername und Passwort brauchst du gleich für GitHub.
 6. **E-Mail:** *E-Mail* → Adresse `info@vollautomatendoktor.de` anlegen, am einfachsten als **Weiterleitung** an
    `info@handwerksdoktor.de`. Die Adresse steht im Impressum, das Kontaktformular verschickt damit.
 
