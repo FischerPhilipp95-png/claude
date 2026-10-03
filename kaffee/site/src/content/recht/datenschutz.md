@@ -1,6 +1,6 @@
 ---
 title: "Datenschutzerklärung"
-description: "Welche Daten vollautomatendoktor.de verarbeitet: keine Cookies, kein Tracking, YouTube erst nach Klick."
+description: "Welche Daten vollautomatendoktor.de verarbeitet: keine Cookies, kein Tracking, Auslieferung über Cloudflare, YouTube erst nach Klick."
 ---
 
 ## 1. Verantwortlicher
@@ -12,22 +12,38 @@ c/o POSTFLEX PFX-780-231\
 Emsdettener Straße 10\
 48268 Greven\
 Deutschland\
-E-Mail: <info@vollautomatendoktor.de>
+E-Mail: <info@handwerksdoktor.de>
 
 Ein Datenschutzbeauftragter ist nicht bestellt und gesetzlich nicht erforderlich.
 
 ## 2. Das Wichtigste in Kürze
 
 - Diese Website setzt **keine Cookies**, nutzt **keine Besucherstatistik** und nutzt **kein Tracking** durch Dritte.
-- Schriftarten, Bilder und Skripte werden **von unserem eigenen Server** geladen, nicht von Google oder anderen Anbietern.
+- Schriftarten, Bilder und Skripte kommen **von unserem eigenen Server**, nicht von Google oder anderen Anbietern.
+- Die Seiten werden über das Netzwerk von **Cloudflare** ausgeliefert (Nr. 3). Cloudflare setzt dabei keine Cookies zur Analyse und erstellt keine Profile.
+- Es gibt **kein Kontaktformular**. Wenn du mir schreibst, dann per E-Mail.
 - YouTube-Videos werden **erst nach deinem Klick** geladen. Auch Pinterest erfährt erst etwas, wenn du auf „Auf Pinterest merken“ klickst.
 - Beim Klick auf einen Amazon-Link verlässt du diese Website. Ab dann gilt der Datenschutz von Amazon.
 
-## 3. Hosting und Server-Logfiles
+## 3. Hosting, Auslieferung über Cloudflare und Server-Logfiles
 
 Diese Website wird gehostet bei der IONOS SE, Elgendorfer Straße 57, 56410 Montabaur,
 auf Servern in Deutschland.
 Mit dem Hoster besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO.
+
+**Cloudflare:** Ausgeliefert wird die Website über das Content-Delivery-Netzwerk der Cloudflare, Inc.,
+101 Townsend St., San Francisco, CA 94107, USA. Wenn du die Website aufrufst, läuft die Verbindung über einen
+Server von Cloudflare, in der Regel in deiner Nähe. Dieser stellt die verschlüsselte Verbindung (https) her, leitet
+die Anfrage an den Server bei IONOS weiter und speichert öffentliche Dateien wie Bilder zwischen. Dabei verarbeitet
+Cloudflare technisch notwendige Verbindungsdaten: IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browser und
+Betriebssystem. Cloudflare nutzt diese Daten, um die Website auszuliefern und vor Angriffen zu schützen
+(zum Beispiel vor Überlastungsangriffen). Analysefunktionen von Cloudflare sind nicht eingeschaltet.
+
+Mit Cloudflare besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO (Data Processing Addendum).
+Cloudflare ist unter dem EU-US Data Privacy Framework zertifiziert. Eine Übermittlung in die USA erfolgt damit
+auf Grundlage eines Angemessenheitsbeschlusses der EU-Kommission (Art. 45 DSGVO).
+Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren, verschlüsselten und schnellen
+Auslieferung der Website). Mehr: [Datenschutzerklärung von Cloudflare](https://www.cloudflare.com/de-de/privacypolicy/).
 
 Beim Aufruf der Website speichert der Server automatisch sogenannte Logfiles:
 IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, übertragene Datenmenge, Referrer-URL,
@@ -43,15 +59,11 @@ Ich selbst werte die Logfiles nicht aus und führe sie nicht mit anderen Daten z
 Teile eines Suchverzeichnisses von diesem Server, der Suchbegriff selbst wird weder an mich noch an Dritte
 übertragen und nicht gespeichert.
 
-## 4. Kontakt per E-Mail und Kontaktformular
+## 4. Kontakt per E-Mail
 
-Wenn du mir eine E-Mail schreibst oder das Kontaktformular nutzt, verarbeite ich deine Angaben
-(Name, E-Mail-Adresse, Nachricht), um deine Anfrage zu beantworten. Pflichtfelder sind nur die
-E-Mail-Adresse und die Nachricht.
-
-Das Kontaktformular wird direkt auf dem unter Nr. 3 genannten Server verarbeitet und von dort
-als E-Mail an mich geschickt. Es wird kein externer Formular-Dienst und kein Captcha-Dienst
-eingesetzt.
+Wenn du mir eine E-Mail schreibst, verarbeite ich deine Angaben (E-Mail-Adresse, Name, falls angegeben, und
+deine Nachricht), um deine Anfrage zu beantworten. Ein Kontaktformular gibt es auf dieser Website nicht.
+E-Mails laufen nicht über Cloudflare.
 
 Mein E-Mail-Postfach wird ebenfalls bei der unter Nr. 3 genannten IONOS SE geführt.
 Mit IONOS besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO.
@@ -113,6 +125,8 @@ Es wird keine Verbindung zu Google Fonts oder anderen Schriftanbietern aufgebaut
 ## 10. SSL-/TLS-Verschlüsselung
 
 Diese Website nutzt aus Sicherheitsgründen eine TLS-Verschlüsselung (erkennbar an „https“ am Anfang der Adresse und dem Schloss-Symbol im Browser).
+Die verschlüsselte Verbindung besteht zwischen deinem Browser und Cloudflare (Nr. 3). Zwischen Cloudflare und dem Server bei IONOS
+werden nur die öffentlich abrufbaren Seiten und Dateien dieser Website übertragen, keine Eingaben von dir.
 
 ## 11. Deine Rechte
 
@@ -129,7 +143,7 @@ Du hast jederzeit das Recht auf:
 DSGVO verarbeite, kannst du aus Gründen, die sich aus deiner besonderen Situation ergeben,
 jederzeit widersprechen.
 
-Eine formlose E-Mail an <info@vollautomatendoktor.de> genügt.
+Eine formlose E-Mail an <info@handwerksdoktor.de> genügt.
 
 ## 12. Beschwerderecht bei der Aufsichtsbehörde
 
@@ -139,4 +153,4 @@ Kavalleriestraße 2–4, 40213 Düsseldorf, <https://www.ldi.nrw.de>
 
 ## 13. Aktualität
 
-Stand: 02.10.2026. Wenn sich die Website ändert, wird diese Erklärung angepasst.
+Stand: 03.10.2026. Wenn sich die Website ändert, wird diese Erklärung angepasst.

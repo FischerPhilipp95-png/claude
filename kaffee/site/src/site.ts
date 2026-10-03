@@ -5,7 +5,7 @@ export const SITE = {
   url: 'https://vollautomatendoktor.de',
   description: 'Hilfe für deinen Kaffeevollautomaten: entkalken, reinigen, Filter wechseln und Fehler beheben, Modell für Modell erklärt.',
   author: 'Der Vollautomaten-Doktor',  // Anzeigename überall auf der Seite. Der echte Name steht nur im Impressum und in der Datenschutzerklärung.
-  email: 'info@vollautomatendoktor.de',
+  email: 'info@handwerksdoktor.de',  // gleicher Inhaber; so braucht die neue Domain keine eigenen E-Mail-Einstellungen
   youtube: 'https://www.youtube.com/@derhandwerksdoktor',
   kanal: 'Der Handwerksdoktor',
   amazonTag: 'rechn24-21',

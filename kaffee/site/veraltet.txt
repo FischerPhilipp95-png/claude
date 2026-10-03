@@ -1,0 +1,5 @@
+# Dateien und Ordner, die auf dem Server gelöscht werden sollen (der Upload löscht sonst nie etwas).
+# Ein Pfad pro Zeile, relativ zum Ordner der Website. Der Upload-Workflow entfernt sie nach jedem Upload, falls vorhanden.
+kontakt.php
+kontakt/danke
+kontakt/fehler

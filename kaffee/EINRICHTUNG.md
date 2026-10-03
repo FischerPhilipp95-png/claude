@@ -11,12 +11,45 @@ Passwörter nie in den Chat oder in den Code, nur in GitHub-Secrets.
    Wichtig: **nicht** im Ordner von handwerksdoktor.de (`/public`), sonst wäre die Kaffee-Seite auch unter handwerksdoktor.de/… erreichbar.
 3. **Domain auf den Ordner zeigen lassen:** *Domains & SSL* → `vollautomatendoktor.de` → *Ziel* / *Nutzungsart* → *Webspace* →
    Ordner `/vollautomatendoktor`.
-4. **SSL:** beim Ziel das (kostenlose) SSL-Zertifikat aktivieren.
+4. **SSL:** nicht bei IONOS kaufen (kostet 48 €/Jahr). https kommt kostenlos über Cloudflare, siehe Abschnitt 1b.
 5. **SFTP-Benutzer:** *Hosting* → *SFTP & SSH* → *Benutzer hinzufügen*, langes Passwort vergeben. Als Verzeichnis `/vollautomatendoktor`
    wählen. Bietet IONOS den Ordner nicht an (er entsteht erst beim ersten Upload), einfach `/` wählen: Der Upload erkennt das und
    lädt dann selbst in `/vollautomatendoktor`. Benutzername und Passwort brauchst du gleich für GitHub.
-6. **E-Mail:** *E-Mail* → Adresse `info@vollautomatendoktor.de` anlegen, am einfachsten als **Weiterleitung** an
-   `info@handwerksdoktor.de`. Die Adresse steht im Impressum, das Kontaktformular verschickt damit.
+6. **E-Mail:** nicht nötig. Die Seite nennt `info@handwerksdoktor.de` (gleicher Inhaber), ein Kontaktformular gibt es nicht.
+
+## 1b. Cloudflare: kostenloses https (ca. 20 Minuten)
+
+Cloudflare stellt die verschlüsselte Verbindung her und holt die Seiten bei IONOS ab. Kein Cookie, keine Analyse.
+
+1. **Konto:** https://dash.cloudflare.com/sign-up → mit E-Mail und Passwort registrieren, E-Mail bestätigen.
+   Danach in den Konto-Einstellungen die **Zwei-Faktor-Anmeldung** einschalten.
+2. **Domain hinzufügen:** *Add a domain* (Domain hinzufügen) → `vollautomatendoktor.de` → *Quick scan for DNS records* →
+   Plan **Free** (0 $) wählen.
+3. **DNS-Einträge prüfen:** Cloudflare liest die Einträge von IONOS ein. Es müssen mindestens diese da sein, mit
+   **orangener Wolke** (Proxied):
+
+   | Typ | Name | Inhalt |
+   |---|---|---|
+   | A | `vollautomatendoktor.de` (bzw. `@`) | `217.160.0.101` |
+   | AAAA | `vollautomatendoktor.de` (bzw. `@`) | `2001:8d8:100f:f000::200` |
+   | A | `www` | `217.160.0.101` |
+   | AAAA | `www` | `2001:8d8:100f:f000::200` |
+
+   Fehlt einer, mit *Add record* anlegen. MX-Einträge dürfen bleiben (grauer Wolke), sie stören nicht.
+4. **Nameserver ablesen:** Cloudflare zeigt zwei Nameserver an, z. B. `xxx.ns.cloudflare.com` und `yyy.ns.cloudflare.com`.
+5. **Bei IONOS umstellen:** *Domains & SSL* → `vollautomatendoktor.de` → Reiter **Nameserver** → *Eigene Nameserver verwenden*
+   (bzw. „Andere Nameserver“) → die zwei von Cloudflare eintragen, die übrigen Felder leeren → speichern.
+   Nur bei vollautomatendoktor.de! handwerksdoktor.de bleibt unverändert.
+6. **Warten:** Cloudflare schickt eine E-Mail, sobald die Domain aktiv ist (meist 10 Minuten bis 2 Stunden, selten bis 24 Stunden).
+7. **Einstellungen in Cloudflare** (Domain auswählen):
+   - *SSL/TLS* → *Overview* → Modus **Flexible**. (Wichtig: nicht „Full“, IONOS hat für diese Domain kein Zertifikat.)
+   - *SSL/TLS* → *Edge Certificates* → **Always Use HTTPS: an**.
+   - *Scrape Shield* → **Email Address Obfuscation: aus** (sonst baut Cloudflare ein Skript in die Seiten ein).
+   - *Speed* → *Optimization* → **Rocket Loader: aus**.
+   - *Analytics & Logs* → *Web Analytics*: **nicht** einschalten (bzw. ausschalten, falls aktiv, auch „RUM“).
+   - *Security* → *Bots* → **Bot Fight Mode: aus** (zeigt Besuchern sonst manchmal eine Prüfseite).
+8. **Auftragsverarbeitung:** Der Vertrag (Data Processing Addendum) gilt für alle Cloudflare-Kunden automatisch.
+   Unter https://www.cloudflare.com/cloudflare-customer-dpa/ die PDF herunterladen und zu den IONOS- und Postflex-Verträgen legen.
 
 ## 2. GitHub: Zugangsdaten hinterlegen
 

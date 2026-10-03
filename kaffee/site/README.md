@@ -25,7 +25,8 @@ npm run videos     # neue Videos vom Kanal holen, Vorschaubilder für Artikel un
 | `src/mediathek.json` | Video-Anleitungen vom Kanal je Marke, erscheinen auf `/videos/` und den Markenseiten |
 | `src/produkte.ts` | Entkalker, Filter, Reinigungstabletten mit ASIN |
 | `src/saison.ts` | „Am häufigsten gesucht“ auf der Startseite. Ab Mitte November: Einrichten und erste Pflege nach oben |
-| `public/kontakt.php` | Formular schickt an das Handwerksdoktor-Postfach, Absender `info@vollautomatendoktor.de` |
+| Kontakt | kein Formular (Seite läuft über Cloudflare), nur E-Mail an `info@handwerksdoktor.de` |
+| `veraltet.txt` | Dateien, die der Upload auf dem Server löscht (er löscht sonst nie etwas) |
 
 Keine Rechner und keine Checklisten (die Technik dafür ist noch da, die Listen sind leer).
 

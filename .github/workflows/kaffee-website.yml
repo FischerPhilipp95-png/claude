@@ -131,6 +131,7 @@ jobs:
       - uses: actions/checkout@v5
         if: steps.zugang.outputs.ok == 'true'
         with:
+          # Cone-Modus: Dateien direkt in kaffee/site/ (veraltet.txt) sind automatisch dabei.
           sparse-checkout: kaffee/site/scripts
 
       - name: Fertige Seite holen
@@ -207,6 +208,11 @@ jobs:
             mirror --reverse --no-perms --parallel=4 --verbose=1 --exclude-glob *.html kaffee/site/dist \"$SFTP_ZIEL\";
             mirror --reverse --no-perms --parallel=4 --verbose=1 --include-glob *.html kaffee/site/dist \"$SFTP_ZIEL\";
             bye"
+          # Veraltete Dateien entfernen (kaffee/site/veraltet.txt). Fehlt etwas schon, ist das in Ordnung.
+          grep -v '^#' kaffee/site/veraltet.txt | sed '/^\s*$/d' | while read -r pfad; do
+            case "$pfad" in *..*|/*) echo "::warning::Pfad übersprungen: $pfad"; continue;; esac
+            lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; rm -rf \"$SFTP_ZIEL/$pfad\"" 2>/dev/null && echo "entfernt (falls vorhanden): $pfad" || true
+          done
 
       - name: Live-Check
         if: steps.zugang.outputs.ok == 'true'

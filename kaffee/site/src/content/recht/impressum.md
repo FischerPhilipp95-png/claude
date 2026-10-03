@@ -15,8 +15,7 @@ Bitte keine Pakete oder Päckchen an diese Anschrift senden.
 
 ## Kontakt
 
-E-Mail: <info@vollautomatendoktor.de>\
-Kontaktformular: [vollautomatendoktor.de/kontakt](/kontakt/)
+E-Mail: <info@handwerksdoktor.de>
 
 ## Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
 

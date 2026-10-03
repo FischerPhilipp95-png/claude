@@ -1,40 +1,19 @@
 ---
+// Kein Kontaktformular: Die Seite läuft über Cloudflare, persönliche Daten sollen nicht über die Website laufen.
+// Kontakt nur per E-Mail (direkt an das IONOS-Postfach, nicht über Cloudflare).
 import Base from '../../layouts/Base.astro';
 import { SITE } from '../../site';
 ---
 <Base title="Kontakt" description="Frage, Themenwunsch oder Fehler gefunden? So erreichst du den Vollautomaten-Doktor.">
   <div class="wrap">
     <h1>Kontakt</h1>
-    <p>Du hast eine Frage, einen Themenwunsch für ein Video oder einen Fehler gefunden? Schreib mir.
+    <p>Du hast eine Frage, einen Wunsch für eine Anleitung zu deiner Maschine oder einen Fehler gefunden? Schreib mir eine E-Mail.
     Ich antworte in der Regel innerhalb von zwei Werktagen.</p>
-    <p>Per E-Mail: <a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+    <p class="kontakt-mail"><a class="btn" href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+    <p>Hilfreich ist, wenn du dazuschreibst, welche Maschine du hast (steht auf dem Typenschild, meist unter dem Wassertank)
+    und was genau passiert.</p>
     <p class="small">Individuelle Ferndiagnosen für deine Maschine kann ich leider nicht geben.
-    Bei Defekten im Inneren hilft der Kundendienst des Herstellers oder eine Fachwerkstatt.</p>
-
-    <form method="post" action="/kontakt.php">
-      <label for="name">Name (freiwillig)</label>
-      <input id="name" name="name" type="text" maxlength="100" autocomplete="name" />
-
-      <label for="email">E-Mail-Adresse *</label>
-      <input id="email" name="email" type="email" maxlength="200" required autocomplete="email" />
-
-      <label for="nachricht">Nachricht *</label>
-      <textarea id="nachricht" name="nachricht" maxlength="5000" required></textarea>
-
-      <div class="hp" aria-hidden="true">
-        <label for="website">Bitte leer lassen</label>
-        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
-      </div>
-      <input type="hidden" name="t" id="t" value="" />
-
-      <p class="small">Deine Angaben verwende ich nur, um deine Anfrage zu beantworten.
-      Details in der <a href="/datenschutz/">Datenschutzerklärung</a>.</p>
-      <button class="btn" type="submit">Nachricht senden</button>
-    </form>
+    Bei Defekten im Inneren hilft der Kundendienst des Herstellers oder eine Fachwerkstatt.
+    Was mit deiner E-Mail passiert, steht in der <a href="/datenschutz/">Datenschutzerklärung</a>.</p>
   </div>
 </Base>
-<script>
-  // Zeitstempel für den Spamschutz (Bots schicken das Formular in unter 3 Sekunden ab).
-  const t = document.getElementById('t') as HTMLInputElement | null;
-  if (t) t.value = String(Math.floor(Date.now() / 1000));
-</script>
