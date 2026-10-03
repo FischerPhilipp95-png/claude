@@ -82,3 +82,41 @@ Im Netz habe ich keinen Treffer für „Vollautomatendoktor“ gefunden. Die Reg
 Wenn Schritt 1 und 2 erledigt sind, starte ich den Upload, prüfe die Seite live und schalte danach auf handwerksdoktor.de
 die Umleitungen der fünf Kaffee-Artikel scharf. Erst dann, damit keine Umleitung ins Leere zeigt.
 Danach: Search Console und Bing Webmaster Tools für die neue Domain, Sitemap `https://vollautomatendoktor.de/sitemap-index.xml`.
+
+## 6. Google und Bing: Seite anmelden (ca. 15 Minuten)
+
+### Google Search Console (für vollautomatendoktor.de)
+
+1. https://search.google.com/search-console öffnen, mit deinem Google-Konto anmelden.
+2. Oben links *Property hinzufügen* → linke Seite **„Domain“** → `vollautomatendoktor.de` eingeben → *Weiter*.
+3. Google zeigt einen **TXT-Eintrag** an, der mit `google-site-verification=` beginnt → *Kopieren*.
+4. **In Cloudflare** (nicht bei IONOS, die Domain läuft jetzt über Cloudflare): vollautomatendoktor.de → *DNS* → *Records* →
+   *Add record* → Typ **TXT**, Name **`@`**, Inhalt = den kopierten Text → *Save*.
+5. Zurück in der Search Console auf **Bestätigen** klicken. Klappt es nicht sofort, nach 10 Minuten noch einmal.
+6. Links *Sitemaps* → bei „Neue Sitemap hinzufügen“ **`sitemap-index.xml`** eintragen → *Senden*.
+7. Oben in die Suchleiste („URL prüfen“) nacheinander diese Adressen eingeben und jeweils **„Indexierung beantragen“**:
+   - `https://vollautomatendoktor.de/`
+   - `https://vollautomatendoktor.de/maschinen/`
+   - `https://vollautomatendoktor.de/maschine/delonghi-magnifica-s/`
+   - `https://vollautomatendoktor.de/artikel/delonghi-kaffeevollautomat-entkalken/`
+   - `https://vollautomatendoktor.de/artikel/kaffeevollautomat-entkalken/`
+
+   (Pro Tag gehen nur etwa 10 Anträge. Der Rest kommt über die Sitemap von selbst.)
+
+Gleich mitmachen: **handwerksdoktor.de** hat noch keine Search Console. Gleiche Schritte, nur liegt der DNS dort weiter
+bei **IONOS**: *Domains & SSL* → handwerksdoktor.de → *DNS* → *Record hinzufügen* → TXT, Hostname `@`, Wert = Google-Text.
+
+### Bing Webmaster Tools (auch für DuckDuckGo, Ecosia, Copilot)
+
+1. https://www.bing.com/webmasters öffnen, mit Google- oder Microsoft-Konto anmelden.
+2. **„Import from Google Search Console“** wählen und zustimmen. Bing übernimmt beide Seiten samt Sitemaps,
+   eine eigene Bestätigung ist dann nicht nötig. (Das geht erst, wenn Schritt 5 oben geklappt hat.)
+3. Fertig. Neue Seiten meldet der Upload ab jetzt selbst per IndexNow an Bing.
+
+### Was danach passiert
+
+- Erste Seiten tauchen meist nach wenigen Tagen bis zwei Wochen bei Google auf, Bing ist oft schneller.
+- Nach 4 bis 8 Wochen zeigt die Search Console unter *Leistung*, bei welchen Suchanfragen die Seite schon erscheint.
+  Das ist die beste Liste für die nächsten Anleitungen.
+- Maschinenseiten ohne eigenes Video oder eigene Anleitung stehen absichtlich auf „noindex“. In der Search Console erscheinen sie
+  unter „Ausgeschlossen durch noindex“. Das ist so gewollt und kein Fehler.
