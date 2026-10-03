@@ -92,3 +92,25 @@ Die Zahlen belegen Nachfrage, sie sind keine Garantie.
 | [youtube-comment-downloader](https://github.com/egbertbouman/youtube-comment-downloader) | Kommentare laden | hier blockiert, yt-dlp ersetzt es |
 | [ytstudio-cli](https://github.com/jdwit/ytstudio-cli) | eigene Analytics (Klickrate, Wiedergabedauer, Abos pro Video), Metadaten in Serie ändern | braucht Google-Login (OAuth) des Nutzers und Python 3.12+ |
 | [youtubeuploader](https://github.com/porjo/youtubeuploader) | geplanter Upload mit Thumbnail, Untertiteln, Playlist | braucht OAuth. Neue API-Projekte: ca. 6 Uploads pro Tag und Videos bleiben privat, bis Google das Projekt prüft. Lohnt sich vorerst nicht. |
+
+## Nächste Videos (Themen-Radar vom 3.10.2026: `docs/radar/heizung2.md`, `docs/radar/kaffee.md`)
+
+Google Trends (YouTube-Suche DE, 5 Jahre) im direkten Vergleich: „delonghi magnifica entkalken“ wird etwa **25-mal** so oft gesucht
+wie die anderen Kandidaten, das ganze Jahr, Spitze im Dezember. Dein Kanal steht bei mehreren Kaffee-Suchen schon in den Top 8
+(LatteGo entkalken 7.075, Magnifica Evo entkalken 3.611, LatteGo-Brühgruppe 892, Siemens EQ.6 heizt nicht 3.663).
+
+| # | Video | Nachfrage (Median Top-5) | Warum jetzt |
+|---|---|---|---|
+| 1 | **DeLonghi Magnifica S entkalken** (Neuauflage im neuen Stil) | 222 Tsd, Top-Video 2,8 Mio | mit Abstand größte Suche; das alte Video (21.11.2025) hat nur 277 Aufrufe → Verpackung neu |
+| 2 | **Heizungsdruck zu niedrig oder zu hoch: nachfüllen und ablassen** | „druck erhöhen“ 821 Tsd, „zu hoch, Wasser ablassen“ 530 Tsd | Heizsaison; Fortsetzung von Ursache 3 aus „Heizkörper wird nicht warm“ |
+| 3 | **Thermostatkopf wechseln (alt → neu oder smart)** | 241 Tsd | Spitze November; passt zum Ventilstift; starke Amazon-Produkte |
+| 4 | **Philips LatteGo reinigen (Milchsystem, täglich/wöchentlich)** | 315 Tsd | Cluster, in dem der Kanal schon rankt |
+| 5 | **Philips 5400 / DeLonghi Magnifica Evo einrichten** | 336 Tsd / 390 Tsd | Weihnachtsgeschenke: Ende November veröffentlichen |
+
+Shorts aus offenen Zuschauerfragen:
+- „Thermostat-Voreinstellung: Welche Zahl stelle ich ein?“
+- „Philips-Brühgruppe: Glaskugel fehlt, schlimm?“
+- „Trester matschig statt fest?“
+
+Wichtig für Modell-Videos: Das Gerät und seine Tasten/Lampen nicht aus der Fantasie zeichnen. Nötig sind echte Fotos des
+genauen Modells (eigene Fotos oder Bilder aus der Bedienungsanleitung) und die Schritte laut Bedienungsanleitung als Quelle.

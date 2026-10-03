@@ -1,0 +1,1809 @@
+{
+ "seeds": [
+  "heizungsventil",
+  "thermostat heizung",
+  "heizung druck"
+ ],
+ "suggestions": [
+  [
+   "thermostat heizung einstellen",
+   163.0
+  ],
+  [
+   "thermostat heizung klemmt",
+   104.0
+  ],
+  [
+   "heizungsventil tropft",
+   100.0
+  ],
+  [
+   "thermostat heizung wechseln",
+   93.0
+  ],
+  [
+   "heizung zu viel druck",
+   89.0
+  ],
+  [
+   "heizungsventil leckt",
+   84.0
+  ],
+  [
+   "heizungsventil tauschen",
+   68.0
+  ],
+  [
+   "thermostat heizung anbringen",
+   68.0
+  ],
+  [
+   "heizung druck zu hoch",
+   66.0
+  ],
+  [
+   "heizung druck erhöhen",
+   65.0
+  ],
+  [
+   "heizungsventil erneuern",
+   50.0
+  ],
+  [
+   "heizungsventil einbauen",
+   41.0
+  ],
+  [
+   "heizungsventil defekt",
+   41.0
+  ],
+  [
+   "heizung druck zu hoch wasser ablassen",
+   40.0
+  ],
+  [
+   "heizung druck ablassen",
+   29.0
+  ],
+  [
+   "heizung druckverlust",
+   28.0
+  ],
+  [
+   "heizungsventil gangbar machen",
+   26.0
+  ],
+  [
+   "heizung druck einstellen",
+   26.0
+  ],
+  [
+   "thermostat heizung reinigen",
+   25.0
+  ],
+  [
+   "thermostat heizung wechseln digital",
+   24.0
+  ],
+  [
+   "heizungsventil wieder gangbar machen",
+   22.0
+  ],
+  [
+   "thermostat tauschen heizung",
+   22.0
+  ],
+  [
+   "heizungsventil schließt nicht",
+   21.0
+  ],
+  [
+   "thermostat wechseln fussbodenheizung",
+   21.0
+  ],
+  [
+   "heizungsventil klemmt",
+   19.0
+  ],
+  [
+   "heizungsventil stift federt nicht",
+   19.0
+  ],
+  [
+   "heizung druck fällt ständig",
+   19.0
+  ],
+  [
+   "thermostat heizung wechseln danfoss",
+   18.0
+  ],
+  [
+   "heizung druck steigt ständig",
+   18.0
+  ],
+  [
+   "heizungsventil einstellen",
+   17.0
+  ],
+  [
+   "heizungsventil tauschen ohne wasser ablassen",
+   17.0
+  ],
+  [
+   "heizungsventil wechseln",
+   16.0
+  ],
+  [
+   "heizungsventil macht geräusche",
+   16.0
+  ],
+  [
+   "heizung thermostat stift klemmt",
+   16.0
+  ],
+  [
+   "wolf heizung druck hk",
+   16.0
+  ],
+  [
+   "ausgleichsbehälter heizung druck einstellen",
+   15.0
+  ],
+  [
+   "druck heizung erhöhen vaillant",
+   15.0
+  ],
+  [
+   "heizungsventil einstellen hydraulischer abgleich",
+   14.0
+  ],
+  [
+   "thermostat heizung entfernen",
+   14.0
+  ],
+  [
+   "thermostat heizung abnehmen",
+   14.0
+  ],
+  [
+   "heizung druck nachfüllen",
+   14.0
+  ],
+  [
+   "heizungsventil abschrauben",
+   13.0
+  ],
+  [
+   "heizungsventil klemmt heiß",
+   13.0
+  ],
+  [
+   "heizungsventil lässt sich nicht drehen",
+   13.0
+  ],
+  [
+   "heizungsventil wird nicht warm",
+   13.0
+  ],
+  [
+   "heizungsventil klemmt alte heizung",
+   12.0
+  ],
+  [
+   "thermostat heizung abdrehen",
+   12.0
+  ],
+  [
+   "viessmann heizung druck erhöhen",
+   12.0
+  ],
+  [
+   "thermostat heizung funktion",
+   11.0
+  ],
+  [
+   "brötje heizung druck erhöhen",
+   11.0
+  ],
+  [
+   "wolf heizung druck erhöhen",
+   11.0
+  ],
+  [
+   "heizungsventil blockieren",
+   10.0
+  ],
+  [
+   "heizungsventil klemmt bodenheizung",
+   10.0
+  ],
+  [
+   "heizungsventil durchfluss einstellen",
+   10.0
+  ],
+  [
+   "heizungsventil funktion",
+   10.0
+  ],
+  [
+   "heizungsventil hängt",
+   10.0
+  ],
+  [
+   "heizungsventil lösen",
+   10.0
+  ],
+  [
+   "heizungsventil montieren",
+   10.0
+  ],
+  [
+   "heizungsventil oventrop",
+   10.0
+  ],
+  [
+   "heizungsventil pfeift",
+   10.0
+  ],
+  [
+   "heizungsventil reparieren",
+   10.0
+  ],
+  [
+   "heizungsventil undicht",
+   10.0
+  ],
+  [
+   "heizungsventil voreinstellung",
+   10.0
+  ],
+  [
+   "heizungsventil zudrehen",
+   10.0
+  ],
+  [
+   "thermostat heizung digital",
+   10.0
+  ],
+  [
+   "thermostat heizung prüfen",
+   10.0
+  ],
+  [
+   "thermostat heizung stift",
+   10.0
+  ],
+  [
+   "thermostat heizung tauschen",
+   10.0
+  ],
+  [
+   "thermostat heizung undicht",
+   10.0
+  ],
+  [
+   "thermostat von heizung abbauen",
+   10.0
+  ],
+  [
+   "buderus heizung druck erhöhen",
+   10.0
+  ],
+  [
+   "heizung kein druck",
+   10.0
+  ],
+  [
+   "heizung druck messen",
+   10.0
+  ],
+  [
+   "heizung verliert druck",
+   10.0
+  ],
+  [
+   "heizung zu wenig druck",
+   10.0
+  ],
+  [
+   "heizungsventil blockiert",
+   9.0
+  ],
+  [
+   "heizungsventil entlüften",
+   9.0
+  ],
+  [
+   "heizungsventil fussbodenheizung",
+   9.0
+  ],
+  [
+   "heizungsventil gängig machen",
+   9.0
+  ],
+  [
+   "heizungsventil heimeier",
+   9.0
+  ],
+  [
+   "heizungsventil tauschen heimeier",
+   9.0
+  ],
+  [
+   "heizungsventil tauschen alte heizung",
+   9.0
+  ],
+  [
+   "heizungsventil öffnet nicht",
+   9.0
+  ],
+  [
+   "heizungsventil prüfen",
+   9.0
+  ],
+  [
+   "heizungsventil richtig einstellen",
+   9.0
+  ],
+  [
+   "heizungsventil stift klemmt",
+   9.0
+  ],
+  [
+   "heizungsventil unter druck tauschen",
+   9.0
+  ],
+  [
+   "heizungsventil verstopft",
+   9.0
+  ],
+  [
+   "heizungsventil wechseln ohne wasser abzulassen",
+   9.0
+  ],
+  [
+   "heizungsventil zerlegen",
+   9.0
+  ],
+  [
+   "thermostat heizung kaputt",
+   9.0
+  ],
+  [
+   "thermostat heizung richtig einstellen",
+   9.0
+  ],
+  [
+   "heizung thermostat ventil tauschen",
+   9.0
+  ],
+  [
+   "heizungsventil anbringen",
+   8.0
+  ],
+  [
+   "bmw heizungsventil",
+   8.0
+  ],
+  [
+   "heizungsventil danfoss wechseln",
+   8.0
+  ],
+  [
+   "heizungsventil fest",
+   8.0
+  ],
+  [
+   "heizungsventil herz",
+   8.0
+  ],
+  [
+   "heizungsventil locker",
+   8.0
+  ],
+  [
+   "bmw e60 heizungsventil prüfen",
+   8.0
+  ],
+  [
+   "heizungsventil reinigen",
+   8.0
+  ],
+  [
+   "heizungsventil unten",
+   8.0
+  ],
+  [
+   "heizungsventil verkalkt",
+   8.0
+  ],
+  [
+   "heizung thermostat erklärung",
+   8.0
+  ],
+  [
+   "thermostat kaputt heizung abstellen",
+   8.0
+  ],
+  [
+   "thermostat heizung reparieren",
+   8.0
+  ],
+  [
+   "heizung entlüften druck",
+   8.0
+  ],
+  [
+   "heizungsventil ausbauen",
+   7.0
+  ],
+  [
+   "heizungsventil danfoss einrohrsystem",
+   7.0
+  ],
+  [
+   "heizungsventil fetten",
+   7.0
+  ],
+  [
+   "heimeier heizungsventil wechseln",
+   7.0
+  ],
+  [
+   "heizungsventil kaputt",
+   7.0
+  ],
+  [
+   "heizungsventil sauber machen",
+   7.0
+  ],
+  [
+   "heizungsventil rauscht",
+   7.0
+  ],
+  [
+   "heizungsventil schließen",
+   7.0
+  ],
+  [
+   "heizungsventil verklemmt",
+   7.0
+  ],
+  [
+   "heizungsventil wd40",
+   7.0
+  ],
+  [
+   "thermostat heizung abbauen",
+   7.0
+  ],
+  [
+   "thermostat anschließen heizung",
+   7.0
+  ],
+  [
+   "thermostat an der heizung wechseln",
+   7.0
+  ],
+  [
+   "digitales thermostat heizung einstellen",
+   7.0
+  ],
+  [
+   "thermostat heizung wechseln heimeier",
+   7.0
+  ],
+  [
+   "vaillant heizung druck einstellen",
+   7.0
+  ],
+  [
+   "heizungsventil abbauen",
+   6.0
+  ],
+  [
+   "heizungsventil dreht durch",
+   6.0
+  ],
+  [
+   "heizungsventil klemmt danfoss",
+   6.0
+  ],
+  [
+   "heizungsventil erklärt",
+   6.0
+  ],
+  [
+   "heizungsventil fußbodenheizung tauschen",
+   6.0
+  ],
+  [
+   "heizungsventil sitzt fest",
+   6.0
+  ],
+  [
+   "heizungsventil klemmt fussbodenheizung",
+   6.0
+  ],
+  [
+   "heizungsventil schleuse",
+   6.0
+  ],
+  [
+   "heizungsventil tauschen unter druck",
+   6.0
+  ],
+  [
+   "heizungsventil warten",
+   6.0
+  ],
+  [
+   "thermostat heizung abgefallen",
+   6.0
+  ],
+  [
+   "heizung danfoss thermostat abschrauben",
+   6.0
+  ],
+  [
+   "alte heizung thermostat wechseln",
+   6.0
+  ],
+  [
+   "heizungsventilator",
+   5.0
+  ],
+  [
+   "heizungsventil aufdrehen",
+   5.0
+  ],
+  [
+   "heizungsventil deblockieren",
+   5.0
+  ],
+  [
+   "heizungsventil einsatz tauschen",
+   5.0
+  ],
+  [
+   "heizungsventil funktionsweise",
+   5.0
+  ],
+  [
+   "heizungsventil stift",
+   5.0
+  ],
+  [
+   "thermostat heizung abschrauben",
+   5.0
+  ],
+  [
+   "thermostat für fußbodenheizung anschließen",
+   5.0
+  ],
+  [
+   "heizung thermostat stift wechseln",
+   5.0
+  ],
+  [
+   "heizung drucklos machen",
+   5.0
+  ],
+  [
+   "heizungsventil abmachen",
+   4.0
+  ],
+  [
+   "heizungsventil digital",
+   4.0
+  ],
+  [
+   "heizungsventil klopft",
+   4.0
+  ],
+  [
+   "heizungsventil stift tauschen",
+   4.0
+  ],
+  [
+   "heizungsventil tauschen danfoss",
+   4.0
+  ],
+  [
+   "w211 heizungsventil wechseln",
+   4.0
+  ],
+  [
+   "thermostat abgebrochen heizung abstellen",
+   4.0
+  ],
+  [
+   "heizung ölpumpe druck einstellen",
+   4.0
+  ],
+  [
+   "heizungsventil abgebrochen",
+   3.0
+  ],
+  [
+   "danfoss heizungsventil einstellen",
+   3.0
+  ],
+  [
+   "heizungsventil entfernen",
+   3.0
+  ],
+  [
+   "heizungsventil tauschen fußbodenheizung",
+   3.0
+  ],
+  [
+   "w201 heizungsventil wechseln",
+   3.0
+  ],
+  [
+   "heizungsventil abdrehen",
+   2.0
+  ],
+  [
+   "danfoss heizungsventil",
+   2.0
+  ],
+  [
+   "heizungsventil ersetzen",
+   2.0
+  ],
+  [
+   "heizungsventil klackert",
+   2.0
+  ],
+  [
+   "heizungsventil stopfbuchse wechseln",
+   2.0
+  ],
+  [
+   "w124 heizungsventil",
+   2.0
+  ],
+  [
+   "heizung thermostat abgebrochen",
+   2.0
+  ],
+  [
+   "heizungsventil arten",
+   1.0
+  ],
+  [
+   "heizungsventil erkennen",
+   1.0
+  ],
+  [
+   "heizungsventil smart",
+   1.0
+  ],
+  [
+   "altes heizungsventil tauschen",
+   1.0
+  ],
+  [
+   "wechsel heizungsventil tauschen",
+   1.0
+  ],
+  [
+   "heizung thermostat austauschen",
+   1.0
+  ],
+  [
+   "heizung druckausgleichsbehälter prüfen",
+   1.0
+  ]
+ ],
+ "topics": [
+  {
+   "phrase": "thermostat heizung einstellen",
+   "suggest_score": 163.0,
+   "top_views": [
+    1435243,
+    463930,
+    272710
+   ],
+   "demand": 272710,
+   "own": [],
+   "results": [
+    {
+     "id": "K9gv8oZZR7o",
+     "views": 95168,
+     "channel": "DIVM® Deutsche Immobilien Versicherungsmakler GmbH",
+     "duration": "233",
+     "title": "Wie ich die Grundeinstellungen der digitalen Thermostate vornehme (eqiva Heizkörperthermostat)"
+    },
+    {
+     "id": "fohS0h5LI7I",
+     "views": 152551,
+     "channel": "Probierwerkstatt",
+     "duration": "501",
+     "title": "Wie funktioniert ein Heizungs- Thermostat? Wie muss ich den Heizkörper einstellen / bedienen?"
+    },
+    {
+     "id": "3v2u8bB3XEA",
+     "views": 226744,
+     "channel": "Basti HW",
+     "duration": "151",
+     "title": "Heizung wird nicht KALT? So behebst du das Problem einfach selbst"
+    },
+    {
+     "id": "rPRfPL8bcAY",
+     "views": 463930,
+     "channel": "Probierwerkstatt",
+     "duration": "298",
+     "title": "Heizung wird nicht warm? Heizkörper Durchfluss einstellen. Voreinstelbares Thermostatventil"
+    },
+    {
+     "id": "liwFky7u6aE",
+     "views": 14643,
+     "channel": "MEISTER DER ELEMENTE",
+     "duration": "49",
+     "title": "DER MEISTERTIPP 2 - Thermostatventile richtig einstellen"
+    },
+    {
+     "id": "8zNOA6M683k",
+     "views": 64584,
+     "channel": "Mac Paverick",
+     "duration": "179",
+     "title": "Heizungsthermostat mit Stopper begrenzen Danfoss Heimeier Thermostat Heizung Begrenzung  einstellen"
+    },
+    {
+     "id": "L_D1KZlh8wM",
+     "views": 272710,
+     "channel": "Empfehlungsfuchs",
+     "duration": "213",
+     "title": "Durchflussmenge am Heizkörper einstellen - Hydraulischer Abgleich ✅"
+    },
+    {
+     "id": "QXxcpE7pJYM",
+     "views": 1435243,
+     "channel": "gear2video",
+     "duration": "317",
+     "title": "Durchflussmenge Heizkörper // einstellen // regulieren // Hydraulischer Abgleich // Thermostatventil"
+    }
+   ],
+   "potential": 14.3,
+   "questions": [
+    {
+     "text": "Woher weiß ich dass die Zahl die oben steht \"aktiv\" ist? Es gibt ja keinen Pfeil oder Markierung auf dem Messing darunter oder?",
+     "likes": 6
+    },
+    {
+     "text": "Ich habe auch so ein Ventil, aber keine Markierung und habe dementsprechend mehrmals hin und her gedreht. Macht das einen Unterschied, wie viele runden man dreht, oder kommt es nur auf die Zahl an?",
+     "likes": 3
+    },
+    {
+     "text": "Wenn ich es auf 1 stelle (rotes rad) wird die Heizung da kälter?",
+     "likes": 3
+    },
+    {
+     "text": "Ich habe das gleiche Thermostat, kann an dem roten Regler jedoch keine Markierung erkennen und er lässt sich endlos drehen...woran sehe ich nun welche Stellung das Ventil hat?",
+     "likes": 3
+    },
+    {
+     "text": "Welche Zahl stelle ich bei welcher Heizkörpergröße ein?",
+     "likes": 3
+    },
+    {
+     "text": "Habe eine frage zum regler selbst. Ich musste ihn abnehmen und weiss jetzt nicht wie ich ihn wirdrt rochtih anstecken muss. Vlt liegt es daran das die heizung nicht volle pulle läuft. ?!",
+     "likes": 1
+    },
+    {
+     "text": "2:17 ich kann diese schnellspanne nicht per hand drehen, soll ich vielleicht etwas einölen und mit der zange versuchen? aber nicht, daß ich dabei etwas kaputt mache... :(",
+     "likes": 1
+    },
+    {
+     "text": "Ganz banal gefragt, meine Heizkörper liefern auf Stufe 3 alle unterschiedliche Raumtemperaturen. Komme ich mit der Methode an mein Ziel mit zb. Stufe 3 die gleiche Raumtemperatur in jedem Raum zu erzielen? LG vom Senioren-Ingo 😊",
+     "likes": 1
+    },
+    {
+     "text": "WARUM MEHR ODER WENIGER WASSER?WAS IST MIT DURCHFLUSS BERECHNUNG,ENTFERNUNG EZT?",
+     "likes": 1
+    },
+    {
+     "text": "Wenn ich beispielsweise die Zahl 2 oben nehme und dann das Thermostat mit der Stufe 5 auf das Ventil drauf mache, wo oben die 2 steht. Passt das dann auch das bei 5 es heiß wird und bei 1 bis 2 nur \"Lauwarm\"??",
+     "likes": 0
+    },
+    {
+     "text": "wie heißt das Werkzeug, mit dem du das drehst, und wo ist die 1, am Anfang? wie siehst du, auf wie viel die Heizung eingestellt ist? Danke",
+     "likes": 0
+    },
+    {
+     "text": "Das bedeutet, das wenn vorher auf Stufe 2 von 5 die Heizung nur lauwarm war, wird sie jetzt faktisch warm/wärmer? Richtig?",
+     "likes": 0
+    },
+    {
+     "text": "Kann man alles gut verstehen, wie ist das zu erklären wenn die Raumtemperatur  ( 18 grd ) anzeigt das Thermostat auf 1 steht ( 12 grd )  und der Heizkörper trotzdem warm bleibt ?",
+     "likes": 0
+    },
+    {
+     "text": "Ich habe derzeit ein Problem: ich habe smarte Thermostate die nicht auf das rote Teil passen. Kann man das Teil abbauen bzw ist das ratsam ?",
+     "likes": 0
+    },
+    {
+     "text": "nur drehen anti-clockwise auf diese ventil typ ?",
+     "likes": 0
+    },
+    {
+     "text": "Please can someone tell me, How to turn it on? Not working...",
+     "likes": 0
+    },
+    {
+     "text": "Muss die zahl oben sein die 6 oben auch stehen?",
+     "likes": 0
+    },
+    {
+     "text": "Wie kann an solche Ventile einen elektronisches Heizkörperthermostat montieren?",
+     "likes": 0
+    },
+    {
+     "text": "Muss dann auf maximal Öffnung bzw. Stufe 5 der Heizkörpern oben warm und unten kühler sein, oder nur auf Stufe 3 für die Standardeinstellungen?",
+     "likes": 0
+    },
+    {
+     "text": "Habe ein Heizkörper im Keller der wird nur oben rum warm ist das das Problem?",
+     "likes": 0
+    },
+    {
+     "text": "Bei meinem heizkörper geht der durchflussregler leer durch kann ja auch nicht normal sein oder?",
+     "likes": 0
+    },
+    {
+     "text": "Was kann ich den tun, wenn meine Heizkörper rauschen?..",
+     "likes": 0
+    },
+    {
+     "text": "Was bedeutet nach dem sieben gibt es Buchstabe N was bedeutet?",
+     "likes": 0
+    },
+    {
+     "text": "Was bedeutet N ? Neutral?",
+     "likes": 0
+    },
+    {
+     "text": "Also Du bist der Meinung, dass der Zulauf auf \"6\" gestellt ist, weil die Ziffer 6 gerade oben ist? Und welche Ziffer steht bei der Einstellmarkierung?? Kleiner Tipp: Die EM ist bei dieser Kameraposition nicht zu erkennen.",
+     "likes": 0
+    },
+    {
+     "text": "Und was soll Mensch machen, wenn klemmt,  hast die Liste nach Parametern soll Abgleich gemacht werden?? Genau , zeige was wovon kein Ahnung  habe...Weiter so👍👎",
+     "likes": 0
+    },
+    {
+     "text": "Moin. Bei mir tropft es an der Stelle. Was kann ich dagegen tun? Lg",
+     "likes": 0
+    }
+   ],
+   "questions_from": "Durchflussmenge Heizkörper // einstellen // regulieren // Hydraulischer Abgleich // Thermostatventil"
+  },
+  {
+   "phrase": "thermostat heizung klemmt",
+   "suggest_score": 104.0,
+   "top_views": [
+    1770702,
+    277694,
+    226744
+   ],
+   "demand": 226744,
+   "own": [],
+   "results": [
+    {
+     "id": "xSMOJwNfwKo",
+     "views": 1770702,
+     "channel": "ProblemLöserTV",
+     "duration": "299",
+     "title": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+    },
+    {
+     "id": "3v2u8bB3XEA",
+     "views": 226744,
+     "channel": "Basti HW",
+     "duration": "151",
+     "title": "Heizung wird nicht KALT? So behebst du das Problem einfach selbst"
+    },
+    {
+     "id": "F8Tpwxgtb4A",
+     "views": 131822,
+     "channel": "TechIllusion",
+     "duration": "310",
+     "title": "🔥🛠️Heizkörper Thermostat Stift klemmt!🧐 WAS TUN?! 😱 Heizung wird nicht warm?! - Anleitung"
+    },
+    {
+     "id": "zIKS_rL7B_U",
+     "views": 34383,
+     "channel": "TV Solution",
+     "duration": "131",
+     "title": "Die Heizung ist aus, bleibt aber heiß - die 2 häuftigsten Ursachen!"
+    },
+    {
+     "id": "H_xYeeuCs-4",
+     "views": 277694,
+     "channel": "Empfehlungsfuchs",
+     "duration": "169",
+     "title": "Heizungsventil klemmt - Heizung wird nicht warm - einfache Anleitung! ♨️✅"
+    },
+    {
+     "id": "8XQWL40tFvo",
+     "views": 124472,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "288",
+     "title": "Heizungsventil klemmt: Stift federt nicht – Heizkörperventil gangbar machen 🛠️"
+    },
+    {
+     "id": "x7fqIzhf_Do",
+     "views": 204203,
+     "channel": "Martin Goldmann - Tipps",
+     "duration": "40",
+     "title": "Heizungsventil klemmt - gängig machen"
+    },
+    {
+     "id": "goJqQ_xHT_Y",
+     "views": 108345,
+     "channel": "Serhat Heizung und Sanitär ",
+     "duration": "144",
+     "title": "Thermostat wechseln Heizung Danfoss"
+    }
+   ],
+   "potential": 10.93,
+   "questions": [
+    {
+     "text": "Bist du monteur??? Das ziehen kann bei einigen ventilen auch in die Hose gehen,  dann ist der Stift draußen und deine bude säuft ab. Ich bin Installateur und hab damit ständig zu tun. Also lieber Fachmann ran lassen",
+     "likes": 5
+    },
+    {
+     "text": "Hat an sich super funktioniert, hatte nur leider vergessen vor der Demontage auf 5 zu drehen,  habe also bei Null (Stern) demontiert. Jetzt wo ich das Thermostat wieder montiert habe, wird auch bei Null geheizt. Kann man das ohne Handwerker selbst korrigieren?  🙄",
+     "likes": 3
+    },
+    {
+     "text": "bei 1:12min:  Die TEMPERATUR wird auf das Ventil übertragen???",
+     "likes": 3
+    }
+   ],
+   "questions_from": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+  },
+  {
+   "phrase": "heizungsventil tropft",
+   "suggest_score": 100.0,
+   "top_views": [
+    1584180,
+    954384,
+    227814
+   ],
+   "demand": 227814,
+   "own": [],
+   "results": [
+    {
+     "id": "W2UcApNqQdA",
+     "views": 954384,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "220",
+     "title": "Heizungsventil Danfoss RA VL deblockieren, Stopfbuchse wechseln, alles unter Druck"
+    },
+    {
+     "id": "ylacXr2LYLc",
+     "views": 44012,
+     "channel": "Dens ToolBox",
+     "duration": "636",
+     "title": "Stopfbuchse wechseln (nur Danfoss) - Heizkörper tropft oder wird nicht warm?"
+    },
+    {
+     "id": "ujRuY4kd5Zc",
+     "views": 68863,
+     "channel": "TV Solution",
+     "duration": "489",
+     "title": "Heizungs-Entlüftungsventil tauschen, Anleitung - so einfach mach ich es - do it yourself (DIY)"
+    },
+    {
+     "id": "rA0P9PZ9424",
+     "views": 159390,
+     "channel": "TV Solution",
+     "duration": "608",
+     "title": "Ventil-Einsatz am Heizkörper tauschen - Verständlich erklärt, Anleitung, Tipps & Info"
+    },
+    {
+     "id": "015vwMsIQX0",
+     "views": 127723,
+     "channel": "PraxisTipps",
+     "duration": "302",
+     "title": "Rücklaufverschraubung & Heizungsventil tauschen (Thermostat Ventilunterteil)"
+    },
+    {
+     "id": "54-BCUlmxiA",
+     "views": 227814,
+     "channel": "TV Solution",
+     "duration": "934",
+     "title": "Heizungsventil unter Druck tauschen mit der Heimeier Schleuse |  Vorbereitung Hydraulischer Abgleich"
+    },
+    {
+     "id": "p_Nwg2D2R7k",
+     "views": 1584180,
+     "channel": "Serhat Heizung und Sanitär ",
+     "duration": "505",
+     "title": "Heizungsventil tauschen unter Druck mit der Heimeier Schleuse"
+    },
+    {
+     "id": "p1LXr_6NabA",
+     "views": 5570,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "387",
+     "title": "Heizkörper Ventil reparieren/Stopfbuchse wechseln#toptippvomprofi"
+    }
+   ],
+   "potential": 10.72
+  },
+  {
+   "phrase": "thermostat heizung wechseln",
+   "suggest_score": 93.0,
+   "top_views": [
+    811497,
+    567771,
+    240892
+   ],
+   "demand": 240892,
+   "own": [],
+   "results": [
+    {
+     "id": "kJajo0RuYkI",
+     "views": 240892,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "wHTZaIlZFEY",
+     "views": 811497,
+     "channel": "TechIllusion",
+     "duration": "155",
+     "title": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt"
+    },
+    {
+     "id": "aE2Di300Vtg",
+     "views": 567771,
+     "channel": "Mac Paverick",
+     "duration": "122",
+     "title": "Heizungsthermostat wechseln Heizkörperthermostat tauschen Heizung Thermostat abbauen & montieren"
+    },
+    {
+     "id": "AMuCsfjNorw",
+     "views": 11501,
+     "channel": "Timbertime DIY",
+     "duration": "18",
+     "title": "Heizung Thermostat wechseln: so einfach geht‘s"
+    },
+    {
+     "id": "sNhpuFYvtBA",
+     "views": 40006,
+     "channel": "Energie Verbraucherzentrale NRW",
+     "duration": "210",
+     "title": "Do-it-yourself: Thermostat tauschen"
+    },
+    {
+     "id": "3v2u8bB3XEA",
+     "views": 226744,
+     "channel": "Basti HW",
+     "duration": "151",
+     "title": "Heizung wird nicht KALT? So behebst du das Problem einfach selbst"
+    },
+    {
+     "id": "4EfV65C0FcU",
+     "views": 8011,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "190",
+     "title": "Heizungsthermostat wechseln | Heimeier-Thermostat defekt? 🛠️ Heizkörperregler einfach austauschen"
+    },
+    {
+     "id": "goJqQ_xHT_Y",
+     "views": 108345,
+     "channel": "Serhat Heizung und Sanitär ",
+     "duration": "144",
+     "title": "Thermostat wechseln Heizung Danfoss"
+    }
+   ],
+   "potential": 10.39
+  },
+  {
+   "phrase": "heizung zu viel druck",
+   "suggest_score": 89.0,
+   "top_views": [
+    671261,
+    456184,
+    270594
+   ],
+   "demand": 270594,
+   "own": [],
+   "results": [
+    {
+     "id": "GLwr0sApg4w",
+     "views": 671261,
+     "channel": "M1Molter - Der Heimwerker",
+     "duration": "624",
+     "title": "Heizung Druck steigt ständig - was nun?"
+    },
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226378,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "8n3Tg3N8wTs",
+     "views": 456184,
+     "channel": "SHK Info",
+     "duration": "250",
+     "title": "Wie viel Wasserdruck muss auf die Heizung?"
+    },
+    {
+     "id": "-ZhzGCtLCAg",
+     "views": 110508,
+     "channel": "Basti HW",
+     "duration": "228",
+     "title": "Heizung verliert Wasser? Die 7 häufigsten Gründe für den Druckverlust"
+    },
+    {
+     "id": "WV82wH9-V_E",
+     "views": 270594,
+     "channel": "SHK-TV",
+     "duration": "403",
+     "title": "Reflex: Wartung eines Membran-Drucksausdehnungsgefäßes | SHK-TV"
+    },
+    {
+     "id": "3qb1t1RlyMg",
+     "views": 142734,
+     "channel": "GS Heizung, Fenster & Photovoltaik",
+     "duration": "244",
+     "title": "WASSERDRUCK DER HEIZUNG - Das verrät dir dein Heizungsbauer nicht!"
+    },
+    {
+     "id": "fiuZtedQ9oQ",
+     "views": 10360,
+     "channel": "Barwig Group | Heizung Klima Elektro Sanitär PV",
+     "duration": "192",
+     "title": "Warum DEIN Warmwasserdruck zu SCHWACH ist – So löst du das Problem!"
+    },
+    {
+     "id": "BgMvHBIynMs",
+     "views": 217875,
+     "channel": "SHK-TV",
+     "duration": "356",
+     "title": "Reflex: Inbetriebnahme eines Membran-Druckausdehnungsgefäßes | SHK-TV"
+    }
+   ],
+   "potential": 10.27
+  },
+  {
+   "phrase": "heizungsventil leckt",
+   "suggest_score": 84.0,
+   "top_views": [
+    954384,
+    463930,
+    227814
+   ],
+   "demand": 227814,
+   "own": [],
+   "results": [
+    {
+     "id": "rA0P9PZ9424",
+     "views": 159390,
+     "channel": "TV Solution",
+     "duration": "608",
+     "title": "Ventil-Einsatz am Heizkörper tauschen - Verständlich erklärt, Anleitung, Tipps & Info"
+    },
+    {
+     "id": "W2UcApNqQdA",
+     "views": 954384,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "220",
+     "title": "Heizungsventil Danfoss RA VL deblockieren, Stopfbuchse wechseln, alles unter Druck"
+    },
+    {
+     "id": "015vwMsIQX0",
+     "views": 127723,
+     "channel": "PraxisTipps",
+     "duration": "302",
+     "title": "Rücklaufverschraubung & Heizungsventil tauschen (Thermostat Ventilunterteil)"
+    },
+    {
+     "id": "54-BCUlmxiA",
+     "views": 227814,
+     "channel": "TV Solution",
+     "duration": "934",
+     "title": "Heizungsventil unter Druck tauschen mit der Heimeier Schleuse |  Vorbereitung Hydraulischer Abgleich"
+    },
+    {
+     "id": "rPRfPL8bcAY",
+     "views": 463930,
+     "channel": "Probierwerkstatt",
+     "duration": "298",
+     "title": "Heizung wird nicht warm? Heizkörper Durchfluss einstellen. Voreinstelbares Thermostatventil"
+    },
+    {
+     "id": "ylacXr2LYLc",
+     "views": 44012,
+     "channel": "Dens ToolBox",
+     "duration": "636",
+     "title": "Stopfbuchse wechseln (nur Danfoss) - Heizkörper tropft oder wird nicht warm?"
+    },
+    {
+     "id": "j99rhzSSTG4",
+     "views": 57465,
+     "channel": "Repti",
+     "duration": "106",
+     "title": "Heizung; Heizkörper absperren"
+    },
+    {
+     "id": "3v2u8bB3XEA",
+     "views": 226744,
+     "channel": "Basti HW",
+     "duration": "151",
+     "title": "Heizung wird nicht KALT? So behebst du das Problem einfach selbst"
+    }
+   ],
+   "potential": 9.86
+  },
+  {
+   "phrase": "heizung druck erhöhen",
+   "suggest_score": 65.0,
+   "top_views": [
+    1255038,
+    1161614,
+    820502
+   ],
+   "demand": 820502,
+   "own": [],
+   "results": [
+    {
+     "id": "4fNHEXwVwl0",
+     "views": 820502,
+     "channel": "Empfehlungsfuchs",
+     "duration": "172",
+     "title": "Heizung Wasser nachfüllen - So kannst du deine Heizung auffüllen ✅"
+    },
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226378,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "nYafuK_ssdE",
+     "views": 967,
+     "channel": "Die ProfiAmatööre",
+     "duration": "157",
+     "title": "Heizung Wasser auffüllen - Wasserdruck erhöhen - einfach und verständlich erklärt! 💦✅"
+    },
+    {
+     "id": "3qb1t1RlyMg",
+     "views": 142734,
+     "channel": "GS Heizung, Fenster & Photovoltaik",
+     "duration": "244",
+     "title": "WASSERDRUCK DER HEIZUNG - Das verrät dir dein Heizungsbauer nicht!"
+    },
+    {
+     "id": "8n3Tg3N8wTs",
+     "views": 456184,
+     "channel": "SHK Info",
+     "duration": "250",
+     "title": "Wie viel Wasserdruck muss auf die Heizung?"
+    },
+    {
+     "id": "a4XyeTz40rU",
+     "views": 1255038,
+     "channel": "SHK Info",
+     "duration": "449",
+     "title": "Heizung erklärt - Wasser nachfüllen und System entlüften"
+    },
+    {
+     "id": "prbAruWwyCc",
+     "views": 1161614,
+     "channel": "SHK Info",
+     "duration": "367",
+     "title": "Heizung Wasser nachfüllen - so geht's richtig!"
+    },
+    {
+     "id": "BgMvHBIynMs",
+     "views": 217875,
+     "channel": "SHK-TV",
+     "duration": "356",
+     "title": "Reflex: Inbetriebnahme eines Membran-Druckausdehnungsgefäßes | SHK-TV"
+    }
+   ],
+   "potential": 9.76
+  },
+  {
+   "phrase": "heizungsventil tauschen",
+   "suggest_score": 68.0,
+   "top_views": [
+    1584180,
+    811497,
+    329548
+   ],
+   "demand": 329548,
+   "own": [],
+   "results": [
+    {
+     "id": "7JE6Ap30DC4",
+     "views": 108212,
+     "channel": "Pduesp",
+     "duration": "492",
+     "title": "Danfoss RAW Thermostat an einem Heizkörper tauschen - AVM FRITZ!DECT 301 Thermostat-Kopf montieren"
+    },
+    {
+     "id": "rA0P9PZ9424",
+     "views": 159390,
+     "channel": "TV Solution",
+     "duration": "608",
+     "title": "Ventil-Einsatz am Heizkörper tauschen - Verständlich erklärt, Anleitung, Tipps & Info"
+    },
+    {
+     "id": "kJajo0RuYkI",
+     "views": 240892,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "psL7W_3weqY",
+     "views": 329548,
+     "channel": "TV Solution",
+     "duration": "568",
+     "title": "Ventil-Einsatz am Heizkörper tauschen - So mache ich es, Anleitung, Tipps & Info"
+    },
+    {
+     "id": "8XQWL40tFvo",
+     "views": 124472,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "288",
+     "title": "Heizungsventil klemmt: Stift federt nicht – Heizkörperventil gangbar machen 🛠️"
+    },
+    {
+     "id": "p_Nwg2D2R7k",
+     "views": 1584180,
+     "channel": "Serhat Heizung und Sanitär ",
+     "duration": "505",
+     "title": "Heizungsventil tauschen unter Druck mit der Heimeier Schleuse"
+    },
+    {
+     "id": "wHTZaIlZFEY",
+     "views": 811497,
+     "channel": "TechIllusion",
+     "duration": "155",
+     "title": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt"
+    },
+    {
+     "id": "015vwMsIQX0",
+     "views": 127723,
+     "channel": "PraxisTipps",
+     "duration": "302",
+     "title": "Rücklaufverschraubung & Heizungsventil tauschen (Thermostat Ventilunterteil)"
+    }
+   ],
+   "potential": 9.27
+  },
+  {
+   "phrase": "thermostat heizung anbringen",
+   "suggest_score": 68.0,
+   "top_views": [
+    811497,
+    567771,
+    240892
+   ],
+   "demand": 240892,
+   "own": [],
+   "results": [
+    {
+     "id": "kJajo0RuYkI",
+     "views": 240892,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "wHTZaIlZFEY",
+     "views": 811497,
+     "channel": "TechIllusion",
+     "duration": "155",
+     "title": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt"
+    },
+    {
+     "id": "AMuCsfjNorw",
+     "views": 11501,
+     "channel": "Timbertime DIY",
+     "duration": "18",
+     "title": "Heizung Thermostat wechseln: so einfach geht‘s"
+    },
+    {
+     "id": "o3hydO8SIog",
+     "views": 180771,
+     "channel": "Empfehlungsfuchs",
+     "duration": "415",
+     "title": "Digitales Thermostat anschließen und einstellen  - Heizkosten sparen 🔥"
+    },
+    {
+     "id": "3v2u8bB3XEA",
+     "views": 226744,
+     "channel": "Basti HW",
+     "duration": "151",
+     "title": "Heizung wird nicht KALT? So behebst du das Problem einfach selbst"
+    },
+    {
+     "id": "sNhpuFYvtBA",
+     "views": 40006,
+     "channel": "Energie Verbraucherzentrale NRW",
+     "duration": "210",
+     "title": "Do-it-yourself: Thermostat tauschen"
+    },
+    {
+     "id": "aE2Di300Vtg",
+     "views": 567771,
+     "channel": "Mac Paverick",
+     "duration": "122",
+     "title": "Heizungsthermostat wechseln Heizkörperthermostat tauschen Heizung Thermostat abbauen & montieren"
+    },
+    {
+     "id": "015vwMsIQX0",
+     "views": 127723,
+     "channel": "PraxisTipps",
+     "duration": "302",
+     "title": "Rücklaufverschraubung & Heizungsventil tauschen (Thermostat Ventilunterteil)"
+    }
+   ],
+   "potential": 9.04
+  },
+  {
+   "phrase": "heizung druck zu hoch",
+   "suggest_score": 66.0,
+   "top_views": [
+    671261,
+    456184,
+    226378
+   ],
+   "demand": 226378,
+   "own": [],
+   "results": [
+    {
+     "id": "GLwr0sApg4w",
+     "views": 671261,
+     "channel": "M1Molter - Der Heimwerker",
+     "duration": "624",
+     "title": "Heizung Druck steigt ständig - was nun?"
+    },
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226378,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "3qb1t1RlyMg",
+     "views": 142734,
+     "channel": "GS Heizung, Fenster & Photovoltaik",
+     "duration": "244",
+     "title": "WASSERDRUCK DER HEIZUNG - Das verrät dir dein Heizungsbauer nicht!"
+    },
+    {
+     "id": "-ZhzGCtLCAg",
+     "views": 110508,
+     "channel": "Basti HW",
+     "duration": "228",
+     "title": "Heizung verliert Wasser? Die 7 häufigsten Gründe für den Druckverlust"
+    },
+    {
+     "id": "HHWseNKnxrI",
+     "views": 122758,
+     "channel": "Smartest Home",
+     "duration": "115",
+     "title": "In 2 Minuten: Wärmepumpe Heizungsdruck anpassen | Smartest Home - Folge 119"
+    },
+    {
+     "id": "8n3Tg3N8wTs",
+     "views": 456184,
+     "channel": "SHK Info",
+     "duration": "250",
+     "title": "Wie viel Wasserdruck muss auf die Heizung?"
+    },
+    {
+     "id": "c3N4dW7mIAc",
+     "views": 3704,
+     "channel": "Mac Paverick",
+     "duration": "122",
+     "title": "Manometer der Heizung richtig ablesen – Wasserdruck / Heizungsdruck im Haus prüfen Anleitung"
+    },
+    {
+     "id": "fiuZtedQ9oQ",
+     "views": 10360,
+     "channel": "Barwig Group | Heizung Klima Elektro Sanitär PV",
+     "duration": "192",
+     "title": "Warum DEIN Warmwasserdruck zu SCHWACH ist – So löst du das Problem!"
+    }
+   ],
+   "potential": 8.89
+  },
+  {
+   "phrase": "heizungsventil erneuern",
+   "suggest_score": 50.0,
+   "top_views": [
+    1584180,
+    954384,
+    811497
+   ],
+   "demand": 811497,
+   "own": [],
+   "results": [
+    {
+     "id": "015vwMsIQX0",
+     "views": 127723,
+     "channel": "PraxisTipps",
+     "duration": "302",
+     "title": "Rücklaufverschraubung & Heizungsventil tauschen (Thermostat Ventilunterteil)"
+    },
+    {
+     "id": "psL7W_3weqY",
+     "views": 329548,
+     "channel": "TV Solution",
+     "duration": "568",
+     "title": "Ventil-Einsatz am Heizkörper tauschen - So mache ich es, Anleitung, Tipps & Info"
+    },
+    {
+     "id": "rA0P9PZ9424",
+     "views": 159390,
+     "channel": "TV Solution",
+     "duration": "608",
+     "title": "Ventil-Einsatz am Heizkörper tauschen - Verständlich erklärt, Anleitung, Tipps & Info"
+    },
+    {
+     "id": "wHTZaIlZFEY",
+     "views": 811497,
+     "channel": "TechIllusion",
+     "duration": "155",
+     "title": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt"
+    },
+    {
+     "id": "W2UcApNqQdA",
+     "views": 954384,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "220",
+     "title": "Heizungsventil Danfoss RA VL deblockieren, Stopfbuchse wechseln, alles unter Druck"
+    },
+    {
+     "id": "p_Nwg2D2R7k",
+     "views": 1584180,
+     "channel": "Serhat Heizung und Sanitär ",
+     "duration": "505",
+     "title": "Heizungsventil tauschen unter Druck mit der Heimeier Schleuse"
+    },
+    {
+     "id": "kJajo0RuYkI",
+     "views": 240892,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "f7Ud38kqgQo",
+     "views": 24938,
+     "channel": "Willi's Werkstatt",
+     "duration": "240",
+     "title": "Heizungsventil austauschen  Heizkörper- Thermostatventil Thermostatkopf"
+    }
+   ],
+   "potential": 8.86
+  },
+  {
+   "phrase": "heizung druck zu hoch wasser ablassen",
+   "suggest_score": 40.0,
+   "top_views": [
+    820502,
+    671261,
+    529545
+   ],
+   "demand": 529545,
+   "own": [],
+   "results": [
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226378,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "GLwr0sApg4w",
+     "views": 671261,
+     "channel": "M1Molter - Der Heimwerker",
+     "duration": "624",
+     "title": "Heizung Druck steigt ständig - was nun?"
+    },
+    {
+     "id": "EsT77jM9ODg",
+     "views": 13448,
+     "channel": "Pduesp",
+     "duration": "276",
+     "title": "Zentralheizung ablassen & wieder befüllen – Heizkörper richtig entleeren"
+    },
+    {
+     "id": "3qb1t1RlyMg",
+     "views": 142734,
+     "channel": "GS Heizung, Fenster & Photovoltaik",
+     "duration": "244",
+     "title": "WASSERDRUCK DER HEIZUNG - Das verrät dir dein Heizungsbauer nicht!"
+    },
+    {
+     "id": "RBNw_17d0rw",
+     "views": 448733,
+     "channel": "Empfehlungsfuchs",
+     "duration": "140",
+     "title": "Mache nicht DIESE Fehler beim Heizung entlüften🤯(Fast JEDER macht sie)💥"
+    },
+    {
+     "id": "g190TQEMeJQ",
+     "views": 529545,
+     "channel": "Dominik Bößl",
+     "duration": "104",
+     "title": "Heizung entlüften – Anleitung für Mietwohnung – Schnell und einfach Luft aus Heizkörper ablassen"
+    },
+    {
+     "id": "4fNHEXwVwl0",
+     "views": 820502,
+     "channel": "Empfehlungsfuchs",
+     "duration": "172",
+     "title": "Heizung Wasser nachfüllen - So kannst du deine Heizung auffüllen ✅"
+    },
+    {
+     "id": "-ZhzGCtLCAg",
+     "views": 110508,
+     "channel": "Basti HW",
+     "duration": "228",
+     "title": "Heizung verliert Wasser? Die 7 häufigsten Gründe für den Druckverlust"
+    }
+   ],
+   "potential": 8.01
+  },
+  {
+   "phrase": "heizungsventil defekt",
+   "suggest_score": 41.0,
+   "top_views": [
+    1770702,
+    627786,
+    398688
+   ],
+   "demand": 398688,
+   "own": [],
+   "results": [
+    {
+     "id": "3v2u8bB3XEA",
+     "views": 226744,
+     "channel": "Basti HW",
+     "duration": "151",
+     "title": "Heizung wird nicht KALT? So behebst du das Problem einfach selbst"
+    },
+    {
+     "id": "xSMOJwNfwKo",
+     "views": 1770702,
+     "channel": "ProblemLöserTV",
+     "duration": "299",
+     "title": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+    },
+    {
+     "id": "zIKS_rL7B_U",
+     "views": 34383,
+     "channel": "TV Solution",
+     "duration": "131",
+     "title": "Die Heizung ist aus, bleibt aber heiß - die 2 häuftigsten Ursachen!"
+    },
+    {
+     "id": "aJaapan7M38",
+     "views": 398688,
+     "channel": "modEnerco",
+     "duration": "148",
+     "title": "Thermostat defekt, locker oder abgefallen - modEnerco"
+    },
+    {
+     "id": "8XQWL40tFvo",
+     "views": 124472,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "288",
+     "title": "Heizungsventil klemmt: Stift federt nicht – Heizkörperventil gangbar machen 🛠️"
+    },
+    {
+     "id": "IsNbAU3rK8c",
+     "views": 47129,
+     "channel": "Bastelkiste ",
+     "duration": "564",
+     "title": "Heizung tropft Ausdehnungsgefäß defekt"
+    },
+    {
+     "id": "rA0P9PZ9424",
+     "views": 159390,
+     "channel": "TV Solution",
+     "duration": "608",
+     "title": "Ventil-Einsatz am Heizkörper tauschen - Verständlich erklärt, Anleitung, Tipps & Info"
+    },
+    {
+     "id": "tmPUBWnZKLw",
+     "views": 627786,
+     "channel": "Die ProfiAmatööre",
+     "duration": "325",
+     "title": "Heizungsventil wieder gangbar machen - Heizungsventil klemmt | Heizkörper reparieren | Thermostat 🔥✅"
+    }
+   ],
+   "potential": 7.9
+  },
+  {
+   "phrase": "heizungsventil einbauen",
+   "suggest_score": 41.0,
+   "top_views": [
+    811497,
+    329548,
+    240892
+   ],
+   "demand": 240892,
+   "own": [],
+   "results": [
+    {
+     "id": "kJajo0RuYkI",
+     "views": 240892,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "015vwMsIQX0",
+     "views": 127723,
+     "channel": "PraxisTipps",
+     "duration": "302",
+     "title": "Rücklaufverschraubung & Heizungsventil tauschen (Thermostat Ventilunterteil)"
+    },
+    {
+     "id": "wHTZaIlZFEY",
+     "views": 811497,
+     "channel": "TechIllusion",
+     "duration": "155",
+     "title": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt"
+    },
+    {
+     "id": "52WqW2RzYus",
+     "views": 13439,
+     "channel": "EMKE",
+     "duration": "46",
+     "title": "EMKE Heizkörperventil – Einfache Montage Schritt-für-Schritt"
+    },
+    {
+     "id": "jpUEFC7vjPg",
+     "views": 147311,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "775",
+     "title": "Heizungsventil tauschen/Danfoss Ventil montieren mit Thermostatkopf"
+    },
+    {
+     "id": "psL7W_3weqY",
+     "views": 329548,
+     "channel": "TV Solution",
+     "duration": "568",
+     "title": "Ventil-Einsatz am Heizkörper tauschen - So mache ich es, Anleitung, Tipps & Info"
+    },
+    {
+     "id": "f7Ud38kqgQo",
+     "views": 24938,
+     "channel": "Willi's Werkstatt",
+     "duration": "240",
+     "title": "Heizungsventil austauschen  Heizkörper- Thermostatventil Thermostatkopf"
+    },
+    {
+     "id": "7JE6Ap30DC4",
+     "views": 108212,
+     "channel": "Pduesp",
+     "duration": "492",
+     "title": "Danfoss RAW Thermostat an einem Heizkörper tauschen - AVM FRITZ!DECT 301 Thermostat-Kopf montieren"
+    }
+   ],
+   "potential": 7.59
+  }
+ ]
+}
