@@ -1,0 +1,17 @@
+{
+ "Kaffeevollautomaten (Modell + Problem)": ["delonghi magnifica entkalken", "philips lattego fehler", "siemens eq6 fehler", "jura fehlermeldung", "melitta barista entkalken"],
+ "Saugroboter (Fehler, Wartung, Zubehör)": ["roborock fehler", "dreame fehler", "saugroboter fehler", "ecovacs fehler", "roborock reinigen"],
+ "Mähroboter": ["mähroboter fehler", "worx landroid fehler", "gardena sileno fehler", "husqvarna automower fehler", "mähroboter ohne begrenzungsdraht"],
+ "Waschmaschine/Trockner Fehlercodes": ["bosch waschmaschine fehler", "miele waschmaschine fehler", "aeg waschmaschine fehler", "samsung waschmaschine fehler", "trockner fehler"],
+ "Thermomix & Küchenmaschinen": ["thermomix fehler", "monsieur cuisine fehler", "thermomix tm6 reinigen", "kitchenaid reparieren"],
+ "E-Bike (Fehlercodes, Akku)": ["bosch e-bike fehlercode", "e-bike akku lädt nicht", "shimano steps fehler", "e-bike akku lagern"],
+ "Balkonkraftwerk & Speicher": ["balkonkraftwerk speicher", "anker solix fehler", "ecoflow fehler", "balkonkraftwerk anmelden"],
+ "Wärmepumpe": ["wärmepumpe fehler", "vaillant arotherm fehler", "wärmepumpe einstellen", "wärmepumpe stromverbrauch"],
+ "Pool & Garten-Wasser": ["pool wasser grün", "intex pool pumpe", "pool chlor", "sandfilteranlage rückspülen"],
+ "3D-Druck": ["bambu lab fehler", "3d drucker druckt nicht", "filament trocknen", "bambu lab a1 einrichten"],
+ "Aquarium": ["aquarium wasser trüb", "aquarium algen", "aquarium einrichten", "garnelen aquarium"],
+ "Katze (Probleme + Zubehör)": ["katze pinkelt", "katzenklo selbstreinigend", "katze kratzt möbel", "katzenbrunnen reinigen"],
+ "Heißluftfritteuse": ["ninja airfryer", "heißluftfritteuse reinigen", "airfryer fehler", "cosori airfryer"],
+ "Grill & Pizzaofen": ["pelletgrill", "weber grill reinigen", "ooni pizzaofen", "gasgrill zündet nicht"],
+ "Smart Home & Kameras": ["ring kamera fehler", "tapo kamera einrichten", "homematic ip fehler", "alexa reagiert nicht"]
+}
