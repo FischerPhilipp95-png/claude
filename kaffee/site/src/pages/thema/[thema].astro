@@ -8,6 +8,8 @@ import VideoBox from '../../components/VideoBox.astro';
 import { videoFuerSeite, videoSchema, mediathekVideos } from '../../videos';
 import VideoKarte from '../../components/VideoKarte.astro';
 import MaschinenKarte from '../../components/MaschinenKarte.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import { pflegemittelFuer } from '../../pflegemittel';
 import { maschinenListe, beitraegeFuer, videosFuer } from '../../maschinen-hilfe';
 import { mediathekVideos as mv } from '../../videos';
 
@@ -20,6 +22,8 @@ export async function getStaticPaths() {
 }
 const { name, t, posts, alle } = Astro.props;
 const maschinen = maschinenListe().filter((m) => m.hersteller === name);
+// Pflegemittel der Marke (bei „Philips & Saeco“ / „Siemens & Bosch“ die erste Marke). Nicht auf der allgemeinen Pflege-Seite.
+const mittel = name === 'Pflege' ? [] : pflegemittelFuer(t.titel.split(' ')[0]);
 const liste = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const jsonLd = [{
   '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${t.titel}: Anleitungen und Ratgeber`,
@@ -41,6 +45,13 @@ if (vSchema) jsonLd.push(vSchema as any);
         <h2 class="section-h" id="maschinen-h">Welche {t.titel}-Maschine hast du?</h2>
         <ul class="tiles">{maschinen.map((m) => <MaschinenKarte m={m} anleitungen={beitraegeFuer(m.id, alle).length} videos={videosFuer(m).length} />)}</ul>
       </section>
+    )}
+    {mittel.length > 0 && (
+      <>
+        <p class="ad-note"><strong>Anzeige:</strong> Die Amazon-Links unten sind Affiliate-Links (mit * markiert). Für dich ändert sich am Preis nichts.
+        <a href="/werbung/">Mehr dazu</a></p>
+        <Schnellkauf titel={`Pflegemittel für ${t.titel}`} items={mittel} />
+      </>
     )}
     {liste.length > 0 && (
       <section aria-labelledby="artikel-h">

@@ -4,6 +4,8 @@ import Base from '../../layouts/Base.astro';
 import ArtikelKarte from '../../components/ArtikelKarte.astro';
 import VideoKarte from '../../components/VideoKarte.astro';
 import Icon from '../../components/Icon.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import { pflegemittelFuer } from '../../pflegemittel';
 import { SITE } from '../../site';
 import { maschinenListe, beitraegeFuer, allgemeineFuer, videosFuer, hatInhalt, pruefeZuordnung } from '../../maschinen-hilfe';
 
@@ -19,6 +21,11 @@ const videos = videosFuer(m);
 const geschwister = maschinenListe().filter((x) => x.hersteller === m.hersteller && x.id !== m.id);
 // Ohne eigenen Beitrag und ohne Video: Seite für Besucher da, aber nicht für Google (keine dünnen Seiten im Index).
 const leer = !hatInhalt(m, posts);
+const marke = m.markenname ?? m.marke.titel.split(' ')[0];
+const kauf = [
+  ...pflegemittelFuer(marke),
+  { name: `Neue ${m.titel}?`, warum: 'Aktuelle Preise und Varianten bei Amazon vergleichen.', suche: `${marke.replace('’', "'")} ${m.name} ${m.art === 'siebtraeger' ? 'Siebträger' : 'Kaffeevollautomat'}` },
+];
 const title = `${m.titel}: Anleitungen und Hilfe`;
 const description = `${m.titel}: entkalken, reinigen, Fehler beheben. Alle Anleitungen und Videos für deine Maschine an einem Ort.`;
 const url = `${SITE.url}/maschine/${m.id}/`;
@@ -48,6 +55,9 @@ const jsonLd = [
         <p class="small">Welches Problem hast du mit deiner {m.name}? <a href="/kontakt/">Schreib es mir</a>, dann kommt diese Anleitung zuerst.</p>
       </aside>
     )}
+    <p class="ad-note"><strong>Anzeige:</strong> Diese Seite enthält Affiliate-Links (mit * markiert). Kaufst du darüber ein,
+    bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts. <a href="/werbung/">Mehr dazu</a></p>
+    <Schnellkauf titel={`Pflege für deine ${m.name}`} items={kauf} />
     {eigene.length > 0 && (
       <section aria-labelledby="eigene-h">
         <h2 class="section-h" id="eigene-h">Anleitungen für die {m.name}</h2>
