@@ -1,0 +1,1274 @@
+{
+ "seeds": [
+  "heizung druck"
+ ],
+ "suggestions": [
+  [
+   "heizung zu viel druck",
+   89.0
+  ],
+  [
+   "heizung druck zu hoch",
+   66.0
+  ],
+  [
+   "heizung druck erhöhen",
+   65.0
+  ],
+  [
+   "heizung druck zu hoch wasser ablassen",
+   40.0
+  ],
+  [
+   "heizung druck ablassen",
+   29.0
+  ],
+  [
+   "heizung druckverlust",
+   28.0
+  ],
+  [
+   "heizung druck einstellen",
+   26.0
+  ],
+  [
+   "heizung druck fällt ständig",
+   19.0
+  ],
+  [
+   "heizung druck steigt ständig",
+   18.0
+  ],
+  [
+   "wolf heizung druck hk",
+   16.0
+  ],
+  [
+   "ausgleichsbehälter heizung druck einstellen",
+   15.0
+  ],
+  [
+   "druck heizung erhöhen vaillant",
+   15.0
+  ],
+  [
+   "heizung druck nachfüllen",
+   14.0
+  ],
+  [
+   "viessmann heizung druck erhöhen",
+   12.0
+  ],
+  [
+   "brötje heizung druck erhöhen",
+   11.0
+  ],
+  [
+   "wolf heizung druck erhöhen",
+   11.0
+  ],
+  [
+   "buderus heizung druck erhöhen",
+   10.0
+  ],
+  [
+   "heizung kein druck",
+   10.0
+  ],
+  [
+   "heizung druck messen",
+   10.0
+  ],
+  [
+   "heizung verliert druck",
+   10.0
+  ],
+  [
+   "heizung zu wenig druck",
+   10.0
+  ],
+  [
+   "heizung entlüften druck",
+   8.0
+  ],
+  [
+   "vaillant heizung druck einstellen",
+   7.0
+  ],
+  [
+   "heizung drucklos machen",
+   5.0
+  ],
+  [
+   "heizung ölpumpe druck einstellen",
+   4.0
+  ],
+  [
+   "heizung druckausgleichsbehälter prüfen",
+   1.0
+  ]
+ ],
+ "topics": [
+  {
+   "phrase": "heizung zu viel druck",
+   "suggest_score": 89.0,
+   "top_views": [
+    671261,
+    456184,
+    270626
+   ],
+   "demand": 270626,
+   "own": [],
+   "results": [
+    {
+     "id": "GLwr0sApg4w",
+     "views": 671261,
+     "channel": "M1Molter - Der Heimwerker",
+     "duration": "624",
+     "title": "Heizung Druck steigt ständig - was nun?"
+    },
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226378,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "8n3Tg3N8wTs",
+     "views": 456184,
+     "channel": "SHK Info",
+     "duration": "250",
+     "title": "Wie viel Wasserdruck muss auf die Heizung?"
+    },
+    {
+     "id": "-ZhzGCtLCAg",
+     "views": 110508,
+     "channel": "Basti HW",
+     "duration": "228",
+     "title": "Heizung verliert Wasser? Die 7 häufigsten Gründe für den Druckverlust"
+    },
+    {
+     "id": "WV82wH9-V_E",
+     "views": 270626,
+     "channel": "SHK-TV",
+     "duration": "403",
+     "title": "Reflex: Wartung eines Membran-Drucksausdehnungsgefäßes | SHK-TV"
+    },
+    {
+     "id": "3qb1t1RlyMg",
+     "views": 142734,
+     "channel": "GS Heizung, Fenster & Photovoltaik",
+     "duration": "244",
+     "title": "WASSERDRUCK DER HEIZUNG - Das verrät dir dein Heizungsbauer nicht!"
+    },
+    {
+     "id": "BgMvHBIynMs",
+     "views": 217875,
+     "channel": "SHK-TV",
+     "duration": "356",
+     "title": "Reflex: Inbetriebnahme eines Membran-Druckausdehnungsgefäßes | SHK-TV"
+    },
+    {
+     "id": "TtiYOdW4j-o",
+     "views": 99183,
+     "channel": "ProblemLöserTV",
+     "duration": "292",
+     "title": "Sicherheitsventil Warmwasser Tropft Ständig ✅ TOP ANLEITUNG: Wie Boiler Überdruckventil Austauschen?"
+    }
+   ],
+   "potential": 10.27,
+   "questions": [
+    {
+     "text": "Also beide Hähne sind undicht??? Ich habe schon viele Heizungen eingebaut aber so etwas habe ich noch nie erlebt",
+     "likes": 25
+    },
+    {
+     "text": "Hallo Mark, kannst du ggf. mal ein Video zum Einstellen/ Optimierung der Heizungsteuerung machen (Heizkennlinie, Vorlauftemperatur etc. )? Wäre eine interessante Sache.",
+     "likes": 8
+    },
+    {
+     "text": "Was hast du Flachpfeife überhaupt gelernt oder hast du überhaupt was gelernt?",
+     "likes": 5
+    },
+    {
+     "text": "Woher nimmst du diese Aussagen die volkommen irreführend sind?",
+     "likes": 4
+    },
+    {
+     "text": "📢Weiterführende Videos zum Thema: ▼ \r ⇨ Automatische Heizkörperentlüfter montieren - wie? ► https://www.youtube.com/watch?v=vdox5cbqMNE\r ⇨ Heizung entlüften ohne Sauerei! ► https://youtu.be/C7qH51-is6E\r ⇨ Heizkörper Montieren ►https://www.youtube.com/watch?v=q2ery9YUPZ0",
+     "likes": 3
+    },
+    {
+     "text": "Was baut ihr für Speicher ein? Bei fast allen Rohrwendelspeichern sind die Wärmetauscher Spiralen doch fest eingeschweißt und reparieren ist unmöglich. Zu dem kann man die Emalie Schicht nicht mehr reparieren.  Wenn die Spirale kaputt ist ist auch der Speicher hin.",
+     "likes": 3
+    },
+    {
+     "text": "Eigentlich ist das festverbundene System nicht verboten, es muss jedoch dann ein Rohrtrenner eingebaut sein oder bin Ich da falsch?",
+     "likes": 1
+    },
+    {
+     "text": "ist die starre verbindung auch dann verboten wenn sich zwischen trinkwasser und heizungswasser ein systemtrenner oder rohrtrenner befindet?",
+     "likes": 1
+    },
+    {
+     "text": "Also nochmal zurück zum Szenario, Handwerker war da und danach steigt der Druck – in diesem Fall kann dann doch nur der vergessene Schlauch die Ursache sein. Oder?",
+     "likes": 1
+    },
+    {
+     "text": "Könntest du bitte mal was für mich aufklären. Muss ich bei einen Pufferspeicher Rotguss verwenden oder geht temperguss auch? Weitere Verbindung wäre c-stahl",
+     "likes": 0
+    },
+    {
+     "text": "Hallo, kann denn nicht so ein Anstieg auch am defekten Sicherheitsventil liegen? Oder wenn der Schnellentlüfter am Wärmetauscher undicht ist?",
+     "likes": 0
+    },
+    {
+     "text": "Hallo. Der Beitrag ist sehr gut erklärt. Wie kann ich aber testen, ob der Wärmetauscher bei steigendem Druck auf dem Manometer defekt ist??",
+     "likes": 0
+    },
+    {
+     "text": "Hallo wie kann ich ein Sicherheitsventil 3/4 ″ DVGW Trinkwasser austauschen ? Kann ich den Ventil direkt raus schrauben oder ?",
+     "likes": 0
+    },
+    {
+     "text": "Ist nicht der betriebsdruck 1 bar und auf diesen kommen die Höhenmeter in Druck dazu? Hab ich dunkel aus dem Tafelwerk in erinnerung",
+     "likes": 0
+    },
+    {
+     "text": "Meine heitzungdruck ist 4 bar und ich will neue  heitzkörper installieren  Die frage kann man für die neue Installation press system  verwenden  oder hält es sich nicht und undicht wird ?  Danke",
+     "likes": 0
+    },
+    {
+     "text": "servus will manometer wechseln, dazu muss ich ja den druck erstmal absenken, ;) wie mach ich das, muss ich das ganze Wasser von der Heizung ablassen oder wie? ist ein digi manometer besser, meine anzeige hüpft viel zu schnell hin und her, danke im voraus",
+     "likes": 0
+    },
+    {
+     "text": "HILFE 😉 bei uns in einer sehr alten Heizungsanlage ist die Heitzspirale kaputt gegangen und jetzt läuft seit Tagen das Wasser oben aus dem Kessel raus? Fachmänner waren da aber Hilfe kam da nicht wirklich.  Was kann man tun?",
+     "likes": 0
+    },
+    {
+     "text": "● barometer Heizung, wo verbaue ich die Wetterstation in der Heizung? ;-)",
+     "likes": 0
+    },
+    {
+     "text": "hey m1molter danke für dieses Video. bei mir ist der schlauch vom Wasserhahn zur Heizung immer dran, werde jetzt mal runter gehen und abmontieren. aber eine frage habe ich trotzdem: wie kann man überprüfen ob der Wärmetauscher undicht ist bzw. risse hat?",
+     "likes": 0
+    },
+    {
+     "text": "Wenn der Hahn vom Leitungswasser nicht wirklich dicht wäre, würde der doch ohne angeschlossenen Schlauch tropfen? Also bei mir ist da ein Drehhahn dran und wenn der zu ist, dann ist der dicht.",
+     "likes": 0
+    },
+    {
+     "text": "Ich habe eine Junkers-Gastherme.Wie hoch ist der Einschaltstrom? (Heiztherme ZWR 18-3)",
+     "likes": 0
+    },
+    {
+     "text": "Was ist, wenn der Druck beim Hochheizen des Kessels steigt, das MAG in Ordnung ist, und der zusätzliche Druck aus Luft besteht ????",
+     "likes": 0
+    },
+    {
+     "text": "Hallo ich müßte dieses Manometer tauschen, was muß ich alles befolgen? Vielen Dank für die Hilfe",
+     "likes": 0
+    },
+    {
+     "text": "Sollte die Heizung während der Nachfüllung ausgeschaltet werden?",
+     "likes": 0
+    },
+    {
+     "text": "woran sieht man an dem überdruckventil wie viel  bar da eingestellt ist weil bei unserem zeigt es da nichts an.?",
+     "likes": 0
+    },
+    {
+     "text": "Bei mir steigt nach großer Warmwasserabnahme der Wasserdruck im Trinkwassernetz auf 9 bar woran liegt das ?",
+     "likes": 0
+    },
+    {
+     "text": "Hallo deine Viedeo ist super heizungsinstallateur möchte meine wasser boiler austachen weil druck immer steigt  hat gesagt wie kann ich es selber prüfen ob es wirklich  der wasser boiler leitungswasser rein fliest ?",
+     "likes": 0
+    },
+    {
+     "text": "Heißt das, dass es irgendwann der Hand Tropfen wird, weil die Wasserleitungen 4 bar Druck haben und das kann der Hahn nach paar Jahren nicht mehr ab???",
+     "likes": 0
+    },
+    {
+     "text": "Hallo Servus, meine Vaillant Heizung,Sicherheitsventil tröpfelt, soll ich einfach wechseln oder ? kann es was anderes sein",
+     "likes": 0
+    },
+    {
+     "text": "Kann mir jemand sagen, wie ich die tiefste Temperatur an meinem Aussenfühler einstellen kann? Wenn draußen +18 Grad ist, läuft die Heizung nicht mehr. Danke.",
+     "likes": 0
+    },
+    {
+     "text": "Hallo sei gegrüßt habe folgendes Problem das der Druck fällt und wenn der Brenner läuft wieder steigt sobald er fertig ist fällt wieder was kann da das Problem sein?",
+     "likes": 0
+    },
+    {
+     "text": "Bei meine Oma wurde vor 2 Monaten ein neue Heizung eingebaut und dort ist der Wasser auffühl Hahn auch fest angebaut und nicht mit Schlauch, hat sich das geendert ?????? oder haben die da gefuscht ???????? da ist das problem aber nicht.",
+     "likes": 0
+    },
+    {
+     "text": "Bei mir is der warmwasserdruck zu niedrig?  Hat jemand ein tip",
+     "likes": 0
+    },
+    {
+     "text": "Wer tauscht bitte einen innenliegenden Wärmetauscher bei einem Speicher? Wenn dies überhaupt machbar ist, wäre die Arbeitszeit des Monteurs wahrscheinlich teurer als ein neuer Speicher.",
+     "likes": 0
+    },
+    {
+     "text": "Nur interessehalber: ich habe gerätselt, in welcher Region Deutschlands das \"r\" gerollt wird. Könnten Sie mir einen Tipp geben? Schönen Gruß",
+     "likes": 0
+    },
+    {
+     "text": "Your people all the time very talk.Why?null talk.",
+     "likes": 0
+    },
+    {
+     "text": "Habe viessman verticel und gleich problem .... Würde gerne die heizspindel ausbauen,entweder löten oder neue Spindel einbauen. Kann ich das obere Deckel einfach aufschrauben?? Damit ich die Heimspielen sehen kann???",
+     "likes": 0
+    }
+   ],
+   "questions_from": "Heizung Druck steigt ständig - was nun?"
+  },
+  {
+   "phrase": "heizung druck erhöhen",
+   "suggest_score": 65.0,
+   "top_views": [
+    1255042,
+    820517,
+    671261
+   ],
+   "demand": 671261,
+   "own": [],
+   "results": [
+    {
+     "id": "4fNHEXwVwl0",
+     "views": 820517,
+     "channel": "Empfehlungsfuchs",
+     "duration": "172",
+     "title": "Heizung Wasser nachfüllen - So kannst du deine Heizung auffüllen ✅"
+    },
+    {
+     "id": "nYafuK_ssdE",
+     "views": 967,
+     "channel": "Die ProfiAmatööre",
+     "duration": "157",
+     "title": "Heizung Wasser auffüllen - Wasserdruck erhöhen - einfach und verständlich erklärt! 💦✅"
+    },
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226378,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "8n3Tg3N8wTs",
+     "views": 456184,
+     "channel": "SHK Info",
+     "duration": "250",
+     "title": "Wie viel Wasserdruck muss auf die Heizung?"
+    },
+    {
+     "id": "BgMvHBIynMs",
+     "views": 217875,
+     "channel": "SHK-TV",
+     "duration": "356",
+     "title": "Reflex: Inbetriebnahme eines Membran-Druckausdehnungsgefäßes | SHK-TV"
+    },
+    {
+     "id": "HHWseNKnxrI",
+     "views": 122758,
+     "channel": "Smartest Home",
+     "duration": "115",
+     "title": "In 2 Minuten: Wärmepumpe Heizungsdruck anpassen | Smartest Home - Folge 119"
+    },
+    {
+     "id": "a4XyeTz40rU",
+     "views": 1255042,
+     "channel": "SHK Info",
+     "duration": "449",
+     "title": "Heizung erklärt - Wasser nachfüllen und System entlüften"
+    },
+    {
+     "id": "GLwr0sApg4w",
+     "views": 671261,
+     "channel": "M1Molter - Der Heimwerker",
+     "duration": "624",
+     "title": "Heizung Druck steigt ständig - was nun?"
+    }
+   ],
+   "potential": 9.61,
+   "questions": [
+    {
+     "text": "Soso.. Systemtrenner also.. wenn ich sehe, was heutzutage alles Vorschrift ist.. Wie haben die Leute vor 30 Jaren bloß überleben können?? Komme selber aus dem Elektrobereich.. genauso ein Wahnsinn..",
+     "likes": 92
+    },
+    {
+     "text": "Sollten nicht vor den nachfüllen alle Heizungsthermostate aufgedreht werden?",
+     "likes": 7
+    },
+    {
+     "text": "Frieschwasser hat ein Druck von 8 bis 10 bar. Wie soll denn da Heizungswasser mit deutlich weniger Druck reinkommen über den Schlauch ?",
+     "likes": 7
+    },
+    {
+     "text": "Wie kann man es als Hausbesitzer prüfen, ob das Ausdehnungsgefäß noch ok ist?",
+     "likes": 5
+    },
+    {
+     "text": "Mit welchen Heizkörpern fängt man am besten zu entlüften an? Die am weitesten zur Therme entfernt sind oder die am nächsten von der Therme sind🙄",
+     "likes": 4
+    },
+    {
+     "text": "Alles super erklärt 👍 Danke Eine Frage an sie Wie kann alte Rillen Heizkörper entlüften? Es gibt bei den alten Rillen Heizkörper keine stelle wo ich entlüften kann.",
+     "likes": 3
+    },
+    {
+     "text": "Systemtrenner? Umsatzgenerierung ...",
+     "likes": 3
+    },
+    {
+     "text": "4:27 wer hat Heizkörper fast in Augenhöhe hängen?",
+     "likes": 3
+    },
+    {
+     "text": "Gilt da gleiche auch bei Fußbodenheizung ? Was ist da der Normdruck ?",
+     "likes": 2
+    },
+    {
+     "text": "Heizkörper ohne Rücklaufverschraubung?",
+     "likes": 2
+    },
+    {
+     "text": "wir haben teilweis sehr alte Heizkörper, die kein Entlüftungsventil haben. Gibt es irgendeinen einen Trick, diese zu entlüften oder muss man mit der eingeschlossenen Luft leben?",
+     "likes": 2
+    },
+    {
+     "text": "Wie soll Heizungswasser ins Trinkwassersystem kommen, wenn der Druck des Trinkwassers bei 4 bar liegt und der vom Heizungswasser bei 2 bar?",
+     "likes": 2
+    },
+    {
+     "text": "Bei einem Haus, soll man da von unten (Keller) nach oben (Dach) sowohl die Heizkörper als auch die Fußbodenheizung, entlüften.?",
+     "likes": 2
+    },
+    {
+     "text": "Wichtig wäre aber auch gewesen, wann man den Wasserdruck misst, entweder bei ein oder bei ausgeschalteter Pumpe ? Bei eingeschalter Pumpe ist der Wasserdruck nämlich immer ca.0,5 bar niedriger als bei eingeschalteter Pumpe..",
+     "likes": 1
+    },
+    {
+     "text": "Naja das man das Ventil öffnet und entlüften ist glaube ich jeden klar. Aber wo fange ich an im Keller bei den nahen Heizkörpern zur Heizung und dann die Stockwerke bis ganz nach oben ? . Und wenn ich alle entlüften habe dann noch mal im ganzen Kreislauf nachfüllen ?",
+     "likes": 1
+    },
+    {
+     "text": "Blöde Frage unsere Heizungsanlage wurde erst neu gemacht uund mit VE Wasser befüllt. Wenn ich ab und zu mal Auffüllen muss, wegen entlüften oder Schlammabscheider ablassen, wie wichtig ist es da auf eine Aufbereitungskartusche zurückzugreifen?",
+     "likes": 1
+    },
+    {
+     "text": "Dachte es gibt auch infos, ob ganz normales Leitungswasser verwendetwerden kann, oder ob Demineralisiertes Wasser verwendet werdet muss ???",
+     "likes": 1
+    },
+    {
+     "text": "Ich habe gehört, dass man gar kein Leitungswasser mehr zu Befüllen nehmen soll/darf. Ist das richtig?",
+     "likes": 1
+    },
+    {
+     "text": "Muss man bei einer Wärmepumpe mit separater Außeneinheit nur am Pufferspeicher Wasser nachfüllen oder auch an der Außeneinheit?",
+     "likes": 1
+    },
+    {
+     "text": "Mein Manometer steht nah an dem Ausdehnungsfass, kann ich nach ihm richten , wenn ich Heizwasser nachfülle oder muss noch ein anderer Manometer da sein?",
+     "likes": 1
+    },
+    {
+     "text": "Wieso sieht ihr was nicht zulässig ist? Wie kann ich vermeiden das Luft in das Heizungswasser klmmt?",
+     "likes": 1
+    },
+    {
+     "text": "Kann man so auch das Wasser ablassen von der Heizung?",
+     "likes": 1
+    },
+    {
+     "text": "Von oben nach unten oder von unten nach oben entlüften ?😅",
+     "likes": 1
+    },
+    {
+     "text": "Super Video. Vielen Dank. Hast du mal bitte den Link zu dem erwähnten Systemtrenner? Ich danke dir!",
+     "likes": 1
+    },
+    {
+     "text": "Mein Heizungsbauer sagt, bloß kein Leistungswasser wegen Kalkablagerungen und Korrosion nehmen, sondern entminiralisiertes Wasser - was meint ihr dazu?",
+     "likes": 1
+    },
+    {
+     "text": "Und wie oft kommt das vor das dadurch wirklich das Leitungswasser verunreinigt wird und das man dann krank wird?",
+     "likes": 1
+    },
+    {
+     "text": "0:20 Prüfe ich den Druck während die Heizkreispumpe läuft oder bei ausgeschalteter Pumpe? Bei ausgeschalteter Pumpe habe ich etwas über 1 und bei laufender  unter 2.",
+     "likes": 1
+    },
+    {
+     "text": "also man soll die heizung komplett ausschalten und dann heizkörper hochdrehen zum entlüften?",
+     "likes": 1
+    },
+    {
+     "text": "Tut nicht ein ein Geräteanschlussventil mit Rückflussverhinderer das gleiche wie der Systemtrenner?",
+     "likes": 1
+    },
+    {
+     "text": "Für dieses Video gebe ich Dir eine ganze 6. Wieso den Druck auf 1,5 Bar? Hat der Kunde 4 Stockwerke, sind die 1.5 Bar viel zu wenig. Demnach schlecht erklärt. Vieles wurde nicht erklärt, sodass der Kunde es richtig nachvollziehen kann.",
+     "likes": 1
+    },
+    {
+     "text": "Bei einer Forsterheizung, reicht da das auffüllen der oberen Wasserblase??",
+     "likes": 0
+    },
+    {
+     "text": "Was kann ich machen, wenn beim Entlüften nur Luft und kein Wasser rauskommt?",
+     "likes": 0
+    },
+    {
+     "text": "Hat einer nen Tipp, wenn die HK in einer Nische montiert ist?",
+     "likes": 0
+    },
+    {
+     "text": "Ist 1,5 Bar nicht zu niedrig? Bzw. wie hoch kann man denn gehen?",
+     "likes": 0
+    },
+    {
+     "text": "Von 5 Heizungen funktioniert 4 .. aber warum funktioniert der eine net?",
+     "likes": 0
+    },
+    {
+     "text": "soll ich das ganze Wasser rauslassen?",
+     "likes": 0
+    },
+    {
+     "text": "Dort braucht man dann also kein „Heizungswasser“? Wie ist das bei Fußbodenheizungen? Entlüften auch mit Leitungswasser?",
+     "likes": 0
+    },
+    {
+     "text": "Wann lese ich denn das Manometer ab? Auf was ist das denn geeicht? Im kalten Zustand der Heizung? Im heißen? Im heißen alle Ventile offen? Die Anzeige variiert doch stark.... Besten Dank.",
+     "likes": 0
+    },
+    {
+     "text": "Wie kann ich Wasserdruck niedriger machen?",
+     "likes": 0
+    }
+   ],
+   "questions_from": "Heizung erklärt - Wasser nachfüllen und System entlüften"
+  },
+  {
+   "phrase": "heizung druck zu hoch",
+   "suggest_score": 66.0,
+   "top_views": [
+    671261,
+    456184,
+    226378
+   ],
+   "demand": 226378,
+   "own": [],
+   "results": [
+    {
+     "id": "GLwr0sApg4w",
+     "views": 671261,
+     "channel": "M1Molter - Der Heimwerker",
+     "duration": "624",
+     "title": "Heizung Druck steigt ständig - was nun?"
+    },
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226378,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "3qb1t1RlyMg",
+     "views": 142734,
+     "channel": "GS Heizung, Fenster & Photovoltaik",
+     "duration": "244",
+     "title": "WASSERDRUCK DER HEIZUNG - Das verrät dir dein Heizungsbauer nicht!"
+    },
+    {
+     "id": "-ZhzGCtLCAg",
+     "views": 110508,
+     "channel": "Basti HW",
+     "duration": "228",
+     "title": "Heizung verliert Wasser? Die 7 häufigsten Gründe für den Druckverlust"
+    },
+    {
+     "id": "HHWseNKnxrI",
+     "views": 122758,
+     "channel": "Smartest Home",
+     "duration": "115",
+     "title": "In 2 Minuten: Wärmepumpe Heizungsdruck anpassen | Smartest Home - Folge 119"
+    },
+    {
+     "id": "8n3Tg3N8wTs",
+     "views": 456184,
+     "channel": "SHK Info",
+     "duration": "250",
+     "title": "Wie viel Wasserdruck muss auf die Heizung?"
+    },
+    {
+     "id": "c3N4dW7mIAc",
+     "views": 3704,
+     "channel": "Mac Paverick",
+     "duration": "122",
+     "title": "Manometer der Heizung richtig ablesen – Wasserdruck / Heizungsdruck im Haus prüfen Anleitung"
+    },
+    {
+     "id": "fiuZtedQ9oQ",
+     "views": 10360,
+     "channel": "Barwig Group | Heizung Klima Elektro Sanitär PV",
+     "duration": "192",
+     "title": "Warum DEIN Warmwasserdruck zu SCHWACH ist – So löst du das Problem!"
+    }
+   ],
+   "potential": 8.89,
+   "questions": [
+    {
+     "text": "Also beide Hähne sind undicht??? Ich habe schon viele Heizungen eingebaut aber so etwas habe ich noch nie erlebt",
+     "likes": 25
+    },
+    {
+     "text": "Hallo Mark, kannst du ggf. mal ein Video zum Einstellen/ Optimierung der Heizungsteuerung machen (Heizkennlinie, Vorlauftemperatur etc. )? Wäre eine interessante Sache.",
+     "likes": 8
+    },
+    {
+     "text": "Was hast du Flachpfeife überhaupt gelernt oder hast du überhaupt was gelernt?",
+     "likes": 5
+    },
+    {
+     "text": "Woher nimmst du diese Aussagen die volkommen irreführend sind?",
+     "likes": 4
+    },
+    {
+     "text": "📢Weiterführende Videos zum Thema: ▼ \r ⇨ Automatische Heizkörperentlüfter montieren - wie? ► https://www.youtube.com/watch?v=vdox5cbqMNE\r ⇨ Heizung entlüften ohne Sauerei! ► https://youtu.be/C7qH51-is6E\r ⇨ Heizkörper Montieren ►https://www.youtube.com/watch?v=q2ery9YUPZ0",
+     "likes": 3
+    },
+    {
+     "text": "Was baut ihr für Speicher ein? Bei fast allen Rohrwendelspeichern sind die Wärmetauscher Spiralen doch fest eingeschweißt und reparieren ist unmöglich. Zu dem kann man die Emalie Schicht nicht mehr reparieren.  Wenn die Spirale kaputt ist ist auch der Speicher hin.",
+     "likes": 3
+    },
+    {
+     "text": "Eigentlich ist das festverbundene System nicht verboten, es muss jedoch dann ein Rohrtrenner eingebaut sein oder bin Ich da falsch?",
+     "likes": 1
+    },
+    {
+     "text": "ist die starre verbindung auch dann verboten wenn sich zwischen trinkwasser und heizungswasser ein systemtrenner oder rohrtrenner befindet?",
+     "likes": 1
+    },
+    {
+     "text": "Also nochmal zurück zum Szenario, Handwerker war da und danach steigt der Druck – in diesem Fall kann dann doch nur der vergessene Schlauch die Ursache sein. Oder?",
+     "likes": 1
+    },
+    {
+     "text": "Könntest du bitte mal was für mich aufklären. Muss ich bei einen Pufferspeicher Rotguss verwenden oder geht temperguss auch? Weitere Verbindung wäre c-stahl",
+     "likes": 0
+    },
+    {
+     "text": "Hallo. Der Beitrag ist sehr gut erklärt. Wie kann ich aber testen, ob der Wärmetauscher bei steigendem Druck auf dem Manometer defekt ist??",
+     "likes": 0
+    },
+    {
+     "text": "Hallo, kann denn nicht so ein Anstieg auch am defekten Sicherheitsventil liegen? Oder wenn der Schnellentlüfter am Wärmetauscher undicht ist?",
+     "likes": 0
+    },
+    {
+     "text": "Hallo wie kann ich ein Sicherheitsventil 3/4 ″ DVGW Trinkwasser austauschen ? Kann ich den Ventil direkt raus schrauben oder ?",
+     "likes": 0
+    },
+    {
+     "text": "Ist nicht der betriebsdruck 1 bar und auf diesen kommen die Höhenmeter in Druck dazu? Hab ich dunkel aus dem Tafelwerk in erinnerung",
+     "likes": 0
+    },
+    {
+     "text": "Meine heitzungdruck ist 4 bar und ich will neue  heitzkörper installieren  Die frage kann man für die neue Installation press system  verwenden  oder hält es sich nicht und undicht wird ?  Danke",
+     "likes": 0
+    },
+    {
+     "text": "servus will manometer wechseln, dazu muss ich ja den druck erstmal absenken, ;) wie mach ich das, muss ich das ganze Wasser von der Heizung ablassen oder wie? ist ein digi manometer besser, meine anzeige hüpft viel zu schnell hin und her, danke im voraus",
+     "likes": 0
+    },
+    {
+     "text": "● barometer Heizung, wo verbaue ich die Wetterstation in der Heizung? ;-)",
+     "likes": 0
+    },
+    {
+     "text": "hey m1molter danke für dieses Video. bei mir ist der schlauch vom Wasserhahn zur Heizung immer dran, werde jetzt mal runter gehen und abmontieren. aber eine frage habe ich trotzdem: wie kann man überprüfen ob der Wärmetauscher undicht ist bzw. risse hat?",
+     "likes": 0
+    },
+    {
+     "text": "HILFE 😉 bei uns in einer sehr alten Heizungsanlage ist die Heitzspirale kaputt gegangen und jetzt läuft seit Tagen das Wasser oben aus dem Kessel raus? Fachmänner waren da aber Hilfe kam da nicht wirklich.  Was kann man tun?",
+     "likes": 0
+    },
+    {
+     "text": "Hallo ich müßte dieses Manometer tauschen, was muß ich alles befolgen? Vielen Dank für die Hilfe",
+     "likes": 0
+    },
+    {
+     "text": "Ich habe eine Junkers-Gastherme.Wie hoch ist der Einschaltstrom? (Heiztherme ZWR 18-3)",
+     "likes": 0
+    },
+    {
+     "text": "Was ist, wenn der Druck beim Hochheizen des Kessels steigt, das MAG in Ordnung ist, und der zusätzliche Druck aus Luft besteht ????",
+     "likes": 0
+    },
+    {
+     "text": "Sollte die Heizung während der Nachfüllung ausgeschaltet werden?",
+     "likes": 0
+    },
+    {
+     "text": "Wenn der Hahn vom Leitungswasser nicht wirklich dicht wäre, würde der doch ohne angeschlossenen Schlauch tropfen? Also bei mir ist da ein Drehhahn dran und wenn der zu ist, dann ist der dicht.",
+     "likes": 0
+    },
+    {
+     "text": "woran sieht man an dem überdruckventil wie viel  bar da eingestellt ist weil bei unserem zeigt es da nichts an.?",
+     "likes": 0
+    },
+    {
+     "text": "Bei mir steigt nach großer Warmwasserabnahme der Wasserdruck im Trinkwassernetz auf 9 bar woran liegt das ?",
+     "likes": 0
+    },
+    {
+     "text": "Hallo deine Viedeo ist super heizungsinstallateur möchte meine wasser boiler austachen weil druck immer steigt  hat gesagt wie kann ich es selber prüfen ob es wirklich  der wasser boiler leitungswasser rein fliest ?",
+     "likes": 0
+    },
+    {
+     "text": "Heißt das, dass es irgendwann der Hand Tropfen wird, weil die Wasserleitungen 4 bar Druck haben und das kann der Hahn nach paar Jahren nicht mehr ab???",
+     "likes": 0
+    },
+    {
+     "text": "Hallo Servus, meine Vaillant Heizung,Sicherheitsventil tröpfelt, soll ich einfach wechseln oder ? kann es was anderes sein",
+     "likes": 0
+    },
+    {
+     "text": "Hallo sei gegrüßt habe folgendes Problem das der Druck fällt und wenn der Brenner läuft wieder steigt sobald er fertig ist fällt wieder was kann da das Problem sein?",
+     "likes": 0
+    },
+    {
+     "text": "Bei meine Oma wurde vor 2 Monaten ein neue Heizung eingebaut und dort ist der Wasser auffühl Hahn auch fest angebaut und nicht mit Schlauch, hat sich das geendert ?????? oder haben die da gefuscht ???????? da ist das problem aber nicht.",
+     "likes": 0
+    },
+    {
+     "text": "Kann mir jemand sagen, wie ich die tiefste Temperatur an meinem Aussenfühler einstellen kann? Wenn draußen +18 Grad ist, läuft die Heizung nicht mehr. Danke.",
+     "likes": 0
+    },
+    {
+     "text": "Wer tauscht bitte einen innenliegenden Wärmetauscher bei einem Speicher? Wenn dies überhaupt machbar ist, wäre die Arbeitszeit des Monteurs wahrscheinlich teurer als ein neuer Speicher.",
+     "likes": 0
+    },
+    {
+     "text": "Bei mir is der warmwasserdruck zu niedrig?  Hat jemand ein tip",
+     "likes": 0
+    },
+    {
+     "text": "Nur interessehalber: ich habe gerätselt, in welcher Region Deutschlands das \"r\" gerollt wird. Könnten Sie mir einen Tipp geben? Schönen Gruß",
+     "likes": 0
+    },
+    {
+     "text": "Your people all the time very talk.Why?null talk.",
+     "likes": 0
+    },
+    {
+     "text": "Habe viessman verticel und gleich problem .... Würde gerne die heizspindel ausbauen,entweder löten oder neue Spindel einbauen. Kann ich das obere Deckel einfach aufschrauben?? Damit ich die Heimspielen sehen kann???",
+     "likes": 0
+    }
+   ],
+   "questions_from": "Heizung Druck steigt ständig - was nun?"
+  },
+  {
+   "phrase": "heizung druck zu hoch wasser ablassen",
+   "suggest_score": 40.0,
+   "top_views": [
+    820517,
+    671261,
+    529545
+   ],
+   "demand": 529545,
+   "own": [],
+   "results": [
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226378,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "GLwr0sApg4w",
+     "views": 671261,
+     "channel": "M1Molter - Der Heimwerker",
+     "duration": "624",
+     "title": "Heizung Druck steigt ständig - was nun?"
+    },
+    {
+     "id": "EsT77jM9ODg",
+     "views": 13448,
+     "channel": "Pduesp",
+     "duration": "276",
+     "title": "Zentralheizung ablassen & wieder befüllen – Heizkörper richtig entleeren"
+    },
+    {
+     "id": "3qb1t1RlyMg",
+     "views": 142734,
+     "channel": "GS Heizung, Fenster & Photovoltaik",
+     "duration": "244",
+     "title": "WASSERDRUCK DER HEIZUNG - Das verrät dir dein Heizungsbauer nicht!"
+    },
+    {
+     "id": "RBNw_17d0rw",
+     "views": 448754,
+     "channel": "Empfehlungsfuchs",
+     "duration": "140",
+     "title": "Mache nicht DIESE Fehler beim Heizung entlüften🤯(Fast JEDER macht sie)💥"
+    },
+    {
+     "id": "g190TQEMeJQ",
+     "views": 529545,
+     "channel": "Dominik Bößl",
+     "duration": "104",
+     "title": "Heizung entlüften – Anleitung für Mietwohnung – Schnell und einfach Luft aus Heizkörper ablassen"
+    },
+    {
+     "id": "4fNHEXwVwl0",
+     "views": 820517,
+     "channel": "Empfehlungsfuchs",
+     "duration": "172",
+     "title": "Heizung Wasser nachfüllen - So kannst du deine Heizung auffüllen ✅"
+    },
+    {
+     "id": "-ZhzGCtLCAg",
+     "views": 110508,
+     "channel": "Basti HW",
+     "duration": "228",
+     "title": "Heizung verliert Wasser? Die 7 häufigsten Gründe für den Druckverlust"
+    }
+   ],
+   "potential": 8.01
+  },
+  {
+   "phrase": "heizung druck ablassen",
+   "suggest_score": 29.0,
+   "top_views": [
+    671261,
+    529545,
+    440137
+   ],
+   "demand": 440137,
+   "own": [],
+   "results": [
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226378,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "EsT77jM9ODg",
+     "views": 13448,
+     "channel": "Pduesp",
+     "duration": "276",
+     "title": "Zentralheizung ablassen & wieder befüllen – Heizkörper richtig entleeren"
+    },
+    {
+     "id": "GLwr0sApg4w",
+     "views": 671261,
+     "channel": "M1Molter - Der Heimwerker",
+     "duration": "624",
+     "title": "Heizung Druck steigt ständig - was nun?"
+    },
+    {
+     "id": "xoZYrEixzHc",
+     "views": 26579,
+     "channel": "Dom227",
+     "duration": "396",
+     "title": "Wie entleert man eine Heizungsanlage?  Heizungsanlage Entleeren: Schritt-für-Schritt Anleitung"
+    },
+    {
+     "id": "JpDpslNSsqY",
+     "views": 440137,
+     "channel": "Probierwerkstatt",
+     "duration": "597",
+     "title": "Heizkörper abmontieren und Wasser ablassen für Renovieren, Tapezieren, Streichen (Einfach) deutsch"
+    },
+    {
+     "id": "g190TQEMeJQ",
+     "views": 529545,
+     "channel": "Dominik Bößl",
+     "duration": "104",
+     "title": "Heizung entlüften – Anleitung für Mietwohnung – Schnell und einfach Luft aus Heizkörper ablassen"
+    },
+    {
+     "id": "3qb1t1RlyMg",
+     "views": 142734,
+     "channel": "GS Heizung, Fenster & Photovoltaik",
+     "duration": "244",
+     "title": "WASSERDRUCK DER HEIZUNG - Das verrät dir dein Heizungsbauer nicht!"
+    },
+    {
+     "id": "2a7LNH6hLx8",
+     "views": 26896,
+     "channel": "Energie Innovative",
+     "duration": "544",
+     "title": "Heizungsanlage selbst BEFÜLLEN und ENTLÜFTEN #diy"
+    }
+   ],
+   "potential": 7.28
+  },
+  {
+   "phrase": "heizung druck einstellen",
+   "suggest_score": 26.0,
+   "top_views": [
+    820517,
+    671261,
+    456184
+   ],
+   "demand": 456184,
+   "own": [],
+   "results": [
+    {
+     "id": "8n3Tg3N8wTs",
+     "views": 456184,
+     "channel": "SHK Info",
+     "duration": "250",
+     "title": "Wie viel Wasserdruck muss auf die Heizung?"
+    },
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226378,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "3qb1t1RlyMg",
+     "views": 142734,
+     "channel": "GS Heizung, Fenster & Photovoltaik",
+     "duration": "244",
+     "title": "WASSERDRUCK DER HEIZUNG - Das verrät dir dein Heizungsbauer nicht!"
+    },
+    {
+     "id": "4fNHEXwVwl0",
+     "views": 820517,
+     "channel": "Empfehlungsfuchs",
+     "duration": "172",
+     "title": "Heizung Wasser nachfüllen - So kannst du deine Heizung auffüllen ✅"
+    },
+    {
+     "id": "BgMvHBIynMs",
+     "views": 217875,
+     "channel": "SHK-TV",
+     "duration": "356",
+     "title": "Reflex: Inbetriebnahme eines Membran-Druckausdehnungsgefäßes | SHK-TV"
+    },
+    {
+     "id": "WV82wH9-V_E",
+     "views": 270626,
+     "channel": "SHK-TV",
+     "duration": "403",
+     "title": "Reflex: Wartung eines Membran-Drucksausdehnungsgefäßes | SHK-TV"
+    },
+    {
+     "id": "-ZhzGCtLCAg",
+     "views": 110508,
+     "channel": "Basti HW",
+     "duration": "228",
+     "title": "Heizung verliert Wasser? Die 7 häufigsten Gründe für den Druckverlust"
+    },
+    {
+     "id": "GLwr0sApg4w",
+     "views": 671261,
+     "channel": "M1Molter - Der Heimwerker",
+     "duration": "624",
+     "title": "Heizung Druck steigt ständig - was nun?"
+    }
+   ],
+   "potential": 7.13
+  },
+  {
+   "phrase": "wolf heizung druck hk",
+   "suggest_score": 16.0,
+   "top_views": [
+    1255042,
+    820517,
+    456184
+   ],
+   "demand": 456184,
+   "own": [],
+   "results": [
+    {
+     "id": "cHdgQJC0OdA",
+     "views": 70045,
+     "channel": "Serhat Heizung und Sanitär ",
+     "duration": "141",
+     "title": "Wolf Heizungsanlage Fehler auslesen und beheben"
+    },
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226378,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "eNKi22q0_a0",
+     "views": 200360,
+     "channel": "Handwerkskönig",
+     "duration": "386",
+     "title": "Heizungswasser nachfüllen, Heizung befüllen, Gastherme Druck zu niedrig, Heizkosten einsparen!"
+    },
+    {
+     "id": "4fNHEXwVwl0",
+     "views": 820517,
+     "channel": "Empfehlungsfuchs",
+     "duration": "172",
+     "title": "Heizung Wasser nachfüllen - So kannst du deine Heizung auffüllen ✅"
+    },
+    {
+     "id": "8n3Tg3N8wTs",
+     "views": 456184,
+     "channel": "SHK Info",
+     "duration": "250",
+     "title": "Wie viel Wasserdruck muss auf die Heizung?"
+    },
+    {
+     "id": "-ZhzGCtLCAg",
+     "views": 110508,
+     "channel": "Basti HW",
+     "duration": "228",
+     "title": "Heizung verliert Wasser? Die 7 häufigsten Gründe für den Druckverlust"
+    },
+    {
+     "id": "a4XyeTz40rU",
+     "views": 1255042,
+     "channel": "SHK Info",
+     "duration": "449",
+     "title": "Heizung erklärt - Wasser nachfüllen und System entlüften"
+    },
+    {
+     "id": "2Yj2TiCI0Uc",
+     "views": 402582,
+     "channel": "Basti HW",
+     "duration": "324",
+     "title": "Heizung Wasser nachfüllen - Schritt für Schritt Anleitung"
+    }
+   ],
+   "potential": 6.56
+  },
+  {
+   "phrase": "heizung druckverlust",
+   "suggest_score": 28.0,
+   "top_views": [
+    1344891,
+    456184,
+    110508
+   ],
+   "demand": 110508,
+   "own": [],
+   "results": [
+    {
+     "id": "-ZhzGCtLCAg",
+     "views": 110508,
+     "channel": "Basti HW",
+     "duration": "228",
+     "title": "Heizung verliert Wasser? Die 7 häufigsten Gründe für den Druckverlust"
+    },
+    {
+     "id": "ihc1y-31jFM",
+     "views": 68633,
+     "channel": "Mac Paverick",
+     "duration": "326",
+     "title": "Heizung verliert Wasserdruck - Druckverlust in der Heizung –Druck & Wasser sinkt – Ursachen & Gründe"
+    },
+    {
+     "id": "B6SJOMOnlk0",
+     "views": 1344891,
+     "channel": "SHK Info",
+     "duration": "343",
+     "title": "5 Gründe für Wasserverlust in der Heizung"
+    },
+    {
+     "id": "Rz8ypV5F_8A",
+     "views": 59409,
+     "channel": "PETONIs Landleben",
+     "duration": "695",
+     "title": "Solarthermie Druckverlust nachfüllen + Fehlersuche Statusupdate Fröling SP Dual Abgassystem Wartung"
+    },
+    {
+     "id": "6mTD0eeQ4s8",
+     "views": 1533,
+     "channel": "Martin Fischer",
+     "duration": "190",
+     "title": "Elternhaus: Heizung Druckverlust"
+    },
+    {
+     "id": "3q3JgreaXfA",
+     "views": 13180,
+     "channel": "Energie Innovative",
+     "duration": "515",
+     "title": "Deine Heizung verliert ständig Druck? Hier sind 5 Gründe für Wasserverlust deiner Heizungsanlage."
+    },
+    {
+     "id": "E63Mb8CivUg",
+     "views": 143,
+     "channel": "AM-Nordisch",
+     "duration": "491",
+     "title": "Druckverlust in der Heizung? Warum dieses Bauteil JEDE Anlage killen kann!"
+    },
+    {
+     "id": "8n3Tg3N8wTs",
+     "views": 456184,
+     "channel": "SHK Info",
+     "duration": "250",
+     "title": "Wie viel Wasserdruck muss auf die Heizung?"
+    }
+   ],
+   "potential": 6.46
+  },
+  {
+   "phrase": "heizung druck fällt ständig",
+   "suggest_score": 19.0,
+   "top_views": [
+    1344891,
+    671261,
+    169486
+   ],
+   "demand": 169486,
+   "own": [],
+   "results": [
+    {
+     "id": "-ZhzGCtLCAg",
+     "views": 110508,
+     "channel": "Basti HW",
+     "duration": "228",
+     "title": "Heizung verliert Wasser? Die 7 häufigsten Gründe für den Druckverlust"
+    },
+    {
+     "id": "GLwr0sApg4w",
+     "views": 671261,
+     "channel": "M1Molter - Der Heimwerker",
+     "duration": "624",
+     "title": "Heizung Druck steigt ständig - was nun?"
+    },
+    {
+     "id": "B6SJOMOnlk0",
+     "views": 1344891,
+     "channel": "SHK Info",
+     "duration": "343",
+     "title": "5 Gründe für Wasserverlust in der Heizung"
+    },
+    {
+     "id": "3q3JgreaXfA",
+     "views": 13180,
+     "channel": "Energie Innovative",
+     "duration": "515",
+     "title": "Deine Heizung verliert ständig Druck? Hier sind 5 Gründe für Wasserverlust deiner Heizungsanlage."
+    },
+    {
+     "id": "ihc1y-31jFM",
+     "views": 68633,
+     "channel": "Mac Paverick",
+     "duration": "326",
+     "title": "Heizung verliert Wasserdruck - Druckverlust in der Heizung –Druck & Wasser sinkt – Ursachen & Gründe"
+    },
+    {
+     "id": "Tp691z3azVk",
+     "views": 53993,
+     "channel": "Klima Clemens",
+     "duration": "312",
+     "title": "Ständig Heizungswasser nachfüllen | Ursache | Lösung | keine Leckage!"
+    },
+    {
+     "id": "m39dCpte-OQ",
+     "views": 169486,
+     "channel": "Serhat Heizung und Sanitär ",
+     "duration": "203",
+     "title": "Ausdehnungsgefäß an der Heizung prüfen"
+    },
+    {
+     "id": "3qb1t1RlyMg",
+     "views": 142734,
+     "channel": "GS Heizung, Fenster & Photovoltaik",
+     "duration": "244",
+     "title": "WASSERDRUCK DER HEIZUNG - Das verrät dir dein Heizungsbauer nicht!"
+    }
+   ],
+   "potential": 6.22
+  },
+  {
+   "phrase": "heizung druck steigt ständig",
+   "suggest_score": 18.0,
+   "top_views": [
+    671261,
+    226378,
+    169486
+   ],
+   "demand": 169486,
+   "own": [],
+   "results": [
+    {
+     "id": "GLwr0sApg4w",
+     "views": 671261,
+     "channel": "M1Molter - Der Heimwerker",
+     "duration": "624",
+     "title": "Heizung Druck steigt ständig - was nun?"
+    },
+    {
+     "id": "-ZhzGCtLCAg",
+     "views": 110508,
+     "channel": "Basti HW",
+     "duration": "228",
+     "title": "Heizung verliert Wasser? Die 7 häufigsten Gründe für den Druckverlust"
+    },
+    {
+     "id": "3qb1t1RlyMg",
+     "views": 142734,
+     "channel": "GS Heizung, Fenster & Photovoltaik",
+     "duration": "244",
+     "title": "WASSERDRUCK DER HEIZUNG - Das verrät dir dein Heizungsbauer nicht!"
+    },
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226378,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "TtiYOdW4j-o",
+     "views": 99183,
+     "channel": "ProblemLöserTV",
+     "duration": "292",
+     "title": "Sicherheitsventil Warmwasser Tropft Ständig ✅ TOP ANLEITUNG: Wie Boiler Überdruckventil Austauschen?"
+    },
+    {
+     "id": "zOfMom149h4",
+     "views": 62080,
+     "channel": "Energiesparen leicht gemacht",
+     "duration": "427",
+     "title": "Warum verliert eine Heizung Wasser und was können Sie selbst dagegen tun"
+    },
+    {
+     "id": "m39dCpte-OQ",
+     "views": 169486,
+     "channel": "Serhat Heizung und Sanitär ",
+     "duration": "203",
+     "title": "Ausdehnungsgefäß an der Heizung prüfen"
+    },
+    {
+     "id": "3q3JgreaXfA",
+     "views": 13180,
+     "channel": "Energie Innovative",
+     "duration": "515",
+     "title": "Deine Heizung verliert ständig Druck? Hier sind 5 Gründe für Wasserverlust deiner Heizungsanlage."
+    }
+   ],
+   "potential": 6.17
+  }
+ ]
+}
