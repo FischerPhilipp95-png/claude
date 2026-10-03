@@ -1,0 +1,50 @@
+# vollautomatendoktor.de einrichten (einmalig, ca. 20 Minuten)
+
+Alles, was Geld kostet oder ein Passwort braucht, machst du. Danach lädt GitHub die Seite bei jedem Push selbst hoch.
+Passwörter nie in den Chat oder in den Code, nur in GitHub-Secrets.
+
+## 1. IONOS: Domain und Speicherplatz
+
+1. **Domain bestellen:** IONOS → *Domains & SSL* → *Domain hinzufügen* → `vollautomatendoktor.de`
+   (am 03.10.2026 laut DENIC frei). In denselben Vertrag wie den Handwerksdoktor, dann liegt sie auf demselben Webspace.
+2. **Ordner anlegen:** *Hosting* → *Webspace* → im **obersten** Verzeichnis einen neuen Ordner `vollautomatendoktor`.
+   Wichtig: **nicht** im Ordner von handwerksdoktor.de (`/public`), sonst wäre die Kaffee-Seite auch unter handwerksdoktor.de/… erreichbar.
+3. **Domain auf den Ordner zeigen lassen:** *Domains & SSL* → `vollautomatendoktor.de` → *Ziel* / *Nutzungsart* → *Webspace* →
+   Ordner `/vollautomatendoktor`.
+4. **SSL:** beim Ziel das (kostenlose) SSL-Zertifikat aktivieren.
+5. **SFTP-Benutzer:** *Hosting* → *SFTP & SSH* → *Benutzer hinzufügen* → Verzeichnis `/vollautomatendoktor`, Passwort vergeben.
+   Benutzername und Passwort brauchst du gleich für GitHub.
+6. **E-Mail:** *E-Mail* → Adresse `info@vollautomatendoktor.de` anlegen, am einfachsten als **Weiterleitung** an
+   `info@handwerksdoktor.de`. Die Adresse steht im Impressum, das Kontaktformular verschickt damit.
+
+## 2. GitHub: Zugangsdaten hinterlegen
+
+github.com → Repository `claude` → *Settings* → *Secrets and variables* → *Actions* → *New repository secret*:
+
+| Name | Wert |
+|---|---|
+| `KAFFEE_SFTP_USER` | der Benutzername aus Schritt 1.5 |
+| `KAFFEE_SFTP_PASSWORD` | das Passwort aus Schritt 1.5 |
+
+Den Servernamen musst du nicht eintragen: Es ist derselbe Webspace wie beim Handwerksdoktor (`IONOS_SFTP_HOST` ist schon da).
+
+Schutz eingebaut: Findet der Upload im Zielordner die Dateien von handwerksdoktor.de, bricht er ab und lädt nichts hoch.
+
+## 3. Amazon PartnerNet
+
+1. *Konto* → *Website- und Mobile-App-Liste bearbeiten* → `https://vollautomatendoktor.de` hinzufügen.
+   **Pflicht**, sonst darf der Partner-Tag auf der neuen Seite nicht verwendet werden.
+2. Empfohlen: *Tracking-IDs verwalten* → neue ID anlegen, z. B. `vollautomat-21`, und mir schreiben.
+   Dann sind die Verkäufe beider Seiten getrennt auswertbar. Bis dahin läuft die Seite mit `rechn24-21`.
+
+## 4. Marke prüfen (5 Minuten)
+
+Im Netz habe ich keinen Treffer für „Vollautomatendoktor“ gefunden. Die Registerprüfung kann ich von hier aus nicht machen:
+- DPMA: https://register.dpma.de → *Marken* → *Einsteigerrecherche* → `Vollautomatendoktor` und `Vollautomaten Doktor`
+- EUIPO/TMview: https://www.tmdn.org/tmview → gleiche Suche
+
+## 5. Sag mir Bescheid
+
+Wenn Schritt 1 und 2 erledigt sind, starte ich den Upload, prüfe die Seite live und schalte danach auf handwerksdoktor.de
+die Umleitungen der fünf Kaffee-Artikel scharf. Erst dann, damit keine Umleitung ins Leere zeigt.
+Danach: Search Console und Bing Webmaster Tools für die neue Domain, Sitemap `https://vollautomatendoktor.de/sitemap-index.xml`.
