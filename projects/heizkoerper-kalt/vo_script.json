@@ -1,0 +1,90 @@
+[
+ {
+  "id": "c0_0",
+  "text": "Dein Heizkörper wird nicht warm, obwohl das Thermostat auf fünf steht?"
+ },
+ {
+  "id": "c0_1",
+  "text": "Meistens steckt eine von fünf Ursachen dahinter. Drei davon behebst du in wenigen Minuten selbst. Und am Ende klären wir die häufigste Frage von Mietern."
+ },
+ {
+  "id": "c1_0",
+  "text": "Ursache eins: Luft. Der Heizkörper gluckert und bleibt oben kalt, unten ist er warm."
+ },
+ {
+  "id": "c1_1",
+  "text": "Die Lösung ist Entlüften. Dreh das Thermostat voll auf, schalte die Pumpe aus und warte kurz."
+ },
+ {
+  "id": "c1_2",
+  "text": "Dann öffnest du das Ventil mit dem Vierkantschlüssel, bis Wasser statt Luft kommt. Die genaue Anleitung findest du in meinem Video zum Entlüften."
+ },
+ {
+  "id": "c2_0",
+  "text": "Ursache zwei: Der Ventilstift klemmt. Das passiert oft nach dem Sommer, wenn das Thermostat monatelang auf null stand. Dann bleibt der Heizkörper ganz kalt."
+ },
+ {
+  "id": "c2_1",
+  "text": "Schraub den Thermostatkopf ab. Darunter sitzt ein kleiner Stift. Er sollte etwa fünf Millimeter herausstehen und sich leicht hineindrücken lassen."
+ },
+ {
+  "id": "c2_2",
+  "text": "Klemmt er, bewegst du ihn vorsichtig mit einer Zange, oder klopfst ganz leicht darauf, bis er wieder federt."
+ },
+ {
+  "id": "c3_0",
+  "text": "Ursache drei: zu wenig Druck. Wenn gleich mehrere Heizkörper schwächeln, schau aufs Manometer an der Heizung."
+ },
+ {
+  "id": "c3_1",
+  "text": "In Einfamilienhäusern liegt der Druck meist zwischen eins und zwei bar. Maßgeblich ist die Markierung an deinem Gerät."
+ },
+ {
+  "id": "c3_2",
+  "text": "Ist er zu niedrig, muss Wasser nachgefüllt werden. In der Mietwohnung ist das Sache des Vermieters."
+ },
+ {
+  "id": "c4_0",
+  "text": "Ursache vier: Nur der Heizkörper ganz am Ende wird nie richtig warm."
+ },
+ {
+  "id": "c4_1",
+  "text": "Das heiße Wasser nimmt den bequemsten Weg, durch die Heizkörper nah an der Heizung."
+ },
+ {
+  "id": "c4_2",
+  "text": "Hier hilft ein hydraulischer Abgleich. Der Fachbetrieb stellt für jeden Heizkörper die passende Durchflussmenge ein."
+ },
+ {
+  "id": "c5_0",
+  "text": "Ursache fünf: Ablagerungen. Oben etwas wärmer als unten ist normal."
+ },
+ {
+  "id": "c5_1",
+  "text": "Bleibt der Heizkörper unten aber dauerhaft kalt, obwohl das Ventil offen ist, kann sich Schlamm abgesetzt haben."
+ },
+ {
+  "id": "c5_2",
+  "text": "Das kostet bis zu dreißig Prozent Leistung. Spülen sollte ein Fachbetrieb."
+ },
+ {
+  "id": "c6_0",
+  "text": "Und jetzt die häufigste Frage unter solchen Videos: Woher weiß ich als Mieter, welcher Heizkörper am nächsten an der Heizung ist?"
+ },
+ {
+  "id": "c6_1",
+  "text": "Die ehrliche Antwort: Das musst du nicht wissen. Entlüfte alle Heizkörper deiner Wohnung nacheinander, und prüf den höchsten am Schluss noch einmal."
+ },
+ {
+  "id": "c6_2",
+  "text": "Druck und Abgleich übernimmt der Vermieter. Und noch ein schneller Check: Verdecken Vorhänge oder Möbel das Thermostat, misst es falsch."
+ },
+ {
+  "id": "c7_0",
+  "text": "Kurz gesagt: Gluckert und oben kalt heißt Luft. Ganz kalt heißt Ventilstift. Mehrere schwach heißt Druck. Der letzte kalt heißt Abgleich. Unten kalt heißt Ablagerungen."
+ },
+ {
+  "id": "c7_1",
+  "text": "Welches Problem hat dein Heizkörper? Schreib es in die Kommentare. Und wenn es geholfen hat: Abonnier den Handwerksdoktor."
+ }
+]

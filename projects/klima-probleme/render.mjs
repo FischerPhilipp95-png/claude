@@ -474,7 +474,7 @@ function captions(ctx, t) {
   let x = -total / 2;
   ws.forEach((w, i) => {
     const active = t >= w.s && (i === ws.length - 1 || t < ws[i + 1].s), said = t >= w.s;
-    const sc = active ? 1 + 0.14 * (1 - easeOut(seg(t, w.s, w.s + 0.16))) : 1;
+    const sc = active ? 1 + 0.14 * Math.min(1, 150 / w.wd) * (1 - easeOut(seg(t, w.s, w.s + 0.16))) : 1;
     ctx.save(); ctx.translate(x + w.wd / 2, -size * 0.17); ctx.scale(sc, sc);
     ctx.globalAlpha = clamp(pop * 1.5) * (said ? 1 : 0.42);
     ctx.fillStyle = active ? C.lime : C.white; ctx.fillText(w.w, -w.wd / 2, size * 0.36);

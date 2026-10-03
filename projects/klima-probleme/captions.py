@@ -26,11 +26,11 @@ SHOW = {
 
 
 def norm(w):
-    return re.sub(r"[^a-zäöüß0-9]", "", w.lower())
+    return re.sub(r"[^a-zäöüß0-9]", "", w.lower()).replace("ß", "ss")   # Whisper schreibt oft „heisst“
 
 
 def show(w):
-    core = norm(w)
+    core = re.sub(r"[^a-zäöüß0-9]", "", w.lower())
     if core in SHOW:
         lead = re.match(r"^\W*", w).group(0); trail = re.search(r"\W*$", w).group(0)
         return lead + SHOW[core] + trail
@@ -40,12 +40,22 @@ def show(w):
 model = WhisperModel("small", device="cpu", compute_type="int8")
 out = []
 for line in SCRIPT:
-    segs, _ = model.transcribe(str(DIR / "audio" / "vo" / f"{line['id']}.wav"), language="de", word_timestamps=True,
-                               initial_prompt=line["text"])
-    heard = [w for s in segs for w in s.words]
     words = line["text"].split()
+    # Mit dem Skript als Vorgabe erkennt Whisper meist besser, hängt sich aber manchmal auf und liefert nur
+    # den Satzschluss. Darum beide Varianten hören und die nehmen, die mehr Skript-Wörter trifft.
+    best = None
+    for prompt in (line["text"], None):
+        segs, _ = model.transcribe(str(DIR / "audio" / "vo" / f"{line['id']}.wav"), language="de", word_timestamps=True,
+                                   initial_prompt=prompt)
+        h = [w for s in segs for w in s.words]
+        m = difflib.SequenceMatcher(a=[norm(w) for w in words], b=[norm(w.word) for w in h], autojunk=False)
+        hits = sum(n for _, _, n in m.get_matching_blocks())
+        if best is None or hits > best[0]:
+            best = (hits, h, m)
+        if hits >= 0.9 * len(words):
+            break
+    _, heard, sm = best
     times = [None] * len(words)
-    sm = difflib.SequenceMatcher(a=[norm(w) for w in words], b=[norm(w.word) for w in heard], autojunk=False)
     for a, b, n in sm.get_matching_blocks():
         for i in range(n):
             times[a + i] = (heard[b + i].start, heard[b + i].end)
