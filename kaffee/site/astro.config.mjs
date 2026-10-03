@@ -13,6 +13,13 @@ const lastmod = Object.fromEntries(
   }),
 );
 
+// Maschinenseiten ohne eigenen Beitrag und ohne Video stehen auf noindex (src/pages/maschine/[slug].astro) und fehlen hier in der Sitemap.
+const maschinen = JSON.parse(readFileSync('./src/maschinen.json', 'utf8'));
+const mitBeitrag = new Set(readdirSync(ARTIKEL_DIR).filter((f) => f.endsWith('.mdx'))
+  .flatMap((f) => (readFileSync(`${ARTIKEL_DIR}/${f}`, 'utf8').match(/^maschinen:\s*\[(.*)\]/m)?.[1] ?? '').split(',').map((x) => x.trim().replace(/['"]/g, ''))));
+const leereMaschinen = new Set(Object.entries(maschinen).filter(([id, m]) => !(m.videos?.length) && !mitBeitrag.has(id))
+  .map(([id]) => `https://vollautomatendoktor.de/maschine/${id}/`));
+
 export default defineConfig({
   site: 'https://vollautomatendoktor.de',
   trailingSlash: 'always',
@@ -22,7 +29,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) => !/\/(kontakt\/(danke|fehler)|suche)\//.test(page),
+      filter: (page) => !/\/(kontakt\/(danke|fehler)|suche)\//.test(page) && !leereMaschinen.has(page),
       serialize: (item) => (lastmod[item.url] ? { ...item, lastmod: new Date(lastmod[item.url]).toISOString() } : item),
     }),
   ],

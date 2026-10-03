@@ -5,24 +5,26 @@ import ArtikelKarte from '../../components/ArtikelKarte.astro';
 import VideoKarte from '../../components/VideoKarte.astro';
 import Icon from '../../components/Icon.astro';
 import { SITE } from '../../site';
-import { maschinenListe, beitraegeFuer, allgemeineFuer, videosFuer, hatSeite, pruefeZuordnung } from '../../maschinen-hilfe';
+import { maschinenListe, beitraegeFuer, allgemeineFuer, videosFuer, hatInhalt, pruefeZuordnung } from '../../maschinen-hilfe';
 
 export async function getStaticPaths() {
   const posts = await getCollection('artikel', ({ data }) => !data.entwurf);
   pruefeZuordnung(posts);
-  return maschinenListe().filter((m) => hatSeite(m, posts)).map((m) => ({ params: { slug: m.id }, props: { m, posts } }));
+  return maschinenListe().map((m) => ({ params: { slug: m.id }, props: { m, posts } }));
 }
 const { m, posts } = Astro.props;
 const eigene = beitraegeFuer(m.id, posts);
 const allgemein = allgemeineFuer(m, posts);
 const videos = videosFuer(m);
-const geschwister = maschinenListe().filter((x) => x.hersteller === m.hersteller && x.id !== m.id && hatSeite(x, posts));
+const geschwister = maschinenListe().filter((x) => x.hersteller === m.hersteller && x.id !== m.id);
+// Ohne eigenen Beitrag und ohne Video: Seite für Besucher da, aber nicht für Google (keine dünnen Seiten im Index).
+const leer = !hatInhalt(m, posts);
 const title = `${m.titel}: Anleitungen und Hilfe`;
 const description = `${m.titel}: entkalken, reinigen, Fehler beheben. Alle Anleitungen und Videos für deine Maschine an einem Ort.`;
 const url = `${SITE.url}/maschine/${m.id}/`;
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, url, inLanguage: 'de-DE',
-    about: { '@type': 'Product', name: m.titel, brand: { '@type': 'Brand', name: m.marke.titel } } },
+    about: { '@type': 'Product', name: m.titel, brand: { '@type': 'Brand', name: m.markenname ?? m.marke.titel.split(' ')[0] } } },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Start', item: `${SITE.url}/` },
     { '@type': 'ListItem', position: 2, name: 'Maschinen', item: `${SITE.url}/maschinen/` },
@@ -31,7 +33,7 @@ const jsonLd = [
   ] },
 ];
 ---
-<Base title={title} description={description} jsonLd={jsonLd}>
+<Base title={title} description={description} jsonLd={jsonLd} noindex={leer}>
   <div class="wrap wide" style={`--akzent:${m.marke.farbe}`}>
     <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › <a href="/maschinen/">Maschinen</a> › <a href={`/thema/${m.marke.slug}/`}>{m.marke.titel}</a> › {m.name}</nav>
     <a class="chip chip-lg" href={`/thema/${m.marke.slug}/`}><Icon name={m.marke.icon} size={16} /> {m.marke.titel}</a>
@@ -39,6 +41,13 @@ const jsonLd = [
     <p class="lead">Alles für deine {m.titel} an einem Ort: Anleitungen zum Nachlesen, Videos und die Pflege-Grundlagen,
     die für alle {m.marke.titel}-Maschinen gelten.{m.art === 'siebtraeger' ? ' Hinweis: Das ist ein Siebträger, kein Vollautomat.' : ''}</p>
 
+    {leer && (
+      <aside class="box in-arbeit" aria-label="Anleitungen in Arbeit">
+        <p><strong>Für die {m.titel} entstehen die Anleitungen gerade.</strong> Bis dahin helfen dir die Grundlagen unten:
+        Sie gelten für alle {m.marke.titel}-Maschinen. Maßgeblich ist immer die Bedienungsanleitung deines Geräts.</p>
+        <p class="small">Welches Problem hast du mit deiner {m.name}? <a href="/kontakt/">Schreib es mir</a>, dann kommt diese Anleitung zuerst.</p>
+      </aside>
+    )}
     {eigene.length > 0 && (
       <section aria-labelledby="eigene-h">
         <h2 class="section-h" id="eigene-h">Anleitungen für die {m.name}</h2>

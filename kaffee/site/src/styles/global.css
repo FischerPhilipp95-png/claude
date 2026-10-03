@@ -466,3 +466,4 @@ p.small { max-width: 72ch; }
 .geprueft-h { display: flex; align-items: center; gap: 8px; margin: 0 0 6px; }
 .geprueft-h .icon { color: #2f9e6a; }
 .geprueft ul { margin: 0 0 .6em; padding-left: 1.2em; }
+.in-arbeit { border-left: 6px solid var(--akzent); }

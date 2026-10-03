@@ -8,18 +8,18 @@ import VideoBox from '../../components/VideoBox.astro';
 import { videoFuerSeite, videoSchema, mediathekVideos } from '../../videos';
 import VideoKarte from '../../components/VideoKarte.astro';
 import MaschinenKarte from '../../components/MaschinenKarte.astro';
-import { maschinenListe, beitraegeFuer, videosFuer, hatSeite } from '../../maschinen-hilfe';
+import { maschinenListe, beitraegeFuer, videosFuer } from '../../maschinen-hilfe';
 import { mediathekVideos as mv } from '../../videos';
 
 export async function getStaticPaths() {
   const posts = await getCollection('artikel', ({ data }) => !data.entwurf);
   return Object.entries(THEMEN)
     .map(([name, t]) => ({ name, t, posts: posts.filter((p) => p.data.thema === name), alle: posts }))
-    .filter((x) => x.posts.length > 0 || mv(x.name).length > 0)
+    .filter((x) => x.posts.length > 0 || mv(x.name).length > 0 || maschinenListe().some((m) => m.hersteller === x.name))
     .map(({ name, t, posts, alle }) => ({ params: { thema: t.slug }, props: { name, t, posts, alle } }));
 }
 const { name, t, posts, alle } = Astro.props;
-const maschinen = maschinenListe().filter((m) => m.hersteller === name && hatSeite(m, alle));
+const maschinen = maschinenListe().filter((m) => m.hersteller === name);
 const liste = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const jsonLd = [{
   '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${t.titel}: Anleitungen und Ratgeber`,

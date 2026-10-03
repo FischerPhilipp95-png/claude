@@ -60,7 +60,7 @@ const ogImage = new URL(image, SITE.url).toString();
       <a class="logo" href="/"><img src="/bilder/autor.webp" alt="" width="36" height="36" data-pin-nopin="true" /><span>Der <b>Vollautomaten</b>-Doktor</span></a>
       <nav aria-label="Hauptmenü" class="mainnav">
         <a href="/maschinen/" class="nav-rechner"><Icon name="coffee" size={16} />Maschinen</a>
-        {Object.values(THEMEN).filter((t) => !['krups', 'sage'].includes(t.slug)).map((t) => <a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}><Icon name={t.icon} size={16} />{t.titel}</a>)}
+        {Object.values(THEMEN).filter((t) => ['pflege', 'delonghi', 'philips', 'siemens', 'jura'].includes(t.slug)).map((t) => <a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}><Icon name={t.icon} size={16} />{t.titel}</a>)}
         <a href="/videos/" class="nav-produkte"><Icon name="circle-play" size={16} />Videos</a>
         <a href="/suche/" class="nav-suche" aria-label="Suche"><Icon name="search" size={18} /><span>Suche</span></a>
       </nav>
@@ -92,7 +92,7 @@ const ogImage = new URL(image, SITE.url).toString();
     </div>
     <div class="wrap wide footer-note">
       <p>Als Amazon-Partner verdiene ich an qualifizierten Verkäufen. Links mit * sind Affiliate-Links.</p>
-      <p>Unabhängige Seite, nicht verbunden mit De'Longhi, Philips, Saeco, Siemens, Bosch, Jura oder anderen Herstellern.
+      <p>Unabhängige Seite, nicht verbunden mit De'Longhi, Philips, Saeco, Siemens, Bosch, Jura, Melitta oder anderen genannten Herstellern.
       Marken- und Produktnamen gehören ihren Inhabern und dienen nur der Beschreibung, für welche Geräte eine Anleitung gilt.</p>
       <p>© {new Date().getFullYear()} {SITE.author}</p>
     </div>

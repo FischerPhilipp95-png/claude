@@ -5,11 +5,11 @@ import type { MaschinenInfo } from '../maschinen-hilfe';
 interface Props { m: MaschinenInfo; anleitungen: number; videos: number }
 const { m, anleitungen, videos } = Astro.props;
 const teile = [anleitungen && `${anleitungen} ${anleitungen === 1 ? 'Anleitung' : 'Anleitungen'}`, videos && `${videos} ${videos === 1 ? 'Video' : 'Videos'}`].filter(Boolean);
-const filter = [m.marke.titel, m.name, ...(m.suchwoerter ?? [])].join(' ').toLowerCase();
+const filter = [m.marke.titel, m.markenname ?? '', m.name, ...(m.suchwoerter ?? [])].join(' ').toLowerCase();
 ---
 <li data-hersteller={m.marke.slug} data-filter={filter}><a href={`/maschine/${m.id}/`} style={`--akzent:${m.marke.farbe}`}>
   <span class="tile-icon"><Icon name={m.marke.icon} size={28} /></span>
-  <span class="tile-marke">{m.marke.titel}</span>
+  <span class="tile-marke">{m.markenname ?? m.marke.titel}</span>
   <span class="tile-name">{m.name}</span>
-  <span class="tile-count">{teile.join(' · ')}{m.art === 'siebtraeger' ? ' · Siebträger' : ''}</span>
+  <span class="tile-count">{teile.length ? teile.join(' · ') : 'Anleitungen folgen'}{m.art === 'siebtraeger' ? ' · Siebträger' : ''}</span>
 </a></li>

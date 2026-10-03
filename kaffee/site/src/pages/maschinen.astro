@@ -6,15 +6,15 @@ import Icon from '../components/Icon.astro';
 import MaschinenKarte from '../components/MaschinenKarte.astro';
 import { SITE } from '../site';
 import { THEMEN, type Thema } from '../themen';
-import { maschinenListe, beitraegeFuer, videosFuer, hatSeite } from '../maschinen-hilfe';
+import { maschinenListe, beitraegeFuer, videosFuer } from '../maschinen-hilfe';
 
 const posts = await getCollection('artikel', ({ data }) => !data.entwurf);
-const liste = maschinenListe().filter((m) => hatSeite(m, posts));
+const liste = maschinenListe();
 const marken = (Object.keys(THEMEN) as Thema[])
   .map((k) => ({ k, t: THEMEN[k], maschinen: liste.filter((m) => m.hersteller === k) }))
   .filter((g) => g.maschinen.length);
 const title = 'Maschinen-Finder: Hilfe für deinen Kaffeevollautomaten';
-const description = 'Hersteller wählen, Maschine wählen, Anleitung finden: Hilfe für De’Longhi, Philips, Siemens, Jura, Krups und mehr.';
+const description = `Hersteller wählen, Maschine wählen, Anleitung finden: Hilfe für ${liste.length} Kaffeevollautomaten von De’Longhi, Philips, Saeco, Siemens, Bosch, Jura, Melitta und mehr.`;
 const jsonLd = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, url: `${SITE.url}/maschinen/`, inLanguage: 'de-DE' }];
 ---
 <Base title={title} description={description} jsonLd={jsonLd}>

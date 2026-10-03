@@ -1,0 +1,143 @@
+{
+ "delonghi-magnifica-s": {
+  "hersteller": "DeLonghi",
+  "name": "Magnifica S",
+  "videos": [
+   "LLl4Ocv-0tM",
+   "2T0Ww1Aycc8",
+   "6kwmDU7H1Ls",
+   "-x0obhkt8Ao"
+  ]
+ },
+ "delonghi-magnifica-evo": {
+  "hersteller": "DeLonghi",
+  "name": "Magnifica Evo",
+  "videos": [
+   "97IogfXRj-I",
+   "OC4Wu6o4i8U",
+   "r-T06GQ8uv0"
+  ]
+ },
+ "delonghi-dinamica": {
+  "hersteller": "DeLonghi",
+  "name": "Dinamica",
+  "videos": [
+   "njtMKj3Kaoo"
+  ]
+ },
+ "delonghi-rivelia": {
+  "hersteller": "DeLonghi",
+  "name": "Rivelia",
+  "videos": [
+   "1ORLyvj4o4M",
+   "6U2cRlkfBqM"
+  ]
+ },
+ "delonghi-dedica": {
+  "hersteller": "DeLonghi",
+  "name": "Dedica",
+  "art": "siebtraeger",
+  "videos": [
+   "qso2o4F3YBU"
+  ]
+ },
+ "philips-2300": {
+  "hersteller": "Philips",
+  "name": "Serie 2300 LatteGo",
+  "suchwoerter": [
+   "2300",
+   "LatteGo"
+  ],
+  "videos": [
+   "KHLi12cGfT4"
+  ]
+ },
+ "philips-3300": {
+  "hersteller": "Philips",
+  "name": "Serie 3300 LatteGo",
+  "suchwoerter": [
+   "3300",
+   "LatteGo"
+  ],
+  "videos": [
+   "A7RKBatgaEU"
+  ]
+ },
+ "philips-4300": {
+  "hersteller": "Philips",
+  "name": "Serie 4300",
+  "suchwoerter": [
+   "4300"
+  ],
+  "videos": [
+   "5dq4lXIqNRo"
+  ]
+ },
+ "philips-5400": {
+  "hersteller": "Philips",
+  "name": "Serie 5400 LatteGo",
+  "suchwoerter": [
+   "5400",
+   "LatteGo"
+  ],
+  "videos": [
+   "5dq4lXIqNRo"
+  ]
+ },
+ "philips-5500": {
+  "hersteller": "Philips",
+  "name": "Serie 5500 LatteGo",
+  "suchwoerter": [
+   "5500",
+   "LatteGo"
+  ],
+  "videos": [
+   "KHLi12cGfT4"
+  ]
+ },
+ "siemens-eq6-plus": {
+  "hersteller": "Siemens",
+  "name": "EQ.6 plus",
+  "suchwoerter": [
+   "EQ6",
+   "EQ 6"
+  ],
+  "videos": [
+   "VtUr64BkUqk"
+  ]
+ },
+ "jura-impressa-e": {
+  "hersteller": "Jura",
+  "name": "Impressa E10, E20, E25",
+  "suchwoerter": [
+   "E10",
+   "E20",
+   "E25",
+   "Impressa"
+  ],
+  "videos": [
+   "rb1vi2R1zs4"
+  ]
+ },
+ "krups-evidence-ea897b": {
+  "hersteller": "Krups",
+  "name": "Evidence EA897B",
+  "suchwoerter": [
+   "EA897B",
+   "Evidence"
+  ],
+  "videos": [
+   "jtJomDcrGVI",
+   "NWPy0G3jKjk"
+  ]
+ },
+ "sage-barista-express": {
+  "hersteller": "Sage",
+  "name": "Barista Express",
+  "art": "siebtraeger",
+  "videos": [
+   "JMi1KSIWnRM",
+   "ju6LOA2AvHI"
+  ]
+ }
+}
