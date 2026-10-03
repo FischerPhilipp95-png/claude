@@ -2,6 +2,10 @@
  "delonghi-magnifica-s": {
   "hersteller": "DeLonghi",
   "name": "Magnifica S",
+  "suchwoerter": [
+   "ECAM 22.110",
+   "ECAM22"
+  ],
   "videos": [
    "LLl4Ocv-0tM",
    "2T0Ww1Aycc8",
@@ -12,10 +16,28 @@
  "delonghi-magnifica-evo": {
   "hersteller": "DeLonghi",
   "name": "Magnifica Evo",
+  "suchwoerter": [
+   "ECAM 290",
+   "ECAM 292"
+  ],
   "videos": [
    "97IogfXRj-I",
    "OC4Wu6o4i8U",
    "r-T06GQ8uv0"
+  ]
+ },
+ "delonghi-magnifica-start": {
+  "hersteller": "DeLonghi",
+  "name": "Magnifica Start"
+ },
+ "delonghi-magnifica-esam": {
+  "hersteller": "DeLonghi",
+  "name": "Magnifica (ESAM-Reihe)",
+  "suchwoerter": [
+   "ESAM 3000",
+   "ESAM 4000",
+   "ESAM 4200",
+   "ESAM"
   ]
  },
  "delonghi-dinamica": {
@@ -23,6 +45,45 @@
   "name": "Dinamica",
   "videos": [
    "njtMKj3Kaoo"
+  ]
+ },
+ "delonghi-dinamica-plus": {
+  "hersteller": "DeLonghi",
+  "name": "Dinamica Plus"
+ },
+ "delonghi-eletta": {
+  "hersteller": "DeLonghi",
+  "name": "Eletta Cappuccino",
+  "suchwoerter": [
+   "Eletta"
+  ]
+ },
+ "delonghi-eletta-explore": {
+  "hersteller": "DeLonghi",
+  "name": "Eletta Explore",
+  "suchwoerter": [
+   "ECAM 452"
+  ]
+ },
+ "delonghi-primadonna": {
+  "hersteller": "DeLonghi",
+  "name": "PrimaDonna",
+  "suchwoerter": [
+   "PrimaDonna Class",
+   "PrimaDonna Soul",
+   "PrimaDonna Elite",
+   "ECAM 556"
+  ]
+ },
+ "delonghi-autentica": {
+  "hersteller": "DeLonghi",
+  "name": "Autentica"
+ },
+ "delonghi-caffe-corso": {
+  "hersteller": "DeLonghi",
+  "name": "Caffè Corso",
+  "suchwoerter": [
+   "Caffe Corso"
   ]
  },
  "delonghi-rivelia": {
@@ -36,9 +97,27 @@
  "delonghi-dedica": {
   "hersteller": "DeLonghi",
   "name": "Dedica",
+  "suchwoerter": [
+   "EC685"
+  ],
   "art": "siebtraeger",
   "videos": [
    "qso2o4F3YBU"
+  ]
+ },
+ "philips-1200": {
+  "hersteller": "Philips",
+  "name": "Serie 1200",
+  "suchwoerter": [
+   "1200"
+  ]
+ },
+ "philips-2200": {
+  "hersteller": "Philips",
+  "name": "Serie 2200",
+  "suchwoerter": [
+   "2200",
+   "EP2220"
   ]
  },
  "philips-2300": {
@@ -49,7 +128,22 @@
    "LatteGo"
   ],
   "videos": [
-   "KHLi12cGfT4"
+   "KHLi12cGfT4",
+   "EtcBg435Q9I",
+   "5YM7CqH9TUM"
+  ]
+ },
+ "philips-3200": {
+  "hersteller": "Philips",
+  "name": "Serie 3200",
+  "suchwoerter": [
+   "3200",
+   "LatteGo",
+   "EP3246"
+  ],
+  "videos": [
+   "EtcBg435Q9I",
+   "5YM7CqH9TUM"
   ]
  },
  "philips-3300": {
@@ -60,7 +154,9 @@
    "LatteGo"
   ],
   "videos": [
-   "A7RKBatgaEU"
+   "A7RKBatgaEU",
+   "EtcBg435Q9I",
+   "5YM7CqH9TUM"
   ]
  },
  "philips-4300": {
@@ -81,7 +177,9 @@
    "LatteGo"
   ],
   "videos": [
-   "5dq4lXIqNRo"
+   "5dq4lXIqNRo",
+   "EtcBg435Q9I",
+   "5YM7CqH9TUM"
   ]
  },
  "philips-5500": {
@@ -92,18 +190,153 @@
    "LatteGo"
   ],
   "videos": [
-   "KHLi12cGfT4"
+   "KHLi12cGfT4",
+   "EtcBg435Q9I",
+   "5YM7CqH9TUM"
+  ]
+ },
+ "saeco-syntia": {
+  "hersteller": "Philips",
+  "markenname": "Saeco",
+  "name": "Syntia"
+ },
+ "saeco-royal": {
+  "hersteller": "Philips",
+  "markenname": "Saeco",
+  "name": "Royal",
+  "suchwoerter": [
+   "Royal Cappuccino"
+  ]
+ },
+ "saeco-talea": {
+  "hersteller": "Philips",
+  "markenname": "Saeco",
+  "name": "Talea"
+ },
+ "saeco-picobaristo": {
+  "hersteller": "Philips",
+  "markenname": "Saeco",
+  "name": "PicoBaristo",
+  "suchwoerter": [
+   "HD8925"
+  ]
+ },
+ "saeco-intelia": {
+  "hersteller": "Philips",
+  "markenname": "Saeco",
+  "name": "Intelia"
+ },
+ "siemens-eq3": {
+  "hersteller": "Siemens",
+  "name": "EQ.3",
+  "suchwoerter": [
+   "EQ3"
+  ]
+ },
+ "siemens-eq300": {
+  "hersteller": "Siemens",
+  "name": "EQ.300",
+  "suchwoerter": [
+   "EQ300"
+  ]
+ },
+ "siemens-eq5": {
+  "hersteller": "Siemens",
+  "name": "EQ.5",
+  "suchwoerter": [
+   "EQ5"
+  ]
+ },
+ "siemens-eq500": {
+  "hersteller": "Siemens",
+  "name": "EQ.500",
+  "suchwoerter": [
+   "EQ500"
+  ]
+ },
+ "siemens-eq6": {
+  "hersteller": "Siemens",
+  "name": "EQ.6",
+  "suchwoerter": [
+   "EQ6"
   ]
  },
  "siemens-eq6-plus": {
   "hersteller": "Siemens",
   "name": "EQ.6 plus",
   "suchwoerter": [
-   "EQ6",
+   "EQ6 plus",
    "EQ 6"
   ],
   "videos": [
    "VtUr64BkUqk"
+  ]
+ },
+ "siemens-eq700": {
+  "hersteller": "Siemens",
+  "name": "EQ.700",
+  "suchwoerter": [
+   "EQ700"
+  ]
+ },
+ "bosch-verocafe": {
+  "hersteller": "Siemens",
+  "markenname": "Bosch",
+  "name": "VeroCafe",
+  "suchwoerter": [
+   "Vero Cafe"
+  ]
+ },
+ "bosch-verobar": {
+  "hersteller": "Siemens",
+  "markenname": "Bosch",
+  "name": "VeroBar",
+  "suchwoerter": [
+   "Vero Bar"
+  ]
+ },
+ "bosch-veroaroma": {
+  "hersteller": "Siemens",
+  "markenname": "Bosch",
+  "name": "VeroAroma",
+  "suchwoerter": [
+   "Vero Aroma"
+  ]
+ },
+ "bosch-verocup": {
+  "hersteller": "Siemens",
+  "markenname": "Bosch",
+  "name": "VeroCup",
+  "suchwoerter": [
+   "Vero Cup"
+  ]
+ },
+ "jura-e8": {
+  "hersteller": "Jura",
+  "name": "E8"
+ },
+ "jura-e6": {
+  "hersteller": "Jura",
+  "name": "E6"
+ },
+ "jura-impressa-c": {
+  "hersteller": "Jura",
+  "name": "Impressa C5, C9, C65",
+  "suchwoerter": [
+   "C5",
+   "C9",
+   "C65",
+   "Impressa"
+  ]
+ },
+ "jura-impressa-f": {
+  "hersteller": "Jura",
+  "name": "Impressa F50, F7, F8",
+  "suchwoerter": [
+   "F50",
+   "F7",
+   "F8",
+   "Impressa"
   ]
  },
  "jura-impressa-e": {
@@ -119,17 +352,85 @@
    "rb1vi2R1zs4"
   ]
  },
- "krups-evidence-ea897b": {
+ "melitta-caffeo-solo": {
+  "hersteller": "Melitta",
+  "name": "Caffeo Solo",
+  "suchwoerter": [
+   "Solo"
+  ]
+ },
+ "melitta-solo-milk": {
+  "hersteller": "Melitta",
+  "name": "Caffeo Solo & Perfect Milk",
+  "suchwoerter": [
+   "Solo & Milk",
+   "Perfect Milk"
+  ]
+ },
+ "melitta-barista": {
+  "hersteller": "Melitta",
+  "name": "Caffeo Barista TS / T",
+  "suchwoerter": [
+   "Barista TS",
+   "Barista T",
+   "Barista"
+  ]
+ },
+ "melitta-ci": {
+  "hersteller": "Melitta",
+  "name": "Caffeo CI",
+  "suchwoerter": [
+   "CI"
+  ]
+ },
+ "melitta-purista": {
+  "hersteller": "Melitta",
+  "name": "Purista"
+ },
+ "melitta-latticia": {
+  "hersteller": "Melitta",
+  "name": "Latticia"
+ },
+ "krups-evidence": {
   "hersteller": "Krups",
-  "name": "Evidence EA897B",
+  "name": "Evidence",
   "suchwoerter": [
    "EA897B",
-   "Evidence"
+   "EA89"
   ],
   "videos": [
    "jtJomDcrGVI",
    "NWPy0G3jKjk"
   ]
+ },
+ "krups-arabica": {
+  "hersteller": "Krups",
+  "name": "Arabica",
+  "suchwoerter": [
+   "Arabica Picto",
+   "EA81"
+  ]
+ },
+ "krups-ea82": {
+  "hersteller": "Krups",
+  "name": "EA82 / Essential",
+  "suchwoerter": [
+   "EA82",
+   "Essential"
+  ]
+ },
+ "tchibo-esperto": {
+  "hersteller": "Tchibo",
+  "name": "Esperto Caffè / Latte",
+  "suchwoerter": [
+   "Esperto",
+   "Esperto Caffe",
+   "Esperto Latte"
+  ]
+ },
+ "gaggia-brera": {
+  "hersteller": "Gaggia",
+  "name": "Brera"
  },
  "sage-barista-express": {
   "hersteller": "Sage",

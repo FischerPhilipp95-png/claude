@@ -11,7 +11,7 @@ const artikel = defineCollection({
     description: z.string().max(160),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    thema: z.enum(['Pflege', 'DeLonghi', 'Philips', 'Siemens', 'Jura', 'Krups', 'Sage']),
+    thema: z.enum(['Pflege', 'DeLonghi', 'Philips', 'Siemens', 'Jura', 'Melitta', 'Krups', 'Tchibo', 'Gaggia', 'Sage']),
     maschinen: z.array(z.string()).default([]),  // Schlüssel aus src/maschinen.ts
     // Prüfprotokoll: wann und womit der Beitrag zuletzt geprüft wurde (Bericht in kaffee/recherche/<slug>/pruefbericht.md).
     pruefung: z.object({

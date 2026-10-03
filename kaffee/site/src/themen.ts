@@ -9,6 +9,9 @@ export const THEMEN = {
   Siemens: { slug: 'siemens', titel: 'Siemens & Bosch', icon: 'settings', farbe: '#14a37f', intro: 'Siemens EQ-Serie und baugleiche Bosch-Geräte: Pflegeprogramme, Entkalken und Fehlermeldungen Schritt für Schritt.' },
   Jura: { slug: 'jura', titel: 'Jura', icon: 'droplets', farbe: '#9b6bd6', intro: 'Jura E-, S- und Z-Linie: Reinigung, Filterwechsel und Pflege der Milchsysteme nach Herstellerangaben.' },
   Krups: { slug: 'krups', titel: 'Krups', icon: 'coffee', farbe: '#c2410c', intro: 'Krups-Kaffeevollautomaten wie die Evidence: Entkalken, blinkende Lampen und Zurücksetzen Schritt für Schritt.' },
+  Melitta: { slug: 'melitta', titel: 'Melitta', icon: 'coffee', farbe: '#b8322f', intro: 'Melitta Caffeo Solo, Barista, CI, Purista und Latticia: Entkalken, Reinigen und Pflege der Milchsysteme Schritt für Schritt.' },
+  Tchibo: { slug: 'tchibo', titel: 'Tchibo', icon: 'coffee', farbe: '#7a5a2f', intro: 'Tchibo Esperto Caffè und Latte: Entkalken, Reinigen und die häufigsten Meldungen erklärt.' },
+  Gaggia: { slug: 'gaggia', titel: 'Gaggia', icon: 'coffee', farbe: '#2b6cb0', intro: 'Gaggia-Vollautomaten wie die Brera: Entkalken, Brühgruppe reinigen und Pflege nach Herstellerangaben.' },
   Sage: { slug: 'sage', titel: 'Sage', icon: 'coffee', farbe: '#6b7280', intro: 'Siebträger von Sage wie die Barista Express: Pflege, Entkalken und die wichtigsten Einstellungen.' },
 } as const;
 export type Thema = keyof typeof THEMEN;

@@ -9,7 +9,7 @@ const filter = [m.marke.titel, m.markenname ?? '', m.name, ...(m.suchwoerter ?? 
 ---
 <li data-hersteller={m.marke.slug} data-filter={filter}><a href={`/maschine/${m.id}/`} style={`--akzent:${m.marke.farbe}`}>
   <span class="tile-icon"><Icon name={m.marke.icon} size={28} /></span>
-  <span class="tile-marke">{m.markenname ?? m.marke.titel}</span>
+  <span class="tile-marke">{m.markenname ?? m.marke.titel.split(' ')[0]}</span>
   <span class="tile-name">{m.name}</span>
   <span class="tile-count">{teile.length ? teile.join(' · ') : 'Anleitungen folgen'}{m.art === 'siebtraeger' ? ' · Siebträger' : ''}</span>
 </a></li>
