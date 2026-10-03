@@ -1,0 +1,994 @@
+{
+ "subs": 301,
+ "videos": [
+  {
+   "id": "hRTerP9Ru4I",
+   "date": "2026-10-02",
+   "age": 1,
+   "views": 30,
+   "per_day": 30.0,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "Die 5 häufigsten Probleme mit Klimaanlagen (und was wirklich hilft)",
+   "kind": "C"
+  },
+  {
+   "id": "SOkfSvXEWno",
+   "date": "2026-10-01",
+   "age": 2,
+   "views": 29,
+   "per_day": 14.5,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "Wie funktioniert die Wasserleitung im Haus?",
+   "kind": "C"
+  },
+  {
+   "id": "QndSDRU29Vs",
+   "date": "2026-09-30",
+   "age": 3,
+   "views": 57,
+   "per_day": 19.0,
+   "likes": "1",
+   "comments": "NA",
+   "title": "Heizkörper entlüften in 7 Schritten (so wird er wieder warm)",
+   "kind": "A"
+  },
+  {
+   "id": "PobGNDupjoc",
+   "date": "2026-09-30",
+   "age": 3,
+   "views": 30,
+   "per_day": 10.0,
+   "likes": "NA",
+   "comments": "1",
+   "title": "Wie kommt der Strom in dein Haus? (380.000 V → 230 V)",
+   "kind": "C"
+  },
+  {
+   "id": "5U7_qu-7LjI",
+   "date": "2026-09-28",
+   "age": 5,
+   "views": 236,
+   "per_day": 47.2,
+   "likes": "3",
+   "comments": "NA",
+   "title": "Heizung einschalten? Erst diese 5 Checks vor dem Winter",
+   "kind": "C"
+  },
+  {
+   "id": "WDqcGl6-c7Y",
+   "date": "2026-09-28",
+   "age": 5,
+   "views": 154,
+   "per_day": 30.8,
+   "likes": "1",
+   "comments": "1",
+   "title": "PV + Klimaanlage: Im Winter kostenlos heizen? Die ehrliche Rechnung",
+   "kind": "B"
+  },
+  {
+   "id": "IGlsZ22k7Mk",
+   "date": "2026-09-25",
+   "age": 8,
+   "views": 620,
+   "per_day": 77.5,
+   "likes": "3",
+   "comments": "NA",
+   "title": "Heizen mit Klimaanlage im Winter: Wann lohnt es sich wirklich?",
+   "kind": "B"
+  },
+  {
+   "id": "QVg52yaSTtw",
+   "date": "2026-09-25",
+   "age": 8,
+   "views": 354,
+   "per_day": 44.25,
+   "likes": "1",
+   "comments": "NA",
+   "title": "Günstige vs. teure Klimaanlage: Lohnt sich der Aufpreis?",
+   "kind": "B"
+  },
+  {
+   "id": "asGuvDPr5vQ",
+   "date": "2026-09-24",
+   "age": 9,
+   "views": 240,
+   "per_day": 26.666666666666668,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "Heizkörper zu klein für Wärmepumpe? Lüfter, Tausch oder Split-Klima",
+   "kind": "C"
+  },
+  {
+   "id": "KqgIXwheM78",
+   "date": "2026-09-22",
+   "age": 11,
+   "views": 166,
+   "per_day": 15.090909090909092,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "Dübel hält nicht: Wand erkennen und den richtigen Dübel wählen",
+   "kind": "A"
+  },
+  {
+   "id": "NhAcYzK735M",
+   "date": "2026-09-21",
+   "age": 12,
+   "views": 243,
+   "per_day": 20.25,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "TRESKO Gasheizung: 75 Cent pro Stunde – aber ist sie drinnen sicher?",
+   "kind": "C"
+  },
+  {
+   "id": "HxbI_5CutN4",
+   "date": "2026-09-20",
+   "age": 13,
+   "views": 255,
+   "per_day": 19.615384615384617,
+   "likes": "1",
+   "comments": "NA",
+   "title": "E-Auto oder Verbrenner: Was lohnt sich wirklich? Der ehrliche 5-Jahres-Check",
+   "kind": "B"
+  },
+  {
+   "id": "7yrG72XY48s",
+   "date": "2026-09-19",
+   "age": 14,
+   "views": 506,
+   "per_day": 36.142857142857146,
+   "likes": "3",
+   "comments": "NA",
+   "title": "Eine vollwertige Klimaanlage OHNE Außengerät?! | EasyCool by Loewe im Test",
+   "kind": "B"
+  },
+  {
+   "id": "6HsKQlEOYwQ",
+   "date": "2026-09-11",
+   "age": 22,
+   "views": 1355,
+   "per_day": 61.59090909090909,
+   "likes": "7",
+   "comments": "1",
+   "title": "Eine Klimaanlage für die ganze Wohnung? Die Wahrheit über Single-Split",
+   "kind": "C"
+  },
+  {
+   "id": "TzmMxKGkB0E",
+   "date": "2026-08-31",
+   "age": 33,
+   "views": 1454,
+   "per_day": 44.06060606060606,
+   "likes": "8",
+   "comments": "NA",
+   "title": "HANTECH vs. TCL: Welche 12.000-BTU-Klimaanlage lohnt sich?",
+   "kind": "B"
+  },
+  {
+   "id": "dxi50jqNB7I",
+   "date": "2026-08-29",
+   "age": 35,
+   "views": 2467,
+   "per_day": 70.48571428571428,
+   "likes": "19",
+   "comments": "4",
+   "title": "9.000 vs. 12.000 BTU: Welche Klimaanlage passt zu deinem Raum?",
+   "kind": "B"
+  },
+  {
+   "id": "PqQU3eu_Q9c",
+   "date": "2026-08-28",
+   "age": 36,
+   "views": 169,
+   "per_day": 4.694444444444445,
+   "likes": "NA",
+   "comments": "1",
+   "title": "OHNE SOLAR SPAREN? – 449-€-AKKU IM TEST",
+   "kind": "B"
+  },
+  {
+   "id": "uZ_eP0pW9iA",
+   "date": "2026-08-26",
+   "age": 38,
+   "views": 193,
+   "per_day": 5.078947368421052,
+   "likes": "NA",
+   "comments": "1",
+   "title": "7 geniale DIY-Helfer, die fast niemand kennt – aber jeder braucht",
+   "kind": "C"
+  },
+  {
+   "id": "eIE4b6kPnIo",
+   "date": "2026-08-26",
+   "age": 38,
+   "views": 528,
+   "per_day": 13.894736842105264,
+   "likes": "3",
+   "comments": "NA",
+   "title": "Dynamischer Stromtarif: Mein 30-Tage-Test überrascht!",
+   "kind": "B"
+  },
+  {
+   "id": "BPjmeW38nac",
+   "date": "2026-08-25",
+   "age": 39,
+   "views": 228,
+   "per_day": 5.846153846153846,
+   "likes": "1",
+   "comments": "NA",
+   "title": "Mobile Split vs. Monoblock: Diese Klimaanlage lohnt sich wirklich!",
+   "kind": "B"
+  },
+  {
+   "id": "7O0-nFhxXTs",
+   "date": "2026-08-22",
+   "age": 42,
+   "views": 2300,
+   "per_day": 54.76190476190476,
+   "likes": "7",
+   "comments": "4",
+   "title": "Mit der Klimaanlage heizen: Günstig oder teuer im Winter?",
+   "kind": "B"
+  },
+  {
+   "id": "YmzYyLOl1hU",
+   "date": "2026-08-12",
+   "age": 52,
+   "views": 55,
+   "per_day": 1.0576923076923077,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "Warum stinkt die Auto-Klimaanlage? (Und was wirklich hilft)",
+   "kind": "A"
+  },
+  {
+   "id": "EnREgWaNaS8",
+   "date": "2026-08-12",
+   "age": 52,
+   "views": 4757,
+   "per_day": 91.48076923076923,
+   "likes": "45",
+   "comments": "10",
+   "title": "Klimaanlage Dimensionierung: Die 60-100 Watt Faustformel einfach erklärt",
+   "kind": "B"
+  },
+  {
+   "id": "m1JIhMRRfio",
+   "date": "2026-08-11",
+   "age": 53,
+   "views": 9911,
+   "per_day": 187.0,
+   "likes": "75",
+   "comments": "18",
+   "title": "Split-Klimaanlagen im Vergleich: Bosch, Daikin, Mitsubishi oder Panasonic?",
+   "kind": "B"
+  },
+  {
+   "id": "jtJomDcrGVI",
+   "date": "2026-08-05",
+   "age": 59,
+   "views": 808,
+   "per_day": 13.694915254237289,
+   "likes": "4",
+   "comments": "NA",
+   "title": "Krups Evidence EA897B: Alle Lampen blinken? Sicher zurücksetzen & Fehler prüfen",
+   "kind": "A"
+  },
+  {
+   "id": "-EdeoVb8Qpk",
+   "date": "2026-07-30",
+   "age": 65,
+   "views": 117,
+   "per_day": 1.8,
+   "likes": "NA",
+   "comments": "1",
+   "title": "Kaffeevollautomat: Wasserfilter wechseln & resetten – AquaClean, INTENZA & CLARIS richtig aktivieren",
+   "kind": "A"
+  },
+  {
+   "id": "qSaGw7HmUqo",
+   "date": "2026-07-29",
+   "age": 66,
+   "views": 76,
+   "per_day": 1.1515151515151516,
+   "likes": "NA",
+   "comments": "1",
+   "title": "Welche Bohnen für den Kaffeevollautomaten? Worauf es wirklich ankommt",
+   "kind": "B"
+  },
+  {
+   "id": "63lQKaBPelU",
+   "date": "2026-07-28",
+   "age": 67,
+   "views": 285,
+   "per_day": 4.253731343283582,
+   "likes": "NA",
+   "comments": "1",
+   "title": "Wasser unter dem Kaffeevollautomaten? Die 5 Ursachen",
+   "kind": "A"
+  },
+  {
+   "id": "2T0Ww1Aycc8",
+   "date": "2026-07-28",
+   "age": 67,
+   "views": 588,
+   "per_day": 8.776119402985074,
+   "likes": "3",
+   "comments": "1",
+   "title": "DeLonghi Magnifica S Milchschaum geht nicht? Die Lösung",
+   "kind": "A"
+  },
+  {
+   "id": "7S7ecYJs4P4",
+   "date": "2026-07-28",
+   "age": 67,
+   "views": 50,
+   "per_day": 0.746268656716418,
+   "likes": "NA",
+   "comments": "1",
+   "title": "Welcher Entkalker für den Kaffeevollautomaten? Original, Universal oder Essig?",
+   "kind": "A"
+  },
+  {
+   "id": "r-T06GQ8uv0",
+   "date": "2026-04-23",
+   "age": 163,
+   "views": 446,
+   "per_day": 2.736196319018405,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "DeLonghi Magnifica Evo Brühgruppe reinigen & fetten — Schritt für Schritt Anleitung",
+   "kind": "A"
+  },
+  {
+   "id": "97IogfXRj-I",
+   "date": "2026-04-23",
+   "age": 163,
+   "views": 3601,
+   "per_day": 22.0920245398773,
+   "likes": "7",
+   "comments": "1",
+   "title": "DeLonghi Magnifica Evo entkalken 🔴 Rote Lampe blinkt? Schritt für Schritt Anleitung",
+   "kind": "A"
+  },
+  {
+   "id": "6kwmDU7H1Ls",
+   "date": "2026-04-07",
+   "age": 179,
+   "views": 2415,
+   "per_day": 13.491620111731844,
+   "likes": "31",
+   "comments": "2",
+   "title": "De'Longhi Magnifica S: KAFFEE ZU WÄSSRIG? (Der versteckte Mahlwerk-Trick!)",
+   "kind": "A"
+  },
+  {
+   "id": "EtcBg435Q9I",
+   "date": "2026-04-07",
+   "age": 179,
+   "views": 4278,
+   "per_day": 23.899441340782122,
+   "likes": "29",
+   "comments": "1",
+   "title": "Philips LatteGo Milchschaum geht nicht? (Die 2-Minuten Lösung!)",
+   "kind": "A"
+  },
+  {
+   "id": "5YM7CqH9TUM",
+   "date": "2026-04-02",
+   "age": 184,
+   "views": 3119,
+   "per_day": 16.95108695652174,
+   "likes": "11",
+   "comments": "1",
+   "title": "Philips LatteGo: BESTE Einstellungen für perfekten Kaffee & Milchschaum ☕      (alle Modelle)",
+   "kind": "A"
+  },
+  {
+   "id": "5dq4lXIqNRo",
+   "date": "2026-03-20",
+   "age": 197,
+   "views": 890,
+   "per_day": 4.517766497461929,
+   "likes": "4",
+   "comments": "2",
+   "title": "Brühgruppe reinigen Philips – Die komplette Anleitung (4300, 5400 & Co.)",
+   "kind": "A"
+  },
+  {
+   "id": "KBfN9sVo_t8",
+   "date": "2026-03-19",
+   "age": 198,
+   "views": 17,
+   "per_day": 0.08585858585858586,
+   "likes": "1",
+   "comments": "NA",
+   "title": "Kaffee gesund oder ungesund? Wirkung auf Blutdruck, Sodbrennen & Co. – Der große Faktencheck",
+   "kind": "C"
+  },
+  {
+   "id": "7vq_8FiLQr8",
+   "date": "2026-03-18",
+   "age": 199,
+   "views": 1968,
+   "per_day": 9.889447236180905,
+   "likes": "7",
+   "comments": "NA",
+   "title": "Philips Airfryer reinigen: Richtig sauber in 7 Schritten (Anleitung)",
+   "kind": "A"
+  },
+  {
+   "id": "yq4Uz38hb68",
+   "date": "2026-03-17",
+   "age": 200,
+   "views": 24,
+   "per_day": 0.12,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "99% machen diesen Moka-Pot-Fehler (und ruinieren ihren Kaffee)",
+   "kind": "A"
+  },
+  {
+   "id": "A7RKBatgaEU",
+   "date": "2026-03-15",
+   "age": 202,
+   "views": 3741,
+   "per_day": 18.519801980198018,
+   "likes": "14",
+   "comments": "2",
+   "title": "Philips 3300 LatteGo einrichten - so geht's (komplette Ersteinrichtung)",
+   "kind": "A"
+  },
+  {
+   "id": "ju6LOA2AvHI",
+   "date": "2026-03-11",
+   "age": 206,
+   "views": 4188,
+   "per_day": 20.33009708737864,
+   "likes": "15",
+   "comments": "1",
+   "title": "Sage Barista Express entkalken - so geht's richtig (Anleitung)",
+   "kind": "A"
+  },
+  {
+   "id": "qso2o4F3YBU",
+   "date": "2026-03-11",
+   "age": 206,
+   "views": 1866,
+   "per_day": 9.058252427184467,
+   "likes": "7",
+   "comments": "NA",
+   "title": "DeLonghi Dedica entkalken - so geht's richtig (einfache Anleitung)",
+   "kind": "A"
+  },
+  {
+   "id": "njtMKj3Kaoo",
+   "date": "2026-03-05",
+   "age": 212,
+   "views": 1398,
+   "per_day": 6.59433962264151,
+   "likes": "2",
+   "comments": "NA",
+   "title": "DeLonghi Dinamica & Magnifica: Fehlersymbole erklärt - so löst du das Problem!",
+   "kind": "A"
+  },
+  {
+   "id": "LNkbpaFNA5U",
+   "date": "2026-03-02",
+   "age": 215,
+   "views": 174,
+   "per_day": 0.8093023255813954,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "Nespresso entkalken - so geht's richtig (alle Modelle)",
+   "kind": "A"
+  },
+  {
+   "id": "qRHh8RO9XVk",
+   "date": "2026-03-01",
+   "age": 216,
+   "views": 224,
+   "per_day": 1.037037037037037,
+   "likes": "3",
+   "comments": "NA",
+   "title": "Kaffee mit Milch: Das passiert in deinem Körper (Studie erklärt)",
+   "kind": "C"
+  },
+  {
+   "id": "nQqdGxPB_dQ",
+   "date": "2026-02-04",
+   "age": 241,
+   "views": 52,
+   "per_day": 0.2157676348547718,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "Die Geheimnisse von entkoffeiniertem Kaffee",
+   "kind": "C"
+  },
+  {
+   "id": "X-EBld-dNTQ",
+   "date": "2026-02-01",
+   "age": 244,
+   "views": 444,
+   "per_day": 1.819672131147541,
+   "likes": "1",
+   "comments": "NA",
+   "title": "Eureka Mignon Specialita reinigen & warten – Anleitung",
+   "kind": "A"
+  },
+  {
+   "id": "GydOCjP9Lhc",
+   "date": "2026-01-26",
+   "age": 250,
+   "views": 42,
+   "per_day": 0.168,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "Milch aufschäumen für PERFEKTE Latte Art | 3 Schritte + häufigste Fehler vermeiden",
+   "kind": "A"
+  },
+  {
+   "id": "JMi1KSIWnRM",
+   "date": "2026-01-24",
+   "age": 252,
+   "views": 42,
+   "per_day": 0.16666666666666666,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "Sage Barista Express - Lohnt sie sich? Alle Funktionen, Vorteile & Nachteile! (Ehrlicher Test)",
+   "kind": "B"
+  },
+  {
+   "id": "ZLe9TU_bKmA",
+   "date": "2026-01-24",
+   "age": 252,
+   "views": 194,
+   "per_day": 0.7698412698412699,
+   "likes": "1",
+   "comments": "NA",
+   "title": "Siemens Kaffeevollautomat Reparatur - Die 5 häufigsten Defekte SELBST beheben! (Spart 200€+)",
+   "kind": "A"
+  },
+  {
+   "id": "NWPy0G3jKjk",
+   "date": "2026-01-21",
+   "age": 255,
+   "views": 6416,
+   "per_day": 25.16078431372549,
+   "likes": "14",
+   "comments": "3",
+   "title": "Krups EA897B entkalken - Komplette Anleitung 2025",
+   "kind": "A"
+  },
+  {
+   "id": "VtUr64BkUqk",
+   "date": "2026-01-20",
+   "age": 256,
+   "views": 159,
+   "per_day": 0.62109375,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "Siemens EQ6 Plus entkalken - Schritt-für-Schritt Anleitung | CALC Meldung beheben",
+   "kind": "A"
+  },
+  {
+   "id": "TAOCeXzBu00",
+   "date": "2026-01-19",
+   "age": 257,
+   "views": 12,
+   "per_day": 0.04669260700389105,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "Warum ist Kaffee so TEUER geworden? Die schockierende Wahrheit! ☕💰",
+   "kind": "B"
+  },
+  {
+   "id": "wDCnFcjoOWM",
+   "date": "2026-01-18",
+   "age": 258,
+   "views": 2722,
+   "per_day": 10.550387596899224,
+   "likes": "3",
+   "comments": "5",
+   "title": "Rocket Appartamento Wartung – So hält deine Siebträgermaschine ewig! ☕🔧",
+   "kind": "A"
+  },
+  {
+   "id": "DbCY2M-Z8cY",
+   "date": "2026-01-17",
+   "age": 259,
+   "views": 3659,
+   "per_day": 14.127413127413128,
+   "likes": "7",
+   "comments": "4",
+   "title": "Kaffeemaschine geht nicht an? 5 Sekunden Fix! | De'Longhi, Siemens, Philips | Reparatur Tutorial",
+   "kind": "A"
+  },
+  {
+   "id": "PJzyjurotOU",
+   "date": "2026-01-12",
+   "age": 264,
+   "views": 766,
+   "per_day": 2.9015151515151514,
+   "likes": "8",
+   "comments": "2",
+   "title": "Was WIRKLICH in deinem Kaffeevollautomaten passiert! 🔍 Kompletter Ablauf erklärt",
+   "kind": "C"
+  },
+  {
+   "id": "sTStBR8L2L0",
+   "date": "2026-01-08",
+   "age": 268,
+   "views": 157,
+   "per_day": 0.585820895522388,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "DeLonghi Magnifica einrichten | Die komplette Anleitung (2026) ☕",
+   "kind": "A"
+  },
+  {
+   "id": "UUNlgXVZ5c8",
+   "date": "2026-01-05",
+   "age": 271,
+   "views": 134,
+   "per_day": 0.4944649446494465,
+   "likes": "1",
+   "comments": "NA",
+   "title": "Latte Art für Anfänger | Komplette Anleitung in 2 Minuten",
+   "kind": "A"
+  },
+  {
+   "id": "1ORLyvj4o4M",
+   "date": "2026-01-04",
+   "age": 272,
+   "views": 2273,
+   "per_day": 8.356617647058824,
+   "likes": "6",
+   "comments": "NA",
+   "title": "DeLonghi Rivelia Wartung & Pflege | Komplette Anleitung",
+   "kind": "A"
+  },
+  {
+   "id": "6FGnxNuBz8E",
+   "date": "2026-01-01",
+   "age": 275,
+   "views": 1504,
+   "per_day": 5.469090909090909,
+   "likes": "11",
+   "comments": "2",
+   "title": "Waschmaschine: Wasser bleibt stehen & pumpt nicht ab | Anleitung Flusensieb reinigen",
+   "kind": "A"
+  },
+  {
+   "id": "76ZvOWkHhUw",
+   "date": "2025-12-31",
+   "age": 276,
+   "views": 1033,
+   "per_day": 3.7427536231884058,
+   "likes": "4",
+   "comments": "NA",
+   "title": "DeLonghi Magnifica: Schwacher Kaffee? Die Lösung! | Anleitung",
+   "kind": "A"
+  },
+  {
+   "id": "OC4Wu6o4i8U",
+   "date": "2025-12-31",
+   "age": 276,
+   "views": 15683,
+   "per_day": 56.822463768115945,
+   "likes": "31",
+   "comments": "13",
+   "title": "DeLonghi Milchschaum geht nicht? Die Lösung in 2 Minuten! | Magnifica Evo reparieren ",
+   "kind": "A"
+  },
+  {
+   "id": "Ic610qy_nF4",
+   "date": "2025-12-30",
+   "age": 277,
+   "views": 893,
+   "per_day": 3.223826714801444,
+   "likes": "5",
+   "comments": "NA",
+   "title": "DeLonghi Magnifica: Brühgruppe warten (Reinigen & Schmieren)",
+   "kind": "A"
+  },
+  {
+   "id": "6U2cRlkfBqM",
+   "date": "2025-12-22",
+   "age": 285,
+   "views": 104,
+   "per_day": 0.3649122807017544,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "De'Longhi Rivelia Plus Test: Das 2-Bohnen-System ist ein GAME CHANGER 2025!",
+   "kind": "B"
+  },
+  {
+   "id": "KHLi12cGfT4",
+   "date": "2025-11-26",
+   "age": 311,
+   "views": 7073,
+   "per_day": 22.742765273311896,
+   "likes": "11",
+   "comments": "1",
+   "title": "Philips LatteGo Serie (2300 & 5500) Entkalken: Schritt-für-Schritt Anleitung",
+   "kind": "A"
+  },
+  {
+   "id": "LLl4Ocv-0tM",
+   "date": "2025-11-21",
+   "age": 316,
+   "views": 277,
+   "per_day": 0.8765822784810127,
+   "likes": "NA",
+   "comments": "NA",
+   "title": "DeLonghi Magnifica S entkalken: Schritt-für-Schritt Anleitung (2026)",
+   "kind": "A"
+  },
+  {
+   "id": "-x0obhkt8Ao",
+   "date": "2025-11-15",
+   "age": 322,
+   "views": 1508,
+   "per_day": 4.683229813664596,
+   "likes": "5",
+   "comments": "NA",
+   "title": "De'Longhi Magnifica S: Brühgruppe reinigen & fetten (Anleitung)",
+   "kind": "A"
+  },
+  {
+   "id": "N1LVGR4PbrM",
+   "date": "2025-11-13",
+   "age": 324,
+   "views": 1778,
+   "per_day": 5.487654320987654,
+   "likes": "6",
+   "comments": "NA",
+   "title": "Kaffeevollautomat KEIN Kaffee ☕ Häufigsten Ursachen & Lösungen | DeLonghi, Jura, Siemens, Saeco, WMF",
+   "kind": "A"
+  },
+  {
+   "id": "rb1vi2R1zs4",
+   "date": "2025-10-31",
+   "age": 337,
+   "views": 1610,
+   "per_day": 4.777448071216617,
+   "likes": "4",
+   "comments": "NA",
+   "title": "Jura Impressa E10/E20/E25 entkalken | Schritt-für-Schritt Anleitung",
+   "kind": "A"
+  }
+ ],
+ "shorts": [
+  {
+   "views": 115,
+   "title": "Was passiert im Kaffeevollautomaten? ☕ In 20 Sekunden erklärt"
+  },
+  {
+   "views": 114,
+   "title": "Wie funktioniert eine Klimaanlage? In 20 Sekunden erklärt"
+  },
+  {
+   "views": 16,
+   "title": "Tür schleift am Boden? Nicht sofort hobeln! #Shorts"
+  },
+  {
+   "views": 953,
+   "title": "80, 120 oder 240? Die richtige Schleifpapier-Körnung #shorts"
+  },
+  {
+   "views": 1012,
+   "title": "Warum wandert die Blase? Wasserwaage richtig ablesen #shorts"
+  },
+  {
+   "views": 1045,
+   "title": "Warum schimmelt dein Bad? 6 Ursachen erklärt #Haushalt #Alltag #Tipps"
+  },
+  {
+   "views": 737,
+   "title": "Warum Holz beim Schrauben reißt: 6 Tipps #Handwerk #Heimwerker #Werkzeug"
+  },
+  {
+   "views": 67,
+   "title": "Warum dein Staubsauger Leistung verliert #Haushalt #Alltag #Tipps"
+  },
+  {
+   "views": 52,
+   "title": "🔩 Warum deine Dübel nicht halten #Handwerk #Heimwerker #Dübel"
+  },
+  {
+   "views": 1009,
+   "title": "Warum Sägeblätter schnell stumpf werden #Handwerk #Heimwerker #Werkzeug"
+  },
+  {
+   "views": 289,
+   "title": "Warum Wäsche nach dem Waschen muffig riecht #Haushalt #Alltag #Tipps"
+  },
+  {
+   "views": 35,
+   "title": "Schraubenkopf dreht durch? 6 Tipps #Handwerk #Heimwerker #Werkzeug"
+  },
+  {
+   "views": 1385,
+   "title": "🛠️ Warum dein Bohrer stumpf wird #Handwerk #Heimwerker #Werkzeug"
+  },
+  {
+   "views": 1229,
+   "title": "🔩 Warum deine Dübel nicht halten #Handwerk #Heimwerker #Dübel"
+  },
+  {
+   "views": 2348,
+   "title": "🏠 Was dein Haus dir sagt #Haus #Handwerk #Sanierung"
+  },
+  {
+   "views": 1558,
+   "title": "🛑 Diese 6 Finanzfehler solltest du niemals machen #Finanzen #Geldanlage #Vermögensaufbau"
+  },
+  {
+   "views": 1243,
+   "title": "🛑 Lebenstipps die jeder kennen sollte #Lebenstipps #Alltag #Persönlichkeitsentwicklung"
+  },
+  {
+   "views": 860,
+   "title": "🛑 Lebenstipps die wirklich helfen #Lebenstipps #Alltag #Gesundheit"
+  },
+  {
+   "views": 1203,
+   "title": "🛑 6 Lebenstipps zum Weiterschicken #Lebenstipps #Alltag #Haushalt"
+  },
+  {
+   "views": 1763,
+   "title": "⏰ Zeitumstellung 2026: Warum wir weiter drehen #Zeitumstellung #EU #Sommerzeit"
+  },
+  {
+   "views": 789,
+   "title": "🛑 Rauchmelder richtig prüfen #Rauchmelder #Brandschutz #Handwerk"
+  },
+  {
+   "views": 1528,
+   "title": "🛒 6 Supermarkt-Tricks die dich zum Kaufen bringen #Supermarkt #Einkaufstipps #Verbraucher"
+  },
+  {
+   "views": 1653,
+   "title": "🩺 Was dein Arzt dir nicht sagt #Gesundheit #Arztbesuch #Medizin"
+  },
+  {
+   "views": 1328,
+   "title": "🏦 Was deine Bank dir verschweigt #Finanzen #Geld #Bankgebühren"
+  },
+  {
+   "views": 1523,
+   "title": "🛒 Was dein Supermarkt dir verschweigt #Supermarkt #Einkaufstipps #Verbraucher"
+  },
+  {
+   "views": 1293,
+   "title": "📦 5 Amazon-Helfer gegen Alltagsnerven #Amazon #Haushalt #Alltagstipps"
+  },
+  {
+   "views": 4503,
+   "title": "🚨 3 Zeichen dass dein Körper stumm um Hilfe schreit #Gesundheit #Körpersignale #Prävention"
+  },
+  {
+   "views": 1300,
+   "title": "🔩 Warum Metall müde wird und plötzlich bricht #Materialermüdung #Werkstoffkunde #Handwerk"
+  },
+  {
+   "views": 924,
+   "title": "🔧 Werkzeuge jahrzehntelang nutzen: 6 Profi-Regeln #Werkzeugpflege #Handwerk #Profi"
+  },
+  {
+   "views": 1335,
+   "title": "🔧 Werkzeuge ohne Kompromiss #Werkzeug #Handwerk #Qualität"
+  },
+  {
+   "views": 1208,
+   "title": "🏭 Made in Germany: Was heute wirklich dahintersteckt #MadeInGermany #Produktion #Qualität"
+  },
+  {
+   "views": 1407,
+   "title": "🔧 3 Zeichen für Schrott-Werkzeug erkennen #Werkzeug #Handwerk #Qualität"
+  },
+  {
+   "views": 2287,
+   "title": "🛠️ Saubere Fliesenlöcher bohren #Handwerk #Bohren #Heimwerken"
+  },
+  {
+   "views": 1728,
+   "title": "🔧 Sauber bohren mit Körnung #Handwerk #Bohren #Werkzeug"
+  },
+  {
+   "views": 1266,
+   "title": "🥗 GEHEIMTIPPS FÜR RENTNERERNÄHRUNG #GeheimtippsErnährung #RentnerTipps #ProfiTipps"
+  },
+  {
+   "views": 2899,
+   "title": "🥣 Eiweiß clever im Alter #Ernährung #Rentner #Muskeln"
+  },
+  {
+   "views": 310,
+   "title": "🛠️ Gartenschere richtig benutzen #Garten #Werkzeug #Pflanzenpflege"
+  },
+  {
+   "views": 7434,
+   "title": "🔧 Drei Bohrtipps sparen Ärger #Bohren #Werkzeug #Handwerk"
+  },
+  {
+   "views": 2946,
+   "title": "🔧 7 Tipps fürs Heimwerken #Handwerk #DIY #Werkzeug"
+  },
+  {
+   "views": 1398,
+   "title": "⚡ Tesla senkt Supercharger-Preise #Tesla #Elektromobilität #Laden"
+  },
+  {
+   "views": 1499,
+   "title": "🍎 Ernährung im Alter: 7 klare Regeln #Ernährung #Rentner #Gesundheit"
+  },
+  {
+   "views": 17026,
+   "title": "🔨 Warum deine Werkzeuge nicht halten #Handwerk #Heimwerker #Werkzeug"
+  },
+  {
+   "views": 1261,
+   "title": "🏎️ Mercedes-AMG CLE 646 Spezialanfertigung #MercedesAMG #Sportwagen #Luxusauto"
+  },
+  {
+   "views": 1561,
+   "title": "☕ Kaffeemaschinen-Tipps, die keiner kennt #Kaffeemaschine #Espresso #Haushalt"
+  },
+  {
+   "views": 97,
+   "title": "☕ 4 Kaffeemaschinen-Hacks, die kaum einer kennt"
+  },
+  {
+   "views": 40,
+   "title": "Hört dein Smart-TV heimlich mit? 😳 #Shorts"
+  },
+  {
+   "views": 1194,
+   "title": "Warum sind 35er und 40er Schrauben gleich lang?"
+  },
+  {
+   "views": 301,
+   "title": "Abfluss stinkt? Geschirrspültab so benutzen 🤯 #shorts"
+  },
+  {
+   "views": 34,
+   "title": "20% Heizkosten sparen mit Folie? Echt oder Quatsch! #shorts"
+  },
+  {
+   "views": 814,
+   "title": "25 m²: 9.000 oder 12.000 BTU? #shorts"
+  },
+  {
+   "views": 1189,
+   "title": "Schranktür ausgerissen? Diese Platte rettet sie! #shorts"
+  },
+  {
+   "views": 1312,
+   "title": "Diese Zange rettet rundgedrehte Schrauben! #shorts"
+  },
+  {
+   "views": 99,
+   "title": "Schraube dreht durch? Diesen Trick kennen viele nicht 🔩 #shorts"
+  },
+  {
+   "views": 52,
+   "title": "4 Klima-Fehler, die Strom fressen ⚡ So sparst du sofort #shorts"
+  },
+  {
+   "views": 762,
+   "title": "4 Klimaanlagen im 5‑Sekunden‑Check ❄️ Bosch vs. Mitsubishi vs. Daikin vs. Panasonic #shorts"
+  },
+  {
+   "views": 981,
+   "title": "Krups Evidence EA897B: Erste Hilfe & Reset-Guide ☕️"
+  },
+  {
+   "views": 499,
+   "title": "Latte Art Rosetta: Die richtige Kannenbewegung erklärt"
+  }
+ ]
+}

@@ -1,0 +1,3315 @@
+{
+ "seeds": [
+  "heizung",
+  "heizkörper"
+ ],
+ "suggestions": [
+  [
+   "heizung entlüften",
+   28.0
+  ],
+  [
+   "heizkörper entlüften",
+   20.0
+  ],
+  [
+   "heizung wird nicht warm",
+   19.0
+  ],
+  [
+   "heizkörper reinigen",
+   19.0
+  ],
+  [
+   "heizkörper wird nicht warm",
+   18.0
+  ],
+  [
+   "heizkörper lackieren",
+   17.0
+  ],
+  [
+   "heizung wasser nachfüllen",
+   16.0
+  ],
+  [
+   "heizung reinigen",
+   16.0
+  ],
+  [
+   "heizkörper austauschen",
+   16.0
+  ],
+  [
+   "heizung richtig entlüften",
+   14.0
+  ],
+  [
+   "heizung abbauen",
+   14.0
+  ],
+  [
+   "heizkörper tauschen",
+   14.0
+  ],
+  [
+   "heizkörper demontieren",
+   13.0
+  ],
+  [
+   "heizkörper thermostat wechseln",
+   11.0
+  ],
+  [
+   "heizkörper ventilator",
+   11.0
+  ],
+  [
+   "heizung befüllen",
+   10.0
+  ],
+  [
+   "heizung camper",
+   10.0
+  ],
+  [
+   "heizung durchflussmenge einstellen",
+   10.0
+  ],
+  [
+   "heizung funktioniert nicht",
+   10.0
+  ],
+  [
+   "heizung geht nicht an",
+   10.0
+  ],
+  [
+   "heizung heizt nicht",
+   10.0
+  ],
+  [
+   "heizung isolieren",
+   10.0
+  ],
+  [
+   "heizung klopft",
+   10.0
+  ],
+  [
+   "heizung lackieren",
+   10.0
+  ],
+  [
+   "heizung montieren",
+   10.0
+  ],
+  [
+   "heizung nachfüllen",
+   10.0
+  ],
+  [
+   "heizung ohne ventil entlüften",
+   10.0
+  ],
+  [
+   "heizung pfeift",
+   10.0
+  ],
+  [
+   "heizung sauber machen",
+   10.0
+  ],
+  [
+   "heizung thermostat wechseln",
+   10.0
+  ],
+  [
+   "heizung unten kalt",
+   10.0
+  ],
+  [
+   "heizung verkleiden",
+   10.0
+  ],
+  [
+   "heizung zu wenig druck",
+   10.0
+  ],
+  [
+   "heizkörper befüllen",
+   10.0
+  ],
+  [
+   "cosmo heizkörper",
+   10.0
+  ],
+  [
+   "heizkörper funktioniert nicht",
+   10.0
+  ],
+  [
+   "heizkörper geht nicht an",
+   10.0
+  ],
+  [
+   "heizkörper heizt nicht",
+   10.0
+  ],
+  [
+   "heizkörper innen reinigen",
+   10.0
+  ],
+  [
+   "heizkörper klopft",
+   10.0
+  ],
+  [
+   "heizkörper montieren anschluss unten",
+   10.0
+  ],
+  [
+   "heizkörper nur oben warm",
+   10.0
+  ],
+  [
+   "heizkörper ohne entlüftungsventil entlüften",
+   10.0
+  ],
+  [
+   "heizkörper pfeift",
+   10.0
+  ],
+  [
+   "heizkörper streichen",
+   10.0
+  ],
+  [
+   "heizkörper unten kalt",
+   10.0
+  ],
+  [
+   "heizkörper zulauf abdrehen",
+   10.0
+  ],
+  [
+   "heizung anschließen",
+   9.0
+  ],
+  [
+   "heizung bleibt kalt",
+   9.0
+  ],
+  [
+   "heizung camper elektrisch",
+   9.0
+  ],
+  [
+   "heizung demontieren",
+   9.0
+  ],
+  [
+   "heizung entlüften mietwohnung",
+   9.0
+  ],
+  [
+   "heizung für garage",
+   9.0
+  ],
+  [
+   "heizung geht nicht mehr aus",
+   9.0
+  ],
+  [
+   "heizung hydraulischer abgleich",
+   9.0
+  ],
+  [
+   "heizung installieren",
+   9.0
+  ],
+  [
+   "heizung knacken",
+   9.0
+  ],
+  [
+   "heizung lässt sich nicht abstellen",
+   9.0
+  ],
+  [
+   "heizung macht geräusche",
+   9.0
+  ],
+  [
+   "heizung nur oben warm",
+   9.0
+  ],
+  [
+   "heizung oben warm unten kalt",
+   9.0
+  ],
+  [
+   "heizung putzen",
+   9.0
+  ],
+  [
+   "heizung streichen",
+   9.0
+  ],
+  [
+   "heizung thermostat",
+   9.0
+  ],
+  [
+   "heizung umwälzpumpe ausschalten",
+   9.0
+  ],
+  [
+   "heizung ventilstift",
+   9.0
+  ],
+  [
+   "heizung zu warm",
+   9.0
+  ],
+  [
+   "heizkörper anschließen",
+   9.0
+  ],
+  [
+   "heizkörper bleibt kalt",
+   9.0
+  ],
+  [
+   "cosmo heizkörper montieren",
+   9.0
+  ],
+  [
+   "heizkörper durchfluss einstellen",
+   9.0
+  ],
+  [
+   "heizkörper entlüften ohne ventil",
+   9.0
+  ],
+  [
+   "heizkörper für wärmepumpe",
+   9.0
+  ],
+  [
+   "heizkörper geräusche",
+   9.0
+  ],
+  [
+   "heizkörper halterungen montieren",
+   9.0
+  ],
+  [
+   "heizkörper installieren",
+   9.0
+  ],
+  [
+   "heizkörper kalt",
+   9.0
+  ],
+  [
+   "heizkörper lackieren spraydose",
+   9.0
+  ],
+  [
+   "heizkörper macht geräusche",
+   9.0
+  ],
+  [
+   "heizkörper neu lackieren",
+   9.0
+  ],
+  [
+   "heizkörper oben warm unten kalt",
+   9.0
+  ],
+  [
+   "heizkörper putzen",
+   9.0
+  ],
+  [
+   "heizkörper richtig entlüften",
+   9.0
+  ],
+  [
+   "heizkörper spülen",
+   9.0
+  ],
+  [
+   "heizkörper undicht",
+   9.0
+  ],
+  [
+   "heizkörper verkleiden",
+   9.0
+  ],
+  [
+   "heizkörper wechseln",
+   9.0
+  ],
+  [
+   "heizkörper zähler tauschen",
+   9.0
+  ],
+  [
+   "heizungsventil tauschen",
+   8.0
+  ],
+  [
+   "heizung ablesen",
+   8.0
+  ],
+  [
+   "heizung bauen",
+   8.0
+  ],
+  [
+   "heizung camping",
+   8.0
+  ],
+  [
+   "heizung druck ablassen",
+   8.0
+  ],
+  [
+   "heizung entlüften ohne ventil",
+   8.0
+  ],
+  [
+   "heizung für werkstatt",
+   8.0
+  ],
+  [
+   "heizung geräusche",
+   8.0
+  ],
+  [
+   "heizung hydraulischer abgleich selber machen",
+   8.0
+  ],
+  [
+   "heizung im haus entlüften",
+   8.0
+  ],
+  [
+   "heizung kalt trotz entlüften",
+   8.0
+  ],
+  [
+   "heizung mit notstromaggregat betreiben",
+   8.0
+  ],
+  [
+   "heizung nachtabsenkung",
+   8.0
+  ],
+  [
+   "heizung ohne strom",
+   8.0
+  ],
+  [
+   "heizung pumpe wechseln",
+   8.0
+  ],
+  [
+   "heizung richtig einstellen",
+   8.0
+  ],
+  [
+   "heizung selber bauen",
+   8.0
+  ],
+  [
+   "heizung thermostat einstellen",
+   8.0
+  ],
+  [
+   "heizung umwälzpumpe wechseln",
+   8.0
+  ],
+  [
+   "heizung verliert druck",
+   8.0
+  ],
+  [
+   "heizung wasser ablassen",
+   8.0
+  ],
+  [
+   "heizung zählerstand ablesen",
+   8.0
+  ],
+  [
+   "heizkörper abdeckung entfernen",
+   8.0
+  ],
+  [
+   "heizkörper berechnen",
+   8.0
+  ],
+  [
+   "solar computer heizkörper",
+   8.0
+  ],
+  [
+   "heizkörper durchflussmenge einstellen",
+   8.0
+  ],
+  [
+   "heizkörper entfernen",
+   8.0
+  ],
+  [
+   "heizkörper funktionsweise",
+   8.0
+  ],
+  [
+   "heizkörper gitter entfernen",
+   8.0
+  ],
+  [
+   "heizkörper gluckert",
+   8.0
+  ],
+  [
+   "heizkörper hahnblock montieren",
+   8.0
+  ],
+  [
+   "heizkörper isolierfolie anbringen",
+   8.0
+  ],
+  [
+   "heizkörper knacken",
+   8.0
+  ],
+  [
+   "heizkörperlüfter",
+   8.0
+  ],
+  [
+   "heizkörper montage",
+   8.0
+  ],
+  [
+   "heizkörper nachträglich einbauen",
+   8.0
+  ],
+  [
+   "heizkörper optimieren",
+   8.0
+  ],
+  [
+   "heizkörper pin",
+   8.0
+  ],
+  [
+   "heizkörper reinigen abdeckung entfernen",
+   8.0
+  ],
+  [
+   "heizkörper stilllegen",
+   8.0
+  ],
+  [
+   "heizkörper thermostat einstellen",
+   8.0
+  ],
+  [
+   "heizkörper unterschiede",
+   8.0
+  ],
+  [
+   "heizkörper ventil tauschen",
+   8.0
+  ],
+  [
+   "heizkörper wird nur oben warm",
+   8.0
+  ],
+  [
+   "heizkörper zudrehen",
+   8.0
+  ],
+  [
+   "heizung auffüllen",
+   7.0
+  ],
+  [
+   "heizung brummt",
+   7.0
+  ],
+  [
+   "heizung campervan",
+   7.0
+  ],
+  [
+   "heizung druck erhöhen",
+   7.0
+  ],
+  [
+   "heizung entlüften ohne schlüssel",
+   7.0
+  ],
+  [
+   "heizung für gartenhaus",
+   7.0
+  ],
+  [
+   "heizung gluckert",
+   7.0
+  ],
+  [
+   "heizung homeassistant",
+   7.0
+  ],
+  [
+   "heizung innen reinigen",
+   7.0
+  ],
+  [
+   "heizung klackert",
+   7.0
+  ],
+  [
+   "heizungslüfter",
+   7.0
+  ],
+  [
+   "heizung mit kerzen",
+   7.0
+  ],
+  [
+   "heizung nicht warm",
+   7.0
+  ],
+  [
+   "heizung optimieren",
+   7.0
+  ],
+  [
+   "heizung piept",
+   7.0
+  ],
+  [
+   "heizung rücklauf einstellen",
+   7.0
+  ],
+  [
+   "heizung stift klemmt",
+   7.0
+  ],
+  [
+   "heizung tauschen",
+   7.0
+  ],
+  [
+   "heizung undicht",
+   7.0
+  ],
+  [
+   "heizung ventilator",
+   7.0
+  ],
+  [
+   "heizung wird nur oben warm",
+   7.0
+  ],
+  [
+   "heizung zirkulationspumpe",
+   7.0
+  ],
+  [
+   "heizkörper abbauen",
+   7.0
+  ],
+  [
+   "heizkörper bleibt kalt trotz entlüften",
+   7.0
+  ],
+  [
+   "heizkörper ersetzen",
+   7.0
+  ],
+  [
+   "heizkörper tropft",
+   7.0
+  ],
+  [
+   "heizkörper deckel entfernen",
+   7.0
+  ],
+  [
+   "heizkörper einstellen",
+   7.0
+  ],
+  [
+   "heizkörper füllen",
+   7.0
+  ],
+  [
+   "heizkörper hydraulischer abgleich",
+   7.0
+  ],
+  [
+   "heizkörper isolieren",
+   7.0
+  ],
+  [
+   "heizkörper kopf wechseln",
+   7.0
+  ],
+  [
+   "heizkörper lässt sich nicht abstellen",
+   7.0
+  ],
+  [
+   "heizkörper mittelanschluss montieren",
+   7.0
+  ],
+  [
+   "heizkörper nachrüsten",
+   7.0
+  ],
+  [
+   "heizkörper oben öffnen",
+   7.0
+  ],
+  [
+   "heizkörper plätschert",
+   7.0
+  ],
+  [
+   "heizkörper rücklaufventil einstellen",
+   7.0
+  ],
+  [
+   "heizkörper sauber machen",
+   7.0
+  ],
+  [
+   "heizkörper thermostat smart",
+   7.0
+  ],
+  [
+   "heizkörper undicht verschraubung",
+   7.0
+  ],
+  [
+   "heizkörper versetzen",
+   7.0
+  ],
+  [
+   "heizkörper wasser ablassen",
+   7.0
+  ],
+  [
+   "heizkörper zerlegen",
+   7.0
+  ],
+  [
+   "heizung ausdehnungsgefäß wechseln",
+   6.0
+  ],
+  [
+   "heizung blubbert",
+   6.0
+  ],
+  [
+   "china heizung",
+   6.0
+  ],
+  [
+   "heizung dreher wechseln",
+   6.0
+  ],
+  [
+   "heizung einstellen",
+   6.0
+  ],
+  [
+   "heizung füllen",
+   6.0
+  ],
+  [
+   "heizung garage",
+   6.0
+  ],
+  [
+   "heizung hahnblock tauschen",
+   6.0
+  ],
+  [
+   "heizung immer warm",
+   6.0
+  ],
+  [
+   "heizung kalt",
+   6.0
+  ],
+  [
+   "heizung läuft nicht",
+   6.0
+  ],
+  [
+   "heizung mit wasser befüllen",
+   6.0
+  ],
+  [
+   "heizung neu lackieren",
+   6.0
+  ],
+  [
+   "heizung ohne regler ausschalten",
+   6.0
+  ],
+  [
+   "heizung pumpe läuft nicht",
+   6.0
+  ],
+  [
+   "heizung reparieren",
+   6.0
+  ],
+  [
+   "heizung spülen",
+   6.0
+  ],
+  [
+   "heizung tropft an verschraubung",
+   6.0
+  ],
+  [
+   "heizung umwälzpumpe einstellen",
+   6.0
+  ],
+  [
+   "heizung von innen reinigen",
+   6.0
+  ],
+  [
+   "heizung wird nicht kalt",
+   6.0
+  ],
+  [
+   "heizung zigarettenanzünder",
+   6.0
+  ],
+  [
+   "heizkörper absperren",
+   6.0
+  ],
+  [
+   "heizkörper befestigen",
+   6.0
+  ],
+  [
+   "heizkörper durchspülen",
+   6.0
+  ],
+  [
+   "heizkörper entlüftungsventil tauschen",
+   6.0
+  ],
+  [
+   "heizkörper für wärmepumpe altbau",
+   6.0
+  ],
+  [
+   "heizkörper geht nicht mehr aus",
+   6.0
+  ],
+  [
+   "heizkörper hahnblock absperren",
+   6.0
+  ],
+  [
+   "heizkörper immer warm",
+   6.0
+  ],
+  [
+   "heizkörper kaufen",
+   6.0
+  ],
+  [
+   "heizkörper leitungen verlegen",
+   6.0
+  ],
+  [
+   "heizkörper mit wasser befüllen",
+   6.0
+  ],
+  [
+   "heizkörper neu einbauen",
+   6.0
+  ],
+  [
+   "heizkörper ohne thermostat",
+   6.0
+  ],
+  [
+   "heizkörper piept",
+   6.0
+  ],
+  [
+   "heizkörper reinigen innen",
+   6.0
+  ],
+  [
+   "heizkörper selber austauschen",
+   6.0
+  ],
+  [
+   "heizkörper thermostat",
+   6.0
+  ],
+  [
+   "heizkörper umsetzen",
+   6.0
+  ],
+  [
+   "heizkörper ventil einstellen",
+   6.0
+  ],
+  [
+   "heizkörper wasser nachfüllen",
+   6.0
+  ],
+  [
+   "heizkörper zischt",
+   6.0
+  ],
+  [
+   "heizung anmachen",
+   5.0
+  ],
+  [
+   "heizung bleibt unten kalt",
+   5.0
+  ],
+  [
+   "china heizung einstellen",
+   5.0
+  ],
+  [
+   "heizung druck steigt ständig",
+   5.0
+  ],
+  [
+   "heizung entlüften haus",
+   5.0
+  ],
+  [
+   "heizung für auto",
+   5.0
+  ],
+  [
+   "heizung gartenhaus",
+   5.0
+  ],
+  [
+   "heizung hahnblock",
+   5.0
+  ],
+  [
+   "heizung im camper",
+   5.0
+  ],
+  [
+   "heizung kaputt",
+   5.0
+  ],
+  [
+   "heizung luft rauslassen",
+   5.0
+  ],
+  [
+   "heizung macht laute geräusche",
+   5.0
+  ],
+  [
+   "heizung neu befüllen",
+   5.0
+  ],
+  [
+   "heizung ohne schlüssel entlüften",
+   5.0
+  ],
+  [
+   "heizung pumpe einstellen",
+   5.0
+  ],
+  [
+   "heizung rauscht",
+   5.0
+  ],
+  [
+   "heizung sanitär ausbildung",
+   5.0
+  ],
+  [
+   "heizung tropft",
+   5.0
+  ],
+  [
+   "heizung uhrzeit einstellen",
+   5.0
+  ],
+  [
+   "heizung vor und rücklauf vertauscht",
+   5.0
+  ],
+  [
+   "heizung wird nicht richtig warm",
+   5.0
+  ],
+  [
+   "heizung zudrehen",
+   5.0
+  ],
+  [
+   "heizkörperventil wechseln",
+   5.0
+  ],
+  [
+   "heizkörper abmontieren",
+   5.0
+  ],
+  [
+   "heizkörper befüllen nach montage",
+   5.0
+  ],
+  [
+   "heizkörper durch fußbodenheizung ersetzen",
+   5.0
+  ],
+  [
+   "heizkörper einbauen",
+   5.0
+  ],
+  [
+   "heizkörper fail",
+   5.0
+  ],
+  [
+   "heizkörper größe berechnen",
+   5.0
+  ],
+  [
+   "heizkörper hahnblock tauschen",
+   5.0
+  ],
+  [
+   "heizkörper im haus entlüften",
+   5.0
+  ],
+  [
+   "heizkörper kermi reinigen",
+   5.0
+  ],
+  [
+   "heizkörper lackieren rolle",
+   5.0
+  ],
+  [
+   "heizkörper mit bohrkonsole montieren",
+   5.0
+  ],
+  [
+   "heizkörper niedrige vorlauftemperatur",
+   5.0
+  ],
+  [
+   "heizkörper ohne entlüftungsventil",
+   5.0
+  ],
+  [
+   "heizkörper platzt",
+   5.0
+  ],
+  [
+   "heizkörper richtig einstellen",
+   5.0
+  ],
+  [
+   "heizkörper sprühen",
+   5.0
+  ],
+  [
+   "heizkörper thermostat montieren",
+   5.0
+  ],
+  [
+   "heizkörper umbauen",
+   5.0
+  ],
+  [
+   "heizkörper ventilator selber bauen",
+   5.0
+  ],
+  [
+   "heizkörper wird nur zur hälfte warm",
+   5.0
+  ],
+  [
+   "heizkörper zu heiß",
+   5.0
+  ],
+  [
+   "heizung austauschen",
+   4.0
+  ],
+  [
+   "heizung bad entlüften",
+   4.0
+  ],
+  [
+   "china heizung 8 kw",
+   4.0
+  ],
+  [
+   "heizung druck einstellen",
+   4.0
+  ],
+  [
+   "heizung entlüften mit schlüssel",
+   4.0
+  ],
+  [
+   "heizung funktionsweise",
+   4.0
+  ],
+  [
+   "heizung gas",
+   4.0
+  ],
+  [
+   "heizung hydraulik grundlagen",
+   4.0
+  ],
+  [
+   "heizung in betrieb nehmen",
+   4.0
+  ],
+  [
+   "heizung knacken nachts",
+   4.0
+  ],
+  [
+   "heizung leeren",
+   4.0
+  ],
+  [
+   "heizung montage",
+   4.0
+  ],
+  [
+   "heizung neubau",
+   4.0
+  ],
+  [
+   "heizung ohne thermostat",
+   4.0
+  ],
+  [
+   "heizung plätschert",
+   4.0
+  ],
+  [
+   "heizung rost entfernen",
+   4.0
+  ],
+  [
+   "heizung sanitär",
+   4.0
+  ],
+  [
+   "heizung temperatur einstellen",
+   4.0
+  ],
+  [
+   "heizung umbauen",
+   4.0
+  ],
+  [
+   "heizung verlegen",
+   4.0
+  ],
+  [
+   "heizung wärmt nicht",
+   4.0
+  ],
+  [
+   "heizung zischt",
+   4.0
+  ],
+  [
+   "heizkörper aufhängen",
+   4.0
+  ],
+  [
+   "heizkörper befestigung wand",
+   4.0
+  ],
+  [
+   "heizkörper auswechseln",
+   4.0
+  ],
+  [
+   "heizkörper dämmen",
+   4.0
+  ],
+  [
+   "heizkörper entlüften reihenfolge",
+   4.0
+  ],
+  [
+   "heizkörper fussbodenheizung kombination",
+   4.0
+  ],
+  [
+   "heizkörper gitter abnehmen",
+   4.0
+  ],
+  [
+   "heizkörper hahnblock",
+   4.0
+  ],
+  [
+   "heizkörper in betrieb nehmen",
+   4.0
+  ],
+  [
+   "heizkörper knallt",
+   4.0
+  ],
+  [
+   "heizkörper leckt",
+   4.0
+  ],
+  [
+   "heizkörper messgerät abmontieren",
+   4.0
+  ],
+  [
+   "heizkörper nachfüllen",
+   4.0
+  ],
+  [
+   "heizkörper ohne rücklaufventil abbauen",
+   4.0
+  ],
+  [
+   "heizkörper programmieren",
+   4.0
+  ],
+  [
+   "heizkörper reflexionsfolie anbringen",
+   4.0
+  ],
+  [
+   "heizkörper standkonsole montage",
+   4.0
+  ],
+  [
+   "heizkörper thermostatventil wechseln",
+   4.0
+  ],
+  [
+   "heizkörper umwälzpumpe",
+   4.0
+  ],
+  [
+   "heizkörper verkleiden ideen",
+   4.0
+  ],
+  [
+   "heizkörper wärmepumpe",
+   4.0
+  ],
+  [
+   "heizkörper zusammenbauen",
+   4.0
+  ],
+  [
+   "heizungsrohre isolieren",
+   3.0
+  ],
+  [
+   "heizung auf 10",
+   3.0
+  ],
+  [
+   "heizung bleibt heiß",
+   3.0
+  ],
+  [
+   "china heizung fernbedienung anlernen",
+   3.0
+  ],
+  [
+   "heizung dämmen",
+   3.0
+  ],
+  [
+   "heizung entlüftungsventil tauschen",
+   3.0
+  ],
+  [
+   "heizung fail",
+   3.0
+  ],
+  [
+   "heizung gewächshaus",
+   3.0
+  ],
+  [
+   "heizung hört nicht auf zu heizen",
+   3.0
+  ],
+  [
+   "heizung im wohnwagen anmachen",
+   3.0
+  ],
+  [
+   "heizung klemmt",
+   3.0
+  ],
+  [
+   "heizung lüftung",
+   3.0
+  ],
+  [
+   "heizung mehrfamilienhaus",
+   3.0
+  ],
+  [
+   "heizung notdienst",
+   3.0
+  ],
+  [
+   "heizung optimal einstellen",
+   3.0
+  ],
+  [
+   "heizung pumpe",
+   3.0
+  ],
+  [
+   "heizung richtig entlüften reihenfolge",
+   3.0
+  ],
+  [
+   "heizung smart machen",
+   3.0
+  ],
+  [
+   "heizung thermostat stift klemmt",
+   3.0
+  ],
+  [
+   "heizung umwälzpumpe",
+   3.0
+  ],
+  [
+   "heizung versetzen",
+   3.0
+  ],
+  [
+   "heizung wasser nachfüllen systemtrenner",
+   3.0
+  ],
+  [
+   "heizung zu viel druck",
+   3.0
+  ],
+  [
+   "heizkörper anschließen vorlauf rücklauf",
+   3.0
+  ],
+  [
+   "heizkörper booster",
+   3.0
+  ],
+  [
+   "heizkörper dichtung wechseln",
+   3.0
+  ],
+  [
+   "heizkörper entlüften mietwohnung",
+   3.0
+  ],
+  [
+   "heizkörperfolie",
+   3.0
+  ],
+  [
+   "heizkörper gebläse",
+   3.0
+  ],
+  [
+   "heizkörper heiss obwohl abgedreht",
+   3.0
+  ],
+  [
+   "heizkörper in reihe anschließen",
+   3.0
+  ],
+  [
+   "heizkörper knopf wechseln",
+   3.0
+  ],
+  [
+   "heizkörper leck abdichten",
+   3.0
+  ],
+  [
+   "heizkörper montieren und anschließen",
+   3.0
+  ],
+  [
+   "heizkörper nur halb warm",
+   3.0
+  ],
+  [
+   "heizkörper ohne thermostat ausschalten",
+   3.0
+  ],
+  [
+   "heizkörper pimpen",
+   3.0
+  ],
+  [
+   "heizkörper regler tauschen",
+   3.0
+  ],
+  [
+   "heizkörper schleifen",
+   3.0
+  ],
+  [
+   "heizkörper thermostat test",
+   3.0
+  ],
+  [
+   "heizkörper unten absperren",
+   3.0
+  ],
+  [
+   "heizkörperventil",
+   3.0
+  ],
+  [
+   "heizkörper wird nicht kalt",
+   3.0
+  ],
+  [
+   "heizkörper zähler",
+   3.0
+  ],
+  [
+   "heizungsventil klemmt",
+   2.0
+  ],
+  [
+   "heizung abdrehen",
+   2.0
+  ],
+  [
+   "heizung brenner reinigen",
+   2.0
+  ],
+  [
+   "china heizung mit heizkörper",
+   2.0
+  ],
+  [
+   "heizung dachzelt",
+   2.0
+  ],
+  [
+   "heizung einbauen",
+   2.0
+  ],
+  [
+   "heizung färben",
+   2.0
+  ],
+  [
+   "heizung gangbar machen",
+   2.0
+  ],
+  [
+   "heizung heizt nicht mehr",
+   2.0
+  ],
+  [
+   "heizung ist kalt",
+   2.0
+  ],
+  [
+   "heizung knallt",
+   2.0
+  ],
+  [
+   "heizung lässt sich nicht entlüften",
+   2.0
+  ],
+  [
+   "heizung mit akku",
+   2.0
+  ],
+  [
+   "heizung nur zur hälfte warm",
+   2.0
+  ],
+  [
+   "heizung oben aufmachen",
+   2.0
+  ],
+  [
+   "heizung planen",
+   2.0
+  ],
+  [
+   "heizung reinigen innen",
+   2.0
+  ],
+  [
+   "heizung spülen selber machen",
+   2.0
+  ],
+  [
+   "heizung tropft am thermostat",
+   2.0
+  ],
+  [
+   "heizung umwälzpumpe entlüften",
+   2.0
+  ],
+  [
+   "heizung verkleiden ikea",
+   2.0
+  ],
+  [
+   "heizung wechseln",
+   2.0
+  ],
+  [
+   "heizung zündet nicht",
+   2.0
+  ],
+  [
+   "heizkörper austauschen ohne wasser ablassen",
+   2.0
+  ],
+  [
+   "heizkörper bohrkonsole montieren",
+   2.0
+  ],
+  [
+   "heizkörper durchlauf einstellen",
+   2.0
+  ],
+  [
+   "heizkörper entlüften ohne schlüssel",
+   2.0
+  ],
+  [
+   "heizkörper falsch angeschlossen",
+   2.0
+  ],
+  [
+   "heizkörper gangbar machen",
+   2.0
+  ],
+  [
+   "heizkörper halb warm",
+   2.0
+  ],
+  [
+   "heizkörper installation",
+   2.0
+  ],
+  [
+   "heizkörper klemmverschraubung",
+   2.0
+  ],
+  [
+   "heizkörper lässt sich nicht entlüften",
+   2.0
+  ],
+  [
+   "heizkörper mit dampfreiniger reinigen",
+   2.0
+  ],
+  [
+   "heizkörper nach vorne versetzen",
+   2.0
+  ],
+  [
+   "heizkörper oder fußbodenheizung",
+   2.0
+  ],
+  [
+   "heizkörper probleme",
+   2.0
+  ],
+  [
+   "heizkörper rauscht",
+   2.0
+  ],
+  [
+   "heizkörper spülen anleitung",
+   2.0
+  ],
+  [
+   "heizkörper und rohrleitungen berechnen",
+   2.0
+  ],
+  [
+   "heizkörper von innen reinigen",
+   2.0
+  ],
+  [
+   "heizkörper wird nicht warm obwohl entlüftet",
+   2.0
+  ],
+  [
+   "heizkörper zumauern",
+   2.0
+  ],
+  [
+   "heizung ausschalten",
+   1.0
+  ],
+  [
+   "heizung brötje einstellen",
+   1.0
+  ],
+  [
+   "carbon heizung",
+   1.0
+  ],
+  [
+   "heizung durchspülen",
+   1.0
+  ],
+  [
+   "heizung entlüften alte heizkörper",
+   1.0
+  ],
+  [
+   "heizung funktion",
+   1.0
+  ],
+  [
+   "heizung geräusche klopfen",
+   1.0
+  ],
+  [
+   "heizung halb warm",
+   1.0
+  ],
+  [
+   "heizung im keller einschalten",
+   1.0
+  ],
+  [
+   "heizung kommt kein warmes wasser",
+   1.0
+  ],
+  [
+   "heizung leckt",
+   1.0
+  ],
+  [
+   "heizung mag prüfen",
+   1.0
+  ],
+  [
+   "heizung nachrüsten",
+   1.0
+  ],
+  [
+   "heizung opel rocks e",
+   1.0
+  ],
+  [
+   "heizung programmieren",
+   1.0
+  ],
+  [
+   "heizung rücklaufventil",
+   1.0
+  ],
+  [
+   "heizung selber entlüften",
+   1.0
+  ],
+  [
+   "heizung thermostatkopf wechseln",
+   1.0
+  ],
+  [
+   "heizung und sanitär",
+   1.0
+  ],
+  [
+   "heizung vorlauftemperatur einstellen",
+   1.0
+  ],
+  [
+   "heizung wird nicht warm trotz entlüften",
+   1.0
+  ],
+  [
+   "heizung zelt",
+   1.0
+  ],
+  [
+   "heizkörper automatisch entlüften",
+   1.0
+  ],
+  [
+   "heizkörper brummt",
+   1.0
+  ],
+  [
+   "heizkörper demontieren einrohrsystem",
+   1.0
+  ],
+  [
+   "heizkörper entstauben",
+   1.0
+  ],
+  [
+   "heizkörper färben",
+   1.0
+  ],
+  [
+   "heizkörper geplatzt",
+   1.0
+  ],
+  [
+   "heizkörper halterung",
+   1.0
+  ],
+  [
+   "heizkörper ist kalt",
+   1.0
+  ],
+  [
+   "heizkörper lied",
+   1.0
+  ],
+  [
+   "heizkörper mit wasser reinigen",
+   1.0
+  ],
+  [
+   "heizkörper neu befüllen",
+   1.0
+  ],
+  [
+   "heizkörper pc lüfter",
+   1.0
+  ],
+  [
+   "heizkörper rücklaufventil zudrehen",
+   1.0
+  ],
+  [
+   "heizkörper selbstentlüfter",
+   1.0
+  ],
+  [
+   "heizkörper tauschen ohne wasser ablassen",
+   1.0
+  ],
+  [
+   "heizkörper unter fensterbank",
+   1.0
+  ],
+  [
+   "heizkörper vorlauf rücklauf vertauscht",
+   1.0
+  ],
+  [
+   "heizkörper wird nicht richtig warm",
+   1.0
+  ],
+  [
+   "heizkörper zurückbauen",
+   1.0
+  ]
+ ],
+ "topics": [
+  {
+   "phrase": "heizung entlüften",
+   "suggest_score": 28.0,
+   "top_views": [
+    1037906,
+    529545,
+    389440
+   ],
+   "demand": 389440,
+   "own": [],
+   "results": [
+    {
+     "id": "NLUiwOBhQ6o",
+     "views": 343416,
+     "channel": "heizung.de",
+     "duration": "116",
+     "title": "Heizung entlüften - so funktioniert es! | heizung.de"
+    },
+    {
+     "id": "g190TQEMeJQ",
+     "views": 529545,
+     "channel": "Dominik Bößl",
+     "duration": "104",
+     "title": "Heizung entlüften – Anleitung für Mietwohnung – Schnell und einfach Luft aus Heizkörper ablassen"
+    },
+    {
+     "id": "pBDVCx_JiAM",
+     "views": 389440,
+     "channel": "ENERGIE ERLEBEN by EnBW",
+     "duration": "458",
+     "title": "Heizung entlüften - So geht´s ♨️ | EnBW E-Wissen"
+    },
+    {
+     "id": "l6vwmYvfg0I",
+     "views": 89472,
+     "channel": "SHK Info",
+     "duration": "211",
+     "title": "Heizkörper entlüften - so geht´s richtig"
+    },
+    {
+     "id": "BiryiSwE6lg",
+     "views": 327090,
+     "channel": "OBI HowTo",
+     "duration": "276",
+     "title": "Heizung entlüften und reinigen | OBI"
+    },
+    {
+     "id": "zq47nZZjn80",
+     "views": 1037906,
+     "channel": "Selfio SE - Do it yourself. Aber do it richtig.",
+     "duration": "213",
+     "title": "Fußbodenheizung richtig befüllen, spülen und entlüften"
+    },
+    {
+     "id": "O1V83XMTG3Q",
+     "views": 162706,
+     "channel": "Mac Paverick",
+     "duration": "118",
+     "title": "Heizkörper richtig entlüften – Oft wird ein wichtiges Detail vergessen!"
+    },
+    {
+     "id": "LIrL6HwiHpw",
+     "views": 17238,
+     "channel": "TV Solution",
+     "duration": "189",
+     "title": "Mietwohnung/Mehrfamilienhaus: Heizung entlüften - Heizkörper entlüften mit Zentralheizung"
+    }
+   ],
+   "potential": 7.16,
+   "questions": [
+    {
+     "text": "So viel Daumen runter? Sind bestimmt alles nur die Handwerker die Angst haben um Ihren Arbeitsplatz? Sehr gut erklärt 👍🏻",
+     "likes": 32
+    },
+    {
+     "text": "Muss man nicht aufbereitetes Wasser für die Fußbodenheizung nehmen um Verschlammung, Verkalkung etc. zu vermeiden?",
+     "likes": 3
+    },
+    {
+     "text": "Wenn ich versuche meine fußbodenheizung zu spülen, kommt am Ende nichts heraus? Also Wasser geht sichtbar rein. (das sehe ich an den top-Röhrchen) Ich habe die sfee Ventile aufgemacht. Versuche ich nun ein Kreislauf zu öffnen, kommt am Ende nichts heraus.",
+     "likes": 2
+    },
+    {
+     "text": "Muss nach einer Neuinstallation einer neuen Heizung nach 20 Jahren alle heitzkreisläufe sich so einer spühlung unterziehen? Bei uns wurde nur die Heizung gewechselt.",
+     "likes": 2
+    },
+    {
+     "text": "Super Video. Danke. Wie befüllt man die Vor und Rücklaufleitung zum Heizkreisverteiler am besten?",
+     "likes": 1
+    },
+    {
+     "text": "Kann ich auch mit Bier spülen ?????",
+     "likes": 1
+    },
+    {
+     "text": "Hallo, danke für das Video. Ich habe aber an meiner Regelstation nur einen Anschluß für den Schlauch(RL). Wie macht man das da?",
+     "likes": 0
+    },
+    {
+     "text": "Was mache ich, wenn ich keine Möglichkeit habe den kfe Ventil zu öffnen? Die sind bei mir komplett glatt",
+     "likes": 0
+    },
+    {
+     "text": "Kann ich auch mit dem entlüftungsventil nur entlüften wen ich druck nach gebe?",
+     "likes": 0
+    },
+    {
+     "text": "Kann man so eine Fußbodenheizung auch auf Holzbalkendecke im Altbau einbauen? Oder braucht s dafür ne Stahlbetondecke?",
+     "likes": 0
+    },
+    {
+     "text": "Bleiben die Heizkreise geschlossen ? Oder müssen die befüllten Heizkreis nach dem entlüften wieder geöffnet werden ?",
+     "likes": 0
+    },
+    {
+     "text": "Wenn s keinen starken Frost gegeben hat und der Strom wieder da ist, braucht man dann einen Servicetechniker (wenn man selbst keiner ist), oder läuft dann die Anlage von selber wieder an?",
+     "likes": 0
+    },
+    {
+     "text": "Wenn ich die Fußbodenheizung beim Durchspülen bzw. Befüllen an den Wasserhahn anschließe dann habe ich doch den vollen Wasserdruck im System oder liege ich da falsch?",
+     "likes": 0
+    },
+    {
+     "text": "Hallo muss nur der Rücklauf geschlossen werden zum Spülen ? Und einzelnd nach und nach geöffnet werden ja",
+     "likes": 0
+    },
+    {
+     "text": "Wie sieht es bei einer neuinstallation mit der Steigleitung aus, falls diese noch neu und „unbefüllt“ ist? Dieser Schritt ist doch bestimmt zu beachten, bevor die einzelnen Kreise entlüftet werden?",
+     "likes": 0
+    },
+    {
+     "text": "Bleibt der Wärmeerzeuger während des spülens in Betrieb oder wird er ausgeschaltet und die Anlage drucklos gemacht?",
+     "likes": 0
+    },
+    {
+     "text": "Wie oft muß das gemacht werden spülen, entlüften und so? Was kostet das, wenn man s machen läßt?",
+     "likes": 0
+    },
+    {
+     "text": "welche Fußbodenverteiler wurde hier im Video gezeigt? Habe der gleichen zuhause aber ohne herstellername für Stellantriebe bestellen",
+     "likes": 0
+    },
+    {
+     "text": "Hatte das eigt nen Grund warum der erste HK an zweiter steller ist? 😂",
+     "likes": 0
+    },
+    {
+     "text": "Vielen Dank für den guten Tip! Muss man beim Befüllen, Spülen und Entlüften der im Clip gezeigten Fussbodenheizung - wegen des Schließens der 2 Ventilen im Vor- und Rücklaufkreis - die Heizungsanlage im Keller abschalten? Danke!",
+     "likes": 0
+    },
+    {
+     "text": "Die Heizkreise sind nun befüllt, aber wie bekomme ich nun die Luft aus den Vorlauf- u. Rücklaufleitungen die mitunter mehrere Meter lang sind um bspw. vom Keller ins 1. OG verlaufen?",
+     "likes": 0
+    },
+    {
+     "text": "Wie stelle ich denn nun das Wasser her mit dem ich die Kreise befülle? Auf irgendeine DIN zu verweise welche nur gegen viel Geld kaufbar ist hätte ich auch gekonnt...",
+     "likes": 0
+    },
+    {
+     "text": "Wann braucht man ne pumpe bei der fussbodenheizung ?",
+     "likes": 0
+    },
+    {
+     "text": "Hallo Zusammen  Ich habe da eine Frage also wenn man Luft aus dem Fußbodenheizung Raus lässt dann muss man doch wieder nachfüllen nicht wahr ?  Wenn ja dann wie und wieviel ?",
+     "likes": 0
+    },
+    {
+     "text": "Die wichtigste frage lautet, erfolgt diese Anwendung nun ohne Wasserwechsel, so dass Kompressor nur dass schmutz vom Wasser herausfiltert?  Erklären Sie vielleicht deswegen nicht vollständig weil sie nicht wollen dass jeder selber machen?",
+     "likes": 0
+    }
+   ],
+   "questions_from": "Fußbodenheizung richtig befüllen, spülen und entlüften"
+  },
+  {
+   "phrase": "heizkörper entlüften",
+   "suggest_score": 20.0,
+   "top_views": [
+    1058089,
+    529545,
+    389440
+   ],
+   "demand": 389440,
+   "own": [],
+   "results": [
+    {
+     "id": "g190TQEMeJQ",
+     "views": 529545,
+     "channel": "Dominik Bößl",
+     "duration": "104",
+     "title": "Heizung entlüften – Anleitung für Mietwohnung – Schnell und einfach Luft aus Heizkörper ablassen"
+    },
+    {
+     "id": "NLUiwOBhQ6o",
+     "views": 343416,
+     "channel": "heizung.de",
+     "duration": "116",
+     "title": "Heizung entlüften - so funktioniert es! | heizung.de"
+    },
+    {
+     "id": "O1V83XMTG3Q",
+     "views": 162706,
+     "channel": "Mac Paverick",
+     "duration": "118",
+     "title": "Heizkörper richtig entlüften – Oft wird ein wichtiges Detail vergessen!"
+    },
+    {
+     "id": "l6vwmYvfg0I",
+     "views": 89472,
+     "channel": "SHK Info",
+     "duration": "211",
+     "title": "Heizkörper entlüften - so geht´s richtig"
+    },
+    {
+     "id": "pBDVCx_JiAM",
+     "views": 389440,
+     "channel": "ENERGIE ERLEBEN by EnBW",
+     "duration": "458",
+     "title": "Heizung entlüften - So geht´s ♨️ | EnBW E-Wissen"
+    },
+    {
+     "id": "XHTyxk5UO7U",
+     "views": 104316,
+     "channel": "Mac Paverick",
+     "duration": "184",
+     "title": "Heizung entlüften | Fast jeder macht jetzt diese Fehler!"
+    },
+    {
+     "id": "1NVflaZ6VD0",
+     "views": 8110,
+     "channel": "The Handyman",
+     "duration": "352",
+     "title": "Heizung entlüften: Mit dieser Anleitung kann es jeder selbst machen!"
+    },
+    {
+     "id": "FI1k2s9eGbw",
+     "views": 1058089,
+     "channel": "The Handyman",
+     "duration": "405",
+     "title": "Heizung entlüften: Diese FEHLER macht FAST jeder! Darauf musst du achten!"
+    }
+   ],
+   "potential": 6.71,
+   "questions": [
+    {
+     "text": "Woher soll ich bei einer Mietwohnung wissen welcher Heizkörper am nächsten und am weitesten vom Heizkessel entfernt ist?  Vor allem wenn der Heizkessel im Nebenhaus untergebracht ist. 🤔",
+     "likes": 52
+    },
+    {
+     "text": "Wie kann ich feststellen, in welcher Reihenfolge meine Heizkörper geschaltet sind? Sie sind ja nicht durch numeriert.",
+     "likes": 6
+    },
+    {
+     "text": "...wie macht man es in einer Mietwohnung ??",
+     "likes": 3
+    },
+    {
+     "text": "Luft in Dresden Anlage , wo soll die denn herkommen  ? Ich würde da mal das Ausdehnungsgefäß vor dem Entlüften kontrollieren ob das nicht der Verursacher ist.",
+     "likes": 3
+    },
+    {
+     "text": "Bei uns ist die Gasheizung unter dem Dach verbaut. Fange ich dann wirklich im Keller an zu entlüften?",
+     "likes": 2
+    },
+    {
+     "text": "Ich habe eine Frage, alle meine Heizungen werden nur  an einer Rille warm. Was ist verkehrt? Der Druck oder einfach nur falsch entlüftet? Vielen Dank.",
+     "likes": 2
+    },
+    {
+     "text": "Kalk im Heizungswasser??????",
+     "likes": 2
+    },
+    {
+     "text": "Wie macht man das im Mehrfamilienhaus????",
+     "likes": 1
+    },
+    {
+     "text": "Wie weiss ich die Reihenfolge in einem Miethochhaus wo ich keinen Zugang zum Heizungsraum habe?",
+     "likes": 1
+    },
+    {
+     "text": "Woran erkenne ich als Mieter mit welcher Heizung ich beginne ?",
+     "likes": 1
+    },
+    {
+     "text": "Wie oft macht man so etwas?",
+     "likes": 1
+    },
+    {
+     "text": "Kalkhaltiges Wasser? Die Anlage sollte doch mit aufbereiteten Wasser befüllt worden sein. Für einige Liter Nachfüllen kann man mal das Leitungswasser nehmen, aber das zieht den Kalkgehalt nicht ernsthaft hoch.",
+     "likes": 1
+    },
+    {
+     "text": "Wie ist das bei Brennwerttechnik? Also Gas? spart man wirklich Heizkosten, wenn man das Thermostat runter dreht?",
+     "likes": 1
+    },
+    {
+     "text": "Wie macht man das bei einer Fußbodenheizung richtig?",
+     "likes": 1
+    },
+    {
+     "text": "Sind die Schlüssel genormt?",
+     "likes": 1
+    },
+    {
+     "text": "Gibt es auch automatische Entlüftungsventile (mit Schwimmer) wie bei unserer Wärmepumpe?",
+     "likes": 1
+    },
+    {
+     "text": "Kann man nicht einfach ein selbsttätigen Entlüfter, in Fachkreisen auch Schnüffelstück, nehmen? 😁",
+     "likes": 1
+    },
+    {
+     "text": "Wie soll ich als Mieter meinen Heizkreislauf zudrehen?",
+     "likes": 1
+    },
+    {
+     "text": "Gilt das auch bei Fernwärme und einem Einkreisläufer?",
+     "likes": 0
+    },
+    {
+     "text": "Wie sehen es denn hir mit aus ?: Heizungsventil Danfoss RA-N deblockieren Stopfbuchse rausdrehen/Heizung kalt- Danfoss Valve",
+     "likes": 0
+    },
+    {
+     "text": "Ist die Vorgehensweise bei Miete im Mehrfamilienhaus genauso?  Haben ein Einrohrsystem.",
+     "likes": 0
+    },
+    {
+     "text": "Bei laufender Heizung ist der Heizkörper nicht vollständig warm, weil Luft drin ist. Das bedeutet doch das die Luft steht und nicht wandert im System. Wieso sollte ich dann die Pumpe ausschalten?",
+     "likes": 0
+    },
+    {
+     "text": "Beim Thermenservice im Herbst automatisch . Wozu gibt’s denn Fachmann/Frau?!",
+     "likes": 0
+    },
+    {
+     "text": "Wie kann ich die Reihenfolge der Heizkörper feststellen?",
+     "likes": 0
+    },
+    {
+     "text": "Der Kessel steh bei mir oben aufm Dachboden. Die Luft geht nach oben, hm? Was ist zu tun?",
+     "likes": 0
+    },
+    {
+     "text": "Wie mache ich das bei meinem Auto? Irgendwie scheinen keine der Tipps zu helfen.",
+     "likes": 0
+    },
+    {
+     "text": "Wenn kein Blubbern oder Knacken oder was auch immer zu hören ist, also völlig geräuschlos, muß man trotzdem entlüften oder erübrigt sich das dann?  Oder anders gefragt: wann braucht man die Heizung nicht zu entlüften? 🔧",
+     "likes": 0
+    },
+    {
+     "text": "Habe eine Frage 😊 wohne seit 5 Jahren in der gleichen Wohnung, habe 4x Heizkörper, benutze ausschließlich nur den Heizkörper im Wohnzimmer. Gelten die Tips auch dafür ? 😊",
+     "likes": 0
+    },
+    {
+     "text": "Welcher Heizkörper ist 8m 2 Stock am weitesten entfernt? 😂🙄",
+     "likes": 0
+    },
+    {
+     "text": "Bei mir war Brenner-Fehlermeldung D1 , wir haben Notschalter aus und wieder eingeschaltet! Jetzt ist der Display komplett aus und es geht gar nichts mehr! Sicherungen alle ok! Weiss da jemand was? Mega Dank!",
+     "likes": 0
+    },
+    {
+     "text": "Und wenn man nichts hat ausser alte Heizungen?",
+     "likes": 0
+    },
+    {
+     "text": "Was bei Fernwärme mit 8 bar Druck?",
+     "likes": 0
+    },
+    {
+     "text": "Soll ich noch etwas zahlen, wenn der Kanal ohnehin monetarisiert wird?",
+     "likes": 0
+    },
+    {
+     "text": "Wie entlüfte ich wenn ich Fernwärme habe????",
+     "likes": 0
+    },
+    {
+     "text": "Fällt mir jetzt erst auf: ein Handymann erklärt uns wie man die Heizung entlüftet. Super. Und siehe da, schon die zweite Möglichkeit zum Entlüften. Na los Leute, wer hat noch ne funktionierende Idee? Raus damit!",
+     "likes": 0
+    },
+    {
+     "text": "Ich hab den leisen Verdacht dass moderne Messingventile schlechter sind als alte! Wurde die Legierung geändert/verbilligt? Weniger Kupfer, mehr Zink! Der Zn Anteil korrodiert und das Ventil frisst fest. Meins geht nicht mehr auf. Das ist nicht der Kalk, bestimmt nicht.",
+     "likes": 0
+    },
+    {
+     "text": "Warum kommt bei meinem Heizkörper überhaupt nichts raus, wenn ich diese Schraube öffne ?????😮 Da läuft doch was schief oder???????????????😮 Ich kapier das nicht.",
+     "likes": 0
+    },
+    {
+     "text": "und was macht man wenn man in einem Mehrfamilienhaus wohnt?",
+     "likes": 0
+    },
+    {
+     "text": "Wie sieht denn überhaupt eine Viessmann-Umwälzpumpe aus😮?",
+     "likes": 0
+    },
+    {
+     "text": "Ich hab hier im Bad ein Ventil, das automatisch entlüftet (laut Vermieter). Was meint ihr, taugt das etwas?",
+     "likes": 0
+    },
+    {
+     "text": "Reicht es nicht, den am höchsten liegenden Heizkörper zu entlüften? Luft sammelt sich doch am höchsten Punkt....",
+     "likes": 0
+    },
+    {
+     "text": "Und wenn die Heizung komplett aus ist- ist es wohl egal wie man entlüftet? 🤣",
+     "likes": 0
+    },
+    {
+     "text": "Einfach bestellen ist nächsten Tag da. Ach wirklich? 😂 Nicht jeder hat Prime.",
+     "likes": 0
+    },
+    {
+     "text": "Wie, du hast ne Heizung im Wald gefunden?😂",
+     "likes": 0
+    },
+    {
+     "text": "Zuviel unqualifiziertes Geschwätz! Was ist der 1. Heizkörper - was der Letzte? Definition nicht möglich - In einer Wohnung in einem Vielfamilienhaus.",
+     "likes": 0
+    },
+    {
+     "text": "Warum ist bei mir das Wasser aus der Heizung schwarz?",
+     "likes": 0
+    },
+    {
+     "text": "Du drehst deine Thermostaten auf 5 während du entlüftest, andere hier auf Null. Was ist richtig, bitte mit Begründung, oder ist das von irgend etwas abhängig ?",
+     "likes": 0
+    },
+    {
+     "text": "Seit wann hast du du viele Aufrufe?😅",
+     "likes": 0
+    },
+    {
+     "text": "Und wenn man keiner Heizkessel hat in der Wohnung, in welcher Reihe soll man entlüften?😂",
+     "likes": 0
+    },
+    {
+     "text": "Wer bitte versteht das???",
+     "likes": 0
+    },
+    {
+     "text": "Muss ich nicht benütze Heizkörper auch entlüften?",
+     "likes": 0
+    },
+    {
+     "text": "Wie ist es bei einer Forsterheizung??",
+     "likes": 0
+    }
+   ],
+   "questions_from": "Heizung entlüften: Diese FEHLER macht FAST jeder! Darauf musst du achten!"
+  },
+  {
+   "phrase": "heizkörper wird nicht warm",
+   "suggest_score": 18.0,
+   "top_views": [
+    1054379,
+    631297,
+    485167
+   ],
+   "demand": 485167,
+   "own": [],
+   "results": [
+    {
+     "id": "PPPwRos81wg",
+     "views": 485167,
+     "channel": "Basti HW",
+     "duration": "213",
+     "title": "Heizung wird nicht warm? So behebst du die 2 häufigsten Ursachen einfach selbst"
+    },
+    {
+     "id": "ZViOSR1KT_w",
+     "views": 64958,
+     "channel": "Onkel Kramer",
+     "duration": "285",
+     "title": "Heizung wird nicht warm? ✅ So behebst du die 2 häufigsten Ursachen einfach selbst"
+    },
+    {
+     "id": "wbfpEocRwCU",
+     "views": 20076,
+     "channel": "GoldHubi",
+     "duration": "334",
+     "title": "❄️ Heizung wird nicht warm ❄️2 häufigsten Ursachen - schnelle Lösung !🔨🪛 DIY"
+    },
+    {
+     "id": "mTwyda9BEYI",
+     "views": 631297,
+     "channel": "The Handyman",
+     "duration": "526",
+     "title": "Heizung wird nur oben warm - Heizkörper wird nur zur Hälfte warm - Das ist der Grund und die Lösung"
+    },
+    {
+     "id": "N45mib6fbOY",
+     "views": 23377,
+     "channel": "Empfehlungsfuchs",
+     "duration": "187",
+     "title": "Heizung wird nicht warm?💥(In 2 Minuten selber beheben)🤯"
+    },
+    {
+     "id": "rPRfPL8bcAY",
+     "views": 463910,
+     "channel": "Probierwerkstatt",
+     "duration": "298",
+     "title": "Heizung wird nicht warm? Heizkörper Durchfluss einstellen. Voreinstelbares Thermostatventil"
+    },
+    {
+     "id": "JFUVxnXdZjo",
+     "views": 1054379,
+     "channel": "TV Solution",
+     "duration": "566",
+     "title": "Heizung wird nicht warm? Heizkörper Durchfluss einstellen, Voreinstellbares  Thermostat-Ventil"
+    },
+    {
+     "id": "HiVyxyTZYqg",
+     "views": 95395,
+     "channel": "Mac Paverick",
+     "duration": "160",
+     "title": "Heizkörper wird nicht warm obwohl Heizung entlüftet & technisch in Ordnung ist – Ursachen & Lösungen"
+    }
+   ],
+   "potential": 6.71,
+   "questions": [
+    {
+     "text": "Super erklärt. Funktioniert das auch bei Einrohrsystem? Danke.",
+     "likes": 3
+    },
+    {
+     "text": "Hallo, super erklärt, vielen Dank. Tatsächlich gibt es bei uns ein ähnliches Problem. Wie verhält sich das bei einem 1-Rohr System?",
+     "likes": 3
+    },
+    {
+     "text": "Prima Erklärung! Wie kann ich im Bestand die Reihenfolge der Heizkörper herausfinden?",
+     "likes": 3
+    },
+    {
+     "text": "wirklich sehr gut erklärt !!!! Kurz, prägnant und verständlich- Frage: Woher weiß ich in einem Mietshaus welcher Heizkörper der Hauptheizung im Keller am nächsten kommt? Fernwärme!",
+     "likes": 2
+    },
+    {
+     "text": "Hallo. Sehr schönes Video! Gilt das denn auch für ein Einrohrsystem?",
+     "likes": 2
+    },
+    {
+     "text": "Meine Heizungsrohre knacken dauernd,was kann die Ursache sein?",
+     "likes": 2
+    },
+    {
+     "text": "Bei mir ist es der letzte Heizkörper in der Reihe, der nicht richtig warm wird. Das dürfte doch keinen weiteren Einfluss auf das Gesamtsystem haben, wenn ich dort den Durchlauf erhöhe, oder?",
+     "likes": 2
+    },
+    {
+     "text": "Super erklärt 👌  Nur was ist, wenn ich das nicht einstellen kann? Am ersten Heizkörper ist keine Skala zu sehen zum Einstellen...",
+     "likes": 1
+    },
+    {
+     "text": "Der Durchfluss ist bei mir anscheinend richtig eingstellt, trotzdem wird auf maximal Stufe (5) das kleine Bad nur ca. 19.5 Grad. Wie bekommt man die noch wärmer, braucht man einen besseren Heizkörper?",
+     "likes": 1
+    },
+    {
+     "text": "Danke ! Toll erklärt ! Wie kann ich aber feststellen in welcher Reihenfolge die Heizkörper nach der Therme angeordnet sind ? Gibts da einen Trick/Tipp ?",
+     "likes": 1
+    },
+    {
+     "text": "Vielen Dank für die gute Erklärung. Wie bekommt man aber die Reihenfolge der Heizkörper heraus? Steht das irgendwo versteckt am Heizkörper?",
+     "likes": 1
+    },
+    {
+     "text": "Wenn mein Heizungsventil Pfeift kann das am Druck im System liegen ?",
+     "likes": 1
+    },
+    {
+     "text": "Wie ist das eigentlich, wenn es keinen Rücklauf im eigentlichen Sinne gibt, weil die Heizung ein Einrohrsystem ist?",
+     "likes": 1
+    },
+    {
+     "text": "Super Video. Wie ist es denn mit den \"selektiven\" Heizkörpern, wo erstmal der Vorlauf durch die vorderste Platte strömt? Grüsse Wo",
+     "likes": 0
+    },
+    {
+     "text": "Super Video. Wie bekomme ich bei einem Haus raus, in welcher Reihenfolge die Heizkörper installiert sind?",
+     "likes": 0
+    },
+    {
+     "text": "Danke für die Tolle Beschreibung und erklärung! Bei mir Pfeift es  bei manchen Heizkörper. Was kann ich tun ?",
+     "likes": 0
+    },
+    {
+     "text": "Bei meinem Heizkörper ist genau das Problem das er in der unteren Hälfte eiskalt bleibt. Jetzt habe ich mal nachgeschaut und das Heizungsthermostatventil ist auf maximal (7) Rücklaufventil ist auch ganz auf. Was kann man noch probieren?",
+     "likes": 0
+    },
+    {
+     "text": "Gibt es auch ein dreh ventil unten, soll ich es auch auf 5 stehen oder ?",
+     "likes": 0
+    },
+    {
+     "text": "Frage: Wenn man den Wasserdruck an der Heizungsanlage erhöht, kann man einen zu niedrig eingestellten Durchfluß an dem Heizkörper austricksen, weil durch den erhöhten Wasserdruck mehr Wasser in den Körper kommt und er dadurch wieder heiß wird?",
+     "likes": 0
+    },
+    {
+     "text": "Was ist wenn man Ölheizung hat? Bei mir ist die Badheizung nicht heiß genug. Was tun?",
+     "likes": 0
+    },
+    {
+     "text": "Woher weiß ich in welcher Reihenfolge die Heizkörper in einem Haus an der Heizung hängen?",
+     "likes": 0
+    },
+    {
+     "text": "Wir haben die Heizung in der Küche abgeschafft. Ist das auch schlecht für den Kreislauf?",
+     "likes": 0
+    },
+    {
+     "text": "Ich dachte der Thermostat öffnet und schließt nach gewünschter Temperatur im Raum? Es würde bei zu geringer Durchflussmenge nur länger dauern.",
+     "likes": 0
+    },
+    {
+     "text": "Vielen Dank für dein tolles Video. Leider hat es bei mir nicht funktioniert.    Im Wohnzimmer habe ich 2 Heizungen. Eine ist heiß, die andere kalt, selbst nachdem ich alles nach deiner Anleitung gemacht habe. Woran kann es bitte liegen?",
+     "likes": 0
+    },
+    {
+     "text": "Hoffe einer kann mir weiterhelfen. Seitdem ich unseren Bad Heizkörper im Obergeschoss wieder gangbar gemacht habe( war jahrelang defekt) bleibt der Heizkörper im Wohnzimmer im Rücklauf kalt. Kann das einen Zusammenhang haben?",
+     "likes": 0
+    },
+    {
+     "text": "Ist dein \"Demoheizkörper\" nicht eigentlich sogar größer als der, den du als großen Heizkörper deklarierst?🤔🦧 D.h. der hydraulische Abgleich wird am Ventil oben eingestellt. 😳 Ich hatte immer die Vorstellung, dass es am Rücklauf eine Einstellungsmöglichkeit  gibt.",
+     "likes": 0
+    },
+    {
+     "text": "Bei mir wird nur der erste Teil der Heizung warm/heiß, der hintere Teil bleibt leer. Woran kann das liegen?",
+     "likes": 0
+    },
+    {
+     "text": "Meine Heizung wird nicht richtig warm, obwohl man die Stufe erhöht,  hängt dann der Pin fest ?",
+     "likes": 0
+    },
+    {
+     "text": "An einem Strang hängen 3 heizkörper je eine Etage. Im 2. Stock wird er aber nicht warm. Ventil ist freigängig, Voreinstellung  bringt mehr Wärme aber heizkörper nur lauwarm? Was kann es sein?",
+     "likes": 0
+    },
+    {
+     "text": "Wie gehe ich denn vor wenn die Gastherme im EG ist, aber im OG und UG auch Heizkörper sind? In welcher Reinehfolge soll ich denn dann vorgehen? Die Heizkörper im OG / UG sind ja im Endeffekt gleich \"weit weg\" von der Gastherme...",
+     "likes": 0
+    },
+    {
+     "text": "Obwohl ich das Heizkörper entlüften habe, trotzdem in einer meiner Heizkörper bekommt kein Wasser. Was soll ich als nächstes tun? Das Ventil funktioniert einwandfrei.",
+     "likes": 0
+    }
+   ],
+   "questions_from": "Heizung wird nicht warm? Heizkörper Durchfluss einstellen, Voreinstellbares  Thermostat-Ventil"
+  },
+  {
+   "phrase": "heizkörper reinigen",
+   "suggest_score": 19.0,
+   "top_views": [
+    1703911,
+    377345,
+    327090
+   ],
+   "demand": 327090,
+   "own": [],
+   "results": [
+    {
+     "id": "-7ssFcLas60",
+     "views": 216546,
+     "channel": "Dominik Bößl",
+     "duration": "130",
+     "title": "Heizkörper reinigen von innen – Tutorial, Anleitung"
+    },
+    {
+     "id": "ZBdKxIZqkbo",
+     "views": 1703911,
+     "channel": "Empfehlungsfuchs",
+     "duration": "186",
+     "title": "Heizung reinigen von innen - Heizungsgitter abnehmen 🚿✅"
+    },
+    {
+     "id": "UC9QZIXhJWo",
+     "views": 34298,
+     "channel": "BlitzTipps",
+     "duration": "52",
+     "title": "Mit diesem viralen Trick reinigst du deine Heizung optimal!"
+    },
+    {
+     "id": "BiryiSwE6lg",
+     "views": 327090,
+     "channel": "OBI HowTo",
+     "duration": "276",
+     "title": "Heizung entlüften und reinigen | OBI"
+    },
+    {
+     "id": "y_YbL9NLqKc",
+     "views": 14898,
+     "channel": "gofeminin",
+     "duration": "68",
+     "title": "Heizkörper reinigen: SO säubert ihr eure Heizung richtig"
+    },
+    {
+     "id": "bj0NOH2et9U",
+     "views": 377345,
+     "channel": "Empfehlungsfuchs",
+     "duration": "118",
+     "title": "Geheimtipp: Heizung von innen reinigen💥(Energie sparen)🤯"
+    },
+    {
+     "id": "5x6N2TMJ_no",
+     "views": 141363,
+     "channel": "einzA Farben und Lacke",
+     "duration": "248",
+     "title": "Heizkörper lackieren – 2 Möglichkeiten mit Tipps vom Profi"
+    },
+    {
+     "id": "5lQrt6o4bUE",
+     "views": 35961,
+     "channel": "Alex Vlog",
+     "duration": "399",
+     "title": "Heizkörper Reinigung von innen - Anleitung ! ✅✅✅"
+    }
+   ],
+   "potential": 6.56
+  },
+  {
+   "phrase": "heizung befüllen",
+   "suggest_score": 10.0,
+   "top_views": [
+    1254916,
+    1037906,
+    820350
+   ],
+   "demand": 820350,
+   "own": [],
+   "results": [
+    {
+     "id": "4fNHEXwVwl0",
+     "views": 820350,
+     "channel": "Empfehlungsfuchs",
+     "duration": "172",
+     "title": "Heizung Wasser nachfüllen - So kannst du deine Heizung auffüllen ✅"
+    },
+    {
+     "id": "EsT77jM9ODg",
+     "views": 13448,
+     "channel": "Pduesp",
+     "duration": "276",
+     "title": "Zentralheizung ablassen & wieder befüllen – Heizkörper richtig entleeren"
+    },
+    {
+     "id": "zq47nZZjn80",
+     "views": 1037906,
+     "channel": "Selfio SE - Do it yourself. Aber do it richtig.",
+     "duration": "213",
+     "title": "Fußbodenheizung richtig befüllen, spülen und entlüften"
+    },
+    {
+     "id": "2RxvMvG3nlw",
+     "views": 19442,
+     "channel": "WEM GmbH Flächenheizung und -kühlung",
+     "duration": "822",
+     "title": "WEM Flächenheizung Inbetriebnahme - Spülen und Befüllen von Flächenheizungen"
+    },
+    {
+     "id": "a4XyeTz40rU",
+     "views": 1254916,
+     "channel": "SHK Info",
+     "duration": "449",
+     "title": "Heizung erklärt - Wasser nachfüllen und System entlüften"
+    },
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226317,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "OxNCp8hpxMk",
+     "views": 571152,
+     "channel": "Henrys Ratgeber Channel",
+     "duration": "328",
+     "title": "Fußbodenheizung entlüften , spülen und befüllen"
+    },
+    {
+     "id": "706h1Xd1D3s",
+     "views": 8532,
+     "channel": "WorkLifeEasy",
+     "duration": "300",
+     "title": "Heizungsanlage nachträglich entsalzen... Einfach und günstig"
+    }
+   ],
+   "potential": 6.51
+  },
+  {
+   "phrase": "heizung wasser nachfüllen",
+   "suggest_score": 16.0,
+   "top_views": [
+    1254916,
+    820350,
+    402582
+   ],
+   "demand": 402582,
+   "own": [],
+   "results": [
+    {
+     "id": "4fNHEXwVwl0",
+     "views": 820350,
+     "channel": "Empfehlungsfuchs",
+     "duration": "172",
+     "title": "Heizung Wasser nachfüllen - So kannst du deine Heizung auffüllen ✅"
+    },
+    {
+     "id": "8Ioi55cnRV0",
+     "views": 226317,
+     "channel": "Hausbauen24",
+     "duration": "227",
+     "title": "Heizung Wasser nachfüllen: Wasserdruck zu niedrig oder hoch ist? So geht's!"
+    },
+    {
+     "id": "a4XyeTz40rU",
+     "views": 1254916,
+     "channel": "SHK Info",
+     "duration": "449",
+     "title": "Heizung erklärt - Wasser nachfüllen und System entlüften"
+    },
+    {
+     "id": "X0MfCs97Kpg",
+     "views": 63533,
+     "channel": "Basti HW",
+     "duration": "243",
+     "title": "Heizung: Wasser selbst nachfüllen und entlüften - So einfach geht's"
+    },
+    {
+     "id": "1D6PaNzyWws",
+     "views": 343674,
+     "channel": "Haustechnik Voßwinkel GmbH",
+     "duration": "643",
+     "title": "Heizung Wasser richtig nachfüllen | Haustechnik Voßwinkel"
+    },
+    {
+     "id": "eNKi22q0_a0",
+     "views": 200291,
+     "channel": "Handwerkskönig",
+     "duration": "386",
+     "title": "Heizungswasser nachfüllen, Heizung befüllen, Gastherme Druck zu niedrig, Heizkosten einsparen!"
+    },
+    {
+     "id": "-715BVvCyUE",
+     "views": 25090,
+     "channel": "beyond products",
+     "duration": "255",
+     "title": "Einfach erklärt: Heizungswasser nachfüllen"
+    },
+    {
+     "id": "2Yj2TiCI0Uc",
+     "views": 402582,
+     "channel": "Basti HW",
+     "duration": "324",
+     "title": "Heizung Wasser nachfüllen - Schritt für Schritt Anleitung"
+    }
+   ],
+   "potential": 6.5
+  },
+  {
+   "phrase": "heizkörper austauschen",
+   "suggest_score": 16.0,
+   "top_views": [
+    521088,
+    440071,
+    399750
+   ],
+   "demand": 399750,
+   "own": [],
+   "results": [
+    {
+     "id": "O9NBXhXhF4g",
+     "views": 399750,
+     "channel": "BDH: Bundesverband der Deutschen Heizungsindustrie",
+     "duration": "119",
+     "title": "Heizkörpertausch - Einfacher Austausch in 6 Schritten"
+    },
+    {
+     "id": "HxPMv_aAuB4",
+     "views": 223412,
+     "channel": "OBI HowTo",
+     "duration": "419",
+     "title": "Heizkörper austauschen – Demontage und Befestigung | OBI"
+    },
+    {
+     "id": "EbOPsBWszCk",
+     "views": 521088,
+     "channel": "HORNBACH",
+     "duration": "1256",
+     "title": "Heizkörper tauschen: Austauschheizkörper | HORNBACH Meisterschmiede"
+    },
+    {
+     "id": "_9x7mRqtcwE",
+     "views": 56446,
+     "channel": "SonnenPerle",
+     "duration": "958",
+     "title": "Heizkörper austauschen für Wärmepumpenbetrieb | Lohnt sich das? | effizient heizen im Altbau"
+    },
+    {
+     "id": "JpDpslNSsqY",
+     "views": 440071,
+     "channel": "Probierwerkstatt",
+     "duration": "597",
+     "title": "Heizkörper abmontieren und Wasser ablassen für Renovieren, Tapezieren, Streichen (Einfach) deutsch"
+    },
+    {
+     "id": "j9ylNcR7ULA",
+     "views": 33122,
+     "channel": "Dennis Nörmann - Energiewende selber machen",
+     "duration": "581",
+     "title": "Heizkörpertausch 22er zu 33er für meine Wärmepumpe"
+    },
+    {
+     "id": "4xuBdHEc2i0",
+     "views": 55792,
+     "channel": "SonnenPerle",
+     "duration": "897",
+     "title": "DIY Heizkörper Austausch ohne Wasser ablassen | Für einen effizienten Wärmepumpenbetrieb"
+    },
+    {
+     "id": "D27CHyF2Rkg",
+     "views": 37644,
+     "channel": "HANDYMAN Marius",
+     "duration": "1782",
+     "title": "Heizkörper Austauschen | Planheizkörper | Montieren Anschließen Installieren | DIY"
+    }
+   ],
+   "potential": 6.5
+  },
+  {
+   "phrase": "heizung reinigen",
+   "suggest_score": 16.0,
+   "top_views": [
+    1703911,
+    1510187,
+    377345
+   ],
+   "demand": 377345,
+   "own": [],
+   "results": [
+    {
+     "id": "BiryiSwE6lg",
+     "views": 327090,
+     "channel": "OBI HowTo",
+     "duration": "276",
+     "title": "Heizung entlüften und reinigen | OBI"
+    },
+    {
+     "id": "ZBdKxIZqkbo",
+     "views": 1703911,
+     "channel": "Empfehlungsfuchs",
+     "duration": "186",
+     "title": "Heizung reinigen von innen - Heizungsgitter abnehmen 🚿✅"
+    },
+    {
+     "id": "UC9QZIXhJWo",
+     "views": 34298,
+     "channel": "BlitzTipps",
+     "duration": "52",
+     "title": "Mit diesem viralen Trick reinigst du deine Heizung optimal!"
+    },
+    {
+     "id": "VYPUvH-bwuA",
+     "views": 1510187,
+     "channel": "Handwerkskönig",
+     "duration": "297",
+     "title": "Heizkörper innen reinigen, Heizkörperabdeckung entfernen ✅ Energie einsparen!"
+    },
+    {
+     "id": "-7ssFcLas60",
+     "views": 216555,
+     "channel": "Dominik Bößl",
+     "duration": "130",
+     "title": "Heizkörper reinigen von innen – Tutorial, Anleitung"
+    },
+    {
+     "id": "bj0NOH2et9U",
+     "views": 377345,
+     "channel": "Empfehlungsfuchs",
+     "duration": "118",
+     "title": "Geheimtipp: Heizung von innen reinigen💥(Energie sparen)🤯"
+    },
+    {
+     "id": "y_YbL9NLqKc",
+     "views": 14898,
+     "channel": "gofeminin",
+     "duration": "68",
+     "title": "Heizkörper reinigen: SO säubert ihr eure Heizung richtig"
+    },
+    {
+     "id": "lpcx9RK3pc0",
+     "views": 166533,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "457",
+     "title": "Bodenheizung Topmeter-Durchfluss Regler  reinigen Schauglas demontieren"
+    }
+   ],
+   "potential": 6.47
+  },
+  {
+   "phrase": "heizung abbauen",
+   "suggest_score": 14.0,
+   "top_views": [
+    453008,
+    440071,
+    399750
+   ],
+   "demand": 399750,
+   "own": [],
+   "results": [
+    {
+     "id": "JpDpslNSsqY",
+     "views": 440071,
+     "channel": "Probierwerkstatt",
+     "duration": "597",
+     "title": "Heizkörper abmontieren und Wasser ablassen für Renovieren, Tapezieren, Streichen (Einfach) deutsch"
+    },
+    {
+     "id": "a0dFvWrcIxw",
+     "views": 453008,
+     "channel": "Life Hacks - Tipps & Tricks",
+     "duration": "255",
+     "title": "Heizkörper abmontieren | Heizung abbauen"
+    },
+    {
+     "id": "oUI1u5QWrxM",
+     "views": 98145,
+     "channel": "work_sheep",
+     "duration": "224",
+     "title": "#Kurztipp: Heizkörper abbauen | Heizung abmontieren"
+    },
+    {
+     "id": "zE76758PtHk",
+     "views": 105088,
+     "channel": "Der Kompressorschrauber",
+     "duration": "1853",
+     "title": "Heizung umbauen im Altbau , Heizkörper austauschen und anschliessen"
+    },
+    {
+     "id": "RrBDHWvdJ-Y",
+     "views": 45939,
+     "channel": "Handwerkskönig",
+     "duration": "362",
+     "title": "Heizkörper abmontieren und wieder montieren!"
+    },
+    {
+     "id": "a37_U6-LcU0",
+     "views": 23481,
+     "channel": "PraxisTipps",
+     "duration": "194",
+     "title": "Heizkörper abmontieren (im laufenden Betrieb, für die Renovierung)"
+    },
+    {
+     "id": "4xuBdHEc2i0",
+     "views": 55792,
+     "channel": "SonnenPerle",
+     "duration": "897",
+     "title": "DIY Heizkörper Austausch ohne Wasser ablassen | Für einen effizienten Wärmepumpenbetrieb"
+    },
+    {
+     "id": "O9NBXhXhF4g",
+     "views": 399750,
+     "channel": "BDH: Bundesverband der Deutschen Heizungsindustrie",
+     "duration": "119",
+     "title": "Heizkörpertausch - Einfacher Austausch in 6 Schritten"
+    }
+   ],
+   "potential": 6.39
+  },
+  {
+   "phrase": "heizkörper tauschen",
+   "suggest_score": 14.0,
+   "top_views": [
+    521088,
+    440071,
+    399750
+   ],
+   "demand": 399750,
+   "own": [],
+   "results": [
+    {
+     "id": "D27CHyF2Rkg",
+     "views": 37644,
+     "channel": "HANDYMAN Marius",
+     "duration": "1782",
+     "title": "Heizkörper Austauschen | Planheizkörper | Montieren Anschließen Installieren | DIY"
+    },
+    {
+     "id": "O9NBXhXhF4g",
+     "views": 399750,
+     "channel": "BDH: Bundesverband der Deutschen Heizungsindustrie",
+     "duration": "119",
+     "title": "Heizkörpertausch - Einfacher Austausch in 6 Schritten"
+    },
+    {
+     "id": "EbOPsBWszCk",
+     "views": 521088,
+     "channel": "HORNBACH",
+     "duration": "1256",
+     "title": "Heizkörper tauschen: Austauschheizkörper | HORNBACH Meisterschmiede"
+    },
+    {
+     "id": "GZLl-0VtakI",
+     "views": 62312,
+     "channel": "ökoloco",
+     "duration": "212",
+     "title": "Heizkörper im Überblick: Typen, Größen und Tipps | ökoloco"
+    },
+    {
+     "id": "HxPMv_aAuB4",
+     "views": 223412,
+     "channel": "OBI HowTo",
+     "duration": "419",
+     "title": "Heizkörper austauschen – Demontage und Befestigung | OBI"
+    },
+    {
+     "id": "JpDpslNSsqY",
+     "views": 440071,
+     "channel": "Probierwerkstatt",
+     "duration": "597",
+     "title": "Heizkörper abmontieren und Wasser ablassen für Renovieren, Tapezieren, Streichen (Einfach) deutsch"
+    },
+    {
+     "id": "j9ylNcR7ULA",
+     "views": 33122,
+     "channel": "Dennis Nörmann - Energiewende selber machen",
+     "duration": "581",
+     "title": "Heizkörpertausch 22er zu 33er für meine Wärmepumpe"
+    },
+    {
+     "id": "EbRsJey4z5U",
+     "views": 78789,
+     "channel": "PraxisTipps",
+     "duration": "233",
+     "title": "Heizkörperthermostat wechseln incl. Herz Adapter (Heimeier M28/M30)"
+    }
+   ],
+   "potential": 6.39
+  },
+  {
+   "phrase": "heizkörper thermostat wechseln",
+   "suggest_score": 11.0,
+   "top_views": [
+    954384,
+    811455,
+    567771
+   ],
+   "demand": 567771,
+   "own": [],
+   "results": [
+    {
+     "id": "kJajo0RuYkI",
+     "views": 240858,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "wHTZaIlZFEY",
+     "views": 811455,
+     "channel": "TechIllusion",
+     "duration": "155",
+     "title": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt"
+    },
+    {
+     "id": "4EfV65C0FcU",
+     "views": 8011,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "190",
+     "title": "Heizungsthermostat wechseln | Heimeier-Thermostat defekt? 🛠️ Heizkörperregler einfach austauschen"
+    },
+    {
+     "id": "AMuCsfjNorw",
+     "views": 11491,
+     "channel": "Timbertime DIY",
+     "duration": "18",
+     "title": "Heizung Thermostat wechseln: so einfach geht‘s"
+    },
+    {
+     "id": "aE2Di300Vtg",
+     "views": 567771,
+     "channel": "Mac Paverick",
+     "duration": "122",
+     "title": "Heizungsthermostat wechseln Heizkörperthermostat tauschen Heizung Thermostat abbauen & montieren"
+    },
+    {
+     "id": "sNhpuFYvtBA",
+     "views": 40005,
+     "channel": "Energie Verbraucherzentrale NRW",
+     "duration": "210",
+     "title": "Do-it-yourself: Thermostat tauschen"
+    },
+    {
+     "id": "W2UcApNqQdA",
+     "views": 954384,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "220",
+     "title": "Heizungsventil Danfoss RA VL deblockieren, Stopfbuchse wechseln, alles unter Druck"
+    },
+    {
+     "id": "rOtok5s5TFg",
+     "views": 369253,
+     "channel": "Pduesp",
+     "duration": "397",
+     "title": "Thermostat an einem Heizkörper tauschen Danfoss RAW ersetzen Anleitung"
+    }
+   ],
+   "potential": 6.39
+  },
+  {
+   "phrase": "heizkörper demontieren",
+   "suggest_score": 13.0,
+   "top_views": [
+    521088,
+    453008,
+    440071
+   ],
+   "demand": 440071,
+   "own": [],
+   "results": [
+    {
+     "id": "JpDpslNSsqY",
+     "views": 440071,
+     "channel": "Probierwerkstatt",
+     "duration": "597",
+     "title": "Heizkörper abmontieren und Wasser ablassen für Renovieren, Tapezieren, Streichen (Einfach) deutsch"
+    },
+    {
+     "id": "a0dFvWrcIxw",
+     "views": 453008,
+     "channel": "Life Hacks - Tipps & Tricks",
+     "duration": "255",
+     "title": "Heizkörper abmontieren | Heizung abbauen"
+    },
+    {
+     "id": "RrBDHWvdJ-Y",
+     "views": 45939,
+     "channel": "Handwerkskönig",
+     "duration": "362",
+     "title": "Heizkörper abmontieren und wieder montieren!"
+    },
+    {
+     "id": "oUI1u5QWrxM",
+     "views": 98145,
+     "channel": "work_sheep",
+     "duration": "224",
+     "title": "#Kurztipp: Heizkörper abbauen | Heizung abmontieren"
+    },
+    {
+     "id": "a37_U6-LcU0",
+     "views": 23481,
+     "channel": "PraxisTipps",
+     "duration": "194",
+     "title": "Heizkörper abmontieren (im laufenden Betrieb, für die Renovierung)"
+    },
+    {
+     "id": "EbOPsBWszCk",
+     "views": 521088,
+     "channel": "HORNBACH",
+     "duration": "1256",
+     "title": "Heizkörper tauschen: Austauschheizkörper | HORNBACH Meisterschmiede"
+    },
+    {
+     "id": "4xuBdHEc2i0",
+     "views": 55792,
+     "channel": "SonnenPerle",
+     "duration": "897",
+     "title": "DIY Heizkörper Austausch ohne Wasser ablassen | Für einen effizienten Wärmepumpenbetrieb"
+    },
+    {
+     "id": "zE76758PtHk",
+     "views": 105088,
+     "channel": "Der Kompressorschrauber",
+     "duration": "1853",
+     "title": "Heizung umbauen im Altbau , Heizkörper austauschen und anschliessen"
+    }
+   ],
+   "potential": 6.38
+  },
+  {
+   "phrase": "heizung richtig entlüften",
+   "suggest_score": 14.0,
+   "top_views": [
+    1058089,
+    529545,
+    389440
+   ],
+   "demand": 389440,
+   "own": [],
+   "results": [
+    {
+     "id": "NLUiwOBhQ6o",
+     "views": 343416,
+     "channel": "heizung.de",
+     "duration": "116",
+     "title": "Heizung entlüften - so funktioniert es! | heizung.de"
+    },
+    {
+     "id": "O1V83XMTG3Q",
+     "views": 162706,
+     "channel": "Mac Paverick",
+     "duration": "118",
+     "title": "Heizkörper richtig entlüften – Oft wird ein wichtiges Detail vergessen!"
+    },
+    {
+     "id": "g190TQEMeJQ",
+     "views": 529545,
+     "channel": "Dominik Bößl",
+     "duration": "104",
+     "title": "Heizung entlüften – Anleitung für Mietwohnung – Schnell und einfach Luft aus Heizkörper ablassen"
+    },
+    {
+     "id": "l6vwmYvfg0I",
+     "views": 89472,
+     "channel": "SHK Info",
+     "duration": "211",
+     "title": "Heizkörper entlüften - so geht´s richtig"
+    },
+    {
+     "id": "FI1k2s9eGbw",
+     "views": 1058089,
+     "channel": "The Handyman",
+     "duration": "405",
+     "title": "Heizung entlüften: Diese FEHLER macht FAST jeder! Darauf musst du achten!"
+    },
+    {
+     "id": "pBDVCx_JiAM",
+     "views": 389440,
+     "channel": "ENERGIE ERLEBEN by EnBW",
+     "duration": "458",
+     "title": "Heizung entlüften - So geht´s ♨️ | EnBW E-Wissen"
+    },
+    {
+     "id": "IAfiDYa7X7E",
+     "views": 14520,
+     "channel": "Handwerkskönig",
+     "duration": "356",
+     "title": "Heizkörper richtig entlüften, Heizungsanlage entlüften ✅Heizkosten einsparen!"
+    },
+    {
+     "id": "XHTyxk5UO7U",
+     "views": 104316,
+     "channel": "Mac Paverick",
+     "duration": "184",
+     "title": "Heizung entlüften | Fast jeder macht jetzt diese Fehler!"
+    }
+   ],
+   "potential": 6.37
+  },
+  {
+   "phrase": "heizung wird nicht warm",
+   "suggest_score": 19.0,
+   "top_views": [
+    485167,
+    186330,
+    133577
+   ],
+   "demand": 133577,
+   "own": [],
+   "results": [
+    {
+     "id": "PPPwRos81wg",
+     "views": 485167,
+     "channel": "Basti HW",
+     "duration": "213",
+     "title": "Heizung wird nicht warm? So behebst du die 2 häufigsten Ursachen einfach selbst"
+    },
+    {
+     "id": "ZViOSR1KT_w",
+     "views": 64958,
+     "channel": "Onkel Kramer",
+     "duration": "285",
+     "title": "Heizung wird nicht warm? ✅ So behebst du die 2 häufigsten Ursachen einfach selbst"
+    },
+    {
+     "id": "KDquFOV3upo",
+     "views": 84,
+     "channel": "The Handyman",
+     "duration": "216",
+     "title": "Heizung bleibt kalt und wird nicht warm! So löst du das Problem sofort!"
+    },
+    {
+     "id": "wbfpEocRwCU",
+     "views": 20076,
+     "channel": "GoldHubi",
+     "duration": "334",
+     "title": "❄️ Heizung wird nicht warm ❄️2 häufigsten Ursachen - schnelle Lösung !🔨🪛 DIY"
+    },
+    {
+     "id": "N45mib6fbOY",
+     "views": 23377,
+     "channel": "Empfehlungsfuchs",
+     "duration": "187",
+     "title": "Heizung wird nicht warm?💥(In 2 Minuten selber beheben)🤯"
+    },
+    {
+     "id": "lftj0kdrDv4",
+     "views": 133577,
+     "channel": "GC-Dynamics",
+     "duration": "165",
+     "title": "Auto Heizung - Wird nicht warm & funktioniert nicht...?! Erklärt vom Kfz Meister"
+    },
+    {
+     "id": "KLp6OSGF2rg",
+     "views": 186330,
+     "channel": "Mac Paverick",
+     "duration": "230",
+     "title": "Auto Heizung wird nicht warm & funktioniert nicht richtig - Ursachen & Lösungen"
+    },
+    {
+     "id": "TjVYkCZ7uxU",
+     "views": 3669,
+     "channel": "Mac Paverick",
+     "duration": "102",
+     "title": "Heizung wird nicht warm? - So behebst du die häufigste Ursache schnell selbst!"
+    }
+   ],
+   "potential": 6.1
+  },
+  {
+   "phrase": "heizkörper lackieren",
+   "suggest_score": 17.0,
+   "top_views": [
+    177914,
+    141363,
+    106046
+   ],
+   "demand": 106046,
+   "own": [],
+   "results": [
+    {
+     "id": "5x6N2TMJ_no",
+     "views": 141363,
+     "channel": "einzA Farben und Lacke",
+     "duration": "248",
+     "title": "Heizkörper lackieren – 2 Möglichkeiten mit Tipps vom Profi"
+    },
+    {
+     "id": "FOBUCP1uUCE",
+     "views": 177914,
+     "channel": "OBI HowTo",
+     "duration": "396",
+     "title": "Heizkörper lackieren: Abkleben, abschleifen und grundieren | OBI"
+    },
+    {
+     "id": "6jxE6G3fn4I",
+     "views": 50876,
+     "channel": "Farbenbote",
+     "duration": "261",
+     "title": "HEIZKÖRPER LACKIEREN - so einfach gehts!"
+    },
+    {
+     "id": "nU3Q8sDXhiY",
+     "views": 106046,
+     "channel": "Malermeister Andy",
+     "duration": "520",
+     "title": "Heizkörper schnell & einfach lackieren"
+    },
+    {
+     "id": "4T7uqw5VRa4",
+     "views": 82431,
+     "channel": "Alpina Farben",
+     "duration": "74",
+     "title": "Alpina Farben: Heizkörper lackieren"
+    },
+    {
+     "id": "tYc6Zne_mKA",
+     "views": 15661,
+     "channel": "Malermeister Andy",
+     "duration": "250",
+     "title": "Warum immer neu? Heizkörper lackieren"
+    },
+    {
+     "id": "utkiUkGXXTM",
+     "views": 29783,
+     "channel": "Sycofix | Sicher renovieren",
+     "duration": "100",
+     "title": "Heizkörper lackieren schnell und einfach mit Spraydose | DIY| SYCOFIX Tutorials"
+    },
+    {
+     "id": "AJW7g8bmP6I",
+     "views": 70019,
+     "channel": "Fast Guides DE",
+     "duration": "610",
+     "title": "Heizkörper mit Rost schleifen reinigen lackieren"
+    }
+   ],
+   "potential": 5.88
+  },
+  {
+   "phrase": "heizkörper ventilator",
+   "suggest_score": 11.0,
+   "top_views": [
+    448549,
+    162094,
+    88159
+   ],
+   "demand": 88159,
+   "own": [],
+   "results": [
+    {
+     "id": "ZaJ1iN6Q35o",
+     "views": 1741,
+     "channel": "Altbaubesitzer",
+     "duration": "384",
+     "title": "Heizkörperventilatoren für Altbauten | Echter Nutzen oder Geldverschwendung?"
+    },
+    {
+     "id": "-EpLiDX8b7I",
+     "views": 88159,
+     "channel": "heise & c't",
+     "duration": "411",
+     "title": "Heizungslüfter für Zuhause: Gadget im Geldspar-Check"
+    },
+    {
+     "id": "6lBfOuVtXkI",
+     "views": 448549,
+     "channel": "TV Solution",
+     "duration": "645",
+     "title": "So einfach Heizkosten sparen - Heizkörper Wärmeabgabe verbessern, Heizungsventilatoren SpeedComfort"
+    },
+    {
+     "id": "IQxwDTer5v8",
+     "views": 87953,
+     "channel": "Homealex",
+     "duration": "1244",
+     "title": "Heizkörper-Lüfter nach 2 Jahren: Meine ehrlichen Tipps! (SpeedComfort Langzeittest)"
+    },
+    {
+     "id": "5E0xFMnuTQY",
+     "views": 14775,
+     "channel": "Marc testet...",
+     "duration": "2109",
+     "title": "Heizungslüfter: Gas sparen oder Heizkörper für  Wärmepumpe fit machen. Einfach Umrüstung!"
+    },
+    {
+     "id": "jeenG8ntxgQ",
+     "views": 2638,
+     "channel": "PEARL TV",
+     "duration": "481",
+     "title": "Monika zeigt den neuesten Heizkörper-Ventilator im Februar 2026 @PEARL-TV"
+    },
+    {
+     "id": "A0dzfqG0E5o",
+     "views": 22267,
+     "channel": "TestWelt",
+     "duration": "478",
+     "title": "Heizkörper-Ventilatoren von Action im Test – Mehr Wärme & weniger Heizkosten?"
+    },
+    {
+     "id": "VvftT0KS4eE",
+     "views": 162094,
+     "channel": "Norio",
+     "duration": "679",
+     "title": "Neuer Heiz-Propeller aus Holland spart extrem Heizkosten!"
+    }
+   ],
+   "potential": 5.49
+  }
+ ]
+}

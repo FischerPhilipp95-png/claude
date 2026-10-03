@@ -37,6 +37,19 @@ echte Perspektive, Beschriftungen aus Datenblättern (Vorlage `projects/wika-rad
 Websites (Kundenseiten, x.com, YouTube) sind nur erreichbar, wenn ihre Domain in den Netzwerk-Einstellungen
 der Cloud-Umgebung freigegeben ist. Ein 403 beim Download bedeutet: Domain nicht freigegeben.
 
+## Themenwahl und Kanal-Strategie (vor jedem neuen YouTube-Video)
+
+Strategie und Daten: `docs/kanal_strategie.md`. Kurz: Ein kleiner Kanal wächst über die **Suche**. Konkrete Probleme
+(„Heizkörper wird nicht warm“, „DeLonghi Magnifica Evo entkalken“) laufen etwa 20-mal besser als allgemeine Erklär- oder Neugier-Themen.
+Zwei Säulen: Kaffeevollautomaten (ganzjährig) sowie Heizung & Klima (nach Saison: Heizung Okt.–Jan., Klima Mai–Aug.).
+
+1. `python3 tools/themen_radar.py "<stichwort>" … --out docs/radar/<name>`
+   - Holt YouTube-Suchvorschläge und die Nachfrage (Aufrufe der Top-Videos).
+   - Sammelt Fragen aus den Kommentaren.
+   - Bestimmt die Saison per Google Trends (trendspyg; bei „RateLimitError“ später erneut, `--no-trends` überspringt).
+2. Thema mit hoher Nachfrage, passender Saison und einer offenen Zuschauerfrage wählen. Titel = Suchbegriff vorn.
+3. `python3 tools/kanal_check.py --out docs/radar/kanal` zeigt, welche eigenen Videos laufen (auch für Konkurrenz-Kanäle: `@name`).
+
 ## Standards für neue Videos
 
 - Voiceover: Piper-Stimme `de_DE-thorsten-high` (`tools/tts.py --engine piper`). Der Nutzer ist damit zufrieden.
