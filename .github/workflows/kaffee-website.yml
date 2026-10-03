@@ -185,13 +185,30 @@ jobs:
           fi
           # Zielordner bestimmen (siehe Kopf der Datei).
           if [ -z "$SFTP_ZIEL" ]; then
-            LISTE="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cls -1 /" 2>/dev/null || true)"
-            if printf '%s\n' "$LISTE" | grep -qx 'public/\?'; then
+            # Startverzeichnis auflisten (nur Namen). „cls -1 /“ liefert je nach lftp-Version „/public/“ statt „public“, daher großzügig vergleichen.
+            LISTE="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cls -1" 2>/dev/null || true)"
+            echo "Startverzeichnis enthält: $(printf '%s' "$LISTE" | tr '\n' ' ' | cut -c1-300)"
+            # Zweiter Beweis: Liegt unter public/ der Handwerksdoktor, sieht dieser Benutzer den ganzen Webspace.
+            HWD="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cat public/robots.txt" 2>/dev/null || true)"
+            if printf '%s\n' "$LISTE" | grep -Eq '^/?public/?$' || printf '%s' "$HWD" | grep -q 'handwerksdoktor\.de'; then
               SFTP_ZIEL=/vollautomatendoktor
               echo "SFTP-Benutzer sieht den ganzen Webspace: Ziel ist $SFTP_ZIEL"
             else
               SFTP_ZIEL=/
               echo "SFTP-Benutzer startet im Ordner der Seite: Ziel ist /"
+            fi
+          fi
+          # Aufräumen: Am 03.10.2026 ist die Seite wegen einer falschen Ordnererkennung ins oberste Verzeichnis geladen worden.
+          # Liegt dort unsere robots.txt (vollautomatendoktor.de), werden genau die Einträge entfernt, die zur Seite gehören (Inhalt von dist/).
+          # Andere Dateien und die Ordner public/ und vollautomatendoktor/ bleiben unberührt.
+          if [ "$SFTP_ZIEL" = "/vollautomatendoktor" ]; then
+            WURZEL="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cat /robots.txt" 2>/dev/null || true)"
+            if printf '%s' "$WURZEL" | grep -q 'vollautomatendoktor\.de'; then
+              echo "Im obersten Verzeichnis liegen Dateien dieser Seite: werden entfernt."
+              for eintrag in $(ls -A kaffee/site/dist); do
+                case "$eintrag" in public|vollautomatendoktor|''|.|..) continue;; esac
+                lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; rm -rf \"/$eintrag\"" 2>/dev/null && echo "entfernt: /$eintrag" || echo "nicht entfernt: /$eintrag"
+              done
             fi
           fi
           # Schutz: Liegt im Zielordner schon der Handwerksdoktor (falscher SFTP-Benutzer oder Ordner), nichts hochladen.
