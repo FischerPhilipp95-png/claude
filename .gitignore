@@ -37,3 +37,6 @@ projects/test-moneyprinter/out/
 projects/test-moneyprinter/audio/
 projects/test-moneyprinter/clips/
 projects/test-moneyprinter/stimme.wav
+
+# Recherche-Rohtexte (fremde Transkripte und Reddit-Texte): nur lokal auswerten, nie veröffentlichen
+kaffee/recherche/*/roh/

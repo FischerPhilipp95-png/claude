@@ -5,9 +5,11 @@ import { THEMEN, type Thema } from '../themen';
 import Verwandt from '../components/Verwandt.astro';
 import Icon from '../components/Icon.astro';
 import PinterestMerken from '../components/PinterestMerken.astro';
+import Geprueft from '../components/Geprueft.astro';
 import { videoFuerArtikel, videoSchema } from '../videos';
 import { CHECKLISTEN } from '../checklisten.mjs';
 import { existsSync } from 'node:fs';
+import { maschine } from '../maschinen';
 
 interface Props {
   title: string;
@@ -21,8 +23,11 @@ interface Props {
   headings: { depth: number; slug: string; text: string }[];
   bildAlt: string;
   lesezeit: number;
+  maschinen?: string[];
+  pruefung?: { datum: Date; anleitung: string; videos: number; reddit: number; korrektur?: string };
 }
-const { title, description, pubDate, updatedDate, thema, bild, affiliate, id, headings, bildAlt, lesezeit } = Astro.props;
+const { title, description, pubDate, updatedDate, thema, bild, affiliate, id, headings, bildAlt, lesezeit, maschinen = [], pruefung } = Astro.props;
+const passtZu = maschinen.map((m) => ({ id: m, ...maschine(m) }));
 const akzent = THEMEN[thema as Thema].farbe;
 const themaIcon = THEMEN[thema as Thema].icon;
 const themaSlug = THEMEN[thema as Thema].slug;
@@ -72,6 +77,9 @@ if (vSchema) jsonLd.push(vSchema as any);
       <img src="/bilder/autor.webp" alt="" width="40" height="40" data-pin-nopin="true" />
       <span><strong>{SITE.author}</strong><br /><span class="small">{updatedDate ? `Aktualisiert am ${datum(updatedDate)}` : `Veröffentlicht am ${datum(pubDate)}`} · <Icon name="clock" size={13} /> {lesezeit} Min. Lesezeit</span></span>
     </div>
+    {passtZu.length > 0 && (
+      <p class="passt-zu" data-pagefind-ignore><strong>Passt zu:</strong> {passtZu.map((m) => <a class="chip" href={`/maschine/${m.id}/`}>{THEMEN[m.hersteller as Thema].titel.split(' ')[0]} {m.name}</a>)}</p>
+    )}
     <figure class="hero-img"><img data-pagefind-meta="image[src], image_alt[alt]" src={bild} alt={bildAlt} width="1200" height="675" fetchpriority="high" decoding="async" data-pin-media={pin} data-pin-description={`${title}: ${description}`} data-pin-url={url} /></figure>
     {affiliate && (
       <p class="ad-note" data-pagefind-ignore><strong>Anzeige:</strong> Dieser Artikel enthält Affiliate-Links (mit * markiert). Kaufst du darüber ein,
@@ -91,6 +99,7 @@ if (vSchema) jsonLd.push(vSchema as any);
         <a class="btn btn-sm" href={`/checklisten/${c.id}/`}>Zur Checkliste</a>
       </aside>
     ))}
+    {pruefung && <Geprueft pruefung={pruefung} />}
     <PinterestMerken url={url} bild={pin} text={`${title}: ${description}`} />
     <div data-pagefind-ignore><Verwandt id={id} thema={thema} /></div>
     <section class="box author" aria-label="Über den Autor" data-pagefind-ignore>

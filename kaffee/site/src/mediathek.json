@@ -1,9 +1,53 @@
 {
-  "_hinweis": "Video-Anleitungen auf /videos/ und auf den Themenseiten, je Thema (Schlüssel aus src/themen.ts, dazu „Weitere“). Nur lange Videos vom eigenen Kanal, die zum Kaffeevollautomaten passen. Vorschaubilder holt scripts/videos.mjs auf den eigenen Server.",
-  "Pflege": ["7S7ecYJs4P4", "-EdeoVb8Qpk", "N1LVGR4PbrM", "63lQKaBPelU", "DbCY2M-Z8cY", "PJzyjurotOU", "qSaGw7HmUqo"],
-  "DeLonghi": ["LLl4Ocv-0tM", "97IogfXRj-I", "njtMKj3Kaoo", "OC4Wu6o4i8U", "2T0Ww1Aycc8", "76ZvOWkHhUw", "6kwmDU7H1Ls", "-x0obhkt8Ao", "Ic610qy_nF4", "r-T06GQ8uv0", "sTStBR8L2L0", "1ORLyvj4o4M", "6U2cRlkfBqM", "qso2o4F3YBU"],
-  "Philips": ["KHLi12cGfT4", "5dq4lXIqNRo", "EtcBg435Q9I", "5YM7CqH9TUM", "A7RKBatgaEU"],
-  "Siemens": ["VtUr64BkUqk", "ZLe9TU_bKmA"],
-  "Jura": ["rb1vi2R1zs4"],
-  "Weitere": ["jtJomDcrGVI", "NWPy0G3jKjk", "JMi1KSIWnRM", "ju6LOA2AvHI", "LNkbpaFNA5U"]
+ "_hinweis": "Video-Anleitungen auf /videos/ und auf den Themenseiten, je Thema (Schlüssel aus src/themen.ts, dazu „Weitere“). Nur lange Videos vom eigenen Kanal, die zum Kaffeevollautomaten passen. Vorschaubilder holt scripts/videos.mjs auf den eigenen Server.",
+ "Pflege": [
+  "7S7ecYJs4P4",
+  "-EdeoVb8Qpk",
+  "N1LVGR4PbrM",
+  "63lQKaBPelU",
+  "DbCY2M-Z8cY",
+  "PJzyjurotOU",
+  "qSaGw7HmUqo"
+ ],
+ "DeLonghi": [
+  "LLl4Ocv-0tM",
+  "97IogfXRj-I",
+  "njtMKj3Kaoo",
+  "OC4Wu6o4i8U",
+  "2T0Ww1Aycc8",
+  "76ZvOWkHhUw",
+  "6kwmDU7H1Ls",
+  "-x0obhkt8Ao",
+  "Ic610qy_nF4",
+  "r-T06GQ8uv0",
+  "sTStBR8L2L0",
+  "1ORLyvj4o4M",
+  "6U2cRlkfBqM",
+  "qso2o4F3YBU"
+ ],
+ "Philips": [
+  "KHLi12cGfT4",
+  "5dq4lXIqNRo",
+  "EtcBg435Q9I",
+  "5YM7CqH9TUM",
+  "A7RKBatgaEU"
+ ],
+ "Siemens": [
+  "VtUr64BkUqk",
+  "ZLe9TU_bKmA"
+ ],
+ "Jura": [
+  "rb1vi2R1zs4"
+ ],
+ "Weitere": [
+  "LNkbpaFNA5U"
+ ],
+ "Krups": [
+  "jtJomDcrGVI",
+  "NWPy0G3jKjk"
+ ],
+ "Sage": [
+  "JMi1KSIWnRM",
+  "ju6LOA2AvHI"
+ ]
 }

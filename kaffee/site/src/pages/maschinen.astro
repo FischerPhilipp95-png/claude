@@ -1,0 +1,73 @@
+---
+// Maschinen-Finder: erst Hersteller wählen, dann Maschine. Ohne JavaScript stehen einfach alle Maschinen nach Marke da.
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import MaschinenKarte from '../components/MaschinenKarte.astro';
+import { SITE } from '../site';
+import { THEMEN, type Thema } from '../themen';
+import { maschinenListe, beitraegeFuer, videosFuer, hatSeite } from '../maschinen-hilfe';
+
+const posts = await getCollection('artikel', ({ data }) => !data.entwurf);
+const liste = maschinenListe().filter((m) => hatSeite(m, posts));
+const marken = (Object.keys(THEMEN) as Thema[])
+  .map((k) => ({ k, t: THEMEN[k], maschinen: liste.filter((m) => m.hersteller === k) }))
+  .filter((g) => g.maschinen.length);
+const title = 'Maschinen-Finder: Hilfe für deinen Kaffeevollautomaten';
+const description = 'Hersteller wählen, Maschine wählen, Anleitung finden: Hilfe für De’Longhi, Philips, Siemens, Jura, Krups und mehr.';
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, url: `${SITE.url}/maschinen/`, inLanguage: 'de-DE' }];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap wide">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Maschinen</nav>
+    <h1>Welche Maschine hast du?</h1>
+    <p class="lead">Erst den Hersteller wählen, dann deine Maschine. Dort findest du alle Anleitungen und Videos, die zu ihr passen.</p>
+
+    <div class="finder" data-finder>
+      <fieldset class="finder-marken">
+        <legend>Hersteller</legend>
+        <label class="chip"><input type="radio" name="marke" value="" checked /> Alle</label>
+        {marken.map((g) => <label class="chip" style={`--akzent:${g.t.farbe}`}><input type="radio" name="marke" value={g.t.slug} /> <Icon name={g.t.icon} size={14} /> {g.t.titel}</label>)}
+      </fieldset>
+      <label class="finder-suche"><span>Modell suchen</span>
+        <input type="search" name="modell" placeholder="z. B. Magnifica, 5400, EQ6" autocomplete="off" />
+      </label>
+    </div>
+
+    {marken.map((g) => (
+      <section class="finder-gruppe" data-gruppe={g.t.slug} aria-labelledby={`m-${g.t.slug}`}>
+        <h2 class="section-h" id={`m-${g.t.slug}`}><a href={`/thema/${g.t.slug}/`}>{g.t.titel}</a></h2>
+        <ul class="tiles">{g.maschinen.map((m) => <MaschinenKarte m={m} anleitungen={beitraegeFuer(m.id, posts).length} videos={videosFuer(m).length} />)}</ul>
+      </section>
+    ))}
+    <p class="finder-leer small" hidden>Keine Maschine gefunden. <a href="/kontakt/">Schreib mir dein Modell</a>, dann kommt die Anleitung dazu.</p>
+    <p class="small">Deine Maschine ist nicht dabei? Die Grundlagen gelten für alle: <a href="/thema/pflege/">Pflege &amp; Entkalken</a>.</p>
+  </div>
+  <script is:inline>
+    (() => {
+      const f = document.querySelector('[data-finder]');
+      if (!f) return;
+      const filtern = () => {
+        const marke = f.querySelector('input[name=marke]:checked').value;
+        const text = f.querySelector('input[name=modell]').value.trim().toLowerCase();
+        let treffer = 0;
+        document.querySelectorAll('[data-gruppe]').forEach((g) => {
+          let sichtbar = 0;
+          g.querySelectorAll('[data-hersteller]').forEach((li) => {
+            const ok = (!marke || li.dataset.hersteller === marke) && (!text || li.dataset.filter.includes(text));
+            li.hidden = !ok;
+            if (ok) sichtbar++;
+          });
+          g.hidden = sichtbar === 0;
+          treffer += sichtbar;
+        });
+        document.querySelector('.finder-leer').hidden = treffer > 0;
+        history.replaceState(null, '', marke ? `#${marke}` : location.pathname);
+      };
+      f.addEventListener('input', filtern);
+      const start = location.hash.slice(1);
+      const radio = start && f.querySelector(`input[name=marke][value="${CSS.escape(start)}"]`);
+      if (radio) { radio.checked = true; filtern(); }
+    })();
+  </script>
+</Base>

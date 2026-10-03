@@ -1,0 +1,17 @@
+---
+// „So geprüft“: zeigt, womit ein Beitrag geprüft wurde. Daten aus dem Feld „pruefung“ im Artikelkopf.
+import Icon from './Icon.astro';
+interface Props { pruefung: { datum: Date; anleitung: string; videos: number; reddit: number; korrektur?: string } }
+const { pruefung: p } = Astro.props;
+const datum = p.datum.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+---
+<aside class="box geprueft" aria-label="So wurde dieser Beitrag geprüft" data-pagefind-ignore>
+  <p class="geprueft-h"><Icon name="badge-check" size={22} /> <strong>Geprüft am {datum}</strong></p>
+  <ul>
+    <li><strong>Maßgeblich:</strong> {p.anleitung}</li>
+    {p.videos > 0 && <li><strong>Abgeglichen mit</strong> {p.videos} Anleitungsvideos anderer Kanäle</li>}
+    {p.reddit > 0 && <li><strong>Häufige Fragen</strong> aus {p.reddit} Diskussionen von Besitzern (Reddit)</li>}
+    {p.korrektur && <li><strong>Bei der Prüfung korrigiert:</strong> {p.korrektur}</li>}
+  </ul>
+  <p class="small">Weichen Quellen voneinander ab, gilt die Anleitung des Herstellers.</p>
+</aside>

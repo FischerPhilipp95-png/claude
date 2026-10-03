@@ -7,15 +7,19 @@ import { SITE } from '../../site';
 import VideoBox from '../../components/VideoBox.astro';
 import { videoFuerSeite, videoSchema, mediathekVideos } from '../../videos';
 import VideoKarte from '../../components/VideoKarte.astro';
+import MaschinenKarte from '../../components/MaschinenKarte.astro';
+import { maschinenListe, beitraegeFuer, videosFuer, hatSeite } from '../../maschinen-hilfe';
+import { mediathekVideos as mv } from '../../videos';
 
 export async function getStaticPaths() {
   const posts = await getCollection('artikel', ({ data }) => !data.entwurf);
   return Object.entries(THEMEN)
-    .map(([name, t]) => ({ name, t, posts: posts.filter((p) => p.data.thema === name) }))
-    .filter((x) => x.posts.length > 0)
-    .map(({ name, t, posts }) => ({ params: { thema: t.slug }, props: { name, t, posts } }));
+    .map(([name, t]) => ({ name, t, posts: posts.filter((p) => p.data.thema === name), alle: posts }))
+    .filter((x) => x.posts.length > 0 || mv(x.name).length > 0)
+    .map(({ name, t, posts, alle }) => ({ params: { thema: t.slug }, props: { name, t, posts, alle } }));
 }
-const { name, t, posts } = Astro.props;
+const { name, t, posts, alle } = Astro.props;
+const maschinen = maschinenListe().filter((m) => m.hersteller === name && hatSeite(m, alle));
 const liste = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const jsonLd = [{
   '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${t.titel}: Anleitungen und Ratgeber`,
@@ -32,7 +36,18 @@ if (vSchema) jsonLd.push(vSchema as any);
     <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › {t.titel}</nav>
     <h1>{t.titel}: Anleitungen und Ratgeber</h1>
     <p class="lead">{t.intro}</p>
-    <ul class="cards">{liste.map((p) => <ArtikelKarte post={p} ebene={2} />)}</ul>
+    {maschinen.length > 0 && (
+      <section aria-labelledby="maschinen-h">
+        <h2 class="section-h" id="maschinen-h">Welche {t.titel}-Maschine hast du?</h2>
+        <ul class="tiles">{maschinen.map((m) => <MaschinenKarte m={m} anleitungen={beitraegeFuer(m.id, alle).length} videos={videosFuer(m).length} />)}</ul>
+      </section>
+    )}
+    {liste.length > 0 && (
+      <section aria-labelledby="artikel-h">
+        <h2 class="section-h" id="artikel-h">{maschinen.length > 0 ? `Anleitungen für alle ${t.titel}-Maschinen` : 'Anleitungen'}</h2>
+        <ul class="cards">{liste.map((p) => <ArtikelKarte post={p} />)}</ul>
+      </section>
+    )}
     {video && <div class="video-schmal"><VideoBox video={video} ueberschrift={`${t.titel} im Video`} /></div>}
     {videos.length > 0 && (
       <section aria-labelledby="videos-h">

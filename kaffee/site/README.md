@@ -55,3 +55,21 @@ Variable `KAFFEE_SFTP_ZIEL` nur, wenn der Benutzer nicht direkt im Ordner der Se
 
 Die fünf Kaffee-Artikel lagen vorher auf handwerksdoktor.de. Die `.htaccess` dort leitet die alten Adressen (und Titel- und Pin-Bilder)
 mit 301 hierher um. Diese Umleitung erst live schalten, wenn vollautomatendoktor.de erreichbar ist.
+
+## Maschinen: Hersteller → Maschine → Beiträge
+
+- `src/maschinen.ts`: alle Maschinen mit Hersteller, Namen, Suchwörtern (Modellnummern) und passenden Videos.
+- Im Artikelkopf `maschinen: [delonghi-magnifica-s]` setzen, wenn ein Beitrag nur für bestimmte Maschinen gilt. Ohne Eintrag gilt er für
+  alle Maschinen der Marke (bzw. für alle, wenn `thema: Pflege`). Unbekannte Schlüssel brechen den Build ab.
+- Seiten: `/maschinen/` (Finder mit Hersteller-Filter und Modellsuche), `/maschine/<schluessel>/` (nur wenn es einen Beitrag oder ein Video gibt),
+  Markenseiten `/thema/<marke>/` zeigen zuerst die Maschinen.
+
+## Jeder Beitrag wird geprüft
+
+1. Recherche: `python3 tools/recherche.py <slug> --youtube "…" --reddit "…" --muss "regex"` → `kaffee/recherche/<slug>/quellen.md`
+   (Rohtexte in `roh/` bleiben lokal, fremde Inhalte werden nie veröffentlicht).
+2. Herstelleranleitung (PDF von dls.delonghigroup.com, philips.de/support usw.) ist **maßgeblich**. Videos und Reddit zeigen, was Leute
+   falsch machen und welche Fragen offen bleiben.
+3. Abgleich als Tabelle in `kaffee/recherche/<slug>/pruefbericht.md` (Aussage, Hersteller, Videos, Ergebnis).
+4. Im Artikelkopf `pruefung:` ausfüllen (Datum, maßgebliche Quelle, Zahl der Videos und Threads, Korrekturen). Das erscheint als Kasten
+   „Geprüft am …“ im Beitrag.

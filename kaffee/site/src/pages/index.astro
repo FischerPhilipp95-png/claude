@@ -28,7 +28,8 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
         Entkalken, reinigen, Filter wechseln, Schritt für Schritt erklärt.</p>
         <SuchFeld id="suche-start" variante="hero" />
         <div class="hero-cta">
-          <a class="btn" href="/artikel/"><Icon name="book-open" size={18} /> Alle Anleitungen</a>
+          <a class="btn" href="/maschinen/"><Icon name="coffee" size={18} /> Meine Maschine finden</a>
+          <a class="btn btn-ghost" href="/artikel/"><Icon name="book-open" size={18} /> Alle Anleitungen</a>
           <a class="btn btn-ghost" href="/videos/"><Icon name="circle-play" size={18} /> Video-Anleitungen</a>
         </div>
       </div>
@@ -37,7 +38,7 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
   </section>
 
   <section class="wrap wide">
-    <h2 class="section-h">Welche Maschine hast du?</h2>
+    <h2 class="section-h">Welche Marke hast du?</h2>
     <ul class="tiles">
       {(Object.entries(THEMEN) as [Thema, (typeof THEMEN)[Thema]][]).filter(([n]) => anzahl(n) + videoAnzahl(n) > 0).map(([n, t]) => (
         <li><a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}>

@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ArtikelKarte from '../../components/ArtikelKarte.astro';
+import VideoKarte from '../../components/VideoKarte.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../site';
+import { maschinenListe, beitraegeFuer, allgemeineFuer, videosFuer, hatSeite, pruefeZuordnung } from '../../maschinen-hilfe';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('artikel', ({ data }) => !data.entwurf);
+  pruefeZuordnung(posts);
+  return maschinenListe().filter((m) => hatSeite(m, posts)).map((m) => ({ params: { slug: m.id }, props: { m, posts } }));
+}
+const { m, posts } = Astro.props;
+const eigene = beitraegeFuer(m.id, posts);
+const allgemein = allgemeineFuer(m, posts);
+const videos = videosFuer(m);
+const geschwister = maschinenListe().filter((x) => x.hersteller === m.hersteller && x.id !== m.id && hatSeite(x, posts));
+const title = `${m.titel}: Anleitungen und Hilfe`;
+const description = `${m.titel}: entkalken, reinigen, Fehler beheben. Alle Anleitungen und Videos für deine Maschine an einem Ort.`;
+const url = `${SITE.url}/maschine/${m.id}/`;
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, url, inLanguage: 'de-DE',
+    about: { '@type': 'Product', name: m.titel, brand: { '@type': 'Brand', name: m.marke.titel } } },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: `${SITE.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Maschinen', item: `${SITE.url}/maschinen/` },
+    { '@type': 'ListItem', position: 3, name: m.marke.titel, item: `${SITE.url}/thema/${m.marke.slug}/` },
+    { '@type': 'ListItem', position: 4, name: m.name, item: url },
+  ] },
+];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap wide" style={`--akzent:${m.marke.farbe}`}>
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › <a href="/maschinen/">Maschinen</a> › <a href={`/thema/${m.marke.slug}/`}>{m.marke.titel}</a> › {m.name}</nav>
+    <a class="chip chip-lg" href={`/thema/${m.marke.slug}/`}><Icon name={m.marke.icon} size={16} /> {m.marke.titel}</a>
+    <h1>{m.titel}: Anleitungen und Hilfe</h1>
+    <p class="lead">Alles für deine {m.titel} an einem Ort: Anleitungen zum Nachlesen, Videos und die Pflege-Grundlagen,
+    die für alle {m.marke.titel}-Maschinen gelten.{m.art === 'siebtraeger' ? ' Hinweis: Das ist ein Siebträger, kein Vollautomat.' : ''}</p>
+
+    {eigene.length > 0 && (
+      <section aria-labelledby="eigene-h">
+        <h2 class="section-h" id="eigene-h">Anleitungen für die {m.name}</h2>
+        <ul class="cards">{eigene.map((p) => <ArtikelKarte post={p} />)}</ul>
+      </section>
+    )}
+    {videos.length > 0 && (
+      <section aria-labelledby="videos-h">
+        <h2 class="section-h" id="videos-h">{m.name} im Video</h2>
+        <ul class="cards">{videos.map((v) => <VideoKarte video={v} farbe={m.marke.farbe} />)}</ul>
+      </section>
+    )}
+    {allgemein.length > 0 && (
+      <section aria-labelledby="allg-h">
+        <h2 class="section-h" id="allg-h">Gilt auch für deine {m.name}</h2>
+        <ul class="cards">{allgemein.map((p) => <ArtikelKarte post={p} />)}</ul>
+      </section>
+    )}
+    {geschwister.length > 0 && (
+      <section aria-labelledby="andere-h">
+        <h2 class="section-h" id="andere-h">Andere {m.marke.titel}-Maschinen</h2>
+        <p class="sprung">{geschwister.map((x) => <a class="chip" href={`/maschine/${x.id}/`}>{x.name}</a>)}</p>
+      </section>
+    )}
+    <p class="small">Deine Maschine fehlt oder du hast ein anderes Problem? <a href="/kontakt/">Schreib mir</a>, dann kommt die Anleitung dazu.</p>
+  </div>
+</Base>
