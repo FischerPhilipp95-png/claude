@@ -5,16 +5,16 @@ Stand: 04.10.2026. Abhaken mit `[x]`. Ausführliche Anleitungen: `kaffee/EINRICH
 ## Jetzt (Einrichtung vollautomatendoktor.de)
 
 - [x] **Google Search Console, vollautomatendoktor.de:** Property „Domain“ bestätigen (TXT-Eintrag bei Cloudflare ist schon da)
-- [ ] **Sitemap einreichen:** in der Search Console unter *Sitemaps* `sitemap-index.xml` → Senden
+- [x] **Sitemap einreichen:** in der Search Console unter *Sitemaps* `sitemap-index.xml` → Senden
       (vollständig: https://vollautomatendoktor.de/sitemap-index.xml)
 - [ ] **Indexierung beantragen** für: `/`, `/maschinen/`, `/maschine/delonghi-magnifica-s/`,
       `/artikel/delonghi-kaffeevollautomat-entkalken/`, `/artikel/kaffeevollautomat-entkalken/`
 - [x] **Search Console für handwerksdoktor.de:** Property „Domain“, TXT-Eintrag bei **IONOS** (DNS), bestätigen,
       Sitemap `sitemap-index.xml` (https://handwerksdoktor.de/sitemap-index.xml)
 - [x] **Bing Webmaster Tools:** beide Seiten importiert
-- [ ] **Bing:** links *Sitemaps* → für beide Seiten die Sitemap einreichen (Adressen siehe oben)
-- [ ] **Google:** prüfen, ob unter *Sitemaps* bei beiden Seiten „Erfolgreich“ steht
-- [ ] **Amazon PartnerNet:** `https://vollautomatendoktor.de` in die Website-Liste eintragen (Pflicht!)
+- [x] **Bing:** links *Sitemaps* → für beide Seiten die Sitemap einreichen (Adressen siehe oben)
+- [x] **Google:** prüfen, ob unter *Sitemaps* bei beiden Seiten „Erfolgreich“ steht
+- [x] **Amazon PartnerNet:** `https://vollautomatendoktor.de` in die Website-Liste eintragen (Pflicht!)
 - [x] Eigene Tracking-ID für die Kaffee-Seite: `vollautomat0e-21` (eingebaut am 04.10.2026)
 - [ ] **Marke prüfen:** „Vollautomatendoktor“ bei https://register.dpma.de und https://www.tmdn.org/tmview
 - [ ] **Blog-Sitzung informieren:** „Hol dir zuerst den neuesten Stand (git pull), die Kaffee-Artikel sind auf
