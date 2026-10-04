@@ -115,3 +115,5 @@ Lüft-Tabelle
 = Heimeier
 Vollautomaten-Doktor
 vollautomatendoktor
+Magnifica
+freistechen
