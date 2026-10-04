@@ -8,7 +8,7 @@ export const SITE = {
   email: 'info@handwerksdoktor.de',  // gleicher Inhaber; so braucht die neue Domain keine eigenen E-Mail-Einstellungen
   youtube: 'https://www.youtube.com/@derhandwerksdoktor',
   kanal: 'Der Handwerksdoktor',
-  amazonTag: 'rechn24-21',
+  amazonTag: 'vollautomat0e-21',  // eigene Tracking-ID dieser Seite (PartnerNet, angelegt 04.10.2026)
   // Bestätigungscode von Pinterest („Website beanspruchen“ → HTML-Tag), nur der Wert aus content="…". Leer = kein Tag.
   pinterestVerify: '',
 };
