@@ -10,6 +10,7 @@ import VideoBox from '../../components/VideoBox.astro';
 import { videoFuerSeite, videoSchema, mediathekVideos } from '../../videos';
 import VideoKarte from '../../components/VideoKarte.astro';
 import MaschinenKarte from '../../components/MaschinenKarte.astro';
+import BildNachweise from '../../components/BildNachweise.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import { pflegemittelFuer } from '../../pflegemittel';
 import { maschinenListe, beitraegeFuer, videosFuer } from '../../maschinen-hilfe';
@@ -51,7 +52,8 @@ if (vSchema) jsonLd.push(vSchema as any);
     {maschinen.length > 0 && (
       <section aria-labelledby="maschinen-h">
         <h2 class="section-h" id="maschinen-h">Welche {t.titel}-Maschine hast du?</h2>
-        <ul class="tiles">{maschinen.map((m) => <MaschinenKarte m={m} anleitungen={beitraegeFuer(m.id, alle).length} videos={videosFuer(m).length} />)}</ul>
+        <ul class="tiles tiles-foto">{maschinen.map((m) => <MaschinenKarte m={m} anleitungen={beitraegeFuer(m.id, alle).length} videos={videosFuer(m).length} />)}</ul>
+        <BildNachweise maschinen={maschinen} />
       </section>
     )}
     {mittel.length > 0 && (

@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import MaschinenKarte from '../components/MaschinenKarte.astro';
+import BildNachweise from '../components/BildNachweise.astro';
 import { SITE } from '../site';
 import { THEMEN, type Thema } from '../themen';
 import { maschinenListe, beitraegeFuer, videosFuer } from '../maschinen-hilfe';
@@ -37,7 +38,8 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', n
     {marken.map((g) => (
       <section class="finder-gruppe" data-gruppe={g.t.slug} aria-labelledby={`m-${g.t.slug}`}>
         <h2 class="section-h" id={`m-${g.t.slug}`}><a href={`/thema/${g.t.slug}/`}>{g.t.titel}</a></h2>
-        <ul class="tiles">{g.maschinen.map((m) => <MaschinenKarte m={m} anleitungen={beitraegeFuer(m.id, posts).length} videos={videosFuer(m).length} />)}</ul>
+        <ul class="tiles tiles-foto">{g.maschinen.map((m) => <MaschinenKarte m={m} anleitungen={beitraegeFuer(m.id, posts).length} videos={videosFuer(m).length} />)}</ul>
+        <BildNachweise maschinen={g.maschinen} />
       </section>
     ))}
     <p class="finder-leer small" hidden>Keine Maschine gefunden. <a href="/kontakt/">Schreib mir dein Modell</a>, dann kommt die Anleitung dazu.</p>

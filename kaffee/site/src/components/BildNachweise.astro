@@ -1,0 +1,9 @@
+---
+// Bildnachweise für ein Kachel-Raster mit Maschinenfotos (Pflicht bei CC-Lizenzen: Urheber, Quelle, Lizenz sichtbar).
+import { maschinenBild } from '../maschinen-bilder';
+interface Props { maschinen: { id: string; titel: string }[] }
+const eintraege = Astro.props.maschinen.map((m) => ({ titel: m.titel, b: maschinenBild(m.id) })).filter((e) => e.b);
+---
+{eintraege.length > 0 && (
+  <p class="bildnachweise">Fotos: {eintraege.map((e) => <span><b>{e.titel}:</b> <Fragment set:html={e.b!.nachweis.replace(/^Foto: /, '')} /></span>)}</p>
+)}

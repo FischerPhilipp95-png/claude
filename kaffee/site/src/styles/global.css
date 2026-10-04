@@ -114,6 +114,16 @@ main { padding: 0 0 72px; }
 .tiles-foto a:hover .tile-foto { transform: scale(1.03); }
 .tiles-foto .tile-name, .tiles-foto .tile-count { padding: 0 12px; }
 @media (min-width: 600px) { .tiles-foto .tile-name, .tiles-foto .tile-count { padding: 0 16px; } }
+/* Maschinen ohne freies Foto: gestaltete Fläche in der Markenfarbe, gleiche Größe wie ein Foto */
+.tile-flaeche { position: relative; display: grid; place-items: center; align-content: center; gap: 8px; aspect-ratio: 4 / 3; margin-bottom: 10px; overflow: hidden;
+  border-bottom: 4px solid var(--akzent); color: color-mix(in srgb, var(--akzent) 75%, #000); text-align: center; padding: 0 12px;
+  background: radial-gradient(110% 85% at 50% 0%, #fff 0%, color-mix(in srgb, var(--akzent) 10%, #fff) 55%, color-mix(in srgb, var(--akzent) 22%, #fff) 100%); }
+.tile-flaeche::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--akzent) 22%, transparent) 1px, transparent 0) 0 0 / 14px 14px; opacity: .6; }
+.tile-flaeche svg { position: relative; z-index: 1; opacity: .85; }
+.tile-flaeche span { position: relative; z-index: 1; font-weight: 800; font-size: 1.05rem; line-height: 1.2; letter-spacing: -.01em; color: var(--ink); }
+.tiles-foto a:hover .tile-flaeche svg { transform: scale(1.06); transition: transform .3s; }
+.tiles-foto .tile-marke { padding: 0 12px; margin-top: 0; }
+@media (min-width: 600px) { .tiles-foto .tile-marke { padding: 0 16px; } }
 .bildnachweise { font-size: 0.72rem; color: var(--muted); margin-top: 14px; line-height: 1.5; }
 .bildnachweise span:not(:last-child)::after { content: " · "; }
 /* Kopfbild der Themenseiten */

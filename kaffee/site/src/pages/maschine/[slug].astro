@@ -7,6 +7,8 @@ import Icon from '../../components/Icon.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import { pflegemittelFuer } from '../../pflegemittel';
 import { SITE } from '../../site';
+import Bild from '../../components/Bild.astro';
+import { maschinenBild } from '../../maschinen-bilder';
 import { maschinenListe, beitraegeFuer, allgemeineFuer, videosFuer, hatInhalt, pruefeZuordnung } from '../../maschinen-hilfe';
 
 export async function getStaticPaths() {
@@ -21,6 +23,7 @@ const videos = videosFuer(m);
 const geschwister = maschinenListe().filter((x) => x.hersteller === m.hersteller && x.id !== m.id);
 // Ohne eigenen Beitrag und ohne Video: Seite für Besucher da, aber nicht für Google (keine dünnen Seiten im Index).
 const leer = !hatInhalt(m, posts);
+const bild = maschinenBild(m.id);
 const marke = m.markenname ?? m.marke.titel.split(' ')[0];
 const kauf = [
   ...pflegemittelFuer(marke),
@@ -40,13 +43,18 @@ const jsonLd = [
   ] },
 ];
 ---
-<Base title={title} description={description} jsonLd={jsonLd} noindex={leer}>
+<Base title={title} description={description} jsonLd={jsonLd} noindex={leer} image={bild?.src}>
   <div class="wrap wide" style={`--akzent:${m.marke.farbe}`}>
     <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › <a href="/maschinen/">Maschinen</a> › <a href={`/thema/${m.marke.slug}/`}>{m.marke.titel}</a> › {m.name}</nav>
     <a class="chip chip-lg" href={`/thema/${m.marke.slug}/`}><Icon name={m.marke.icon} size={16} /> {m.marke.titel}</a>
-    <h1>{m.titel}: Anleitungen und Hilfe</h1>
-    <p class="lead">Alles für deine {m.titel} an einem Ort: Anleitungen zum Nachlesen, Videos und die Pflege-Grundlagen,
-    die für alle {m.marke.titel}-Maschinen gelten.{m.art === 'siebtraeger' ? ' Hinweis: Das ist ein Siebträger, kein Vollautomat.' : ''}</p>
+    <div class={bild ? 'thema-kopf' : undefined}>
+      <div>
+        <h1>{m.titel}: Anleitungen und Hilfe</h1>
+        <p class="lead">Alles für deine {m.titel} an einem Ort: Anleitungen zum Nachlesen, Videos und die Pflege-Grundlagen,
+        die für alle {m.marke.titel}-Maschinen gelten.{m.art === 'siebtraeger' ? ' Hinweis: Das ist ein Siebträger, kein Vollautomat.' : ''}</p>
+      </div>
+      {bild && <Bild src={bild.src} alt={bild.alt} nachweis={bild.nachweis} width={960} height={720} eager />}
+    </div>
 
     {leer && (
       <aside class="box in-arbeit" aria-label="Anleitungen in Arbeit">

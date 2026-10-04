@@ -1,15 +1,22 @@
 ---
-// Kachel für eine Maschine: Marke, Name, Zahl der Anleitungen und Videos.
+// Kachel für eine Maschine: Foto (falls es ein freies Foto genau dieses Modells gibt) oder gestaltete Fläche in der Markenfarbe,
+// darunter Marke, Name, Zahl der Anleitungen und Videos. Bildnachweise stehen unter dem Raster (BildNachweise.astro).
 import Icon from './Icon.astro';
 import type { MaschinenInfo } from '../maschinen-hilfe';
+import { maschinenBild } from '../maschinen-bilder';
 interface Props { m: MaschinenInfo; anleitungen: number; videos: number }
 const { m, anleitungen, videos } = Astro.props;
 const teile = [anleitungen && `${anleitungen} ${anleitungen === 1 ? 'Anleitung' : 'Anleitungen'}`, videos && `${videos} ${videos === 1 ? 'Video' : 'Videos'}`].filter(Boolean);
 const filter = [m.marke.titel, m.markenname ?? '', m.name, ...(m.suchwoerter ?? [])].join(' ').toLowerCase();
+const bild = maschinenBild(m.id);
+const markenname = m.markenname ?? m.marke.titel.split(' ')[0];
 ---
 <li data-hersteller={m.marke.slug} data-filter={filter}><a href={`/maschine/${m.id}/`} style={`--akzent:${m.marke.farbe}`}>
-  <span class="tile-icon"><Icon name={m.marke.icon} size={28} /></span>
-  <span class="tile-marke">{m.markenname ?? m.marke.titel.split(' ')[0]}</span>
+  {bild
+    ? <img class="tile-foto" src={bild.klein} srcset={`${bild.klein} 480w, ${bild.src} 960w`} sizes="(max-width: 600px) 50vw, 240px"
+        alt={bild.alt} width="480" height="360" loading="lazy" decoding="async" />
+    : <span class="tile-flaeche" aria-hidden="true"><Icon name={m.art === 'siebtraeger' ? 'coffee' : m.marke.icon} size={44} /><span>{m.name}</span></span>}
+  <span class="tile-marke">{markenname}</span>
   <span class="tile-name">{m.name}</span>
   <span class="tile-count">{teile.length ? teile.join(' · ') : 'Anleitungen folgen'}{m.art === 'siebtraeger' ? ' · Siebträger' : ''}</span>
 </a></li>
