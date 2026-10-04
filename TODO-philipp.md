@@ -28,7 +28,8 @@ Stand: 04.10.2026. Abhaken mit `[x]`. Ausführliche Anleitungen: `kaffee/EINRICH
       (Textbausteine schreibt Claude auf Zuruf)
 - [ ] **Nächste Kaffee-Videos nach Nachfrage** (`kaffee/maschinen-abdeckung.md`): Magnifica ESAM entkalken,
       Philips 1200/2200 entkalken, Magnifica Start entkalken, Melitta Solo & Perfect Milk entkalken, Philips 3200/5400 entkalken
-- [ ] **Fotos der Maschinen:** eigene Fotos oder Pressestellen von De’Longhi, Philips, Jura anfragen (Mail-Entwurf von Claude)
+- [ ] **Fotos der Maschinen:** Marken-Kacheln haben seit 04.10.2026 freie Fotos (Wikimedia/Flickr). Für **Melitta** und **Tchibo**
+      gibt es keine freien Fotos (dort steht vorerst ein Kaffeefoto): eigenes Foto machen oder Pressestelle anfragen (Mail-Entwurf von Claude)
 - [ ] **In 4–8 Wochen:** Search Console → *Leistung* ansehen und Claude die Suchanfragen schicken (beste Themenquelle)
 
 ## Ideen für weitere Seiten

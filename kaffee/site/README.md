@@ -74,3 +74,10 @@ mit 301 hierher um. Diese Umleitung erst live schalten, wenn vollautomatendoktor
 3. Abgleich als Tabelle in `kaffee/recherche/<slug>/pruefbericht.md` (Aussage, Hersteller, Videos, Ergebnis).
 4. Im Artikelkopf `pruefung:` ausfüllen (Datum, maßgebliche Quelle, Zahl der Videos und Threads, Korrekturen). Das erscheint als Kasten
    „Geprüft am …“ im Beitrag.
+
+## Fotos der Marken
+
+Kacheln auf der Startseite und Kopfbilder der Themenseiten: `public/bilder/marken/<slug>.webp` (960×720) und `-klein.webp` (480×360),
+Nachweis und Alt-Text in `src/themen-bilder.ts`. Nur frei lizenzierte Fotos (CC0, gemeinfrei, CC BY, CC BY-SA), Nachweis immer sichtbar.
+Keine Fotos von Händler- oder Vergleichsseiten-Konten (oft umgelabelte Pressefotos). Gibt es kein freies Foto der Marke,
+ein neutrales Kaffeefoto statt der Maschine einer anderen Marke.

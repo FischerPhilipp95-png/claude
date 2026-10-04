@@ -7,6 +7,7 @@ import VideoKarte from '../components/VideoKarte.astro';
 import Icon from '../components/Icon.astro';
 import { SITE } from '../site';
 import { THEMEN, type Thema } from '../themen';
+import { themenBild, PRODUKTE_BILD } from '../themen-bilder';
 import { SAISON } from '../saison';
 import { mediathekVideos } from '../videos';
 
@@ -15,6 +16,8 @@ const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
 const anzahl = (name: string) => posts.filter((p) => p.data.thema === name).length;
 const videoAnzahl = (name: string) => mediathekVideos(name).length;
 const saison = SAISON.artikel.map((id) => posts.find((p) => p.id === id)).filter((p) => p !== undefined);
+const kacheln = (Object.entries(THEMEN) as [Thema, (typeof THEMEN)[Thema]][]).filter(([n]) => anzahl(n) + videoAnzahl(n) > 0)
+  .map(([n, t]) => ({ n, t, bild: themenBild(n, t.slug) }));
 const neueVideos = mediathekVideos('DeLonghi').slice(1, 4);
 const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: `${SITE.url}/`, inLanguage: 'de-DE' }];
 ---
@@ -39,20 +42,24 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
 
   <section class="wrap wide">
     <h2 class="section-h">Welche Marke hast du?</h2>
-    <ul class="tiles">
-      {(Object.entries(THEMEN) as [Thema, (typeof THEMEN)[Thema]][]).filter(([n]) => anzahl(n) + videoAnzahl(n) > 0).map(([n, t]) => (
+    <ul class="tiles tiles-foto">
+      {kacheln.map(({ n, t, bild }) => (
         <li><a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}>
-          <span class="tile-icon"><Icon name={t.icon} size={28} /></span>
+          <img class="tile-foto" src={bild.klein} srcset={`${bild.klein} 480w, ${bild.src} 960w`} sizes="(max-width: 600px) 50vw, 240px"
+            alt={bild.alt} width="480" height="360" loading="lazy" decoding="async" />
           <span class="tile-name">{t.titel}</span>
           <span class="tile-count">{anzahl(n)} {anzahl(n) === 1 ? 'Anleitung' : 'Anleitungen'}{videoAnzahl(n) ? `, ${videoAnzahl(n)} ${videoAnzahl(n) === 1 ? 'Video' : 'Videos'}` : ''}</span>
         </a></li>
       ))}
       <li><a href="/produkte/" style="--akzent:#d08a3a">
-        <span class="tile-icon"><Icon name="package" size={28} /></span>
+        <img class="tile-foto" src="/bilder/marken/produkte-klein.webp" srcset="/bilder/marken/produkte-klein.webp 480w, /bilder/marken/produkte.webp 960w"
+          sizes="(max-width: 600px) 50vw, 240px" alt={PRODUKTE_BILD.alt} width="480" height="360" loading="lazy" decoding="async" />
         <span class="tile-name">Entkalker &amp; Filter</span>
         <span class="tile-count">Welches Mittel passt zu deiner Maschine?</span>
       </a></li>
     </ul>
+    <p class="bildnachweise">Fotos: {kacheln.map(({ t, bild }) => <span><b>{t.titel}:</b> <Fragment set:html={bild.nachweis.replace(/^Foto: /, '')} /></span>)}
+      <span><b>Entkalker &amp; Filter:</b> <Fragment set:html={PRODUKTE_BILD.nachweis.replace(/^Foto: /, '')} /></span></p>
   </section>
 
   <section class="wrap wide saison" aria-labelledby="saison-h">

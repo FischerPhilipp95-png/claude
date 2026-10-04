@@ -106,6 +106,21 @@ main { padding: 0 0 72px; }
 .tile-icon { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: color-mix(in srgb, var(--akzent) 18%, transparent); color: color-mix(in srgb, var(--akzent) 80%, #000); margin-bottom: 8px; }
 .tile-name { font-weight: 800; font-size: 1.05rem; }
 .tile-count { font-size: 0.85rem; color: var(--muted); }
+/* Kacheln mit Foto (Startseite): Foto oben randlos, Akzentfarbe als Linie darunter */
+.tiles-foto { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (min-width: 600px) { .tiles-foto { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; } }
+.tiles-foto a { padding: 0 0 16px; overflow: hidden; }
+.tile-foto { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-bottom: 4px solid var(--akzent); margin-bottom: 10px; transition: transform .3s; }
+.tiles-foto a:hover .tile-foto { transform: scale(1.03); }
+.tiles-foto .tile-name, .tiles-foto .tile-count { padding: 0 12px; }
+@media (min-width: 600px) { .tiles-foto .tile-name, .tiles-foto .tile-count { padding: 0 16px; } }
+.bildnachweise { font-size: 0.72rem; color: var(--muted); margin-top: 14px; line-height: 1.5; }
+.bildnachweise span:not(:last-child)::after { content: " · "; }
+/* Kopfbild der Themenseiten */
+.thema-kopf { display: grid; gap: 24px; align-items: center; grid-template-columns: 1fr; }
+.thema-kopf figure { margin: 0; }
+.thema-kopf img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+@media (min-width: 800px) { .thema-kopf { grid-template-columns: 3fr 2fr; } }
 
 /* ---------- Karten ---------- */
 .cards { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); padding: 0; list-style: none; margin: 0; }
