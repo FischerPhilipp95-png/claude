@@ -1,0 +1,22 @@
+{
+ "Padel": ["padel schläger", "padel schläger test", "padel anfänger", "padel schuhe"],
+ "Pickleball": ["pickleball schläger", "pickleball regeln", "pickleball set", "pickleball deutschland"],
+ "Balkonkraftwerk & Speicher": ["balkonkraftwerk speicher", "balkonkraftwerk anmelden", "balkonkraftwerk 800 watt", "anker solix"],
+ "Powerstation / Camping-Strom": ["powerstation test", "ecoflow delta", "bluetti powerstation", "powerstation camping"],
+ "Wallbox & E-Auto laden": ["wallbox test", "wallbox förderung", "e auto laden zuhause", "mobile wallbox"],
+ "Wärmepumpe": ["wärmepumpe einstellen", "wärmepumpe stromverbrauch", "wärmepumpe fehler", "wärmepumpe altbau"],
+ "Mähroboter": ["mähroboter ohne begrenzungsdraht", "mähroboter test", "segway navimow", "worx landroid"],
+ "Saugroboter": ["saugroboter test", "roborock s8", "dreame l10", "saugroboter mit wischfunktion"],
+ "E-Bike": ["e-bike test", "e-bike akku", "bosch e-bike", "e-bike reifen"],
+ "Eisbaden / Sauna zuhause": ["eisbad tonne", "eisbaden anfänger", "fass sauna", "infrarotkabine"],
+ "Home Gym": ["home gym", "kurzhantel set", "rudergerät test", "laufband test"],
+ "Heißluftfritteuse": ["heißluftfritteuse test", "ninja airfryer", "airfryer rezepte", "cosori airfryer"],
+ "Grill & Pizzaofen": ["pizzaofen", "pelletgrill", "gasgrill test", "ooni pizzaofen"],
+ "3D-Druck": ["3d drucker test", "bambu lab a1", "3d drucker anfänger", "filament trocknen"],
+ "Angeln": ["angeln anfänger", "angelrute test", "spinnfischen", "karpfenangeln"],
+ "Aquarium": ["aquarium einrichten", "aquarium algen", "garnelen aquarium", "aquarium filter"],
+ "Hund": ["hundefutter test", "hundebox auto", "hundebett", "welpe erziehung"],
+ "Smart Home & Kameras": ["überwachungskamera aussen", "smart home anfänger", "homematic ip", "tapo kamera"],
+ "Vanlife / Camping": ["dachzelt", "camping kühlbox", "wohnmobil zubehör", "camping toilette"],
+ "Pool & Whirlpool": ["intex pool", "pool wasser grün", "whirlpool aufblasbar", "poolroboter"]
+}
