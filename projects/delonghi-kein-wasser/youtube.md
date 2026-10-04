@@ -110,6 +110,36 @@ Welche Lösung hat bei dir geholfen? 👇
 
 ## Short (verlinkt dieses Video über „Ähnliches Video“)
 
-- **`out/short_lampen.mp4`** (17 s): „DeLonghi Magnifica S: Alle Lampen rot? Das bedeuten sie“
-  - Szene aus deinem Video, Lampen-Decoder, Abo-Klick am Ende.
-  - Beschreibung: „Die 3 roten Lampen der Magnifica S erklärt. Alle 6 Lösungen im langen Video. #DeLonghi #Kaffeevollautomat #shorts“
+Datei: `out/short_lampen.mp4` (17 s): Szene aus deinem Video, Lampen-Decoder, Abo-Klick am Ende.
+
+Titel:
+
+```
+DeLonghi Magnifica S: Alle Lampen rot? Das bedeuten sie #shorts
+```
+
+Beschreibung:
+
+```
+Alle roten Lampen an deiner DeLonghi Magnifica S blinken? So liest du sie:
+• Wassertank blinkt: zu wenig Wasser. Leuchtet: Tank sitzt nicht richtig.
+• Kanne: Maschine muss entkalkt werden.
+• Warndreieck: allgemeiner Alarm.
+
+▶ Alle 6 Lösungen im langen Video (oben verlinkt).
+
+🛒 DeLonghi Entkalker EcoDecalk*: https://www.amazon.de/s?k=DeLonghi+EcoDecalk+Entkalker&tag=rechn24-21
+*Affiliate-Link: Als Amazon-Partner verdiene ich an qualifizierten Verkäufen. Für dich ändert sich der Preis nicht.
+
+Quelle: DeLonghi-Bedienungsanleitung Magnifica S ECAM22.110.SB, S. 17
+
+🔔 Abonniere @derhandwerksdoktor für Hilfe rund um deinen Kaffeevollautomaten.
+
+#DeLonghi #MagnificaS #Kaffeevollautomat #shorts
+```
+
+Tags:
+
+```
+delonghi magnifica s alle lampen blinken, delonghi magnifica s rote lampen, delonghi magnifica blinkt rot, delonghi magnifica s warndreieck, delonghi magnifica s kein wasser, delonghi wassertank lampe, delonghi entkalken lampe, magnifica s, kaffeevollautomat, der handwerksdoktor, shorts
+```
