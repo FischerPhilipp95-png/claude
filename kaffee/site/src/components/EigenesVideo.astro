@@ -1,12 +1,13 @@
 ---
 // Video vom eigenen Server (für Videos, die noch nicht auf YouTube sind). Lädt erst beim Abspielen, keine fremden Server.
-// Sobald das Video auf YouTube ist: in src/videos-zuordnung.json eintragen und diesen Baustein aus dem Artikel nehmen.
+// Im Artikel steht er statt des Kanal-Videos: in src/videos-zuordnung.json den Artikel auf null setzen, sonst stehen zwei Videos da.
+// Sobald das Video auf YouTube ist: dort die Video-ID eintragen und diesen Baustein aus dem Artikel nehmen.
 import Icon from './Icon.astro';
 import { SITE } from '../site';
 interface Props { src: string; vorschau: string; titel: string; ueberschrift?: string }
 const { src, vorschau, titel, ueberschrift = 'Lieber als Video?' } = Astro.props;
 ---
-<section class="video-box" aria-label="Video zum Thema" data-pagefind-ignore>
+<section class="video-box" aria-label="Eigenes Video zum Thema" data-pagefind-ignore>
   <p class="video-h"><Icon name="circle-play" size={20} /> <strong>{ueberschrift}</strong> <span>Das Video vom Kanal „{SITE.kanal}“</span></p>
   <div class="video">
     <video controls preload="none" playsinline poster={vorschau} width="1280" height="720" aria-label={titel}>
