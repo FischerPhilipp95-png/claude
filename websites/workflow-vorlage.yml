@@ -1,0 +1,307 @@
+# @@NAME@@ (@@DOMAIN@@): bei jedem Push bauen, prüfen und danach per SFTP zu IONOS hochladen.
+#
+# ERZEUGT aus websites/workflow-vorlage.yml mit `python3 websites/erzeugen.py`. Nicht von Hand ändern:
+# Änderungen in der Vorlage machen und neu erzeugen, dann gelten sie für alle Seiten gleich.
+# Einstellungen dieser Seite: websites/websites.json, Schlüssel „@@KEY@@“.
+#
+# Läuft bei jedem Push auf @@BRANCHES_TEXT@@, der @@ORDNER@@/ ändert, auf Knopfdruck und jede Nacht (@@CRON@@ UTC).
+# Zugangsdaten nur als GitHub-Secrets: @@USER_SECRET@@, @@PASS_SECRET@@ und der Server (@@HOST_TEXT@@).
+# Zielordner: Variable @@ZIEL_VAR@@, sonst automatisch: Sieht der SFTP-Benutzer den ganzen Webspace (Ordner public/ im
+# Startverzeichnis), wird nach /@@WEBSPACE_ORDNER@@ hochgeladen, sonst direkt in sein Startverzeichnis.
+# Fehlen die Secrets, laufen nur die Prüfungen, der Upload wird mit einem Hinweis übersprungen.
+
+name: "@@NAME@@: prüfen und hochladen"
+
+on:
+  push:
+    branches: @@BRANCHES@@
+    paths: ['@@ORDNER@@/**', '.github/workflows/@@DATEI@@']
+  # Jede Nacht neu bauen und hochladen, damit zeitversetzte Pinterest-Pins (scripts/pin-varianten.mjs) im Feed erscheinen.
+  # Hinweis: GitHub startet geplante Läufe nur aus dem Standard-Branch des Repositorys.
+  schedule:
+    - cron: '@@CRON@@'
+  workflow_dispatch:
+    inputs:
+      hochladen:
+        description: 'Nach den Prüfungen zu IONOS hochladen?'
+        type: boolean
+        default: true
+      alle_artikel:
+        description: 'Rechtschreibung aller Artikel prüfen (dauert einige Minuten)?'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# Nie zwei Uploads gleichzeitig. Ein neuer Push wartet, bis der laufende fertig ist.
+concurrency:
+  group: website-@@KEY@@
+  cancel-in-progress: false
+
+jobs:
+  pruefen:
+    name: Bauen und prüfen
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: @@ORDNER@@
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+      PUPPETEER_SKIP_DOWNLOAD: '1'
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: @@ORDNER@@/package-lock.json
+
+      - name: Pakete installieren
+        run: npm ci
+
+      - name: Chromium für die Prüfungen installieren
+        run: |
+          npx playwright install --with-deps chromium
+          echo "CHROME_PATH=$(node -e "console.log(require('playwright').chromium.executablePath())")" >> "$GITHUB_ENV"
+
+      - name: Neue YouTube-Videos holen und Artikeln zuordnen
+        # RSS-Feed des Kanals, kein Schlüssel nötig. Ist YouTube nicht erreichbar, bleibt der Stand aus src/videos.json.
+        continue-on-error: true
+        run: npm run videos
+
+      - name: Fehlende Titel- und Pinterest-Bilder und Checklisten-PDFs erzeugen
+        run: |
+          npm run titelbilder
+          npm run pins
+          npm run checklisten
+
+      - name: Bauen
+        run: npm run build
+
+      - name: Prüfen (fremde Server, Handy-Breite)
+        run: npm run check
+
+      - name: Prüfen (HTML und Barrierefreiheit)
+        run: npm run qualitaet
+
+      - name: Prüfen (interne Links)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Offline: nur Links innerhalb der Seite. Links mit „#…=“ sind Rechner- und Such-Parameter, keine Sprungmarken.
+          args: >-
+            --offline --no-progress --include-fragments
+            --root-dir ${{ github.workspace }}/@@ORDNER@@/dist
+            --exclude-path @@ORDNER@@/dist/pagefind
+            --exclude '#[^/]*='
+            '@@ORDNER@@/dist/**/*.html'
+          fail: true
+          jobSummary: false
+
+      - name: Fertige Seite für den Upload ablegen
+        uses: actions/upload-artifact@v6
+        with:
+          name: website-@@KEY@@
+          path: @@ORDNER@@/dist
+          include-hidden-files: true
+          retention-days: 7
+
+  hochladen:
+    name: Zu IONOS hochladen
+    needs: pruefen
+    if: github.event_name == 'push' || github.event_name == 'schedule' || inputs.hochladen
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Zugangsdaten vorhanden?
+        id: zugang
+        env:
+          SFTP_HOST: ${{ @@HOST_EXPR@@ }}
+          SFTP_USER: ${{ secrets.@@USER_SECRET@@ }}
+          SFTP_PASSWORD: ${{ secrets.@@PASS_SECRET@@ }}
+        run: |
+          if [ -n "$SFTP_HOST" ] && [ -n "$SFTP_USER" ] && [ -n "$SFTP_PASSWORD" ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::IONOS-Zugangsdaten fehlen (Secrets @@USER_SECRET@@, @@PASS_SECRET@@, Server @@HOST_TEXT@@). Upload übersprungen."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v5
+        if: steps.zugang.outputs.ok == 'true'
+        with:
+          # Cone-Modus: Dateien direkt in @@ORDNER@@/ (veraltet.txt) sind automatisch dabei.
+          sparse-checkout: @@ORDNER@@/scripts
+
+      - name: Fertige Seite holen
+        if: steps.zugang.outputs.ok == 'true'
+        uses: actions/download-artifact@v7
+        with:
+          name: website-@@KEY@@
+          path: @@ORDNER@@/dist
+
+      - name: Sicherheitsprüfung vor dem Upload
+        if: steps.zugang.outputs.ok == 'true'
+        working-directory: @@ORDNER@@/dist
+        run: |
+          test -s index.html
+          test -s sitemap-0.xml
+          test -s .htaccess
+          test "$(find . -name index.html | wc -l)" -ge @@MIN_SEITEN@@
+          echo "OK: $(find . -name index.html | wc -l) Seiten, $(du -sh . | cut -f1) insgesamt."
+
+      - name: lftp installieren
+        if: steps.zugang.outputs.ok == 'true'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Per SFTP hochladen
+        if: steps.zugang.outputs.ok == 'true'
+        env:
+          SFTP_HOST: ${{ @@HOST_EXPR@@ }}
+          SFTP_USER: ${{ secrets.@@USER_SECRET@@ }}
+          LFTP_PASSWORD: ${{ secrets.@@PASS_SECRET@@ }}
+          SFTP_ZIEL: ${{ vars.@@ZIEL_VAR@@ }}
+        # Eingaben bereinigen, falls beim Eintragen der Secrets „sftp://“, ein Port, Leerzeichen oder ein Zeilenumbruch mitkopiert wurde.
+        # Die Werte selbst werden nie ausgegeben, nur Hinweise, was korrigiert wurde.
+        # mirror --reverse lädt den Inhalt von dist/ in das Zielverzeichnis. Ohne --delete: Auf dem Server wird nichts gelöscht.
+        # Zwei Durchgänge: erst Bilder, PDFs, CSS usw., dann die HTML-Seiten. So zeigt keine neue Seite auf ein Bild, das noch fehlt.
+        run: |
+          HOST="$(printf '%s' "$SFTP_HOST" | tr -d '[:space:]')"
+          [ "$HOST" != "$SFTP_HOST" ] && echo "Hinweis: Leerzeichen oder Zeilenumbruch im Servernamen entfernt."
+          case "$HOST" in *://*) echo "Hinweis: Protokoll (z. B. sftp://) vor dem Servernamen entfernt."; HOST="${HOST#*://}";; esac
+          HOST="${HOST%%/*}"
+          PORT=22
+          case "$HOST" in *:*) PORT="${HOST##*:}"; HOST="${HOST%%:*}"; echo "Hinweis: Port aus dem Servernamen übernommen.";; esac
+          echo "::add-mask::$HOST"
+          BENUTZER="$(printf '%s' "$SFTP_USER" | tr -d '[:space:]')"
+          [ "$BENUTZER" != "$SFTP_USER" ] && echo "Hinweis: Leerzeichen im Benutzernamen entfernt."
+          echo "::add-mask::$BENUTZER"
+          LFTP_PASSWORD="$(printf '%s' "$LFTP_PASSWORD" | tr -d '\r\n')"
+          export LFTP_PASSWORD
+          if ! getent hosts "$HOST" > /dev/null; then
+            echo "::error::Der Servername (@@HOST_TEXT@@) ist nicht erreichbar. Bitte nur den Namen eintragen, z. B. access-123456.webspace-host.com"
+            exit 1
+          fi
+          # Zielordner bestimmen (siehe Kopf der Datei).
+          if [ -z "$SFTP_ZIEL" ]; then
+            # Startverzeichnis auflisten (nur Namen). „cls -1 /“ liefert je nach lftp-Version „/public/“ statt „public“, daher großzügig vergleichen.
+            if ! LISTE="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cls -1" 2>/dev/null)"; then
+              echo "::error::Startverzeichnis nicht lesbar, Zielordner unklar. Nichts hochgeladen (lieber kein Upload als einer in den falschen Ordner)."
+              exit 1
+            fi
+            echo "Startverzeichnis enthält: $(printf '%s' "$LISTE" | tr '\n' ' ' | cut -c1-300)"
+            # Zweiter Beweis: Gibt es public/robots.txt, liegt public/ im Startverzeichnis, der Benutzer sieht also den ganzen Webspace.
+            PUB="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cat public/robots.txt" 2>/dev/null || true)"
+            if printf '%s\n' "$LISTE" | grep -Eq '^/?public/?$' || [ -n "$PUB" ]; then
+              SFTP_ZIEL=/@@WEBSPACE_ORDNER@@
+              echo "SFTP-Benutzer sieht den ganzen Webspace: Ziel ist $SFTP_ZIEL"
+            else
+              SFTP_ZIEL=/
+              echo "SFTP-Benutzer startet im Ordner der Seite: Ziel ist /"
+            fi
+          fi
+          # Schutz: Liegt im Zielordner schon eine ANDERE Seite (robots.txt ohne @@DOMAIN@@), nichts hochladen.
+          ROBOTS="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cat \"$SFTP_ZIEL/robots.txt\"" 2>/dev/null || true)"
+          if [ -n "$ROBOTS" ] && ! printf '%s' "$ROBOTS" | grep -q '@@DOMAIN_RE@@'; then
+            echo "::error::Im Zielordner $SFTP_ZIEL liegt eine andere Website (robots.txt ohne @@DOMAIN@@). Falscher SFTP-Benutzer oder Ordner? Nichts hochgeladen."
+            exit 1
+          fi
+          lftp -c "
+            set sftp:auto-confirm yes;
+            set net:max-retries 3;
+            set net:timeout 30;
+            open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST;
+            mirror --reverse --no-perms --parallel=4 --verbose=1 --exclude-glob *.html @@ORDNER@@/dist \"$SFTP_ZIEL\";
+            mirror --reverse --no-perms --parallel=4 --verbose=1 --include-glob *.html @@ORDNER@@/dist \"$SFTP_ZIEL\";
+            bye"
+          # Veraltete Dateien entfernen (@@ORDNER@@/veraltet.txt, falls vorhanden). Fehlt etwas schon, ist das in Ordnung.
+          if [ -f @@ORDNER@@/veraltet.txt ]; then
+            { grep -v '^#' @@ORDNER@@/veraltet.txt || true; } | sed '/^\s*$/d' | while read -r pfad; do
+              case "$pfad" in *..*|/*) echo "::warning::Pfad übersprungen: $pfad"; continue;; esac
+              lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; rm -rf \"$SFTP_ZIEL/$pfad\"" 2>/dev/null && echo "entfernt (falls vorhanden): $pfad" || true
+            done
+          fi
+
+      - name: Live-Check
+        if: steps.zugang.outputs.ok == 'true'
+        run: |
+          sleep 5
+          for pfad in @@LIVE@@; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://@@DOMAIN@@$pfad")
+            echo "$code  $pfad"
+            test "$code" = 200
+          done
+
+      - name: Bei IndexNow melden (Bing & Co.)
+        # Nachts ändern sich nur die Pinterest-Feeds, dafür nicht alle Seiten neu melden.
+        if: steps.zugang.outputs.ok == 'true' && github.event_name != 'schedule'
+        continue-on-error: true
+        working-directory: @@ORDNER@@
+        run: node scripts/indexnow.mjs
+
+  berichte:
+    name: Berichte (Quellen, Rechtschreibung, Pakete)
+    needs: pruefen
+    # Nachts nicht: Es hat sich am Inhalt nichts geändert.
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Nur zur Info: Fehler hier stoppen keinen Upload und färben den Lauf nicht rot.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Fertige Seite holen
+        uses: actions/download-artifact@v7
+        with:
+          name: website-@@KEY@@
+          path: @@ORDNER@@/dist
+
+      - name: Externe Quellenlinks prüfen
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Amazon bewusst ausgenommen: kein automatisches Abrufen von Amazon-Seiten (Partnerprogramm).
+          # 403 und 429 gelten als erreichbar, viele Seiten blocken Prüfprogramme.
+          args: >-
+            --no-progress --max-concurrency 8 --timeout 25 --max-retries 2
+            --accept '200..=299,403,429'
+            --root-dir ${{ github.workspace }}/@@ORDNER@@/dist
+            --exclude '^file://' --exclude 'amazon\.' --exclude '@@DOMAIN_RE@@' --exclude 'youtube\.com'
+            --exclude-path @@ORDNER@@/dist/pagefind
+            '@@ORDNER@@/dist/**/*.html'
+          fail: false
+          jobSummary: true
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Rechtschreibung (LanguageTool)
+        working-directory: @@ORDNER@@
+        env:
+          ALLE: ${{ github.event_name != 'push' && inputs.alle_artikel || 'false' }}
+          VORHER: ${{ github.event.before }}
+        run: |
+          if [ "$ALLE" = "true" ] || [ -z "$VORHER" ] || [ "$VORHER" = "0000000000000000000000000000000000000000" ]; then
+            ARTIKEL=""
+            echo "Prüfe alle Artikel."
+          else
+            ARTIKEL=$(git diff --name-only "$VORHER" "$GITHUB_SHA" -- src/content/artikel | sed -n 's|^@@ORDNER@@/src/content/artikel/\(.*\)\.mdx$|\1|p' | tr '\n' ' ')
+            if [ -z "$ARTIKEL" ]; then echo "Keine Artikel geändert."; exit 0; fi
+            echo "Geänderte Artikel: $ARTIKEL"
+          fi
+          node scripts/rechtschreibung.mjs --nur-bericht $ARTIKEL
+
+      - name: Sicherheitslücken in Paketen (npm audit)
+        working-directory: @@ORDNER@@
+        run: |
+          {
+            echo "### npm audit (nur Prüf- und Bauwerkzeuge, nichts davon läuft auf der Website)"
+            echo '```'
+            npm audit --omit=optional 2>&1 | tail -25
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

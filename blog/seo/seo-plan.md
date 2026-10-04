@@ -244,7 +244,7 @@ Rauchmelder piept (Fehlerbehebung), eigenes YouTube-Video zur Plissee-Montage mi
 
 ## Stand 02.10.2026, Runde 11
 
-- Automatischer Upload per GitHub Actions (`.github/workflows/website.yml`): prüfen → hochladen (SFTP, Hauptordner /) → Live-Check → IndexNow.
+- Automatischer Upload per GitHub Actions (`.github/workflows/website-handwerksdoktor.yml`): prüfen → hochladen (SFTP, Hauptordner /) → Live-Check → IndexNow.
   Neu im Ablauf: interne Links (lychee, blockiert), Bericht zu externen Quellen, Rechtschreibung geänderter Artikel und npm audit (blockiert nicht).
 - Rechtschreibprüfung `npm run rechtschreibung` (LanguageTool), Wörterbuch `site/scripts/woerterbuch.txt`. Erster Lauf: 9 echte Fehler behoben.
 - Linkprüfung: kaputter Link in der Datenschutzerklärung („https://“ als Autolink) und veralteter Jura-Link behoben.

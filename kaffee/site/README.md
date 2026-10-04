@@ -40,7 +40,7 @@ Keine Rechner und keine Checklisten (die Technik dafür ist noch da, die Listen 
 
 ## Automatisch hochladen
 
-`.github/workflows/kaffee-website.yml` läuft bei jedem Push, der `kaffee/site/` ändert: bauen, prüfen, per SFTP zu IONOS.
+`.github/workflows/website-kaffee.yml` (erzeugt aus `websites/workflow-vorlage.yml`) läuft bei jedem Push, der `kaffee/site/` ändert: bauen, prüfen, per SFTP zu IONOS.
 Secrets (Repository → Settings → Secrets and variables → Actions):
 
 | Name | Inhalt |

@@ -1,32 +1,25 @@
-# Website handwerksdoktor.de: bei jedem Push bauen, prüfen und danach per SFTP zu IONOS hochladen.
-# Läuft außerdem auf Knopfdruck und jede Nacht um etwa 3:17 Uhr UTC (dann ohne Berichte und ohne IndexNow).
+# Der Vollautomaten-Doktor (vollautomatendoktor.de): bei jedem Push bauen, prüfen und danach per SFTP zu IONOS hochladen.
 #
-# Ablauf:
-#   1. prüfen:     npm ci, neue YouTube-Videos zuordnen (scripts/videos.mjs), fehlende Titel- und Pin-Bilder erzeugen, Build (Astro + Pagefind), check (fremde Server, seitliches Scrollen),
-#                  qualitaet (html-validate, pa11y-ci). Schlägt etwas fehl, wird NICHT hochgeladen.
-#                  Dazu interne Links (lychee, offline): Ein kaputter Link auf der eigenen Seite verhindert den Upload.
-#   2. hochladen:  dist/ per SFTP nach IONOS (Hauptordner /) (nur hinzufügen und überschreiben, nichts auf dem Server löschen),
-#                  danach Live-Check und IndexNow.
-#   3. berichte:   nur zur Info, blockiert nichts: externe Quellenlinks (lychee, ohne Amazon), Rechtschreibung der
-#                  geänderten Artikel (LanguageTool) und Sicherheitslücken in den npm-Paketen (npm audit).
-#                  Ergebnis steht in der Zusammenfassung des Laufs. Beim manuellen Start mit „alle_artikel“ alle Artikel prüfen.
+# ERZEUGT aus websites/workflow-vorlage.yml mit `python3 websites/erzeugen.py`. Nicht von Hand ändern:
+# Änderungen in der Vorlage machen und neu erzeugen, dann gelten sie für alle Seiten gleich.
+# Einstellungen dieser Seite: websites/websites.json, Schlüssel „kaffee“.
 #
-# Zugangsdaten stehen ausschließlich als GitHub-Secrets im Repository (Settings → Secrets and variables → Actions):
-#   IONOS_SFTP_HOST, IONOS_SFTP_USER, IONOS_SFTP_PASSWORD
-# Optional als Variable (Reiter „Variables“): IONOS_SFTP_ZIEL. Standard ist /, denn bei IONOS liegt die Website
-# für diesen SFTP-Benutzer direkt im Hauptordner (artikel/, bilder/, .htaccess …).
+# Läuft bei jedem Push auf claude/serene-darwin-f9rggj und main, der kaffee/site/ ändert, auf Knopfdruck und jede Nacht (47 3 * * * UTC).
+# Zugangsdaten nur als GitHub-Secrets: KAFFEE_SFTP_USER, KAFFEE_SFTP_PASSWORD und der Server (KAFFEE_SFTP_HOST oder IONOS_SFTP_HOST).
+# Zielordner: Variable KAFFEE_SFTP_ZIEL, sonst automatisch: Sieht der SFTP-Benutzer den ganzen Webspace (Ordner public/ im
+# Startverzeichnis), wird nach /vollautomatendoktor hochgeladen, sonst direkt in sein Startverzeichnis.
 # Fehlen die Secrets, laufen nur die Prüfungen, der Upload wird mit einem Hinweis übersprungen.
 
-name: Website prüfen und hochladen
+name: "Der Vollautomaten-Doktor: prüfen und hochladen"
 
 on:
   push:
     branches: [claude/serene-darwin-f9rggj, main]
-    paths: ['blog/site/**', '.github/workflows/website.yml']
+    paths: ['kaffee/site/**', '.github/workflows/website-kaffee.yml']
   # Jede Nacht neu bauen und hochladen, damit zeitversetzte Pinterest-Pins (scripts/pin-varianten.mjs) im Feed erscheinen.
   # Hinweis: GitHub startet geplante Läufe nur aus dem Standard-Branch des Repositorys.
   schedule:
-    - cron: '17 3 * * *'
+    - cron: '47 3 * * *'
   workflow_dispatch:
     inputs:
       hochladen:
@@ -43,7 +36,7 @@ permissions:
 
 # Nie zwei Uploads gleichzeitig. Ein neuer Push wartet, bis der laufende fertig ist.
 concurrency:
-  group: website
+  group: website-kaffee
   cancel-in-progress: false
 
 jobs:
@@ -53,7 +46,7 @@ jobs:
     timeout-minutes: 30
     defaults:
       run:
-        working-directory: blog/site
+        working-directory: kaffee/site
     env:
       ASTRO_TELEMETRY_DISABLED: '1'
       PUPPETEER_SKIP_DOWNLOAD: '1'
@@ -64,7 +57,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: blog/site/package-lock.json
+          cache-dependency-path: kaffee/site/package-lock.json
 
       - name: Pakete installieren
         run: npm ci
@@ -100,18 +93,18 @@ jobs:
           # Offline: nur Links innerhalb der Seite. Links mit „#…=“ sind Rechner- und Such-Parameter, keine Sprungmarken.
           args: >-
             --offline --no-progress --include-fragments
-            --root-dir ${{ github.workspace }}/blog/site/dist
-            --exclude-path blog/site/dist/pagefind
+            --root-dir ${{ github.workspace }}/kaffee/site/dist
+            --exclude-path kaffee/site/dist/pagefind
             --exclude '#[^/]*='
-            'blog/site/dist/**/*.html'
+            'kaffee/site/dist/**/*.html'
           fail: true
           jobSummary: false
 
       - name: Fertige Seite für den Upload ablegen
         uses: actions/upload-artifact@v6
         with:
-          name: website
-          path: blog/site/dist
+          name: website-kaffee
+          path: kaffee/site/dist
           include-hidden-files: true
           retention-days: 7
 
@@ -125,37 +118,38 @@ jobs:
       - name: Zugangsdaten vorhanden?
         id: zugang
         env:
-          SFTP_HOST: ${{ secrets.IONOS_SFTP_HOST }}
-          SFTP_USER: ${{ secrets.IONOS_SFTP_USER }}
-          SFTP_PASSWORD: ${{ secrets.IONOS_SFTP_PASSWORD }}
+          SFTP_HOST: ${{ secrets.KAFFEE_SFTP_HOST || secrets.IONOS_SFTP_HOST }}
+          SFTP_USER: ${{ secrets.KAFFEE_SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.KAFFEE_SFTP_PASSWORD }}
         run: |
           if [ -n "$SFTP_HOST" ] && [ -n "$SFTP_USER" ] && [ -n "$SFTP_PASSWORD" ]; then
             echo "ok=true" >> "$GITHUB_OUTPUT"
           else
-            echo "::warning::IONOS-Zugangsdaten fehlen (Secrets IONOS_SFTP_HOST, IONOS_SFTP_USER, IONOS_SFTP_PASSWORD). Upload übersprungen."
+            echo "::warning::IONOS-Zugangsdaten fehlen (Secrets KAFFEE_SFTP_USER, KAFFEE_SFTP_PASSWORD, Server KAFFEE_SFTP_HOST oder IONOS_SFTP_HOST). Upload übersprungen."
             echo "ok=false" >> "$GITHUB_OUTPUT"
           fi
 
       - uses: actions/checkout@v5
         if: steps.zugang.outputs.ok == 'true'
         with:
-          sparse-checkout: blog/site/scripts
+          # Cone-Modus: Dateien direkt in kaffee/site/ (veraltet.txt) sind automatisch dabei.
+          sparse-checkout: kaffee/site/scripts
 
       - name: Fertige Seite holen
         if: steps.zugang.outputs.ok == 'true'
         uses: actions/download-artifact@v7
         with:
-          name: website
-          path: blog/site/dist
+          name: website-kaffee
+          path: kaffee/site/dist
 
       - name: Sicherheitsprüfung vor dem Upload
         if: steps.zugang.outputs.ok == 'true'
-        working-directory: blog/site/dist
+        working-directory: kaffee/site/dist
         run: |
           test -s index.html
           test -s sitemap-0.xml
           test -s .htaccess
-          test "$(find . -name index.html | wc -l)" -ge 50
+          test "$(find . -name index.html | wc -l)" -ge 15
           echo "OK: $(find . -name index.html | wc -l) Seiten, $(du -sh . | cut -f1) insgesamt."
 
       - name: lftp installieren
@@ -165,10 +159,10 @@ jobs:
       - name: Per SFTP hochladen
         if: steps.zugang.outputs.ok == 'true'
         env:
-          SFTP_HOST: ${{ secrets.IONOS_SFTP_HOST }}
-          SFTP_USER: ${{ secrets.IONOS_SFTP_USER }}
-          LFTP_PASSWORD: ${{ secrets.IONOS_SFTP_PASSWORD }}
-          SFTP_ZIEL: ${{ vars.IONOS_SFTP_ZIEL || '/' }}
+          SFTP_HOST: ${{ secrets.KAFFEE_SFTP_HOST || secrets.IONOS_SFTP_HOST }}
+          SFTP_USER: ${{ secrets.KAFFEE_SFTP_USER }}
+          LFTP_PASSWORD: ${{ secrets.KAFFEE_SFTP_PASSWORD }}
+          SFTP_ZIEL: ${{ vars.KAFFEE_SFTP_ZIEL }}
         # Eingaben bereinigen, falls beim Eintragen der Secrets „sftp://“, ein Port, Leerzeichen oder ein Zeilenumbruch mitkopiert wurde.
         # Die Werte selbst werden nie ausgegeben, nur Hinweise, was korrigiert wurde.
         # mirror --reverse lädt den Inhalt von dist/ in das Zielverzeichnis. Ohne --delete: Auf dem Server wird nichts gelöscht.
@@ -187,7 +181,31 @@ jobs:
           LFTP_PASSWORD="$(printf '%s' "$LFTP_PASSWORD" | tr -d '\r\n')"
           export LFTP_PASSWORD
           if ! getent hosts "$HOST" > /dev/null; then
-            echo "::error::Der Servername aus IONOS_SFTP_HOST ist nicht erreichbar. Bitte nur den Namen eintragen, z. B. access-123456.webspace-host.com"
+            echo "::error::Der Servername (KAFFEE_SFTP_HOST oder IONOS_SFTP_HOST) ist nicht erreichbar. Bitte nur den Namen eintragen, z. B. access-123456.webspace-host.com"
+            exit 1
+          fi
+          # Zielordner bestimmen (siehe Kopf der Datei).
+          if [ -z "$SFTP_ZIEL" ]; then
+            # Startverzeichnis auflisten (nur Namen). „cls -1 /“ liefert je nach lftp-Version „/public/“ statt „public“, daher großzügig vergleichen.
+            if ! LISTE="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cls -1" 2>/dev/null)"; then
+              echo "::error::Startverzeichnis nicht lesbar, Zielordner unklar. Nichts hochgeladen (lieber kein Upload als einer in den falschen Ordner)."
+              exit 1
+            fi
+            echo "Startverzeichnis enthält: $(printf '%s' "$LISTE" | tr '\n' ' ' | cut -c1-300)"
+            # Zweiter Beweis: Gibt es public/robots.txt, liegt public/ im Startverzeichnis, der Benutzer sieht also den ganzen Webspace.
+            PUB="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cat public/robots.txt" 2>/dev/null || true)"
+            if printf '%s\n' "$LISTE" | grep -Eq '^/?public/?$' || [ -n "$PUB" ]; then
+              SFTP_ZIEL=/vollautomatendoktor
+              echo "SFTP-Benutzer sieht den ganzen Webspace: Ziel ist $SFTP_ZIEL"
+            else
+              SFTP_ZIEL=/
+              echo "SFTP-Benutzer startet im Ordner der Seite: Ziel ist /"
+            fi
+          fi
+          # Schutz: Liegt im Zielordner schon eine ANDERE Seite (robots.txt ohne vollautomatendoktor.de), nichts hochladen.
+          ROBOTS="$(lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; cat \"$SFTP_ZIEL/robots.txt\"" 2>/dev/null || true)"
+          if [ -n "$ROBOTS" ] && ! printf '%s' "$ROBOTS" | grep -q 'vollautomatendoktor\.de'; then
+            echo "::error::Im Zielordner $SFTP_ZIEL liegt eine andere Website (robots.txt ohne vollautomatendoktor.de). Falscher SFTP-Benutzer oder Ordner? Nichts hochgeladen."
             exit 1
           fi
           lftp -c "
@@ -195,16 +213,23 @@ jobs:
             set net:max-retries 3;
             set net:timeout 30;
             open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST;
-            mirror --reverse --no-perms --parallel=4 --verbose=1 --exclude-glob *.html blog/site/dist \"$SFTP_ZIEL\";
-            mirror --reverse --no-perms --parallel=4 --verbose=1 --include-glob *.html blog/site/dist \"$SFTP_ZIEL\";
+            mirror --reverse --no-perms --parallel=4 --verbose=1 --exclude-glob *.html kaffee/site/dist \"$SFTP_ZIEL\";
+            mirror --reverse --no-perms --parallel=4 --verbose=1 --include-glob *.html kaffee/site/dist \"$SFTP_ZIEL\";
             bye"
+          # Veraltete Dateien entfernen (kaffee/site/veraltet.txt, falls vorhanden). Fehlt etwas schon, ist das in Ordnung.
+          if [ -f kaffee/site/veraltet.txt ]; then
+            { grep -v '^#' kaffee/site/veraltet.txt || true; } | sed '/^\s*$/d' | while read -r pfad; do
+              case "$pfad" in *..*|/*) echo "::warning::Pfad übersprungen: $pfad"; continue;; esac
+              lftp -c "set sftp:auto-confirm yes; set net:max-retries 2; open --env-password -u \"$BENUTZER\" -p $PORT sftp://$HOST; rm -rf \"$SFTP_ZIEL/$pfad\"" 2>/dev/null && echo "entfernt (falls vorhanden): $pfad" || true
+            done
+          fi
 
       - name: Live-Check
         if: steps.zugang.outputs.ok == 'true'
         run: |
           sleep 5
-          for pfad in / /artikel/ /rechner/ /sitemap-index.xml; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' "https://handwerksdoktor.de$pfad")
+          for pfad in / /artikel/ /videos/ /sitemap-index.xml; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://vollautomatendoktor.de$pfad")
             echo "$code  $pfad"
             test "$code" = 200
           done
@@ -213,7 +238,7 @@ jobs:
         # Nachts ändern sich nur die Pinterest-Feeds, dafür nicht alle Seiten neu melden.
         if: steps.zugang.outputs.ok == 'true' && github.event_name != 'schedule'
         continue-on-error: true
-        working-directory: blog/site
+        working-directory: kaffee/site
         run: node scripts/indexnow.mjs
 
   berichte:
@@ -233,8 +258,8 @@ jobs:
       - name: Fertige Seite holen
         uses: actions/download-artifact@v7
         with:
-          name: website
-          path: blog/site/dist
+          name: website-kaffee
+          path: kaffee/site/dist
 
       - name: Externe Quellenlinks prüfen
         uses: lycheeverse/lychee-action@v2
@@ -244,10 +269,10 @@ jobs:
           args: >-
             --no-progress --max-concurrency 8 --timeout 25 --max-retries 2
             --accept '200..=299,403,429'
-            --root-dir ${{ github.workspace }}/blog/site/dist
-            --exclude '^file://' --exclude 'amazon\.' --exclude 'handwerksdoktor\.de' --exclude 'youtube\.com'
-            --exclude-path blog/site/dist/pagefind
-            'blog/site/dist/**/*.html'
+            --root-dir ${{ github.workspace }}/kaffee/site/dist
+            --exclude '^file://' --exclude 'amazon\.' --exclude 'vollautomatendoktor\.de' --exclude 'youtube\.com'
+            --exclude-path kaffee/site/dist/pagefind
+            'kaffee/site/dist/**/*.html'
           fail: false
           jobSummary: true
 
@@ -256,7 +281,7 @@ jobs:
           node-version: 22
 
       - name: Rechtschreibung (LanguageTool)
-        working-directory: blog/site
+        working-directory: kaffee/site
         env:
           ALLE: ${{ github.event_name != 'push' && inputs.alle_artikel || 'false' }}
           VORHER: ${{ github.event.before }}
@@ -265,14 +290,14 @@ jobs:
             ARTIKEL=""
             echo "Prüfe alle Artikel."
           else
-            ARTIKEL=$(git diff --name-only "$VORHER" "$GITHUB_SHA" -- src/content/artikel | sed -n 's|^blog/site/src/content/artikel/\(.*\)\.mdx$|\1|p' | tr '\n' ' ')
+            ARTIKEL=$(git diff --name-only "$VORHER" "$GITHUB_SHA" -- src/content/artikel | sed -n 's|^kaffee/site/src/content/artikel/\(.*\)\.mdx$|\1|p' | tr '\n' ' ')
             if [ -z "$ARTIKEL" ]; then echo "Keine Artikel geändert."; exit 0; fi
             echo "Geänderte Artikel: $ARTIKEL"
           fi
           node scripts/rechtschreibung.mjs --nur-bericht $ARTIKEL
 
       - name: Sicherheitslücken in Paketen (npm audit)
-        working-directory: blog/site
+        working-directory: kaffee/site
         run: |
           {
             echo "### npm audit (nur Prüf- und Bauwerkzeuge, nichts davon läuft auf der Website)"

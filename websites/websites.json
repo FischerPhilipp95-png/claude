@@ -1,0 +1,38 @@
+{
+  "_hinweis": "Alle Websites des Geschäfts. Nach jeder Änderung: python3 websites/erzeugen.py (erzeugt .github/workflows/website-<key>.yml aus websites/workflow-vorlage.yml).",
+  "branches": ["claude/serene-darwin-f9rggj", "main"],
+  "seiten": {
+    "handwerksdoktor": {
+      "name": "Der Handwerksdoktor",
+      "stichwort": "Handwerksdoktor",
+      "ordner": "blog/site",
+      "domain": "handwerksdoktor.de",
+      "webspace_ordner": "public",
+      "dns": "IONOS",
+      "sftp_host": ["IONOS_SFTP_HOST"],
+      "sftp_user": "IONOS_SFTP_USER",
+      "sftp_passwort": "IONOS_SFTP_PASSWORD",
+      "ziel_variable": "IONOS_SFTP_ZIEL",
+      "amazon_tag": "rechn24-21",
+      "min_seiten": 50,
+      "cron": "17 3 * * *",
+      "live_check": ["/", "/artikel/", "/rechner/", "/sitemap-index.xml"]
+    },
+    "kaffee": {
+      "name": "Der Vollautomaten-Doktor",
+      "stichwort": "Kaffee-Website",
+      "ordner": "kaffee/site",
+      "domain": "vollautomatendoktor.de",
+      "webspace_ordner": "vollautomatendoktor",
+      "dns": "Cloudflare (SSL Flexible)",
+      "sftp_host": ["KAFFEE_SFTP_HOST", "IONOS_SFTP_HOST"],
+      "sftp_user": "KAFFEE_SFTP_USER",
+      "sftp_passwort": "KAFFEE_SFTP_PASSWORD",
+      "ziel_variable": "KAFFEE_SFTP_ZIEL",
+      "amazon_tag": "vollautomat0e-21",
+      "min_seiten": 15,
+      "cron": "47 3 * * *",
+      "live_check": ["/", "/artikel/", "/videos/", "/sitemap-index.xml"]
+    }
+  }
+}

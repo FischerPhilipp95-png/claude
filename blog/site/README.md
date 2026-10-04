@@ -79,7 +79,7 @@ Die Feeds unter `/pinterest/` liefern die Pins an Pinterest (die Varianten mit e
 - `https://handwerksdoktor.de/pinterest/alle.xml`: alles (nicht zusätzlich verbinden, sonst kommen Pins doppelt)
 
 Zeitversetzte Pins erscheinen nur, wenn die Website neu gebaut wird: bei jedem Push und jede Nacht (geplanter Lauf in
-`.github/workflows/website.yml`; GitHub führt geplante Läufe nur auf dem Standard-Branch des Repositorys aus).
+`.github/workflows/website-handwerksdoktor.yml`; GitHub führt geplante Läufe nur auf dem Standard-Branch des Repositorys aus).
 
 Auf der Website selbst:
 - **Artikel-Rich-Pins:** `article:published_time`, `article:modified_time`, `article:author`, `article:section` (Base.astro).
@@ -116,7 +116,7 @@ im Feed ihres Themas. GitHub erzeugt fehlende PDFs beim Bauen selbst.
 
 ## Automatisch hochladen (GitHub Actions)
 
-`.github/workflows/website.yml` (im Hauptordner des Repos) läuft bei jedem Push, der `blog/site/` ändert:
+`.github/workflows/website-handwerksdoktor.yml` (im Hauptordner des Repos) läuft bei jedem Push, der `blog/site/` ändert:
 
 1. **Prüfen:** `npm ci`, `npm run build`, `npm run check`, `npm run qualitaet`. Schlägt etwas fehl, wird nichts hochgeladen.
 2. **Hochladen:** `dist/` per SFTP nach IONOS in den Hauptordner `/` (dort, wo `artikel/`, `bilder/` und `.htaccess` liegen). Es wird nur hinzugefügt und überschrieben, auf dem Server wird nichts gelöscht.
