@@ -26,12 +26,13 @@ Dein Kanal ist bei diesen Suchen noch nicht dabei.
 
 Was die Kombination aus allen drei roten Lampen genau bedeutet, steht für die Magnifica S nicht eindeutig in der Anleitung (DeLonghi selbst sagt, Symbole bedeuten je nach Modell Verschiedenes). Im Video sagen wir daher: „Jede Lampe einzeln abarbeiten“.
 
-## Reddit-Beitrag (r/DeLonghi, „Magnifica S no water comes out …“)
+## Bilder
 
-Reddit blockiert den Abruf aus der Cloud, ich konnte den Beitrag nicht lesen. **Bitte schick mir den Text oder Screenshots der wichtigsten Antworten.**
-Dann baue ich die Community-Lösungen ein, gekennzeichnet mit „aus der Community, r/DeLonghi“ und sinngemäß ohne Namen.
-Bis dahin plane ich mit den Lösungen aus der Anleitung.
-Platzhalter im Ablauf: Kapitel 7 „Was die Community rät“.
+- **Dein Video**, nur kurz zum Zeigen des Fehlers: Tasse bleibt leer (ca. 4 s), rote Lampen (ca. 3 s), Zoom auf die Lampen im Lampen-Kapitel, Entkalken-Lampe bei Lösung 5.
+- **Pexels-Fotos** der Magnifica S (Doğu Tuncer, Pexels-Lizenz): „So soll's laufen“ im Intro und Fazit, Hauptmotiv der Thumbnails.
+- Grafiken: Lampen-Decoder, Tank einrasten, Dampfdrehknopf auf I, Mahlgrad-Knopf, Ausgüsse mit Zahnstocher, Brüheinheit ausspülen.
+
+Den Reddit-Teil hat der Nutzer gestrichen; alle Lösungen stammen aus der Bedienungsanleitung.
 
 ## Ablauf (Sprecher-Entwurf)
 
@@ -47,11 +48,8 @@ Platzhalter im Ablauf: Kapitel 7 „Was die Community rät“.
 | 7 | 1:35 | Lösung 4: Kaffeeauslauf, Zahnstocher in den Löchern | „Lösung vier: Die Ausgüsse sind verstopft. Stich die kleinen Löcher mit einem Zahnstocher frei.“ |
 | 8 | 1:45 | Lösung 5: Entkalken-Lampe aus deinem Video, Grafik „ca. 45 Minuten“ | „Lösung fünf: Die Entkalken-Lampe blinkt? Dann so schnell wie möglich das Entkalkungsprogramm starten, mit dem Entkalker von DeLonghi. Das dauert etwa fünfundvierzig Minuten. Die genaue Anleitung findest du auf meinem Kanal.“ |
 | 9 | 2:05 | Lösung 6: Brüheinheit reinigen (Grafik), danach Karte „Kundendienst“ | „Lösung sechs: Brüheinheit herausnehmen und unter Wasser reinigen. Hilft das alles nicht, ist es ein Fall für den Kundendienst.“ |
-| 10 | 2:20 | (Community-Lösungen aus dem Reddit-Beitrag, sobald du mir den Text schickst) | – |
 | 11 | 2:35 | Fazit-Checkliste (6 Häkchen) + Endkarte mit Abo-Knopf | „Kurz gesagt: Tank, Luft, Mahlgrad, Ausgüsse, Entkalken, Brüheinheit. Welche Lösung hat bei dir geholfen? Schreib's in die Kommentare, und abonnier für mehr Hilfe rund um deinen Kaffeevollautomaten.“ |
 
-## Offene Fragen an dich
+## Freigabe
 
-1. **Reddit-Beitrag:** Kannst du mir den Text oder Screenshots schicken?
-2. **Rechte:** Das Video ist von dir aufgenommen (ich verwende es in kurzen Szenen)?
-3. **Abo-Aufrufe:** 3 gesprochene + Endkarte. Reicht dir das, oder mehr?
+Vom Nutzer freigegeben (ohne Reddit-Teil, eigenes Video nur kurz zum Zeigen des Fehlers, Pexels-Fotos der Magnifica S).

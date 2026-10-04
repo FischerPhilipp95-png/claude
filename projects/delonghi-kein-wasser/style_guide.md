@@ -7,12 +7,8 @@
   - 30–42 s: drei rote Lampen blinken: **Wassertank**, **Entkalken**, **Warndreieck**.
 - Verwendung in kurzen Szenen (2–5 s), als hochkantes „Handyvideo“ in einer Karte auf dem Board. Dazu Digital-Zoom auf das Bedienfeld,
   damit man die Lampen erkennt. Das Maschinengeräusch läuft leise mit.
-- **Stockvideos von Pexels** (Pexels-Lizenz, frei nutzbar, Nennung freiwillig; wir nennen sie trotzdem in der Beschreibung) nur als Stimmung:
-  - Kaffee läuft in die Tasse („so soll es sein“)
-  - Kaffeebohnen
-  - Wasser einfüllen
-
-  Kein fremdes Maschinenmodell so zeigen, als wäre es die Magnifica S.
+- **Pexels-Fotos der Magnifica S** (Doğu Tuncer, Pexels-Lizenz, vom Nutzer ausgewählt): „So soll's laufen“ im Intro und im Fazit, Hauptmotiv der Thumbnails J und K.
+  Stockvideos wurden nicht gebraucht.
 - Fakten: offizielle **DeLonghi-Bedienungsanleitung Magnifica S ECAM22.110.SB** (Bedeutung der Kontrolllampen S. 17–18, Problemlösung S. 19) und DeLonghi-FAQ zur Entkalkung.
 
 ## Grammatik

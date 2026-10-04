@@ -27,3 +27,6 @@ projects/*/out/*_chat.mp4
 
 # Rohdaten von Kunden-Websites (Originale, sehr groß; aufbereitete Kopien liegen in assets/)
 projects/*/site/
+
+# Einzelbilder aus eigenem Filmmaterial (build.sh erzeugt sie neu)
+projects/*/out/frames/
