@@ -12,5 +12,5 @@ export const SAISON = {
     'luftentfeuchter',
     'heizen-mit-klimaanlage',
   ],
-  rechner: { href: '/rechner/heizkosten-vergleich/', titel: 'Heizkosten-Vergleich: Klimaanlage, Gas oder Heizlüfter' },
+  rechner: { href: '/rechner/heizung-diagnose/', titel: 'Heizungs-Diagnose: Was hat meine Heizung? Fehler in 3 Fragen finden' },
 };

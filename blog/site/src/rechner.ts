@@ -3,6 +3,7 @@
 export const RECHNER = [
   { href: '/rechner/stromkosten/', icon: 'calculator', farbe: '#ffd400', thema: 'Strom', titel: 'Stromkosten-Rechner', text: 'Was kostet mein Gerät pro Tag, Monat und Jahr? Watt und Nutzungsdauer eingeben, fertig.' },
   { href: '/rechner/balkonkraftwerk/', icon: 'sun', farbe: '#ff741c', thema: 'Strom', titel: 'Balkonkraftwerk-Rechner', text: 'Ertrag, Ersparnis und Amortisation, ohne und mit Speicher, mit den Regeln 2026.' },
+  { href: '/rechner/heizung-diagnose/', icon: 'stethoscope', farbe: '#ff741c', thema: 'Heizung', titel: 'Heizungs-Diagnose', text: 'Heizkörper kalt, Heizung gluckert, Druck falsch? Bis zu drei Fragen, dann weißt du, woran es liegt und was du selbst tun kannst.' },
   { href: '/rechner/heizkosten-sparen/', icon: 'thermometer', farbe: '#ff741c', thema: 'Heizung', titel: 'Heizkosten-Rechner', text: 'Was bringen ein Grad weniger, smarte Thermostate und der hydraulische Abgleich?' },
   { href: '/rechner/heizkosten-vergleich/', icon: 'air-vent', farbe: '#ff741c', thema: 'Heizung', titel: 'Heizkosten-Vergleich', text: 'Klimaanlage, Gas oder Heizlüfter: Was kostet die Wärme pro Tag und pro Jahr?' },
   { href: '/rechner/standby/', icon: 'power', farbe: '#ffd400', thema: 'Strom', titel: 'Stand-by-Rechner', text: 'Was kosten deine Geräte im Stand-by, und was spart eine Leiste mit Schalter?' },

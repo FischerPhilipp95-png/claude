@@ -1,0 +1,581 @@
+---
+import Base from '../../layouts/Base.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import VideoBox from '../../components/VideoBox.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE, amazonSearch } from '../../site';
+import { videoFuerSeite, videoSchema } from '../../videos';
+
+const title = 'Heizungs-Diagnose: Was hat meine Heizung? Fehler in 3 Fragen finden';
+const description = 'Heizkörper kalt, Heizung gluckert oder Druck falsch? In bis zu drei Fragen zur Ursache: was du selbst tun kannst und wann der Fachbetrieb ran muss.';
+const video = videoFuerSeite('/rechner/heizung-diagnose/');
+const jsonLd: object[] = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Heizungs-Diagnose',
+  url: `${SITE.url}/rechner/heizung-diagnose/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+const vSchema = video && videoSchema(video, description);
+if (vSchema) jsonLd.push(vSchema);
+
+// Jede Aussage stammt aus den Heizungsartikeln der Website (Quellen stehen dort). Neue Ursachen erst dort belegen, dann hier eintragen.
+// Fragen: jede Antwort führt zu einer weiteren Frage (frage) oder zu einem Ergebnis (ergebnis). Der Weg steht als Schlüsselkette im #-Teil.
+// kurz: Text für die Übersichtstabelle, wenn die Antwort allein nicht verständlich ist.
+type Option = { key: string; text: string; kurz?: string; icon?: string; frage?: string; ergebnis?: string };
+const FRAGEN: Record<string, { frage: string; hilfe?: string; optionen: Option[] }> = {
+  start: {
+    frage: 'Was ist los mit deiner Heizung?',
+    optionen: [
+      { key: 'einer', icon: 'thermometer-snowflake', text: 'Ein Heizkörper wird nicht richtig warm', frage: 'einer' },
+      { key: 'mehrere', icon: 'layers', text: 'Mehrere Heizkörper bleiben kalt', frage: 'mehrere' },
+      { key: 'alle', icon: 'snowflake', text: 'Alle Heizkörper bleiben kalt', frage: 'alle' },
+      { key: 'geraeusch', icon: 'audio-lines', text: 'Die Heizung gluckert, rauscht oder pfeift', frage: 'geraeusch' },
+      { key: 'druck', icon: 'gauge', text: 'Der Druck am Manometer stimmt nicht', frage: 'druck' },
+      { key: 'temperatur', icon: 'house', text: 'Die ganze Wohnung ist zu kalt oder zu warm', frage: 'temperatur' },
+    ],
+  },
+  einer: {
+    frage: 'Wie fühlt sich der Heizkörper an?',
+    hilfe: 'Thermostat ganz aufdrehen, ein paar Minuten warten und dann oben und unten anfassen.',
+    optionen: [
+      { key: 'oben-kalt', text: 'Oben kalt, unten warm', ergebnis: 'luft' },
+      { key: 'ganz-kalt', text: 'Ganz kalt, obwohl das Thermostat voll auf ist', frage: 'ventil' },
+      { key: 'unten-kalt', text: 'Unten dauerhaft kalt, und der Raum wird nicht warm', ergebnis: 'ablagerungen' },
+      { key: 'unten-lauwarm', text: 'Oben warm, unten lauwarm, der Raum ist fast warm', ergebnis: 'normal' },
+      { key: 'raum-kalt', text: 'Der Heizkörper wird warm, aber der Raum nicht', ergebnis: 'waerme' },
+      { key: 'entlueftet', text: 'Ich habe schon entlüftet, er bleibt trotzdem kalt', ergebnis: 'nach-entlueften' },
+    ],
+  },
+  ventil: {
+    frage: 'Hast du den Ventilstift unter dem Thermostatkopf schon geprüft?',
+    hilfe: 'Der Stift sitzt unter dem Thermostatkopf. Drückst du ihn hinein, sollte er locker zurückfedern.',
+    optionen: [
+      { key: 'nein', text: 'Noch nicht', kurz: 'Stift noch nicht geprüft', ergebnis: 'ventilstift' },
+      { key: 'ohne-kopf-warm', text: 'Ja, der Stift federt. Ohne Kopf wird der Heizkörper warm, mit Kopf nicht', kurz: 'Stift federt, nur ohne Kopf wird er warm', ergebnis: 'thermostatkopf' },
+      { key: 'bleibt-kalt', text: 'Ja, der Stift federt, aber der Heizkörper bleibt auch ohne Kopf kalt', kurz: 'Stift federt, auch ohne Kopf kalt', ergebnis: 'ventil-frei' },
+    ],
+  },
+  mehrere: {
+    frage: 'Welche Heizkörper bleiben kalt?',
+    optionen: [
+      { key: 'oben', text: 'Vor allem die oben im Haus', ergebnis: 'druck-niedrig' },
+      { key: 'weit-weg', text: 'Die weit weg von der Heizung, die nahen werden heiß', ergebnis: 'abgleich' },
+      { key: 'kein-muster', text: 'Kein klares Muster', ergebnis: 'mehrere' },
+    ],
+  },
+  alle: {
+    frage: 'Was zeigt die Heizung?',
+    hilfe: 'Schau aufs Display der Heizung bzw. Therme und auf das Manometer.',
+    optionen: [
+      { key: 'stoerung', text: 'Eine Störung oder einen Fehlercode', ergebnis: 'stoerung' },
+      { key: 'druck', text: 'Der Druck liegt unter dem grünen Bereich', ergebnis: 'druck-niedrig' },
+      { key: 'nichts', text: 'Nichts Auffälliges', ergebnis: 'alle-kalt' },
+    ],
+  },
+  geraeusch: {
+    frage: 'Was hörst du, und wann?',
+    optionen: [
+      { key: 'gluckert', text: 'Es gluckert, der Heizkörper ist oben kalt', ergebnis: 'luft' },
+      { key: 'wieder', text: 'Es gluckert wieder, obwohl ich entlüftet habe', frage: 'pumpe' },
+      { key: 'rauscht', text: 'Es rauscht oder pfeift an den Ventilen oder in den Rohren', ergebnis: 'pumpe-abgleich' },
+    ],
+  },
+  pumpe: {
+    frage: 'Lief beim Entlüften die Heizung bzw. die Pumpe?',
+    optionen: [
+      { key: 'ja', text: 'Ja, oder ich weiß es nicht', kurz: 'Pumpe lief beim Entlüften', ergebnis: 'pumpe-lief' },
+      { key: 'nein', text: 'Nein, die Pumpe war aus', kurz: 'Pumpe war aus', ergebnis: 'gluckern-trotz' },
+    ],
+  },
+  druck: {
+    frage: 'Was zeigt das Manometer?',
+    optionen: [
+      { key: 'niedrig', text: 'Zu wenig: unter dem grünen Bereich', ergebnis: 'druck-niedrig' },
+      { key: 'hoch', text: 'Zu viel: über der Markierung oder im roten Bereich', ergebnis: 'druck-hoch' },
+      { key: 'faellt', text: 'Er fällt immer wieder, ich muss ständig nachfüllen', ergebnis: 'druck-faellt' },
+      { key: 'steigt', text: 'Er steigt immer weiter', ergebnis: 'druck-steigt' },
+    ],
+  },
+  temperatur: {
+    frage: 'Wann ist es zu kalt oder zu warm?',
+    hilfe: 'Gilt für Heizungen mit Außenfühler, die nach Heizkurve regeln, also die meisten Gas- und Ölheizungen und Wärmepumpen.',
+    optionen: [
+      { key: 'frost-kalt', text: 'Nur bei Frost zu kalt, sonst okay', ergebnis: 'steilheit-hoch' },
+      { key: 'frost-warm', text: 'Nur bei Frost zu warm, sonst okay', ergebnis: 'steilheit-runter' },
+      { key: 'immer-kalt', text: 'Immer etwas zu kalt', ergebnis: 'niveau-hoch' },
+      { key: 'immer-warm', text: 'Immer etwas zu warm', ergebnis: 'niveau-runter' },
+      { key: 'ein-raum', text: 'Nur ein Raum ist zu kalt', frage: 'einer' },
+    ],
+  },
+};
+
+type Stufe = 'selbst' | 'teils' | 'fachbetrieb' | 'normal';
+type Ergebnis = { titel: string; stufe: Stufe; ursache: string; schritte: string[]; miete?: string; artikel: [string, string][]; produkt?: [string, string] };
+const A = {
+  entlueften: ['/artikel/heizkoerper-entlueften-anleitung/', 'Heizkörper entlüften in 7 Schritten'],
+  pumpe: ['/artikel/heizung-entlueften-pumpe-an-oder-aus/', 'Entlüften: Pumpe an oder aus?'],
+  ohneSchluessel: ['/artikel/heizung-entlueften-ohne-schluessel/', 'Entlüften ohne Schlüssel'],
+  nichtWarm: ['/artikel/heizkoerper-wird-nicht-warm/', 'Heizkörper wird nicht warm: 6 Ursachen'],
+  gluckert: ['/artikel/heizung-gluckert/', 'Heizung gluckert: 6 Ursachen'],
+  nachfuellen: ['/artikel/heizung-wasser-nachfuellen/', 'Heizung Wasser nachfüllen und richtiger Druck'],
+  abgleich: ['/artikel/hydraulischer-abgleich/', 'Hydraulischer Abgleich: Kosten und Förderung'],
+  kurve: ['/artikel/heizkurve-einstellen/', 'Heizkurve einstellen'],
+  thermostat: ['/artikel/thermostatkopf-wechseln/', 'Thermostatkopf wechseln'],
+  smart: ['/artikel/smartes-thermostat/', 'Smartes Thermostat'],
+  reinigen: ['/artikel/heizkoerper-reinigen/', 'Heizkörper innen reinigen'],
+  verkleidung: ['/artikel/heizkoerperverkleidung/', 'Heizkörperverkleidung'],
+  abWann: ['/artikel/ab-wann-heizen/', 'Ab wann heizen? Was der Vermieter muss'],
+} satisfies Record<string, [string, string]>;
+const MIETE_ANLAGE = 'Alles, was die ganze Anlage betrifft (Druck, Pumpe, Abgleich, Spülen), ist Sache des Vermieters.';
+const ERGEBNISSE: Record<string, Ergebnis> = {
+  luft: {
+    titel: 'Luft im Heizkörper', stufe: 'selbst',
+    ursache: 'Luft sammelt sich oben im Heizkörper und blockiert die Heizfläche. Typisch: oben kalt, unten warm, oft mit Gluckern.',
+    schritte: [
+      'Thermostate voll aufdrehen.',
+      'Heizung bzw. Umwälzpumpe ausschalten und 30 bis 60 Minuten warten, damit die Luft nach oben steigt.',
+      'Am untersten Heizkörper anfangen: Entlüftungsventil ¼ bis ½ Umdrehung gegen den Uhrzeigersinn öffnen und schließen, sobald nur noch Wasser kommt.',
+      'Heizung wieder einschalten und den Druck am Manometer prüfen.',
+    ],
+    miete: 'Kannst du die Pumpe nicht abschalten, dreh vor dem Entlüften das Thermostatventil zu.',
+    artikel: [A.entlueften, A.pumpe, A.ohneSchluessel], produkt: ['Entlüftungsschlüssel-Set', 'Entlüftungsschlüssel Heizkörper Set'],
+  },
+  ventilstift: {
+    titel: 'Der Ventilstift klemmt', stufe: 'selbst',
+    ursache: 'Unter dem Thermostatkopf sitzt ein kleiner Stift, der das Ventil öffnet. Nach dem Sommer setzt er sich oft fest, dann kommt kein heißes Wasser in den Heizkörper.',
+    schritte: [
+      'Thermostat auf Stufe 5 drehen und den Kopf abnehmen: Überwurfmutter lösen, meist von Hand, sonst vorsichtig mit einer kleinen Zange.',
+      'Den Stift hineindrücken. Er sollte locker zurückfedern.',
+      'Klemmt er, mit einer Zange sachte hin und her bewegen, bis er wieder federt. Nicht daran ziehen, sonst kann die Dichtung undicht werden.',
+      'Kopf auf Stufe 5 wieder aufsetzen und festdrehen.',
+      'Vorbeugen: Im Sommer die Thermostate ab und zu auf- und zudrehen.',
+    ],
+    miete: 'Kopf abnehmen und Stift gängig machen ist in der Regel unproblematisch.',
+    artikel: [A.nichtWarm], produkt: ['Kleine Wasserpumpenzange', 'Wasserpumpenzange klein'],
+  },
+  thermostatkopf: {
+    titel: 'Der Thermostatkopf ist defekt', stufe: 'selbst',
+    ursache: 'Der Stift ist frei, aber mit aufgesetztem Kopf öffnet das Ventil nicht. Dann ist der Kopf selbst kaputt.',
+    schritte: [
+      'Prüfen, welchen Anschluss dein Ventil hat. Am häufigsten ist M30 × 1,5, für andere Ventile, etwa von Danfoss, gibt es Adapter.',
+      'Alten Kopf auf Stufe 5 drehen und abnehmen.',
+      'Neuen Kopf auf Stufe 5 aufsetzen und handfest anziehen. Das Ventil bleibt dabei zu, es läuft kein Wasser aus.',
+    ],
+    miete: 'Vorher den Vermieter fragen und den alten Kopf aufheben.',
+    artikel: [A.thermostat, A.smart], produkt: ['Neuer Thermostatkopf', 'Thermostatkopf Heizkörper M30x1,5'],
+  },
+  'ventil-frei': {
+    titel: 'Ventil frei, Heizkörper bleibt kalt', stufe: 'teils',
+    ursache: 'Stift und Kopf sind nicht schuld. Dann kommt das heiße Wasser aus einem anderen Grund nicht an: Luft, zu wenig Druck, ein fehlender hydraulischer Abgleich oder Ablagerungen im Heizkörper.',
+    schritte: [
+      'Heizkörper entlüften, falls noch nicht geschehen, mit ausgeschalteter Pumpe.',
+      'Druck am Manometer prüfen und bei Bedarf Wasser nachfüllen.',
+      'Bleibt er kalt: Fachbetrieb rufen. Er prüft Ventil und Abgleich und spült den Heizkörper bei Bedarf.',
+    ],
+    miete: MIETE_ANLAGE,
+    artikel: [A.nichtWarm, A.entlueften, A.nachfuellen],
+  },
+  ablagerungen: {
+    titel: 'Ablagerungen im Heizkörper (Heizkörperschlamm)', stufe: 'fachbetrieb',
+    ursache: 'Rost, Kalk und Schmutz aus dem Heizungswasser setzen sich über die Jahre unten im Heizkörper ab und bremsen den Durchfluss. Er bleibt unten dauerhaft kalt, obwohl das Ventil offen ist und der Raum nicht warm wird.',
+    schritte: [
+      'Erst Luft und den Ventilstift ausschließen.',
+      'Von außen lässt sich Schlamm nicht beheben: Ein Fachbetrieb spült den Heizkörper oder die ganze Anlage und bereitet das Heizungswasser danach auf.',
+    ],
+    miete: 'Das Spülen ist Sache des Vermieters.',
+    artikel: [A.nichtWarm], produkt: ['Infrarot-Thermometer', 'Infrarot Thermometer Heizung'],
+  },
+  normal: {
+    titel: 'Wahrscheinlich alles in Ordnung', stufe: 'normal',
+    ursache: 'Das warme Wasser kommt oben an und kühlt beim Durchfließen ab. Ist der Raum fast warm, drosselt das Thermostat, und der Heizkörper wird unten noch kühler.',
+    schritte: [
+      'Nichts tun. Erst wenn der Heizkörper unten dauerhaft kalt bleibt und der Raum nicht warm wird, lohnt sich ein genauerer Blick (Ablagerungen).',
+    ],
+    artikel: [A.nichtWarm],
+  },
+  waerme: {
+    titel: 'Die Wärme kommt nicht im Raum an', stufe: 'selbst',
+    ursache: 'Der Heizkörper wird warm, aber die Wärme wird gebremst: von Staub zwischen den Lamellen, einer Verkleidung, Möbeln oder langen Vorhängen davor.',
+    schritte: [
+      'Möbel und lange Vorhänge vom Heizkörper wegrücken. Das Thermostat darf nicht verdeckt sein, sonst regelt es zu früh ab.',
+      'Heizkörper innen reinigen: Gitter ab, mit langer Bürste und Föhn auf kalter Stufe den Staub zwischen den Lamellen lösen.',
+      'Eine Verkleidung braucht mindestens 10 cm Abstand und große Öffnungen oben und unten, das Thermostat muss frei bleiben.',
+    ],
+    artikel: [A.reinigen, A.verkleidung], produkt: ['Heizkörperbürste', 'Heizkörperbürste lang'],
+  },
+  'nach-entlueften': {
+    titel: 'Trotz Entlüften kalt: Ventilstift prüfen', stufe: 'selbst',
+    ursache: 'Ist die Luft raus und der Heizkörper bleibt kalt, ist der Ventilstift der nächste Kandidat. Lief beim Entlüften die Pumpe, ist außerdem nur ein Teil der Luft herausgekommen.',
+    schritte: [
+      'Thermostatkopf abnehmen und prüfen, ob der Stift darunter locker zurückfedert. Klemmt er, sachte mit der Zange hin und her bewegen, nicht ziehen.',
+      'Lief beim Entlüften die Pumpe: noch einmal entlüften, diesmal mit ausgeschalteter Pumpe und 30 bis 60 Minuten Wartezeit.',
+      'Danach den Druck prüfen. Beim Entlüften geht Wasser verloren.',
+    ],
+    artikel: [A.nichtWarm, A.pumpe], produkt: ['Kleine Wasserpumpenzange', 'Wasserpumpenzange klein'],
+  },
+  'druck-niedrig': {
+    titel: 'Der Druck ist zu niedrig', stufe: 'teils',
+    ursache: 'Ist zu wenig Wasser im System, kommt es oben im Haus nicht mehr an. Typisch: Die oberen Heizkörper bleiben kalt oder gluckern, oft einige Tage oder Wochen nach dem Entlüften.',
+    schritte: [
+      'Manometer an der Heizung ablesen. Im Einfamilienhaus sind meist 1 bis 2 bar richtig, maßgeblich ist der grüne Bereich bzw. die Anleitung deiner Heizung.',
+      'Zu niedrig: Wasser nachfüllen, mit Füllschlauch und Systemtrenner am KFE-Hahn der Heizung.',
+      'Danach die Heizkörper entlüften und den Druck noch einmal prüfen.',
+      'Musst du ständig nachfüllen, verliert die Anlage Wasser: dann den Fachbetrieb rufen.',
+    ],
+    miete: 'In der Mietwohnung füllt der Vermieter nach.',
+    artikel: [A.nachfuellen, A.gluckert], produkt: ['Füllset mit Systemtrenner', 'Heizung Füllschlauch Systemtrenner'],
+  },
+  'druck-hoch': {
+    titel: 'Der Druck ist zu hoch', stufe: 'teils',
+    ursache: 'Steht der Zeiger über der Markierung oder im roten Bereich, ist zu viel Wasser im System.',
+    schritte: [
+      'Am Entleerungshahn (KFE-Hahn) einen Schlauch anschließen, das andere Ende in einen Eimer, den Hahn langsam öffnen und das Manometer beobachten.',
+      'Für kleine Mengen geht es auch am Entlüftungsventil eines Heizkörpers, mit einem Gefäß darunter.',
+      'Vorsicht: Heizungswasser kann heiß und stark verschmutzt sein. Immer nur wenig ablassen und zwischendurch den Druck prüfen.',
+      'Steigt der Druck danach wieder: Fachbetrieb rufen.',
+    ],
+    miete: 'In der Mietwohnung ist auch das Sache des Vermieters.',
+    artikel: [A.nachfuellen],
+  },
+  'druck-faellt': {
+    titel: 'Der Druck fällt immer wieder', stufe: 'fachbetrieb',
+    ursache: 'Musst du ständig nachfüllen, verliert die Anlage irgendwo Wasser, oder das Ausdehnungsgefäß ist defekt.',
+    schritte: [
+      'Auf Wasser an Heizkörpern, Ventilen und Rohren achten.',
+      'Den Heizungsbauer rufen. Dauerndes Nachfüllen bringt immer wieder frisches, sauerstoffreiches Wasser ins System, und das ist auf Dauer schlecht für die Anlage.',
+    ],
+    miete: 'Vermieter oder Hausverwaltung informieren.',
+    artikel: [A.nachfuellen, A.gluckert],
+  },
+  'druck-steigt': {
+    titel: 'Der Druck steigt immer weiter', stufe: 'fachbetrieb',
+    ursache: 'Oft ist das Ausdehnungsgefäß defekt, oder über einen Wärmetauscher gelangt Trinkwasser in den Heizkreis. Auch ein nicht ganz geschlossener Füllhahn kann der Grund sein.',
+    schritte: [
+      'Prüfen, ob der Füllhahn ganz geschlossen ist.',
+      'Ist der Druck im roten Bereich, etwas Wasser ablassen (siehe „Druck zu hoch“).',
+      'Den Heizungsbauer rufen.',
+    ],
+    miete: 'Vermieter oder Hausverwaltung informieren.',
+    artikel: [A.nachfuellen],
+  },
+  stoerung: {
+    titel: 'Die Heizung selbst meldet eine Störung', stufe: 'fachbetrieb',
+    ursache: 'Sind alle Heizkörper kalt und zeigt die Heizung einen Fehler, liegt es nicht an den Heizkörpern, sondern an der Heizung.',
+    schritte: [
+      'Fehlercode in der Anleitung der Heizung nachschlagen.',
+      'Druck am Manometer prüfen.',
+      'Bei einer Störungsmeldung den Heizungsbauer rufen.',
+    ],
+    miete: 'Vermieter oder Hausverwaltung sofort informieren.',
+    artikel: [A.nichtWarm, A.abWann],
+  },
+  'alle-kalt': {
+    titel: 'Alle Heizkörper kalt: Einstellung der Heizung prüfen', stufe: 'teils',
+    ursache: 'Sind alle Heizkörper kalt, liegt es nicht an einem Ventil, sondern an der Heizung oder ihrer Einstellung.',
+    schritte: [
+      'Ist die Heizung im Winterbetrieb und nicht nur auf Warmwasser?',
+      'Ist der Druck im grünen Bereich?',
+      'Hilft das nicht: Anleitung der Heizung zur Hand nehmen oder den Heizungsbauer rufen.',
+    ],
+    miete: 'In der Heizperiode (1. Oktober bis 30. April) muss der Vermieter dafür sorgen, dass du tagsüber mindestens 20 °C erreichst. Schriftlich melden und eine Frist setzen.',
+    artikel: [A.nichtWarm, A.abWann],
+  },
+  mehrere: {
+    titel: 'Mehrere Heizkörper kalt: erst Druck, dann Luft', stufe: 'teils',
+    ursache: 'Werden mehrere Heizkörper nicht warm, steckt meist die Anlage dahinter: zu wenig Druck, Luft in mehreren Heizkörpern, die Pumpe oder ein fehlender Abgleich.',
+    schritte: [
+      'Druck am Manometer prüfen und bei Bedarf Wasser nachfüllen.',
+      'Alle Heizkörper entlüften, mit ausgeschalteter Pumpe, unten anfangen.',
+      'Hilft beides nicht: Pumpe und hydraulischen Abgleich vom Fachbetrieb prüfen lassen.',
+    ],
+    miete: MIETE_ANLAGE,
+    artikel: [A.nichtWarm, A.nachfuellen, A.abgleich],
+  },
+  abgleich: {
+    titel: 'Der hydraulische Abgleich fehlt', stufe: 'fachbetrieb',
+    ursache: 'Ohne Abgleich nimmt das Wasser den kürzesten Weg. Heizkörper nah an der Heizung werden sehr heiß, weit entfernte bleiben kühl.',
+    schritte: [
+      'Erst Luft und Druck ausschließen: entlüften und das Manometer prüfen.',
+      'Hydraulischen Abgleich beim Fachbetrieb anfragen. Nach dem genaueren Verfahren B kostet er im Einfamilienhaus grob 650 bis 1.200 Euro und lässt sich fördern.',
+    ],
+    miete: MIETE_ANLAGE,
+    artikel: [A.abgleich, A.nichtWarm], produkt: ['Infrarot-Thermometer', 'Infrarot Thermometer Heizung'],
+  },
+  'pumpe-lief': {
+    titel: 'Beim Entlüften lief die Pumpe', stufe: 'selbst',
+    ursache: 'Läuft die Umwälzpumpe beim Entlüften weiter, wirbelt sie die Luftblasen durch den Kreislauf. Dann kommt nur ein Teil der Luft heraus, und wenige Tage später gluckert es wieder.',
+    schritte: [
+      'Heizung bzw. Pumpe ausschalten und 30 bis 60 Minuten warten.',
+      'Noch einmal entlüften, am untersten Heizkörper anfangen.',
+      'Danach Heizung einschalten und den Druck prüfen.',
+    ],
+    miete: 'Kannst du die Pumpe nicht abschalten, dreh vor dem Entlüften das Thermostatventil zu.',
+    artikel: [A.pumpe, A.entlueften], produkt: ['Entlüftungsschlüssel mit Auffangbehälter', 'Entlüftungsschlüssel mit Auffangbehälter'],
+  },
+  'gluckern-trotz': {
+    titel: 'Gluckert trotz richtigem Entlüften', stufe: 'teils',
+    ursache: 'Dann ist der Druck danach oft zu niedrig, oder es wurden nicht alle Heizkörper entlüftet, und die Luft sitzt jetzt im nächsten.',
+    schritte: [
+      'Druck prüfen, denn beim Entlüften geht Wasser verloren. Bei Bedarf nachfüllen.',
+      'Alle Heizkörper entlüften und den obersten am Schluss noch einmal.',
+      'Gluckert es weiter, läuft oft die Pumpe zu stark oder der Abgleich fehlt. Das stellt der Fachbetrieb ein.',
+    ],
+    miete: MIETE_ANLAGE,
+    artikel: [A.gluckert, A.nachfuellen],
+  },
+  'pumpe-abgleich': {
+    titel: 'Rauschen oder Pfeifen: Pumpe, Abgleich oder Ventil', stufe: 'fachbetrieb',
+    ursache: 'Eine zu hoch eingestellte Umwälzpumpe drückt das Wasser mit zu viel Tempo durch die Rohre. Fehlt der hydraulische Abgleich, bekommen manche Heizkörper zu viel Durchfluss. Auch alte Thermostatventile können Geräusche machen.',
+    schritte: [
+      'Thermostatköpfe prüfen. Als Faustregel gelten 10 bis 15 Jahre, dann ist ein Tausch fällig.',
+      'Pumpenstufe und hydraulischen Abgleich vom Fachbetrieb prüfen und einstellen lassen.',
+    ],
+    miete: MIETE_ANLAGE,
+    artikel: [A.gluckert, A.abgleich],
+  },
+  'steilheit-hoch': {
+    titel: 'Heizkurve: Steilheit etwas erhöhen', stufe: 'teils',
+    ursache: 'Ist es nur bei Frost zu kalt, legt die Heizung bei Kälte zu wenig nach. Das regelt die Steilheit (Neigung) der Heizkurve.',
+    schritte: [
+      'Aktuelle Einstellung fotografieren, damit du zurückkommst.',
+      'Im Wohnzimmer das Thermostat ganz aufdrehen.',
+      'An einem kalten Tag (unter etwa 5 °C) die Steilheit etwas erhöhen. Nur diese eine Größe ändern.',
+      'Mindestens 12 bis 24 Stunden abwarten, bei Fußbodenheizung länger, dann nachjustieren.',
+    ],
+    miete: 'In Mietwohnungen mit Zentralheizung ist die Heizkurve Sache des Vermieters oder der Hausverwaltung.',
+    artikel: [A.kurve],
+  },
+  'steilheit-runter': {
+    titel: 'Heizkurve: Steilheit etwas senken', stufe: 'teils',
+    ursache: 'Ist es nur bei Frost zu warm, legt die Heizung bei Kälte zu stark nach. Das regelt die Steilheit (Neigung) der Heizkurve.',
+    schritte: [
+      'Aktuelle Einstellung fotografieren, damit du zurückkommst.',
+      'Im Wohnzimmer das Thermostat ganz aufdrehen.',
+      'An einem kalten Tag (unter etwa 5 °C) die Steilheit etwas senken. Nur diese eine Größe ändern.',
+      'Mindestens 12 bis 24 Stunden abwarten, bei Fußbodenheizung länger, dann nachjustieren.',
+    ],
+    miete: 'In Mietwohnungen mit Zentralheizung ist die Heizkurve Sache des Vermieters oder der Hausverwaltung.',
+    artikel: [A.kurve],
+  },
+  'niveau-hoch': {
+    titel: 'Heizkurve: Niveau etwas erhöhen', stufe: 'teils',
+    ursache: 'Ist es bei jedem Wetter etwas zu kalt, liegt die ganze Heizkurve zu tief. Das verschiebt das Niveau.',
+    schritte: [
+      'Aktuelle Einstellung fotografieren, damit du zurückkommst.',
+      'Im Wohnzimmer das Thermostat ganz aufdrehen.',
+      'Das Niveau um ein bis zwei Stufen erhöhen. Nur diese eine Größe ändern.',
+      'Mindestens 12 bis 24 Stunden abwarten, bei Fußbodenheizung länger, dann nachjustieren.',
+    ],
+    miete: 'In Mietwohnungen mit Zentralheizung ist die Heizkurve Sache des Vermieters oder der Hausverwaltung.',
+    artikel: [A.kurve],
+  },
+  'niveau-runter': {
+    titel: 'Heizkurve: Niveau etwas senken', stufe: 'teils',
+    ursache: 'Ist es bei jedem Wetter etwas zu warm, liegt die ganze Heizkurve zu hoch. Das verschiebt das Niveau, und eine niedrigere Kurve spart Energie.',
+    schritte: [
+      'Aktuelle Einstellung fotografieren, damit du zurückkommst.',
+      'Im Wohnzimmer das Thermostat ganz aufdrehen.',
+      'Das Niveau um ein bis zwei Stufen senken. Nur diese eine Größe ändern.',
+      'Mindestens 12 bis 24 Stunden abwarten, bei Fußbodenheizung länger, dann nachjustieren.',
+    ],
+    miete: 'In Mietwohnungen mit Zentralheizung ist die Heizkurve Sache des Vermieters oder der Hausverwaltung.',
+    artikel: [A.kurve],
+  },
+};
+const STUFE: Record<Stufe, { status: string; text: string; kurz: string; icon: string }> = {
+  selbst: { status: 'gut', text: 'Kannst du selbst beheben', kurz: 'selbst machbar', icon: 'wrench' },
+  teils: { status: 'achtung', text: 'Teils selbst, teils Fachbetrieb', kurz: 'teils selbst, teils Fachbetrieb', icon: 'triangle-alert' },
+  fachbetrieb: { status: 'erhoeht', text: 'Fall für den Fachbetrieb', kurz: 'Fachbetrieb', icon: 'phone' },
+  normal: { status: 'gut', text: 'Kein Fehler', kurz: 'kein Fehler', icon: 'circle-check' },
+};
+
+// Beim Bauen prüfen, dass jeder Weg irgendwo endet und jedes Ergebnis erreichbar ist.
+const erreicht = new Set<string>();
+for (const [id, f] of Object.entries(FRAGEN)) for (const o of f.optionen) {
+  if (o.frage && !FRAGEN[o.frage]) throw new Error(`Heizungs-Diagnose: Frage ${o.frage} fehlt (${id}.${o.key})`);
+  if (o.ergebnis && !ERGEBNISSE[o.ergebnis]) throw new Error(`Heizungs-Diagnose: Ergebnis ${o.ergebnis} fehlt (${id}.${o.key})`);
+  if (o.ergebnis) erreicht.add(o.ergebnis);
+}
+for (const e of Object.keys(ERGEBNISSE)) if (!erreicht.has(e)) throw new Error(`Heizungs-Diagnose: Ergebnis ${e} ist nicht erreichbar`);
+
+// Übersicht für alle ohne JavaScript und für die Suche: jeder Weg mit seinem Ergebnis.
+type Zeile = { anzeichen: string; e: Ergebnis };
+const gruppen: { titel: string; zeilen: Zeile[] }[] = [];
+function sammeln(id: string, praefix: string[], zeilen: Zeile[], tiefe = 0) {
+  for (const o of FRAGEN[id].optionen) {
+    const weg = [...praefix, o.kurz ?? o.text];
+    if (o.ergebnis) zeilen.push({ anzeichen: weg.join(': '), e: ERGEBNISSE[o.ergebnis] });
+    else if (o.frage && tiefe < 2 && !(id === 'temperatur' && o.frage === 'einer')) sammeln(o.frage, weg, zeilen, tiefe + 1);
+  }
+}
+for (const o of FRAGEN.start.optionen) {
+  const zeilen: Zeile[] = [];
+  sammeln(o.frage!, [], zeilen);
+  gruppen.push({ titel: o.text, zeilen });
+}
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Heizung" style="--akzent:#ff741c">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Heizungs-Diagnose</nav>
+    <h1>{title}</h1>
+    <p class="lead">Heizkörper kalt, Heizung gluckert oder der Druck stimmt nicht? Beantworte bis zu drei kurze Fragen. Dann siehst du die
+    wahrscheinliche Ursache, was du selbst tun kannst und wann der Fachbetrieb ran muss.</p>
+
+    <section class="box calc diagnose" aria-label="Heizungs-Diagnose" data-pagefind-ignore>
+      <input type="hidden" id="pfad" value="" />
+      <div class="diag-fragen">
+        {Object.entries(FRAGEN).map(([id, f]) => (
+          <fieldset class="diag-frage" data-frage={id} hidden={id !== 'start'}>
+            <legend>{f.frage}</legend>
+            {f.hilfe && <p class="diag-hilfe">{f.hilfe}</p>}
+            <div class={`diag-optionen${id === 'start' ? ' diag-start' : ''}`}>
+              {f.optionen.map((o) => (
+                <label class="diag-option">
+                  <input type="radio" name={`f-${id}`} value={o.key} />
+                  {o.icon && <Icon name={o.icon} size={22} />}
+                  <span>{o.text}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        ))}
+      </div>
+      <noscript><p class="small">Ohne JavaScript funktioniert die Diagnose nicht. Alle Ursachen stehen unten in der Übersicht.</p></noscript>
+
+      <div class="diag-ergebnisse" aria-live="polite">
+        {Object.entries(ERGEBNISSE).map(([id, e]) => (
+          <div class="diag-ergebnis" data-ergebnis={id} hidden>
+            <p class="duebel-typ"><span class="small">Wahrscheinliche Ursache</span><strong>{e.titel}</strong></p>
+            <p class="taupunkt-status diag-stufe" data-status={STUFE[e.stufe].status}><Icon name={STUFE[e.stufe].icon} size={18} /> {STUFE[e.stufe].text}</p>
+            <p>{e.ursache}</p>
+            <p class="diag-h">So gehst du vor</p>
+            <ol class="diag-schritte">{e.schritte.map((s) => <li>{s}</li>)}</ol>
+            {e.miete && <p class="diag-miete"><strong>Mietwohnung:</strong> {e.miete}</p>}
+            {e.produkt && (
+              <p class="diag-produkt"><a class="btn btn-sm" href={amazonSearch(e.produkt[1])} rel="sponsored nofollow noopener" target="_blank">{e.produkt[0]} bei Amazon*</a>
+              <span class="small">* Anzeige: Affiliate-Link, für dich ändert sich am Preis nichts.</span></p>
+            )}
+            <p class="diag-h">Ausführlich mit Bildern</p>
+            <ul class="diag-links">{e.artikel.map(([href, text]) => <li><a href={href}>{text}</a></li>)}</ul>
+          </div>
+        ))}
+      </div>
+      <p class="diag-neu" hidden><button type="button" class="btn btn-sm btn-ghost-dark" id="diag-neu"><Icon name="rotate-ccw" size={16} /> Neu starten</button></p>
+      <RechnerTeilen />
+    </section>
+    <script type="application/json" id="diagnose-daten" set:html={JSON.stringify(Object.fromEntries(Object.entries(FRAGEN).map(([id, f]) => [id, f.optionen.map(({ key, frage, ergebnis }) => ({ key, frage, ergebnis }))])))} />
+
+    {video && <VideoBox video={video} ueberschrift="Heizkörper wird nicht warm? Das Video dazu" />}
+
+    <h2>Alle Anzeichen und Ursachen auf einen Blick</h2>
+    <p>Die Diagnose fragt nach diesen Anzeichen. Hier stehen alle Wege mit der wahrscheinlichen Ursache und wer sie beheben kann.</p>
+    {gruppen.map((g) => (
+      <>
+        <h3>{g.titel}</h3>
+        <table class="diag-tabelle">
+          <thead><tr><th scope="col">Anzeichen</th><th scope="col">Ursache und wer sie behebt</th></tr></thead>
+          <tbody>{g.zeilen.map((z) => <tr><td>{z.anzeichen}</td><td><a href={z.e.artikel[0][0]}>{z.e.titel}</a><span class="diag-wer">{STUFE[z.e.stufe].kurz}</span></td></tr>)}</tbody>
+        </table>
+      </>
+    ))}
+
+    <h2>In dieser Reihenfolge prüfen</h2>
+    <ol>
+      <li><strong>Luft:</strong> Gluckert es oder ist der Heizkörper oben kalt, zuerst entlüften, mit ausgeschalteter Pumpe.</li>
+      <li><strong>Ventilstift:</strong> Bleibt ein Heizkörper ganz kalt, den Thermostatkopf abnehmen und den Stift prüfen.</li>
+      <li><strong>Thermostatkopf:</strong> Wird der Heizkörper nur ohne Kopf warm, den Kopf tauschen.</li>
+      <li><strong>Druck:</strong> Manometer ablesen, im Einfamilienhaus meist 1 bis 2 bar, und bei Bedarf Wasser nachfüllen.</li>
+      <li><strong>Fachbetrieb:</strong> Pumpe, hydraulischer Abgleich, Spülen und Störungen der Heizung.</li>
+    </ol>
+    <p>Die ersten drei Punkte kosten kaum etwas und lösen die meisten Fälle, in denen ein einzelner Heizkörper nicht warm wird.</p>
+
+    <h2>Häufige Fragen</h2>
+    <h3>Warum wird nur ein Heizkörper nicht warm?</h3>
+    <p>Fast immer liegt es an genau diesem Heizkörper: Luft oder ein klemmender Ventilstift. Erst entlüften, dann den Stift prüfen.
+    Werden mehrere oder alle nicht warm, steckt meist die Anlage dahinter, also Druck, Pumpe, Abgleich oder die Heizung selbst.</p>
+    <h3>Welcher Druck ist bei der Heizung richtig?</h3>
+    <p>Im Einfamilienhaus meist 1 bis 2 bar. Maßgeblich ist der grüne Bereich am Manometer bzw. die Anleitung deiner Heizung. Wie du
+    nachfüllst: <a href="/artikel/heizung-wasser-nachfuellen/">Heizung Wasser nachfüllen</a>.</p>
+    <h3>Ist eine gluckernde Heizung gefährlich?</h3>
+    <p>Meist nicht, aber sie ist ein Warnzeichen für Luft oder zu wenig Druck. Fällt der Druck immer wieder oder tritt irgendwo Wasser
+    aus, solltest du es vom Fachbetrieb prüfen lassen.</p>
+    <h3>Was darf ich in der Mietwohnung selbst machen?</h3>
+    <p>Heizkörper entlüften und den Ventilstift gängig machen ist in der Regel unproblematisch. Alles, was die Anlage betrifft (Druck,
+    Pumpe, Abgleich, Heizkurve, Spülen), ist Sache des Vermieters.</p>
+
+    <p class="small">Die Diagnose fasst die Heizungsanleitungen dieser Website zusammen. Die Quellen stehen jeweils in den verlinkten Artikeln.
+    Sie ersetzt keinen Fachbetrieb: Bei Wasseraustritt, Gasgeruch oder Störungsmeldungen immer den Heizungsbauer rufen. Mit * markierte
+    Links sind Affiliate-Links: Kaufst du darüber ein, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.
+    <a href="/werbung/">Mehr dazu</a></p>
+  </div>
+</Base>
+
+<script>
+  type Opt = { key: string; frage?: string; ergebnis?: string };
+  const FRAGEN: Record<string, Opt[]> = JSON.parse(document.getElementById('diagnose-daten')?.textContent || '{}');
+  const box = document.querySelector<HTMLElement>('.diagnose');
+  const pfad = document.getElementById('pfad') as HTMLInputElement | null;
+  const liste = box?.querySelector<HTMLElement>('.diag-fragen');
+  const neu = box?.querySelector<HTMLElement>('.diag-neu');
+  const frageEl = (id: string) => box?.querySelector<HTMLFieldSetElement>(`fieldset[data-frage="${id}"]`);
+
+  // Den gespeicherten Weg (z. B. "einer.ganz-kalt.nein") ablaufen: welche Fragen sichtbar sind und welches Ergebnis gilt.
+  function ablaufen(keys: string[]) {
+    const fragen: string[] = [];
+    let frage: string | undefined = 'start';
+    let ergebnis: string | undefined;
+    const gueltig: string[] = [];
+    for (const k of keys) {
+      if (!frage || fragen.includes(frage)) break;
+      const opt: Opt | undefined = FRAGEN[frage]?.find((o) => o.key === k);
+      if (!opt) break;
+      fragen.push(frage);
+      gueltig.push(k);
+      if (opt.ergebnis) { ergebnis = opt.ergebnis; frage = undefined; break; }
+      frage = opt.frage;
+    }
+    if (frage && FRAGEN[frage] && !fragen.includes(frage)) fragen.push(frage);
+    return { fragen, ergebnis, gueltig };
+  }
+
+  function zeigen(scrollen = false) {
+    if (!box || !pfad || !liste) return;
+    const { fragen, ergebnis, gueltig } = ablaufen(pfad.value ? pfad.value.split('.') : []);
+    pfad.value = gueltig.join('.');
+    box.querySelectorAll<HTMLFieldSetElement>('fieldset[data-frage]').forEach((f) => { f.hidden = true; });
+    fragen.forEach((id, i) => {
+      const f = frageEl(id);
+      if (!f) return;
+      liste.append(f);
+      f.hidden = false;
+      f.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((r) => { r.checked = r.value === gueltig[i]; });
+    });
+    box.querySelectorAll<HTMLElement>('[data-ergebnis]').forEach((e) => { e.hidden = e.dataset.ergebnis !== ergebnis; });
+    if (neu) neu.hidden = gueltig.length === 0;
+    if (!scrollen) return;
+    const ziel = ergebnis ? box.querySelector<HTMLElement>(`[data-ergebnis="${ergebnis}"]`) : frageEl(fragen[fragen.length - 1]);
+    const reduziert = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    ziel?.scrollIntoView({ behavior: reduziert ? 'auto' : 'smooth', block: 'nearest' });
+  }
+
+  box?.addEventListener('change', (ev) => {
+    const r = ev.target;
+    if (!(r instanceof HTMLInputElement) || r.type !== 'radio' || !pfad) return;
+    const id = r.closest<HTMLFieldSetElement>('fieldset[data-frage]')?.dataset.frage;
+    if (!id) return;
+    const { fragen, gueltig } = ablaufen(pfad.value ? pfad.value.split('.') : []);
+    const pos = fragen.indexOf(id);
+    if (pos < 0) return;
+    pfad.value = [...gueltig.slice(0, pos), r.value].join('.');
+    zeigen(true);
+  });
+  // RechnerTeilen setzt #pfad aus dem Link und meldet das per input/change.
+  pfad?.addEventListener('change', () => zeigen());
+  document.getElementById('diag-neu')?.addEventListener('click', () => {
+    if (!pfad) return;
+    pfad.value = '';
+    zeigen();
+    frageEl('start')?.querySelector<HTMLInputElement>('input')?.focus();
+    box?.scrollIntoView({ block: 'nearest' });
+  });
+  zeigen();
+</script>
