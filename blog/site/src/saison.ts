@@ -7,7 +7,7 @@ export const SAISON = {
   artikel: [
     'ab-wann-heizen',
     'heizkoerper-entlueften-anleitung',
-    'heizkoerper-reinigen',
+    'heizungsventil-klemmt',
     'fenster-beschlagen',
     'luftentfeuchter',
     'heizen-mit-klimaanlage',
