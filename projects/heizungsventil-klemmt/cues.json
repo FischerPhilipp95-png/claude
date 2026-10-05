@@ -1,0 +1,372 @@
+[
+ {
+  "t": 0.9,
+  "type": "key",
+  "gain": 0.18
+ },
+ {
+  "t": 0.977,
+  "type": "key",
+  "gain": 0.18
+ },
+ {
+  "t": 1.054,
+  "type": "key",
+  "gain": 0.18
+ },
+ {
+  "t": 1.131,
+  "type": "key",
+  "gain": 0.18
+ },
+ {
+  "t": 1.208,
+  "type": "key",
+  "gain": 0.18
+ },
+ {
+  "t": 1.285,
+  "type": "key",
+  "gain": 0.18
+ },
+ {
+  "t": 1.362,
+  "type": "key",
+  "gain": 0.18
+ },
+ {
+  "t": 1.438,
+  "type": "key",
+  "gain": 0.18
+ },
+ {
+  "t": 1.515,
+  "type": "key",
+  "gain": 0.18
+ },
+ {
+  "t": 1.592,
+  "type": "key",
+  "gain": 0.18
+ },
+ {
+  "t": 5.344,
+  "type": "thump",
+  "gain": 0.3
+ },
+ {
+  "t": 8.904,
+  "type": "thump",
+  "gain": 0.3
+ },
+ {
+  "t": 10,
+  "type": "pop",
+  "gain": 0.18
+ },
+ {
+  "t": 10.25,
+  "type": "pop",
+  "gain": 0.18
+ },
+ {
+  "t": 10.5,
+  "type": "pop",
+  "gain": 0.18
+ },
+ {
+  "t": 10.75,
+  "type": "pop",
+  "gain": 0.18
+ },
+ {
+  "t": 11,
+  "type": "pop",
+  "gain": 0.18
+ },
+ {
+  "t": 15.456,
+  "type": "bloop",
+  "gain": 0.3
+ },
+ {
+  "t": 18.976,
+  "type": "click",
+  "gain": 0.5
+ },
+ {
+  "t": 22.322,
+  "type": "whoosh",
+  "gain": 0.35
+ },
+ {
+  "t": 22.922,
+  "type": "pop",
+  "gain": 0.22
+ },
+ {
+  "t": 27.338,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 27.338,
+  "type": "click",
+  "gain": 0.35
+ },
+ {
+  "t": 29.198,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 29.198,
+  "type": "gluck",
+  "gain": 0.25
+ },
+ {
+  "t": 31.111,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 33.591,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 36.771,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 42.322,
+  "type": "whoosh",
+  "gain": 0.35
+ },
+ {
+  "t": 42.778,
+  "type": "click",
+  "gain": 0.4
+ },
+ {
+  "t": 42.922,
+  "type": "pop",
+  "gain": 0.22
+ },
+ {
+  "t": 43.578,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 46.138,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 51.144,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 56.211,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 57.531,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 64.544,
+  "type": "whoosh",
+  "gain": 0.35
+ },
+ {
+  "t": 65.144,
+  "type": "pop",
+  "gain": 0.22
+ },
+ {
+  "t": 67.42,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 69.34,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 69.54,
+  "type": "click",
+  "gain": 0.4
+ },
+ {
+  "t": 72.987,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 72.987,
+  "type": "click",
+  "gain": 0.3
+ },
+ {
+  "t": 73.437,
+  "type": "click",
+  "gain": 0.3
+ },
+ {
+  "t": 73.887,
+  "type": "click",
+  "gain": 0.3
+ },
+ {
+  "t": 75.987,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 76.157,
+  "type": "thump",
+  "gain": 0.2
+ },
+ {
+  "t": 76.857,
+  "type": "thump",
+  "gain": 0.2
+ },
+ {
+  "t": 77.557,
+  "type": "thump",
+  "gain": 0.2
+ },
+ {
+  "t": 79.049,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 81.949,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 81.949,
+  "type": "hiss",
+  "gain": 0.25
+ },
+ {
+  "t": 87.122,
+  "type": "bloop",
+  "gain": 0.3
+ },
+ {
+  "t": 87.322,
+  "type": "gluck",
+  "gain": 0.25
+ },
+ {
+  "t": 89.042,
+  "type": "click",
+  "gain": 0.45
+ },
+ {
+  "t": 89.782,
+  "type": "click",
+  "gain": 0.5
+ },
+ {
+  "t": 93.433,
+  "type": "whoosh",
+  "gain": 0.35
+ },
+ {
+  "t": 94.033,
+  "type": "pop",
+  "gain": 0.22
+ },
+ {
+  "t": 94.789,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 96.489,
+  "type": "click",
+  "gain": 0.4
+ },
+ {
+  "t": 97.969,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 97.969,
+  "type": "key",
+  "gain": 0.3
+ },
+ {
+  "t": 98.319,
+  "type": "key",
+  "gain": 0.3
+ },
+ {
+  "t": 98.669,
+  "type": "key",
+  "gain": 0.3
+ },
+ {
+  "t": 102.376,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 105.696,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 111.513,
+  "type": "blip",
+  "gain": 0.2
+ },
+ {
+  "t": 115.656,
+  "type": "whoosh",
+  "gain": 0.4
+ },
+ {
+  "t": 117.291,
+  "type": "blip",
+  "gain": 0.18
+ },
+ {
+  "t": 117.851,
+  "type": "blip",
+  "gain": 0.18
+ },
+ {
+  "t": 118.571,
+  "type": "blip",
+  "gain": 0.18
+ },
+ {
+  "t": 119.411,
+  "type": "blip",
+  "gain": 0.18
+ },
+ {
+  "t": 120.351,
+  "type": "blip",
+  "gain": 0.18
+ },
+ {
+  "t": 125.287,
+  "type": "click",
+  "gain": 0.5
+ }
+]
