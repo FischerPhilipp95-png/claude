@@ -114,3 +114,5 @@ Lüft-Tabelle
 = zusätzlich Mauerwerk
 = Heimeier
 ista
+ecoTEC
+Schnellentlüfter
