@@ -1,0 +1,1032 @@
+{
+ "seeds": [
+  "thermostatkopf wechseln",
+  "heizkörperthermostat wechseln",
+  "thermostat heizung austauschen",
+  "smart thermostat heizung montieren"
+ ],
+ "suggestions": [
+  [
+   "thermostatkopf wechseln danfoss",
+   26.0
+  ],
+  [
+   "heizkörperthermostat wechseln digital",
+   19.0
+  ],
+  [
+   "thermostatkopf wechseln heizung",
+   18.0
+  ],
+  [
+   "heizkörperthermostat wechseln tado",
+   18.0
+  ],
+  [
+   "cosmo thermostatkopf wechseln",
+   17.0
+  ],
+  [
+   "heizkörperthermostat wechseln smart",
+   17.0
+  ],
+  [
+   "zehnder thermostatkopf wechseln",
+   16.0
+  ],
+  [
+   "oventrop thermostatkopf wechseln",
+   15.0
+  ],
+  [
+   "heizkörperthermostat wechseln danfoss",
+   15.0
+  ],
+  [
+   "alten thermostatkopf wechseln",
+   14.0
+  ],
+  [
+   "vaillant thermostatkopf wechseln",
+   13.0
+  ],
+  [
+   "buderus thermostatkopf wechseln",
+   12.0
+  ],
+  [
+   "fritz heizkörperthermostat batterie wechseln",
+   10.0
+  ],
+  [
+   "heizung thermostat austauschen",
+   10.0
+  ],
+  [
+   "hama heizkörperthermostat batterie wechseln",
+   9.0
+  ],
+  [
+   "bosch heizkörperthermostat batterie wechseln",
+   8.0
+  ],
+  [
+   "homematic ip heizkörperthermostat batterie wechseln",
+   7.0
+  ]
+ ],
+ "topics": [
+  {
+   "phrase": "heizkörperthermostat wechseln danfoss",
+   "suggest_score": 15.0,
+   "top_views": [
+    2290683,
+    954859,
+    812211
+   ],
+   "demand": 812211,
+   "own": [],
+   "results": [
+    {
+     "id": "rOtok5s5TFg",
+     "views": 369927,
+     "channel": "Pduesp",
+     "duration": "397",
+     "title": "Thermostat an einem Heizkörper tauschen Danfoss RAW ersetzen Anleitung"
+    },
+    {
+     "id": "APtFBpPogVc",
+     "views": 167158,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "141",
+     "title": "Thermostakopf selber tauschen-einfache Anleitung"
+    },
+    {
+     "id": "goJqQ_xHT_Y",
+     "views": 108734,
+     "channel": "Serhat Heizung und Sanitär ",
+     "duration": "144",
+     "title": "Thermostat wechseln Heizung Danfoss"
+    },
+    {
+     "id": "W2UcApNqQdA",
+     "views": 954859,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "220",
+     "title": "Heizungsventil Danfoss RA VL deblockieren, Stopfbuchse wechseln, alles unter Druck"
+    },
+    {
+     "id": "7JE6Ap30DC4",
+     "views": 108424,
+     "channel": "Pduesp",
+     "duration": "492",
+     "title": "Danfoss RAW Thermostat an einem Heizkörper tauschen - AVM FRITZ!DECT 301 Thermostat-Kopf montieren"
+    },
+    {
+     "id": "wHTZaIlZFEY",
+     "views": 812211,
+     "channel": "TechIllusion",
+     "duration": "155",
+     "title": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt"
+    },
+    {
+     "id": "yfWGuhVLdpo",
+     "views": 2290683,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "390",
+     "title": "Heizungsventil Danfoss RA-N  deblockieren Stopfbuchse rausdrehen/Heizung kalt- Danfoss Valve unblock"
+    },
+    {
+     "id": "DLTYpGCrSM4",
+     "views": 13250,
+     "channel": "Danfoss Climate Solutions",
+     "duration": "20",
+     "title": "Installation of React™ RA click radiator thermostat"
+    }
+   ],
+   "potential": 6.8,
+   "questions": [],
+   "questions_from": "Heizungsventil Danfoss RA-N  deblockieren Stopfbuchse rausdrehen/Heizung kalt- Danfoss Valve unblock",
+   "season": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "peak": []
+  },
+  {
+   "phrase": "cosmo thermostatkopf wechseln",
+   "suggest_score": 17.0,
+   "top_views": [
+    812211,
+    567909,
+    443318
+   ],
+   "demand": 443318,
+   "own": [],
+   "results": [
+    {
+     "id": "qMBOjcvSMB0",
+     "views": 53074,
+     "channel": "Fenn3k",
+     "duration": "130",
+     "title": "Cosmo Thermostatkopf Heizungsventil demontieren"
+    },
+    {
+     "id": "aE2Di300Vtg",
+     "views": 567909,
+     "channel": "Mac Paverick",
+     "duration": "122",
+     "title": "Heizungsthermostat wechseln Heizkörperthermostat tauschen Heizung Thermostat abbauen & montieren"
+    },
+    {
+     "id": "wHTZaIlZFEY",
+     "views": 812211,
+     "channel": "TechIllusion",
+     "duration": "155",
+     "title": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt"
+    },
+    {
+     "id": "rOtok5s5TFg",
+     "views": 369927,
+     "channel": "Pduesp",
+     "duration": "397",
+     "title": "Thermostat an einem Heizkörper tauschen Danfoss RAW ersetzen Anleitung"
+    },
+    {
+     "id": "65Vs_3XVp-4",
+     "views": 443318,
+     "channel": "Energie Verbraucherzentrale NRW",
+     "duration": "103",
+     "title": "Do-it-yourself: Thermostat mit Bajonettverschluss tauschen"
+    },
+    {
+     "id": "TJwlPmSGtiY",
+     "views": 1822,
+     "channel": "Markokapito",
+     "duration": "151",
+     "title": "Welchen Heizkörperthermostat habe ich? Danfoss Thermostat in 2 Minuten austauschen."
+    },
+    {
+     "id": "kJajo0RuYkI",
+     "views": 242113,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "AMuCsfjNorw",
+     "views": 11667,
+     "channel": "Timbertime DIY",
+     "duration": "18",
+     "title": "Heizung Thermostat wechseln: so einfach geht‘s"
+    }
+   ],
+   "potential": 6.61,
+   "questions": [],
+   "questions_from": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt",
+   "season": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    3.8
+   ],
+   "peak": [
+    "Dez"
+   ]
+  },
+  {
+   "phrase": "alten thermostatkopf wechseln",
+   "suggest_score": 14.0,
+   "top_views": [
+    840154,
+    812211,
+    567909
+   ],
+   "demand": 567909,
+   "own": [],
+   "results": [
+    {
+     "id": "kJajo0RuYkI",
+     "views": 242113,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "wHTZaIlZFEY",
+     "views": 812211,
+     "channel": "TechIllusion",
+     "duration": "155",
+     "title": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt"
+    },
+    {
+     "id": "9BveMk_rkcc",
+     "views": 3904,
+     "channel": "Kai Santos",
+     "duration": "309",
+     "title": "Heizung kalt! Thermostatkopf wechseln 🔥 (Das musst du über das Behörden Modell wissen)"
+    },
+    {
+     "id": "8eGe5q5JN3E",
+     "views": 229881,
+     "channel": "Energie Verbraucherzentrale NRW",
+     "duration": "90",
+     "title": "Do-it-yourself: Thermostat mit Schelle tauschen"
+    },
+    {
+     "id": "aE2Di300Vtg",
+     "views": 567909,
+     "channel": "Mac Paverick",
+     "duration": "122",
+     "title": "Heizungsthermostat wechseln Heizkörperthermostat tauschen Heizung Thermostat abbauen & montieren"
+    },
+    {
+     "id": "EbRsJey4z5U",
+     "views": 78936,
+     "channel": "PraxisTipps",
+     "duration": "233",
+     "title": "Heizkörperthermostat wechseln incl. Herz Adapter (Heimeier M28/M30)"
+    },
+    {
+     "id": "0EuRW4vwFPo",
+     "views": 840154,
+     "channel": "Pduesp",
+     "duration": "278",
+     "title": "Thermostat an einem Heizkörper tauschen Heimeier Thermostat-Kopf Typ K weiß ersetzen Anleitung"
+    },
+    {
+     "id": "65Vs_3XVp-4",
+     "views": 443318,
+     "channel": "Energie Verbraucherzentrale NRW",
+     "duration": "103",
+     "title": "Do-it-yourself: Thermostat mit Bajonettverschluss tauschen"
+    }
+   ],
+   "potential": 6.56,
+   "questions": [],
+   "questions_from": "Thermostat an einem Heizkörper tauschen Heimeier Thermostat-Kopf Typ K weiß ersetzen Anleitung",
+   "season": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "peak": []
+  },
+  {
+   "phrase": "thermostatkopf wechseln heizung",
+   "suggest_score": 18.0,
+   "top_views": [
+    1062755,
+    522684,
+    340475
+   ],
+   "demand": 340475,
+   "own": [],
+   "results": [
+    {
+     "id": "yXb98EYD2R0",
+     "views": 6116,
+     "channel": "Jo Wo",
+     "duration": "1447",
+     "title": "Heizungsventil mit Thermostat wechseln"
+    },
+    {
+     "id": "jpUEFC7vjPg",
+     "views": 147415,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "775",
+     "title": "Heizungsventil tauschen/Danfoss Ventil montieren mit Thermostatkopf"
+    },
+    {
+     "id": "B4TXo6jipwo",
+     "views": 340475,
+     "channel": "Paul_Birnbaum",
+     "duration": "382",
+     "title": "Thermostat wechseln ausbauen und prüfen"
+    },
+    {
+     "id": "yTM_ccEL24A",
+     "views": 522684,
+     "channel": "MrHandwerk",
+     "duration": "481",
+     "title": "Heizung Thermostat Kopf Funktion & Wechsel / Hompage noch nicht Verfügbar"
+    },
+    {
+     "id": "12cYd6MOm0Y",
+     "views": 14046,
+     "channel": "TiBohne´s Garage",
+     "duration": "1491",
+     "title": "Altes Heizkörperventil tauschen gegen Elecktrisches"
+    },
+    {
+     "id": "SYDoxWVJbdE",
+     "views": 103959,
+     "channel": "ElektroM",
+     "duration": "2119",
+     "title": "Heizkreisverteiler und Thermostate RICHTIG verdrahten! ElektroM"
+    },
+    {
+     "id": "JFUVxnXdZjo",
+     "views": 1062755,
+     "channel": "TV Solution",
+     "duration": "566",
+     "title": "Heizung wird nicht warm? Heizkörper Durchfluss einstellen, Voreinstellbares  Thermostat-Ventil"
+    },
+    {
+     "id": "Bg5vVQ1zCHE",
+     "views": 33719,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "790",
+     "title": "Heizkörperventil wechseln/Heizkörper kalt#heizung#heizkörper"
+    }
+   ],
+   "potential": 6.53,
+   "season": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    4.5,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "peak": [
+    "Jun"
+   ]
+  },
+  {
+   "phrase": "vaillant thermostatkopf wechseln",
+   "suggest_score": 13.0,
+   "top_views": [
+    840154,
+    812211,
+    443318
+   ],
+   "demand": 443318,
+   "own": [],
+   "results": [
+    {
+     "id": "kJajo0RuYkI",
+     "views": 242113,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "0EuRW4vwFPo",
+     "views": 840154,
+     "channel": "Pduesp",
+     "duration": "278",
+     "title": "Thermostat an einem Heizkörper tauschen Heimeier Thermostat-Kopf Typ K weiß ersetzen Anleitung"
+    },
+    {
+     "id": "wHTZaIlZFEY",
+     "views": 812211,
+     "channel": "TechIllusion",
+     "duration": "155",
+     "title": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt"
+    },
+    {
+     "id": "bAgamALeegc",
+     "views": 18515,
+     "channel": "lovetechnik",
+     "duration": "163",
+     "title": "Erfahrungen mit Homematic IP Heizkörperthermostat + an Vaillant Heizungsventil anschließen Lösung"
+    },
+    {
+     "id": "65Vs_3XVp-4",
+     "views": 443318,
+     "channel": "Energie Verbraucherzentrale NRW",
+     "duration": "103",
+     "title": "Do-it-yourself: Thermostat mit Bajonettverschluss tauschen"
+    },
+    {
+     "id": "EbRsJey4z5U",
+     "views": 78936,
+     "channel": "PraxisTipps",
+     "duration": "233",
+     "title": "Heizkörperthermostat wechseln incl. Herz Adapter (Heimeier M28/M30)"
+    },
+    {
+     "id": "HALb_2My59E",
+     "views": 35989,
+     "channel": "i85: Heat Pumps & Controls",
+     "duration": "17",
+     "title": "Vaillant - How to change the batteries on the wireless SensoComort control #vaillant #heatpump"
+    },
+    {
+     "id": "AMuCsfjNorw",
+     "views": 11667,
+     "channel": "Timbertime DIY",
+     "duration": "18",
+     "title": "Heizung Thermostat wechseln: so einfach geht‘s"
+    }
+   ],
+   "potential": 6.38,
+   "season": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "peak": []
+  },
+  {
+   "phrase": "heizung thermostat austauschen",
+   "suggest_score": 10.0,
+   "top_views": [
+    1771662,
+    812211,
+    567909
+   ],
+   "demand": 567909,
+   "own": [],
+   "results": [
+    {
+     "id": "kJajo0RuYkI",
+     "views": 242113,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "wHTZaIlZFEY",
+     "views": 812211,
+     "channel": "TechIllusion",
+     "duration": "155",
+     "title": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt"
+    },
+    {
+     "id": "4EfV65C0FcU",
+     "views": 8190,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "190",
+     "title": "Heizungsthermostat wechseln | Heimeier-Thermostat defekt? 🛠️ Heizkörperregler einfach austauschen"
+    },
+    {
+     "id": "Y0trA4RzTZg",
+     "views": 462492,
+     "channel": "Made Able",
+     "duration": "325",
+     "title": "Raumthermostat für Fußbodenheizung + austauschen + anschließen"
+    },
+    {
+     "id": "DtE4PrRSqHI",
+     "views": 42524,
+     "channel": "ProblemLöserTV",
+     "duration": "263",
+     "title": "Heizungsthermostat Wechseln ✅ ULTIMATIVE ANLEITUNG: Wie Heizkörper Thermostat richtig Austauschen???"
+    },
+    {
+     "id": "AMuCsfjNorw",
+     "views": 11667,
+     "channel": "Timbertime DIY",
+     "duration": "18",
+     "title": "Heizung Thermostat wechseln: so einfach geht‘s"
+    },
+    {
+     "id": "aE2Di300Vtg",
+     "views": 567909,
+     "channel": "Mac Paverick",
+     "duration": "122",
+     "title": "Heizungsthermostat wechseln Heizkörperthermostat tauschen Heizung Thermostat abbauen & montieren"
+    },
+    {
+     "id": "xSMOJwNfwKo",
+     "views": 1771662,
+     "channel": "ProblemLöserTV",
+     "duration": "299",
+     "title": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+    }
+   ],
+   "potential": 6.33
+  },
+  {
+   "phrase": "heizkörperthermostat wechseln digital",
+   "suggest_score": 19.0,
+   "top_views": [
+    443318,
+    242113,
+    181115
+   ],
+   "demand": 181115,
+   "own": [],
+   "results": [
+    {
+     "id": "4EfV65C0FcU",
+     "views": 8190,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "190",
+     "title": "Heizungsthermostat wechseln | Heimeier-Thermostat defekt? 🛠️ Heizkörperregler einfach austauschen"
+    },
+    {
+     "id": "kJajo0RuYkI",
+     "views": 242113,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "o3hydO8SIog",
+     "views": 181115,
+     "channel": "Empfehlungsfuchs",
+     "duration": "415",
+     "title": "Digitales Thermostat anschließen und einstellen  - Heizkosten sparen 🔥"
+    },
+    {
+     "id": "QlaawtyOO7w",
+     "views": 30480,
+     "channel": "AddTronic GmbH",
+     "duration": "316",
+     "title": "Installations und Setup Video für die neuen Thermostate von IOIO HT 2000 /23 Neues Model"
+    },
+    {
+     "id": "aJ56EU6ZrTg",
+     "views": 10225,
+     "channel": "Viessmann Climate Solutions DE",
+     "duration": "145",
+     "title": "Viessmann ViCare Heizkörper Thermostat installieren & einrichten | Schritt-für-Schritt Anleitung"
+    },
+    {
+     "id": "7JE6Ap30DC4",
+     "views": 108424,
+     "channel": "Pduesp",
+     "duration": "492",
+     "title": "Danfoss RAW Thermostat an einem Heizkörper tauschen - AVM FRITZ!DECT 301 Thermostat-Kopf montieren"
+    },
+    {
+     "id": "K9gv8oZZR7o",
+     "views": 95288,
+     "channel": "DIVM® Deutsche Immobilien Versicherungsmakler GmbH",
+     "duration": "233",
+     "title": "Wie ich die Grundeinstellungen der digitalen Thermostate vornehme (eqiva Heizkörperthermostat)"
+    },
+    {
+     "id": "65Vs_3XVp-4",
+     "views": 443318,
+     "channel": "Energie Verbraucherzentrale NRW",
+     "duration": "103",
+     "title": "Do-it-yourself: Thermostat mit Bajonettverschluss tauschen"
+    }
+   ],
+   "potential": 6.26
+  },
+  {
+   "phrase": "zehnder thermostatkopf wechseln",
+   "suggest_score": 16.0,
+   "top_views": [
+    567909,
+    394482,
+    242113
+   ],
+   "demand": 242113,
+   "own": [],
+   "results": [
+    {
+     "id": "VGbOGlR-oJw",
+     "views": 17794,
+     "channel": "Zehnder",
+     "duration": "147",
+     "title": "Elektroheizpatrone wechseln"
+    },
+    {
+     "id": "kJajo0RuYkI",
+     "views": 242113,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "8eGe5q5JN3E",
+     "views": 229881,
+     "channel": "Energie Verbraucherzentrale NRW",
+     "duration": "90",
+     "title": "Do-it-yourself: Thermostat mit Schelle tauschen"
+    },
+    {
+     "id": "aE2Di300Vtg",
+     "views": 567909,
+     "channel": "Mac Paverick",
+     "duration": "122",
+     "title": "Heizungsthermostat wechseln Heizkörperthermostat tauschen Heizung Thermostat abbauen & montieren"
+    },
+    {
+     "id": "Diqr14nH4DA",
+     "views": 394482,
+     "channel": "Call SOS Elektro & Schlüsseldienst",
+     "duration": "139",
+     "title": "Heizungstechnik - Heizungsthermostat auswechseln"
+    },
+    {
+     "id": "HPtt29G8UAg",
+     "views": 120575,
+     "channel": "Zehnder",
+     "duration": "261",
+     "title": "Zehnder Design-Heizkörper: Einfache Montage mit Zehnder Vario"
+    },
+    {
+     "id": "Bg5vVQ1zCHE",
+     "views": 33719,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "790",
+     "title": "Heizkörperventil wechseln/Heizkörper kalt#heizung#heizkörper"
+    },
+    {
+     "id": "4xuBdHEc2i0",
+     "views": 56005,
+     "channel": "SonnenPerle",
+     "duration": "897",
+     "title": "DIY Heizkörper Austausch ohne Wasser ablassen | Für einen effizienten Wärmepumpenbetrieb"
+    }
+   ],
+   "potential": 6.25
+  },
+  {
+   "phrase": "buderus thermostatkopf wechseln",
+   "suggest_score": 12.0,
+   "top_views": [
+    812211,
+    567909,
+    369927
+   ],
+   "demand": 369927,
+   "own": [],
+   "results": [
+    {
+     "id": "DyU4t5NFu_U",
+     "views": 15487,
+     "channel": "1a- baubedarf",
+     "duration": "217",
+     "title": "Buderus BD-W0 80799200 www.1a-baubedarf.de Thermostatkopf wechseln"
+    },
+    {
+     "id": "kJajo0RuYkI",
+     "views": 242113,
+     "channel": "Alex Vlog",
+     "duration": "215",
+     "title": "Heizkörperthermostat wechseln - Schritt für Schritt Anleitung ☝️✅"
+    },
+    {
+     "id": "wHTZaIlZFEY",
+     "views": 812211,
+     "channel": "TechIllusion",
+     "duration": "155",
+     "title": "🔥Heizkörperthermostat Wechseln einfach erklärt! - Schritt für Schritt"
+    },
+    {
+     "id": "AMuCsfjNorw",
+     "views": 11667,
+     "channel": "Timbertime DIY",
+     "duration": "18",
+     "title": "Heizung Thermostat wechseln: so einfach geht‘s"
+    },
+    {
+     "id": "aE2Di300Vtg",
+     "views": 567909,
+     "channel": "Mac Paverick",
+     "duration": "122",
+     "title": "Heizungsthermostat wechseln Heizkörperthermostat tauschen Heizung Thermostat abbauen & montieren"
+    },
+    {
+     "id": "VfYRUeBibAA",
+     "views": 12518,
+     "channel": "Weg der Disziplin",
+     "duration": "84",
+     "title": "Heizkörper Thermostat von Buderus montieren.Einfach ."
+    },
+    {
+     "id": "_0uQ--cyP2g",
+     "views": 6287,
+     "channel": "Serhat Heizung und Sanitär ",
+     "duration": "257",
+     "title": "Alten Thermostatkopf entfernen & neuen montieren - So geht's!"
+    },
+    {
+     "id": "rOtok5s5TFg",
+     "views": 369927,
+     "channel": "Pduesp",
+     "duration": "397",
+     "title": "Thermostat an einem Heizkörper tauschen Danfoss RAW ersetzen Anleitung"
+    }
+   ],
+   "potential": 6.24
+  },
+  {
+   "phrase": "hama heizkörperthermostat batterie wechseln",
+   "suggest_score": 9.0,
+   "top_views": [
+    181115,
+    86008,
+    68115
+   ],
+   "demand": 68115,
+   "own": [],
+   "results": [
+    {
+     "id": "UnRMfoLTpJA",
+     "views": 45885,
+     "channel": "TOBI‘S TOOL TIME",
+     "duration": "138",
+     "title": "BATTERIE tauschen beim tado Heizkörperthermostat - ganz easy!"
+    },
+    {
+     "id": "KS0r3Dq76Hk",
+     "views": 49750,
+     "channel": "Testventure",
+     "duration": "583",
+     "title": "Hama smartes Heizkörperthermostat im Test ✅ Einrichtung & Montage | Hama Starter Set - Testventure"
+    },
+    {
+     "id": "htKD0y03e5c",
+     "views": 86008,
+     "channel": "TV Solution",
+     "duration": "1093",
+     "title": "Hama Smart Home Heizkörperthermostate - Unboxing, Montage & Einrichtung - Anleitung + Tipps, WLAN"
+    },
+    {
+     "id": "oUEEAj8oXSQ",
+     "views": 68115,
+     "channel": "tado°",
+     "duration": "184",
+     "title": "So ersetzen Sie die Batterien im Smarten Heizkörper Thermostat"
+    },
+    {
+     "id": "wUxHbmP8oVg",
+     "views": 1497,
+     "channel": "Ken Ct",
+     "duration": "95",
+     "title": "Hama Smart Home Heizkörperthermostate Bedienkomfort"
+    },
+    {
+     "id": "o3hydO8SIog",
+     "views": 181115,
+     "channel": "Empfehlungsfuchs",
+     "duration": "415",
+     "title": "Digitales Thermostat anschließen und einstellen  - Heizkosten sparen 🔥"
+    },
+    {
+     "id": "BgCnO3Vtwtc",
+     "views": 721,
+     "channel": "DEOS AG",
+     "duration": "355",
+     "title": "Unboxing: Heizkörperthermostat DEOS TEO"
+    },
+    {
+     "id": "rnpadOuh1yw",
+     "views": 7019,
+     "channel": "Kip Hakes",
+     "duration": "193",
+     "title": "How To Replace the Battery in a Tado Smart Radiator Thermostat"
+    }
+   ],
+   "potential": 5.27
+  },
+  {
+   "phrase": "fritz heizkörperthermostat batterie wechseln",
+   "suggest_score": 10.0,
+   "top_views": [
+    111749,
+    74099,
+    58365
+   ],
+   "demand": 58365,
+   "own": [],
+   "results": [
+    {
+     "id": "W7thhysynlk",
+     "views": 74099,
+     "channel": "Marcel Kmiec",
+     "duration": "238",
+     "title": "AVM DECT 301 Batterie wechseln"
+    },
+    {
+     "id": "lzzRxOmKPYU",
+     "views": 5428,
+     "channel": "Home Tech Gadgets",
+     "duration": "73",
+     "title": "FRITZ Dect 301 und FRITZ Thermo 302 ohne Batterien betreiben | Kurz und Knapp"
+    },
+    {
+     "id": "him9I8fLXo4",
+     "views": 18237,
+     "channel": "FRITZ!Box",
+     "duration": "224",
+     "title": "Akku-Lebensdauer verlängern durch smartes Laden | Frag FRITZ!"
+    },
+    {
+     "id": "ukdGKq7eaY8",
+     "views": 13012,
+     "channel": "Buddys Bastelbude",
+     "duration": "284",
+     "title": "Fritz!Dect 301 mit 1,5V Lithium Ionen Akku"
+    },
+    {
+     "id": "LwMsO3ALeTw",
+     "views": 111749,
+     "channel": "Testventure",
+     "duration": "490",
+     "title": "FRITZ DECT 302 im TEST - NEUES AVM Heizkörperthermostat im Review - Testventure - Deutsch"
+    },
+    {
+     "id": "32xU_XkbOhw",
+     "views": 57905,
+     "channel": "FRITZ!Box",
+     "duration": "442",
+     "title": "Optimal Heizen mit Vorlagen und FRITZ!DECT 301 | Frag FRITZ! 67"
+    },
+    {
+     "id": "igOnx3rg-Jk",
+     "views": 58365,
+     "channel": "knowaTEL",
+     "duration": "593",
+     "title": "AVM Fritz DECT 302 intelligenten Heizkörperregler mit Fritzbox verbinden und einrichten"
+    },
+    {
+     "id": "Z25caa2mOlw",
+     "views": 5665,
+     "channel": "byteborg",
+     "duration": "638",
+     "title": "AVM Fritz! DECT 301 Teardown & Reparatur"
+    }
+   ],
+   "potential": 5.24
+  },
+  {
+   "phrase": "oventrop thermostatkopf wechseln",
+   "suggest_score": 15.0,
+   "top_views": [
+    118265,
+    38714,
+    17663
+   ],
+   "demand": 17663,
+   "own": [],
+   "results": [
+    {
+     "id": "TF8d6zSLo3A",
+     "views": 16344,
+     "channel": "Andrej Bruno",
+     "duration": "297",
+     "title": "Heimeier  Thermostat-Kopf F mit Ferneinsteller mit eingebautem Fühler, Kapillarrohr 2 m"
+    },
+    {
+     "id": "udqQW_1UvxQ",
+     "views": 38714,
+     "channel": "Kreativ Lounge",
+     "duration": "309",
+     "title": "Oventrop Thermostat wechseln  - Ganz Einfach"
+    },
+    {
+     "id": "uYIwL51oZdw",
+     "views": 1987,
+     "channel": "Unser Singapur Abenteuer",
+     "duration": "107",
+     "title": "Demontage eines Fritz!DECT 302 Heizkörperregler und Montage eines Oventrop Thermostatventil"
+    },
+    {
+     "id": "b-URYRmPzmA",
+     "views": 7598,
+     "channel": "Han Schepers",
+     "duration": "200",
+     "title": "Oventrop Multiblock"
+    },
+    {
+     "id": "5KBhLcTeI3A",
+     "views": 17663,
+     "channel": "FACTOREM -  einfach selber machen!",
+     "duration": "938",
+     "title": "SMARTES HEIZKÖRPERTHERMOSTAT MONTIEREN | DIY | TUTORIAL | OVENTROP ADAPTER | HAMA | FACTOREM"
+    },
+    {
+     "id": "CIcThPenoWk",
+     "views": 11217,
+     "channel": "Han Schepers",
+     "duration": "152",
+     "title": "Oventrop Uni LH"
+    },
+    {
+     "id": "5ZZ_lWsZtCc",
+     "views": 118265,
+     "channel": "Bob der Baupfuscher",
+     "duration": "288",
+     "title": "Stopfbuchse Deblockieren Tausch Thermostatventil Packing gland replacement unter Druck Anleitung."
+    },
+    {
+     "id": "CZnRxup56xY",
+     "views": 5945,
+     "channel": "Runroller",
+     "duration": "159",
+     "title": "Oventrop Heizungs-Ventil M30 x 1,5 Zoll umbauen auf 1,0 Zoll"
+    }
+   ],
+   "potential": 4.88
+  },
+  {
+   "phrase": "thermostatkopf wechseln danfoss",
+   "suggest_score": 26.0,
+   "top_views": [],
+   "demand": 0,
+   "own": [],
+   "results": [],
+   "potential": 0.0
+  },
+  {
+   "phrase": "heizkörperthermostat wechseln tado",
+   "suggest_score": 18.0,
+   "top_views": [],
+   "demand": 0,
+   "own": [],
+   "results": [],
+   "potential": 0.0
+  },
+  {
+   "phrase": "heizkörperthermostat wechseln smart",
+   "suggest_score": 17.0,
+   "top_views": [],
+   "demand": 0,
+   "own": [],
+   "results": [],
+   "potential": 0.0
+  }
+ ]
+}
