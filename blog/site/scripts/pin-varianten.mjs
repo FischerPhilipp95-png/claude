@@ -7,11 +7,15 @@
 // Pinterest mag frische Bilder. Deshalb erscheinen die Varianten zeitversetzt im Feed: Variante 2 zwei Wochen nach dem
 // Artikel, Variante 3 nach vier Wochen, je Artikel um bis zu 13 Tage gestreut, damit nicht alles am selben Tag kommt.
 // Rechner bekommen einen eigenen Pin (/bilder/pins/rechner-<name>.jpg), gestreut über die erste Woche.
+// Auf Wunsch stehen alle Pins, die es am 05.10.2026 schon gab, seit diesem Tag im Feed (ALLE_AB). Für später erscheinende
+// Artikel gilt wieder der Zeitplan oben.
 
 export const ABSTAND_TAGE = 14;
 // Ab hier zählt der Zeitplan. Ältere Artikel starten so, als wären sie an diesem Tag erschienen.
 const START = Date.UTC(2026, 9, 2);
 const TAG = 86400000;
+// Alles, was bis hier erschienen ist, steht ab diesem Tag komplett im Feed.
+const ALLE_AB = Date.UTC(2026, 9, 5);
 
 const streu = (id, tage) => {
   let h = 0;
@@ -23,11 +27,12 @@ const streu = (id, tage) => {
 export function freigabe(id, pubDate, nr) {
   if (nr === 1) return new Date(pubDate);
   const basis = Math.max(new Date(pubDate).valueOf(), START);
-  return new Date(basis + ((nr - 1) * ABSTAND_TAGE + streu(id, ABSTAND_TAGE)) * TAG);
+  const geplant = basis + ((nr - 1) * ABSTAND_TAGE + streu(id, ABSTAND_TAGE)) * TAG;
+  return new Date(new Date(pubDate).valueOf() <= ALLE_AB ? Math.min(geplant, ALLE_AB) : geplant);
 }
 
 /** Ab wann der Pin eines Rechners im Feed steht. */
-export const rechnerFreigabe = (name) => new Date(START + streu(name, 7) * TAG);
+export const rechnerFreigabe = (name) => new Date(Math.min(START + streu(name, 7) * TAG, ALLE_AB));
 
 export const kuerzen = (s, max) => {
   if (s.length <= max) return s;

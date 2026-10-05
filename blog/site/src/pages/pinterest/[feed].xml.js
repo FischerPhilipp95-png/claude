@@ -2,7 +2,7 @@
 //   /pinterest/alle.xml      alle Artikel
 //   /pinterest/<thema>.xml   nur ein Thema, z. B. /pinterest/heizung.xml (für eine eigene Pinnwand)
 // Pro Artikel bis zu drei Pins mit eigenem Bild (scripts/pins.mjs, Texte und Zeitplan in scripts/pin-varianten.mjs):
-// Variante 1 sofort, Varianten 2 und 3 zeitversetzt. Was noch nicht dran ist, steht erst nach einem späteren Build im Feed.
+// Variante 1 sofort, Varianten 2 und 3 zeitversetzt (Link mit ?pin=2 bzw. ?pin=3). Was noch nicht dran ist, steht erst nach einem späteren Build im Feed.
 // Dazu je Rechner und je Checkliste zum Ausdrucken (src/checklisten.mjs) ein Pin im Feed seines Themas.
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
@@ -48,7 +48,8 @@ export async function GET(context) {
     for (const v of varianten(p.data, p.body ?? '')) {
       const datum = freigabe(p.id, p.data.pubDate, v.nr);
       if (datum > jetzt) continue;
-      items.push(eintrag({ titel: v.pinTitel, text: v.pinText, datum, link, guid: `${link}#pin-${v.nr}`, datei: `${p.id}-${v.nr}.jpg` }));
+      // Eigene Adresse je Variante: Pinterest überspringt im Feed Pins, deren Link schon einen Pin hat. Canonical bleibt die Artikel-Adresse.
+      items.push(eintrag({ titel: v.pinTitel, text: v.pinText, datum, link: `${link}?pin=${v.nr}`, guid: `${link}#pin-${v.nr}`, datei: `${p.id}-${v.nr}.jpg` }));
     }
   }
   for (const r of RECHNER) {
