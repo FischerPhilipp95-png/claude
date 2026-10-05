@@ -26,6 +26,7 @@ const FRAGEN: Record<string, { frage: string; hilfe?: string; optionen: Option[]
     frage: 'Was ist los mit deiner Heizung?',
     optionen: [
       { key: 'einer', icon: 'thermometer-snowflake', text: 'Ein Heizkörper wird nicht richtig warm', frage: 'einer' },
+      { key: 'nicht-kalt', icon: 'thermometer-sun', text: 'Ein Heizkörper wird nicht mehr kalt', ergebnis: 'ventilstift-offen' },
       { key: 'mehrere', icon: 'layers', text: 'Mehrere Heizkörper bleiben kalt', frage: 'mehrere' },
       { key: 'alle', icon: 'snowflake', text: 'Alle Heizkörper bleiben kalt', frage: 'alle' },
       { key: 'geraeusch', icon: 'audio-lines', text: 'Die Heizung gluckert, rauscht oder pfeift', frage: 'geraeusch' },
@@ -115,6 +116,7 @@ const A = {
   pumpe: ['/artikel/heizung-entlueften-pumpe-an-oder-aus/', 'Entlüften: Pumpe an oder aus?'],
   ohneSchluessel: ['/artikel/heizung-entlueften-ohne-schluessel/', 'Entlüften ohne Schlüssel'],
   nichtWarm: ['/artikel/heizkoerper-wird-nicht-warm/', 'Heizkörper wird nicht warm: 6 Ursachen'],
+  klemmt: ['/artikel/heizungsventil-klemmt/', 'Heizungsventil klemmt: Ventilstift lösen (mit Video)'],
   gluckert: ['/artikel/heizung-gluckert/', 'Heizung gluckert: 6 Ursachen'],
   nachfuellen: ['/artikel/heizung-wasser-nachfuellen/', 'Heizung Wasser nachfüllen und richtiger Druck'],
   abgleich: ['/artikel/hydraulischer-abgleich/', 'Hydraulischer Abgleich: Kosten und Förderung'],
@@ -145,12 +147,26 @@ const ERGEBNISSE: Record<string, Ergebnis> = {
     schritte: [
       'Thermostat auf Stufe 5 drehen und den Kopf abnehmen: Überwurfmutter lösen, meist von Hand, sonst vorsichtig mit einer kleinen Zange.',
       'Den Stift hineindrücken. Er sollte locker zurückfedern.',
-      'Klemmt er, mit einer Zange sachte hin und her bewegen, bis er wieder federt. Nicht daran ziehen, sonst kann die Dichtung undicht werden.',
+      'Klemmt er, ein paarmal hineindrücken oder mit einer Zange sachte hin und her bewegen, bis er wieder federt. Nie mit Kraft daran ziehen oder fest draufschlagen, sonst kann die Dichtung undicht werden.',
+      'Bewegt er sich gar nicht, muss ein Fachbetrieb das Ventiloberteil tauschen.',
       'Kopf auf Stufe 5 wieder aufsetzen und festdrehen.',
       'Vorbeugen: Im Sommer die Thermostate ab und zu auf- und zudrehen.',
     ],
-    miete: 'Kopf abnehmen und Stift gängig machen ist in der Regel unproblematisch.',
-    artikel: [A.nichtWarm], produkt: ['Kleine Wasserpumpenzange', 'Wasserpumpenzange klein'],
+    miete: 'Kopf abnehmen und Stift gängig machen ist in der Regel unproblematisch. Das Ventil selbst ist Sache des Vermieters.',
+    artikel: [A.klemmt, A.nichtWarm], produkt: ['Kleine Wasserpumpenzange', 'Wasserpumpenzange klein'],
+  },
+  'ventilstift-offen': {
+    titel: 'Der Ventilstift klemmt und hält das Ventil offen', stufe: 'selbst',
+    ursache: 'Wird ein Heizkörper nicht mehr kalt, obwohl das Thermostat auf 0 steht, steckt der Stift unter dem Thermostatkopf draußen fest. Dann bleibt das Ventil offen.',
+    schritte: [
+      'Thermostat auf Stufe 5 drehen und den Kopf abnehmen.',
+      'Den Stift ein paarmal hineindrücken, bis er wieder locker zurückfedert. Er steht normalerweise etwa 5 mm heraus.',
+      'Nie mit Kraft daran ziehen oder fest draufschlagen, sonst kann die Dichtung undicht werden.',
+      'Kopf auf Stufe 5 wieder aufsetzen, festdrehen, dann die gewünschte Stufe einstellen und prüfen, ob der Heizkörper kalt wird.',
+      'Bewegt sich der Stift gar nicht, muss ein Fachbetrieb das Ventiloberteil tauschen.',
+    ],
+    miete: 'Kopf abnehmen und Stift gängig machen ist in der Regel unproblematisch. Das Ventil selbst ist Sache des Vermieters.',
+    artikel: [A.klemmt],
   },
   thermostatkopf: {
     titel: 'Der Thermostatkopf ist defekt', stufe: 'selbst',
@@ -210,7 +226,7 @@ const ERGEBNISSE: Record<string, Ergebnis> = {
       'Lief beim Entlüften die Pumpe: noch einmal entlüften, diesmal mit ausgeschalteter Pumpe und 30 bis 60 Minuten Wartezeit.',
       'Danach den Druck prüfen. Beim Entlüften geht Wasser verloren.',
     ],
-    artikel: [A.nichtWarm, A.pumpe], produkt: ['Kleine Wasserpumpenzange', 'Wasserpumpenzange klein'],
+    artikel: [A.klemmt, A.pumpe], produkt: ['Kleine Wasserpumpenzange', 'Wasserpumpenzange klein'],
   },
   'druck-niedrig': {
     titel: 'Der Druck ist zu niedrig', stufe: 'teils',
@@ -409,7 +425,8 @@ function sammeln(id: string, praefix: string[], zeilen: Zeile[], tiefe = 0) {
 }
 for (const o of FRAGEN.start.optionen) {
   const zeilen: Zeile[] = [];
-  sammeln(o.frage!, [], zeilen);
+  if (o.ergebnis) zeilen.push({ anzeichen: o.text, e: ERGEBNISSE[o.ergebnis] });
+  else sammeln(o.frage!, [], zeilen);
   gruppen.push({ titel: o.text, zeilen });
 }
 ---
