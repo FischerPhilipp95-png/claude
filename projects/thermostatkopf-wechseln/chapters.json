@@ -1,0 +1,53 @@
+[
+ {
+  "ch": 0,
+  "title": null,
+  "lines": [
+   "c0_0",
+   "c0_1"
+  ]
+ },
+ {
+  "ch": 1,
+  "title": "Passt der neue Kopf?",
+  "lines": [
+   "c1_0",
+   "c1_1"
+  ]
+ },
+ {
+  "ch": 2,
+  "title": "Alten Kopf ab, Stift prüfen",
+  "lines": [
+   "c2_0",
+   "c2_1",
+   "c2_2"
+  ]
+ },
+ {
+  "ch": 3,
+  "title": "Neuen Kopf aufsetzen",
+  "lines": [
+   "c3_0",
+   "c3_1",
+   "c3_2"
+  ]
+ },
+ {
+  "ch": 4,
+  "title": "Einstellen und Mietwohnung",
+  "lines": [
+   "c4_0",
+   "c4_1",
+   "c4_2"
+  ]
+ },
+ {
+  "ch": 5,
+  "title": "Fazit",
+  "lines": [
+   "c5_0",
+   "c5_1"
+  ]
+ }
+]

@@ -49,4 +49,4 @@ Wie „Heizungsventil klemmt“ (vom Nutzer bestätigt):
 ## Format
 
 1920x1080, 60 fps, ca. 2:15. Short (1080x1920, ca. 20 s): **„Kommt beim Thermostat-Wechsel Wasser raus?“**
-(nein, das Thermostat sitzt außerhalb des Rohrsystems, Verbraucherzentrale).
+(nein, das Thermostat sitzt außerhalb des Rohrsystems, das Wasser bleibt in der Leitung; Verbraucherzentrale).

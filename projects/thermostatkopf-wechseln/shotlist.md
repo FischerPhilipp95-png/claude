@@ -38,6 +38,6 @@ Quellen:
 
 ## Short (1080x1920, ca. 20 s)
 
-„Kommt beim Thermostat-Wechsel Wasser raus?“ → „Nein. Der Kopf sitzt außerhalb des Rohrsystems, das Ventil bleibt zu.
-Auf fünf drehen, Mutter lösen, abziehen. Wasser kommt nur raus, wenn das Ventil selbst getauscht wird, und das macht der
-Fachbetrieb. Die ganze Anleitung im langen Video.“
+„Kommt beim Thermostat-Wechsel Wasser raus?“ → „Nein. Der Kopf sitzt außerhalb des Rohrsystems, das Wasser bleibt in der Leitung.
+Wasser kommt nur raus, wenn das Ventil selbst getauscht wird. Das macht der Fachbetrieb. Die ganze Anleitung im langen Video.“
+(Korrigiert: Ohne Kopf geht das Ventil auf, das Wasser bleibt aber im geschlossenen System.)
