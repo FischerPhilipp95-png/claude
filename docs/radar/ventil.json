@@ -1,0 +1,903 @@
+{
+ "seeds": [
+  "heizungsventil klemmt",
+  "thermostatventil klemmt",
+  "ventilstift gängig machen",
+  "heizung ventil hängt"
+ ],
+ "suggestions": [
+  [
+   "thermostatventil klemmt auto",
+   205.0
+  ],
+  [
+   "heizungsventil klemmt was tun",
+   188.0
+  ],
+  [
+   "heizungsventil klemmt heiß",
+   162.0
+  ],
+  [
+   "heizungsventil klemmt alte heizung",
+   28.0
+  ],
+  [
+   "heizungsventil klemmt danfoss",
+   25.0
+  ],
+  [
+   "thermostatventil klemmt danfoss",
+   18.0
+  ],
+  [
+   "heizungsventil klemmt fussbodenheizung",
+   17.0
+  ],
+  [
+   "thermostatventil klemmt heizung",
+   17.0
+  ],
+  [
+   "heizungsventil klemmt bodenheizung",
+   15.0
+  ],
+  [
+   "herz thermostatventil klemmt",
+   15.0
+  ],
+  [
+   "altes heizungsventil klemmt",
+   12.0
+  ],
+  [
+   "heizungsventil stift klemmt",
+   10.0
+  ],
+  [
+   "stift heizungsventil klemmt",
+   4.0
+  ]
+ ],
+ "topics": [
+  {
+   "phrase": "thermostatventil klemmt auto",
+   "suggest_score": 205.0,
+   "top_views": [
+    186615,
+    157166,
+    154559
+   ],
+   "demand": 154559,
+   "own": [],
+   "results": [
+    {
+     "id": "X0p3NHB6cIc",
+     "views": 9245,
+     "channel": "Autos und Autofahrer",
+     "duration": "326",
+     "title": "Defekte Thermostate: Anzeichen, Ursachen und Lösungen"
+    },
+    {
+     "id": "ZxhIZ7mKorY",
+     "views": 157166,
+     "channel": "Mein Autolexikon",
+     "duration": "164",
+     "title": "Konstruktion und Funktion von Thermostaten"
+    },
+    {
+     "id": "d4FhIzwUSZA",
+     "views": 14703,
+     "channel": "Motor Tuning Daniel",
+     "duration": "152",
+     "title": "Auto wird nicht warm"
+    },
+    {
+     "id": "KLp6OSGF2rg",
+     "views": 186615,
+     "channel": "Mac Paverick",
+     "duration": "230",
+     "title": "Auto Heizung wird nicht warm & funktioniert nicht richtig - Ursachen & Lösungen"
+    },
+    {
+     "id": "F8Tpwxgtb4A",
+     "views": 132344,
+     "channel": "TechIllusion",
+     "duration": "310",
+     "title": "🔥🛠️Heizkörper Thermostat Stift klemmt!🧐 WAS TUN?! 😱 Heizung wird nicht warm?! - Anleitung"
+    },
+    {
+     "id": "XcdKtVaPw3A",
+     "views": 154559,
+     "channel": "schrauba",
+     "duration": "1289",
+     "title": "Was passiert wenn das Thermostat defekt ist"
+    },
+    {
+     "id": "0GvqCVQFVbM",
+     "views": 212,
+     "channel": "Hausgeräte Kuscak Oliver ",
+     "duration": "464",
+     "title": "Defektes Thermostat am Auto: Viele wissen gar nicht das es schon defekt ist. Wie man das feststellt."
+    },
+    {
+     "id": "KFVD-0Mr_-s",
+     "views": 20791,
+     "channel": "GC-Dynamics",
+     "duration": "265",
+     "title": "Thermostat - Funktion und Mehr...?! Erklärt vom Kfz Meister"
+    }
+   ],
+   "potential": 15.83,
+   "questions": [
+    {
+     "text": "Habe bei meinen das thermostat gewechselt danach war die heizleistung da aber motor wird zu warm 110grad nun geht die Heizung wieder nicht, schonwieder das thermostat? Oder ist es einfach irgendwas anderes?",
+     "likes": 7
+    },
+    {
+     "text": "Mercedes Vito! Klimaanlage heizt nicht mehr , keine bzw kaum Warmluft! Gebläse von Stufe 1 bis Stufe 4 kein Unterschied, es tut sich sich nichts! Nur bei 5 geht Gebläse stark , bringt aber ganz wenig Warmluft! Kurzum , es ist echt sehr kalt im Auto! Was kann das sein?",
+     "likes": 1
+    },
+    {
+     "text": "Hallo Ich habe den Fall, dass die Heizung erst nach ca 50 km volle Heizungsstärke Davor wird es warm aber nicht so heiß wie es sein soll Woran kann es liegen?",
+     "likes": 1
+    },
+    {
+     "text": "Mein heizung bei peugeot 508sw 2011 fahrer seite warm beifahrer seite kalt was kan ich machen , warmentäuscher hab schon getauscht aber gleiche problem wieder ?",
+     "likes": 0
+    },
+    {
+     "text": "Hi, ich habe opel mokka diesel. Ich habe auch keine Heizung bei auto gehabt, dann habe ich gemerkt  Kühlwasser fast leer ist. Ist das normal das Kühlwasser weg ist?",
+     "likes": 0
+    }
+   ],
+   "questions_from": "Auto Heizung wird nicht warm & funktioniert nicht richtig - Ursachen & Lösungen",
+   "season": [
+    0,
+    4.2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "peak": [
+    "Feb"
+   ]
+  },
+  {
+   "phrase": "heizungsventil klemmt was tun",
+   "suggest_score": 188.0,
+   "top_views": [
+    1771502,
+    631318,
+    278367
+   ],
+   "demand": 278367,
+   "own": [],
+   "results": [
+    {
+     "id": "xSMOJwNfwKo",
+     "views": 1771502,
+     "channel": "ProblemLöserTV",
+     "duration": "299",
+     "title": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+    },
+    {
+     "id": "H_xYeeuCs-4",
+     "views": 278367,
+     "channel": "Empfehlungsfuchs",
+     "duration": "169",
+     "title": "Heizungsventil klemmt - Heizung wird nicht warm - einfache Anleitung! ♨️✅"
+    },
+    {
+     "id": "x7fqIzhf_Do",
+     "views": 204283,
+     "channel": "Martin Goldmann - Tipps",
+     "duration": "40",
+     "title": "Heizungsventil klemmt - gängig machen"
+    },
+    {
+     "id": "8XQWL40tFvo",
+     "views": 133479,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "288",
+     "title": "Heizungsventil klemmt: Stift federt nicht – Heizkörperventil gangbar machen 🛠️"
+    },
+    {
+     "id": "3v2u8bB3XEA",
+     "views": 227232,
+     "channel": "Basti HW",
+     "duration": "151",
+     "title": "Heizung wird nicht KALT? So behebst du das Problem einfach selbst"
+    },
+    {
+     "id": "zIKS_rL7B_U",
+     "views": 34565,
+     "channel": "TV Solution",
+     "duration": "131",
+     "title": "Die Heizung ist aus, bleibt aber heiß - die 2 häuftigsten Ursachen!"
+    },
+    {
+     "id": "F8Tpwxgtb4A",
+     "views": 132344,
+     "channel": "TechIllusion",
+     "duration": "310",
+     "title": "🔥🛠️Heizkörper Thermostat Stift klemmt!🧐 WAS TUN?! 😱 Heizung wird nicht warm?! - Anleitung"
+    },
+    {
+     "id": "tmPUBWnZKLw",
+     "views": 631318,
+     "channel": "Die ProfiAmatööre",
+     "duration": "325",
+     "title": "Heizungsventil wieder gangbar machen - Heizungsventil klemmt | Heizkörper reparieren | Thermostat 🔥✅"
+    }
+   ],
+   "potential": 15.68,
+   "questions": [],
+   "questions_from": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!",
+   "season": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "peak": []
+  },
+  {
+   "phrase": "heizungsventil klemmt heiß",
+   "suggest_score": 162.0,
+   "top_views": [
+    1771599,
+    797369,
+    631318
+   ],
+   "demand": 631318,
+   "own": [],
+   "results": [
+    {
+     "id": "3v2u8bB3XEA",
+     "views": 227232,
+     "channel": "Basti HW",
+     "duration": "151",
+     "title": "Heizung wird nicht KALT? So behebst du das Problem einfach selbst"
+    },
+    {
+     "id": "zIKS_rL7B_U",
+     "views": 34565,
+     "channel": "TV Solution",
+     "duration": "131",
+     "title": "Die Heizung ist aus, bleibt aber heiß - die 2 häuftigsten Ursachen!"
+    },
+    {
+     "id": "xSMOJwNfwKo",
+     "views": 1771599,
+     "channel": "ProblemLöserTV",
+     "duration": "299",
+     "title": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+    },
+    {
+     "id": "H_xYeeuCs-4",
+     "views": 278367,
+     "channel": "Empfehlungsfuchs",
+     "duration": "169",
+     "title": "Heizungsventil klemmt - Heizung wird nicht warm - einfache Anleitung! ♨️✅"
+    },
+    {
+     "id": "8XQWL40tFvo",
+     "views": 133479,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "288",
+     "title": "Heizungsventil klemmt: Stift federt nicht – Heizkörperventil gangbar machen 🛠️"
+    },
+    {
+     "id": "ChmY23tPT60",
+     "views": 797369,
+     "channel": "BeniTech - Der Allrounder",
+     "duration": "226",
+     "title": "Heizung \"BLEIBT WARM\" obwohl Thermostat zugedreht | Häufigste Ursache"
+    },
+    {
+     "id": "tmPUBWnZKLw",
+     "views": 631318,
+     "channel": "Die ProfiAmatööre",
+     "duration": "325",
+     "title": "Heizungsventil wieder gangbar machen - Heizungsventil klemmt | Heizkörper reparieren | Thermostat 🔥✅"
+    },
+    {
+     "id": "x7fqIzhf_Do",
+     "views": 204283,
+     "channel": "Martin Goldmann - Tipps",
+     "duration": "40",
+     "title": "Heizungsventil klemmt - gängig machen"
+    }
+   ],
+   "potential": 15.2,
+   "questions": [],
+   "questions_from": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!",
+   "season": [
+    0,
+    0,
+    0,
+    4.1,
+    0,
+    0,
+    4.1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "peak": [
+    "Apr",
+    "Jul"
+   ]
+  },
+  {
+   "phrase": "heizungsventil klemmt danfoss",
+   "suggest_score": 25.0,
+   "top_views": [
+    2290572,
+    1771599,
+    954792
+   ],
+   "demand": 954792,
+   "own": [],
+   "results": [
+    {
+     "id": "xSMOJwNfwKo",
+     "views": 1771599,
+     "channel": "ProblemLöserTV",
+     "duration": "299",
+     "title": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+    },
+    {
+     "id": "bkDX9xu79OQ",
+     "views": 143762,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "603",
+     "title": "Was passiert wenn man bei danfoss den Stift rauszieht unter druck?Danfoss Ventil reparieren#danfoss"
+    },
+    {
+     "id": "x7fqIzhf_Do",
+     "views": 204283,
+     "channel": "Martin Goldmann - Tipps",
+     "duration": "40",
+     "title": "Heizungsventil klemmt - gängig machen"
+    },
+    {
+     "id": "W2UcApNqQdA",
+     "views": 954792,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "220",
+     "title": "Heizungsventil Danfoss RA VL deblockieren, Stopfbuchse wechseln, alles unter Druck"
+    },
+    {
+     "id": "8XQWL40tFvo",
+     "views": 133479,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "288",
+     "title": "Heizungsventil klemmt: Stift federt nicht – Heizkörperventil gangbar machen 🛠️"
+    },
+    {
+     "id": "8zNOA6M683k",
+     "views": 64645,
+     "channel": "Mac Paverick",
+     "duration": "179",
+     "title": "Heizungsthermostat mit Stopper begrenzen Danfoss Heimeier Thermostat Heizung Begrenzung  einstellen"
+    },
+    {
+     "id": "yfWGuhVLdpo",
+     "views": 2290572,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "390",
+     "title": "Heizungsventil Danfoss RA-N  deblockieren Stopfbuchse rausdrehen/Heizung kalt- Danfoss Valve unblock"
+    },
+    {
+     "id": "ZC60TXsQsKE",
+     "views": 10989,
+     "channel": "WorkLifeEasy",
+     "duration": "89",
+     "title": "Heizung Kalt? Danfoss Thermostatventil Reparieren / Instandsetzen!"
+    }
+   ],
+   "potential": 7.47,
+   "season": [
+    0,
+    0,
+    0,
+    0,
+    4.5,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "peak": [
+    "Mai"
+   ]
+  },
+  {
+   "phrase": "heizungsventil klemmt alte heizung",
+   "suggest_score": 28.0,
+   "top_views": [
+    1771599,
+    631318,
+    278367
+   ],
+   "demand": 278367,
+   "own": [],
+   "results": [
+    {
+     "id": "xSMOJwNfwKo",
+     "views": 1771599,
+     "channel": "ProblemLöserTV",
+     "duration": "299",
+     "title": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+    },
+    {
+     "id": "zIKS_rL7B_U",
+     "views": 34565,
+     "channel": "TV Solution",
+     "duration": "131",
+     "title": "Die Heizung ist aus, bleibt aber heiß - die 2 häuftigsten Ursachen!"
+    },
+    {
+     "id": "x7fqIzhf_Do",
+     "views": 204283,
+     "channel": "Martin Goldmann - Tipps",
+     "duration": "40",
+     "title": "Heizungsventil klemmt - gängig machen"
+    },
+    {
+     "id": "8XQWL40tFvo",
+     "views": 133479,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "288",
+     "title": "Heizungsventil klemmt: Stift federt nicht – Heizkörperventil gangbar machen 🛠️"
+    },
+    {
+     "id": "3v2u8bB3XEA",
+     "views": 227232,
+     "channel": "Basti HW",
+     "duration": "151",
+     "title": "Heizung wird nicht KALT? So behebst du das Problem einfach selbst"
+    },
+    {
+     "id": "H_xYeeuCs-4",
+     "views": 278367,
+     "channel": "Empfehlungsfuchs",
+     "duration": "169",
+     "title": "Heizungsventil klemmt - Heizung wird nicht warm - einfache Anleitung! ♨️✅"
+    },
+    {
+     "id": "tmPUBWnZKLw",
+     "views": 631318,
+     "channel": "Die ProfiAmatööre",
+     "duration": "325",
+     "title": "Heizungsventil wieder gangbar machen - Heizungsventil klemmt | Heizkörper reparieren | Thermostat 🔥✅"
+    },
+    {
+     "id": "D1PErRhUD74",
+     "views": 84448,
+     "channel": "FACTOREM -  einfach selber machen!",
+     "duration": "453",
+     "title": "Heizung kalt trotz Aufdrehen? Das ist meist der Grund! FACTOREM"
+    }
+   ],
+   "potential": 6.97,
+   "season": [
+    0,
+    0,
+    0,
+    4.1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    3.2,
+    0,
+    0
+   ],
+   "peak": [
+    "Apr",
+    "Okt"
+   ]
+  },
+  {
+   "phrase": "heizungsventil klemmt fussbodenheizung",
+   "suggest_score": 17.0,
+   "top_views": [
+    1771599,
+    339600,
+    321107
+   ],
+   "demand": 321107,
+   "own": [],
+   "results": [
+    {
+     "id": "HX8BwUaGM4Q",
+     "views": 162499,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "856",
+     "title": "Bodenheizung reparieren/kein Durchfluss"
+    },
+    {
+     "id": "xSMOJwNfwKo",
+     "views": 1771599,
+     "channel": "ProblemLöserTV",
+     "duration": "299",
+     "title": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+    },
+    {
+     "id": "HnUva32NWH0",
+     "views": 339600,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "679",
+     "title": "Bodenheizung zu warm/Ventile schliessen nicht"
+    },
+    {
+     "id": "x7fqIzhf_Do",
+     "views": 204283,
+     "channel": "Martin Goldmann - Tipps",
+     "duration": "40",
+     "title": "Heizungsventil klemmt - gängig machen"
+    },
+    {
+     "id": "cLyXzZqObD8",
+     "views": 248781,
+     "channel": "Bastel Fix",
+     "duration": "91",
+     "title": "Fußbodenheizung Heizkreis bleibt kalt, obwohl der Stellantrieb funktioniert"
+    },
+    {
+     "id": "8XQWL40tFvo",
+     "views": 133479,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "288",
+     "title": "Heizungsventil klemmt: Stift federt nicht – Heizkörperventil gangbar machen 🛠️"
+    },
+    {
+     "id": "ugPnWjexQF4",
+     "views": 321107,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "876",
+     "title": "Fussbodenheizung reparieren/einstellen#bodenheizungreparatur"
+    },
+    {
+     "id": "A_PWKwTWX-k",
+     "views": 264,
+     "channel": "HeizungsbauNet",
+     "duration": "70",
+     "title": "Heizungsventil klemmt | So bekommst Du den Heizkörper wieder warm"
+    }
+   ],
+   "potential": 6.44
+  },
+  {
+   "phrase": "altes heizungsventil klemmt",
+   "suggest_score": 12.0,
+   "top_views": [
+    1771599,
+    631318,
+    443297
+   ],
+   "demand": 443297,
+   "own": [],
+   "results": [
+    {
+     "id": "xSMOJwNfwKo",
+     "views": 1771599,
+     "channel": "ProblemLöserTV",
+     "duration": "299",
+     "title": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+    },
+    {
+     "id": "x7fqIzhf_Do",
+     "views": 204283,
+     "channel": "Martin Goldmann - Tipps",
+     "duration": "40",
+     "title": "Heizungsventil klemmt - gängig machen"
+    },
+    {
+     "id": "H_xYeeuCs-4",
+     "views": 278367,
+     "channel": "Empfehlungsfuchs",
+     "duration": "169",
+     "title": "Heizungsventil klemmt - Heizung wird nicht warm - einfache Anleitung! ♨️✅"
+    },
+    {
+     "id": "8XQWL40tFvo",
+     "views": 133480,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "288",
+     "title": "Heizungsventil klemmt: Stift federt nicht – Heizkörperventil gangbar machen 🛠️"
+    },
+    {
+     "id": "uRNMhbaou8M",
+     "views": 1372,
+     "channel": "NeonWanderer",
+     "duration": "82",
+     "title": "Altes Heizungsventil klemmt? so bekommst du es wieder zum laufen."
+    },
+    {
+     "id": "3v2u8bB3XEA",
+     "views": 227232,
+     "channel": "Basti HW",
+     "duration": "151",
+     "title": "Heizung wird nicht KALT? So behebst du das Problem einfach selbst"
+    },
+    {
+     "id": "tmPUBWnZKLw",
+     "views": 631318,
+     "channel": "Die ProfiAmatööre",
+     "duration": "325",
+     "title": "Heizungsventil wieder gangbar machen - Heizungsventil klemmt | Heizkörper reparieren | Thermostat 🔥✅"
+    },
+    {
+     "id": "65Vs_3XVp-4",
+     "views": 443297,
+     "channel": "Energie Verbraucherzentrale NRW",
+     "duration": "103",
+     "title": "Do-it-yourself: Thermostat mit Bajonettverschluss tauschen"
+    }
+   ],
+   "potential": 6.32
+  },
+  {
+   "phrase": "thermostatventil klemmt heizung",
+   "suggest_score": 17.0,
+   "top_views": [
+    1771599,
+    278367,
+    227232
+   ],
+   "demand": 227232,
+   "own": [],
+   "results": [
+    {
+     "id": "xSMOJwNfwKo",
+     "views": 1771599,
+     "channel": "ProblemLöserTV",
+     "duration": "299",
+     "title": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+    },
+    {
+     "id": "H_xYeeuCs-4",
+     "views": 278367,
+     "channel": "Empfehlungsfuchs",
+     "duration": "169",
+     "title": "Heizungsventil klemmt - Heizung wird nicht warm - einfache Anleitung! ♨️✅"
+    },
+    {
+     "id": "3v2u8bB3XEA",
+     "views": 227232,
+     "channel": "Basti HW",
+     "duration": "151",
+     "title": "Heizung wird nicht KALT? So behebst du das Problem einfach selbst"
+    },
+    {
+     "id": "8XQWL40tFvo",
+     "views": 133479,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "288",
+     "title": "Heizungsventil klemmt: Stift federt nicht – Heizkörperventil gangbar machen 🛠️"
+    },
+    {
+     "id": "zIKS_rL7B_U",
+     "views": 34565,
+     "channel": "TV Solution",
+     "duration": "131",
+     "title": "Die Heizung ist aus, bleibt aber heiß - die 2 häuftigsten Ursachen!"
+    },
+    {
+     "id": "F8Tpwxgtb4A",
+     "views": 132344,
+     "channel": "TechIllusion",
+     "duration": "310",
+     "title": "🔥🛠️Heizkörper Thermostat Stift klemmt!🧐 WAS TUN?! 😱 Heizung wird nicht warm?! - Anleitung"
+    },
+    {
+     "id": "x7fqIzhf_Do",
+     "views": 204283,
+     "channel": "Martin Goldmann - Tipps",
+     "duration": "40",
+     "title": "Heizungsventil klemmt - gängig machen"
+    },
+    {
+     "id": "rA0P9PZ9424",
+     "views": 160511,
+     "channel": "TV Solution",
+     "duration": "608",
+     "title": "Ventil-Einsatz am Heizkörper tauschen - Verständlich erklärt, Anleitung, Tipps & Info"
+    }
+   ],
+   "potential": 6.27
+  },
+  {
+   "phrase": "heizungsventil klemmt bodenheizung",
+   "suggest_score": 15.0,
+   "top_views": [
+    1771599,
+    321107,
+    248781
+   ],
+   "demand": 248781,
+   "own": [],
+   "results": [
+    {
+     "id": "HX8BwUaGM4Q",
+     "views": 162499,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "856",
+     "title": "Bodenheizung reparieren/kein Durchfluss"
+    },
+    {
+     "id": "cLyXzZqObD8",
+     "views": 248781,
+     "channel": "Bastel Fix",
+     "duration": "91",
+     "title": "Fußbodenheizung Heizkreis bleibt kalt, obwohl der Stellantrieb funktioniert"
+    },
+    {
+     "id": "x7fqIzhf_Do",
+     "views": 204283,
+     "channel": "Martin Goldmann - Tipps",
+     "duration": "40",
+     "title": "Heizungsventil klemmt - gängig machen"
+    },
+    {
+     "id": "xSMOJwNfwKo",
+     "views": 1771599,
+     "channel": "ProblemLöserTV",
+     "duration": "299",
+     "title": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+    },
+    {
+     "id": "zIKS_rL7B_U",
+     "views": 34565,
+     "channel": "TV Solution",
+     "duration": "131",
+     "title": "Die Heizung ist aus, bleibt aber heiß - die 2 häuftigsten Ursachen!"
+    },
+    {
+     "id": "8XQWL40tFvo",
+     "views": 133479,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "288",
+     "title": "Heizungsventil klemmt: Stift federt nicht – Heizkörperventil gangbar machen 🛠️"
+    },
+    {
+     "id": "ugPnWjexQF4",
+     "views": 321107,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "876",
+     "title": "Fussbodenheizung reparieren/einstellen#bodenheizungreparatur"
+    },
+    {
+     "id": "zh-F8LYqz4Y",
+     "views": 22642,
+     "channel": "Warmup GmbH",
+     "duration": "47",
+     "title": "Warmup QuickTipp - Fühler Widerstand messen mit Multimeter"
+    }
+   ],
+   "potential": 6.21
+  },
+  {
+   "phrase": "heizungsventil stift klemmt",
+   "suggest_score": 10.0,
+   "top_views": [
+    1771599,
+    278367,
+    227232
+   ],
+   "demand": 227232,
+   "own": [],
+   "results": [
+    {
+     "id": "F8Tpwxgtb4A",
+     "views": 132344,
+     "channel": "TechIllusion",
+     "duration": "310",
+     "title": "🔥🛠️Heizkörper Thermostat Stift klemmt!🧐 WAS TUN?! 😱 Heizung wird nicht warm?! - Anleitung"
+    },
+    {
+     "id": "xSMOJwNfwKo",
+     "views": 1771599,
+     "channel": "ProblemLöserTV",
+     "duration": "299",
+     "title": "Heizungsventil klemmt? ✅ ULTIMATIVE ANLEITUNG: Heizkörper wird nicht warm? 👉 Heizung reparieren!!!"
+    },
+    {
+     "id": "H_xYeeuCs-4",
+     "views": 278367,
+     "channel": "Empfehlungsfuchs",
+     "duration": "169",
+     "title": "Heizungsventil klemmt - Heizung wird nicht warm - einfache Anleitung! ♨️✅"
+    },
+    {
+     "id": "8XQWL40tFvo",
+     "views": 133480,
+     "channel": "Marcel | DIY & Heimwerken",
+     "duration": "288",
+     "title": "Heizungsventil klemmt: Stift federt nicht – Heizkörperventil gangbar machen 🛠️"
+    },
+    {
+     "id": "3v2u8bB3XEA",
+     "views": 227232,
+     "channel": "Basti HW",
+     "duration": "151",
+     "title": "Heizung wird nicht KALT? So behebst du das Problem einfach selbst"
+    },
+    {
+     "id": "zIKS_rL7B_U",
+     "views": 34565,
+     "channel": "TV Solution",
+     "duration": "131",
+     "title": "Die Heizung ist aus, bleibt aber heiß - die 2 häuftigsten Ursachen!"
+    },
+    {
+     "id": "x7fqIzhf_Do",
+     "views": 204283,
+     "channel": "Martin Goldmann - Tipps",
+     "duration": "40",
+     "title": "Heizungsventil klemmt - gängig machen"
+    },
+    {
+     "id": "bkDX9xu79OQ",
+     "views": 143762,
+     "channel": "Antonio Heizung und Sanitär Tipps",
+     "duration": "603",
+     "title": "Was passiert wenn man bei danfoss den Stift rauszieht unter druck?Danfoss Ventil reparieren#danfoss"
+    }
+   ],
+   "potential": 5.89
+  },
+  {
+   "phrase": "thermostatventil klemmt danfoss",
+   "suggest_score": 18.0,
+   "top_views": [],
+   "demand": 0,
+   "own": [],
+   "results": [],
+   "potential": 0.0
+  },
+  {
+   "phrase": "herz thermostatventil klemmt",
+   "suggest_score": 15.0,
+   "top_views": [],
+   "demand": 0,
+   "own": [],
+   "results": [],
+   "potential": 0.0
+  },
+  {
+   "phrase": "stift heizungsventil klemmt",
+   "suggest_score": 4.0,
+   "top_views": [],
+   "demand": 0,
+   "own": [],
+   "results": [],
+   "potential": 0.0
+  }
+ ]
+}
