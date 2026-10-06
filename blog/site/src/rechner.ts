@@ -9,6 +9,7 @@ export const RECHNER = [
   { href: '/rechner/standby/', icon: 'power', farbe: '#ffd400', thema: 'Strom', titel: 'Stand-by-Rechner', text: 'Was kosten deine Geräte im Stand-by, und was spart eine Leiste mit Schalter?' },
   { href: '/rechner/duschkosten/', icon: 'shower-head', farbe: '#39a8ff', thema: 'Wasser', titel: 'Duschkosten-Rechner', text: 'Was kostet eine Dusche, und wie viel spart ein Sparduschkopf?' },
   { href: '/rechner/tropfender-wasserhahn/', icon: 'droplet', farbe: '#39a8ff', thema: 'Wasser', titel: 'Tropfender Wasserhahn', text: 'Wie viel Wasser und Geld geht im Jahr verloren?' },
+  { href: '/rechner/feuchte-diagnose/', icon: 'cloud-drizzle', farbe: '#03b84c', thema: 'Klima', titel: 'Feuchte-Diagnose', text: 'Fenster beschlagen, Schimmel, muffige Luft? Bis zu drei Fragen, dann weißt du, woran es liegt und was du selbst tun kannst.' },
   { href: '/rechner/taupunkt/', icon: 'droplets', farbe: '#03b84c', thema: 'Klima', titel: 'Taupunkt- und Schimmel-Rechner', text: 'Ab welcher Wandtemperatur wird es nass? Taupunkt und Schimmelgrenze aus Temperatur und Luftfeuchtigkeit.' },
   { href: '/rechner/duebel/', icon: 'brick-wall', farbe: '#12b5a5', thema: 'Werkzeug', titel: 'Dübel-Finder', text: 'Welcher Dübel für Beton, Ziegel, Porenbeton oder Rigips? Wand und Gewicht wählen, fertig.' },
 ];

@@ -107,12 +107,15 @@ YouTube lädt erst nach Klick (`src/components/YouTube.astro`, Datenschutzerklä
 `/rechner/duebel/`: Wand (6 Arten) und Gewicht (4 Klassen) wählen, Empfehlung mit Größe, Bohrhinweis und Amazon-Suchlink.
 Die Tabelle steht in `src/pages/rechner/duebel.astro` (Richtwerte nach Herstellerangaben, die Packung hat Vorrang).
 
-## Heizungs-Diagnose
+## Diagnosen (Heizung, Feuchte)
 
-`/rechner/heizung-diagnose/` (`src/pages/rechner/heizung-diagnose.astro`): Fragen und Ergebnisse stehen als Daten oben in der Datei
-(`FRAGEN`, `ERGEBNISSE`). Jede Aussage stammt aus einem Heizungsartikel, neue Ursachen erst dort mit Quelle belegen. Der Build bricht ab,
-wenn eine Antwort ins Leere führt oder ein Ergebnis nicht erreichbar ist. Der gewählte Weg steht im #-Teil (`#pfad=einer.ganz-kalt.nein`),
-so lässt sich jedes Ergebnis direkt verlinken. Die Übersichtstabelle unten auf der Seite entsteht aus denselben Daten.
+`/rechner/heizung-diagnose/` und `/rechner/feuchte-diagnose/`: Fragen führen Schritt für Schritt zu einer Ursache. Gemeinsamer Baustein
+(gleich auf allen Seiten): `src/diagnose.ts` (Regeln, Prüfung, Übersicht), `components/Diagnose.astro`, `components/DiagnoseUebersicht.astro`.
+Die Daten stehen je Diagnose in `src/diagnosen/<name>.ts`. Jede Aussage stammt aus einem Artikel der Seite, neue Ursachen erst dort mit
+Quelle belegen. Der Build bricht ab, wenn eine Antwort ins Leere führt oder ein Ergebnis nicht erreichbar ist. Der gewählte Weg steht im
+#-Teil (`#pfad=einer.ganz-kalt.nein`), so lässt sich jedes Ergebnis direkt verlinken.
+
+Neue Diagnose: Datei in `src/diagnosen/` anlegen, Seite unter `src/pages/rechner/` wie `feuchte-diagnose.astro`, Eintrag in `src/rechner.ts`.
 
 ## Checklisten zum Ausdrucken
 

@@ -116,3 +116,5 @@ Lüft-Tabelle
 ista
 ecoTEC
 Schnellentlüfter
+aroundhome
+Flamco

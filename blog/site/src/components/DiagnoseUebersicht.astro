@@ -1,0 +1,15 @@
+---
+// Übersicht aller Wege einer Diagnose als Tabellen: für alle ohne JavaScript und für die Suche.
+import { type Diagnose, stufe, uebersicht } from '../diagnose';
+interface Props { d: Diagnose }
+const { d } = Astro.props;
+---
+{uebersicht(d).map((g) => (
+  <>
+    <h3>{g.titel}</h3>
+    <table class="diag-tabelle">
+      <thead><tr><th scope="col">Anzeichen</th><th scope="col">Ursache und wer sie behebt</th></tr></thead>
+      <tbody>{g.zeilen.map((z) => <tr><td>{z.anzeichen}</td><td><a href={z.e.artikel[0][0]}>{z.e.titel}</a><span class="diag-wer">{stufe(d, z.e.stufe).kurz}</span></td></tr>)}</tbody>
+    </table>
+  </>
+))}

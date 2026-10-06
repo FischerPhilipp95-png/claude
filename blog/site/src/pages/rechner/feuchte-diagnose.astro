@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import Diagnose from '../../components/Diagnose.astro';
+import DiagnoseUebersicht from '../../components/DiagnoseUebersicht.astro';
+import VideoBox from '../../components/VideoBox.astro';
+import { SITE } from '../../site';
+import { FEUCHTE } from '../../diagnosen/feuchte';
+import { videoFuerSeite, videoSchema } from '../../videos';
+
+const title = 'Feuchte-Diagnose: Fenster nass, Schimmel, muffige Luft? Ursache finden';
+const description = 'Fenster beschlagen, Schimmel in der Ecke oder muffige Luft? In bis zu drei Fragen zur Ursache: was du selbst tun kannst und wann der Fachbetrieb ran muss.';
+const video = videoFuerSeite('/rechner/feuchte-diagnose/');
+const jsonLd: object[] = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Feuchte-Diagnose',
+  url: `${SITE.url}/rechner/feuchte-diagnose/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+const vSchema = video && videoSchema(video, description);
+if (vSchema) jsonLd.push(vSchema);
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Raumklima" style="--akzent:#03b84c">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Feuchte-Diagnose</nav>
+    <h1>{title}</h1>
+    <p class="lead">Beschlagene Fenster, schwarze Flecken in der Ecke oder ein muffiger Geruch haben fast immer mit Feuchtigkeit zu tun.
+    Beantworte bis zu drei kurze Fragen. Dann siehst du die wahrscheinliche Ursache, was du selbst tun kannst und wann der Fachbetrieb ran muss.</p>
+
+    <Diagnose d={FEUCHTE} label="Feuchte-Diagnose" />
+
+    {video && <VideoBox video={video} />}
+
+    <h2>Alle Anzeichen und Ursachen auf einen Blick</h2>
+    <p>Die Diagnose fragt nach diesen Anzeichen. Hier stehen alle Wege mit der wahrscheinlichen Ursache und wer sie beheben kann.</p>
+    <DiagnoseUebersicht d={FEUCHTE} />
+
+    <h2>Die drei wichtigsten Regeln gegen Feuchtigkeit</h2>
+    <ol>
+      <li><strong>Stoßlüften statt kippen:</strong> 3- bis 4-mal am Tag Fenster ganz auf, im Winter je 3 bis 5 Minuten. Ein gekipptes
+      Fenster tauscht kaum Luft aus, kühlt aber die Wand drumherum aus.</li>
+      <li><strong>Nicht auskühlen lassen:</strong> Wohn- und Schlafräume mindestens 16 bis 18 °C. Kalte Wände sind Schimmelfallen.</li>
+      <li><strong>Messen:</strong> Ein Hygrometer zeigt, ob du genug lüftest. 40 bis 60 % sind ideal, dauerhaft mehr als 65 bis 70 % ist zu viel.</li>
+    </ol>
+    <p>Ab welcher Wandtemperatur es bei deiner Luftfeuchtigkeit kritisch wird, rechnest du mit dem <a href="/rechner/taupunkt/">Taupunkt-Rechner</a> aus.</p>
+
+    <h2>Häufige Fragen</h2>
+    <h3>Warum beschlagen die Fenster innen?</h3>
+    <p>Weil die Luft im Raum zu feucht für die kalte Scheibe ist. Der Wasserdampf kondensiert am kältesten Punkt, und das ist im Winter
+    oft das Glas. Defekte Fenster sind nur selten schuld.</p>
+    <h3>Welche Luftfeuchtigkeit ist in der Wohnung richtig?</h3>
+    <p>Etwa 40 bis 60 %. Das Umweltbundesamt nennt 65 bis 70 % als Obergrenze für den Dauerwert. Direkt an der Wand über 80 % droht
+    Schimmel. Alle Richtwerte: <a href="/artikel/luftfeuchtigkeit-wohnung/">Luftfeuchtigkeit in der Wohnung</a>.</p>
+    <h3>Ab welcher Größe darf ich Schimmel nicht mehr selbst entfernen?</h3>
+    <p>Als Orientierung gilt etwa 0,5 m², oder wenn der Schimmel tief im Material sitzt. Dann gehört die Sanierung zum Fachbetrieb.</p>
+    <h3>Hilft ein Luftentfeuchter gegen Schimmel?</h3>
+    <p>Er senkt die Luftfeuchtigkeit und beugt so vor. Vorhandenen Schimmel entfernt er nicht, und die Ursache muss geklärt werden.
+    Zuerst lüften, der Entfeuchter hilft, wenn Lüften allein nicht reicht.</p>
+
+    <p class="small">Die Diagnose fasst die Raumklima-Anleitungen dieser Website zusammen. Die Quellen (u. a. Umweltbundesamt und
+    Verbraucherzentrale) stehen jeweils in den verlinkten Artikeln. Sie ersetzt keinen Fachbetrieb. Mit * markierte Links sind
+    Affiliate-Links: Kaufst du darüber ein, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.
+    <a href="/werbung/">Mehr dazu</a></p>
+  </div>
+</Base>

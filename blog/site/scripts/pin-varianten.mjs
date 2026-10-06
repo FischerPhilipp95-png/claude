@@ -51,7 +51,8 @@ const sauber = (s) => s
 function frage(body) {
   const teil = body.split(/^## Häufige Fragen\s*$/m)[1];
   if (!teil) return null;
-  const m = teil.match(/^### (.+\?)[ \t]*\n([\s\S]*?)(?=\n[ \t]*\n|\n#|$)/m);
+  // Antwort bis zur nächsten Leerzeile oder Überschrift. Nicht „$“: Mit /m endet das schon nach der ersten Zeile.
+  const m = teil.match(/^### (.+\?)[ \t]*\n([\s\S]*?)(?=\n[ \t]*\n|\n#|(?![\s\S]))/m);
   if (!m) return null;
   return { frage: sauber(m[1]), antwort: sauber(m[2]) };
 }

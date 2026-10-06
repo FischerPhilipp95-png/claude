@@ -1,0 +1,128 @@
+---
+// Diagnose-Werkzeug: Fragen als große Auswahlfelder, darunter das Ergebnis. Daten und Regeln in src/diagnose.ts.
+// Ohne JavaScript bleibt nur die erste Frage sichtbar, deshalb gehört DiagnoseUebersicht.astro immer mit auf die Seite.
+import Icon from './Icon.astro';
+import RechnerTeilen from './RechnerTeilen.astro';
+import { amazonSearch } from '../site';
+import { type Diagnose, pruefen, stufe, wege } from '../diagnose';
+interface Props { d: Diagnose; label: string }
+const { d, label } = Astro.props;
+pruefen(d);
+---
+<section class="box calc diagnose" aria-label={label} data-pagefind-ignore>
+  <input type="hidden" id="pfad" value="" />
+  <div class="diag-fragen">
+    {Object.entries(d.fragen).map(([id, f]) => (
+      <fieldset class="diag-frage" data-frage={id} hidden={id !== 'start'}>
+        <legend>{f.frage}</legend>
+        {f.hilfe && <p class="diag-hilfe">{f.hilfe}</p>}
+        <div class="diag-optionen">
+          {f.optionen.map((o) => (
+            <label class="diag-option">
+              <input type="radio" name={`f-${id}`} value={o.key} />
+              {o.icon && <Icon name={o.icon} size={22} />}
+              <span>{o.text}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+    ))}
+  </div>
+  <noscript><p class="small">Ohne JavaScript funktioniert die Diagnose nicht. Alle Ursachen stehen unten in der Übersicht.</p></noscript>
+
+  <div class="diag-ergebnisse" aria-live="polite">
+    {Object.entries(d.ergebnisse).map(([id, e]) => {
+      const s = stufe(d, e.stufe);
+      return (
+        <div class="diag-ergebnis" data-ergebnis={id} hidden>
+          <p class="duebel-typ"><span class="small">Wahrscheinliche Ursache</span><strong>{e.titel}</strong></p>
+          <p class="taupunkt-status diag-stufe" data-status={s.status}><Icon name={s.icon} size={18} /> {s.text}</p>
+          <p>{e.ursache}</p>
+          <p class="diag-h">So gehst du vor</p>
+          <ol class="diag-schritte">{e.schritte.map((t) => <li>{t}</li>)}</ol>
+          {e.hinweis && <p class="diag-miete"><strong>{d.hinweisTitel ?? 'Hinweis'}:</strong> {e.hinweis}</p>}
+          {e.produkt && (
+            <p class="diag-produkt"><a class="btn btn-sm" href={amazonSearch(e.produkt[1])} rel="sponsored nofollow noopener" target="_blank">{e.produkt[0]} bei Amazon*</a>
+            <span class="small">* Anzeige: Affiliate-Link, für dich ändert sich am Preis nichts.</span></p>
+          )}
+          <p class="diag-h">Ausführlich mit Bildern</p>
+          <ul class="diag-links">{e.artikel.map(([href, text]) => <li><a href={href}>{text}</a></li>)}</ul>
+        </div>
+      );
+    })}
+  </div>
+  <p class="diag-neu" hidden><button type="button" class="btn btn-sm btn-ghost-dark" id="diag-neu"><Icon name="rotate-ccw" size={16} /> Neu starten</button></p>
+  <RechnerTeilen />
+</section>
+<script type="application/json" id="diagnose-daten" set:html={JSON.stringify(wege(d))} />
+
+<script>
+  type Opt = { key: string; frage?: string; ergebnis?: string };
+  const FRAGEN: Record<string, Opt[]> = JSON.parse(document.getElementById('diagnose-daten')?.textContent || '{}');
+  const box = document.querySelector<HTMLElement>('.diagnose');
+  const pfad = document.getElementById('pfad') as HTMLInputElement | null;
+  const liste = box?.querySelector<HTMLElement>('.diag-fragen');
+  const neu = box?.querySelector<HTMLElement>('.diag-neu');
+  const frageEl = (id: string) => box?.querySelector<HTMLFieldSetElement>(`fieldset[data-frage="${id}"]`);
+
+  // Den gespeicherten Weg (z. B. "einer.ganz-kalt.nein") ablaufen: welche Fragen sichtbar sind und welches Ergebnis gilt.
+  function ablaufen(keys: string[]) {
+    const fragen: string[] = [];
+    let frage: string | undefined = 'start';
+    let ergebnis: string | undefined;
+    const gueltig: string[] = [];
+    for (const k of keys) {
+      if (!frage || fragen.includes(frage)) break;
+      const opt: Opt | undefined = FRAGEN[frage]?.find((o) => o.key === k);
+      if (!opt) break;
+      fragen.push(frage);
+      gueltig.push(k);
+      if (opt.ergebnis) { ergebnis = opt.ergebnis; frage = undefined; break; }
+      frage = opt.frage;
+    }
+    if (frage && FRAGEN[frage] && !fragen.includes(frage)) fragen.push(frage);
+    return { fragen, ergebnis, gueltig };
+  }
+
+  function zeigen(scrollen = false) {
+    if (!box || !pfad || !liste) return;
+    const { fragen, ergebnis, gueltig } = ablaufen(pfad.value ? pfad.value.split('.') : []);
+    pfad.value = gueltig.join('.');
+    box.querySelectorAll<HTMLFieldSetElement>('fieldset[data-frage]').forEach((f) => { f.hidden = true; });
+    fragen.forEach((id, i) => {
+      const f = frageEl(id);
+      if (!f) return;
+      liste.append(f);
+      f.hidden = false;
+      f.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((r) => { r.checked = r.value === gueltig[i]; });
+    });
+    box.querySelectorAll<HTMLElement>('[data-ergebnis]').forEach((e) => { e.hidden = e.dataset.ergebnis !== ergebnis; });
+    if (neu) neu.hidden = gueltig.length === 0;
+    if (!scrollen) return;
+    const ziel = ergebnis ? box.querySelector<HTMLElement>(`[data-ergebnis="${ergebnis}"]`) : frageEl(fragen[fragen.length - 1]);
+    const reduziert = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    ziel?.scrollIntoView({ behavior: reduziert ? 'auto' : 'smooth', block: 'nearest' });
+  }
+
+  box?.addEventListener('change', (ev) => {
+    const r = ev.target;
+    if (!(r instanceof HTMLInputElement) || r.type !== 'radio' || !pfad) return;
+    const id = r.closest<HTMLFieldSetElement>('fieldset[data-frage]')?.dataset.frage;
+    if (!id) return;
+    const { fragen, gueltig } = ablaufen(pfad.value ? pfad.value.split('.') : []);
+    const pos = fragen.indexOf(id);
+    if (pos < 0) return;
+    pfad.value = [...gueltig.slice(0, pos), r.value].join('.');
+    zeigen(true);
+  });
+  // RechnerTeilen setzt #pfad aus dem Link und meldet das per input/change.
+  pfad?.addEventListener('change', () => zeigen());
+  document.getElementById('diag-neu')?.addEventListener('click', () => {
+    if (!pfad) return;
+    pfad.value = '';
+    zeigen();
+    frageEl('start')?.querySelector<HTMLInputElement>('input')?.focus();
+    box?.scrollIntoView({ block: 'nearest' });
+  });
+  zeigen();
+</script>
