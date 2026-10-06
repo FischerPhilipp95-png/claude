@@ -191,6 +191,11 @@
    "dauer": 396
   },
   {
+   "id": "BxnYnvvSjLU",
+   "titel": "Heizung wird nicht kalt, obwohl auf 0? Das klemmt! #shorts",
+   "typ": "short"
+  },
+  {
    "id": "bysEgIpkBew",
    "titel": "20% Heizkosten sparen mit Folie? Echt oder Quatsch! #shorts",
    "typ": "short"
@@ -471,6 +476,12 @@
    "typ": "short"
   },
   {
+   "id": "phvHCxuTFOk",
+   "titel": "DeLonghi Magnifica S kein Wasser? Alle Lampen blinken rot – 6 Lösungen",
+   "typ": "video",
+   "dauer": 135
+  },
+  {
    "id": "PJzyjurotOU",
    "titel": "Was WIRKLICH in deinem Kaffeevollautomaten passiert! 🔍 Kompletter Ablauf erklärt",
    "typ": "video",
@@ -576,6 +587,12 @@
    "titel": "Warum ist Kaffee so TEUER geworden? Die schockierende Wahrheit! ☕💰",
    "typ": "video",
    "dauer": 128
+  },
+  {
+   "id": "TwwcZnlaAEI",
+   "titel": "Heizungsventil klemmt? Ventilstift lösen in 5 Schritten",
+   "typ": "video",
+   "dauer": 133
   },
   {
    "id": "TzmMxKGkB0E",
@@ -689,6 +706,11 @@
    "typ": "short"
   },
   {
+   "id": "XZhbVUFisL4",
+   "titel": "DeLonghi Magnifica S: Alle Lampen rot? Das bedeuten sie #shorts",
+   "typ": "short"
+  },
+  {
    "id": "Y7RYn9r7uXs",
    "titel": "Warum schimmelt dein Bad? 6 Ursachen erklärt #Haushalt #Alltag #Tipps",
    "typ": "short",
@@ -731,6 +753,7 @@
  ],
  "artikel": {
   "delonghi-kaffeevollautomat-entkalken": "LLl4Ocv-0tM",
+  "delonghi-magnifica-s-kein-wasser": "phvHCxuTFOk",
   "jura-kaffeevollautomat-reinigen": "rb1vi2R1zs4",
   "kaffeevollautomat-entkalken": "7S7ecYJs4P4",
   "philips-aquaclean-filter": "-EdeoVb8Qpk",
