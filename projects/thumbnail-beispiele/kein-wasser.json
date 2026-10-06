@@ -1,0 +1,20 @@
+{
+  "name": "kein-wasser",
+  "bild": {
+    "datei": "kaffee/site/public/bilder/artikel/magnifica-s-tasse-leer.webp",
+    "position": "center 40%"
+  },
+  "toenung": "rot",
+  "label": "Delonghi Magnifica S",
+  "zeilen": [
+    [
+      "Kein",
+      "weiss"
+    ],
+    [
+      "Wasser?",
+      "gelb"
+    ]
+  ],
+  "badge": "6 Lösungen"
+}

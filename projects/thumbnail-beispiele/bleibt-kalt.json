@@ -1,0 +1,8 @@
+{
+  "name": "bleibt-kalt",
+  "bild": { "datei": "blog/site/public/bilder/heizkoerper-thermostat.webp", "position": "center" },
+  "toenung": "blau",
+  "zeilen": [["Bleibt", "weiss"], ["kalt?", "gelb"]],
+  "badge": "5 Ursachen",
+  "tag": { "text": "14 °C", "x": 600, "y": 120 }
+}

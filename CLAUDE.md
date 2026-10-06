@@ -38,6 +38,16 @@ der Cloud-Umgebung freigegeben ist. Ein 403 beim Download bedeutet: Domain nicht
 - Shorts: 1080x1920, 60 fps, ca. 20 s, Labels über y = 1440 (Shorts-Oberfläche verdeckt unten).
 - Zu jedem Video gehört eine `youtube.md` mit Titel, Beschreibung (inkl. Quelle), Tags und angeheftetem Kommentar.
 - Vorlage für neue Projekte: `projects/klima-short/` (build.sh, render.mjs, music.py).
+- Thumbnails IMMER im Kanal-Stil (Vorlage des Nutzers, Beispiele in `projects/thumbnail-beispiele/`):
+  `node tools/thumbnail.mjs projects/<projekt>/thumbnail.json` → 1920x1080 JPEG.
+  Aufbau: dunkel getöntes Hintergrundfoto (Tönung passend zum Thema), links riesige Frage in Anton, Großbuchstaben,
+  weiße Zeilen und die letzte Zeile gelb `#ffd400` (z. B. „BLEIBT / KALT?“, „TEUER? LAUT? NASS?“), rechts das Kanal-Porträt
+  (`assets/channel_person_cutout.png`) mit weichem Rand, gelbes schräges Badge unten links („5 URSACHEN“, „TOP 5“),
+  optional Label oben (schwarz, z. B. Modellname), Leuchtlinie, Kreis-Ausschnitt, Wert-Tag („14 °C“) oder Leuchtpunkte.
+  Unten rechts frei lassen (dort steht bei YouTube die Videolänge).
+- Hintergrundbilder: kostenlose Fotos von Pexels über die API des Nutzers (`"bild": {"pexels": "Suchbegriff"}`,
+  Umgebungsvariable `PEXELS_API_KEY`, nie im Chat). Fotos ohne fremde Logos oder Markennamen wählen; Fotograf und Link
+  speichert das Skript in `thumbnail/pexels.json`.
 
 ## Websites (Affiliate-Geschäft)
 
