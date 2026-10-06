@@ -19,12 +19,19 @@ import AmazonLink from '../../components/AmazonLink.astro';
 import ProduktFokus from '../../components/ProduktFokus.astro';
 import Bild from '../../components/Bild.astro';
 import Ablauf from '../../components/Ablauf.astro';
+import EigenesVideo from '../../components/EigenesVideo.astro';
 
 <Antwort>
 **Kurz gesagt:** Alten Thermostatkopf auf **Stufe 5** drehen, Überwurfmutter lösen und abziehen. Neuen Kopf ebenfalls auf
-Stufe 5 aufsetzen und **handfest** anziehen. Das Ventil bleibt dabei geschlossen, es läuft **kein Wasser aus**. Wichtig ist nur,
+Stufe 5 aufsetzen und **handfest** anziehen. Der Kopf sitzt außerhalb des Rohrsystems, es läuft **kein Wasser aus**. Wichtig ist nur,
 dass der neue Kopf auf dein Ventil passt. Am häufigsten ist **M30 × 1,5**, für andere Ventile, etwa von Danfoss, gibt es Adapter.
 </Antwort>
+
+<EigenesVideo
+  src="/videos/thermostatkopf-wechseln.mp4"
+  vorschau="/bilder/videos/thermostatkopf-wechseln.webp"
+  titel="Thermostatkopf wechseln: alt gegen neu oder smart (auch Danfoss)"
+/>
 
 <Schnellkauf items={[
   { name: 'Thermostatkopf M30 × 1,5', warum: 'Passt auf die meisten Ventile, ohne Adapter.', suche: 'Thermostatkopf Heizkörper M30x1,5' },
@@ -105,7 +112,7 @@ und heb den alten Kopf auf, für den Auszug.
 ## Häufige Fragen
 
 ### Muss ich beim Thermostatwechsel Wasser ablassen?
-Nein. Der Thermostatkopf sitzt nur außen auf dem Ventil. Das Ventil selbst bleibt geschlossen und dicht.
+Nein. Der Thermostatkopf sitzt nur außen auf dem Ventil, außerhalb des Rohrsystems. Das Wasser bleibt im geschlossenen Heizkreislauf.
 
 ### Passt jedes Thermostat auf jeden Heizkörper?
 Nicht ohne Weiteres. Entscheidend ist der Anschluss des **Ventils**, nicht der Heizkörper. M30 × 1,5 ist am häufigsten,

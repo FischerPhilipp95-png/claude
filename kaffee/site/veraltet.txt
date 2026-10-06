@@ -3,3 +3,5 @@
 kontakt.php
 kontakt/danke
 kontakt/fehler
+videos/delonghi-magnifica-s-kein-wasser.mp4
+bilder/videos/delonghi-magnifica-s-kein-wasser.webp
