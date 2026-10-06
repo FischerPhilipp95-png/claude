@@ -1,7 +1,7 @@
 // Qualitäts-Check vor jedem Upload: HTML-Fehler (html-validate) und Barrierefreiheit (pa11y-ci, axe, WCAG 2 AA).
 // Läuft nur lokal gegen den fertigen Build in dist/. Nichts davon landet auf der Website.
 import { execFileSync, spawn } from 'node:child_process';
-import { readdirSync, statSync, writeFileSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import http from 'node:http';
 import { createReadStream } from 'node:fs';
@@ -19,6 +19,33 @@ try {
   console.error('    Fehler gefunden, siehe oben.');
   process.exitCode = 1;
 }
+
+// Strukturierte Daten (JSON-LD): Was Google in der Search Console als „ungültiges Element“ meldet, gar nicht erst hochladen.
+// Product braucht offers, review oder aggregateRating (haben wir nicht, also kein Product verwenden); jedes JSON-LD muss gültiges JSON sein.
+console.log('    Strukturierte Daten prüfen (JSON-LD) …');
+const sdFehler = [];
+(function sdPruefen(dir) {
+  for (const name of readdirSync(dir)) {
+    const p = join(dir, name);
+    if (statSync(p).isDirectory()) { if (name !== 'pagefind' && name !== '_astro') sdPruefen(p); continue; }
+    if (!name.endsWith('.html')) continue;
+    const html = readFileSync(p, 'utf8');
+    for (const [, roh] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+      let daten;
+      try { daten = JSON.parse(roh); } catch { sdFehler.push(`${p.slice(DIST.length)}: JSON-LD ist kein gültiges JSON`); continue; }
+      (function laufen(o) {
+        if (Array.isArray(o)) return o.forEach(laufen);
+        if (!o || typeof o !== 'object') return;
+        const typ = [].concat(o['@type'] ?? []);
+        if (typ.includes('Product') && !o.offers && !o.review && !o.aggregateRating)
+          sdFehler.push(`${p.slice(DIST.length)}: Product „${o.name}“ ohne offers/review/aggregateRating (Google: ungültiges Element)`);
+        Object.values(o).forEach(laufen);
+      })(daten);
+    }
+  }
+})(DIST);
+if (sdFehler.length) { console.error(sdFehler.map((f) => '    ' + f).join('\n')); process.exitCode = 1; }
+else console.log('    OK: strukturierte Daten gültig.');
 
 // Kleiner Webserver für dist/, damit pa11y die Seiten wie im Browser lädt.
 const typen = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.webp': 'image/webp', '.png': 'image/png', '.woff2': 'font/woff2', '.json': 'application/json', '.svg': 'image/svg+xml', '.xml': 'application/xml' };

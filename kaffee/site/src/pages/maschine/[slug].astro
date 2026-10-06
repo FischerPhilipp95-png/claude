@@ -34,7 +34,8 @@ const description = `${m.titel}: entkalken, reinigen, Fehler beheben. Alle Anlei
 const url = `${SITE.url}/maschine/${m.id}/`;
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, url, inLanguage: 'de-DE',
-    about: { '@type': 'Product', name: m.titel, brand: { '@type': 'Brand', name: m.markenname ?? m.marke.titel.split(' ')[0] } } },
+    // Kein „Product“: Google verlangt dafür Preis (offers) oder Bewertungen, die wir nicht haben -> Fehler in der Search Console.
+    about: { '@type': 'Thing', name: m.titel } },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Start', item: `${SITE.url}/` },
     { '@type': 'ListItem', position: 2, name: 'Maschinen', item: `${SITE.url}/maschinen/` },
