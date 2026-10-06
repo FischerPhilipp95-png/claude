@@ -17,8 +17,9 @@ interface Props {
 const { title, description, image = '/bilder/autor.webp', noindex = false, jsonLd = [], type = 'website', artikel } = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url).toString();
 // Google zeigt etwa 60 bis 70 Zeichen. Passt der Seitenname nicht mehr dazu, nur den Titel verwenden.
+// Markenzusatz nur, wenn der ganze Titel in die Google-Ergebnisse passt (ca. 60 Zeichen), sonst wird er abgeschnitten.
 const mitName = `${title} | ${SITE.name}`;
-const fullTitle = Astro.url.pathname === '/' ? `${SITE.name}: Haustechnik einfach erklärt` : mitName.length <= 70 ? mitName : title;
+const fullTitle = Astro.url.pathname === '/' ? `${SITE.name}: Haustechnik einfach erklärt` : mitName.length <= 60 ? mitName : title;
 const ogImage = new URL(image, SITE.url).toString();
 ---
 <!doctype html>
