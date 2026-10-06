@@ -48,7 +48,8 @@ export async function GET(context) {
     for (const v of varianten(p.data, p.body ?? '')) {
       const datum = freigabe(p.id, p.data.pubDate, v.nr);
       if (datum > jetzt) continue;
-      items.push(eintrag({ titel: v.pinTitel, text: v.pinText, datum, link, guid: `${link}#pin-${v.nr}`, datei: `${p.id}-${v.nr}.jpg` }));
+      // Eigene Adresse je Variante: Pinterest überspringt im Feed Pins, deren Link schon einen Pin hat. Canonical bleibt die Artikel-Adresse.
+      items.push(eintrag({ titel: v.pinTitel, text: v.pinText, datum, link: `${link}?pin=${v.nr}`, guid: `${link}#pin-${v.nr}`, datei: `${p.id}-${v.nr}.jpg` }));
     }
   }
   for (const r of RECHNER) {

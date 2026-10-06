@@ -492,3 +492,30 @@ p.small { max-width: 72ch; }
 .geprueft-h .icon { color: #2f9e6a; }
 .geprueft ul { margin: 0 0 .6em; padding-left: 1.2em; }
 .in-arbeit { border-left: 6px solid var(--akzent); }
+
+/* Diagnosen (components/Diagnose.astro): Fragen als große Auswahlfelder, Ergebnis mit Status (Farbe plus Text) */
+.diag-fragen { display: flex; flex-direction: column; gap: 22px; }
+.diag-frage { border: 0; padding: 0; margin: 0; min-width: 0; }
+.diag-frage legend { font-weight: 800; font-size: 1.12rem; line-height: 1.3; padding: 0; margin: 0 0 10px; }
+.diag-hilfe { margin: -4px 0 10px; font-size: 0.9rem; color: var(--muted); }
+.diag-optionen { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 8px; }
+.diag-option { display: flex; align-items: flex-start; gap: 10px; min-height: 48px; padding: 12px 14px; border: 1px solid #bdbab2; border-radius: var(--radius-sm); background: #fff; cursor: pointer; font-weight: 500; line-height: 1.35; transition: border-color .15s, background-color .15s; }
+.diag-option:hover { border-color: var(--ink); }
+.diag-option input { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: #111; }
+.diag-option .icon { flex: none; color: color-mix(in srgb, var(--akzent) 70%, #000); }
+.diag-option:has(input:checked) { border-color: var(--akzent); background: color-mix(in srgb, var(--akzent) 10%, #fff); box-shadow: inset 0 0 0 1px var(--akzent); }
+.diag-option:has(input:focus-visible) { outline: 3px solid var(--ink); outline-offset: 2px; }
+.diag-ergebnis { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
+.diag-stufe { display: flex; align-items: center; gap: 8px; }
+.diag-stufe .icon { flex: none; }
+.diag-h { font-weight: 800; margin: 16px 0 6px; }
+.diag-schritte { margin-top: 0; padding-left: 1.4em; }
+.diag-schritte li { margin: 0.35em 0; }
+.diag-miete { font-size: 0.95rem; }
+.diag-produkt { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.diag-links { margin-top: 0; }
+.diag-neu { margin: 18px 0 0; }
+.diag-tabelle td:first-child { width: 50%; }
+.diag-tabelle td, .diag-tabelle th { overflow-wrap: normal; hyphens: auto; }
+.diag-wer { display: block; margin-top: 2px; font-size: 0.85rem; color: var(--muted); }
+.diag-frage, .diag-ergebnis { scroll-margin-top: 96px; scroll-margin-bottom: 16px; }

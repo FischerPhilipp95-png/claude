@@ -200,12 +200,12 @@ for (const f of (await readdir(ROOT + 'src/content/artikel')).filter((f) => f.en
 }
 
 // Knopftext für Rechner, die nichts ausrechnen.
-const RECHNER_CTA = { duebel: 'Passenden Dübel finden', 'heizung-diagnose': 'Jetzt Ursache finden' };
+const RECHNER_CTA = { duebel: 'Passenden Dübel finden' };
 for (const r of RECHNER) {
   const t = THEMEN[r.thema];
   await speichern(`${ZIEL}rechner-${r.name}.jpg`, await dunkel({
     farbe: t.farbe, chipIcon: 'calculator', chipText: `Rechner · ${t.titel}`, bigIcon: r.icon,
-    titel: r.titel, text: `${r.text} Kostenlos und ohne Anmeldung.`, cta: RECHNER_CTA[r.name] ?? 'Jetzt ausrechnen',
+    titel: r.titel, text: `${r.text} Kostenlos und ohne Anmeldung.`, cta: RECHNER_CTA[r.name] ?? (r.name.endsWith('-diagnose') ? 'Jetzt Ursache finden' : 'Jetzt ausrechnen'),
   }), 'dunkel');
 }
 for (const c of CHECKLISTEN) {

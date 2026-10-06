@@ -1,0 +1,72 @@
+---
+import Base from '../../layouts/Base.astro';
+import Diagnose from '../../components/Diagnose.astro';
+import DiagnoseUebersicht from '../../components/DiagnoseUebersicht.astro';
+import VideoBox from '../../components/VideoBox.astro';
+import { SITE } from '../../site';
+import { VOLLAUTOMAT } from '../../diagnosen/vollautomat';
+import { videoFuerSeite, videoSchema } from '../../videos';
+
+const title = 'Vollautomat-Diagnose: Was hat meine Kaffeemaschine?';
+const description = 'Kaffee wässrig, bitter oder nicht heiß, Milchschaum klappt nicht? In bis zu drei Fragen zur Ursache, nach den Störungstabellen der Hersteller.';
+const video = videoFuerSeite('/rechner/vollautomat-diagnose/');
+const jsonLd: object[] = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Vollautomat-Diagnose',
+  url: `${SITE.url}/rechner/vollautomat-diagnose/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+const vSchema = video && videoSchema(video, description);
+if (vSchema) jsonLd.push(vSchema);
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Pflege & Entkalken" style="--akzent:#d08a3a">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › Vollautomat-Diagnose</nav>
+    <h1>{title}</h1>
+    <p class="lead">Kaffee wässrig, sauer oder lauwarm, der Milchschaum fällt zusammen oder es kommt gar nichts? Beantworte bis zu drei
+    kurze Fragen. Dann siehst du die wahrscheinliche Ursache und was du selbst tun kannst, nach den Störungstabellen der Hersteller.</p>
+
+    <Diagnose d={VOLLAUTOMAT} label="Vollautomat-Diagnose" />
+
+    {video && <VideoBox video={video} />}
+
+    <h2>Alle Anzeichen und Ursachen auf einen Blick</h2>
+    <p>Die Diagnose fragt nach diesen Anzeichen. Hier stehen alle Wege mit der wahrscheinlichen Ursache und wer sie beheben kann.</p>
+    <DiagnoseUebersicht d={VOLLAUTOMAT} />
+
+    <h2>Der Mahlgrad löst die meisten Geschmacksprobleme</h2>
+    <p>Ob der Kaffee dünn, sauer oder bitter schmeckt, hängt bei Vollautomaten vor allem am Mahlgrad. Als Faustregel aus den Anleitungen
+    von De’Longhi und Siemens:</p>
+    <table>
+      <thead><tr><th scope="col">Der Kaffee …</th><th scope="col">Mahlgrad</th></tr></thead>
+      <tbody>
+        <tr><td>ist dünn, wässrig oder sauer</td><td>feiner stellen</td></tr>
+        <tr><td>ist bitter oder läuft nur tröpfchenweise</td><td>gröber stellen</td></tr>
+      </tbody>
+    </table>
+    <p>Den Mahlgrad nur verstellen, während das Mahlwerk läuft, und immer nur eine Stufe. Die Wirkung siehst du erst nach mindestens zwei
+    Kaffees.</p>
+
+    <h2>Häufige Fragen</h2>
+    <h3>Warum ist mein Kaffee aus dem Vollautomaten nicht heiß?</h3>
+    <p>Meist sind die Tassen kalt oder die Leitungen seit dem letzten Kaffee abgekühlt. Tassen mit heißem Wasser vorwärmen, vorher einen
+    Spülvorgang starten und im Menü eine höhere Temperatur einstellen. Hilft das nicht, entkalken.</p>
+    <h3>Warum ist der Kaffee wässrig?</h3>
+    <p>Meist ist er zu grob gemahlen, die Bohnen sind alt oder nicht für Espresso geeignet. Bei gemahlenem Kaffee kann laut De’Longhi auch
+    der Einfüllschacht verstopft sein.</p>
+    <h3>Warum klappt der Milchschaum nicht?</h3>
+    <p>Die Milch ist nicht kalt genug, hat zu wenig Fett, oder das Milchsystem ist verschmutzt. Siemens empfiehlt kalte Milch mit
+    mindestens 1,5 % Fett. Bei Pflanzendrinks rät De’Longhi zu den „Barista“-Varianten.</p>
+    <h3>Wann muss der Kundendienst ran?</h3>
+    <p>Wenn nach Mahlgrad, Reinigung und Entkalken immer noch kein Kaffee kommt oder Wasser austritt. Öffne das Gehäuse nicht selbst.</p>
+
+    <h2>Quellen</h2>
+    <ul>
+      <li>De’Longhi: <a href="https://dls.delonghigroup.com/files/docs/5/DE-57132C9277.pdf" rel="noopener">Bedienungsanleitung Kaffeevollautomat ECAM29X.5Y, Kapitel 18 „Problemlösung“ (PDF)</a></li>
+      <li>Siemens Kundendienst: <a href="https://www.siemens-home.bsh-group.com/de/kundendienst/hilfe/probleme/kaffeemaschinen/eq6-plus/probleme-loesungen" rel="noopener">EQ.6 plus: Probleme und Lösungen</a></li>
+      <li>Siemens Kundendienst: <a href="https://www.siemens-home.bsh-group.com/de/kundendienst/hilfe/probleme/kaffeemaschinen/kaffee-schmeckt-sauer-oder-bitter" rel="noopener">Kaffee schmeckt sauer oder bitter</a></li>
+    </ul>
+    <p class="small">Keine offizielle Anleitung eines Herstellers. Maßgeblich ist die Bedienungsanleitung deines Geräts. Mit * markierte
+    Links sind Affiliate-Links: Kaufst du darüber ein, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.
+    <a href="/werbung/">Mehr dazu</a></p>
+  </div>
+</Base>

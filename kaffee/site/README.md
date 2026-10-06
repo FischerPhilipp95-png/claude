@@ -75,6 +75,13 @@ mit 301 hierher um. Diese Umleitung erst live schalten, wenn vollautomatendoktor
 4. Im Artikelkopf `pruefung:` ausfüllen (Datum, maßgebliche Quelle, Zahl der Videos und Threads, Korrekturen). Das erscheint als Kasten
    „Geprüft am …“ im Beitrag.
 
+## Vollautomat-Diagnose
+
+`/rechner/vollautomat-diagnose/`: Fragen führen zur wahrscheinlichen Ursache (Geschmack, Temperatur, Milchschaum, kein Wasser).
+Gleicher Baustein wie beim Handwerksdoktor: `src/diagnose.ts`, `components/Diagnose.astro`, `components/DiagnoseUebersicht.astro`.
+Daten in `src/diagnosen/vollautomat.ts`, jede Aussage aus den Störungstabellen der Hersteller (Quellen auf der Seite) oder aus
+einem Beitrag dieser Seite. Der Build bricht ab, wenn eine Antwort ins Leere führt.
+
 ## Fotos der Marken
 
 Kacheln auf der Startseite und Kopfbilder der Themenseiten: `public/bilder/marken/<slug>.webp` (960×720) und `-klein.webp` (480×360),
