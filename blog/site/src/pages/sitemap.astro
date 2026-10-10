@@ -1,0 +1,53 @@
+---
+// HTML-Sitemap: alle Seiten auf einen Blick, für Besucher und Suchmaschinen (ergänzt die XML-Sitemap).
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { THEMEN } from '../themen';
+import { RECHNER } from '../rechner';
+import { CHECKLISTEN } from '../checklisten.mjs';
+
+const posts = (await getCollection('artikel', ({ data }) => !data.entwurf)).sort((a, b) => a.data.title.localeCompare(b.data.title, 'de'));
+const recht = await getCollection('recht');
+const anzahl = posts.length + RECHNER.length + CHECKLISTEN.length + Object.keys(THEMEN).length + recht.length + 5;
+---
+<Base title="Alle Seiten" description={`Übersicht aller ${anzahl} Seiten auf handwerksdoktor.de: Anleitungen nach Thema, Rechner, Diagnosen, Checklisten und Produkte.`}>
+  <div class="wrap" data-pagefind-ignore>
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Alle Seiten</nav>
+    <h1>Alle Seiten auf einen Blick</h1>
+    <p class="lead">{posts.length} Anleitungen, {RECHNER.length} Rechner und Diagnosen, {CHECKLISTEN.length} Checklisten. Suchst du etwas Bestimmtes?
+    <a href="/suche/">Zur Suche</a>.</p>
+
+    {Object.entries(THEMEN).map(([name, t]) => {
+      const eigene = posts.filter((p) => p.data.thema === name);
+      return eigene.length > 0 && (
+        <section class="sitemap-gruppe" style={`--akzent:${t.farbe}`}>
+          <h2><Icon name={t.icon} size={22} /> <a href={`/thema/${t.slug}/`}>{t.titel}</a> <span class="small">({eigene.length})</span></h2>
+          <ul>{eigene.map((p) => <li><a href={`/artikel/${p.id}/`}>{p.data.title}</a></li>)}</ul>
+        </section>
+      );
+    })}
+
+    <section class="sitemap-gruppe" style="--akzent:#ffd400">
+      <h2><Icon name="calculator" size={22} /> <a href="/rechner/">Rechner und Diagnosen</a> <span class="small">({RECHNER.length})</span></h2>
+      <ul>{RECHNER.map((r) => <li><a href={r.href}>{r.titel}</a></li>)}</ul>
+    </section>
+
+    <section class="sitemap-gruppe" style="--akzent:#03b84c">
+      <h2><Icon name="printer" size={22} /> <a href="/checklisten/">Checklisten zum Ausdrucken</a> <span class="small">({CHECKLISTEN.length})</span></h2>
+      <ul>{CHECKLISTEN.map((c) => <li><a href={`/checklisten/${c.id}/`}>{c.titel}</a></li>)}</ul>
+    </section>
+
+    <section class="sitemap-gruppe">
+      <h2><Icon name="info" size={22} /> Weitere Seiten</h2>
+      <ul>
+        <li><a href="/artikel/">Alle Anleitungen</a></li>
+        <li><a href="/produkte/">Produkte erklärt</a></li>
+        <li><a href="/ueber/">Über den Handwerksdoktor</a></li>
+        <li><a href="/kontakt/">Kontakt</a></li>
+        {recht.map((s) => <li><a href={`/${s.id}/`}>{s.data.title}</a></li>)}
+        <li><a href="/rss.xml">RSS-Feed</a></li>
+      </ul>
+    </section>
+  </div>
+</Base>

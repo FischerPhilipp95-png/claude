@@ -6,7 +6,7 @@ import ArtikelKarte from '../components/ArtikelKarte.astro';
 import Icon from '../components/Icon.astro';
 import { SITE } from '../site';
 import { THEMEN } from '../themen';
-import { SAISON } from '../saison';
+import { SAISON, OFT_GELESEN } from '../saison';
 import { RECHNER } from '../rechner';
 import { CHECKLISTEN } from '../checklisten.mjs';
 
@@ -15,6 +15,7 @@ const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
 const anzahl = (name: string) => posts.filter((p) => p.data.thema === name).length;
 const saison = SAISON.artikel.map((id) => posts.find((p) => p.id === id)).filter((p) => p !== undefined);
 const neueste = posts.filter((p) => !SAISON.artikel.includes(p.id)).slice(0, 6);
+const oftGelesen = OFT_GELESEN.map((id) => posts.find((p) => p.id === id)).filter((p) => p !== undefined);
 const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: `${SITE.url}/`, inLanguage: 'de-DE' }];
 ---
 <Base title={SITE.name} description={SITE.description} jsonLd={jsonLd}>
@@ -73,6 +74,9 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
         <span class="tile-count">{CHECKLISTEN.length} zum Ausdrucken (PDF)</span>
       </a></li>
     </ul>
+
+    <h2 class="section-h">Oft gelesen</h2>
+    <ul class="cards">{oftGelesen.map((p) => <ArtikelKarte post={p} />)}</ul>
 
     <h2 class="section-h">Neueste Anleitungen</h2>
     <ul class="cards">{neueste.map((p) => <ArtikelKarte post={p} />)}</ul>

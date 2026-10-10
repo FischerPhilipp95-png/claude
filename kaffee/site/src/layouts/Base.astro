@@ -30,7 +30,8 @@ const ogImage = new URL(image, SITE.url).toString();
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
-  {noindex && <meta name="robots" content="noindex" />}
+  {/* max-image-preview:large: Google darf das Titelbild groß zeigen (Discover, Bildvorschau in der Suche). */}
+  <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large'} />
   <meta property="og:type" content={type} />
   <meta property="og:locale" content="de_DE" />
   <meta property="og:site_name" content={SITE.name} />
@@ -89,6 +90,7 @@ const ogImage = new URL(image, SITE.url).toString();
         <a href="/datenschutz/">Datenschutz</a>
         <a href="/werbung/">Transparenz &amp; Werbung</a>
         <a href="/kontakt/">Kontakt</a>
+        <a href="/sitemap/">Alle Seiten</a>
       </nav>
     </div>
     <div class="wrap wide footer-note">

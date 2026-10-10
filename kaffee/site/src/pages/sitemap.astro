@@ -1,0 +1,57 @@
+---
+// HTML-Sitemap: alle Seiten auf einen Blick, für Besucher und Suchmaschinen (ergänzt die XML-Sitemap).
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { THEMEN } from '../themen';
+import { RECHNER } from '../rechner';
+import { maschinenListe, hatInhalt } from '../maschinen-hilfe';
+
+const posts = (await getCollection('artikel', ({ data }) => !data.entwurf)).sort((a, b) => a.data.title.localeCompare(b.data.title, 'de'));
+const recht = await getCollection('recht');
+// Nur Maschinen mit eigenem Inhalt, die ohne stehen auf noindex.
+const maschinen = maschinenListe().filter((m) => hatInhalt(m, posts)).sort((a, b) => a.titel.localeCompare(b.titel, 'de'));
+const themen = Object.entries(THEMEN).filter(([name]) => posts.some((p) => p.data.thema === name));
+const anzahl = posts.length + RECHNER.length + maschinen.length + themen.length + recht.length + 6;
+---
+<Base title="Alle Seiten" description={`Übersicht aller ${anzahl} Seiten auf vollautomatendoktor.de: Anleitungen nach Marke, Maschinen, Videos, Diagnose und Produkte.`}>
+  <div class="wrap" data-pagefind-ignore>
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Alle Seiten</nav>
+    <h1>Alle Seiten auf einen Blick</h1>
+    <p class="lead">{posts.length} Anleitungen, {maschinen.length} Maschinenseiten und die Vollautomat-Diagnose. Suchst du etwas Bestimmtes?
+    <a href="/suche/">Zur Suche</a>.</p>
+
+    {themen.map(([name, t]) => {
+      const eigene = posts.filter((p) => p.data.thema === name);
+      return (
+        <section class="sitemap-gruppe" style={`--akzent:${t.farbe}`}>
+          <h2><Icon name={t.icon} size={22} /> <a href={`/thema/${t.slug}/`}>{t.titel}</a> <span class="small">({eigene.length})</span></h2>
+          <ul>{eigene.map((p) => <li><a href={`/artikel/${p.id}/`}>{p.data.title}</a></li>)}</ul>
+        </section>
+      );
+    })}
+
+    <section class="sitemap-gruppe" style="--akzent:#d08a3a">
+      <h2><Icon name="coffee" size={22} /> <a href="/maschinen/">Maschinen</a> <span class="small">({maschinen.length})</span></h2>
+      <ul>{maschinen.map((m) => <li><a href={`/maschine/${m.id}/`}>{m.titel}</a></li>)}</ul>
+    </section>
+
+    <section class="sitemap-gruppe" style="--akzent:#d08a3a">
+      <h2><Icon name="stethoscope" size={22} /> Diagnose</h2>
+      <ul>{RECHNER.map((r) => <li><a href={r.href}>{r.titel}</a></li>)}</ul>
+    </section>
+
+    <section class="sitemap-gruppe">
+      <h2><Icon name="info" size={22} /> Weitere Seiten</h2>
+      <ul>
+        <li><a href="/artikel/">Alle Anleitungen</a></li>
+        <li><a href="/videos/">Alle Video-Anleitungen</a></li>
+        <li><a href="/produkte/">Entkalker und Filter erklärt</a></li>
+        <li><a href="/ueber/">Über den Vollautomaten-Doktor</a></li>
+        <li><a href="/kontakt/">Kontakt</a></li>
+        {recht.map((s) => <li><a href={`/${s.id}/`}>{s.data.title}</a></li>)}
+        <li><a href="/rss.xml">RSS-Feed</a></li>
+      </ul>
+    </section>
+  </div>
+</Base>

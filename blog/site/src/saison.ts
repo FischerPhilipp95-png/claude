@@ -14,3 +14,14 @@ export const SAISON = {
   ],
   rechner: { href: '/rechner/heizung-diagnose/', titel: 'Heizungs-Diagnose: Was hat meine Heizung? Fehler in 3 Fragen finden' },
 };
+
+// Startseite „Oft gelesen“: Artikel, die schon fast auf Seite 1 bei Google stehen und einen Schubs brauchen (Search Console).
+// Alle paar Wochen anhand der Search-Console-Daten anpassen.
+export const OFT_GELESEN = [
+  'isopropanol-im-haushalt',
+  'sparduschkopf',
+  'spuelmaschine-reinigen',
+  'heizkoerper-reinigen',
+  'heizung-gluckert',
+  'thermostatkopf-wechseln',
+];

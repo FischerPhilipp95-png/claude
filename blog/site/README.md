@@ -50,6 +50,11 @@ Seiten mit `noindex` (Impressum, Datenschutz, Werbung, Suche) bekommen bei Light
 Bilder: nur eigene oder frei lizenzierte (CC0, CC BY, CC BY-SA mit Nennung), als `.webp` mit max. 1200 px Breite
 in `public/bilder/`. Nie Bilder von Amazon, Herstellern oder anderen Seiten.
 
+## Startseite: „Oft gelesen“ und HTML-Sitemap
+
+`OFT_GELESEN` in `src/saison.ts`: sechs Artikel, die laut Search Console fast auf Seite 1 stehen und interne Links brauchen.
+Alle paar Wochen anpassen. `/sitemap/` listet alle Seiten (Themen, Rechner, Checklisten, Rechtliches), verlinkt im Footer.
+
 ## Startseite: Saison-Bereich
 
 `src/saison.ts` legt fest, welche Artikel oben auf der Startseite stehen (Titel, Text, Artikel-IDs = Dateiname ohne `.mdx`).
