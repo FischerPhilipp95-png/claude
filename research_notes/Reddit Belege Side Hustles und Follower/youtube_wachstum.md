@@ -32,7 +32,9 @@ Die glaubwürdigen schnellen Berichte haben drei Dinge gemeinsam: eine klar umri
   - Aufwand: „extremely high effort and take hundreds of hours each“.
   - Verlauf: das 2. Video holte 12k Views im ersten Monat, das 3. Video 100k in der ersten Woche. Keine Promotion.
   - Wichtigster Treiber laut Autor: Titel und Thumbnails der Nische studieren, auch die Flops.
-  - Quelle: [r/NewTubers, 01.02.2026, Score 43, 19 Komm., u/idonthaveklutch](https://www.reddit.com/r/NewTubers/comments/1qt9hue/first_14_months_on_youtube_in_the_maker_niche/). **[mittel]**: detaillierte, konsistente Zahlen, Kanal nicht genannt.
+  - Quelle: [r/NewTubers, 01.02.2026, Score 43, 19 Komm., u/idonthaveklutch](https://www.reddit.com/r/NewTubers/comments/1qt9hue/first_14_months_on_youtube_in_the_maker_niche/).
+  - Nutzerhistorie: CAD-Nutzer (SolidWorks-Fragen), erwähnt im August 2026 die Zusammenarbeit mit „a fairly large agency“ für Sponsoring. Das passt zur Geschichte.
+  - **[mittel-hoch]**: detaillierte, konsistente Zahlen, Historie passt, Kanal nicht genannt.
 
 - **Strick-Podcast „The French Knot“.** Long-Form, 30–45 Minuten. 1k Abos nach 6 Wochen.
   - Kommentar u/RTXBurner25 (41 Punkte): „To do so in 6 weeks without a viral video is quite impressive (almost unprecedented)“.
@@ -55,7 +57,16 @@ Die glaubwürdigen schnellen Berichte haben drei Dinge gemeinsam: eine klar umri
 
 - **Travel-Kanal, Familienpublikum.** 2025: 7,2 Mio. Views, 109.000 $ Werbe-/Membership-Umsatz, dazu 8.000 $ Sponsoring, 75k Abos. Ø-RPM 14,86 $, zuletzt 23,98 $. 12–15 Videos pro Monat mit Ø 30 Minuten Länge.
   - In einem anderen Thread: „$12.7k in the last 28 days. All long form.“
-  - Quellen: [r/PartneredYoutube, 28.12.2025, Kommentar mit 138 Punkten, u/elanesse100](https://www.reddit.com/r/PartneredYoutube/comments/1pxkjph/what_does_it_take_to_make_60k_80k_100k/) und [r/PartneredYoutube, 16.03.2026](https://www.reddit.com/r/PartneredYoutube/comments/1rv9cr4/anyone_here_making_5_figures_per_month_from/). **[mittel]**: über zwei Threads konsistent. u/Kingkwon83 zweifelte die Höhe an, andere erklärten sie mit der Nische.
+  - Quellen: [r/PartneredYoutube, 28.12.2025, Kommentar mit 138 Punkten, u/elanesse100](https://www.reddit.com/r/PartneredYoutube/comments/1pxkjph/what_does_it_take_to_make_60k_80k_100k/) und [r/PartneredYoutube, 16.03.2026](https://www.reddit.com/r/PartneredYoutube/comments/1rv9cr4/anyone_here_making_5_figures_per_month_from/).
+  - Nutzerhistorie: unauffällige echte Person (Baseball, Disney Cruise Line, also Familienreisen). Kein Werbeprofil.
+  - **[mittel]**: über zwei Threads konsistent. u/Kingkwon83 zweifelte die Höhe an, andere erklärten sie mit der Nische.
+
+- **Weitere Einkommensverläufe aus einem Thread mit 66 Kommentaren** ([r/PartneredYoutube, 04.01.2026, „How long did it take you to start earning $50k/$100k“](https://www.reddit.com/r/PartneredYoutube/comments/1q3imjj/how_long_did_it_take_you_to_start_earning_50k100k/)):
+  - u/No_Armadillo_3641 (65): seit fast 10 Jahren dabei, 7 Jahre monetarisiert, der erste Kanal brachte 11–15k $/Jahr. Ein Gaming-Zweitkanal wuchs dank Erfahrung und eines populären Spiels im ersten Monat auf 150k Abos und brachte rund 165k $ AdSense aus Long-Form plus 35k $ aus Shorts.
+  - u/kdrodriguez (13, Moderator im Discord des Subs): Start 2020, Vollzeit 2022 mit 60k $, seitdem 100–150k $ pro Jahr, wachsender Anteil aus eigenen Produkten.
+  - u/ForeverInBlackJeans (9): 2 Jahre ohne Einnahmen, 2023 rund 45k $, 2024 150k $, Brand Deals inzwischen größter Posten.
+  - u/kent_eh (3): „After 10 years, I'm making about 8K/year from adsense.“
+  - **[mittel]**: Einzelangaben ohne Belege, aber konsistent mit dem Rest.
 
 - **Affiliate statt AdSense.** Dann Berg (eigener Blog dannb.org mit Screenshots), 2025 nur 2 Uploads: rund 1.000 $ AdSense, aber über 20.000 $ Affiliate-Umsatz aus EINER Review (Blogpost plus Video). Die meisten Conversions kamen laut Autor über den Blog und Google. 8.462 Abos.
   - Quelle: [r/PartneredYoutube, 24.12.2025, u/IAmDann](https://www.reddit.com/r/PartneredYoutube/comments/1puwj1i/my_2025_first_full_year_monetized_made_1000/). **[hoch]**: Klarname, öffentlicher Blog mit Belegen.
@@ -89,8 +100,11 @@ Die glaubwürdigen schnellen Berichte haben drei Dinge gemeinsam: eine klar umri
   - Zitat: „If your views drops and it doesn't change, YOU need to change.“
   - Quelle: [r/NewTubers, 05.09.2026, Score 358, 96 Komm., u/woopty-woopp](https://www.reddit.com/r/NewTubers/comments/1w81yrs/im_monetized_cant_believe_it_heres_what_ive_learnt/). **[mittel]**: die Nutzerhistorie ist sehr dünn (2 Einträge).
 
-- **Abo-Aufruf mit Messung.** Kanal mit 60k Abos und Ø 45k Views. Ein verbaler Abo-Aufruf von 5 Sekunden („86% of viewers aren't subscribed“) verbesserte die Quote von 1 Abo pro 445 Views auf 1 pro 90 Views.
-  - Quelle: [r/PartneredYoutube, 12.03.2026, u/durhap](https://www.reddit.com/r/PartneredYoutube/comments/1rry5cb/asking_viewers_to_subscribe_results/). **[mittel]**: klare Vorher-nachher-Zahl. Der Top-Kommentar (89 Punkte) bestätigt das Prinzip.
+- **Brandschutz-Fachmann mit News-Format, Abo-Aufruf mit Messung.** Kanal mit 60k Abos und Ø 45k Views (Stand März 2026). Ein verbaler Abo-Aufruf von 5 Sekunden („86% of viewers aren't subscribed“) verbesserte die Quote von 1 Abo pro 445 Views auf 1 pro 90 Views.
+  - Quelle: [r/PartneredYoutube, 12.03.2026, u/durhap](https://www.reddit.com/r/PartneredYoutube/comments/1rry5cb/asking_viewers_to_subscribe_results/).
+  - Nutzerhistorie: betreibt eine „training/consulting business“, bekommt rund 500 Kommentare pro Video, Videos 4–6 Minuten, 38 % TV-Zuschauer. Die Kanal-ID hat er im Verified-Flair-Thread gepostet.
+  - TubeLab (15.10.2026): @StacheDTraining, 96,6k Abos (also +36k seit März), 485 Videos, geschätzt rund 3,4 Mio. Views/Monat, Median 59k, Ø 6,4 Minuten. Nahezu täglich kommen kurze Nachrichtenvideos zu realen Akku- und E-Auto-Bränden („Texas Dealership Fire: 6 Electric Vehicles Burning“ 314k).
+  - **[hoch]**: extern geprüft. Muster: Fachexperte kommentiert aktuelle Ereignisse aus seinem Gewerk. Das lässt sich direkt auf Handwerk übertragen (z. B. Schadensfälle, Rückrufe, Heizungsthemen in den Nachrichten).
 
 **C) Schnell, aber mit Vorerfahrung oder Sonderfaktor (Nachweis ok, schlecht übertragbar)**
 
@@ -117,6 +131,8 @@ Die glaubwürdigen schnellen Berichte haben drei Dinge gemeinsam: eine klar umri
 - Für den Handwerksdoktor sind die drei Berichte zur eigenen Werkbank (Uhren-Reparatur, Maker, CB-Funk/Retro-Computing) am aussagekräftigsten. Ihr gemeinsamer Nenner: eine sichtbare Fachkompetenz, Long-Form-Videos und Verbreitung in Fach-Communities. Viral-Hacks spielen bei keinem eine Rolle.
 - „Ein Format finden, das einmal ausschlägt, und es dann verbessert wiederholen“ ist der am häufigsten belegte Einzeltreiber. Belegt ist das bei u/Designer-Neat8275, u/Krisdanz, u/Accomplished-Case888 und u/Due-Mouse-2165.
 - Wer schnell wuchs, hatte meist Vorerfahrung. Die Fälle mit 6 Wochen bis 4 Monaten sind Ausreißer und kein Planwert.
+- Das am stärksten extern belegte Wachstum (StacheD Training: 60k auf 96,6k Abos zwischen März und Oktober 2026) kommt von einem Fachmann. Er kommentiert fast täglich reale Schadensereignisse aus seinem Gewerk in 4–6-Minuten-Videos und fordert aktiv zum Abonnieren auf. Für einen Handwerkskanal ist das die naheliegendste übertragbare Vorlage (aktuelle Schadensfälle oder Rückrufe aus Heizung, Sanitär, Elektro, fachlich eingeordnet).
+- Die Plumberparts-Daten (Frage 4) deuten in dieselbe Richtung: Geschichten, Projekte und Fehlersuche schlagen reine Anleitungen.
 
 ### Gaps
 - Kein einziger deutschsprachiger Handwerks- oder DIY-Kanal mit belegtem 0-auf-X-Verlauf auf Reddit gefunden.
@@ -144,7 +160,7 @@ Die Community ist sich einig: Packaging (Titel, Thumbnail und die ersten 30 Seku
   - u/SpaceDesignWarehouse (80k Abos, 25 Punkte): „a good video can outperform ten ‘regular videos.’“
   - u/ickN („almost 1 million subs“): Konsistenz heiße, den Produktionsprozess in den Alltag zu integrieren. „If you post once a month you’ll learn what works at 1/4“ der Geschwindigkeit. **[mittel]**
 
-- **„Just stop with this advice“** ([r/NewTubers, 27.06.2026, Score siehe Thread, u/breakonthrough65](https://www.reddit.com/r/NewTubers/comments/1ugpcjt/just_stop_with_this_advice_i_keep_seeing_over_and/)).
+- **„Just stop with this advice“** ([r/NewTubers, 27.06.2026, Score 242, 130 Komm., u/breakonthrough65](https://www.reddit.com/r/NewTubers/comments/1ugpcjt/just_stop_with_this_advice_i_keep_seeing_over_and/)).
   - Kernaussage: nach 16–21 Videos über 3–6 Monate ohne Resonanz Inhalt, Zielgruppe oder Packaging ändern.
   - u/garbageeater (87): weiterposten nur, um besser zu werden. u/AquaWalrus1989 (50): „toxic positivity“ in Creator-Subs. **[mittel]**
 
@@ -154,7 +170,7 @@ Die Community ist sich einig: Packaging (Titel, Thumbnail und die ersten 30 Seku
 
 - **Wachstum mit Datenexport (Tutorial-Kanal, 12k auf 48k Abos in 18 Monaten, 120 Videos)** ([r/NewTubers, 05.03.2026, Score 174, 29 Komm., u/Yash220306](https://www.reddit.com/r/NewTubers/comments/1rlkyd5/analyzed_my_last_120_videos_to_find_what_the/)).
   - Behauptungen: CTR erkläre etwa 60 % der Varianz bei den Views. Wer bei 30 Sekunden noch über 70 % Retention hat, bekomme etwa 3x so viele Impressions. Titel nach Muster „Problem + Lösung“ holten 40 % der Views aus der Suche, kreative Titel unter 10 %. 8–12 Minuten seien optimal. Wöchentliches Posten brachte 22 % mehr Views pro Video als alle zwei Wochen. 4 Collabs brachten nichts.
-  - **[niedrig-mittel]**: Im Text stehen Produktnennungen (Willow Voice, TubeBuddy, Claude), ein Kommentar wirbt für „videoscore.app“, und AutoModerator hat den Post gefiltert. Die Zahlen sind plausibel, aber nicht prüfbar. Teilweise widerspricht u/EntireFishing (150 auf 3.400 Abos „nearly all … browse and suggested“).
+  - **[niedrig-mittel]**: Im Text stehen Produktnennungen (Willow Voice, TubeBuddy, Claude), ein Kommentar wirbt für „videoscore.app“, und AutoModerator hat den Post gefiltert. Das Nutzerprofil liefert HTTP 403 (vermutlich gesperrt oder gelöscht, Stand 15.10.2026). Die Zahlen sind plausibel, aber nicht prüfbar. Teilweise widerspricht u/EntireFishing (150 auf 3.400 Abos „nearly all … browse and suggested“).
 
 **„Hör auf damit“ und widerlegte Ratschläge:**
 
@@ -187,6 +203,14 @@ Die Community ist sich einig: Packaging (Titel, Thumbnail und die ersten 30 Seku
 - **„I hit 70k views … made less than 99“** ([r/PartneredYoutube, 01.11.2025, u/No_Abbreviations2386](https://www.reddit.com/r/PartneredYoutube/comments/1olz45y/i_hit_70k_views_last_week_and_made_less_than_99/)). Der Edit verlinkt eine „performance-based agency“ (carrd-Seite). Das typische Muster eines Lockposts. Die Kommentare liefern dagegen wertvolle RPM-Daten, siehe Frage 5.
 
 - **„I designed 346 thumbnails …“** ([r/NewTubers, 18.01.2026, Score 809, 222 Komm., u/nvrcaredstud](https://www.reddit.com/r/NewTubers/comments/1qgl0te/i_designed_346_thumbnails_for_small_youtubers/)). Ratschläge: 2–4-Wort-Hooks, roter Hintergrund, Text links. Der Post nennt keine einzige CTR-Zahl und kommt von einem Dienstleister. **[niedrig]**: nur behauptet.
+- **Wachstumsdienst „Crescitaly“:**
+  - Der Account u/Crescitaly postet in r/ContentCreators Ratgeber wie „I was posting every day and getting nowhere. Then I switched to 3x/week“ ([20.02.2026](https://www.reddit.com/r/ContentCreators/comments/1r9whpt/i_was_posting_every_day_and_getting_nowhere_then/)), angeblich mit +60 % Views pro Post. Der Post handelt von Instagram und TikTok, nicht von YouTube.
+  - Derselbe Name taucht als Werbekommentar in [1rrvryo](https://www.reddit.com/r/SmallYTChannel/comments/1rrvryo/just_hit_2000_subs_heres_what_i_learned/) auf: „Crescitaly can help get your content in front of engaged viewers“.
+  - **[widerlegt als neutrale Quelle]**: Inhaltsmarketing eines Promo-Dienstes.
+- **„My realistic earnings as a faceless youtube creator“** ([r/ContentCreators, 14.11.2025, Score 159, 74 Komm., u/Absolutelyphenomenal](https://www.reddit.com/r/ContentCreators/comments/1ox3avc/my_realistic_earnings_as_a_faceless_youtube/)).
+  - Inhalt: Reddit-Story-Videos mit ElevenLabs-Stimme. „Account warm-up“ durch eine Woche gezieltes Schauen in der Nische. Monetarisiert am 16.10.2025, danach 75–250 £ pro Woche.
+  - Werbung: Das Autoposting-Tool „taletokio“ wird namentlich genannt, ein Kommentar wirbt für eine Agentur („ViralMirage“). Derselbe Autor postet „faceless channel niches that are ACTUALLY printing money“.
+  - **[niedrig]**: Werbemuster, und Reddit-Story-Kanäle gelten in der Community als Hochrisiko für „reused/inauthentic content“.
 
 ### Inferences
 - Das Score-Ranking spiegelt Frust und Motivation, nicht Belegqualität. Die belastbarsten Ratschläge stehen oft in Kommentaren mit 20–130 Punkten von Leuten, deren Kanal sich prüfen lässt.
@@ -194,6 +218,7 @@ Die Community ist sich einig: Packaging (Titel, Thumbnail und die ersten 30 Seku
 
 ### Gaps
 - Die Behauptung „Tags spielen kaum eine Rolle, laut YouTube“ wird zitiert, aber im Thread nicht mit einer YouTube-Quelle verlinkt.
+- Die Nutzerhistorien von u/Far-Application1714, u/Fluid_Protection_337 und u/Exotic-Parfait-1550 ließen sich nicht abrufen (Reddit-RSS-Limit/429, Abbruch nach Zeitlimit). Der Astroturfing-Verdacht stützt sich deshalb auf die wortgleichen Produktnennungen und die Kommentare, nicht auf die Profile. Geprüft wurden die Historien von u/PutridDisgust, u/wub1234, u/woopty-woopp, u/elanesse100, u/durhap und u/idonthaveklutch. u/Yash220306 liefert 403.
 
 ---
 
@@ -237,7 +262,12 @@ Shorts bringen Reichweite und Abonnenten, aber kaum Geld. Die Abonnenten aus Sho
 **Takt und Experimente:**
 - Test eines kleinen Gaming-Shorts-Kanals mit 1–2k Views pro Short: 10 Shorts geplant, 2 pro Tag. Nur der erste Short des Tages lief, der zweite bekam „barely 5 views“. Bei einem Short pro Tag liefen alle normal. Drei Kommentatoren bestätigen dasselbe Muster.
   - Quelle: [r/SmallYTChannel, 31.10.2025, u/LeetGamingOfficial](https://www.reddit.com/r/SmallYTChannel/comments/1oksb3y/shorts_and_how_they_work_read_this_if_youre/). **[niedrig-mittel]**: kleines n, eigenes Experiment, aber nachvollziehbar beschrieben.
-- „3 Shorts/Tag“: Eine gezielte Suche fand keinen datenbasierten 2025/26-Thread, der diese Strategie belegt. Siehe Gaps.
+- „3 Shorts/Tag“: Eine gezielte Suche fand keinen datenbasierten 2025/26-Thread, der diese Strategie für kleine Kanäle belegt. Siehe Gaps.
+- Gegenbeispiel mit hoher Taktung: u/Available_Recover802 (Shorts in Vollzeit) postet „around 10 a day“, kommt auf 15–50 Mio. Views pro Monat bei „average rpm ranging between $0.20-$0.40“ und brauchte 2 Monate bis zur Monetarisierung („got lucky“ mit einem Short über 6 Mio. Views). Aufwand 10 Minuten bis 1 Stunde pro Short, 2–7 Stunden pro Tag.
+  - Quelle: [r/YouTubeShorts, 10.06.2026, Score 84, 178 Komm.](https://www.reddit.com/r/YouTubeShorts/comments/1u1ywz8/i_do_yt_shorts_full_time_ama/). **[niedrig-mittel]**: keine Nische und keine Einnahmen genannt.
+  - Rechnerisch ergeben 15–50 Mio. Views bei 0,20–0,40 $ RPM etwa 3.000–20.000 $ pro Monat. Das funktioniert nur bei Volumen weit über der neuen Schwelle von 10 Mio. Views in 90 Tagen.
+- u/LasciviousMedia: „250K Subs • 350M+ YouTube Views • $35K+ Earned“. Das entspricht etwa 0,10 $ pro 1.000 Views über die Kanalgeschichte. Rat: „Don't expect anything before 50+ uploads … After 100+ uploads will be when you know“.
+  - Quelle: [r/YouTubeShorts, 22.07.2026, Score 31, 83 Komm.](https://www.reddit.com/r/YouTubeShorts/comments/1v3er2p/250k_subs_350m_youtube_views_35k_earned_here_are/). **[niedrig-mittel]**: Post-Text nicht lesbar (Bild), nur Kommentare.
 - Zwei Shorts pro Tag in einer „viralen“ Nische: Screenshot nach 4 Monaten, Zahlen nur im Bild.
   - Quelle: [r/YouTube_startups, 24.05.2026, u/Zestyclose-Carob-208](https://www.reddit.com/r/YouTube_startups/comments/1tmifra/showing_my_4_months_progress_never_give_up_guys/). **[niedrig]**
 - Retention-Hack mit Shorts unter 6 Sekunden, die eine dichte Textwand und Loop-Musik zeigen: 12 Mio. Views in 10 Tagen, über 5.500 Abos, „retention above 600%“.
@@ -270,6 +300,15 @@ Die erfahrenen Poster sehen Thumbnail, Titel und die ersten 30 Sekunden als Hebe
   - Quelle: [r/PartneredYoutube, 12.12.2025, Score 38, 17 Komm.](https://www.reddit.com/r/PartneredYoutube/comments/1pkv72o/surprised_by_title_ab_tests/). **[mittel]**: mehrere unabhängige Erfahrungen.
 - **Ein A/B-Titeltest scheint ein Video explodieren zu lassen** (nur Screenshot). Die Community ist skeptisch: u/VJ4rawr2 (44): „very very unlikely due to AB testing“. u/TCr0wn (34): „dozens of tests and have never had such a visible result“. u/Educational_Mix_7340 (15): „A/B testing kills my initial momentum“. u/Waste-Conversation98: erst testen, wenn das Video abgeflaut ist, und einen Gewinner „a couple weeks“ laufen lassen.
   - Quelle: [r/PartneredYoutube, 04.06.2026, Score 108, 75 Komm., u/Pattadampa](https://www.reddit.com/r/PartneredYoutube/comments/1twzqau/shocking_results_through_ab_testing_titles/). **[mittel]** für die Skepsis.
+- **Zeitpunkt von A/B-Tests:**
+  - u/BigRedNY (31): Einige YouTube-Strategen raten, erst nach 48–72 Stunden zu testen, damit der erste Testpool nicht zwischen einem guten und einem schlechten Thumbnail aufgeteilt wird. Quelle: [r/PartneredYoutube, 31.05.2026, „A/b test destroying video reach?“, u/Dry_Fly8391](https://www.reddit.com/r/PartneredYoutube/comments/1tsr8f2/ab_test_destroying_video_reach/).
+  - Bei einem unentschiedenen Test übernimmt YouTube laut u/TCr0wn (30) das erste Thumbnail. Quelle: [r/PartneredYoutube, 05.08.2026](https://www.reddit.com/r/PartneredYoutube/comments/1vge909/youtube_selecting_losing_thumbnail_in_ab_test/).
+  - **[niedrig-mittel]**: Praxiswissen, keine Messung.
+- **Hook-Studie (erste 45 Sekunden, 349 Videos):** 36 Kanäle mit 10k bis 6,6 Mio. Abos (Bildung, Finanzen, Erklärvideos, Kommentar). Verglichen wurden je die Top-5-Videos (Median etwa 4,7-fache Views) mit den Flop-5 (etwa 0,28-fach), ausgewertet über die Untertitel.
+  - Kein Unterschied beim Sprechtempo (181 gegen 180 Wörter pro Minute) und bei der Zeit bis zum ersten Grund weiterzuschauen (Wort 14 gegen 15).
+  - Unterschiede: Gar keinen Grund weiterzuschauen in den ersten 45 Sekunden gaben 16 % der Flops und 10 % der Hits. Konkrete Zahlen im Intro: 63 % der Hits, 52 % der Flops. Intro greift das Titelversprechen auf: 87 % gegen 78 %. Begrüßung im Intro: 7 % der Hits, 12 % der Flops. Kontext-Dump: 19 % gegen 26 %.
+  - Kritik u/MatFaunz (47): Alle Kanäle der Stichprobe beherrschen die Basics schon, also darf man daraus nicht schließen, dass Tempo egal ist.
+  - Quelle: [r/NewTubers, 15.07.2026, Score 90, 46 Komm., u/prepublish_ai](https://www.reddit.com/r/NewTubers/comments/1ux86b8/i_compared_the_first_45_seconds_of_349_videoseach/). **[mittel-niedrig]**: Methode transparent beschrieben, aber der Account-Name deutet auf ein Tool hin, und die Studie ist korrelativ.
 - **Thumbnail-Gegentest:** „people always clicked on the thumbnail that I thought would get me the least views“. Quelle: [u/woopty-woopp](https://www.reddit.com/r/NewTubers/comments/1w81yrs/im_monetized_cant_believe_it_heres_what_ive_learnt/). **[mittel]**
 - **Neu hochladen nach einem Flop:** Ein Video mit 150 Views wurde mit strafferem Schnitt, besserem Thumbnail und besserem Titel neu hochgeladen und steht jetzt bei 24k Views. Ein anderer Nutzer berichtet von 0,9 % CTR beim ersten Thumbnail mit Text und Pfeil. Das cinematische Thumbnail ohne Text brachte das Wachstum.
   - Quelle: [r/NewTubers, 13.08.2026, Score 139, 61 Komm., u/CtrlWaltz](https://www.reddit.com/r/NewTubers/comments/1vn9ixk/what_i_learned_after_6_months_of_youtube_4000/). **[mittel]**
@@ -339,6 +378,12 @@ Long-Form-RPM schwankt in den belegten Fällen zwischen etwa 1 £ (Geschichte, i
 - Bei rund 5k Views: u/NerdCrave (22): „Most sponsors at the 5K views level … aren’t even giving you free product“. Raycon wollte ein eigenes Video für ein Paar Kopfhörer. u/UnlimitedPowaaah (47): „no sponsor is paying $1000 for an integration on a video that gets 5k views“. u/RTXBurner25: 50–100 $ CPM seien realistisch für Finanz-/Tech-Nischen mit älterem Publikum.
   - Quelle: [1r7e5cd](https://www.reddit.com/r/NewTubers/comments/1r7e5cd/i_repeat_stop_trying_to_replace_your_day_job_with/). **[mittel]**
 - Maker-Kanal mit 37k Abos: bezahlte Deals zu 1.000–2.000 $. Quelle: [u/idonthaveklutch](https://www.reddit.com/r/NewTubers/comments/1qt9hue/first_14_months_on_youtube_in_the_maker_niche/). **[mittel]**
+- Account „u/sponsorradar“ (offenbar der Betreiber des gleichnamigen Tools), Kanal mit 28k Abos nach 2 Jahren: „150k total views per month = $1500 in ad sense. Sponsored segments … = $4000 per month“. Im Text steht „about $78,000 per month“, gemeint ist wohl pro Jahr. Quelle: [1q3imjj](https://www.reddit.com/r/PartneredYoutube/comments/1q3imjj/how_long_did_it_take_you_to_start_earning_50k100k/). **[niedrig-mittel]**: Eigenwerbung, Tippfehler.
+- **Handwerksnah, aber nur Hörensagen:** u/kdrodriguez: „I know a creator making $100K a MONTH selling appliance repair parts he mentions in his videos.“ Quelle: [1q3imjj](https://www.reddit.com/r/PartneredYoutube/comments/1q3imjj/how_long_did_it_take_you_to_start_earning_50k100k/). **[niedrig]**: nicht überprüfbar, aber als Geschäftsmodell (Ersatzteile zu Reparaturvideos) bemerkenswert.
+- **Wahrscheinlich deutschsprachiger Autokanal:** u/Dry_Fly8391 (postet auch in r/YouTubeDE): „12min videos 5-7$ rpm“, 4,1k Abos und rund 1.200 $ im ersten Monat nach einem viralen Video. Quelle: [r/PartneredYoutube, 31.05.2026](https://www.reddit.com/r/PartneredYoutube/comments/1tsr8f2/ab_test_destroying_video_reach/).
+  - In r/YouTubeDE nennt er für eine Automobil-Doku 4–6 € RPM (siehe Parallelnotizen).
+  - u/Alvaro-AC93 (10): mit Videos über 30 Minuten und 40–48 % AVD „RPM stays between $9-$14“.
+  - **[mittel]**
 - Shorts-only-Tech-Reviews: „Most of the money I make is from sponsorships“ (ohne Beträge). Quelle: [u/Actual-Freedom-7388](https://www.reddit.com/r/SmallYTChannel/comments/1vkgfqj/monetized_after_6_months_ama/). **[niedrig-mittel]**
 
 **Faustregeln aus Kommentaren:**
@@ -365,34 +410,55 @@ Long-Form-RPM schwankt in den belegten Fällen zwischen etwa 1 £ (Geschichte, i
 ## Frage 6: Faceless-/KI-/„YouTube Automation“-Kanäle – was berichtet die Community mit Belegen?
 
 ### Takeaway
-*(vorläufig, wird nach Auswertung von r/aitubers ergänzt)* Faceless ist nicht per se das Problem. Belegte faceless Erfolge (Uhren-Werkbank, City-Walks, Video-Essays) arbeiten mit echter Eigenleistung und eigener Stimme. Was die Community ablehnt und YouTube nach Berichten demonetarisiert, ist massenhaft produzierter, wiederverwendeter oder rein KI-generierter Content („reused/inauthentic content“). Kurse und „Agenturen“ tauchen auffällig oft als Schleichwerbung auf.
+Ohne Gesicht zu arbeiten ist nicht das Problem. Die belegten faceless Erfolge (Uhren-Werkbank, City-Walks, Video-Essays, Creepy-Story-Narration mit eigener Stimme) beruhen auf echter Eigenleistung. 2026 meldet r/aitubers eine Welle von Demonetarisierungen wegen „Inauthentic Content“. Sie traf auch aufwendige KI-Kanäle und laut Berichten sogar Nicht-KI-Kanäle mit stark schablonenhaften Titeln und Thumbnails. „YouTube Automation“-Kurse, Agenturen und Tools tauchen auffällig oft als Schleichwerbung in Erfolgsposts auf. Die Subreddits r/YouTubeAutomation und r/facelessyoutube liefern über das Skript 0 Posts (vermutlich gesperrt oder privat). Die aktive Community dafür ist r/aitubers.
 
 ### Cited Findings
-- **Demonetarisierung von KI-Kanälen:** u/itos (16): „They are demonetized for reused content not because of AI.“ u/AndyValentine (165) unterscheidet KI als Werkzeug im Workflow von KI als Ersatz für den gesamten kreativen Prozess. u/alwayseasy (19): „12 to 20 channels a day stealing my long form content. They spin the script in ChatGPT“.
+
+**Erfolge (faceless, mit Eigenleistung):**
+- u/keepingitmovin (74): Creepy-Story-Narration seit Mitte 2022, „Was monetized in a month“, seit Ende 2023 Vollzeit, „not rich … but I make enough to pay bills“. u/ChimpDaddy2015 (10): „14 month old Faceless channel, 75k subs, 1 million average views, all long form“. u/sledge98 (9): faceless Gaming-Kanal mit 300k Abos, 2020–2024 Vollzeit, jetzt nur noch 500–1.000 $/Monat aus dem Back-Katalog. u/mocknix (34): „be careful who you listen to … play that tape forward and see what they're trying to pitch/sell to you“.
+  - Quelle: [r/PartneredYoutube, 05.01.2026, Score 84, 160 Komm., „Any success with faceless channels?“](https://www.reddit.com/r/PartneredYoutube/comments/1q4p5qo/any_success_with_faceless_channels/). **[mittel]**: mehrere unabhängige Stimmen, keine Belege.
+- Belegte faceless Fälle aus Frage 1: Uhren-Werkbank [1uv9dsi](https://www.reddit.com/r/NewTubers/comments/1uv9dsi/so_it_took_me_around_85_months/) **[hoch]** und City-Walks [1w81yrs](https://www.reddit.com/r/NewTubers/comments/1w81yrs/im_monetized_cant_believe_it_heres_what_ive_learnt/) **[mittel]**. Zitat dazu: „If you are a faceless youtube channel (like me) people won't connect to you personally so the editing and filming … needs to be the top quality.“
+
+**Demonetarisierung („Inauthentic Content“) 2026:**
+- Musik-Satire-Kanal: eigene Texte, Suno und VEO3, aufwendiger Schnitt, 8 Monate im YPP. Dann demonetarisiert wegen „Inauthentic Content“, ohne dass sich etwas am Inhalt geändert hatte.
+  - u/ShaneKaiGlenn (39): „It’s not just AI, non-AI creators are being swept up in this too“. Als Trigger vermutet er Titel und Thumbnails mit sehr gleichförmiger Formel („if you have 20 videos and they all have ‘parody music video’ in the title“). u/WannabeGamermom (7): Gaming-Livestream bekam im Februar „inauthentic content“. u/Away-Ranger-2344 (6): Kanal nach 9 Monaten ohne Begründung terminiert.
+  - Quelle: [r/aitubers, 06.04.2026, Score 115, 159 Komm., u/Technical-Author-678](https://www.reddit.com/r/aitubers/comments/1se9c36/ai_content_on_youtube_is_over/). **[mittel]**: Erfahrungsbericht, mehrfach bestätigt. Die Trigger-These ist **[niedrig]**, weil Vermutung.
+- „Abandoned Films, one of the largest AI video channels on YouTube, was demonetized, and they removed all videos“. Vermutete Ursache: zu einheitliches Format bei Titeln und Thumbnails. u/Fr0z3nRebel (18): „I go for views and drive traffic to my affiliate offer. One sale destroys any YouTube RPM out there.“
+  - Quelle: [r/aitubers, 19.05.2026, u/ShaneKaiGlenn](https://www.reddit.com/r/aitubers/comments/1thyhxg/abandoned_films_one_of_the_largest_ai_video/). **[mittel]**
+- u/itos (16): „They are demonetized for reused content not because of AI.“ u/AndyValentine (165) unterscheidet KI im Workflow von KI als Ersatz für den kreativen Prozess. u/alwayseasy (19): „12 to 20 channels a day stealing my long form content. They spin the script in ChatGPT“.
   - Quelle: [r/PartneredYoutube, 26.01.2026, u/OhhMilly](https://www.reddit.com/r/PartneredYoutube/comments/1qnjihw/youtube_is_demonetizing_ai_channels_how_do_you/). **[mittel]**
-- **Erfahrungsbericht Geschichtskanal:** zuerst KI-Voiceover. „I realised I was ruining the quality of my own research by sticking cheap AI audio over it“. Wechsel zur eigenen Stimme, später zu Talking-Head-Videos. Quelle: [u/k1smb3r](https://www.reddit.com/r/PartneredYoutube/comments/1w77eiz/how_much_youtube_paid_my_small_history_channel_in/). **[mittel]**
-- **Faceless ohne KI kann funktionieren:** u/you_break_you_buy: „I've been a faceless creator for years and have had 4K-10K months frequently … I've always used my own voice“.
-  - Quelle: [r/PartneredYoutube, 26.06.2026](https://www.reddit.com/r/PartneredYoutube/comments/1ufu2sn/first_time_i_broke_100000/). **[niedrig-mittel]**: ein einzelner Kommentar.
-- **Community-Stimmung:** Top-Post „People need to stop using AI as a crutch“ ([r/NewTubers, 12.04.2026, Score 315, 233 Komm.](https://www.reddit.com/r/NewTubers/comments/1sjt7bq/people_need_to_stop_using_ai_as_a_crutch/), nur der Titel gesichtet). „The best decision YT has made so far“ ([r/NewTubers, 03.08.2026, Score 396, 118 Komm.](https://www.reddit.com/r/NewTubers/comments/1vensht/the_best_decision_yt_has_made_so_far/)) zitiert eine Meldung über 16 gelöschte Content-Farm-Kanäle mit 4,6 Mrd. Views. Die Zahl stammt aus einem Zitat ohne Quellenlink. **[niedrig]** für die Zahl.
-- **„90% of channels here are garbage“** (Vollzeit-Creator, 10 Jahre): „auto voice summary channels, ai thumbnails … stolen shorts content, 8 uploads in one day, people fake flexing faceless channels (as in people lying about faceless success to prey on people)“.
-  - Quelle: [r/SmallYTChannel, 15.04.2026, u/Zenny_YouTube](https://www.reddit.com/r/SmallYTChannel/comments/1slw3d1/90_of_channels_here_are_garbage_and_you_dont/). **[mittel]** als Stimmungsbild.
-- **Bezahlte Abos, Bots und Agenturen:**
-  - Im Thread „best YouTube subscriber bot“ empfehlen der Edit des OP und der Top-Kommentar (24 Punkte) denselben Bot-Dienst. Das ist klassisches Astroturfing. Quelle: [r/YouTube_startups, 12.04.2026](https://www.reddit.com/r/YouTube_startups/comments/1sjf5qf/whats_the_best_youtube_subscriber_bot_that_works/). **[widerlegt als Empfehlung]**
-  - Die „performance-based agency“ im Edit von [1olz45y](https://www.reddit.com/r/PartneredYoutube/comments/1olz45y/i_hit_70k_views_last_week_and_made_less_than_99/) folgt demselben Muster.
-  - YouTubes eigene Promotion: 50 £ brachten 2.100 Views und rund 10 Abos. Laut Kommentaren zählt die Watch-Time aus Promotion nicht fürs YPP. Quelle: [r/SmallYTChannel, 21.10.2025](https://www.reddit.com/r/SmallYTChannel/comments/1obznqi/i_paid_for_youtube_promotion_heres_my_results/). **[mittel]**
+- Geschichtskanal: „I realised I was ruining the quality of my own research by sticking cheap AI audio over it“. Wechsel zur eigenen Stimme und zu Talking-Head-Videos. Quelle: [u/k1smb3r](https://www.reddit.com/r/PartneredYoutube/comments/1w77eiz/how_much_youtube_paid_my_small_history_channel_in/). **[mittel]**
+
+**Nischenanalyse KI-Kanäle:**
+- Analyse von 195 faceless Voiceover-Kanälen mit zusammen 63,5 Mio. Abos: „If the niche runs on atmosphere and narrative, AI works fine. If it needs trust or personal expertise it doesnt“. „Motivation & self improvement - basically dead“. „channels using AI minimally still have the highest avg subs. Top of the market is still human led“.
+  - u/Wooden-Ad-460: Laut Socialblade sinken auch die großen KI-Kanäle.
+  - Quelle: [r/aitubers, 19.02.2026, Score 86, 118 Komm., u/Upper-Mountain-3397](https://www.reddit.com/r/aitubers/comments/1r8pjgb/most_ai_youtube_niches_are_dead/). **[niedrig-mittel]**: Der Autor wirbt nebenbei für TTS- und Vektor-DB-Tools, die Kategorisierung wurde in den Kommentaren korrigiert.
+- „$60k+ with YouTube Ai. AMA“: Der Autor weigert sich, Workflow oder Kanal zu nennen. Kommentar (25): „You can’t define you’re workflow“. Quelle: [r/aitubers, 26.11.2025, Score 60, 161 Komm., u/Odd-News2865](https://www.reddit.com/r/aitubers/comments/1p7eoui/60k_with_youtube_ai_ama/). **[niedrig]**: unbelegt.
+
+**Bots, gekaufte Abos, Agenturen, Promotion:**
+- Im Thread „best YouTube subscriber bot“ empfehlen der Edit des OP und der Top-Kommentar (24 Punkte) denselben Bot-Dienst. Klassisches Astroturfing. Gegenstimme u/This-You-2737 (14): „the system actively scans for unnatural engagement patterns“.
+  - Quelle: [r/YouTube_startups, 12.04.2026](https://www.reddit.com/r/YouTube_startups/comments/1sjf5qf/whats_the_best_youtube_subscriber_bot_that_works/). **[widerlegt als Empfehlung]**
+- „Performance-Agentur“ im Edit von [1olz45y](https://www.reddit.com/r/PartneredYoutube/comments/1olz45y/i_hit_70k_views_last_week_and_made_less_than_99/), Autoposting-Tool und Agentur in [1ox3avc](https://www.reddit.com/r/ContentCreators/comments/1ox3avc/my_realistic_earnings_as_a_faceless_youtube/), „Crescitaly“ in [1rrvryo](https://www.reddit.com/r/SmallYTChannel/comments/1rrvryo/just_hit_2000_subs_heres_what_i_learned/). Das ist ein wiederkehrendes Werbemuster. **[widerlegt als neutrale Quelle]**
+- YouTubes eigene Promotion: 50 £ brachten 2.100 Views und rund 10 Abos. Laut Kommentaren zählt die Watch-Time aus Promotion nicht fürs YPP. u/jimb0z_ (8): „Paid promos don’t hurt organic engagement. But that’s exactly why they are a waste of money.“
+  - Quelle: [r/SmallYTChannel, 21.10.2025](https://www.reddit.com/r/SmallYTChannel/comments/1obznqi/i_paid_for_youtube_promotion_heres_my_results/). **[mittel]**
+- Speedrun-Monetarisierung (10-Stunden-Livestreams) brachte im ersten Monat 3 $: [1tzuzpf](https://www.reddit.com/r/PartneredYoutube/comments/1tzuzpf/my_first_month_fully_monetised_anticlimactic/). **[mittel]**
+- Sub4Sub: In r/NewTubers gibt es 2025/26 keinen einzigen Erfolgsbericht dazu. Der höchstbewertete Treffer ist eine Beschwerde („The sub4sub stuff is really annoying“, Score 80, [12.10.2026](https://www.reddit.com/r/NewTubers/comments/1x45mvp/the_sub4sub_stuff_is_really_annoying/), nur der Titel gesichtet). Im Kontext dazu u/TedTwist: „don’t ever let people who don’t find your channel naturally view your channel. You’ll get one view and one view only“ ([1r1uu7v](https://www.reddit.com/r/NewTubers/comments/1r1uu7v/from_100_to_1m_daily_views_in_7_days_this_is_what/)). **[niedrig-mittel]**: Konsens ohne Messdaten.
 
 ### Inferences
-- Für den Handwerksdoktor (Zeichentrick-Shorts, Piper-TTS-Stimme) besteht ein konkretes Risiko: TTS plus generische Visuals plus hohe Taktung entspricht genau dem Muster, das YouTube als „inauthentic/reused“ einstuft. Echte Werkstattaufnahmen, echte Fälle und eine erkennbare Fachperson sind der belegte Schutz. *(Abschnitt wird nach r/aitubers-Auswertung ergänzt.)*
+- Für den Handwerksdoktor ist das ein konkretes Risiko. Die Kombination aus Zeichentrick-Shorts, TTS-Stimme (Piper), Vorlagen-Thumbnails im immer gleichen Stil und hoher Taktung entspricht dem Muster, das Betroffene als Auslöser für „inauthentic content“ vermuten. Die Vermutung ist unbelegt, wird aber mehrfach berichtet.
+- Belegter Schutz: echte Werkstatt- und Fallaufnahmen, eine erkennbare Fachperson (Stimme oder Gesicht), Variation in Titeln und Thumbnails und erkennbarer Mehrwert pro Video. Das Fachkompetenz-Argument aus der KI-Nischenanalyse („needs trust or personal expertise“) spricht ebenfalls für einen menschlich geführten Handwerkskanal.
 
 ### Gaps
-- *(in Bearbeitung)*
+- Keine offizielle YouTube-Aussage im Reddit-Material darüber, welche Merkmale „inauthentic content“ konkret auslösen. Die Trigger-These (schablonenhafte Titel und Thumbnails) ist eine Vermutung Betroffener.
+- r/YouTubeAutomation und r/facelessyoutube waren über das Skript leer (0 Posts). Diese Communitys konnten nicht ausgewertet werden.
+- Für Kursanbieter („YouTube Automation“-Kurse) wurde kein konkreter Reddit-Erfahrungsbericht mit Kosten und Ergebnis gelesen. Die Suche „youtube automation“ lieferte vor allem fachfremde Treffer.
 
 ---
 
 ## Frage 7: Realistische Zeitachsen und Gründe, warum Kanäle stagnieren
 
 ### Takeaway
-*(vorläufig)* Die realistischen Werte aus den Berichten: 5–12 Monate bis 1k Abos und 8–14 Monate bis zur Monetarisierung, mit großer Streuung. Monetarisierung allein bringt typischerweise zweistellige bis niedrige dreistellige Dollarbeträge pro Monat. Häufigste Gründe für Stillstand: kein klarer Zuschauernutzen und schwaches Packaging, Formatwechsel ohne Lernen, Publikum aus Niedrig-RPM-Ländern, Burnout durch Pflicht-Takt und der Job-Ausstieg vor stabilen Einnahmen. Ab Februar 2027 verdoppelt sich die Einstiegshürde auf 8.000 Stunden.
+Die realistischen Werte aus den Berichten: 5–12 Monate bis 1k Abos und 8–14 Monate bis zur Monetarisierung, mit großer Streuung. Monetarisierung allein bringt typischerweise zweistellige bis niedrige dreistellige Dollarbeträge pro Monat. Häufigste Gründe für Stillstand: kein klarer Zuschauernutzen und schwaches Packaging, Formatwechsel ohne Lernen, Publikum aus Niedrig-RPM-Ländern, Burnout durch Pflicht-Takt und der Job-Ausstieg vor stabilen Einnahmen. Ab Februar 2027 verdoppelt sich die Einstiegshürde auf 8.000 Stunden.
 
 ### Cited Findings
 - **Zeitachsen aus den gelesenen Berichten:**
@@ -404,6 +470,10 @@ Long-Form-RPM schwankt in den belegten Fällen zwischen etwa 1 £ (Geschichte, i
   - u/IndependentEcho4123: 1k Abos nach 734 Videos (Tarot) ([r/PartneredYoutube, 16.06.2026](https://www.reddit.com/r/PartneredYoutube/comments/1u7q0di/just_got_1k_subscribers/)).
   - **[mittel]**: Streuung belegt.
 - **Nichtlinearität:** „It took me 5 months to hit 1k, then only 2 more months to hit 2k.“ ([1rrvryo](https://www.reddit.com/r/SmallYTChannel/comments/1rrvryo/just_hit_2000_subs_heres_what_i_learned/)). u/Xenephobe375: „almost 4 months exactly to reach 1000 subs and 4k hours … Now I'm at 4100 subs. It really is a snowball effect“ ([1uv9dsi](https://www.reddit.com/r/NewTubers/comments/1uv9dsi/so_it_took_me_around_85_months/)). **[mittel]**
+- **Ist es 2026 schwerer?** „Yes, YouTube is *MUCH* Harder in 2026 For New Creators“: weniger Platz für Long-Form auf der Startseite, die Trending-Seite wurde im Juli 2025 abgeschaltet, die Produktionsstandards steigen.
+  - Die Top-Antwort widerspricht: u/nzdevon (189): „on my feed, I am often seeing new channels with 0 to 20 subs“. u/bearflies (14): „Youtube has been pushing small channels for at least 1-2 years.“ u/menondata (61) sinngemäß gleich.
+  - Quelle: [r/NewTubers, 08.02.2026, Score 248, 127 Komm., u/RTXBurner25](https://www.reddit.com/r/NewTubers/comments/1qze9ep/yes_youtube_is_much_harder_in_2026_for_new/). **[mittel]**: umstritten. Die Kommentare berichten, dass kleine Kanäle Startseiten-Tests bekommen.
+- **Zeit bis zum ersten Geld bei Vollzeit-Creators:** u/ForeverInBlackJeans: „two full years making $0“, danach 45k $, dann 150k $ pro Jahr ([1q3imjj](https://www.reddit.com/r/PartneredYoutube/comments/1q3imjj/how_long_did_it_take_you_to_start_earning_50k100k/)). u/LasciviousMedia (Shorts): „Don't expect anything before 50+ uploads“ ([1v3er2p](https://www.reddit.com/r/YouTubeShorts/comments/1v3er2p/250k_subs_350m_youtube_views_35k_earned_here_are/)). **[niedrig-mittel]**
 - **Kaltstart statt Shadowban:** „What people call one is a cold start. YouTube has no data yet“ ([1wuxejc](https://www.reddit.com/r/NewTubers/comments/1wuxejc/five_youtube_rules_this_sub_repeats_constantly/)). **[mittel]**
 - **Stagnationsgründe mit Belegen:**
   - Variety statt Nische: 200 Abos in 3 Monaten, erst die engere Nische (Indie-Horror) brachte Wachstum ([1u7c5eo](https://www.reddit.com/r/PartneredYoutube/comments/1u7c5eo/left_corporate_a_year_ago_to_do_content_full_time/)).
