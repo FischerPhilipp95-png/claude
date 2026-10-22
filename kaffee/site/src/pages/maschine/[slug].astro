@@ -29,8 +29,11 @@ const kauf = [
   ...pflegemittelFuer(marke),
   { name: `Neue ${m.titel}?`, warum: 'Aktuelle Preise und Varianten bei Amazon vergleichen.', suche: `${marke.replace('’', "'")} ${m.name} ${m.art === 'siebtraeger' ? 'Siebträger' : 'Kaffeevollautomat'}` },
 ];
-const title = `${m.titel}: Anleitungen und Hilfe`;
-const description = `${m.titel}: entkalken, reinigen, Fehler beheben. Alle Anleitungen und Videos für deine Maschine an einem Ort.`;
+// Suchanfragen lauten oft „<Modell> Anleitung Video“: das Wort Video nur, wenn die Seite wirklich Videos zeigt.
+const title = videos.length ? `${m.titel}: Anleitung als Video, entkalken, reinigen` : `${m.titel}: Anleitung, entkalken, reinigen`;
+const description = videos.length
+  ? `${m.titel}: Anleitungen als Video und zum Nachlesen. Entkalken, reinigen, Fehler beheben, alles für deine Maschine an einem Ort.`
+  : `${m.titel}: entkalken, reinigen, Fehler beheben. Alle Anleitungen für deine Maschine an einem Ort.`;
 const url = `${SITE.url}/maschine/${m.id}/`;
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, url, inLanguage: 'de-DE',
@@ -50,7 +53,7 @@ const jsonLd = [
     <a class="chip chip-lg" href={`/thema/${m.marke.slug}/`}><Icon name={m.marke.icon} size={16} /> {m.marke.titel}</a>
     <div class={bild ? 'thema-kopf' : undefined}>
       <div>
-        <h1>{m.titel}: Anleitungen und Hilfe</h1>
+        <h1>{title}</h1>
         <p class="lead">Alles für deine {m.titel} an einem Ort: Anleitungen zum Nachlesen, Videos und die Pflege-Grundlagen,
         die für alle {m.marke.titel}-Maschinen gelten.{m.art === 'siebtraeger' ? ' Hinweis: Das ist ein Siebträger, kein Vollautomat.' : ''}</p>
       </div>

@@ -1,7 +1,7 @@
 {
   "_hinweis": "Welches YouTube-Video zu welchem Artikel oder welcher Seite gehört. Von Hand geprüft. Neue Videos ordnet scripts/videos.mjs automatisch zu, wenn sie eindeutig passen. Ein Artikel mit null bekommt nie ein Video, Videos unter ignorieren werden nie automatisch zugeordnet.",
   "artikel": {
-    "delonghi-kaffeevollautomat-entkalken": "LLl4Ocv-0tM",
+    "delonghi-kaffeevollautomat-entkalken": "97IogfXRj-I",
     "jura-kaffeevollautomat-reinigen": "rb1vi2R1zs4",
     "kaffeevollautomat-entkalken": "7S7ecYJs4P4",
     "philips-aquaclean-filter": "-EdeoVb8Qpk",
@@ -11,7 +11,9 @@
     "delonghi-bruehgruppe-reinigen": "-x0obhkt8Ao",
     "philips-lattego-milchschaum": "EtcBg435Q9I",
     "philips-bruehgruppe-reinigen-fetten": "5dq4lXIqNRo",
-    "wasser-unter-kaffeevollautomat": "63lQKaBPelU"
+    "wasser-unter-kaffeevollautomat": "63lQKaBPelU",
+    "delonghi-magnifica-s-entkalken": "LLl4Ocv-0tM",
+    "kaffeevollautomat-zu-wenig-kaffee": "N1LVGR4PbrM"
   },
   "seiten": {},
   "ignorieren": []
