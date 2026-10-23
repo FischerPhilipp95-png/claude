@@ -174,6 +174,18 @@ th { font-weight: 800; background: #fafaf7; }
 tr:last-child td { border-bottom: 0; }
 tbody tr:nth-child(even) td { background: #fcfcfa; }
 @media (max-width: 560px) { table { font-size: 0.85em; } th, td { padding: 0.5em 0.45em; } }
+/* Lange Fehler-Tabellen (Fehler | Ursache | Lösung): am Handy als Karten statt drei schmaler Spalten. */
+@media (max-width: 560px) {
+  .tabelle-karten table, .tabelle-karten tbody, .tabelle-karten tr, .tabelle-karten td { display: block; width: 100%; }
+  .tabelle-karten thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .tabelle-karten table { font-size: 0.95em; }
+  .tabelle-karten tr { border-bottom: 1px solid var(--line); padding: 0.7em 0.8em; }
+  .tabelle-karten tr:last-child { border-bottom: 0; }
+  .tabelle-karten td, .tabelle-karten tbody tr:nth-child(even) td { border: 0; padding: 0.15em 0; background: none; overflow-wrap: break-word; }
+  .tabelle-karten td:first-child { font-weight: 800; padding-bottom: 0.3em; }
+  .tabelle-karten td:nth-child(2)::before { content: "Ursache: "; font-weight: 700; }
+  .tabelle-karten td:nth-child(3)::before { content: "Lösung: "; font-weight: 700; }
+}
 
 figure { margin: 1.8em 0; }
 figcaption { font-size: 0.78rem; color: var(--muted); margin-top: 8px; }
