@@ -39,7 +39,8 @@ const videos = mediathekVideos(name);
 const vSchema = video && videoSchema(video, t.intro.slice(0, 155));
 if (vSchema) jsonLd.push(vSchema as any);
 ---
-<Base title={`${t.titel}: Anleitungen und Ratgeber`} description={t.intro.slice(0, 155)} jsonLd={jsonLd} image={bild.src}>
+{/* Ohne eigenen Artikel und ohne Video bleibt die Themenseite für Besucher da, aber nicht im Index (keine dünnen Seiten). */}
+<Base title={`${t.titel}: Anleitungen und Ratgeber`} description={t.intro.slice(0, 155)} jsonLd={jsonLd} image={bild.src} noindex={posts.length === 0 && videos.length === 0}>
   <div class="wrap wide">
     <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › {t.titel}</nav>
     <div class="thema-kopf">
