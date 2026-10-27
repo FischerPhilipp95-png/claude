@@ -1,0 +1,223 @@
+---
+// Spar-Rechner dynamischer Stromtarif: rechnet mit den echten Stundenprofilen der Börse (src/strompreise.json, SMARD)
+// und einem Haushaltsprofil nach, was ein Jahr im Festpreis und im dynamischen Tarif kostet, mit und ohne Verschieben.
+import Base from '../../layouts/Base.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import StromUhr from '../../components/StromUhr.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../site';
+import preise from '../../strompreise.json';
+
+const title = 'Dynamischer Stromtarif: Spar-Rechner mit echten Börsenpreisen';
+const description = 'Festpreis oder dynamischer Stromtarif? Der Rechner nutzt die echten Börsenpreise 2025 und 2026 je Tagesstunde, deinen Verbrauch, E-Auto, Wärmepumpe und Smart-Meter-Kosten. Was bleibt übrig?';
+const jahre = Object.keys(preise).filter((k) => /^\d{4}$/.test(k)).sort();
+const daten = Object.fromEntries(jahre.map((j) => [j, { stunden: (preise as any)[j].stunden, monate: (preise as any)[j].monate }]));
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Spar-Rechner dynamischer Stromtarif',
+  url: `${SITE.url}/rechner/dynamischer-stromtarif/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Dynamischer Stromtarif</nav>
+    <h1>{title}</h1>
+    <p class="lead">Kein Schätzwert, sondern die echten Börsenpreise je Tagesstunde aus {jahre.join(' und ')}: Der Rechner legt deinen Verbrauch auf ein
+    Tagesprofil, rechnet jede Stunde zum dynamischen Preis ab und vergleicht mit deinem Festpreis. Alles läuft nur in deinem Browser.</p>
+
+    <Antwort>
+    <p><strong>Kurz gesagt:</strong> Ein Haushalt mit <strong>3.500 kWh</strong> und <strong>37 Cent</strong> Festpreis zahlt im dynamischen Tarif mit den Börsenpreisen
+    von 2025 <strong>ohne Verschieben rund 130 € weniger</strong>, bei einem günstigen Festpreis von 30 Cent dagegen <strong>mehr</strong>. Richtig lohnt
+    es sich mit <strong>E-Auto</strong> (rund 2.700 kWh, nachts oder mittags geladen) oder <strong>Wärmepumpe mit Puffer</strong>: dann sind
+    {' '}<strong>400 bis 750 € im Jahr</strong> drin (Beispiele unten). Lade ein Beispiel oder trag deine Zahlen ein.</p>
+    </Antwort>
+
+    <section class="box calc" aria-label="Rechner" data-preise={JSON.stringify(daten)}>
+      <p class="small">Beispiel laden:</p>
+      <div class="presets">
+        <button type="button" class="chip" data-preset="wohnung">Wohnung, 2.500 kWh</button>
+        <button type="button" class="chip" data-preset="familie">Haus, 4.000 kWh</button>
+        <button type="button" class="chip" data-preset="eauto">Haus mit E-Auto</button>
+        <button type="button" class="chip" data-preset="wp">Haus mit Wärmepumpe und E-Auto</button>
+      </div>
+      <div class="rc-grid">
+        <p class="rc-gruppe"><Icon name="house" size={18} /> Dein Haushalt</p>
+        <label>Haushaltsstrom in kWh pro Jahr (ohne Auto und Wärmepumpe)<input id="kwh" type="number" inputmode="numeric" min="0" step="100" value="3500" /></label>
+        <label>Dein Festpreis heute in Cent pro kWh<input id="fest" type="number" inputmode="decimal" min="0" step="0.1" value="37" /></label>
+        <label>Grundpreis Festtarif in € pro Monat<input id="festgp" type="number" inputmode="decimal" min="0" step="0.5" value="12" /></label>
+        <label>Verschiebbarer Anteil (Waschmaschine, Trockner, Spülmaschine) <span id="flex-wert">15 %</span><input id="flex" type="range" min="0" max="40" step="5" value="15" /></label>
+
+        <p class="rc-gruppe"><Icon name="car" size={18} /> E-Auto</p>
+        <label>Ladestrom zu Hause in kWh pro Jahr (0 = kein E-Auto)<input id="eauto" type="number" inputmode="numeric" min="0" step="100" value="0" /></label>
+        <label>Wann lädt es?<select id="laden">
+          <option value="smart">App sucht die günstigsten Stunden</option>
+          <option value="nacht">nachts, 0 bis 6 Uhr</option>
+          <option value="abend">abends nach Feierabend (ungesteuert)</option>
+        </select></label>
+
+        <p class="rc-gruppe"><Icon name="heater" size={18} /> Wärmepumpe</p>
+        <label>Wärmepumpenstrom in kWh pro Jahr (0 = keine)<input id="wp" type="number" inputmode="numeric" min="0" step="100" value="0" /></label>
+        <label class="rc-check"><input id="puffer" type="checkbox" checked /> Pufferspeicher oder Fußbodenheizung: kann abends pausieren</label>
+
+        <p class="rc-gruppe"><Icon name="activity" size={18} /> Dynamischer Tarif</p>
+        <label>Preisjahr der Börse<select id="jahr">{jahre.map((j) => <option value={j}>{j}{j === jahre[jahre.length - 1] ? ' (bis ' + (preise as any)[j].bis + ')' : ''}</option>)}</select></label>
+        <label>Aufschlag des Anbieters in Cent pro kWh<input id="auf" type="number" inputmode="decimal" min="0" step="0.1" value="2" /></label>
+        <label>Grundpreis dynamisch in € pro Monat (Netz, Messung, Anbieter)<input id="dyngp" type="number" inputmode="decimal" min="0" step="0.5" value="15" /></label>
+        <label>Netzentgelte, Steuern, Umlagen in Cent pro kWh netto<input id="fix" type="number" inputmode="decimal" min="0" step="0.1" value="16" /></label>
+        <label>Mehrkosten Smart Meter in € pro Jahr<input id="sm" type="number" inputmode="decimal" min="0" step="1" value="10" /></label>
+      </div>
+
+      <div class="rc-ergebnis" id="fazit" aria-live="polite">
+        <strong class="rc-zahl" id="fazit-zahl">–</strong>
+        <span id="fazit-text">–</span>
+      </div>
+
+      <table class="rc-tabelle" aria-live="polite">
+        <thead><tr><td></td><th scope="col">Festpreis</th><th scope="col">dynamisch, nichts verschoben</th><th scope="col">dynamisch, verschoben</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Strom gesamt</th><td id="kwh-ges" colspan="3">–</td></tr>
+          <tr><th scope="row">Durchschnitt pro kWh</th><td id="ct-fest">–</td><td id="ct-dyn0">–</td><td id="ct-dyn1">–</td></tr>
+          <tr><th scope="row">Grundpreis und Smart Meter</th><td id="gp-fest">–</td><td id="gp-dyn0">–</td><td id="gp-dyn1">–</td></tr>
+          <tr><th scope="row"><strong>Kosten pro Jahr</strong></th><td id="eur-fest"><strong>–</strong></td><td id="eur-dyn0"><strong>–</strong></td><td id="eur-dyn1"><strong>–</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="rc-bars" aria-hidden="true">
+        <div class="rc-bar"><span>Festpreis</span><span class="rc-track"><span class="rc-fill hell" id="bar-fest"></span></span><span id="bar-fest-t">–</span></div>
+        <div class="rc-bar"><span>dynamisch, nichts verschoben</span><span class="rc-track"><span class="rc-fill" id="bar-dyn0"></span></span><span id="bar-dyn0-t">–</span></div>
+        <div class="rc-bar"><span>dynamisch, verschoben</span><span class="rc-track"><span class="rc-fill gruen" id="bar-dyn1"></span></span><span id="bar-dyn1-t">–</span></div>
+      </div>
+      <p class="rc-hinweis" id="risiko">–</p>
+      <RechnerTeilen />
+    </section>
+
+    <StromUhr titel="Mit diesen Stundenpreisen rechnet der Rechner" />
+
+    <h2>So rechnet der Rechner</h2>
+    <ul>
+      <li><strong>Börsenpreis je Stunde:</strong> Durchschnitt aller Viertelstundenpreise der Börse (Day-Ahead, DE-LU) je Tagesstunde, getrennt nach Sommer (April bis September) und Winter, Quelle Bundesnetzagentur | SMARD.de.</li>
+      <li><strong>Dein Preis je Stunde</strong> = (Börsenpreis + Netzentgelte, Steuern, Umlagen) × 1,19 Mehrwertsteuer + Aufschlag. Voreingestellt 16 Cent netto feste Bestandteile (Finanztip, Durchschnitt laut BDEW) und 2 Cent Aufschlag.</li>
+      <li><strong>Haushaltsstrom</strong> liegt auf einem Tagesprofil mit Morgen- und Abendspitze, angelehnt an das Standardlastprofil H0. Der verschiebbare Anteil wandert in die vier günstigsten Stunden des Tages.</li>
+      <li><strong>E-Auto:</strong> „App“ lädt in den sechs günstigsten Stunden der jeweiligen Jahreszeit, „nachts“ zwischen 0 und 6 Uhr, „abends“ zwischen 17 und 22 Uhr.</li>
+      <li><strong>Wärmepumpe:</strong> 80 Prozent des Stroms im Winter, gleichmäßig über den Tag. Mit Puffer laufen 40 Prozent davon in den sechs günstigsten Stunden.</li>
+      <li><strong>Festpreis:</strong> Verbrauch × Festpreis + Grundpreis. Beim Smart Meter zählen nur die Mehrkosten gegenüber dem digitalen Zähler (voreingestellt 10 €).</li>
+      <li><strong>Preisrisiko:</strong> Der Hinweis unter der Grafik rechnet den teuersten und den günstigsten Monat des gewählten Jahres zum Monatsdurchschnitt der Börse.</li>
+      <li>Nicht enthalten: § 14a-Rabatt (<a href="/rechner/netzentgelt-14a/">eigener Rechner</a>), PV-Eigenverbrauch, Preisänderungen der Anbieter, Wechselboni.</li>
+    </ul>
+
+    <Warnung titel="Vergangenheit ist keine Prognose">
+    Die Börsenpreise 2025 und 2026 sagen nichts über 2027. Ein Winter mit langer Dunkelflaute kann den dynamischen Tarif teurer machen als
+    jeden Festpreis. Deshalb: nur mit monatlich kündbarem Vertrag, und nur, wenn du das Risiko tragen kannst.
+    Hintergrund: <a href="/artikel/dynamischer-stromtarif/">Dynamischer Stromtarif: lohnt sich das?</a>
+    </Warnung>
+
+    <h2>Weiter</h2>
+    <ul>
+      <li><a href="/vergleich/dynamische-stromtarife/">Anbieter-Vergleich</a>: Aufschlag und Grundgebühr für das Feld oben.</li>
+      <li><a href="/rechner/smart-meter-check/">Smart-Meter-Check</a>: Bekommst du einen, und was kostet er bei dir?</li>
+      <li><a href="/rechner/e-auto-laden/">E-Auto-Ladekosten-Rechner</a>: pro 100 km, mit § 14a-Rabatt.</li>
+      <li><a href="/artikel/dynamischer-stromtarif-wechseln/">So wechselst du</a>, mit Checkliste.</li>
+    </ul>
+
+    <h2>Quellen</h2>
+    <ul class="small">
+      <li>Bundesnetzagentur | SMARD.de: Day-Ahead-Preise DE-LU {jahre.join(', ')} (CC BY 4.0), abgerufen über api.energy-charts.info, eigene Auswertung</li>
+      <li>Finanztip: <a href="https://www.finanztip.de/stromtarife/dynamischer-stromtarif/" rel="noopener">Dynamische Stromtarife</a>, Stand 16.04.2026 (feste Bestandteile rund 16 ct netto, Aufschläge 0 bis 3 ct)</li>
+      <li>BDEW: <a href="https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/" rel="noopener">Strompreisanalyse Herbst 2026</a> (37,0 ct/kWh Haushaltsstrompreis)</li>
+      <li>ADAC: <a href="https://www.adac.de/rund-ums-haus/energie/versorgung/smart-meter-intelligenter-stromzaehler/" rel="noopener">Smart Meter 2026</a> (Kosten)</li>
+    </ul>
+  </div>
+</Base>
+
+<script>
+  const calc = document.querySelector<HTMLElement>('section.calc')!;
+  const PREISE = JSON.parse(calc.dataset.preise || '{}');
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement | HTMLSelectElement;
+  const zahl = (id: string) => Math.max(0, parseFloat(($(id) as HTMLInputElement).value.replace(',', '.')) || 0);
+  const set = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  const eur = (x: number) => Math.round(x).toLocaleString('de-DE') + ' €';
+  const ct = (x: number) => x.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' ct';
+  // Tagesprofil Haushalt (Anteile je Stunde, Summe 1), angelehnt an das Standardlastprofil H0: Morgen- und Abendspitze.
+  const H0 = [2.0, 1.7, 1.5, 1.4, 1.4, 1.6, 2.5, 3.8, 4.2, 4.0, 4.0, 4.2, 4.5, 4.2, 3.9, 3.9, 4.4, 5.6, 6.6, 6.8, 6.4, 5.6, 4.4, 3.0];
+  const sumH0 = H0.reduce((a, b) => a + b, 0);
+  const mittel = (a: number[]) => a.reduce((x, y) => x + y, 0) / a.length;
+  const billigste = (p: number[], n: number) => [...p].sort((a, b) => a - b).slice(0, n);
+
+  function rechnen() {
+    const jahr = $('jahr').value, fix = zahl('fix'), auf = zahl('auf');
+    const endpreis = (spot: number) => (spot + fix) * 1.19 + auf;  // ct/kWh brutto
+    const prof = (s: 'sommer' | 'winter') => (PREISE[jahr].stunden[s] as number[]).map(endpreis);
+    const so = prof('sommer'), wi = prof('winter');
+    const flexAnteil = zahl('flex') / 100;
+    set('flex-wert', `${zahl('flex')} %`);
+    // Haushalt: halbes Jahr Sommer, halbes Winter
+    const profilPreis = (p: number[]) => H0.reduce((s, w, h) => s + (w / sumH0) * p[h], 0);
+    const hh = zahl('kwh');
+    const hhBase = hh * (profilPreis(so) + profilPreis(wi)) / 2 / 100;
+    const hhFlex = hh * ((1 - flexAnteil) * (profilPreis(so) + profilPreis(wi)) / 2 + flexAnteil * (mittel(billigste(so, 4)) + mittel(billigste(wi, 4))) / 2) / 100;
+    // E-Auto
+    const ea = zahl('eauto'), laden = $('laden').value;
+    const fenster = (p: number[]) => laden === 'smart' ? mittel(billigste(p, 6)) : laden === 'nacht' ? mittel(p.slice(0, 6)) : mittel(p.slice(17, 22));
+    const eaUngesteuert = ea * (mittel(so.slice(17, 22)) + mittel(wi.slice(17, 22))) / 2 / 100;
+    const eaGesteuert = ea * (fenster(so) + fenster(wi)) / 2 / 100;
+    // Wärmepumpe: 80 % Winter, flach; mit Puffer 40 % in die 6 günstigsten Stunden
+    const wp = zahl('wp'), puffer = ($('puffer') as HTMLInputElement).checked;
+    const wpFlach = (0.8 * mittel(wi) + 0.2 * mittel(so));
+    const wpBest = (0.8 * mittel(billigste(wi, 6)) + 0.2 * mittel(billigste(so, 6)));
+    const wpBase = wp * wpFlach / 100;
+    const wpFlex = wp * (puffer ? 0.6 * wpFlach + 0.4 * wpBest : wpFlach) / 100;
+    const ges = hh + ea + wp;
+    const fest = ges * zahl('fest') / 100, festGp = zahl('festgp') * 12;
+    const dynGp = zahl('dyngp') * 12 + zahl('sm');
+    const dyn0 = hhBase + eaUngesteuert + wpBase, dyn1 = hhFlex + eaGesteuert + wpFlex;
+    const kFest = fest + festGp, kDyn0 = dyn0 + dynGp, kDyn1 = dyn1 + dynGp;
+    set('kwh-ges', Math.round(ges).toLocaleString('de-DE') + ' kWh');
+    set('ct-fest', ct(zahl('fest'))); set('ct-dyn0', ges ? ct(dyn0 / ges * 100) : '–'); set('ct-dyn1', ges ? ct(dyn1 / ges * 100) : '–');
+    set('gp-fest', eur(festGp)); set('gp-dyn0', eur(dynGp)); set('gp-dyn1', eur(dynGp));
+    set('eur-fest', eur(kFest)); set('eur-dyn0', eur(kDyn0)); set('eur-dyn1', eur(kDyn1));
+    const max = Math.max(kFest, kDyn0, kDyn1, 1);
+    for (const [id, v] of [['fest', kFest], ['dyn0', kDyn0], ['dyn1', kDyn1]] as [string, number][]) {
+      (document.getElementById('bar-' + id) as HTMLElement).style.setProperty('--p', String(v / max));
+      set('bar-' + id + '-t', eur(v));
+    }
+    const diff = kFest - kDyn1;
+    const fazit = document.getElementById('fazit')!;
+    fazit.className = 'rc-ergebnis ' + (diff > 50 ? 'gut' : diff > -50 ? 'achtung' : 'kritisch');
+    set('fazit-zahl', (diff >= 0 ? '' : '−') + eur(Math.abs(diff)) + (diff >= 0 ? ' gespart' : ' teurer'));
+    set('fazit-text', diff > 50
+      ? `pro Jahr mit dem dynamischen Tarif und Verschieben, verglichen mit ${ct(zahl('fest'))} Festpreis. Ohne Verschieben: ${eur(kFest - kDyn0)}.`
+      : diff > -50 ? 'Das ist fast ein Unentschieden. Mit dem Preisrisiko lohnt sich der Wechsel so kaum, außer du bekommst zusätzlich den § 14a-Rabatt.'
+      : `pro Jahr: Dein Festpreis von ${ct(zahl('fest'))} ist günstiger als der dynamische Tarif mit den Börsenpreisen von ${jahr}.`);
+    // Preisrisiko: teuerster und günstigster Monat zum Monatsdurchschnitt
+    const monate = PREISE[jahr].monate as Record<string, number>;
+    const eintraege = Object.entries(monate).sort((a, b) => a[1] - b[1]);
+    const [gMon, gSpot] = eintraege[0], [tMon, tSpot] = eintraege[eintraege.length - 1];
+    const namen = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+    const monat = (spot: number) => (ges / 12) * endpreis(spot) / 100 + dynGp / 12;
+    const festMonat = kFest / 12;
+    set('risiko', `Preisrisiko: Im teuersten Monat ${jahr} (${namen[+tMon - 1]}, Börse ${ct(tSpot)}) hättest du ohne Verschieben rund ${eur(monat(tSpot))} gezahlt, im Festpreis ${eur(festMonat)}. Im günstigsten (${namen[+gMon - 1]}, ${ct(gSpot)}) rund ${eur(monat(gSpot))}.`);
+  }
+  const presets: Record<string, Record<string, string | boolean>> = {
+    wohnung: { kwh: '2500', fest: '37', festgp: '12', flex: '15', eauto: '0', wp: '0' },
+    familie: { kwh: '4000', fest: '37', festgp: '12', flex: '20', eauto: '0', wp: '0' },
+    eauto: { kwh: '3500', fest: '37', festgp: '12', flex: '15', eauto: '2700', laden: 'smart', wp: '0' },
+    wp: { kwh: '3500', fest: '37', festgp: '12', flex: '15', eauto: '2700', laden: 'smart', wp: '5000', puffer: true },
+  };
+  document.querySelectorAll<HTMLButtonElement>('.presets .chip').forEach((b) => b.addEventListener('click', () => {
+    for (const [k, v] of Object.entries(presets[b.dataset.preset!])) {
+      const f = $(k); if (!f) continue;
+      if (f instanceof HTMLInputElement && f.type === 'checkbox') f.checked = v === true; else f.value = String(v);
+    }
+    rechnen();
+  }));
+  calc.addEventListener('input', rechnen);
+  calc.addEventListener('change', rechnen);
+  rechnen();
+</script>
+
+<style>
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .presets .chip { font: inherit; font-size: 0.9rem; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); cursor: pointer; text-transform: none; letter-spacing: 0; font-weight: 500; }
+  .rc-tabelle { margin-top: 18px; }
+</style>

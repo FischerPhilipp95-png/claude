@@ -1,0 +1,151 @@
+---
+title: "E-Auto zu Hause laden mit dynamischem Stromtarif: 150 bis 300 € sparen"
+kurztitel: "E-Auto laden mit dynamischem Tarif"
+description: "E-Auto laden mit dynamischem Stromtarif: Was 100 km kosten, wann du laden solltest, wie die Wallbox die günstigsten Stunden findet und was § 14a extra bringt."
+pubDate: 2026-10-27
+icon: car
+thema: Tarif
+bild: /bilder/titel/e-auto-laden-dynamischer-stromtarif.webp
+bildAlt: "Titelbild: E-Auto laden mit dynamischem Stromtarif"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import StromUhr from '../../components/StromUhr.astro';
+import Ablauf from '../../components/Ablauf.astro';
+
+<Antwort>
+**Kurz gesagt:** Das E-Auto ist der Verbraucher, bei dem sich ein [dynamischer Stromtarif](/artikel/dynamischer-stromtarif/)
+am klarsten lohnt. Es lädt **nachts oder mittags**, wenn der Börsenpreis bei 4 bis 7 Cent liegt statt 13 Cent am Abend, und die
+**App des Anbieters sucht die günstigsten Viertelstunden selbst**. Finanztip rechnet bei 3.000 kWh Ladestrom und 10 Cent
+Preisvorteil **300 € im Jahr**, Studien nennen **31 bis 33 Prozent** günstigeres Laden. Dazu kommt mit einer Wallbox über 4,2 kW
+der **Netzentgelt-Rabatt nach § 14a** von grob 150 € im Jahr. Deine Zahlen: [E-Auto-Ladekosten-Rechner](/rechner/e-auto-laden/).
+</Antwort>
+
+## Was kostet das Laden zu Hause?
+
+Die Rechnung ist einfach: **Verbrauch pro 100 km × Strompreis**. Laut ADAC-Ecotest liegt der Verbrauch aktueller E-Autos zwischen
+**13,4 und 29,7 kWh pro 100 km**, inklusive Ladeverlusten, die der Bordcomputer nicht zeigt (10 bis 25 Prozent Unterschied laut
+ADAC). Ein Kompaktwagen mit **18 kWh** und 15.000 km im Jahr braucht rund **2.700 kWh** Ladestrom.
+
+| Tarif | Preis pro kWh | 100 km | 15.000 km im Jahr |
+|---|---|---|---|
+| Festpreis, Durchschnitt BDEW 2026 | 37,0 ct | 6,66 € | 999 € |
+| Günstiger Neukundentarif | 30 ct | 5,40 € | 810 € |
+| Dynamisch, Laden in günstigen Stunden (Börse ca. 5 ct) | ca. 27 ct | 4,86 € | 729 € |
+| Dynamisch plus § 14a Modul 1 | ca. 27 ct minus 150 € | | ca. 579 € |
+
+Die dynamischen Werte sind Beispiele mit 5 Cent Börsenpreis, 16 Cent festen Bestandteilen netto, 2 Cent Aufschlag und
+Mehrwertsteuer. Je nach Anbieter, Jahreszeit und Ladefenster liegt dein Preis darüber oder darunter.
+
+## Wann laden? Die Strompreis-Uhr
+
+<StromUhr titel="Börsenpreis je Tagesstunde: wann das E-Auto laden sollte" untertitel="Grün sind die vier günstigsten Stunden. Im Sommer liegen sie mittags, im Winter nachts. Umschalten mit den Knöpfen." />
+
+- **Sommer:** zwischen **11 und 15 Uhr** laden, wenn das Auto tagsüber zu Hause steht (Homeoffice, Zweitwagen). 2025 kostete die
+  Börsen-kWh dann rund 1 bis 4 Cent.
+- **Winter:** zwischen **0 und 5 Uhr**, rund 7 Cent.
+- **Nie:** zwischen **17 und 21 Uhr**. Das ist die teuerste Zeit, 2025 über 13 Cent, 2026 bisher über 17.
+
+Selbst suchen musst du das nicht. Die Apps von Tibber, Octopus Energy, Rabot und Co. bekommen die Preise für morgen am Nachmittag
+und legen die Ladezeit so, dass das Auto zur gewünschten Uhrzeit voll ist, so günstig wie möglich.
+
+## So lädt das Auto automatisch günstig
+
+<Ablauf
+  titel="Smartes Laden einrichten"
+  schritte={[
+    { icon: 'smartphone', titel: 'App', text: 'Auto oder Wallbox mit der Anbieter-App verbinden.' },
+    { icon: 'clock', titel: 'Abfahrt', text: 'Uhrzeit und gewünschten Ladestand eintragen.' },
+    { icon: 'plug-zap', titel: 'Einstecken', text: 'Abends anstecken, die App startet in den günstigen Stunden.' },
+    { icon: 'activity', titel: 'Prüfen', text: 'In der App sehen, zu welchem Preis geladen wurde.' },
+  ]}
+/>
+
+Drei Wege:
+
+1. **Über das Auto:** Viele Anbieter verbinden sich direkt mit dem Fahrzeug (Tesla, VW, BMW, Hyundai und andere) und steuern das
+   Laden über dessen Schnittstelle. Die Wallbox bleibt dumm, das reicht.
+2. **Über die Wallbox:** Wallboxen mit OCPP oder eigener Anbindung (go-e, Easee, Wallbox Pulsar, Fronius, KEBA) lassen sich von der
+   App schalten. Rabot Energy setzt zum Beispiel auf OCPP.
+3. **Über evcc:** die kostenlose Open-Source-Software für Ladesteuerung. Sie kennt die Preis-Schnittstellen von Tibber, Octopus,
+   Ostrom, tado° Energy und anderen und lädt nach Preis oder nach PV-Überschuss. Läuft auf einem Raspberry Pi oder NAS.
+
+<Schnellkauf titel="Das brauchst du" items={[
+  { name: 'Wallbox 11 kW mit OCPP', warum: 'Lässt sich von Apps und evcc steuern. Ab 4,2 kW gilt § 14a mit Netzentgelt-Rabatt.', suche: 'Wallbox 11 kW OCPP WLAN' },
+  { name: 'Raspberry Pi für evcc', warum: 'Kleiner Rechner für die Open-Source-Ladesteuerung nach Börsenpreis und PV-Überschuss.', suche: 'Raspberry Pi 5 Starter Set' },
+  { name: 'Energiezähler für die Wallbox', warum: 'Zeigt, wie viel Strom wirklich ins Auto ging, inklusive Ladeverlusten.', suche: 'Energiezähler Hutschiene MID 3-phasig' },
+]} />
+
+## § 14a: der zweite Rabatt für die Wallbox
+
+Eine **11-kW-Wallbox**, seit 2024 in Betrieb, fällt unter § 14a EnWG: Der Netzbetreiber darf sie bei Engpässen auf 4,2 kW drosseln
+(damit lädt das Auto noch gut 20 km pro Stunde). Dafür bekommst du **Modul 1: 108 bis 196 € im Jahr** vom Netzentgelt zurück,
+unabhängig davon, wie viel du lädst. Bei normaler Fahrleistung ist das die beste Wahl, Modul 2 mit zweitem Zähler lohnt sich laut
+Finanztip erst über 30.000 km im Jahr. Alles dazu: [§ 14a EnWG: Modul 1, 2, 3](/artikel/14a-enwg-module/).
+
+## Dynamischer Tarif oder Autostromtarif?
+
+Viele Anbieter haben spezielle **Autostrom- oder Ladetarife**: ein fester, günstiger Preis fürs Laden, meist nachts oder über einen
+zweiten Zähler, oder ein Bonus pro geladener Stunde (Tibber zahlt in seinem Festpreistarif 7 Cent pro Ladestunde, bis 15 € im
+Monat). Der Unterschied:
+
+| | Dynamischer Tarif | Autostromtarif |
+|---|---|---|
+| Preis | folgt der Börse, im Sommer mittags sehr günstig | fest, planbar |
+| Risiko | Preisspitzen im Winter | keins |
+| Voraussetzung | Smart Meter | je nach Tarif zweiter Zähler oder App |
+| Aufwand | App steuert, sonst selbst auf Preise achten | keiner |
+| Passt für | wer flexibel laden kann | wer feste Ladezeiten hat oder kein Risiko will |
+
+Wer das Auto fast immer nachts lädt und keine Lust auf Preise hat, fährt mit einem Autostromtarif oft ähnlich gut. Wer tagsüber
+laden kann, mit PV kombiniert oder die Wärmepumpe gleich mitsteuert, holt mit dem dynamischen Tarif mehr raus.
+
+<Warnung titel="Die Ladeverluste nicht vergessen">
+Beim Laden mit Wechselstrom (Wallbox zu Hause) gehen laut ADAC je nach Auto 10 bis 25 Prozent verloren, in der Wallbox, im
+Ladegerät des Autos und in der Batterie. Der Bordcomputer zeigt das nicht. Rechne mit dem Wert aus dem ADAC-Ecotest oder lies den
+Zähler an der Wallbox ab, sonst sind deine Kosten pro 100 km zu niedrig.
+</Warnung>
+
+## Mit PV-Anlage: mittags eigenen Strom laden
+
+Hast du eine PV-Anlage, ist der eigene Strom noch günstiger als der Börsenstrom mittags. Dann lädt das Auto nach
+**PV-Überschuss** (evcc oder die Wallbox-App können das) und im Winter nach Börsenpreis. Ein Balkonkraftwerk reicht dafür nicht,
+es liefert höchstens 800 Watt: [Balkonkraftwerk-Rechner](/rechner/balkonkraftwerk/).
+
+## Häufige Fragen
+
+### Wie viel kostet es, ein E-Auto zu Hause zu laden?
+Bei 18 kWh pro 100 km und 37 Cent sind es 6,66 € pro 100 km, bei 15.000 km rund 1.000 € im Jahr. Mit dynamischem Tarif in
+günstigen Stunden etwa 4,86 € pro 100 km, mit § 14a Modul 1 noch rund 150 € weniger im Jahr.
+
+### Lohnt sich ein dynamischer Stromtarif fürs E-Auto?
+Ja, wenn das Auto zu Hause lädt und die Ladezeit flexibel ist. Studien nennen 31 bis 33 Prozent günstigeres Laden, Finanztip 150 bis
+300 € im Jahr.
+
+### Wann sollte ich das E-Auto laden?
+Im Sommer mittags zwischen 11 und 15 Uhr, im Winter nachts zwischen 0 und 5 Uhr. Nie zwischen 17 und 21 Uhr.
+
+### Brauche ich eine besondere Wallbox?
+Nein. Die meisten Anbieter steuern das Laden über das Auto. Für die Steuerung über die Wallbox braucht sie OCPP oder eine
+unterstützte Schnittstelle.
+
+### Was ist mit dem Laden an öffentlichen Säulen?
+Das läuft über den Anbieter der Ladesäule, nicht über deinen Haustarif. Der dynamische Tarif gilt nur zu Hause.
+
+### Drosselt der Netzbetreiber meine Wallbox?
+Nur bei drohender Überlastung und nur auf 4,2 kW. Das Auto lädt dann weiter, nur langsamer. Bis Herbst 2026 wurde laut Finanztip
+noch keine Drosselung gemeldet.
+
+## Quellen
+
+- Finanztip: [Dynamische Stromtarife](https://www.finanztip.de/stromtarife/dynamischer-stromtarif/), Stand 16.04.2026 (Ersparnis-Rechnung 3.000 kWh, Studien Neon und ADAC/Tibber)
+- Finanztip: [§ 14a EnWG erklärt](https://www.finanztip.de/stromtarife/steuerbare-verbrauchseinrichtungen-14a-enwg/), Stand 01.09.2026 (Modul 1, Wallbox-Empfehlung)
+- ecomento: [ADAC-Test-Rangliste 6/2026](https://ecomento.de/2026/07/02/adac-test-rangliste-6-2026-mercedes-cla-eq-hat-weiter-die-beste-reichweite/) (Verbrauch 13,4 bis 29,7 kWh/100 km im ADAC-Ecotest, inklusive Ladeverluste)
+- ADAC: [Ladeverluste bei Elektroautos](https://www.adac.de/rund-ums-fahrzeug/elektromobilitaet/laden/ladeverluste-elektroauto/) (10 bis 25 Prozent Unterschied zum Bordcomputer)
+- Bundesnetzagentur | SMARD: Day-Ahead-Preise 2025 und 2026 (CC BY 4.0), eigene Auswertung
+- BDEW: [Strompreisanalyse Herbst 2026](https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/), 21.08.2026 (37,0 ct/kWh)
+
+*Preise sind Beispiele mit Stand Oktober 2026. Maßgeblich sind die Angaben deines Anbieters.*

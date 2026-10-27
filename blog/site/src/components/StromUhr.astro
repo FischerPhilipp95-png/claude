@@ -1,0 +1,107 @@
+---
+// Strompreis-Uhr: Börsenstrompreis (Day-Ahead, DE-LU) im Tagesverlauf als 24 Balken, aus src/strompreise.json
+// (Bundesnetzagentur | SMARD.de, CC BY 4.0, verdichtet von scripts/strompreise.mjs). Umschaltbar: Jahr/Sommer/Winter und Preisjahr.
+// Die vier günstigsten Stunden sind grün, die vier teuersten rot. Ohne JavaScript steht das Jahresprofil des letzten Jahres.
+import Icon from './Icon.astro';
+import preise from '../strompreise.json';
+
+interface Props { titel?: string; untertitel?: string; id?: string }
+const jahre = Object.keys(preise).filter((k) => /^\d{4}$/.test(k)).sort();
+const { titel = 'Wann ist Strom an der Börse günstig?', untertitel, id = 'stromuhr' } = Astro.props;
+const letztes = jahre[jahre.length - 1];
+const daten = Object.fromEntries(jahre.map((j) => [j, (preise as any)[j].stunden]));
+const stand = Object.fromEntries(jahre.map((j) => [j, (preise as any)[j].bis]));
+const start = daten[jahre[0]].alle as number[];
+const fmt = (x: number) => x.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const rang = (arr: number[]) => [...arr.keys()].sort((a, b) => arr[a] - arr[b]);
+const r = rang(start);
+const max = Math.max(...start, 1);
+---
+<figure class="chart stromuhr" id={id} data-daten={JSON.stringify(daten)} data-stand={JSON.stringify(stand)} role="group" aria-label={titel}>
+  <div class="chart-head">
+    <span class="chart-kicker"><Icon name="activity" size={15} /> Strompreis-Uhr</span>
+    <p class="chart-title">{titel}</p>
+    <p class="chart-sub">{untertitel ?? 'Durchschnittlicher Börsenpreis je Tagesstunde in Cent pro kWh, ohne Netzentgelte, Steuern und Umlagen. Grün: die vier günstigsten Stunden, rot: die vier teuersten.'}</p>
+  </div>
+  <div class="su-schalter" data-pagefind-ignore>
+    <div class="su-gruppe" role="group" aria-label="Zeitraum">
+      <button type="button" class="su-btn aktiv" data-profil="alle">Ganzes Jahr</button>
+      <button type="button" class="su-btn" data-profil="sommer">Sommer (Apr–Sep)</button>
+      <button type="button" class="su-btn" data-profil="winter">Winter (Okt–Mär)</button>
+    </div>
+    <div class="su-gruppe" role="group" aria-label="Preisjahr">
+      {jahre.map((j) => <button type="button" class:list={['su-btn', { aktiv: j === jahre[0] }]} data-jahr={j}>{j}</button>)}
+    </div>
+  </div>
+  <div class="su-balken" aria-hidden="true">
+    {start.map((v, h) => (
+      <div class="su-spalte" data-h={h}>
+        <span class="su-wert">{fmt(v)}</span>
+        <span style={`--p:${Math.max(0, v) / max}`} class:list={['su-bar', { billig: r.slice(0, 4).includes(h), teuer: r.slice(-4).includes(h) }]}></span>
+        <span class="su-std">{h}</span>
+      </div>
+    ))}
+  </div>
+  <p class="su-fazit" aria-live="polite">Günstigste Stunden: <strong class="su-billig">{r.slice(0, 4).sort((a, b) => a - b).map((h) => `${h}–${h + 1} Uhr`).join(', ')}</strong>. Teuerste: <strong class="su-teuer">{r.slice(-4).sort((a, b) => a - b).map((h) => `${h}–${h + 1} Uhr`).join(', ')}</strong>.</p>
+  <table class="chart-table su-tabelle">
+    <caption class="sr-only">Börsenpreis je Stunde in Cent pro kWh</caption>
+    <thead><tr><th scope="col">Uhr</th>{start.map((_, h) => <th scope="col">{h}</th>)}</tr></thead>
+    <tbody><tr><th scope="row">ct/kWh</th>{start.map((v) => <td>{fmt(v)}</td>)}</tr></tbody>
+  </table>
+  <figcaption>Quelle: Day-Ahead-Preise der Gebotszone Deutschland/Luxemburg, <a href="https://www.smard.de/" rel="noopener">Bundesnetzagentur | SMARD.de</a> (CC BY 4.0), abgerufen über energy-charts.info, Stand <span class="su-stand">{stand[jahre[0]]}</span>. Stundenmittel, eigene Auswertung.</figcaption>
+</figure>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.stromuhr').forEach((fig) => {
+    const daten = JSON.parse(fig.dataset.daten || '{}');
+    const stand = JSON.parse(fig.dataset.stand || '{}');
+    let profil = 'alle', jahr = Object.keys(daten).sort()[0];
+    const fmt = (x: number) => x.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    const uhr = (hs: number[]) => hs.sort((a, b) => a - b).map((h) => `${h}–${h + 1} Uhr`).join(', ');
+    function zeichnen() {
+      const werte: number[] = daten[jahr][profil];
+      const max = Math.max(...werte, 1);
+      const rang = [...werte.keys()].sort((a, b) => werte[a] - werte[b]);
+      const billig = rang.slice(0, 4), teuer = rang.slice(-4);
+      fig.querySelectorAll<HTMLElement>('.su-spalte').forEach((sp, h) => {
+        const bar = sp.querySelector<HTMLElement>('.su-bar')!;
+        bar.style.setProperty('--p', String(Math.max(0, werte[h]) / max));
+        bar.classList.toggle('billig', billig.includes(h));
+        bar.classList.toggle('teuer', teuer.includes(h));
+        sp.querySelector('.su-wert')!.textContent = fmt(werte[h]);
+      });
+      fig.querySelectorAll('.su-tabelle td').forEach((td, h) => (td.textContent = fmt(werte[h])));
+      fig.querySelector('.su-billig')!.textContent = uhr(billig);
+      fig.querySelector('.su-teuer')!.textContent = uhr(teuer);
+      fig.querySelector('.su-stand')!.textContent = stand[jahr];
+      fig.querySelectorAll<HTMLButtonElement>('[data-profil]').forEach((b) => b.classList.toggle('aktiv', b.dataset.profil === profil));
+      fig.querySelectorAll<HTMLButtonElement>('[data-jahr]').forEach((b) => b.classList.toggle('aktiv', b.dataset.jahr === jahr));
+    }
+    fig.querySelectorAll<HTMLButtonElement>('[data-profil]').forEach((b) => b.addEventListener('click', () => { profil = b.dataset.profil!; zeichnen(); }));
+    fig.querySelectorAll<HTMLButtonElement>('[data-jahr]').forEach((b) => b.addEventListener('click', () => { jahr = b.dataset.jahr!; zeichnen(); }));
+  });
+</script>
+
+<style>
+  .su-schalter { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 14px; }
+  .su-gruppe { display: inline-flex; flex-wrap: wrap; gap: 4px; background: rgba(255,255,255,.06); border-radius: 999px; padding: 3px; }
+  .su-btn { font: inherit; font-size: 0.78rem; font-weight: 500; color: #d9d9e0; background: transparent; border: 0; border-radius: 999px; padding: 5px 11px; cursor: pointer; }
+  .su-btn.aktiv { background: var(--yellow); color: var(--dark); font-weight: 800; }
+  .su-balken { display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); gap: 2px; align-items: end; height: 190px; }
+  .su-spalte { min-width: 0; display: grid; grid-template-rows: auto 1fr auto; height: 100%; align-items: end; text-align: center; }
+  .su-wert { grid-row: 1; font-size: 0.6rem; color: #b4b4bd; font-variant-numeric: tabular-nums; line-height: 1; }
+  .su-bar { grid-row: 2; display: block; align-self: end; height: calc(100% * var(--p, 0)); min-height: 2px; background: #4c7df0; border-radius: 3px 3px 0 0; transition: height .25s; }
+  .su-bar.billig { background: #4ade80; }
+  .su-bar.teuer { background: #f87171; }
+  .su-std { grid-row: 3; font-size: 0.62rem; color: #9a9aa4; line-height: 1.3; padding-top: 3px; border-top: 1px solid rgba(255,255,255,.12); }
+  .su-fazit { margin: 12px 0 0; font-size: 0.9rem; color: #e6e6ea; }
+  .su-billig { color: #86efac; } .su-teuer { color: #fca5a5; }
+  .su-tabelle { display: block; position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); margin: 0; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 560px) {
+    .su-wert { display: none; }
+    .su-std:nth-child(3) { font-size: 0.55rem; }
+    .su-spalte:nth-child(even) .su-std { visibility: hidden; }
+    .su-balken { height: 150px; }
+  }
+</style>

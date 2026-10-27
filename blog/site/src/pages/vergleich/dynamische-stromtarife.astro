@@ -1,0 +1,187 @@
+---
+// Anbieter-Vergleich dynamischer Stromtarife. Daten und Affiliate-Links: src/stromtarife.ts.
+// Es werden nur die Anteile verglichen, die sich zwischen Anbietern unterscheiden (Grundgebühr, Aufschlag, Bedingungen).
+// Börsenpreis, Netzentgelte, Steuern und Umlagen sind bei allen gleich. Keine Noten, keine Testsiegel: Zahlen, Quelle, Stand.
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import { STROMTARIFE, TARIFE_STAND } from '../../stromtarife';
+import { SITE } from '../../site';
+
+const title = 'Dynamische Stromtarife im Vergleich: Tibber, Octopus, Rabot und Co.';
+const description = `Dynamische Stromtarife 2026 im Vergleich: Grundgebühr, Aufschlag auf den Börsenpreis, Smart-Meter-Pflicht, Laufzeit und App von ${STROMTARIFE.length} Anbietern. Stand ${TARIFE_STAND}.`;
+const eur = (x: number) => x.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const ct = (x: number) => x.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 2 });
+const label: Record<string, string> = { 'e-auto': 'E-Auto', waermepumpe: 'Wärmepumpe', pv: 'PV-Anlage', haushalt: 'Haushalt' };
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Dynamische Stromtarife im Vergleich', url: `${SITE.url}/vergleich/dynamische-stromtarife/`,
+    itemListElement: STROMTARIFE.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: `${t.anbieter} ${t.tarif}`, url: t.website })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: `${SITE.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Dynamischer Stromtarif', item: `${SITE.url}/thema/dynamischer-stromtarif/` },
+    { '@type': 'ListItem', position: 3, name: 'Anbieter-Vergleich', item: `${SITE.url}/vergleich/dynamische-stromtarife/` } ] },
+];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/thema/dynamischer-stromtarif/">Dynamischer Stromtarif</a> › Anbieter-Vergleich</nav>
+    <h1>Dynamische Stromtarife im Vergleich</h1>
+    <p class="lead">Beim dynamischen Tarif sind Börsenpreis, Netzentgelte, Steuern und Umlagen bei allen Anbietern gleich. Unterschiede gibt es nur bei
+    {' '}<strong>Grundgebühr</strong>, <strong>Aufschlag</strong>, Abrechnung, App und Laufzeit. Genau das steht hier, mit Quelle und Stand.</p>
+
+    <Antwort>
+    <p><strong>Kurz gesagt:</strong> Die Anbieter-Gebühren liegen zwischen <strong>rund 6 und 15 € im Monat</strong> und <strong>1,5 bis 3 Cent pro kWh</strong>
+    Aufschlag. Bei 3.500 kWh im Jahr macht das zwischen den Anbietern <strong>bis zu 150 € Unterschied</strong>. Wichtiger als der Cent ist oft, ob die App dein
+    {' '}<strong>Auto oder deine Wärmepumpe</strong> steuert und ob der Tarif <strong>monatlich kündbar</strong> ist. Ohne Smart Meter geht fast nichts,
+    Rabot und Ostrom haben Varianten zum Monatsdurchschnitt.</p>
+    </Antwort>
+
+    <section class="box calc" aria-label="Filter und Kostenvergleich">
+      <p class="small">Was trifft auf dich zu? Die Liste passt sich an.</p>
+      <div class="vg-filter" role="group" aria-label="Filter">
+        <button type="button" class="chip-btn" data-filter="e-auto"><Icon name="car" size={15} /> E-Auto</button>
+        <button type="button" class="chip-btn" data-filter="waermepumpe"><Icon name="heater" size={15} /> Wärmepumpe</button>
+        <button type="button" class="chip-btn" data-filter="pv"><Icon name="sun" size={15} /> PV-Anlage</button>
+        <button type="button" class="chip-btn" data-filter="ohne-smartmeter"><Icon name="gauge" size={15} /> ohne Smart Meter</button>
+        <button type="button" class="chip-btn" data-filter="monatlich"><Icon name="calendar" size={15} /> monatlich kündbar</button>
+      </div>
+      <div class="rc-grid">
+        <label>Dein Jahresverbrauch in kWh (für die Gebührenrechnung)<input id="kwh" type="number" inputmode="numeric" min="0" step="100" value="3500" /></label>
+      </div>
+      <p class="rc-hinweis">Anbieterkosten pro Jahr = Grundgebühr × 12 + Aufschlag × Verbrauch. Börsenpreis und feste Bestandteile kommen bei allen gleich dazu. Sortiert nach diesen Kosten, Anbieter ohne veröffentlichte Zahlen stehen unten.</p>
+    </section>
+
+    <ol class="vg-liste" id="liste">
+      {STROMTARIFE.map((t) => (
+        <li class="vg-karte" data-fuer={t.fuer.join(' ')} data-ohne={t.smartMeterPflicht ? '0' : '1'} data-monatlich={/monatlich|keine Mindestlaufzeit|14 Tage/i.test(t.laufzeit) ? '1' : '0'} data-gg={t.grundgebuehr ?? ''} data-auf={t.aufschlag ?? ''}>
+          <div class="vg-kopf">
+            <div>
+              <p class="vg-anbieter">{t.anbieter}</p>
+              <p class="vg-tarif">{t.tarif}</p>
+            </div>
+            <p class="vg-kosten"><span class="vg-kosten-zahl" data-kosten>–</span><span class="small">Anbieterkosten pro Jahr</span></p>
+          </div>
+          <dl class="vg-daten">
+            <div><dt>Grundgebühr</dt><dd>{t.grundgebuehr === null ? 'nach PLZ' : `${eur(t.grundgebuehr)} €/Monat`}</dd></div>
+            <div><dt>Aufschlag</dt><dd>{t.aufschlag === null ? 'nach PLZ' : `${ct(t.aufschlag)} ct/kWh`}</dd></div>
+            <div><dt>Abrechnung</dt><dd>{t.intervall}</dd></div>
+            <div><dt>Laufzeit</dt><dd>{t.laufzeit}</dd></div>
+            <div><dt>Smart Meter</dt><dd>{t.smartMeterPflicht ? 'Pflicht' : 'nicht zwingend'}</dd></div>
+            <div><dt>Passt für</dt><dd>{t.fuer.map((f) => label[f]).join(', ')}</dd></div>
+          </dl>
+          {t.app && <p class="vg-text"><Icon name="smartphone" size={15} /> {t.app}</p>}
+          {t.ohneSmartMeter && <p class="vg-text"><Icon name="gauge" size={15} /> {t.ohneSmartMeter}</p>}
+          {t.limit && <p class="vg-text"><Icon name="shield-check" size={15} /> {t.limit}</p>}
+          <p class="vg-fuss">
+            <a class="btn btn-sm" href={t.link || t.website} rel={t.link ? 'sponsored nofollow noopener' : 'noopener'} target="_blank" data-pagefind-ignore><Icon name="external-link" size={15} /> Zum Anbieter{t.link ? '*' : ''}</a>
+            <span class="small">Stand {t.stand}, Quelle: {t.quelle}</span>
+          </p>
+        </li>
+      ))}
+    </ol>
+    <p class="vg-leer small" id="leer" hidden>Kein Anbieter passt zu allen Filtern. Einen Filter abwählen.</p>
+    <p class="small" data-pagefind-ignore>*Affiliate-Links: Schließt du darüber ab, bekomme ich eine Provision. Für dich ändert sich am Preis nichts, die Reihenfolge und die Zahlen beeinflusst das nicht. Links ohne Stern sind normale Links. Mehr unter <a href="/werbung/">Transparenz &amp; Werbung</a>.</p>
+
+    <Warnung titel="Preise ändern sich, bitte beim Anbieter prüfen">
+    Grundgebühr und Aufschlag stammen von den Anbieterseiten und aus dem Marktvergleich von stromdiagnose.de (Stand Mai 2026, geprüft am
+    {TARIFE_STAND}). Viele Anbieter zeigen den genauen Preis erst nach Eingabe der Postleitzahl, weil Netzentgelte und Grundpreis regional
+    verschieden sind. Maßgeblich ist immer das Angebot des Anbieters. Keine Noten, kein Testsieger: Welcher Tarif für dich passt, hängt
+    von deinen Geräten ab.
+    </Warnung>
+
+    <h2>Worauf es beim Vergleich ankommt</h2>
+    <ul>
+      <li><strong>Aufschlag und Grundgebühr:</strong> die einzigen Preisunterschiede. Bei wenig Verbrauch zählt die Gebühr, bei viel der Aufschlag.</li>
+      <li><strong>Viertelstündlich oder stündlich:</strong> Seit Oktober 2025 handelt die Börse in Viertelstunden. Wer viertelstündlich abrechnet, nutzt die Mittagsdelle genauer.</li>
+      <li><strong>App und Schnittstellen:</strong> Steuert die App dein Auto direkt? Gibt es eine offene API für <a href="https://evcc.io/" rel="noopener">evcc</a> oder Home Assistant? Für Wärmepumpen: SG-Ready-Anbindung?</li>
+      <li><strong>Laufzeit:</strong> Finanztip und Verbraucherzentralen raten zu höchstens einem Monat.</li>
+      <li><strong>Negative Preise:</strong> Werden sie weitergegeben oder bei null gedeckelt? Steht in den Tarifbedingungen.</li>
+      <li><strong>Smart Meter:</strong> Organisiert oder bezahlt der Anbieter den Einbau? Was kostet der Übergangstarif bis dahin?</li>
+      <li><strong>§ 14a-Rabatt:</strong> Wird er in jedem Haushaltstarif weitergegeben? Laut Finanztip bei Octopus Energy ja, bei EnBW und Vattenfall nur in Spezialtarifen.</li>
+    </ul>
+
+    <h2>Lohnt sich der Wechsel bei dir?</h2>
+    <p>Die Gebühren sind der kleinere Teil. Was ein dynamischer Tarif gegenüber deinem Festpreis wirklich bringt, mit echten Börsenpreisen
+    und deinen Geräten: <a href="/rechner/dynamischer-stromtarif/">Spar-Rechner dynamischer Stromtarif</a>. Grundlagen, Risiken und
+    Voraussetzungen: <a href="/artikel/dynamischer-stromtarif/">Dynamischer Stromtarif: lohnt sich das?</a>. Der Wechsel Schritt für Schritt:
+    <a href="/artikel/dynamischer-stromtarif-wechseln/">Anleitung mit Checkliste</a>.</p>
+
+    <h2>Häufige Fragen</h2>
+    <h3>Welcher dynamische Stromtarif ist der günstigste?</h3>
+    <p>Bei den Gebühren liegen Ostrom, Tibber und Octopus vorn, tado° Energy hat den kleinsten Aufschlag bei höherer Gebühr. Bei 3.500 kWh
+    unterscheiden sich die Anbieterkosten um bis zu 150 € im Jahr. Der Börsenpreis ist bei allen derselbe.</p>
+    <h3>Welcher Anbieter geht ohne Smart Meter?</h3>
+    <p>Rabot Energy rechnet rabot.dynamic ohne intelligentes Messsystem zum Monatsdurchschnitt ab, Ostrom bietet dafür SimplyFair. Bei allen
+    anderen gilt bis zum Einbau ein Übergangs- oder Festpreis.</p>
+    <h3>Welcher Tarif ist am besten fürs E-Auto?</h3>
+    <p>Tibber, Octopus Energy (mit eigenem Ladetarif Intelligent Octopus) und Rabot Energy steuern das Laden per App über Auto oder Wallbox.
+    Wer evcc nutzt, kommt mit jedem Anbieter zurecht, der eine Preis-API hat.</p>
+    <h3>Gibt es dynamische Tarife mit Preisdeckel?</h3>
+    <p>Vattenfall bietet eine Variante „mit Limit“, bei der ein Höchstpreis gilt. Das nimmt das Risiko bei Preisspitzen, kostet aber einen
+    Aufpreis.</p>
+    <h3>Wie oft werden die Zahlen hier geprüft?</h3>
+    <p>Jede Zeile zeigt Stand und Quelle. Preise ändern sich oft, deshalb gilt vor dem Abschluss immer die Anbieterseite.</p>
+
+    <h2>Quellen</h2>
+    <ul class="small">
+      <li>Anbieterseiten von Tibber, Octopus Energy, Rabot Energy, Ostrom, EnBW und Vattenfall, abgerufen am {TARIFE_STAND}</li>
+      <li>stromdiagnose.de: <a href="https://www.stromdiagnose.de/ratgeber/dynamische-stromtarife-2026-test" rel="noopener">Dynamische Stromtarife 2026: Anbieter im Vergleich</a>, Stand Mai 2026, aktualisiert 04.10.2026</li>
+      <li>Finanztip: <a href="https://www.finanztip.de/stromtarife/dynamischer-stromtarif/" rel="noopener">Dynamische Stromtarife</a>, Stand 16.04.2026 (Spanne der Aufschläge und Grundgebühren, Laufzeit-Empfehlung)</li>
+      <li>Finanztip: <a href="https://www.finanztip.de/stromtarife/steuerbare-verbrauchseinrichtungen-14a-enwg/" rel="noopener">§ 14a EnWG</a>, Stand 01.09.2026 (Weitergabe des Rabatts je Anbieter)</li>
+    </ul>
+  </div>
+</Base>
+
+<script>
+  const liste = document.getElementById('liste')!;
+  const karten = [...liste.querySelectorAll<HTMLElement>('.vg-karte')];
+  const kwhFeld = document.getElementById('kwh') as HTMLInputElement;
+  const aktiv = new Set<string>();
+  const eur = (x: number) => Math.round(x).toLocaleString('de-DE') + ' €';
+  function render() {
+    const kwh = Math.max(0, parseFloat(kwhFeld.value.replace(',', '.')) || 0);
+    const mitKosten = karten.map((k) => {
+      const gg = parseFloat(k.dataset.gg || ''), auf = parseFloat(k.dataset.auf || '');
+      const kosten = isNaN(gg) || isNaN(auf) ? Infinity : gg * 12 + (auf * kwh) / 100;
+      k.querySelector('[data-kosten]')!.textContent = kosten === Infinity ? 'nach PLZ' : eur(kosten);
+      const fuer = (k.dataset.fuer || '').split(' ');
+      const passt = [...aktiv].every((f) => f === 'ohne-smartmeter' ? k.dataset.ohne === '1' : f === 'monatlich' ? k.dataset.monatlich === '1' : fuer.includes(f));
+      k.hidden = !passt;
+      return { k, kosten };
+    });
+    mitKosten.sort((a, b) => a.kosten - b.kosten).forEach(({ k }) => liste.appendChild(k));
+    document.getElementById('leer')!.hidden = mitKosten.some(({ k }) => !k.hidden);
+  }
+  document.querySelectorAll<HTMLButtonElement>('.chip-btn').forEach((b) => b.addEventListener('click', () => {
+    const f = b.dataset.filter!;
+    aktiv.has(f) ? aktiv.delete(f) : aktiv.add(f);
+    b.classList.toggle('aktiv', aktiv.has(f));
+    b.setAttribute('aria-pressed', String(aktiv.has(f)));
+    render();
+  }));
+  kwhFeld.addEventListener('input', render);
+  render();
+</script>
+
+<style>
+  .vg-filter { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+  .chip-btn { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 0.88rem; font-weight: 500; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+  .chip-btn.aktiv { background: #1d4ed8; border-color: #1d4ed8; color: #fff; }
+  .chip-btn.aktiv .icon { color: #fff; }
+  .vg-liste { list-style: none; padding: 0; margin: 1.4em 0 0.6em; display: grid; gap: 16px; }
+  .vg-karte { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow); margin: 0; }
+  .vg-karte[hidden] { display: none; }
+  .vg-kopf { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .vg-anbieter { font-weight: 800; font-size: 1.15rem; margin: 0; }
+  .vg-tarif { margin: 0; color: var(--muted); }
+  .vg-kosten { margin: 0; text-align: right; display: grid; }
+  .vg-kosten-zahl { font-weight: 800; font-size: 1.3rem; color: #1d4ed8; font-variant-numeric: tabular-nums; }
+  .vg-daten { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px 14px; margin: 14px 0 10px; }
+  .vg-daten div { margin: 0; }
+  .vg-daten dt { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 800; }
+  .vg-daten dd { margin: 2px 0 0; font-weight: 500; }
+  .vg-text { display: flex; gap: 8px; align-items: flex-start; font-size: 0.9rem; margin: 6px 0; }
+  .vg-text .icon { flex: none; margin-top: 3px; color: #1d4ed8; }
+  .vg-fuss { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin: 12px 0 0; }
+</style>

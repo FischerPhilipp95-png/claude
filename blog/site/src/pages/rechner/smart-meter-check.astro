@@ -1,0 +1,163 @@
+---
+// Smart-Meter-Check: Pflicht oder freiwillig, was er höchstens kostet, und ein fertiger Antragstext zum Kopieren.
+// Regeln und Preisobergrenzen laut Messstellenbetriebsgesetz, zusammengefasst vom ADAC (21.08.2026).
+import Base from '../../layouts/Base.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../site';
+
+const title = 'Smart-Meter-Check: Pflicht, Kosten und Antrag in 3 Angaben';
+const description = 'Musst du einen Smart Meter einbauen lassen, oder darfst du ihn nur beantragen? Was er höchstens kostet, wie lange der Einbau dauert, mit fertigem Antragstext zum Kopieren.';
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Smart-Meter-Check',
+  url: `${SITE.url}/rechner/smart-meter-check/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Smart-Meter-Check</nav>
+    <h1>Smart-Meter-Check</h1>
+    <p class="lead">Drei Angaben, dann weißt du: Bist du Pflichtkunde oder beantragst du freiwillig, was darf der Smart Meter höchstens kosten, und wie
+    lange darf der Einbau dauern. Dazu ein fertiger Antragstext für den Messstellenbetreiber.</p>
+
+    <Antwort>
+    <p><strong>Kurz gesagt:</strong> Pflicht ist der Smart Meter ab <strong>6.000 kWh</strong> im Jahr, bei <strong>PV über 7 kW</strong> oder bei
+    {' '}<strong>Wärmepumpe, Wallbox, Speicher über 4,2 kW</strong> seit 2024. Alle anderen haben ein <strong>Recht auf Einbau</strong> innerhalb von vier
+    Monaten, für höchstens <strong>30 € im Jahr</strong> und bis zu <strong>100 € einmalig</strong>.</p>
+    </Antwort>
+
+    <section class="box calc" aria-label="Check">
+      <div class="rc-grid">
+        <label>Dein Stromverbrauch in kWh pro Jahr<input id="kwh" type="number" inputmode="numeric" min="0" step="100" value="3500" /></label>
+        <label>PV-Anlage in kW (0 = keine, Balkonkraftwerk = 0,8)<input id="pv" type="number" inputmode="decimal" min="0" step="0.5" value="0" /></label>
+        <label>Steuerbares Gerät über 4,2 kW (Wärmepumpe, Wallbox, Speicher, Klimaanlage)<select id="geraet">
+          <option value="keins">keins</option>
+          <option value="neu">ja, seit 2024 in Betrieb</option>
+          <option value="alt">ja, vor 2024 in Betrieb</option>
+        </select></label>
+      </div>
+
+      <div class="rc-ergebnis" id="fazit" aria-live="polite">
+        <strong class="rc-zahl" id="fazit-zahl">–</strong>
+        <span id="fazit-text">–</span>
+      </div>
+
+      <table class="rc-tabelle" aria-live="polite">
+        <tbody>
+          <tr><th scope="row">Einbau</th><td id="r-einbau">–</td></tr>
+          <tr><th scope="row">Höchstens pro Jahr (grundzuständiger Messstellenbetreiber)</th><td id="r-jahr">–</td></tr>
+          <tr><th scope="row">Einmalig</th><td id="r-einmal">–</td></tr>
+          <tr><th scope="row">Mehrkosten gegenüber dem digitalen Zähler (20 €)</th><td id="r-mehr">–</td></tr>
+          <tr><th scope="row">Frist</th><td id="r-frist">–</td></tr>
+          <tr><th scope="row">Dazu</th><td id="r-extra">–</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="h3">Antragstext zum Kopieren</h2>
+      <p class="small">An den Messstellenbetreiber (steht auf der Stromrechnung, meist der Netzbetreiber). Zählernummer und Adresse ergänzen.</p>
+      <textarea id="antrag" rows="9" readonly aria-label="Antragstext"></textarea>
+      <p><button type="button" class="btn btn-sm" id="kopieren"><Icon name="copy" size={16} /> Antrag kopieren</button> <span class="small" id="kopiert" aria-live="polite"></span></p>
+      <RechnerTeilen />
+    </section>
+
+    <h2>Die Regeln dahinter</h2>
+    <table>
+      <thead><tr><th scope="col">Fall</th><th scope="col">Pflicht?</th><th scope="col">Höchstens pro Jahr</th></tr></thead>
+      <tbody>
+        <tr><td>bis 6.000 kWh, keine Anlage</td><td>nein, Recht auf Einbau</td><td>30 €</td></tr>
+        <tr><td>6.000 bis 10.000 kWh</td><td>ja</td><td>40 €</td></tr>
+        <tr><td>10.000 bis 20.000 kWh</td><td>ja</td><td>50 €</td></tr>
+        <tr><td>20.000 bis 50.000 kWh</td><td>ja</td><td>110 €</td></tr>
+        <tr><td>PV-Anlage 7 bis 15 kW (Pflicht ab 7 kW, Obergrenze gilt ab 2 kW)</td><td>ja</td><td>50 €</td></tr>
+        <tr><td>PV-Anlage 15 bis 25 kW</td><td>ja</td><td>110 €</td></tr>
+        <tr><td>Wärmepumpe, Wallbox, Speicher über 4,2 kW, seit 2024</td><td>ja</td><td>50 € plus 50 € Steuerbox</td></tr>
+      </tbody>
+    </table>
+    <p>Trifft mehr als ein Fall zu, gilt die höhere Obergrenze. Für den vorzeitigen Einbau auf deinen Wunsch darf der Messstellenbetreiber bis zu
+    100 € einmalig verlangen. Wettbewerbliche Messstellenbetreiber sind an die Obergrenzen nicht gebunden. Alle Details:
+    <a href="/artikel/smart-meter-pflicht-kosten/">Smart Meter: Pflicht, Kosten, beantragen</a>.</p>
+
+    <Warnung titel="Zählerschrank">
+    Passt das Gateway nicht in den Zählerschrank, kostet der Umbau laut ADAC bis zu 2.000 €, die der Eigentümer trägt. Betroffen ist etwa ein
+    Viertel der Haushalte, vor allem Gebäude von vor 1965. Vor dem Antrag beim Messstellenbetreiber fragen.
+    </Warnung>
+
+    <h2>Weiter</h2>
+    <ul>
+      <li><a href="/rechner/dynamischer-stromtarif/">Spar-Rechner</a>: Lohnt sich der dynamische Tarif, für den du den Smart Meter brauchst?</li>
+      <li><a href="/artikel/dynamischer-stromtarif-ohne-smart-meter/">Dynamischer Tarif ohne Smart Meter</a>: was bis zum Einbau geht.</li>
+      <li><a href="/rechner/netzentgelt-14a/">§ 14a Netzentgelt-Rechner</a>: der Rabatt, der zur Steuerbox gehört.</li>
+    </ul>
+
+    <h2>Quellen</h2>
+    <ul class="small">
+      <li>ADAC: <a href="https://www.adac.de/rund-ums-haus/energie/versorgung/smart-meter-intelligenter-stromzaehler/" rel="noopener">Smart Meter: Das müssen Haushalte 2026 zahlen</a>, 21.08.2026</li>
+      <li>Messstellenbetriebsgesetz: <a href="https://www.gesetze-im-internet.de/messbg/" rel="noopener">MsbG §§ 30 bis 35</a> (Preisobergrenzen, Einbaupflicht, Einbau auf Verlangen)</li>
+      <li>Finanztip: <a href="https://www.finanztip.de/stromtarife/steuerbare-verbrauchseinrichtungen-14a-enwg/" rel="noopener">§ 14a EnWG</a>, Stand 01.09.2026 (Steuerbox, Bestandsschutz)</li>
+    </ul>
+  </div>
+</Base>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement | HTMLSelectElement;
+  const zahl = (id: string) => Math.max(0, parseFloat(($(id) as HTMLInputElement).value.replace(',', '.')) || 0);
+  const set = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  function rechnen() {
+    const kwh = zahl('kwh'), pv = zahl('pv'), g = $('geraet').value;
+    const gruende: string[] = [];
+    if (kwh > 6000) gruende.push(`Verbrauch über 6.000 kWh (${Math.round(kwh).toLocaleString('de-DE')} kWh)`);
+    if (pv > 7) gruende.push(`PV-Anlage über 7 kW (${pv.toLocaleString('de-DE')} kW)`);
+    if (g === 'neu') gruende.push('steuerbares Gerät über 4,2 kW seit 2024 (§ 14a EnWG)');
+    const pflicht = gruende.length > 0;
+    // Obergrenze: höchster zutreffender Wert
+    let jahr = 30;
+    if (kwh > 6000) jahr = Math.max(jahr, 40);
+    if (kwh > 10000) jahr = Math.max(jahr, 50);
+    if (kwh > 20000) jahr = Math.max(jahr, 110);
+    if (kwh > 50000) jahr = Math.max(jahr, 140);
+    if (pv > 2) jahr = Math.max(jahr, 50);
+    if (pv > 15) jahr = Math.max(jahr, 110);
+    if (pv > 25) jahr = Math.max(jahr, 140);
+    if (g === 'neu') jahr = Math.max(jahr, 50);
+    const steuerbox = g === 'neu' ? 50 : 0;
+    const fazit = document.getElementById('fazit')!;
+    fazit.className = 'rc-ergebnis ' + (pflicht ? 'achtung' : 'gut');
+    set('fazit-zahl', pflicht ? 'Pflichteinbau' : 'Freiwillig, mit Recht auf Einbau');
+    set('fazit-text', pflicht
+      ? `Grund: ${gruende.join(', ')}. Der Messstellenbetreiber muss den Smart Meter einbauen, du kannst ihn nicht ablehnen. Warte aber nicht darauf, wenn du einen dynamischen Tarif willst: Beantragen geht trotzdem.`
+      : 'Keine Pflicht. Seit 2025 muss der Messstellenbetreiber auf deinen Antrag innerhalb von vier Monaten einbauen.');
+    set('r-einbau', pflicht ? 'Pflicht, kostenlos' : 'auf Antrag');
+    set('r-jahr', `${jahr} €${steuerbox ? ` plus ${steuerbox} € Steuerbox = ${jahr + steuerbox} €` : ''}`);
+    set('r-einmal', pflicht ? 'keine Einbaukosten' : 'bis zu 100 € für den vorzeitigen Einbau auf Wunsch');
+    set('r-mehr', `rund ${jahr + steuerbox - 20} € im Jahr`);
+    set('r-frist', pflicht ? 'nach Rollout-Plan des Messstellenbetreibers, auf Antrag innerhalb von 4 Monaten' : '4 Monate nach deinem Antrag');
+    set('r-extra', g === 'neu' ? 'Steuerbox für § 14a: Dafür bekommst du einen Netzentgelt-Rabatt von 108 bis 196 € im Jahr (Modul 1).' : g === 'alt' ? 'Dein Gerät hat Bestandsschutz bis Ende 2028, danach gilt § 14a auch dafür. Freiwillig geht es schon jetzt, mit Rabatt.' : pv > 0 && pv <= 7 ? 'Für PV bis 7 kW keine Pflicht, aber für neue Anlagen ab 2 kW gelten Einspeiseregeln, die ein Smart Meter voraussetzen.' : 'Mit Smart Meter kannst du einen dynamischen Stromtarif nutzen.');
+    ($('antrag') as HTMLInputElement).value = `Sehr geehrte Damen und Herren,
+
+hiermit beantrage ich nach § 34 Messstellenbetriebsgesetz den Einbau eines intelligenten Messsystems (Smart Meter mit Smart Meter Gateway) für meine Messstelle.
+
+Zählernummer: [Nummer vom Zähler oder von der Stromrechnung]
+Adresse der Messstelle: [Straße, Hausnummer, PLZ, Ort]
+Jahresverbrauch: ca. ${Math.round(kwh).toLocaleString('de-DE')} kWh${pv ? `\nPV-Anlage: ${pv.toLocaleString('de-DE')} kW` : ''}${g === 'neu' ? '\nSteuerbare Verbrauchseinrichtung nach § 14a EnWG vorhanden (seit 2024).' : ''}
+
+Bitte nennen Sie mir einen Einbautermin innerhalb der gesetzlichen Frist von vier Monaten sowie die anfallenden Kosten (Preisobergrenze nach § 30 MsbG${pflicht ? '' : ', einmalige Kosten für den vorzeitigen Einbau'}). Teilen Sie mir bitte auch mit, falls der Zählerschrank angepasst werden muss.
+
+Mit freundlichen Grüßen
+[Name]`;
+  }
+  document.querySelector('section.calc')!.addEventListener('input', rechnen);
+  document.querySelector('section.calc')!.addEventListener('change', rechnen);
+  document.getElementById('kopieren')!.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(($('antrag') as HTMLInputElement).value); set('kopiert', 'Kopiert.'); setTimeout(() => set('kopiert', ''), 2500); }
+    catch { ($('antrag') as HTMLInputElement).select(); }
+  });
+  rechnen();
+</script>
+
+<style>
+  .h3 { font-size: 1.15rem; margin-top: 1.6em; }
+  textarea { width: 100%; font: inherit; font-size: 0.9rem; line-height: 1.5; padding: 12px; border: 1px solid #bdbab2; border-radius: 8px; background: #fff; color: var(--ink); resize: vertical; }
+</style>

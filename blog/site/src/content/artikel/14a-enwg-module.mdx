@@ -1,0 +1,155 @@
+---
+title: "§ 14a EnWG erklärt: Modul 1, 2 oder 3 für Wärmepumpe und Wallbox"
+kurztitel: "§ 14a EnWG: Modul 1, 2, 3 erklärt"
+description: "§ 14a EnWG einfach erklärt: Welche Geräte betroffen sind, was die Drosselung auf 4,2 kW bedeutet und welches Modul (Pauschale, 60 %, zeitvariabel) am meisten."
+pubDate: 2026-10-27
+icon: plug-zap
+thema: Tarif
+bild: /bilder/titel/14a-enwg-module.webp
+bildAlt: "Titelbild: § 14a EnWG, Modul 1, 2 und 3"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: false
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import Balken from '../../components/Balken.astro';
+
+<Antwort>
+**Kurz gesagt:** Seit 2024 darf der Netzbetreiber **Wärmepumpen, Wallboxen, Speicher und Klimaanlagen über 4,2 kW** bei
+Netzengpässen kurz auf **4,2 kW drosseln** (§ 14a EnWG). Als Gegenleistung bekommst du **weniger Netzentgelt**: **Modul 1** zahlt
+pauschal **108 bis 196 € im Jahr**, je nach Netzgebiet, ohne zweiten Zähler. **Modul 2** senkt den Netzentgelt-Arbeitspreis um
+**60 Prozent**, braucht aber einen zweiten Zähler, und lohnt sich ab etwa 4.500 kWh im Jahr. **Modul 3** gibt zusätzlich zu
+Modul 1 **zeitvariable Netzentgelte**: mittags günstiger, abends teurer, nur mit Smart Meter. Welches Modul bei dir am meisten
+bringt: [§ 14a Netzentgelt-Rechner](/rechner/netzentgelt-14a/).
+</Antwort>
+
+## Was regelt § 14a EnWG?
+
+Das Stromnetz im Ort ist für den Abend mit Millionen gleichzeitig ladender E-Autos und laufender Wärmepumpen nicht gebaut. Statt
+überall neue Kabel zu legen, darf der Verteilnetzbetreiber seit dem **1. Januar 2024** große Verbraucher **kurzzeitig drosseln**,
+wenn das Netz sonst überlastet wäre. Betroffen sind **steuerbare Verbrauchseinrichtungen**:
+
+- **Wärmepumpen**
+- **Wallboxen** (private Ladepunkte)
+- **Batteriespeicher** (gezählt wird die Ladeleistung des Wechselrichters, nicht die kWh)
+- **Klimaanlagen**
+
+jeweils mit **mehr als 4,2 kW** Leistung und **seit dem 1. Januar 2024** in Betrieb genommen. Gleiche Gerätearten an einem Zähler
+werden addiert. Ältere Geräte haben laut Bundesnetzagentur **Bestandsschutz bis zum 31. Dezember 2028**, ab 2029 gelten die Regeln für
+alle.
+
+**Haushaltsstrom wird nie gedrosselt.** Gedimmt wird nur das Gerät, und zwar auf **mindestens 4,2 kW**. Eine Wärmepumpe läuft damit
+weiter, ein E-Auto lädt mit 4,2 kW in einer Stunde noch gut 20 km nach. Die Bundesnetzagentur nennt die Drosselung „den
+Ausnahmefall“, Netzbetreiber müssen jede Drosselung veröffentlichen. Bis Herbst 2026 gab es laut Finanztip dort noch keinen
+Eintrag.
+
+Ohne Steuerung geht es nicht: Der Netzbetreiber **muss** jedes neue Gerät über 4,2 kW anschließen, darf es aber nur mit der
+Möglichkeit zur Drosselung. Die Anmeldung übernimmt in der Regel der **Elektrobetrieb**, der das Gerät installiert.
+
+## Die Gegenleistung: drei Module für weniger Netzentgelt
+
+Weil du dich drosseln lässt, zahlst du weniger Netzentgelt. Das Netzentgelt ist ein Teil deines Strompreises (2026 im Schnitt
+9,2 Cent pro kWh laut BDEW). Du wählst eines von drei Modulen:
+
+<Balken
+  titel="Was die Module bei 5.000 kWh Wärmepumpenstrom im Jahr bringen, Beispiel"
+  untertitel="Modul 1: Mitte der Spanne. Modul 2: Beispiel Berlin 2026 laut Finanztip, ohne die laufenden Kosten des zweiten Zählers. Modul 3: Schätzung, wenn 40 % des Verbrauchs in den Niedrigtarif fallen."
+  einheit="€"
+  daten={[
+    { label: 'Modul 1: Pauschale', wert: 150, icon: 'wallet', notiz: '108 bis 196 €' },
+    { label: 'Modul 2: 60 % weniger Arbeitspreis', wert: 306, icon: 'gauge', notiz: 'minus Zählerkosten' },
+    { label: 'Modul 1 + 3: zeitvariabel', wert: 230, icon: 'clock', notiz: 'nur mit Smart Meter' },
+  ]}
+  quelle="Grafik: Der Handwerksdoktor. Zahlen laut Finanztip (Stand 01.09.2026), Modul 3 eigene Schätzung mit 5,4 ct Niedrigtarif-Vorteil."
+/>
+
+### Modul 1: die Pauschale
+
+- **Was:** ein fester Betrag pro Jahr, der von den Netzentgelten abgezogen wird, berechnet als 80 € plus 20 Prozent Rabatt auf das
+  Netzentgelt für pauschal 3.750 kWh.
+- **Höhe 2026:** laut Finanztip **108 bis 196 € brutto** je nach Netzbetreiber, grob **150 €**.
+- **Voraussetzung:** keine, kein zweiter Zähler. Wer nichts wählt, landet automatisch in Modul 1.
+- **Lohnt sich** für Wallboxen mit normaler Fahrleistung, Wärmepumpen unter etwa 3.000 kWh und Speicher.
+
+### Modul 2: 60 Prozent weniger Arbeitspreis
+
+- **Was:** Das Gerät bekommt einen **eigenen Zähler**, und der Netzentgelt-Arbeitspreis für diesen Strom sinkt um **60 Prozent**,
+  der Netzentgelt-Grundpreis entfällt ganz.
+- **Beispiel Berlin 2026 (Finanztip):** Grundpreis 39,70 € fällt weg, Arbeitspreis sinkt von 8,88 auf 3,55 Cent. Bei 5.000 kWh
+  **306 € Ersparnis** im Jahr.
+- **Kosten:** zweiter Zähler mit Einbau (einige hundert Euro, bei Umbau des Zählerschranks mehr), rund 25 € im Jahr für den
+  Zähler und etwa 100 € Grundgebühr für den zweiten Stromvertrag.
+- **Lohnt sich** laut Finanztip ab etwa **4.500 kWh** Wärmepumpenstrom im Jahr, zwischen 3.000 und 4.500 kWh im Einzelfall.
+
+### Modul 3: zeitvariable Netzentgelte
+
+- **Was:** seit dem **1. April 2025** zusätzlich zu Modul 1 wählbar. Der Netzbetreiber legt drei Zeitfenster fest: **Hochtarif**
+  (meist abends), **Standard** und **Niedrigtarif** (meist mittags).
+- **Beispiel Netze BW:** Niedrigtarif 10 bis 14 Uhr mit 3,61 Cent brutto, das sind 5,4 Cent weniger als Standard. Hochtarif 17 bis
+  22 Uhr rund 4 Cent mehr. In vielen Regionen ist der Niedrigtarif etwa 5 Cent günstiger.
+- **Voraussetzung:** intelligentes Messsystem. Und ein Netzbetreiber, der es schon kann: Im Frühjahr 2026 waren das laut einer
+  Umfrage nur 14 von 169.
+- **Lohnt sich**, wenn Wärmepumpe oder E-Auto wirklich mittags laufen können, also mit Pufferspeicher, Homeoffice oder Steuerung
+  über einen [dynamischen Stromtarif](/artikel/dynamischer-stromtarif/), der ohnehin die gleichen Stunden bevorzugt.
+
+## Welches Modul für wen?
+
+| Situation | Empfehlung | Warum |
+|---|---|---|
+| Wallbox, bis 30.000 km im Jahr | Modul 1 | Pauschale übersteigt den prozentualen Rabatt |
+| Wärmepumpe unter 3.000 kWh | Modul 1 | zweiter Zähler lohnt nicht |
+| Wärmepumpe über 4.500 kWh | Modul 2 | 60 % auf große Mengen schlagen die Pauschale |
+| Speicher | Modul 1 | wenig Netzbezug |
+| Smart Meter vorhanden, Verbrauch verschiebbar | Modul 1 + 3 | Pauschale plus Mittagsrabatt |
+
+Rechne es mit deinen Zahlen: [§ 14a Netzentgelt-Rechner](/rechner/netzentgelt-14a/).
+
+<Warnung titel="Der Rabatt kommt nicht von allein">
+Den Rabatt zahlt der Netzbetreiber an deinen Stromanbieter. Der ist laut Bundesnetzagentur **nicht verpflichtet**, ihn
+weiterzugeben. Frag nach, und zwar schriftlich. Laut Finanztip-Befragung geben E.ON, Enercity, EWE, Lichtblick, Mainova, N-Ergie
+und Octopus Energy Modul 2 in jedem Haushaltstarif weiter, EnBW, Vattenfall, Naturstrom und MVV nur in Spezialtarifen. Modul 3 in
+jedem Haushaltstarif: E.ON, EnBW, Enercity, EWE, Lichtblick, Mainova, Octopus Energy, Rheinenergie.
+</Warnung>
+
+## Anmelden: wer macht was?
+
+1. **Gerät installieren lassen.** Der Elektrobetrieb meldet Wärmepumpe oder Wallbox beim Netzbetreiber an und gibt dabei das Modul
+   an. Ohne Angabe: Modul 1.
+2. **Modul 2 oder 3** musst du beim Netzbetreiber ausdrücklich wählen, auch später noch, meist über ein Formular.
+3. **Steuerung:** läuft über Smart Meter plus Steuerbox. Der Pflichteinbau ist kostenlos, der Betrieb kostet laut
+   Messstellenbetriebsgesetz bis zu **100 € im Jahr** (50 € Smart Meter, 50 € Steuerbox):
+   [Smart Meter: Pflicht und Kosten](/artikel/smart-meter-pflicht-kosten/).
+4. **Rabatt prüfen:** Er steht auf der Stromrechnung unter Netzentgelt. Er gilt laut Finanztip schon, sobald der Netzbetreiber
+   beauftragt ist, auch wenn die Steuerbox noch nicht eingebaut ist.
+
+## Häufige Fragen
+
+### Darf der Netzbetreiber meine Wärmepumpe abschalten?
+Nein, nur auf 4,2 kW drosseln, und nur bei einer drohenden Überlastung im Netz. Die Bundesnetzagentur nennt das den Ausnahmefall,
+jede Drosselung muss veröffentlicht werden.
+
+### Gilt § 14a auch für meine alte Wärmepumpe?
+Geräte, die vor 2024 in Betrieb gingen, haben Bestandsschutz bis Ende 2028. Freiwillig kannst du schon jetzt teilnehmen und den
+Rabatt bekommen.
+
+### Wie viel Netzentgelt spare ich mit Modul 1?
+2026 zwischen 108 und 196 € im Jahr, je nach Netzbetreiber. Der Betrag steht im Preisblatt deines Netzbetreibers.
+
+### Brauche ich für § 14a einen Smart Meter?
+Für die Steuerung ja, Smart Meter plus Steuerbox gehören zum Pflichteinbau. Modul 1 und 2 bekommst du aber auch schon vor dem
+Einbau.
+
+### Kann ich Modul 2 und 3 kombinieren?
+Nein. Modul 3 geht nur zusammen mit Modul 1.
+
+### Lohnt sich § 14a bei einer 11-kW-Wallbox mit wenig Fahrleistung?
+Ja, Modul 1 bringt die Pauschale unabhängig vom Verbrauch. Bei 2.000 kWh Ladestrom sind 150 € mehr als 7 Cent pro kWh Rabatt.
+
+## Quellen
+
+- Finanztip: [§ 14a EnWG zu steuerbaren Verbrauchseinrichtungen erklärt](https://www.finanztip.de/stromtarife/steuerbare-verbrauchseinrichtungen-14a-enwg/), Stand 01.09.2026 (Module, Beträge, Beispiele Berlin und Netze BW, Anbieter-Befragung, Bestandsschutz laut Bundesnetzagentur)
+- Bundesnetzagentur: [Steuerbare Verbrauchseinrichtungen nach § 14a EnWG](https://www.bundesnetzagentur.de/DE/Vportal/Energie/SteuerbareVerbrauchseinrichtungen/start.html), Festlegungen BK6-22-300 und BK8-22-010-A
+- BDEW: [Strompreisanalyse Herbst 2026](https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/), 21.08.2026 (Netzentgelte im Strompreis)
+- ADAC: [Smart Meter 2026](https://www.adac.de/rund-ums-haus/energie/versorgung/smart-meter-intelligenter-stromzaehler/), 21.08.2026 (Steuerungseinrichtung, Kosten)
+
+*Keine Rechtsberatung. Maßgeblich sind das Preisblatt deines Netzbetreibers und die Festlegungen der Bundesnetzagentur.*

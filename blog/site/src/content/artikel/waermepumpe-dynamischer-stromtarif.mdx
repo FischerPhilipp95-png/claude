@@ -1,0 +1,144 @@
+---
+title: "Wärmepumpe mit dynamischem Stromtarif: lohnt sich das? (2026)"
+kurztitel: "Wärmepumpe und dynamischer Tarif"
+description: "Wärmepumpe mit dynamischem Stromtarif: Was Studien an Ersparnis nennen, warum der Pufferspeicher entscheidet und wann ein Wärmepumpentarif mit Modul 2 besser."
+pubDate: 2026-10-27
+icon: heater
+thema: Tarif
+bild: /bilder/titel/waermepumpe-dynamischer-stromtarif.webp
+bildAlt: "Titelbild: Wärmepumpe mit dynamischem Stromtarif"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import StromUhr from '../../components/StromUhr.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+
+<Antwort>
+**Kurz gesagt:** Eine Wärmepumpe verbraucht im Einfamilienhaus grob **4.000 bis 6.000 kWh im Jahr**, das meiste davon im Winter,
+wenn der Börsenstrom **nachts** günstig ist und **abends** teuer. Mit einem [dynamischen Stromtarif](/artikel/dynamischer-stromtarif/)
+spart sie laut einer Neon-Studie **rund 124 € oder 7 Prozent im Jahr**, aber nur mit **Pufferspeicher** oder gut gedämmtem Haus,
+damit sie mittags und nachts vorheizen und abends pausieren kann. Ab etwa **4.500 kWh Wärmestrom** ist laut Finanztip oft ein
+**Wärmepumpentarif mit eigenem Zähler und § 14a Modul 2** (60 Prozent weniger Netzentgelt-Arbeitspreis) die bessere Wahl. Beides
+rechnest du hier durch: [Spar-Rechner](/rechner/dynamischer-stromtarif/) und [§ 14a Netzentgelt-Rechner](/rechner/netzentgelt-14a/).
+</Antwort>
+
+## Wie viel Strom braucht eine Wärmepumpe?
+
+Die Faustformel: **Heizwärmebedarf ÷ Jahresarbeitszahl (JAZ) = Stromverbrauch**. Ein Haus mit 15.000 kWh Wärmebedarf und einer
+JAZ von 3,5 braucht rund 4.300 kWh Strom. Ratgeber nennen für ein 150-m²-Haus **4.500 bis 6.000 kWh im Jahr** bei einer
+Luft-Wasser-Wärmepumpe, co2online einen Durchschnitt von etwa 36 kWh pro Quadratmeter. Erdwärmepumpen liegen mit höherer JAZ
+deutlich darunter.
+
+Wichtig für den Tarif: **Rund 80 Prozent davon fallen zwischen Oktober und März an.** Der Sommerstrom mittags für 1 Cent nützt
+der Wärmepumpe wenig, dann läuft sie nur für Warmwasser.
+
+## Winterstrom: nachts günstig, abends teuer
+
+<StromUhr titel="Börsenpreis im Winter: wann die Wärmepumpe laufen sollte" untertitel="Auf „Winter (Okt–Mär)“ schalten: Dann sind die Nachtstunden am günstigsten, der Abend ist am teuersten." />
+
+Im Winter 2025 kostete die Börsen-kWh **nachts rund 7 Cent**, **abends zwischen 17 und 20 Uhr über 13 Cent**. Der Unterschied
+von 6 Cent plus Mehrwertsteuer sind rund **7 Cent pro kWh**. Wer 2.000 kWh vom Abend in die Nacht verschiebt, spart damit
+**rund 140 €**. Das deckt sich mit der Neon-Studie für Naturstrom (Herbst 2025): **124 € oder 7 Prozent** bei einer Wärmepumpe
+mit Pufferspeicher.
+
+## Die Voraussetzung: Die Wärmepumpe muss pausieren können
+
+Eine Wärmepumpe lässt sich nicht wie ein E-Auto einfach vier Stunden später laden. Sie muss das Haus warm halten. Verschieben
+klappt nur, wenn Wärme **gespeichert** werden kann:
+
+- **Pufferspeicher** (Heizungswasser) und **Warmwasserspeicher:** Die Wärmepumpe lädt sie in günstigen Stunden auf etwas höhere
+  Temperatur, abends wird daraus geheizt. Je größer der Speicher, desto länger die Pause.
+- **Fußbodenheizung und gute Dämmung:** Der Estrich speichert Wärme über Stunden. Hier kann die Wärmepumpe abends drei, vier
+  Stunden pausieren, ohne dass es kalt wird.
+- **Heizkörper und schlechte Dämmung:** Kaum Spielraum. Dann bringt der dynamische Tarif wenig, weil die Wärmepumpe gerade abends
+  laufen muss, wenn es kalt wird.
+
+**SG-Ready** ist das Stichwort: Wärmepumpen mit diesem Anschluss (fast alle seit etwa 2015) lassen sich von außen in einen
+„Vorheiz-Modus“ oder eine Sperre schalten. Genau das nutzen die Apps der Anbieter, Energiemanager wie der 1KOMMA5°-Heartbeat oder
+evcc und openHAB: In günstigen Stunden Puffer hochfahren, in teuren drosseln.
+
+<Schnellkauf titel="Das brauchst du für die Steuerung" items={[
+  { name: 'Shelly Pro 2 Relais', warum: 'Schaltet die SG-Ready-Kontakte der Wärmepumpe per WLAN, steuerbar aus evcc oder Home Assistant.', suche: 'Shelly Pro 2 Hutschiene' },
+  { name: 'Raspberry Pi für evcc oder Home Assistant', warum: 'Kleiner Rechner für die Steuerung nach Börsenpreis.', suche: 'Raspberry Pi 5 Starter Set' },
+  { name: 'Energiezähler für die Wärmepumpe', warum: 'Zeigt, wie viel Strom die Wärmepumpe wirklich zieht, Basis für jede Tarifentscheidung.', suche: 'Energiezähler Hutschiene MID 3-phasig' },
+]} />
+
+## Dynamischer Tarif oder Wärmepumpentarif?
+
+Viele Versorger bieten **Wärmepumpentarife** an: Die Wärmepumpe bekommt einen **eigenen Zähler**, und der Strom darüber ist
+einige Cent günstiger als Haushaltsstrom, vor allem weil die reduzierten Netzentgelte nach **§ 14a Modul 2** (60 Prozent weniger
+Arbeitspreis, kein Netz-Grundpreis) darin stecken. Dafür darf der Netzbetreiber die Wärmepumpe drosseln oder zu Sperrzeiten
+kurz abschalten.
+
+| | Dynamischer Tarif | Wärmepumpentarif |
+|---|---|---|
+| Preis | Börse plus feste Anteile, schwankt | fest, oft einige Cent unter Haushaltsstrom |
+| Netzentgelt-Rabatt | Modul 1 (108 bis 196 €) oder Modul 3 | meist Modul 2 (60 % weniger Arbeitspreis) |
+| Zähler | Smart Meter | zweiter Zähler plus zweiter Vertrag |
+| Risiko | Preisspitzen bei Kälte | keins |
+| Lohnt sich | mit Puffer, unter ca. 4.500 kWh | ab ca. 4.500 kWh laut Finanztip |
+
+Finanztip: Ein Wärmepumpen-Sondertarif lohnt sich **oft erst ab etwa 4.500 kWh** Wärmestrom im Jahr, Modul 2 ab 4.500 kWh,
+zwischen 3.000 und 4.500 kWh je nach Einzelfall. Darunter ist der dynamische Tarif mit Modul 1 meist günstiger und flexibler.
+Es gibt auch Mischformen wie Octopus Heat, ein Wärmepumpentarif ohne zweiten Zähler, der die Wärmepumpe per App steuert.
+
+<Warnung titel="Die Dunkelflaute trifft die Wärmepumpe doppelt">
+Die teuersten Börsenstunden fallen in kalte, windstille Winterabende, also genau dann, wenn die Wärmepumpe am meisten Strom
+braucht. Am 20. Januar 2025 kostete die kWh an der Börse in der Spitze 58 Cent, brutto über 90 Cent. Ein einzelner solcher Abend
+kostet dich mit 5 kW Heizleistung schnell 15 bis 20 €. Übers Jahr gleicht das der günstige Rest aus, in einem kalten Februar kann
+der dynamische Tarif aber teurer sein als ein Festpreis. Wer das nicht aushält, nimmt den Wärmepumpentarif oder eine Variante
+mit Preisdeckel.
+</Warnung>
+
+## § 14a: Rabatt gibt es in jedem Fall
+
+Jede Wärmepumpe über 4,2 kW, die seit 2024 läuft, fällt unter § 14a EnWG. Den Netzentgelt-Rabatt bekommst du unabhängig vom Tarif:
+
+- **Modul 1:** pauschal 108 bis 196 € im Jahr, ohne zweiten Zähler. Passt zum dynamischen Tarif.
+- **Modul 2:** 60 Prozent weniger Arbeitspreis, zweiter Zähler nötig. Passt zum Wärmepumpentarif.
+- **Modul 3:** zeitvariable Netzentgelte zusätzlich zu Modul 1, mittags rund 5 Cent günstiger, abends 4 Cent teurer. Passt zur
+  Wärmepumpe mit Puffer, die mittags vorheizt.
+
+Alle Details: [§ 14a EnWG: Modul 1, 2, 3 erklärt](/artikel/14a-enwg-module/).
+
+## Mit PV-Anlage
+
+Mit eigener PV lädt die Wärmepumpe den Puffer mittags mit Solarstrom, im Sommer fürs Warmwasser fast kostenlos. Der dynamische
+Tarif hilft dann vor allem im Winter, wenn die PV kaum liefert. Energiemanager kombinieren beides: erst PV-Überschuss, dann
+günstiger Börsenstrom.
+
+## Häufige Fragen
+
+### Lohnt sich ein dynamischer Stromtarif für die Wärmepumpe?
+Mit Pufferspeicher oder Fußbodenheizung ja, Studien nennen rund 124 € oder 7 Prozent im Jahr. Ohne Speicher kaum, weil die
+Wärmepumpe dann abends laufen muss, wenn der Strom am teuersten ist.
+
+### Wie viel Strom verbraucht eine Wärmepumpe im Jahr?
+Im Einfamilienhaus grob 4.000 bis 6.000 kWh, je nach Dämmung, Wärmepumpe und Jahresarbeitszahl. Etwa 80 Prozent davon im Winter.
+
+### Was ist besser: Wärmepumpentarif oder dynamischer Tarif?
+Unter etwa 4.500 kWh im Jahr meist der dynamische Tarif mit § 14a Modul 1, darüber oft der Wärmepumpentarif mit Modul 2. Mit
+Puffer und Steuerung verschiebt sich die Grenze nach oben.
+
+### Was ist SG-Ready?
+Ein Standardanschluss an der Wärmepumpe mit zwei Kontakten, über die ein Energiemanager sie in einen Sparmodus oder Vorheizmodus
+schaltet. Fast alle Wärmepumpen seit etwa 2015 haben ihn.
+
+### Darf der Netzbetreiber die Wärmepumpe abschalten?
+Nach § 14a nur auf 4,2 kW drosseln. Bei klassischen Wärmepumpentarifen mit Rundsteuerempfänger gibt es zusätzlich vertragliche
+Sperrzeiten, meist bis zu 2 Stunden am Stück.
+
+### Brauche ich einen zweiten Zähler?
+Für den dynamischen Tarif nicht, nur einen Smart Meter. Für den Wärmepumpentarif mit Modul 2 ja.
+
+## Quellen
+
+- Finanztip: [Dynamische Stromtarife](https://www.finanztip.de/stromtarife/dynamischer-stromtarif/), Stand 16.04.2026 (Neon-Studie für Naturstrom, Wärmepumpen-Sondertarif ab 4.500 kWh)
+- Finanztip: [§ 14a EnWG erklärt](https://www.finanztip.de/stromtarife/steuerbare-verbrauchseinrichtungen-14a-enwg/), Stand 01.09.2026 (Module, Grenze 4.500 kWh für Modul 2)
+- enter.de: [Stromverbrauch Wärmepumpe 2026](https://enter.de/blog/stromverbrauch-waermepumpe) und gruenes.haus: [Stromverbrauch einer Wärmepumpe](https://gruenes.haus/?p=9827) (4.500 bis 6.000 kWh für 150 m², co2online-Durchschnitt 36 kWh/m²)
+- Bundesnetzagentur | SMARD: Day-Ahead-Preise 2025 und 2026 (CC BY 4.0), eigene Auswertung der Winterstunden
+- ZfK: [2025: Strom war im Einkauf teuer](https://www.zfk.de/energie/strom/2025-strom-war-im-einkauf-teuer-dabei-gab-es-mehr-negative-preisstunden), 07.01.2026 (teuerste Stunde)
+
+*Verbrauchswerte sind Durchschnitte. Maßgeblich ist der Zähler deiner Wärmepumpe. Keine Rechts- oder Finanzberatung.*

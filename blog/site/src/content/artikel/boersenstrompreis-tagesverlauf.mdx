@@ -1,0 +1,146 @@
+---
+title: "Börsenstrompreis verstehen: Wann Strom günstig ist, mit echten Daten"
+kurztitel: "Börsenstrompreis: wann ist Strom günstig?"
+description: "Day-Ahead-Preis, Viertelstundenpreise, negative Preise, Dunkelflaute: Wie der Börsenstrompreis im Tagesverlauf schwankt und was das für deinen Tarif heißt."
+pubDate: 2026-10-27
+icon: trending-down
+thema: Tarif
+bild: /bilder/titel/boersenstrompreis-tagesverlauf.webp
+bildAlt: "Titelbild: Börsenstrompreis im Tagesverlauf"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: false
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import StromUhr from '../../components/StromUhr.astro';
+import Balken from '../../components/Balken.astro';
+import preise from '../../strompreise.json';
+
+export const p25 = preise['2025'];
+export const p26 = preise['2026'];
+export const monate = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
+
+<Antwort>
+**Kurz gesagt:** Der **Börsenstrompreis** ist der Preis, zu dem Stromhändler an der Börse EPEX Spot Strom für den nächsten Tag
+kaufen, seit Oktober 2025 für jede **Viertelstunde** einzeln. 2025 lag er im Schnitt bei **rund 9 Cent pro kWh**, schwankte aber
+innerhalb eines Tages um durchschnittlich **13 Cent**. **Günstig** ist Strom im Sommer **mittags** (oft unter 2 Cent, 2025 in
+4,7 Prozent der Zeit sogar negativ) und im Winter **nachts**. **Teuer** ist er fast immer **zwischen 17 und 21 Uhr**. Mit einem
+[dynamischen Stromtarif](/artikel/dynamischer-stromtarif/) zahlst du diesen Preis plus feste Netzentgelte, Steuern und Umlagen.
+</Antwort>
+
+## Was ist der Day-Ahead-Preis?
+
+Jeden Tag um 12 Uhr schließt an der Strombörse **EPEX Spot** die Auktion für den Folgetag. Erzeuger bieten ihren Strom an, Händler
+und Versorger kaufen. Für jede Viertelstunde des nächsten Tages entsteht ein Preis: der **Day-Ahead-Preis**. Kurz nach 13 Uhr steht
+er fest, und genau diesen Preis geben dynamische Tarife an dich weiter, meist eins zu eins plus Aufschlag.
+
+Bis September 2025 wurde stündlich gehandelt, seit dem **1. Oktober 2025 viertelstündlich**. Manche Anbieter rechnen trotzdem noch
+mit Stundenpreisen ab.
+
+Wie der Preis entsteht, erklärt die **Merit-Order**: Zuerst kommen die günstigsten Kraftwerke zum Zug, Wind und Sonne mit
+Grenzkosten nahe null, dann Kernkraft aus dem Ausland, Kohle, zuletzt Gas. Das **teuerste Kraftwerk, das noch gebraucht wird,
+bestimmt den Preis für alle**. Deshalb springt der Preis abends hoch, wenn die Sonne weg ist und Gaskraftwerke einspringen müssen.
+
+## Der Tagesverlauf: echte Zahlen, nicht Schätzungen
+
+<StromUhr titel="Börsenpreis je Tagesstunde, Durchschnitt aller Viertelstunden" />
+
+Die Grafik ist aus allen Viertelstundenpreisen von SMARD gerechnet, der Datenplattform der Bundesnetzagentur. Was du daraus
+mitnehmen kannst:
+
+- **Sommer, 11 bis 15 Uhr:** 2025 im Schnitt **unter 4 Cent**, zwischen 12 und 14 Uhr etwa 1 Cent. Das ist der Solarstrom.
+- **Winter, 0 bis 5 Uhr:** rund **7 Cent**, die günstigste Zeit, wenn keine Sonne hilft.
+- **Abend, 17 bis 21 Uhr:** 2025 **11 bis 13 Cent**, im Winter bis 13,6 Cent, 2026 bisher über 17 Cent.
+- **Morgenspitze 7 bis 9 Uhr:** Im Winter rund 11 bis 12 Cent, also fast so teuer wie der Abend.
+- **Wochenende:** 2025 im Schnitt **7,3 Cent** statt 9,8 Cent an Werktagen, weil die Industrie weniger verbraucht.
+
+## Monat für Monat: Februar teuer, Juni günstig
+
+<Balken
+  titel="Börsenstrompreis 2025 nach Monaten"
+  untertitel="Durchschnitt aller Viertelstunden in Cent pro kWh, ohne Netzentgelte, Steuern und Umlagen."
+  einheit="ct"
+  stellen={1}
+  sortieren={false}
+  daten={monate.map((m, i) => ({ label: m, wert: p25.monate[String(i + 1)] }))}
+  quelle="Grafik: Der Handwerksdoktor. Daten: Bundesnetzagentur | SMARD.de (CC BY 4.0), eigene Auswertung."
+/>
+
+Der teuerste Monat 2025 war der **Februar mit 12,9 Cent**, der günstigste der **Juni mit 6,4 Cent**. Das ist der Grund, warum
+ein dynamischer Tarif im Winter auch mal teurer sein kann als ein Festpreis, übers Jahr aber meist günstiger. 2026 lief es bisher
+anders: Die Preise stiegen ab August, der Oktober lag bei **{p26.monate['10'].toLocaleString('de-DE')} Cent**, der höchste Wert seit
+Anfang 2025. BDEW nennt als Grund steigende Großhandelspreise infolge des Iran-Kriegs.
+
+## Negative Preise: wenn Strom verschenkt wird
+
+Scheint die Sonne an einem windigen Sonntag, ist mehr Strom da, als verbraucht wird. Dann fällt der Preis unter null: Wer
+Strom abnimmt, bekommt Geld. **2025 gab es 573 negative Stunden**, so viele wie nie, verteilt auf 101 Tage, fast alle mittags
+zwischen April und September. Im November und Dezember 2025 gab es keine einzige.
+
+Für dich als Kunde bleibt davon wenig, weil Netzentgelte, Steuern und Umlagen trotzdem anfallen. Mehr dazu:
+[Negative Strompreise: bekomme ich Geld?](/artikel/negative-strompreise/).
+
+## Preisspitzen: die Dunkelflaute
+
+Das Gegenteil: Im Winter, wenn weder Wind noch Sonne liefern, müssen teure Gaskraftwerke und Importe einspringen. Am
+**20. Januar 2025 zwischen 17 und 18 Uhr** kostete die Megawattstunde **583,40 €**, also gut **58 Cent pro kWh** allein an der
+Börse. 2025 lag der Preis in **40 Stunden über 300 € je Megawattstunde**, in rund 7 Prozent der Zeit über 15 Cent pro kWh.
+Für einen dynamischen Tarif heißt das: In solchen Stunden zahlst du 60 bis 90 Cent pro kWh brutto. Wer dann nicht gerade die
+Wärmepumpe auf Volllast fährt, merkt davon im Monat wenig, aber das Risiko ist real.
+
+<Warnung titel="Der Börsenpreis ist nicht dein Strompreis">
+Zum Börsenpreis kommen rund 16 Cent netto feste Bestandteile (Netzentgelte, Stromsteuer, Umlagen, Konzessionsabgabe), der
+Aufschlag des Anbieters und 19 Prozent Mehrwertsteuer. Aus 9 Cent an der Börse werden so rund 32 Cent an der Steckdose. Wie das
+genau geht, steht im [Ratgeber dynamischer Stromtarif](/artikel/dynamischer-stromtarif/).
+</Warnung>
+
+## Was heißt das für dich?
+
+- **Mit E-Auto:** nachts oder mittags laden, je nach Jahreszeit. Die Apps der Anbieter suchen die günstigsten Viertelstunden
+  selbst: [E-Auto laden mit dynamischem Tarif](/artikel/e-auto-laden-dynamischer-stromtarif/).
+- **Mit Wärmepumpe:** mittags den Pufferspeicher laden, abends drosseln:
+  [Wärmepumpe und dynamischer Tarif](/artikel/waermepumpe-dynamischer-stromtarif/).
+- **Ohne große Verbraucher:** Waschmaschine, Trockner und Spülmaschine in die günstigen Stunden legen. Das spart laut Finanztip bei
+  10 Cent Preisunterschied rund 18 € im Jahr pro Gerät, viel ist das nicht.
+- **Mit Balkonkraftwerk oder PV:** Mittags lieferst du selbst, der günstige Börsenstrom nützt dir dann wenig. Im Winter dagegen schon.
+
+Was dein Haushalt mit deinen Geräten sparen würde, rechnet der [Spar-Rechner](/rechner/dynamischer-stromtarif/) mit genau diesen
+Stundenprofilen aus.
+
+## Wo sehe ich die aktuellen Preise?
+
+- **SMARD.de** (Bundesnetzagentur): alle Großhandelspreise, auch zum Herunterladen, kostenlos.
+- **energy-charts.info** (Fraunhofer ISE): Preise, Erzeugung und Verbrauch als Grafik, mit Prognosen.
+- **App deines Anbieters:** zeigt die Preise für morgen meist ab 13 bis 17 Uhr, inklusive aller Bestandteile.
+
+## Häufige Fragen
+
+### Wann ist Strom an der Börse am günstigsten?
+Im Sommer mittags zwischen 11 und 15 Uhr, im Winter nachts zwischen 0 und 5 Uhr. Am Wochenende ist er im Schnitt ein Viertel
+günstiger als werktags.
+
+### Wann ist Strom am teuersten?
+Fast immer zwischen 17 und 21 Uhr, im Winter zusätzlich morgens zwischen 7 und 9 Uhr.
+
+### Wie hoch war der Börsenstrompreis 2025 im Durchschnitt?
+Laut Bundesnetzagentur 89,32 € je Megawattstunde, also rund 9 Cent pro kWh, etwa 14 Prozent mehr als 2024.
+
+### Warum ist Strom abends so teuer?
+Weil die Sonne weg ist, der Verbrauch aber hoch: Kochen, Licht, Fernseher, E-Autos. Die Lücke füllen Gaskraftwerke, und das
+teuerste Kraftwerk bestimmt den Preis für alle (Merit-Order).
+
+### Seit wann gibt es Viertelstundenpreise?
+Seit dem 1. Oktober 2025. Vorher wurde stündlich gehandelt.
+
+### Bekomme ich bei negativen Preisen Geld?
+Nur, wenn der Börsenpreis unter etwa minus 16 Cent fällt. Das passiert fast nie, weil Netzentgelte, Steuern und Umlagen
+weiter anfallen.
+
+## Quellen
+
+- Bundesnetzagentur | SMARD: Day-Ahead-Preise DE-LU 2025 und 2026 (CC BY 4.0), abgerufen über api.energy-charts.info, eigene Auswertung aller Viertelstundenwerte ({p25.werte.toLocaleString('de-DE')} Werte für 2025, {p26.werte.toLocaleString('de-DE')} für 2026 bis {p26.bis})
+- ZfK: [2025: Strom war im Einkauf teuer](https://www.zfk.de/energie/strom/2025-strom-war-im-einkauf-teuer-dabei-gab-es-mehr-negative-preisstunden), 07.01.2026 (Jahresmittel, negative Stunden, teuerste Stunde, Hochpreisstunden laut Bundesnetzagentur)
+- Finanztip: [Dynamische Stromtarife](https://www.finanztip.de/stromtarife/dynamischer-stromtarif/), Stand 16.04.2026 (Viertelstundenpreise, feste Bestandteile, Schwelle für negative Endpreise)
+- BDEW: [Strompreisanalyse Herbst 2026](https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/), 21.08.2026
+
+*Börsenpreise ändern sich täglich. Die Grafiken zeigen Durchschnitte, keine Prognose.*

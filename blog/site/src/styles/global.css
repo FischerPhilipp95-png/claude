@@ -478,3 +478,28 @@ p.small { max-width: 72ch; }
 .sitemap-gruppe ul { columns: 2; column-gap: 28px; margin: 0; padding-left: 1.2em; }
 .sitemap-gruppe li { break-inside: avoid; margin: 0.25em 0; }
 @media (max-width: 560px) { .sitemap-gruppe ul { columns: 1; } }
+
+/* Tarif-Rechner (dynamischer Stromtarif, E-Auto, Smart Meter, § 14a): gemeinsame Bausteine */
+.rc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0 16px; }
+.rc-grid label, .rc-grid .rc-feld { display: block; font-weight: 500; margin: 12px 0 0; font-size: 0.92rem; line-height: 1.3; }
+.rc-grid input:not([type=checkbox]), .rc-grid select { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid #bdbab2; border-radius: 8px; margin-top: 6px; background: #fff; color: var(--ink); }
+.rc-grid input[type=range] { padding: 0; border: 0; margin-top: 10px; accent-color: #1d4ed8; }
+.rc-grid .rc-check { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-weight: 500; }
+.rc-grid .rc-check input { accent-color: #1d4ed8; width: 18px; height: 18px; }
+.rc-gruppe { grid-column: 1 / -1; margin: 18px 0 0; padding-top: 10px; border-top: 1px dashed var(--line); font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+.rc-ergebnis { margin: 20px 0 0; padding: 16px 18px; border-radius: var(--radius-sm); background: #eef3ff; border-left: 6px solid #1d4ed8; }
+.rc-ergebnis strong.rc-zahl { font-size: 1.6rem; display: block; line-height: 1.2; }
+.rc-ergebnis.gut { background: #ecf8ec; border-color: #0ca30c; }
+.rc-ergebnis.achtung { background: #fff6e0; border-color: #fab219; }
+.rc-ergebnis.kritisch { background: #fdecec; border-color: #d03b3b; }
+.rc-bars { display: grid; gap: 8px; margin: 14px 0 8px; }
+.rc-bar { display: grid; grid-template-columns: minmax(120px, 170px) 1fr 76px; align-items: center; gap: 10px; font-size: 0.88rem; }
+.rc-bar > span:last-child { text-align: right; font-weight: 500; font-variant-numeric: tabular-nums; }
+.rc-track { height: 16px; background: #f0eee8; border-radius: 0 4px 4px 0; }
+.rc-fill { display: block; height: 100%; width: calc(100% * var(--p, 0)); background: #1d4ed8; border-radius: 0 4px 4px 0; transition: width .2s; }
+.rc-fill.hell { background: #93b4f5; } .rc-fill.gruen { background: #0ca30c; } .rc-fill.gelb { background: var(--yellow); } .rc-fill.rot { background: #d03b3b; }
+.rc-tabelle td:not(:first-child), .rc-tabelle th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+.rc-hinweis { font-size: 0.85rem; color: var(--muted); margin: 10px 0 0; }
+.thema-werkzeuge { margin: 1.2em 0 0.4em; }
+@media (max-width: 560px) { .rc-bar { grid-template-columns: 1fr; gap: 3px; } .rc-bar > span:last-child { text-align: left; } }
+.rc-tabelle th { overflow-wrap: normal; hyphens: manual; }

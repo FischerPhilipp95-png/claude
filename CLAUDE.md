@@ -71,6 +71,10 @@ Gleiches Muster für alle Seiten (auch künftige):
   `claude/serene-darwin-f9rggj` per Fast-Forward nachziehen (vom Nutzer erlaubt), dann die Läufe prüfen und die Seite live ansehen.
 - Passwörter nie im Chat oder Code, nur als GitHub-Secrets. Jede Seite hat eine eigene Amazon-Tracking-ID.
 
+Kapitel „Dynamischer Stromtarif“ (blog/site, Thema `Tarif`): Börsenpreise für Strompreis-Uhr und Rechner liegen in `src/strompreise.json`,
+Aktualisieren mit `node scripts/strompreise.mjs` (SMARD-Daten über energy-charts.info). Anbieter des Vergleichs und die Affiliate-Links
+stehen in `src/stromtarife.ts` (Feld `link`, sonst Anbieter-Website). Zahlen dort alle paar Wochen prüfen und `stand` setzen.
+
 Neue Seite anlegen:
 1. Nische und Domain prüfen (`blog/seo/naechste-seiten.md`, DENIC RDAP), Stichwort mit dem Nutzer festlegen.
 2. `kaffee/site/` als Gerüst nach `<nische>/site/` kopieren, Inhalte, `src/site.ts`, Themen, Farben, robots.txt, .htaccess anpassen.

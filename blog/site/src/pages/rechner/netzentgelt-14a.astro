@@ -1,0 +1,141 @@
+---
+// § 14a Netzentgelt-Rechner: Modul 1 (Pauschale), Modul 2 (60 % weniger Arbeitspreis, zweiter Zähler), Modul 1 + 3 (zeitvariabel).
+// Formeln und Beispielwerte laut Finanztip (Stand 01.09.2026), Beträge aus dem Preisblatt des eigenen Netzbetreibers eintragen.
+import Base from '../../layouts/Base.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../site';
+
+const title = '§ 14a Netzentgelt-Rechner: Modul 1, 2 oder 3 für Wärmepumpe und Wallbox';
+const description = 'Welches § 14a-Modul spart am meisten Netzentgelt? Pauschale, 60 Prozent Rabatt mit zweitem Zähler oder zeitvariable Netzentgelte: mit deinem Verbrauch und den Werten deines Netzbetreibers rechnen.';
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: '§ 14a Netzentgelt-Rechner',
+  url: `${SITE.url}/rechner/netzentgelt-14a/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › § 14a Netzentgelt</nav>
+    <h1>§ 14a Netzentgelt-Rechner</h1>
+    <p class="lead">Wärmepumpe, Wallbox oder Speicher über 4,2 kW: Der Netzbetreiber darf drosseln, dafür zahlst du weniger Netzentgelt. Der Rechner
+    vergleicht die drei Module mit deinem Verbrauch und den Zahlen aus dem Preisblatt deines Netzbetreibers.</p>
+
+    <Antwort>
+    <p><strong>Kurz gesagt:</strong> Bis etwa <strong>3.000 kWh</strong> im Jahr gewinnt <strong>Modul 1</strong> mit der Pauschale (2026: 108 bis 196 €). Ab etwa
+    {' '}<strong>4.500 kWh</strong>, typisch bei einer Wärmepumpe, lohnt <strong>Modul 2</strong> mit 60 Prozent weniger Arbeitspreis, trotz zweitem Zähler.
+    {' '}<strong>Modul 3</strong> bringt zusätzlich zu Modul 1 rund 5 Cent weniger mittags, wenn das Gerät dann laufen kann, und braucht einen Smart Meter.</p>
+    </Antwort>
+
+    <section class="box calc" aria-label="Rechner">
+      <div class="rc-grid">
+        <p class="rc-gruppe"><Icon name="plug-zap" size={18} /> Dein Gerät</p>
+        <label>Strom des steuerbaren Geräts in kWh pro Jahr<input id="kwh" type="number" inputmode="numeric" min="0" step="100" value="5000" /></label>
+        <label>Netzentgelt-Arbeitspreis in Cent brutto (Preisblatt Netzbetreiber)<input id="ap" type="number" inputmode="decimal" min="0" step="0.01" value="8.9" /></label>
+        <label>Netzentgelt-Grundpreis in € pro Jahr<input id="gp" type="number" inputmode="decimal" min="0" step="0.5" value="40" /></label>
+
+        <p class="rc-gruppe"><Icon name="wallet" size={18} /> Modul 1</p>
+        <label>Pauschale deines Netzbetreibers in € pro Jahr<input id="m1" type="number" inputmode="decimal" min="0" step="1" value="150" /></label>
+
+        <p class="rc-gruppe"><Icon name="gauge" size={18} /> Modul 2: zweiter Zähler</p>
+        <label>Einbau des zweiten Zählers einmalig in €<input id="einbau" type="number" inputmode="decimal" min="0" step="10" value="400" /></label>
+        <label>Laufende Kosten (Zähler, zweiter Stromvertrag) in € pro Jahr<input id="laufend" type="number" inputmode="decimal" min="0" step="1" value="125" /></label>
+
+        <p class="rc-gruppe"><Icon name="clock" size={18} /> Modul 3: zeitvariabel (zusätzlich zu Modul 1)</p>
+        <label>Anteil des Verbrauchs im Niedrigtarif (z. B. mittags) <span id="nt-wert">30 %</span><input id="nt" type="range" min="0" max="100" step="5" value="30" /></label>
+        <label>Niedrigtarif günstiger um Cent pro kWh<input id="ntct" type="number" inputmode="decimal" min="0" step="0.1" value="5.4" /></label>
+        <label>Anteil im Hochtarif (z. B. 17 bis 22 Uhr) <span id="ht-wert">15 %</span><input id="ht" type="range" min="0" max="100" step="5" value="15" /></label>
+        <label>Hochtarif teurer um Cent pro kWh<input id="htct" type="number" inputmode="decimal" min="0" step="0.1" value="4" /></label>
+      </div>
+
+      <div class="rc-ergebnis gut" id="fazit" aria-live="polite">
+        <strong class="rc-zahl" id="fazit-zahl">–</strong>
+        <span id="fazit-text">–</span>
+      </div>
+
+      <table class="rc-tabelle" aria-live="polite">
+        <thead><tr><th scope="col">Modul</th><th scope="col">Ersparnis pro Jahr</th><th scope="col">Hinweis</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Modul 1: Pauschale</th><td id="e-m1">–</td><td>ohne zweiten Zähler, automatisch</td></tr>
+          <tr><th scope="row">Modul 2: 60 % weniger Arbeitspreis</th><td id="e-m2">–</td><td id="h-m2">–</td></tr>
+          <tr><th scope="row">Modul 1 + 3: zeitvariabel</th><td id="e-m3">–</td><td>nur mit Smart Meter, nicht bei jedem Netzbetreiber</td></tr>
+        </tbody>
+      </table>
+      <div class="rc-bars" aria-hidden="true">
+        <div class="rc-bar"><span>Modul 1</span><span class="rc-track"><span class="rc-fill" id="b-m1"></span></span><span id="b-m1-t">–</span></div>
+        <div class="rc-bar"><span>Modul 2</span><span class="rc-track"><span class="rc-fill" id="b-m2"></span></span><span id="b-m2-t">–</span></div>
+        <div class="rc-bar"><span>Modul 1 + 3</span><span class="rc-track"><span class="rc-fill" id="b-m3"></span></span><span id="b-m3-t">–</span></div>
+      </div>
+      <p class="rc-hinweis" id="grenze">–</p>
+      <RechnerTeilen />
+    </section>
+
+    <h2>So rechnet der Rechner</h2>
+    <ul>
+      <li><strong>Modul 1</strong> = Pauschale deines Netzbetreibers. 2026 laut Finanztip 108 bis 196 € brutto, berechnet als 80 € plus 20 Prozent Rabatt auf das Netzentgelt für 3.750 kWh.</li>
+      <li><strong>Modul 2</strong> = Verbrauch × Arbeitspreis × 60 % + wegfallender Netz-Grundpreis − laufende Kosten für Zähler und zweiten Vertrag. Der Einbau wird auf die Jahre bis zur Amortisation umgelegt (Hinweis in der Tabelle).</li>
+      <li><strong>Modul 1 + 3</strong> = Pauschale + Verbrauch im Niedrigtarif × Vorteil − Verbrauch im Hochtarif × Aufschlag. Zeitfenster und Beträge legt dein Netzbetreiber quartalsweise fest, Beispiel Netze BW: 10 bis 14 Uhr 5,4 Cent günstiger, 17 bis 22 Uhr rund 4 Cent teurer.</li>
+      <li>Voreingestellt: Arbeitspreis 8,9 Cent (Beispiel Berlin 2026 laut Finanztip), Grundpreis 40 €, Zählerkosten 25 € plus 100 € für den zweiten Vertrag.</li>
+    </ul>
+
+    <Warnung titel="Den Rabatt muss dein Stromanbieter weitergeben">
+    Der Netzbetreiber zahlt den Rabatt an den Stromanbieter, der ihn laut Bundesnetzagentur nicht weitergeben muss. Vor dem Wechsel in Modul 2
+    oder 3 beim Anbieter nachfragen. Welche Anbieter die Module in jedem Haushaltstarif weitergeben:
+    <a href="/artikel/14a-enwg-module/">§ 14a EnWG: Modul 1, 2, 3 erklärt</a>.
+    </Warnung>
+
+    <h2>Weiter</h2>
+    <ul>
+      <li><a href="/artikel/waermepumpe-dynamischer-stromtarif/">Wärmepumpe: dynamischer Tarif oder Wärmepumpentarif?</a></li>
+      <li><a href="/rechner/e-auto-laden/">E-Auto-Ladekosten-Rechner</a>: Modul 1 oder 2 für die Wallbox.</li>
+      <li><a href="/rechner/smart-meter-check/">Smart-Meter-Check</a>: Steuerbox und Kosten.</li>
+    </ul>
+
+    <h2>Quellen</h2>
+    <ul class="small">
+      <li>Finanztip: <a href="https://www.finanztip.de/stromtarife/steuerbare-verbrauchseinrichtungen-14a-enwg/" rel="noopener">§ 14a EnWG zu steuerbaren Verbrauchseinrichtungen</a>, Stand 01.09.2026 (Formel Modul 1, Beispiel Berlin, Netze BW, Zählerkosten, Grenzen 3.000 und 4.500 kWh)</li>
+      <li>Bundesnetzagentur: <a href="https://www.bundesnetzagentur.de/DE/Vportal/Energie/SteuerbareVerbrauchseinrichtungen/start.html" rel="noopener">Steuerbare Verbrauchseinrichtungen</a>, Festlegungen BK6-22-300 und BK8-22-010-A</li>
+    </ul>
+  </div>
+</Base>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const zahl = (id: string) => Math.max(0, parseFloat($(id).value.replace(',', '.')) || 0);
+  const set = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  const eur = (x: number) => Math.round(x).toLocaleString('de-DE') + ' €';
+  function rechnen() {
+    const kwh = zahl('kwh'), ap = zahl('ap'), gp = zahl('gp');
+    set('nt-wert', `${zahl('nt')} %`); set('ht-wert', `${zahl('ht')} %`);
+    const m1 = zahl('m1');
+    const m2 = kwh * ap * 0.6 / 100 + gp - zahl('laufend');
+    const m3 = m1 + kwh * (zahl('nt') / 100) * zahl('ntct') / 100 - kwh * (zahl('ht') / 100) * zahl('htct') / 100;
+    const einbau = zahl('einbau');
+    const amort = m2 - m1 > 0 ? einbau / (m2 - m1) : Infinity;
+    set('e-m1', eur(m1)); set('e-m2', eur(m2)); set('e-m3', eur(m3));
+    set('h-m2', m2 <= m1 ? 'bringt weniger als Modul 1' : amort === Infinity ? '' : `Einbau (${eur(einbau)}) ist nach ${amort.toLocaleString('de-DE', { maximumFractionDigits: 1 })} Jahren gegenüber Modul 1 bezahlt`);
+    const max = Math.max(m1, m2, m3, 1);
+    for (const [id, v] of [['m1', m1], ['m2', m2], ['m3', m3]] as [string, number][]) {
+      $( 'b-' + id).style.setProperty('--p', String(Math.max(0, v) / max));
+      set('b-' + id + '-t', eur(v));
+    }
+    const beste = [['Modul 1', m1], ['Modul 2', m2], ['Modul 1 + 3', m3]].sort((a, b) => (b[1] as number) - (a[1] as number))[0];
+    set('fazit-zahl', `${beste[0]}: ${eur(beste[1] as number)} im Jahr`);
+    set('fazit-text', beste[0] === 'Modul 2'
+      ? `Bei ${Math.round(kwh).toLocaleString('de-DE')} kWh lohnt der zweite Zähler. Vorher prüfen: Gibt dein Stromanbieter Modul 2 im Haushaltstarif weiter, oder brauchst du einen Wärmepumpentarif?`
+      : beste[0] === 'Modul 1 + 3'
+        ? `Voraussetzung: Smart Meter, ein Netzbetreiber, der Modul 3 anbietet, und ein Gerät, das wirklich im Niedrigtarif laufen kann.`
+        : `Die Pauschale schlägt bei ${Math.round(kwh).toLocaleString('de-DE')} kWh die anderen Module. Du musst nichts tun, Modul 1 gilt automatisch.`);
+    // Grenze, ab der Modul 2 die Pauschale schlägt
+    const grenze = ap > 0 ? (m1 - gp + zahl('laufend')) / (ap * 0.6 / 100) : 0;
+    set('grenze', `Mit deinen Werten schlägt Modul 2 die Pauschale ab etwa ${Math.round(grenze / 100) * 100} kWh im Jahr. Finanztip nennt als Faustregel 4.500 kWh.`);
+  }
+  document.querySelector('section.calc')!.addEventListener('input', rechnen);
+  rechnen();
+</script>
+
+<style>
+  .rc-tabelle { margin-top: 18px; }
+</style>

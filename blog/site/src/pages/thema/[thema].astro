@@ -6,6 +6,8 @@ import { THEMEN } from '../../themen';
 import { SITE } from '../../site';
 import VideoBox from '../../components/VideoBox.astro';
 import { videoFuerSeite, videoSchema } from '../../videos';
+import { RECHNER } from '../../rechner';
+import Icon from '../../components/Icon.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('artikel', ({ data }) => !data.entwurf);
@@ -15,6 +17,9 @@ export async function getStaticPaths() {
     .map(({ name, t, posts }) => ({ params: { thema: t.slug }, props: { name, t, posts } }));
 }
 const { name, t, posts } = Astro.props;
+// Rechner und Extraseiten (z. B. ein Anbieter-Vergleich) des Themas stehen oben, bevor die Artikel kommen.
+const rechner = RECHNER.filter((r) => r.thema === name);
+const extra = 'links' in t ? t.links : [];
 const liste = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const jsonLd = [{
   '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${t.titel}: Anleitungen und Ratgeber`,
@@ -30,6 +35,25 @@ if (vSchema) jsonLd.push(vSchema as any);
     <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › {t.titel}</nav>
     <h1>{t.titel}: Anleitungen und Ratgeber</h1>
     <p class="lead">{t.intro}</p>
+    {(rechner.length > 0 || extra.length > 0) && (
+      <ul class="tiles thema-werkzeuge" aria-label="Rechner und Vergleiche">
+        {extra.map((l) => (
+          <li><a href={l.href} style={`--akzent:${t.farbe}`}>
+            <span class="tile-icon"><Icon name={l.icon} size={26} /></span>
+            <span class="tile-name">{l.titel}</span>
+            <span class="tile-count">{l.text}</span>
+          </a></li>
+        ))}
+        {rechner.map((r) => (
+          <li><a href={r.href} style={`--akzent:${r.farbe}`}>
+            <span class="tile-icon"><Icon name={r.icon} size={26} /></span>
+            <span class="tile-name">{r.titel}</span>
+            <span class="tile-count">{r.text}</span>
+          </a></li>
+        ))}
+      </ul>
+    )}
+    <h2 class="section-h">Artikel</h2>
     <ul class="cards">{liste.map((p) => <ArtikelKarte post={p} ebene={2} />)}</ul>
     {video && <div class="video-schmal"><VideoBox video={video} ueberschrift={`${t.titel} im Video`} /></div>}
   </div>

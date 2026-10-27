@@ -1,0 +1,176 @@
+---
+// E-Auto-Ladekosten: Festpreis, dynamischer Tarif (echte Börsenstunden) und § 14a-Rabatt, pro 100 km und pro Jahr.
+import Base from '../../layouts/Base.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import Schnellkauf from '../../components/Schnellkauf.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../site';
+import preise from '../../strompreise.json';
+
+const title = 'E-Auto-Ladekosten-Rechner: zu Hause laden mit Festpreis oder dynamischem Tarif';
+const description = 'Was kostet das Laden deines E-Autos zu Hause? Pro 100 km und pro Jahr, mit Festpreis, dynamischem Stromtarif (echte Börsenpreise) und § 14a-Netzentgelt-Rabatt.';
+const jahre = Object.keys(preise).filter((k) => /^\d{4}$/.test(k)).sort();
+const daten = Object.fromEntries(jahre.map((j) => [j, (preise as any)[j].stunden]));
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'E-Auto-Ladekosten-Rechner',
+  url: `${SITE.url}/rechner/e-auto-laden/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › E-Auto laden</nav>
+    <h1>E-Auto-Ladekosten-Rechner</h1>
+    <p class="lead">Kilometer, Verbrauch und Strompreis eingeben: Der Rechner zeigt, was 100 km und ein Jahr kosten, mit Festpreis, mit dynamischem
+    Tarif in den günstigen Stunden (echte Börsenpreise) und mit dem Netzentgelt-Rabatt nach § 14a. Alles nur in deinem Browser.</p>
+
+    <Antwort>
+    <p><strong>Kurz gesagt:</strong> Ein E-Auto mit <strong>18 kWh pro 100 km</strong> und 15.000 km im Jahr kostet zu Hause bei <strong>37 Cent</strong> rund
+    {' '}<strong>6,66 € pro 100 km</strong> und knapp <strong>1.000 € im Jahr</strong>. Im dynamischen Tarif in den günstigsten Stunden sind es mit den
+    Börsenpreisen von 2025 rund <strong>4,80 € pro 100 km</strong>, dazu <strong>§ 14a Modul 1</strong> mit rund 150 € Pauschale: zusammen
+    {' '}<strong>rund 370 € weniger im Jahr</strong>, wenn 80 Prozent der Ladungen zu Hause stattfinden.</p>
+    </Antwort>
+
+    <section class="box calc" aria-label="Rechner" data-preise={JSON.stringify(daten)}>
+      <div class="rc-grid">
+        <p class="rc-gruppe"><Icon name="car" size={18} /> Dein Auto</p>
+        <label>Kilometer pro Jahr<input id="km" type="number" inputmode="numeric" min="0" step="500" value="15000" /></label>
+        <label>Verbrauch in kWh pro 100 km (inklusive Ladeverluste, ADAC-Wert)<input id="verbrauch" type="number" inputmode="decimal" min="0" step="0.5" value="18" /></label>
+        <label>Anteil zu Hause geladen <span id="heim-wert">80 %</span><input id="heim" type="range" min="0" max="100" step="5" value="80" /></label>
+        <label>Preis an öffentlichen Säulen in Cent pro kWh<input id="oeff" type="number" inputmode="decimal" min="0" step="1" value="55" /></label>
+
+        <p class="rc-gruppe"><Icon name="wallet" size={18} /> Dein Stromtarif</p>
+        <label>Festpreis zu Hause in Cent pro kWh<input id="fest" type="number" inputmode="decimal" min="0" step="0.1" value="37" /></label>
+        <label>Preisjahr der Börse<select id="jahr">{jahre.map((j) => <option value={j}>{j}</option>)}</select></label>
+        <label>Ladefenster im dynamischen Tarif<select id="laden">
+          <option value="smart">App sucht die 6 günstigsten Stunden</option>
+          <option value="nacht">nachts, 0 bis 6 Uhr</option>
+          <option value="mittag">mittags, 11 bis 15 Uhr</option>
+          <option value="abend">abends, 17 bis 22 Uhr (ungesteuert)</option>
+        </select></label>
+        <label>Aufschlag dynamischer Tarif in Cent pro kWh<input id="auf" type="number" inputmode="decimal" min="0" step="0.1" value="2" /></label>
+        <label>Netzentgelte, Steuern, Umlagen in Cent netto<input id="fix" type="number" inputmode="decimal" min="0" step="0.1" value="16" /></label>
+
+        <p class="rc-gruppe"><Icon name="plug-zap" size={18} /> § 14a Netzentgelt-Rabatt (Wallbox über 4,2 kW, seit 2024)</p>
+        <label>Modul<select id="modul">
+          <option value="0">kein Rabatt (Wallbox vor 2024 oder bis 4,2 kW)</option>
+          <option value="1" selected>Modul 1: Pauschale</option>
+          <option value="2">Modul 2: 60 % weniger Netz-Arbeitspreis, zweiter Zähler</option>
+        </select></label>
+        <label>Modul 1: Pauschale in € pro Jahr<input id="m1" type="number" inputmode="decimal" min="0" step="1" value="150" /></label>
+        <label>Modul 2: Netzentgelt-Arbeitspreis in Cent brutto<input id="netz" type="number" inputmode="decimal" min="0" step="0.1" value="8.9" /></label>
+        <label>Modul 2: Kosten zweiter Zähler und Vertrag in € pro Jahr<input id="m2k" type="number" inputmode="decimal" min="0" step="1" value="125" /></label>
+      </div>
+
+      <div class="rc-ergebnis gut" id="fazit" aria-live="polite">
+        <strong class="rc-zahl" id="fazit-zahl">–</strong>
+        <span id="fazit-text">–</span>
+      </div>
+
+      <table class="rc-tabelle" aria-live="polite">
+        <thead><tr><th scope="col">Tarif zu Hause</th><th scope="col">ct/kWh</th><th scope="col">pro 100 km</th><th scope="col">pro Jahr (inkl. unterwegs)</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Festpreis</th><td id="c-fest">–</td><td id="k-fest">–</td><td id="j-fest">–</td></tr>
+          <tr><th scope="row">Festpreis + § 14a</th><td id="c-fest14">–</td><td id="k-fest14">–</td><td id="j-fest14">–</td></tr>
+          <tr><th scope="row">Dynamisch, Ladefenster</th><td id="c-dyn">–</td><td id="k-dyn">–</td><td id="j-dyn">–</td></tr>
+          <tr><th scope="row"><strong>Dynamisch + § 14a</strong></th><td id="c-dyn14">–</td><td id="k-dyn14"><strong>–</strong></td><td id="j-dyn14"><strong>–</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="rc-bars" aria-hidden="true">
+        <div class="rc-bar"><span>Festpreis</span><span class="rc-track"><span class="rc-fill hell" id="b-fest"></span></span><span id="b-fest-t">–</span></div>
+        <div class="rc-bar"><span>Festpreis + § 14a</span><span class="rc-track"><span class="rc-fill hell" id="b-fest14"></span></span><span id="b-fest14-t">–</span></div>
+        <div class="rc-bar"><span>Dynamisch</span><span class="rc-track"><span class="rc-fill" id="b-dyn"></span></span><span id="b-dyn-t">–</span></div>
+        <div class="rc-bar"><span>Dynamisch + § 14a</span><span class="rc-track"><span class="rc-fill gruen" id="b-dyn14"></span></span><span id="b-dyn14-t">–</span></div>
+      </div>
+      <p class="rc-hinweis" id="info">–</p>
+      <RechnerTeilen />
+    </section>
+
+    <Schnellkauf titel="Das brauchst du" items={[
+      { name: 'Wallbox 11 kW mit OCPP', warum: 'Lässt sich von Anbieter-Apps und evcc steuern. Über 4,2 kW gilt § 14a mit Rabatt.', suche: 'Wallbox 11 kW OCPP WLAN' },
+      { name: 'Energiezähler für die Wallbox', warum: 'Zeigt, wie viel Strom wirklich ins Auto ging, inklusive Ladeverlusten.', suche: 'Energiezähler Hutschiene MID 3-phasig' },
+    ]} />
+
+    <h2>So rechnet der Rechner</h2>
+    <ul>
+      <li><strong>Ladestrom zu Hause</strong> = km × Verbrauch ÷ 100 × Anteil zu Hause. Der Rest wird mit dem Preis an öffentlichen Säulen gerechnet und ist bei allen Varianten gleich.</li>
+      <li><strong>Dynamisch:</strong> Börsenpreis der gewählten Stunden (Durchschnitt aller Viertelstunden je Tagesstunde, halb Sommer, halb Winter, Quelle SMARD) plus feste Bestandteile, mal 1,19, plus Aufschlag.</li>
+      <li><strong>§ 14a Modul 1:</strong> Pauschale vom Jahresbetrag abgezogen, voreingestellt 150 € (Spanne 2026: 108 bis 196 €). <strong>Modul 2:</strong> 60 Prozent des Netzentgelt-Arbeitspreises auf den Ladestrom, minus Kosten für zweiten Zähler und Vertrag.</li>
+      <li>Der Grundpreis des Stromtarifs fehlt, er fällt mit und ohne Auto an. Ladeverluste stecken im ADAC-Verbrauchswert.</li>
+    </ul>
+
+    <Warnung titel="Verbrauch realistisch ansetzen">
+    Der Bordcomputer zeigt 10 bis 25 Prozent zu wenig, weil Ladeverluste fehlen (ADAC). Nimm den Wert aus dem ADAC-Ecotest deines Modells
+    (13,4 bis 29,7 kWh pro 100 km im Test 2026) oder lies den Zähler an der Wallbox ab.
+    </Warnung>
+
+    <h2>Weiter</h2>
+    <ul>
+      <li><a href="/artikel/e-auto-laden-dynamischer-stromtarif/">E-Auto laden mit dynamischem Stromtarif</a>: wann laden, welche App, welche Wallbox.</li>
+      <li><a href="/rechner/netzentgelt-14a/">§ 14a Netzentgelt-Rechner</a>: Modul 1, 2 oder 3 im Detail.</li>
+      <li><a href="/rechner/dynamischer-stromtarif/">Spar-Rechner</a>: der ganze Haushalt mit Auto und Wärmepumpe.</li>
+      <li><a href="/vergleich/dynamische-stromtarife/">Anbieter-Vergleich</a>: wer das Auto per App lädt.</li>
+    </ul>
+
+    <h2>Quellen</h2>
+    <ul class="small">
+      <li>Bundesnetzagentur | SMARD.de: Day-Ahead-Preise DE-LU (CC BY 4.0), eigene Auswertung je Tagesstunde</li>
+      <li>Finanztip: <a href="https://www.finanztip.de/stromtarife/steuerbare-verbrauchseinrichtungen-14a-enwg/" rel="noopener">§ 14a EnWG</a>, Stand 01.09.2026 (Modul 1: 108 bis 196 €, Modul 2: 60 %, Beispiel-Arbeitspreis 8,88 ct, Zählerkosten)</li>
+      <li>ecomento: <a href="https://ecomento.de/2026/07/02/adac-test-rangliste-6-2026-mercedes-cla-eq-hat-weiter-die-beste-reichweite/" rel="noopener">ADAC-Test-Rangliste 6/2026</a> (Verbrauch inklusive Ladeverluste)</li>
+      <li>BDEW: <a href="https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/" rel="noopener">Strompreisanalyse Herbst 2026</a> (37,0 ct/kWh)</li>
+    </ul>
+  </div>
+</Base>
+
+<script>
+  const calc = document.querySelector<HTMLElement>('section.calc')!;
+  const PREISE = JSON.parse(calc.dataset.preise || '{}');
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement | HTMLSelectElement;
+  const zahl = (id: string) => Math.max(0, parseFloat(($(id) as HTMLInputElement).value.replace(',', '.')) || 0);
+  const set = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  const eur = (x: number) => Math.round(x).toLocaleString('de-DE') + ' €';
+  const eur2 = (x: number) => x.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+  const ct = (x: number) => x.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' ct';
+  const mittel = (a: number[]) => a.reduce((x, y) => x + y, 0) / a.length;
+  function rechnen() {
+    set('heim-wert', `${zahl('heim')} %`);
+    const kwhGes = zahl('km') * zahl('verbrauch') / 100;
+    const heim = kwhGes * zahl('heim') / 100, unterwegs = kwhGes - heim;
+    const kUnterwegs = unterwegs * zahl('oeff') / 100;
+    const jahr = $('jahr').value, laden = $('laden').value, fix = zahl('fix'), auf = zahl('auf');
+    const fenster = (p: number[]) => laden === 'smart' ? mittel([...p].sort((a, b) => a - b).slice(0, 6)) : laden === 'nacht' ? mittel(p.slice(0, 6)) : laden === 'mittag' ? mittel(p.slice(11, 15)) : mittel(p.slice(17, 22));
+    const spot = (fenster(PREISE[jahr].sommer) + fenster(PREISE[jahr].winter)) / 2;
+    const dynCt = (spot + fix) * 1.19 + auf;
+    const festCt = zahl('fest');
+    const modul = $('modul').value;
+    const rabatt = modul === '1' ? zahl('m1') : modul === '2' ? heim * zahl('netz') * 0.6 / 100 - zahl('m2k') : 0;
+    const zeilen: [string, number, number][] = [
+      ['fest', festCt, 0], ['fest14', festCt, rabatt], ['dyn', dynCt, 0], ['dyn14', dynCt, rabatt],
+    ];
+    const jahrKosten = zeilen.map(([, c, r]) => heim * c / 100 - r + kUnterwegs);
+    const max = Math.max(...jahrKosten, 1);
+    zeilen.forEach(([id, c, r], i) => {
+      const effCt = heim > 0 ? c - r / heim * 100 : c;
+      set('c-' + id, ct(effCt));
+      set('k-' + id, eur2(zahl('verbrauch') * effCt / 100));
+      set('j-' + id, eur(jahrKosten[i]));
+      (document.getElementById('b-' + id) as HTMLElement).style.setProperty('--p', String(jahrKosten[i] / max));
+      set('b-' + id + '-t', eur(jahrKosten[i]));
+    });
+    const diff = jahrKosten[0] - jahrKosten[3];
+    const fazit = document.getElementById('fazit')!;
+    fazit.className = 'rc-ergebnis ' + (diff > 50 ? 'gut' : diff > -50 ? 'achtung' : 'kritisch');
+    set('fazit-zahl', (diff >= 0 ? '' : '−') + eur(Math.abs(diff)) + (diff >= 0 ? ' weniger im Jahr' : ' mehr im Jahr'));
+    set('fazit-text', `mit dynamischem Tarif${modul !== '0' ? ' und § 14a-Rabatt' : ''} statt ${ct(festCt)} Festpreis. Zu Hause lädst du ${Math.round(heim).toLocaleString('de-DE')} kWh, der Börsenpreis in deinem Ladefenster liegt ${jahr} bei ${ct(spot)}.`);
+    set('info', modul === '2' && rabatt < 0 ? 'Modul 2 lohnt sich bei dieser Lademenge nicht: Die Kosten für den zweiten Zähler übersteigen den Rabatt. Modul 1 wählen.' : `Unterwegs geladen: ${Math.round(unterwegs).toLocaleString('de-DE')} kWh für ${eur(kUnterwegs)}, in allen Zeilen gleich.`);
+  }
+  calc.addEventListener('input', rechnen);
+  calc.addEventListener('change', rechnen);
+  rechnen();
+</script>
+
+<style>
+  .rc-tabelle { margin-top: 18px; }
+</style>

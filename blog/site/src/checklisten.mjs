@@ -3,6 +3,28 @@
 // thema: Pinnwand bzw. Themen-Feed für den Pinterest-Pin der Checkliste. datum: ab dann steht der Pin im Feed.
 export const CHECKLISTEN = [
   {
+    id: 'dynamischer-stromtarif-wechsel',
+    datum: '2026-10-27',
+    titel: 'Wechsel zum dynamischen Stromtarif: 10 Punkte vor dem Abschluss',
+    kurz: 'Dynamischer Stromtarif: vor dem Wechsel',
+    thema: 'Tarif',
+    icon: 'activity',
+    intro: 'Vor dem Abschluss abhaken. Die meisten Punkte stehen auf deiner letzten Stromrechnung und in den Tarifbedingungen des neuen Anbieters.',
+    artikel: ['dynamischer-stromtarif-wechseln', 'dynamischer-stromtarif', 'smart-meter-pflicht-kosten', '14a-enwg-module'],
+    punkte: [
+      ['Mit eigenen Zahlen durchgerechnet', 'Spar-Rechner mit Verbrauch, aktuellem Preis, E-Auto oder Wärmepumpe. Ohne große Verbraucher bleibt wenig übrig.'],
+      ['Kündigungsfrist des alten Vertrags geprüft', 'Steht auf der letzten Rechnung. Bei Preiserhöhung: Sonderkündigungsrecht.'],
+      ['Smart Meter vorhanden oder beantragt', 'Einbau innerhalb von 4 Monaten, bis 100 € einmalig, bis 30 € im Jahr unter 6.000 kWh.'],
+      ['Aufschlag und Grundgebühr notiert', 'Nur darin unterscheiden sich die Anbieter: 0 bis 3 Cent und 3,90 bis 14,40 € im Monat.'],
+      ['Mindestlaufzeit höchstens ein Monat', 'Du trägst das Preisrisiko, also jederzeit raus können.'],
+      ['Übergangspreis und dessen Laufzeit bekannt', 'Bis der Smart Meter läuft, gilt ein Festpreis. Wie hoch, wie lange?'],
+      ['Negative Preise werden weitergegeben', 'Steht in den Tarifbedingungen unter Preisbildung.'],
+      ['App steuert deine Geräte', 'Auto, Wallbox oder Wärmepumpe per App oder offener Schnittstelle (evcc).'],
+      ['§ 14a-Rabatt wird weitergegeben', 'Bei Wärmepumpe, Wallbox oder Speicher über 4,2 kW: Modul beim Netzbetreiber gewählt, Anbieter gefragt.'],
+      ['Erste Monatsrechnung im Kalender', 'Verbrauch, Viertelstundenwerte und Rabatt prüfen, nach drei Monaten bilanzieren.'],
+    ],
+  },
+  {
     id: 'heizung-winterfest',
     datum: '2026-10-02',
     titel: 'Heizung winterfest: 10 Punkte vor der Heizperiode',
