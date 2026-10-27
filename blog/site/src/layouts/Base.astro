@@ -61,7 +61,7 @@ const ogImage = new URL(image, SITE.url).toString();
     <div class="wrap wide header-row">
       <a class="logo" href="/"><img src="/bilder/autor.webp" alt="" width="36" height="36" data-pin-nopin="true" /><span>Der <b>Handwerksdoktor</b></span></a>
       <nav aria-label="Hauptmenü" class="mainnav">
-        {Object.values(THEMEN).map((t) => <a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}><Icon name={t.icon} size={16} />{t.titel}</a>)}
+        {Object.values(THEMEN).map((t) => <a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}><Icon name={t.icon} size={16} />{'nav' in t ? t.nav : t.titel}</a>)}
         <a href="/produkte/" class="nav-produkte"><Icon name="package" size={16} />Produkte</a>
         <a href="/suche/" class="nav-suche" aria-label="Suche"><Icon name="search" size={18} /><span>Suche</span></a>
         <a href="/rechner/" class="nav-rechner"><Icon name="calculator" size={16} />Rechner</a>

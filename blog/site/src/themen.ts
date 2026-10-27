@@ -1,5 +1,5 @@
 // Themen-Cluster: jede Themenseite sammelt ihre Artikel (interne Verlinkung, „Hub & Spoke“).
-// farbe: Akzent für Titelbilder, Themen-Kacheln und Chips. icon: Name aus lucide-static.
+// farbe: Akzent für Titelbilder, Themen-Kacheln und Chips. icon: Name aus lucide-static. nav: kürzerer Name im Hauptmenü (optional), damit es in 1280 px passt.
 export const THEMEN = {
   Heizung: { slug: 'heizung', titel: 'Heizung', icon: 'heater', farbe: '#ff741c', intro: 'Heizkörper entlüften, Gluckern, kalte Heizkörper, Druck: Alles, was du an deiner Heizung selbst prüfen und beheben kannst, und wann du besser einen Fachbetrieb rufst.' },
   Strom: { slug: 'strom', titel: 'Strom', icon: 'zap', farbe: '#ffd400', intro: 'Stromverbrauch messen, Stromfresser finden, verstehen, wie der Strom ins Haus kommt. Ohne Fachchinesisch und ohne Arbeiten, die einer Elektrofachkraft vorbehalten sind.' },
@@ -7,7 +7,7 @@ export const THEMEN = {
   Klima: { slug: 'raumklima', titel: 'Raumklima', icon: 'wind', farbe: '#03b84c', intro: 'Luftfeuchtigkeit, Lüften, Zugluft und Schimmel: wie du in deiner Wohnung ein gesundes Raumklima bekommst und dabei Heizkosten sparst.' },
   Küche: { slug: 'haushalt', titel: 'Haushaltsgeräte', icon: 'washing-machine', farbe: '#924ef6', intro: 'Waschmaschine, Spülmaschine, Dampfglätter: reinigen, entkalken und pflegen, damit die Geräte lange halten und nichts müffelt. Kaffeevollautomaten haben eine eigene Seite: vollautomatendoktor.de.' },
   Sicherheit: { slug: 'sicherheit', titel: 'Sicherheit', icon: 'shield-check', farbe: '#d6336c', intro: 'Rauchmelder, Türklingel mit Kamera und sichere Elektrik: was Pflicht ist, was erlaubt ist und wie du dein Zuhause mit wenig Aufwand sicherer machst.' },
-  Tarif: { slug: 'dynamischer-stromtarif', titel: 'Dynamischer Stromtarif', icon: 'activity', farbe: '#3b82f6', intro: 'Strom zum Börsenpreis: Wie dynamische Stromtarife funktionieren, wer damit spart, was Smart Meter und § 14a bedeuten, welche Anbieter es gibt. Mit Rechnern auf Basis echter Börsenpreise.',
+  Tarif: { slug: 'dynamischer-stromtarif', titel: 'Dynamischer Stromtarif', nav: 'Stromtarif', icon: 'activity', farbe: '#3b82f6', intro: 'Strom zum Börsenpreis: Wie dynamische Stromtarife funktionieren, wer damit spart, was Smart Meter und § 14a bedeuten, welche Anbieter es gibt. Mit Rechnern auf Basis echter Börsenpreise.',
     links: [{ href: '/vergleich/dynamische-stromtarife/', icon: 'list-checks', titel: 'Anbieter-Vergleich', text: 'Tibber, Octopus, Rabot, Ostrom und Co.: Grundgebühr, Aufschlag, App und Laufzeit auf einen Blick.' }] },
   Werkzeug: { slug: 'werkzeug', titel: 'Werkzeug', icon: 'drill', farbe: '#12b5a5', intro: 'Akkuschrauber, Bohrmaschine und Zubehör: worauf es beim Kauf wirklich ankommt, welches Werkzeug wofür passt und wie du es richtig benutzt.' },
 } as const;
