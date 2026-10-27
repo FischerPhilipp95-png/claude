@@ -9,7 +9,7 @@ import Icon from '../../components/Icon.astro';
 import { SITE } from '../../site';
 import preise from '../../strompreise.json';
 
-const title = 'E-Auto-Ladekosten-Rechner: zu Hause laden mit Festpreis oder dynamischem Tarif';
+const title = 'E-Auto-Ladekosten-Rechner: Festpreis oder dynamischer Tarif?';
 const description = 'Was kostet das Laden deines E-Autos zu Hause? Pro 100 km und pro Jahr, mit Festpreis, dynamischem Stromtarif (echte Börsenpreise) und § 14a-Netzentgelt-Rabatt.';
 const jahre = Object.keys(preise).filter((k) => /^\d{4}$/.test(k)).sort();
 const daten = Object.fromEntries(jahre.map((j) => [j, (preise as any)[j].stunden]));
