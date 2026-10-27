@@ -502,4 +502,4 @@ p.small { max-width: 72ch; }
 .rc-hinweis { font-size: 0.85rem; color: var(--muted); margin: 10px 0 0; }
 .thema-werkzeuge { margin: 1.2em 0 0.4em; }
 @media (max-width: 560px) { .rc-bar { grid-template-columns: 1fr; gap: 3px; } .rc-bar > span:last-child { text-align: left; } }
-.rc-tabelle th { overflow-wrap: normal; hyphens: manual; }
+@media (min-width: 700px) { .rc-tabelle th { overflow-wrap: normal; hyphens: manual; } }
