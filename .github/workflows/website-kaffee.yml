@@ -4,7 +4,7 @@
 # Änderungen in der Vorlage machen und neu erzeugen, dann gelten sie für alle Seiten gleich.
 # Einstellungen dieser Seite: websites/websites.json, Schlüssel „kaffee“.
 #
-# Läuft bei jedem Push auf claude/serene-darwin-f9rggj und main, der kaffee/site/ ändert, auf Knopfdruck und jede Nacht (47 3 * * * UTC).
+# Läuft bei jedem Push auf claude/serene-darwin-f9rggj und main, der kaffee/site/ ändert, auf Knopfdruck und nach Zeitplan (47 3 * * * UTC).
 # Zugangsdaten nur als GitHub-Secrets: KAFFEE_SFTP_USER, KAFFEE_SFTP_PASSWORD und der Server (KAFFEE_SFTP_HOST oder IONOS_SFTP_HOST).
 # Zielordner: Variable KAFFEE_SFTP_ZIEL, sonst automatisch: Sieht der SFTP-Benutzer den ganzen Webspace (Ordner public/ im
 # Startverzeichnis), wird nach /vollautomatendoktor hochgeladen, sonst direkt in sein Startverzeichnis.
@@ -71,6 +71,12 @@ jobs:
         # RSS-Feed des Kanals, kein Schlüssel nötig. Ist YouTube nicht erreichbar, bleibt der Stand aus src/videos.json.
         continue-on-error: true
         run: npm run videos
+
+      - name: Börsenstrompreise aktualisieren (nur Seiten mit scripts/strompreise.mjs)
+        # Day-Ahead-Preise von SMARD über energy-charts.info für Strompreis-Uhr, Rechner und die Seite „Strompreis heute“.
+        # Schlägt der Abruf fehl, bleibt der Stand aus dem Repository.
+        continue-on-error: true
+        run: if [ -f scripts/strompreise.mjs ]; then node scripts/strompreise.mjs; else echo "kein strompreise.mjs, übersprungen"; fi
 
       - name: Fehlende Titel- und Pinterest-Bilder und Checklisten-PDFs erzeugen
         run: |

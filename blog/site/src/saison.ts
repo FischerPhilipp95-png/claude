@@ -18,6 +18,7 @@ export const SAISON = {
 // Startseite „Oft gelesen“: Artikel, die schon fast auf Seite 1 bei Google stehen und einen Schubs brauchen (Search Console).
 // Alle paar Wochen anhand der Search-Console-Daten anpassen.
 export const OFT_GELESEN = [
+  'dynamischer-stromtarif',
   'isopropanol-im-haushalt',
   'sparduschkopf',
   'spuelmaschine-reinigen',

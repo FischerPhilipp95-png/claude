@@ -65,9 +65,9 @@ main > .wrap:first-child { padding-top: 8px; }
 .mainnav .nav-rechner { background: var(--yellow); color: var(--dark); font-weight: 800; }
 .mainnav .nav-rechner .icon { color: var(--dark); }
 .mainnav .nav-rechner:hover { background: #ffe14d; }
-/* Bis 1080 px: Logo oben, Menü darunter zum Wischen. Rechts blendet das Menü weich aus, damit man sieht, dass es weitergeht;
+/* Bis 1240 px: Logo oben, Menü darunter zum Wischen (das Menü hat seit dem Thema Stromtarif elf Punkte). Rechts blendet das Menü weich aus, damit man sieht, dass es weitergeht;
    der Innenabstand rechts sorgt dafür, dass der letzte Punkt (Rechner) ganz sichtbar wird. */
-@media (max-width: 1080px) {
+@media (max-width: 1240px) {
   .header-row { flex-wrap: wrap; gap: 0; padding-top: 8px; }
   .mainnav { width: calc(100% + 32px); margin: 6px -16px 0; padding: 0 44px 10px 16px;
     -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent); }

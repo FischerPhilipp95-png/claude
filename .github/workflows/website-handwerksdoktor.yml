@@ -4,7 +4,7 @@
 # Änderungen in der Vorlage machen und neu erzeugen, dann gelten sie für alle Seiten gleich.
 # Einstellungen dieser Seite: websites/websites.json, Schlüssel „handwerksdoktor“.
 #
-# Läuft bei jedem Push auf claude/serene-darwin-f9rggj und main, der blog/site/ ändert, auf Knopfdruck und jede Nacht (17 3 * * * UTC).
+# Läuft bei jedem Push auf claude/serene-darwin-f9rggj und main, der blog/site/ ändert, auf Knopfdruck und nach Zeitplan (17 3 * * *, 25 12 * * * UTC).
 # Zugangsdaten nur als GitHub-Secrets: IONOS_SFTP_USER, IONOS_SFTP_PASSWORD und der Server (IONOS_SFTP_HOST).
 # Zielordner: Variable IONOS_SFTP_ZIEL, sonst automatisch: Sieht der SFTP-Benutzer den ganzen Webspace (Ordner public/ im
 # Startverzeichnis), wird nach /public hochgeladen, sonst direkt in sein Startverzeichnis.
@@ -20,6 +20,7 @@ on:
   # Hinweis: GitHub startet geplante Läufe nur aus dem Standard-Branch des Repositorys.
   schedule:
     - cron: '17 3 * * *'
+    - cron: '25 12 * * *'
   workflow_dispatch:
     inputs:
       hochladen:
@@ -71,6 +72,12 @@ jobs:
         # RSS-Feed des Kanals, kein Schlüssel nötig. Ist YouTube nicht erreichbar, bleibt der Stand aus src/videos.json.
         continue-on-error: true
         run: npm run videos
+
+      - name: Börsenstrompreise aktualisieren (nur Seiten mit scripts/strompreise.mjs)
+        # Day-Ahead-Preise von SMARD über energy-charts.info für Strompreis-Uhr, Rechner und die Seite „Strompreis heute“.
+        # Schlägt der Abruf fehl, bleibt der Stand aus dem Repository.
+        continue-on-error: true
+        run: if [ -f scripts/strompreise.mjs ]; then node scripts/strompreise.mjs; else echo "kein strompreise.mjs, übersprungen"; fi
 
       - name: Fehlende Titel- und Pinterest-Bilder und Checklisten-PDFs erzeugen
         run: |

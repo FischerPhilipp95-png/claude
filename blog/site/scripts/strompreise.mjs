@@ -1,6 +1,7 @@
 // Börsenstrompreise (Day-Ahead, Gebotszone DE-LU) von SMARD.de (Bundesnetzagentur, CC BY 4.0) über die API von energy-charts.info
 // zu Stundenprofilen verdichten: src/strompreise.json. Daraus speisen sich die Strompreis-Uhr und die Tarif-Rechner.
-//   node scripts/strompreise.mjs            (letztes abgeschlossenes Jahr und laufendes Jahr neu laden)
+//   node scripts/strompreise.mjs            (letztes abgeschlossenes Jahr, laufendes Jahr und heute/morgen neu laden)
+// Läuft im Upload-Workflow vor jedem Build (websites/workflow-vorlage.yml), auch um 12:25 UTC, wenn die Preise für morgen da sind.
 import { writeFile } from 'node:fs/promises';
 
 const ROOT = new URL('../', import.meta.url).pathname;
@@ -53,6 +54,25 @@ function profil(rows) {
     werte: rows.length,
   };
 }
+
+// Tagesdaten für die Seite „Strompreis heute und morgen“: alle Viertelstunden von heute und, sobald die Börse sie veröffentlicht
+// hat (werktags gegen 13 Uhr), von morgen. Zeiten in deutscher Zeit.
+const heuteDe = heute.toLocaleDateString('sv-SE', { timeZone: tz });
+const morgenDe = new Date(heute.getTime() + 86400e3).toLocaleDateString('sv-SE', { timeZone: tz });
+const tagRows = await laden(heuteDe, morgenDe);
+const tage = {};
+for (const [t, p] of tagRows) {
+  const d = datum(t);
+  const uhr = new Date(t * 1000).toLocaleTimeString('de-DE', { timeZone: tz, hour: '2-digit', minute: '2-digit' });
+  (tage[d] ??= []).push([uhr, r2(p / 10)]);
+}
+const tag = {
+  _hinweis: 'Erzeugt von scripts/strompreise.mjs. Day-Ahead-Preise (DE-LU) je Viertelstunde in ct/kWh netto, Quelle: Bundesnetzagentur | SMARD.de (CC BY 4.0) über api.energy-charts.info.',
+  stand: heute.toISOString(),
+  tage: Object.entries(tage).filter(([, v]) => v.length >= 90).map(([datum, werte]) => ({ datum, werte })),
+};
+await writeFile(ROOT + 'src/strompreis-tag.json', JSON.stringify(tag) + '\n');
+console.log(`geschrieben: src/strompreis-tag.json (${tag.tage.map((t) => t.datum).join(', ')})`);
 
 const vorjahr = await laden(`${jahr - 1}-01-01`, `${jahr - 1}-12-31`);
 const laufend = await laden(`${jahr}-01-01`, heute.toISOString().slice(0, 10));

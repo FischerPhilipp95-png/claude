@@ -50,7 +50,7 @@ const jsonLd = [{
           <tr><th scope="row">Einbau</th><td id="r-einbau">–</td></tr>
           <tr><th scope="row">Höchstens pro Jahr (grundzuständiger Messstellenbetreiber)</th><td id="r-jahr">–</td></tr>
           <tr><th scope="row">Einmalig</th><td id="r-einmal">–</td></tr>
-          <tr><th scope="row">Mehrkosten gegenüber dem digitalen Zähler (20 €)</th><td id="r-mehr">–</td></tr>
+          <tr><th scope="row">Mehrkosten gegenüber dem digitalen Zähler (rund 20 €)</th><td id="r-mehr">–</td></tr>
           <tr><th scope="row">Frist</th><td id="r-frist">–</td></tr>
           <tr><th scope="row">Dazu</th><td id="r-extra">–</td></tr>
         </tbody>
@@ -95,7 +95,7 @@ const jsonLd = [{
     <h2>Quellen</h2>
     <ul class="small">
       <li>ADAC: <a href="https://www.adac.de/rund-ums-haus/energie/versorgung/smart-meter-intelligenter-stromzaehler/" rel="noopener">Smart Meter: Das müssen Haushalte 2026 zahlen</a>, 21.08.2026</li>
-      <li>Messstellenbetriebsgesetz: <a href="https://www.gesetze-im-internet.de/messbg/" rel="noopener">MsbG §§ 30 bis 35</a> (Preisobergrenzen, Einbaupflicht, Einbau auf Verlangen)</li>
+      <li>Messstellenbetriebsgesetz: <a href="https://www.gesetze-im-internet.de/messbg/__30.html" rel="noopener">§ 30 MsbG</a> (Preisobergrenzen) und <a href="https://www.gesetze-im-internet.de/messbg/__35.html" rel="noopener">§ 35 MsbG</a> (vorzeitiger Einbau: 100 € einmalig, bis 30 € im Jahr zusätzlich), abgerufen am 28.10.2026</li>
       <li>Finanztip: <a href="https://www.finanztip.de/stromtarife/steuerbare-verbrauchseinrichtungen-14a-enwg/" rel="noopener">§ 14a EnWG</a>, Stand 01.09.2026 (Steuerbox, Bestandsschutz)</li>
     </ul>
   </div>
@@ -131,7 +131,7 @@ const jsonLd = [{
       : 'Keine Pflicht. Seit 2025 muss der Messstellenbetreiber auf deinen Antrag innerhalb von vier Monaten einbauen.');
     set('r-einbau', pflicht ? 'Pflicht, kostenlos' : 'auf Antrag');
     set('r-jahr', `${jahr} €${steuerbox ? ` plus ${steuerbox} € Steuerbox = ${jahr + steuerbox} €` : ''}`);
-    set('r-einmal', pflicht ? 'keine Einbaukosten' : 'bis zu 100 € für den vorzeitigen Einbau auf Wunsch');
+    set('r-einmal', pflicht ? 'keine Einbaukosten' : 'bis zu 100 € für den vorzeitigen Einbau auf Wunsch, dazu laut § 35 MsbG bis zu 30 € im Jahr zusätzlich');
     set('r-mehr', `rund ${jahr + steuerbox - 20} € im Jahr`);
     set('r-frist', pflicht ? 'nach Rollout-Plan des Messstellenbetreibers, auf Antrag innerhalb von 4 Monaten' : '4 Monate nach deinem Antrag');
     set('r-extra', g === 'neu' ? 'Steuerbox für § 14a: Dafür bekommst du einen Netzentgelt-Rabatt von 108 bis 196 € im Jahr (Modul 1).' : g === 'alt' ? 'Dein Gerät hat Bestandsschutz bis Ende 2028, danach gilt § 14a auch dafür. Freiwillig geht es schon jetzt, mit Rabatt.' : pv > 0 && pv <= 7 ? 'Für PV bis 7 kW keine Pflicht, aber für neue Anlagen ab 2 kW gelten Einspeiseregeln, die ein Smart Meter voraussetzen.' : 'Mit Smart Meter kannst du einen dynamischen Stromtarif nutzen.');

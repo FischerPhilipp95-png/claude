@@ -1,0 +1,146 @@
+---
+// Strompreis heute und morgen: alle Viertelstundenpreise der Börse (Day-Ahead, DE-LU) aus src/strompreis-tag.json.
+// Die Datei schreibt scripts/strompreise.mjs; der Upload-Workflow läuft nachts und um 12:25 UTC, wenn die Preise für morgen da sind.
+import Base from '../layouts/Base.astro';
+import Antwort from '../components/Antwort.astro';
+import Warnung from '../components/Warnung.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../site';
+import tag from '../strompreis-tag.json';
+
+const FIX = 16;   // Netzentgelte, Steuern, Umlagen in ct netto (Finanztip, Durchschnitt laut BDEW)
+const AUF = 2;    // Aufschlag eines typischen Anbieters in ct brutto
+const endpreis = (ct: number) => (ct + FIX) * 1.19 + AUF;
+const fmt = (x: number, n = 1) => x.toLocaleString('de-DE', { minimumFractionDigits: n, maximumFractionDigits: n });
+const datumLang = (d: string) => new Date(d + 'T12:00:00').toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+const stand = new Date(tag.stand);
+const standText = stand.toLocaleString('de-DE', { timeZone: 'Europe/Berlin', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+const heuteDe = stand.toLocaleDateString('sv-SE', { timeZone: 'Europe/Berlin' });
+
+function auswerten(werte: [string, number][]) {
+  const ct = werte.map((w) => w[1]);
+  const mittel = ct.reduce((a, b) => a + b, 0) / ct.length;
+  const min = Math.min(...ct), max = Math.max(...ct);
+  // Günstigstes und teuerstes zusammenhängendes Zwei-Stunden-Fenster (8 Viertelstunden)
+  let best = { i: 0, v: Infinity }, worst = { i: 0, v: -Infinity };
+  for (let i = 0; i + 8 <= ct.length; i++) {
+    const v = ct.slice(i, i + 8).reduce((a, b) => a + b, 0) / 8;
+    if (v < best.v) best = { i, v };
+    if (v > worst.v) worst = { i, v };
+  }
+  const fenster = (i: number) => `${werte[i][0]} bis ${werte[Math.min(i + 8, werte.length - 1)][0]} Uhr`;
+  return { ct, mittel, min, max, minUhr: werte[ct.indexOf(min)][0], maxUhr: werte[ct.indexOf(max)][0], best: { ...best, text: fenster(best.i) }, worst: { ...worst, text: fenster(worst.i) }, negativ: ct.filter((x) => x < 0).length };
+}
+const tage = tag.tage.map((t) => ({ ...t, rolle: t.datum === heuteDe ? 'heute' : t.datum > heuteDe ? 'morgen' : 'gestern', ...auswerten(t.werte as [string, number][]) }));
+const morgenDa = tage.some((t) => t.rolle === 'morgen');
+const heute = tage.find((t) => t.rolle === 'heute') ?? tage[0];
+
+const title = 'Strompreis heute und morgen: Börsenpreis je Viertelstunde';
+const description = `Börsenstrompreis ${morgenDa ? 'heute und morgen' : 'heute'} je Viertelstunde: Wann Strom am günstigsten ist, wann am teuersten, und was das im dynamischen Tarif kostet. Täglich aktualisiert aus SMARD-Daten.`;
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebPage', name: title, url: `${SITE.url}/strompreis-heute/`, inLanguage: 'de-DE',
+  dateModified: tag.stand, description,
+  about: { '@type': 'Thing', name: 'Day-Ahead-Strompreis Deutschland' },
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/thema/dynamischer-stromtarif/">Dynamischer Stromtarif</a> › Strompreis heute</nav>
+    <h1>Strompreis heute{morgenDa ? ' und morgen' : ''}</h1>
+    <p class="lead">Alle Viertelstundenpreise der Strombörse (Day-Ahead, Deutschland), so wie sie dynamische Stromtarife weitergeben. Grün sind die
+    günstigsten, rot die teuersten Viertelstunden. Stand: {standText} Uhr.</p>
+
+    {heute && (
+      <Antwort>
+      <p><strong>Kurz gesagt:</strong> Heute, {datumLang(heute.datum)}, ist Strom an der Börse am günstigsten <strong>{heute.best.text}</strong>
+      {' '}(im Schnitt {fmt(heute.best.v)} ct/kWh) und am teuersten <strong>{heute.worst.text}</strong> ({fmt(heute.worst.v)} ct). Tagesmittel
+      {' '}<strong>{fmt(heute.mittel)} ct/kWh</strong>{heute.negativ > 0 ? `, ${heute.negativ} Viertelstunden mit negativem Preis` : ''}. Im dynamischen Tarif
+      sind das zu Hause etwa <strong>{fmt(endpreis(heute.best.v))} bis {fmt(endpreis(heute.worst.v))} ct/kWh</strong>.</p>
+      </Antwort>
+    )}
+
+    {tage.map((t) => {
+      const max = Math.max(...t.ct, 1), min = Math.min(...t.ct, 0);
+      const spanne = max - min || 1;
+      const rang = [...t.ct.keys()].sort((a, b) => t.ct[a] - t.ct[b]);
+      const billig = new Set(rang.slice(0, 12)), teuer = new Set(rang.slice(-12));
+      return (
+        <figure class="chart tagespreis" aria-label={`Börsenpreis ${t.rolle}`}>
+          <div class="chart-head">
+            <span class="chart-kicker"><Icon name="activity" size={15} /> {t.rolle === 'heute' ? 'Heute' : t.rolle === 'morgen' ? 'Morgen' : 'Gestern'}</span>
+            <p class="chart-title">{datumLang(t.datum)}: Börsenpreis je Viertelstunde</p>
+            <p class="chart-sub">Mittel {fmt(t.mittel)} ct/kWh, tiefster Wert {fmt(t.min)} ct um {t.minUhr} Uhr, höchster {fmt(t.max)} ct um {t.maxUhr} Uhr. Ohne Netzentgelte, Steuern und Umlagen.</p>
+          </div>
+          <div class="tp-balken" aria-hidden="true">
+            {t.ct.map((v, i) => (
+              <span class:list={['tp-bar', { billig: billig.has(i), teuer: teuer.has(i), neg: v < 0 }]} style={`--p:${((Math.max(v, 0) - Math.max(min, 0)) / spanne).toFixed(4)};--n:${(v < 0 ? -v / spanne : 0).toFixed(4)}`} title={`${t.werte[i][0]} Uhr: ${fmt(v, 2)} ct/kWh`}></span>
+            ))}
+          </div>
+          <div class="tp-achse" aria-hidden="true">{[0, 3, 6, 9, 12, 15, 18, 21].map((h) => <span>{h}</span>)}<span>24</span></div>
+          <ul class="tp-fakten">
+            <li><Icon name="trending-down" size={16} /> Günstigste zwei Stunden: <strong>{t.best.text}</strong>, {fmt(t.best.v)} ct, zu Hause etwa {fmt(endpreis(t.best.v))} ct/kWh</li>
+            <li><Icon name="trending-up" size={16} /> Teuerste zwei Stunden: <strong>{t.worst.text}</strong>, {fmt(t.worst.v)} ct, zu Hause etwa {fmt(endpreis(t.worst.v))} ct/kWh</li>
+            {t.negativ > 0 && <li><Icon name="sun" size={16} /> {t.negativ} Viertelstunden unter null</li>}
+          </ul>
+          <table class="chart-table tp-tabelle">
+            <caption>Alle Viertelstunden in ct/kWh</caption>
+            <thead><tr><th scope="col">Uhr</th><th scope="col">:00</th><th scope="col">:15</th><th scope="col">:30</th><th scope="col">:45</th></tr></thead>
+            <tbody>{Array.from({ length: 24 }, (_, h) => (
+              <tr><th scope="row">{h}</th>{[0, 1, 2, 3].map((q) => <td>{t.ct[h * 4 + q] === undefined ? '–' : fmt(t.ct[h * 4 + q], 2)}</td>)}</tr>
+            ))}</tbody>
+          </table>
+          <figcaption>Quelle: Day-Ahead-Auktion EPEX Spot, Gebotszone DE-LU, veröffentlicht von <a href="https://www.smard.de/" rel="noopener">Bundesnetzagentur | SMARD.de</a> (CC BY 4.0), abgerufen über energy-charts.info. Zeiten in deutscher Zeit.</figcaption>
+        </figure>
+      );
+    })}
+
+    {!morgenDa && (
+      <p class="rc-hinweis"><Icon name="clock" size={15} /> Die Preise für morgen veröffentlicht die Börse täglich gegen 13 Uhr. Diese Seite wird kurz danach
+      (etwa 13:30 Uhr im Winter, 14:30 Uhr im Sommer) und jede Nacht neu erzeugt.</p>
+    )}
+
+    <h2>Was heißt das für dich?</h2>
+    <ul>
+      <li><strong>Mit dynamischem Tarif:</strong> Zum Börsenpreis kommen rund {FIX} Cent feste Bestandteile netto, der Aufschlag deines Anbieters und
+      19 Prozent Mehrwertsteuer. Die Schätzung „zu Hause etwa“ oben rechnet mit {FIX} Cent und {AUF} Cent Aufschlag. Wie das genau geht:
+      <a href="/artikel/dynamischer-stromtarif/">Dynamischer Stromtarif: lohnt sich das?</a></li>
+      <li><strong>E-Auto</strong> in den grünen Stunden laden, <strong>Waschmaschine und Spülmaschine</strong> per Startzeitvorwahl dorthin legen,
+      <strong>Wärmepumpe</strong> den Puffer vorher laden und in den roten Stunden drosseln.</li>
+      <li><strong>Mit Festpreis:</strong> Für dich ändert sich nichts, dein Preis bleibt gleich. Ob sich der Wechsel lohnt:
+      <a href="/rechner/dynamischer-stromtarif/">Spar-Rechner mit echten Börsenpreisen</a>.</li>
+      <li><strong>Negative Preise:</strong> Geld gibt es dafür fast nie, der Strom ist dann aber sehr günstig:
+      <a href="/artikel/negative-strompreise/">Negative Strompreise erklärt</a>.</li>
+    </ul>
+
+    <Warnung titel="Prognose ist das keine">
+    Die Preise für morgen stehen fest, sobald die Börse sie veröffentlicht hat, die für übermorgen kennt niemand. Wie der Tagesverlauf im
+    Jahresmittel aussieht, Sommer und Winter getrennt: <a href="/artikel/boersenstrompreis-tagesverlauf/">Börsenstrompreis verstehen</a>.
+    </Warnung>
+
+    <h2>Häufige Fragen</h2>
+    <h3>Wann ist der Strompreis heute am günstigsten?</h3>
+    <p>{heute ? `Heute ${heute.best.text}, im Schnitt ${fmt(heute.best.v)} ct/kWh an der Börse.` : 'Siehe Grafik oben.'} In der Regel mittags, wenn die Sonne scheint, im Winter nachts.</p>
+    <h3>Wann kommen die Preise für morgen?</h3>
+    <p>Die Day-Ahead-Auktion der EPEX Spot schließt um 12 Uhr, die Ergebnisse stehen gegen 13 Uhr fest. Anbieter-Apps zeigen sie meist zwischen 13 und 17 Uhr.</p>
+    <h3>Ist das mein Strompreis?</h3>
+    <p>Nein, das ist der Börsenanteil. Netzentgelte, Steuern, Umlagen und der Aufschlag des Anbieters kommen fest dazu, zusammen rund 19 bis 20 Cent brutto.</p>
+    <h3>Woher kommen die Daten?</h3>
+    <p>Von SMARD, der Datenplattform der Bundesnetzagentur, abgerufen über die Schnittstelle von energy-charts.info (Fraunhofer ISE). Die Seite wird
+    automatisch neu erzeugt, es läuft kein Skript in deinem Browser und keine Anfrage an fremde Server.</p>
+  </div>
+</Base>
+
+<style>
+  .tagespreis { margin-top: 1.4em; }
+  .tp-balken { display: grid; grid-template-columns: repeat(96, minmax(0, 1fr)); gap: 1px; align-items: end; height: 170px; border-bottom: 1px solid rgba(255,255,255,.2); }
+  .tp-bar { display: block; align-self: end; height: calc(100% * var(--p, 0)); min-height: 1px; background: #4c7df0; border-radius: 2px 2px 0 0; }
+  .tp-bar.billig { background: #4ade80; }
+  .tp-bar.teuer { background: #f87171; }
+  .tp-bar.neg { background: #a78bfa; min-height: 3px; }
+  .tp-achse { display: flex; justify-content: space-between; font-size: 0.68rem; color: #9a9aa4; margin: 4px 0 10px; }
+  .tp-fakten { list-style: none; padding: 0; margin: 0 0 6px; display: grid; gap: 6px; font-size: 0.92rem; color: #e6e6ea; }
+  .tp-fakten li { display: flex; gap: 8px; align-items: flex-start; margin: 0; }
+  .tp-fakten .icon { flex: none; margin-top: 3px; color: var(--yellow); }
+  .tp-tabelle { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); display: block; margin: 0; }
+  @media (max-width: 560px) { .tp-balken { height: 130px; } }
+</style>

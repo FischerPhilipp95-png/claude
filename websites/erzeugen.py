@@ -28,6 +28,7 @@ def workflow(key, s, branches):
         sys.exit(f'{key}: {s["ordner"]}/package.json nicht gefunden')
     datei = f'website-{key}.yml'
     hosts = s['sftp_host']
+    crons = s['cron'] if isinstance(s['cron'], list) else [s['cron']]  # eine oder mehrere Uhrzeiten (UTC)
     werte = {
         'NAME': s['name'],
         'DOMAIN': s['domain'],
@@ -37,7 +38,8 @@ def workflow(key, s, branches):
         'BRANCHES': '[' + ', '.join(branches) + ']',
         'BRANCHES_TEXT': ' und '.join(branches),
         'DATEI': datei,
-        'CRON': s['cron'],
+        'CRON_TEXT': ', '.join(crons),
+        'CRON_LISTE': '\n'.join(f"    - cron: '{c}'" for c in crons),
         'HOST_EXPR': ' || '.join(f'secrets.{h}' for h in hosts),
         'HOST_TEXT': ' oder '.join(hosts),
         'USER_SECRET': s['sftp_user'],

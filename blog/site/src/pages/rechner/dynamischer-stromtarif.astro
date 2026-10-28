@@ -29,7 +29,7 @@ const jsonLd = [{
 
     <Antwort>
     <p><strong>Kurz gesagt:</strong> Ein Haushalt mit <strong>3.500 kWh</strong> und <strong>37 Cent</strong> Festpreis zahlt im dynamischen Tarif mit den Börsenpreisen
-    von 2025 <strong>ohne Verschieben rund 130 € weniger</strong>, bei einem günstigen Festpreis von 30 Cent dagegen <strong>mehr</strong>. Richtig lohnt
+    von 2025 <strong>ohne Verschieben rund 140 € weniger</strong>, bei einem günstigen Festpreis von 30 Cent dagegen <strong>mehr</strong>. Richtig lohnt
     es sich mit <strong>E-Auto</strong> (rund 2.700 kWh, nachts oder mittags geladen) oder <strong>Wärmepumpe mit Puffer</strong>: dann sind
     {' '}<strong>400 bis 750 € im Jahr</strong> drin (Beispiele unten). Lade ein Beispiel oder trag deine Zahlen ein.</p>
     </Antwort>
@@ -41,6 +41,7 @@ const jsonLd = [{
         <button type="button" class="chip" data-preset="familie">Haus, 4.000 kWh</button>
         <button type="button" class="chip" data-preset="eauto">Haus mit E-Auto</button>
         <button type="button" class="chip" data-preset="wp">Haus mit Wärmepumpe und E-Auto</button>
+        <button type="button" class="chip" data-preset="pv">Haus mit PV und E-Auto</button>
       </div>
       <div class="rc-grid">
         <p class="rc-gruppe"><Icon name="house" size={18} /> Dein Haushalt</p>
@@ -48,6 +49,7 @@ const jsonLd = [{
         <label>Dein Festpreis heute in Cent pro kWh<input id="fest" type="number" inputmode="decimal" min="0" step="0.1" value="37" /></label>
         <label>Grundpreis Festtarif in € pro Monat<input id="festgp" type="number" inputmode="decimal" min="0" step="0.5" value="12" /></label>
         <label>Verschiebbarer Anteil (Waschmaschine, Trockner, Spülmaschine) <span id="flex-wert">15 %</span><input id="flex" type="range" min="0" max="40" step="5" value="15" /></label>
+        <label>Anteil aus eigener PV-Anlage (0 = keine) <span id="pv-wert">0 %</span><input id="pv" type="range" min="0" max="60" step="5" value="0" /></label>
 
         <p class="rc-gruppe"><Icon name="car" size={18} /> E-Auto</p>
         <label>Ladestrom zu Hause in kWh pro Jahr (0 = kein E-Auto)<input id="eauto" type="number" inputmode="numeric" min="0" step="100" value="0" /></label>
@@ -98,12 +100,13 @@ const jsonLd = [{
     <ul>
       <li><strong>Börsenpreis je Stunde:</strong> Durchschnitt aller Viertelstundenpreise der Börse (Day-Ahead, DE-LU) je Tagesstunde, getrennt nach Sommer (April bis September) und Winter, Quelle Bundesnetzagentur | SMARD.de.</li>
       <li><strong>Dein Preis je Stunde</strong> = (Börsenpreis + Netzentgelte, Steuern, Umlagen) × 1,19 Mehrwertsteuer + Aufschlag. Voreingestellt 16 Cent netto feste Bestandteile (Finanztip, Durchschnitt laut BDEW) und 2 Cent Aufschlag.</li>
-      <li><strong>Haushaltsstrom</strong> liegt auf einem Tagesprofil mit Morgen- und Abendspitze, angelehnt an das Standardlastprofil H0. Der verschiebbare Anteil wandert in die vier günstigsten Stunden des Tages.</li>
+      <li><strong>Haushaltsstrom</strong> liegt auf dem <strong>Standardlastprofil H0 des BDEW</strong> (Jahr 2025, über das Python-Paket demandlib), getrennt nach Sommer und Winter. Der verschiebbare Anteil wandert in die vier günstigsten Stunden des Tages.</li>
+      <li><strong>PV-Anlage:</strong> Der eingestellte Anteil des Haushaltsstroms kommt vom eigenen Dach und fällt zwischen 9 und 16 Uhr weg, zu drei Vierteln im Sommer. Er kostet in beiden Tarifen nichts, deshalb schrumpft der Vorteil der günstigen Mittagsstunden.</li>
       <li><strong>E-Auto:</strong> „App“ lädt in den sechs günstigsten Stunden der jeweiligen Jahreszeit, „nachts“ zwischen 0 und 6 Uhr, „abends“ zwischen 17 und 22 Uhr.</li>
       <li><strong>Wärmepumpe:</strong> 80 Prozent des Stroms im Winter, gleichmäßig über den Tag. Mit Puffer laufen 40 Prozent davon in den sechs günstigsten Stunden.</li>
       <li><strong>Festpreis:</strong> Verbrauch × Festpreis + Grundpreis. Beim Smart Meter zählen nur die Mehrkosten gegenüber dem digitalen Zähler (voreingestellt 10 €).</li>
       <li><strong>Preisrisiko:</strong> Der Hinweis unter der Grafik rechnet den teuersten und den günstigsten Monat des gewählten Jahres zum Monatsdurchschnitt der Börse.</li>
-      <li>Nicht enthalten: § 14a-Rabatt (<a href="/rechner/netzentgelt-14a/">eigener Rechner</a>), PV-Eigenverbrauch, Preisänderungen der Anbieter, Wechselboni.</li>
+      <li>Nicht enthalten: § 14a-Rabatt (<a href="/rechner/netzentgelt-14a/">eigener Rechner</a>), PV-Überschuss fürs E-Auto, Preisänderungen der Anbieter, Wechselboni.</li>
     </ul>
 
     <Warnung titel="Vergangenheit ist keine Prognose">
@@ -123,6 +126,7 @@ const jsonLd = [{
     <h2>Quellen</h2>
     <ul class="small">
       <li>Bundesnetzagentur | SMARD.de: Day-Ahead-Preise DE-LU {jahre.join(', ')} (CC BY 4.0), abgerufen über api.energy-charts.info, eigene Auswertung</li>
+      <li>BDEW: Standardlastprofil H0, Jahr 2025, erzeugt mit <a href="https://github.com/oemof/demandlib" rel="noopener">demandlib</a> (oemof), Stundenanteile je Jahreszeit eigene Auswertung</li>
       <li>Finanztip: <a href="https://www.finanztip.de/stromtarife/dynamischer-stromtarif/" rel="noopener">Dynamische Stromtarife</a>, Stand 16.04.2026 (feste Bestandteile rund 16 ct netto, Aufschläge 0 bis 3 ct)</li>
       <li>BDEW: <a href="https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/" rel="noopener">Strompreisanalyse Herbst 2026</a> (37,0 ct/kWh Haushaltsstrompreis)</li>
       <li>ADAC: <a href="https://www.adac.de/rund-ums-haus/energie/versorgung/smart-meter-intelligenter-stromzaehler/" rel="noopener">Smart Meter 2026</a> (Kosten)</li>
@@ -138,9 +142,13 @@ const jsonLd = [{
   const set = (id: string, t: string) => { const el = document.getElementById(id); if (el) el.textContent = t; };
   const eur = (x: number) => Math.round(x).toLocaleString('de-DE') + ' €';
   const ct = (x: number) => x.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' ct';
-  // Tagesprofil Haushalt (Anteile je Stunde, Summe 1), angelehnt an das Standardlastprofil H0: Morgen- und Abendspitze.
-  const H0 = [2.0, 1.7, 1.5, 1.4, 1.4, 1.6, 2.5, 3.8, 4.2, 4.0, 4.0, 4.2, 4.5, 4.2, 3.9, 3.9, 4.4, 5.6, 6.6, 6.8, 6.4, 5.6, 4.4, 3.0];
-  const sumH0 = H0.reduce((a, b) => a + b, 0);
+  // Tagesprofil Haushalt: BDEW-Standardlastprofil H0 für 2025 (demandlib), Anteil je Tagesstunde, Sommer (Apr–Sep) und Winter getrennt, Summe je 1.
+  const H0 = {
+    sommer: [0.02657, 0.01986, 0.01738, 0.01646, 0.01684, 0.01937, 0.03008, 0.04109, 0.04777, 0.05175, 0.05243, 0.05432, 0.0591, 0.05582, 0.04818, 0.04342, 0.0412, 0.04382, 0.05155, 0.0597, 0.05924, 0.05503, 0.05017, 0.03885],
+    winter: [0.02419, 0.01799, 0.01575, 0.0151, 0.01512, 0.01734, 0.02964, 0.04232, 0.04783, 0.04945, 0.04996, 0.05231, 0.05669, 0.05423, 0.04748, 0.04291, 0.04197, 0.04995, 0.06259, 0.06992, 0.06323, 0.0537, 0.04575, 0.03456],
+  };
+  // PV-Anlage: Der Anteil des Haushaltsstroms, den die eigene Anlage deckt, fällt tagsüber (9 bis 16 Uhr) weg, zu drei Vierteln im Sommer.
+  const PV_STUNDEN = [9, 10, 11, 12, 13, 14, 15, 16];
   const mittel = (a: number[]) => a.reduce((x, y) => x + y, 0) / a.length;
   const billigste = (p: number[], n: number) => [...p].sort((a, b) => a - b).slice(0, n);
 
@@ -151,11 +159,23 @@ const jsonLd = [{
     const so = prof('sommer'), wi = prof('winter');
     const flexAnteil = zahl('flex') / 100;
     set('flex-wert', `${zahl('flex')} %`);
-    // Haushalt: halbes Jahr Sommer, halbes Winter
-    const profilPreis = (p: number[]) => H0.reduce((s, w, h) => s + (w / sumH0) * p[h], 0);
-    const hh = zahl('kwh');
-    const hhBase = hh * (profilPreis(so) + profilPreis(wi)) / 2 / 100;
-    const hhFlex = hh * ((1 - flexAnteil) * (profilPreis(so) + profilPreis(wi)) / 2 + flexAnteil * (mittel(billigste(so, 4)) + mittel(billigste(wi, 4))) / 2) / 100;
+    // Haushalt: halbes Jahr Sommer, halbes Winter. PV deckt einen Teil der Tagstunden, der dann in beiden Tarifen nichts kostet.
+    const pvAnteil = zahl('pv') / 100;
+    set('pv-wert', `${zahl('pv')} %`);
+    const gewichte = (s: 'sommer' | 'winter') => {
+      const w = [...H0[s]];
+      const weg = Math.min(pvAnteil * (s === 'sommer' ? 1.5 : 0.5), PV_STUNDEN.reduce((a, h) => a + w[h], 0));  // im Mittel pvAnteil über beide Jahreszeiten
+      const tag = PV_STUNDEN.reduce((a, h) => a + w[h], 0);
+      PV_STUNDEN.forEach((h) => { w[h] = Math.max(0, w[h] - weg * w[h] / tag); });
+      return w;
+    };
+    const summe = (w: number[]) => w.reduce((a, b) => a + b, 0);
+    const profilPreis = (p: number[], w: number[]) => w.reduce((a, g, h) => a + g * p[h], 0);
+    const hhVoll = zahl('kwh');
+    const wSo = gewichte('sommer'), wWi = gewichte('winter');
+    const hh = hhVoll * (summe(wSo) + summe(wWi)) / 2;  // vom Netz bezogener Haushaltsstrom
+    const hhBase = hhVoll * (profilPreis(so, wSo) + profilPreis(wi, wWi)) / 2 / 100;
+    const hhFlex = hhVoll * ((1 - flexAnteil) * (profilPreis(so, wSo) + profilPreis(wi, wWi)) / 2 + flexAnteil * (summe(wSo) + summe(wWi)) / 2 * (mittel(billigste(so, 4)) + mittel(billigste(wi, 4))) / 2) / 100;
     // E-Auto
     const ea = zahl('eauto'), laden = $('laden').value;
     const fenster = (p: number[]) => laden === 'smart' ? mittel(billigste(p, 6)) : laden === 'nacht' ? mittel(p.slice(0, 6)) : mittel(p.slice(17, 22));
@@ -199,10 +219,11 @@ const jsonLd = [{
     set('risiko', `Preisrisiko: Im teuersten Monat ${jahr} (${namen[+tMon - 1]}, Börse ${ct(tSpot)}) hättest du ohne Verschieben rund ${eur(monat(tSpot))} gezahlt, im Festpreis ${eur(festMonat)}. Im günstigsten (${namen[+gMon - 1]}, ${ct(gSpot)}) rund ${eur(monat(gSpot))}.`);
   }
   const presets: Record<string, Record<string, string | boolean>> = {
-    wohnung: { kwh: '2500', fest: '37', festgp: '12', flex: '15', eauto: '0', wp: '0' },
-    familie: { kwh: '4000', fest: '37', festgp: '12', flex: '20', eauto: '0', wp: '0' },
-    eauto: { kwh: '3500', fest: '37', festgp: '12', flex: '15', eauto: '2700', laden: 'smart', wp: '0' },
-    wp: { kwh: '3500', fest: '37', festgp: '12', flex: '15', eauto: '2700', laden: 'smart', wp: '5000', puffer: true },
+    wohnung: { kwh: '2500', fest: '37', festgp: '12', flex: '15', pv: '0', eauto: '0', wp: '0' },
+    familie: { kwh: '4000', fest: '37', festgp: '12', flex: '20', pv: '0', eauto: '0', wp: '0' },
+    eauto: { kwh: '3500', fest: '37', festgp: '12', flex: '15', pv: '0', eauto: '2700', laden: 'smart', wp: '0' },
+    wp: { kwh: '3500', fest: '37', festgp: '12', flex: '15', pv: '0', eauto: '2700', laden: 'smart', wp: '5000', puffer: true },
+    pv: { kwh: '4000', fest: '37', festgp: '12', flex: '15', pv: '30', eauto: '2700', laden: 'smart', wp: '0' },
   };
   document.querySelectorAll<HTMLButtonElement>('.presets .chip').forEach((b) => b.addEventListener('click', () => {
     for (const [k, v] of Object.entries(presets[b.dataset.preset!])) {

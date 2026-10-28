@@ -4,7 +4,7 @@
 # Änderungen in der Vorlage machen und neu erzeugen, dann gelten sie für alle Seiten gleich.
 # Einstellungen dieser Seite: websites/websites.json, Schlüssel „@@KEY@@“.
 #
-# Läuft bei jedem Push auf @@BRANCHES_TEXT@@, der @@ORDNER@@/ ändert, auf Knopfdruck und jede Nacht (@@CRON@@ UTC).
+# Läuft bei jedem Push auf @@BRANCHES_TEXT@@, der @@ORDNER@@/ ändert, auf Knopfdruck und nach Zeitplan (@@CRON_TEXT@@ UTC).
 # Zugangsdaten nur als GitHub-Secrets: @@USER_SECRET@@, @@PASS_SECRET@@ und der Server (@@HOST_TEXT@@).
 # Zielordner: Variable @@ZIEL_VAR@@, sonst automatisch: Sieht der SFTP-Benutzer den ganzen Webspace (Ordner public/ im
 # Startverzeichnis), wird nach /@@WEBSPACE_ORDNER@@ hochgeladen, sonst direkt in sein Startverzeichnis.
@@ -19,7 +19,7 @@ on:
   # Jede Nacht neu bauen und hochladen, damit zeitversetzte Pinterest-Pins (scripts/pin-varianten.mjs) im Feed erscheinen.
   # Hinweis: GitHub startet geplante Läufe nur aus dem Standard-Branch des Repositorys.
   schedule:
-    - cron: '@@CRON@@'
+@@CRON_LISTE@@
   workflow_dispatch:
     inputs:
       hochladen:
@@ -71,6 +71,12 @@ jobs:
         # RSS-Feed des Kanals, kein Schlüssel nötig. Ist YouTube nicht erreichbar, bleibt der Stand aus src/videos.json.
         continue-on-error: true
         run: npm run videos
+
+      - name: Börsenstrompreise aktualisieren (nur Seiten mit scripts/strompreise.mjs)
+        # Day-Ahead-Preise von SMARD über energy-charts.info für Strompreis-Uhr, Rechner und die Seite „Strompreis heute“.
+        # Schlägt der Abruf fehl, bleibt der Stand aus dem Repository.
+        continue-on-error: true
+        run: if [ -f scripts/strompreise.mjs ]; then node scripts/strompreise.mjs; else echo "kein strompreise.mjs, übersprungen"; fi
 
       - name: Fehlende Titel- und Pinterest-Bilder und Checklisten-PDFs erzeugen
         run: |
