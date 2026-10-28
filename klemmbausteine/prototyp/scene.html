@@ -4,7 +4,7 @@
 const q = new URLSearchParams(location.search);
 const STEP = parseInt(q.get('step') || '99', 10), HILITE = q.get('hilite') !== '0';
 const W = 1400, H = 900, S = 8, B = 9.6, ORANGE = 0xe0612e;
-fetch('model.json').then(r => r.json()).then(model => {
+fetch(q.get('model') || 'model.json').then(r => r.json()).then(model => {
   const scene = new THREE.Scene(); scene.background = new THREE.Color(0xe9ebe4);
   const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, -2000, 2000); const hw = parseFloat(q.get('hw') || '200'); cam.left = -hw; cam.right = hw; cam.top = hw * H / W; cam.bottom = -hw * H / W; cam.updateProjectionMatrix();
   const az = parseFloat(q.get('az') || '0.65'), el = 0.5, r = 900;

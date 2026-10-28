@@ -1,9 +1,10 @@
 // Parametrisches Haus aus Klemmbausteinen. Einheiten: x/z in Noppen, y in Steinhöhen (1 Stein = 3 Platten).
 // Ergebnis: Liste aller Teile mit Position, Größe, Farbe, BrickLink-Teilenummer und Schritt (Reihe).
 const fs = require('node:fs');
-const P = { W: 16, D: 12, floors: 2, floorH: 4, wall: 'tan', roof: 'dark red', door: 'reddish brown', base: 'green' };
-const COLORS = { tan: '#d9c48f', 'dark red': '#6b1f1f', 'reddish brown': '#5b3a1e', green: '#3c8f3c', white: '#f4f4f4', 'trans clear': '#cfe6f2', 'dark bluish gray': '#5b5f66' };
-const BL = { tan: 2, 'dark red': 59, 'reddish brown': 88, green: 6, white: 1, 'trans clear': 12, 'dark bluish gray': 85 };
+const P = { W: 16, D: 12, floors: 2, floorH: 4, wall: 'tan', roof: 'dark red', door: 'reddish brown', base: 'green', out: 'model.json' };
+for (let i = 2; i < process.argv.length; i += 2) { const k = process.argv[i].replace(/^--/, ''), v = process.argv[i + 1]; P[k] = isNaN(v) ? v : parseInt(v, 10); }
+const COLORS = { tan: '#d9c48f', 'dark red': '#6b1f1f', 'reddish brown': '#5b3a1e', green: '#3c8f3c', white: '#f4f4f4', 'trans clear': '#cfe6f2', 'dark bluish gray': '#5b5f66', red: '#b40000', black: '#1f1f1f', 'light bluish gray': '#a0a5a9' };
+const BL = { tan: 2, 'dark red': 59, 'reddish brown': 88, green: 6, white: 1, 'trans clear': 12, 'dark bluish gray': 85, red: 5, black: 11, 'light bluish gray': 86 };
 const parts = []; let step = 0;
 function add(part, name, color, x, y, z, w, h, d, kind) { parts.push({ part, name, color, x, y, z, w, h, d, kind: kind || 'brick', step }); }
 // Grundplatte 32x32 (3811) unter dem Haus, Haus mittig
@@ -17,7 +18,7 @@ for (let f = 0; f < P.floors; f++) {
   openings.push({ side: 'back', pos: 3, w: 2, y: y0, h: 2 }, { side: 'back', pos: P.W - 5, w: 2, y: y0, h: 2 });
   openings.push({ side: 'left', pos: 5, w: 2, y: y0, h: 2 }, { side: 'right', pos: 5, w: 2, y: y0, h: 2 });
 }
-openings.push({ side: 'front', pos: 7, w: 2, y: 0, h: 3, door: true }); // Tür 1x4x6 = 2 Noppen breit, 3 Steine hoch? (1x4x6: 4 Noppen breit, 6 Steine hoch). Vereinfachung: 2x3-Öffnung mit Tür 1x2x3 (3861/3860?) → wir nehmen Tür 1 x 2 x 3 (part 3861 + 3860 Rahmen)
+openings.push({ side: 'front', pos: Math.floor(P.W / 2) - 1, w: 2, y: 0, h: 3, door: true }); // Tür 1x4x6 = 2 Noppen breit, 3 Steine hoch? (1x4x6: 4 Noppen breit, 6 Steine hoch). Vereinfachung: 2x3-Öffnung mit Tür 1x2x3 (3861/3860?) → wir nehmen Tür 1 x 2 x 3 (part 3861 + 3860 Rahmen)
 // Wandzellen je Reihe als Ring
 function isOpen(side, pos, row) { return openings.some(o => o.side === side && pos >= o.pos && pos < o.pos + o.w && row >= o.y && row < o.y + o.h); }
 const H = P.floors * P.floorH;
@@ -79,9 +80,9 @@ const bom = {};
 for (const p of parts) { const k = p.part + '|' + p.color; bom[k] = bom[k] || { part: p.part, name: p.name, color: p.color, blColor: BL[p.color], qty: 0 }; bom[k].qty++; }
 const list = Object.values(bom).sort((a, b) => b.qty - a.qty);
 const total = parts.length, steps = Math.max(...parts.map(p => p.step));
-fs.writeFileSync(__dirname + '/model.json', JSON.stringify({ params: P, colors: COLORS, parts, bom: list, total, steps }, null, 1));
+fs.writeFileSync(__dirname + '/' + P.out, JSON.stringify({ params: P, colors: COLORS, parts, bom: list, total, steps }, null, 1));
 // BrickLink Wanted List (XML)
 const xml = '<INVENTORY>\n' + list.map(b => `  <ITEM><ITEMTYPE>P</ITEMTYPE><ITEMID>${b.part}</ITEMID><COLOR>${b.blColor}</COLOR><MINQTY>${b.qty}</MINQTY></ITEM>`).join('\n') + '\n</INVENTORY>\n';
-fs.writeFileSync(__dirname + '/wanted-list.xml', xml);
+fs.writeFileSync(__dirname + '/' + P.out.replace('.json', '') + '-wanted-list.xml', xml);
 console.log('Teile:', total, '| Schritte:', steps, '| Teilearten:', list.length);
 for (const b of list) console.log(String(b.qty).padStart(4), b.part.padEnd(6), b.color.padEnd(14), b.name);
