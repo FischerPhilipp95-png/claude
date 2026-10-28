@@ -1,0 +1,11 @@
+{
+  "name": "klemmbausteine-prototyp",
+  "private": true,
+  "description": "Prototyp: parametrisches Haus aus Klemmbausteinen, 3D-Rendering je Bauschritt, Teileliste, BrickLink-Wunschliste, PDF-Anleitung",
+  "scripts": {
+    "generate": "node generator.cjs",
+    "render": "node render.cjs",
+    "shots": "node shots.cjs"
+  },
+  "dependencies": { "three": "0.160.0" }
+}

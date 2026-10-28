@@ -1,0 +1,59 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#e9ebe4}canvas{display:block}</style></head>
+<body><script src="../node_modules/three/build/three.min.js"></script>
+<script>
+const q = new URLSearchParams(location.search);
+const STEP = parseInt(q.get('step') || '99', 10), HILITE = q.get('hilite') !== '0';
+const W = 1400, H = 900, S = 8, B = 9.6, ORANGE = 0xe0612e;
+fetch('model.json').then(r => r.json()).then(model => {
+  const scene = new THREE.Scene(); scene.background = new THREE.Color(0xe9ebe4);
+  const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, -2000, 2000); const hw = parseFloat(q.get('hw') || '200'); cam.left = -hw; cam.right = hw; cam.top = hw * H / W; cam.bottom = -hw * H / W; cam.updateProjectionMatrix();
+  const az = parseFloat(q.get('az') || '0.65'), el = 0.5, r = 900;
+  cam.position.set(Math.sin(az) * r * Math.cos(el), r * Math.sin(el), Math.cos(az) * r * Math.cos(el)); cam.lookAt(parseFloat(q.get('lx') || '64'), parseFloat(q.get('ly') || '48'), parseFloat(q.get('lz') || '48'));
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xb8bcb0, 0.85));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.95); sun.position.set(300, 500, 250); sun.castShadow = true;
+  sun.shadow.mapSize.set(2048, 2048); const sc = sun.shadow.camera; sc.left = -400; sc.right = 400; sc.top = 400; sc.bottom = -400; sc.near = 1; sc.far = 1500; scene.add(sun);
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshStandardMaterial({ color: 0xd8d4c8, roughness: 1 }));
+  ground.rotation.x = -Math.PI / 2; ground.position.y = -3.3; ground.receiveShadow = true; scene.add(ground);
+  const mats = {}; const mat = (hex, opts) => { const k = hex + JSON.stringify(opts || {}); if (!mats[k]) mats[k] = new THREE.MeshStandardMaterial(Object.assign({ color: new THREE.Color(hex), roughness: 0.55, metalness: 0.05 }, opts || {})); return mats[k]; };
+  const studGeo = new THREE.CylinderGeometry(2.4, 2.4, 1.7, 18);
+function prism(v, tri) { // Dreiecke so drehen, dass die Normale vom Schwerpunkt weg zeigt
+    const c = v.reduce((a, p) => [a[0]+p[0]/v.length, a[1]+p[1]/v.length, a[2]+p[2]/v.length], [0,0,0]);
+    const pos = [], nrm = [];
+    for (let t of tri) { let a = v[t[0]], b = v[t[1]], d = v[t[2]];
+      const ab = [b[0]-a[0],b[1]-a[1],b[2]-a[2]], ad = [d[0]-a[0],d[1]-a[1],d[2]-a[2]];
+      let n = [ab[1]*ad[2]-ab[2]*ad[1], ab[2]*ad[0]-ab[0]*ad[2], ab[0]*ad[1]-ab[1]*ad[0]];
+      const m = [(a[0]+b[0]+d[0])/3-c[0], (a[1]+b[1]+d[1])/3-c[1], (a[2]+b[2]+d[2])/3-c[2]];
+      if (n[0]*m[0]+n[1]*m[1]+n[2]*m[2] < 0) { const tmp = b; b = d; d = tmp; n = n.map(x => -x); }
+      const l = Math.hypot(...n) || 1; for (const q of [a,b,d]) { pos.push(...q); nrm.push(n[0]/l, n[1]/l, n[2]/l); } }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.Float32BufferAttribute(nrm, 3)); return g; }
+  function wedge(w, h, d, dir) { const zLow = dir > 0 ? d : 0, zHigh = dir > 0 ? 0 : d;
+    const v = [[0,0,zLow],[w,0,zLow],[w,0,zHigh],[0,0,zHigh],[0,h,zHigh],[w,h,zHigh]];
+    return prism(v, [[0,2,1],[0,3,2],[3,4,5],[3,5,2],[0,1,5],[0,5,4],[0,4,3],[1,2,5]]); }
+  function ridge(w, h, d) { const v = [[0,0,0],[w,0,0],[w,0,d],[0,0,d],[0,h,d/2],[w,h,d/2]];
+    return prism(v, [[0,2,1],[0,3,2],[0,1,5],[0,5,4],[3,4,5],[3,5,2],[0,4,3],[1,2,5]]); }
+  let shown = 0;
+  for (const p of model.parts) {
+    if (p.step > STEP) continue; shown++;
+    const isNew = HILITE && p.step === STEP && STEP < model.steps;
+    const hex = isNew ? ORANGE : model.colors[p.color];
+    const x = p.x * S, y = p.y * B, z = p.z * S, w = p.w * S, h = p.h * B, d = p.d * S;
+    let m;
+    if (p.kind === 'slopeF' || p.kind === 'slopeB') { m = new THREE.Mesh(wedge(w, h, d, p.kind === 'slopeF' ? 1 : -1), mat(hex)); m.position.set(x, y, z); }
+    else if (p.kind === 'ridge') { m = new THREE.Mesh(ridge(w, h, d), mat(hex)); m.position.set(x, y, z); }
+    else if (p.kind === 'glass') { m = new THREE.Mesh(new THREE.BoxGeometry(w - 1.5, h - 1.5, d - 1.5), mat(hex, { transparent: true, opacity: 0.45, roughness: 0.1 })); m.position.set(x + w / 2, y + h / 2, z + d / 2); }
+    else if (p.kind === 'door') { m = new THREE.Mesh(new THREE.BoxGeometry(w - 1.2, h - 1.2, d - 1.2), mat(hex)); m.position.set(x + w / 2, y + h / 2, z + d / 2); }
+    else if (p.kind === 'window') { m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat(hex, { transparent: true, opacity: 0.35 })); m.position.set(x + w / 2, y + h / 2, z + d / 2); }
+    else {
+      m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat(hex)); m.position.set(x + w / 2, y + h / 2, z + d / 2);
+      if (p.kind !== 'plate' || p.part === '3811') { // Noppen oben
+        const top = y + h; const stepStuds = 1;
+        for (let i = 0; i < p.w; i += stepStuds) for (let j = 0; j < p.d; j += stepStuds) { const s = new THREE.Mesh(studGeo, mat(hex)); s.position.set(x + (i + 0.5) * S, top + 0.85, z + (j + 0.5) * S); s.castShadow = true; scene.add(s); }
+      }
+    }
+    m.castShadow = true; m.receiveShadow = true; scene.add(m);
+  }
+  const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+  renderer.setSize(W, H); renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; document.body.appendChild(renderer.domElement);
+  renderer.render(scene, cam); window.__shown = shown; window.__done = true;
+});
+</script></body></html>
