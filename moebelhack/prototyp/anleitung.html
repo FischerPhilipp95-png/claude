@@ -1,0 +1,105 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Flur-Sitzbank · Anleitung</title>
+<style>
+  :root{--ink:#2b2a28;--acc:#d9623b;--sand:#f3efe6;--mute:#7a766e;--line:#d9d3c6}
+  *{box-sizing:border-box} body{margin:0;font-family:Inter,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:#fff}
+  .page{width:1123px;height:794px;padding:44px 52px;position:relative;page-break-after:always;overflow:hidden;background:#fff}
+  .page.dark{background:var(--ink);color:#f6f3ec}
+  .kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+  .dark .kicker{color:#c9c2b3}
+  h1{font-size:58px;line-height:1.02;margin:10px 0 12px;letter-spacing:-.02em}
+  h2{font-size:34px;margin:6px 0 8px;letter-spacing:-.01em}
+  .num{font-size:120px;font-weight:800;color:var(--acc);line-height:.9;letter-spacing:-.04em}
+  .cols{display:grid;grid-template-columns:360px 1fr;gap:36px;height:600px}
+  .parts{border:1px solid var(--line);background:var(--sand);padding:16px 18px;border-radius:6px}
+  .parts .t{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+  .part{display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid var(--line);font-size:14px}
+  .part:first-of-type{border-top:0}
+  .sw{width:44px;height:30px;border-radius:3px;flex:none;border:1px solid rgba(0,0,0,.08)}
+  .qty{margin-left:auto;font-weight:700}
+  .render{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#eef0ea;display:flex;align-items:center;justify-content:center}
+  .render img{width:100%;height:100%;object-fit:cover}
+  .foot{position:absolute;left:52px;right:52px;bottom:30px;display:flex;justify-content:space-between;font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
+  .bar{position:absolute;left:52px;right:52px;bottom:56px;display:flex;gap:4px}
+  .bar i{flex:1;height:4px;background:var(--line)} .bar i.on{background:var(--acc)}
+  .note{font-size:15px;line-height:1.5;color:#4a4740;margin:0 0 14px}
+  .dark .note{color:#d8d2c4}
+  table{width:100%;border-collapse:collapse;font-size:13.5px} th{text-align:left;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);padding:8px 6px;border-bottom:1px solid var(--line)}
+  td{padding:9px 6px;border-bottom:1px solid var(--line);vertical-align:top} td.r,th.r{text-align:right;white-space:nowrap} .sum td{font-weight:700;border-top:2px solid var(--ink)}
+  .tag{display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:3px 7px;border-radius:3px;background:var(--sand);color:var(--mute);border:1px solid var(--line)}
+  .seal{border:1px solid rgba(255,255,255,.25);padding:18px 20px;border-radius:6px;width:300px}
+  .seal b{display:block;font-size:40px;line-height:1}
+  .seal span{font-size:12px;color:#c9c2b3}
+</style></head><body>
+
+<!-- Deckblatt -->
+<section class="page dark">
+  <div class="kicker">Möbelhack · Flur-Sitzbank · für die Nische 150 cm</div>
+  <div style="display:grid;grid-template-columns:420px 1fr;gap:40px;margin-top:30px;height:560px">
+    <div>
+      <h1>Die Flurbank aus einem KALLAX.</h1>
+      <p class="note">Ein liegendes KALLAX-Regal, ein Untergestell, eine Deckplatte aus dem Zuschnitt und vier Boxen. Gebaut für Familie Beispiel, Flurnische 150 × 240 cm, Altbauwand aus Vollziegel.</p>
+      <div class="seal"><b>5</b><span>Schritte · 9 IKEA-Teile · 1 Zuschnitt · ca. 150 € Material</span></div>
+      <p class="note" style="margin-top:28px;font-size:12px;color:#a9a294">Jedes IKEA-Teil am 28.10.2026 gegen ikea.de geprüft. Möbelhack ist nicht mit IKEA verbunden. IKEA® ist eine Marke der Inter IKEA Systems B.V.</p>
+    </div>
+    <div class="render"><img src="final.jpg" alt=""></div>
+  </div>
+  <div class="foot"><span>Möbelhack · Bauanleitung</span><span>Entworfen am 28.10.2026</span></div>
+</section>
+
+<!-- Teileliste -->
+<section class="page">
+  <div class="kicker">Teileliste · alles, was du bestellst</div>
+  <h2>Einkaufen in zwei Shops, dann bauen.</h2>
+  <table>
+    <tr><th>Teil</th><th>Wo</th><th>Artikelnummer</th><th class="r">Stück</th><th class="r">Preis</th></tr>
+    <tr><td>KALLAX Regal, weiß, 42 × 147 cm</td><td>IKEA</td><td>002.758.48</td><td class="r">1</td><td class="r">39,99 €</td></tr>
+    <tr><td>KALLAX Untergestell, weiß, 146 × 39 × 18 cm</td><td>IKEA</td><td>405.018.92</td><td class="r">1</td><td class="r">20,00 €</td></tr>
+    <tr><td>DRÖNA Fach, dunkelgrau, 33 × 38 × 33 cm <span class="tag">online nur im 2er-Set</span></td><td>IKEA</td><td>104.439.74</td><td class="r">4</td><td class="r">11,96 €</td></tr>
+    <tr><td>Deckplatte Eiche-Leimholz, 1500 × 440 × 18 mm, Kanten gefast <span class="tag">Zuschnitt, Schätzung</span></td><td>TOSIZE oder Baumarkt-Zuschnitt</td><td>Maß im Anhang</td><td class="r">1</td><td class="r">ca. 45 €</td></tr>
+    <tr><td>Bankauflage 150 × 40 cm, grau <span class="tag">Schätzung</span></td><td>Amazon</td><td>Link in der Mail</td><td class="r">1</td><td class="r">ca. 28 €</td></tr>
+    <tr><td>Holzschrauben 4 × 30 mm, Flachwinkel 40 mm</td><td>Baumarkt</td><td>–</td><td class="r">8 + 4</td><td class="r">ca. 6 €</td></tr>
+    <tr class="sum"><td colspan="4">Material gesamt</td><td class="r">ca. 151 €</td></tr>
+  </table>
+  <p class="note" style="margin-top:18px;font-size:13px">Zum Vergleich: Eine Flurbank mit Stauraum in 150 cm kostet fertig gekauft meist 250 bis 450 €, vom Schreiner nach Maß deutlich mehr. IKEA-Preise sind Aktionspreise bis 31.10.2026, danach 49,99 € und 35,00 €.</p>
+  <div class="bar"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="foot"><span>Möbelhack · Flur-Sitzbank</span><span>Seite 2 von 7</span></div>
+</section>
+
+<!-- Schritt 3 -->
+<section class="page">
+  <div class="kicker">Schritt 03 von 05</div>
+  <div class="cols">
+    <div>
+      <div class="num">03</div>
+      <h2>Deckplatte aufschrauben</h2>
+      <p class="note">Platte mittig auflegen, 1 cm Überstand je Seite. Von innen durch das obere KALLAX-Brett mit 4 × 30 mm schrauben, vorbohren mit 3 mm. Die vier Winkel kommen hinten an die Wand: Dübel 8 mm, Vollziegel.</p>
+      <div class="parts"><div class="t">In diesem Schritt · 13 Teile</div>
+        <div class="part"><i class="sw" style="background:#c9a56f"></i>Deckplatte Eiche 150 × 44 cm<span class="qty">×1</span></div>
+        <div class="part"><i class="sw" style="background:#9a9a9a"></i>Holzschraube 4 × 30 mm<span class="qty">×8</span></div>
+        <div class="part"><i class="sw" style="background:#6b6b6b"></i>Flachwinkel 40 mm + Dübel 8 mm<span class="qty">×4</span></div>
+      </div>
+    </div>
+    <div class="render"><img src="step3.jpg" alt=""></div>
+  </div>
+  <div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+  <div class="foot"><span>Möbelhack · Flur-Sitzbank</span><span>Neue Teile orange · Seite 5 von 7</span></div>
+</section>
+
+<!-- Schritt 5 -->
+<section class="page">
+  <div class="kicker">Schritt 05 von 05</div>
+  <div class="cols">
+    <div>
+      <div class="num">05</div>
+      <h2>Boxen einsetzen, fertig</h2>
+      <p class="note">Vier DRÖNA-Fächer in die Öffnungen schieben, Polster auflegen. Kippsicherung: Die Bank steht auf dem Untergestell und ist mit vier Winkeln an der Wand fixiert, Belastung bis 100 kg je Sitzplatz.</p>
+      <div class="parts"><div class="t">In diesem Schritt · 4 Teile</div>
+        <div class="part"><i class="sw" style="background:#4a4f57"></i>DRÖNA Fach dunkelgrau<span class="qty">×4</span></div>
+      </div>
+    </div>
+    <div class="render"><img src="step5.jpg" alt=""></div>
+  </div>
+  <div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+  <div class="foot"><span>Möbelhack · Flur-Sitzbank</span><span>Seite 7 von 7</span></div>
+</section>
+</body></html>

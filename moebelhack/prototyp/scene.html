@@ -1,0 +1,54 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#eef0ea}canvas{display:block}</style></head>
+<body><script src="node_modules/three/build/three.min.js"></script>
+<script>
+// Beispiel-Hack: Flur-Sitzbank aus KALLAX 1x4 (liegend), Untergestell, Zuschnitt-Deckplatte, Polster, DRÖNA-Boxen. Maße in cm.
+const params = new URLSearchParams(location.search);
+const STEP = parseInt(params.get('step') || '5', 10);   // 1..5, 5 = fertig ohne Hervorhebung
+const HILITE = params.get('hilite') !== '0';
+const W = 1400, H = 900;
+const scene = new THREE.Scene(); scene.background = new THREE.Color(0xeef0ea);
+const cam = new THREE.OrthographicCamera(-120, 120, 120*H/W, -120*H/W, -500, 1000);
+cam.position.set(150, 150, 340); cam.lookAt(0, 38, 0); cam.zoom = 1.0; cam.updateProjectionMatrix();
+scene.add(new THREE.HemisphereLight(0xffffff, 0xb8bcb0, 0.9));
+const sun = new THREE.DirectionalLight(0xffffff, 0.9); sun.position.set(180, 320, 160); sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048); const sc = sun.shadow.camera; sc.left=-200; sc.right=200; sc.top=200; sc.bottom=-200; sc.near=1; sc.far=900; scene.add(sun);
+const ORANGE = 0xe0612e;
+function box(w, h, d, x, y, z, color, group, isNew, opacity) {
+  const mat = new THREE.MeshStandardMaterial({ color: (HILITE && isNew) ? ORANGE : color, roughness: 0.85, metalness: 0 });
+  if (opacity !== undefined) { mat.transparent = true; mat.opacity = opacity; }
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+  m.position.set(x, y + h/2, z); m.castShadow = true; m.receiveShadow = true; (group || scene).add(m); return m;
+}
+// Nische: Rückwand und zwei Seitenwände, 150 cm breit, Boden
+const wallCol = 0xeae6dc, floorCol = 0xd6cbb6;
+box(154, 170, 2, 0, 0, -22, wallCol);             // Rückwand
+box(2, 170, 46, -76, 0, 0, wallCol, null, false, 0.45);   // linke Wange, halbtransparent
+box(2, 170, 46,  76, 0, 0, wallCol, null, false, 0.45);   // rechte Wange, halbtransparent
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(600, 600), new THREE.MeshStandardMaterial({ color: floorCol, roughness: 1 }));
+floor.rotation.x = -Math.PI/2; floor.receiveShadow = true; scene.add(floor);
+// Schritt 1: KALLAX 1x4 liegend: 147 x 42 x 39, 4 Fächer 33x33, Außenbretter 4.5, Stege 3
+const LEG = 18; // Untergestell-Höhe
+const kz = 0, kx = 0;
+function kallax(y, isNew) {
+  const g = new THREE.Group(); const white = 0xf7f7f4;
+  box(147, 4.5, 39, kx, y, kz, white, g, isNew);            // Boden
+  box(147, 4.5, 39, kx, y + 42 - 4.5, kz, white, g, isNew); // Decke
+  box(3, 33, 39, kx - 73.5 + 1.5, y + 4.5, kz, white, g, isNew); // linke Wange... (Außenbrett 3 statt 4.5 vereinfacht)
+  box(3, 33, 39, kx + 73.5 - 1.5, y + 4.5, kz, white, g, isNew);
+  for (let i = 1; i < 4; i++) box(3, 33, 39, kx - 73.5 + 3 + i*33 + (i-1)*3 + 1.5, y + 4.5, kz, white, g, isNew); // Stege
+  box(147, 42, 0.5, kx, y, kz - 19.5, 0xf0efe9, g, isNew);  // Rückwand
+  scene.add(g);
+}
+if (STEP >= 1) kallax(STEP >= 2 ? LEG : 0, STEP === 1);
+// Schritt 2: Untergestell (vereinfacht als 4 Füße + Rahmen)
+if (STEP >= 2) { const c = 0x2b2b2b; [[-66, -14],[66, -14],[-66, 14],[66, 14]].forEach(([x,z]) => box(4, LEG, 4, x, 0, z, c, null, STEP === 2)); box(140, 2, 2, 0, LEG-2, -14, c, null, STEP===2); box(140, 2, 2, 0, LEG-2, 14, c, null, STEP===2); }
+// Schritt 3: Deckplatte aus Zuschnitt 150 x 44 x 1.9 (Eiche), 1 cm Überstand je Seite
+if (STEP >= 3) box(149.5, 1.9, 44, 0, LEG + 42, 1.5, 0xc9a56f, null, STEP === 3);
+// Schritt 4: Polsterauflage 148 x 40 x 5
+if (STEP >= 4) box(146, 5, 40, 0, LEG + 42 + 1.9, 1.5, 0x6f7a6e, null, STEP === 4);
+// Schritt 5: DRÖNA Boxen 33 x 38 x 33 in den Fächern
+if (STEP >= 5) for (let i = 0; i < 4; i++) box(31, 31, 36, -73.5 + 3 + 16.5 + i*36, LEG + 4.5 + 1, kz + 1, 0x4a4f57, null, STEP === 5 && HILITE && params.get('final') !== '1');
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setSize(W, H); renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; document.body.appendChild(renderer.domElement);
+renderer.render(scene, cam); window.__done = true;
+</script></body></html>

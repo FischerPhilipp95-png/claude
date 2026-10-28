@@ -1,0 +1,13 @@
+{
+  "name": "moebelhack-prototyp",
+  "private": true,
+  "description": "Prototyp: 3D-Rendering, PDF-Anleitung und IKEA-Abfrage für Möbelhack",
+  "scripts": {
+    "render": "node render.cjs",
+    "shots": "node shots.cjs",
+    "ikea": "node ikea-lookup.cjs \"KALLAX Regal 42x147 weiß\" \"KALLAX Untergestell\" \"DRÖNA Fach\""
+  },
+  "dependencies": {
+    "three": "0.160.0"
+  }
+}
