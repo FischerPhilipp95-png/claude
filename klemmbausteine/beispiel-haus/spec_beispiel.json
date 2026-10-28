@@ -1,0 +1,103 @@
+{
+ "W": 18,
+ "D": 14,
+ "floors": 2,
+ "floorH": 4,
+ "wall": "white",
+ "roof": "dark bluish gray",
+ "door": "reddish brown",
+ "openings": [
+  {
+   "side": "front",
+   "pos": 7,
+   "w": 2,
+   "y": 0,
+   "h": 3,
+   "door": true
+  },
+  {
+   "side": "front",
+   "pos": 2,
+   "w": 2,
+   "y": 1,
+   "h": 2
+  },
+  {
+   "side": "front",
+   "pos": 12,
+   "w": 2,
+   "y": 1,
+   "h": 2
+  },
+  {
+   "side": "front",
+   "pos": 2,
+   "w": 2,
+   "y": 5,
+   "h": 2
+  },
+  {
+   "side": "front",
+   "pos": 7,
+   "w": 2,
+   "y": 5,
+   "h": 2
+  },
+  {
+   "side": "front",
+   "pos": 12,
+   "w": 2,
+   "y": 5,
+   "h": 2
+  },
+  {
+   "side": "back",
+   "pos": 3,
+   "w": 4,
+   "y": 1,
+   "h": 2
+  },
+  {
+   "side": "back",
+   "pos": 12,
+   "w": 2,
+   "y": 1,
+   "h": 2
+  },
+  {
+   "side": "back",
+   "pos": 4,
+   "w": 2,
+   "y": 5,
+   "h": 2
+  },
+  {
+   "side": "back",
+   "pos": 12,
+   "w": 2,
+   "y": 5,
+   "h": 2
+  },
+  {
+   "side": "left",
+   "pos": 6,
+   "w": 2,
+   "y": 1,
+   "h": 2
+  },
+  {
+   "side": "left",
+   "pos": 6,
+   "w": 2,
+   "y": 5,
+   "h": 2
+  },
+  {
+   "side": "right",
+   "pos": 4,
+   "w": 2,
+   "y": 5,
+   "h": 2
+  }
+ ]
+}

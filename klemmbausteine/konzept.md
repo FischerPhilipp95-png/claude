@@ -93,3 +93,28 @@ Kunden, der die Rechte hält).
 2. Nur Häuser zum Start oder gleich auch Kirchen und Locations.
 3. Makler als Vertriebsweg sofort oder nach den ersten Privatkunden.
 4. Preis 29 € und 49 € oder Einheitspreis.
+
+## 10. Vom Foto zur Anleitung (Stand 28.10.2026, nachmittags)
+
+Ein Foto allein hat keinen Maßstab. Exakt wird es durch drei Quellen, die der Generator zusammenführt:
+
+1. **Maße aus der Adresse.** Der Gebäudeumriss kommt aus OpenStreetMap (Overpass-Abfrage), oft auf den halben Meter genau,
+   bei vielen Häusern mit Dachform. Fehlt er, tippt der Kunde Breite und Tiefe ein, oder wir skalieren über die Haustür,
+   die in Deutschland fast immer 2,0 bis 2,1 m hoch ist.
+2. **Fassaden aus den Fotos.** Ein Bildmodell beschreibt jede Seite als Daten: Geschosse, Fenster je Geschoss mit relativer
+   Position und Breite, Tür, Dachform, Farben, Besonderheiten wie Gaube, Balkon, Garage. Anfangs mache ich das je Bestellung
+   selbst in wenigen Minuten (Mensch in der Schleife wie bei Bricklane), danach läuft derselbe Schritt automatisch über die
+   Claude-API mit festem Ausgabeformat. Beispiel der Ausgabe: `beispiel-haus/analyse_beispiel.json`.
+3. **Raster.** `prototyp/raster.cjs` übersetzt Meter und relative Positionen exakt in Noppen: 1 Noppe = 0,6 m, ein Geschoss
+   = 4 Steine, Fenster 2 oder 4 Noppen breit, nie in der Ecke, mindestens eine Noppe Abstand. Daraus baut der Generator
+   das Modell wie bisher, Stein für Stein mit Teilenummer.
+
+Beweis: `analyse_beispiel.json` (10,5 × 8,2 m, zwei Geschosse, 13 Öffnungen) → 18 × 14 Noppen, 319 Steine, 16 Reihen,
+Bilder `foto_front.jpg` und `foto_final.jpg`. Fenster und Tür sitzen dort, wo die Beschreibung sie setzt.
+
+Was „exakt“ bedeutet: Die Anleitung ist exakt für das Modell. Das Modell ist das Haus in Noppenauflösung, so wie ein
+LEGO-Architecture-Set ein Gebäude zeigt. Der Kunde sieht vor dem Bau das Modell neben seinem Foto und kann eine
+Korrekturrunde nehmen.
+
+Noch offen: Overpass-Abfrage einbauen, Dachformen Walm und Flach, Gauben, Anbau und Garage als zweiter Baukörper, die
+automatische Fotoanalyse mit Vergleichsbild zur Kontrolle.

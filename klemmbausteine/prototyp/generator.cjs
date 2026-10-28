@@ -3,6 +3,7 @@
 const fs = require('node:fs');
 const P = { W: 16, D: 12, floors: 2, floorH: 4, wall: 'tan', roof: 'dark red', door: 'reddish brown', base: 'green', out: 'model.json' };
 for (let i = 2; i < process.argv.length; i += 2) { const k = process.argv[i].replace(/^--/, ''), v = process.argv[i + 1]; P[k] = isNaN(v) ? v : parseInt(v, 10); }
+if (P.spec) Object.assign(P, JSON.parse(fs.readFileSync(P.spec, 'utf8')));
 const COLORS = { tan: '#d9c48f', 'dark red': '#6b1f1f', 'reddish brown': '#5b3a1e', green: '#3c8f3c', white: '#f4f4f4', 'trans clear': '#cfe6f2', 'dark bluish gray': '#5b5f66', red: '#b40000', black: '#1f1f1f', 'light bluish gray': '#a0a5a9' };
 const BL = { tan: 2, 'dark red': 59, 'reddish brown': 88, green: 6, white: 1, 'trans clear': 12, 'dark bluish gray': 85, red: 5, black: 11, 'light bluish gray': 86 };
 const parts = []; let step = 0;
@@ -11,14 +12,14 @@ function add(part, name, color, x, y, z, w, h, d, kind) { parts.push({ part, nam
 const BX = -8, BZ = -10; step = 1;
 add('3811', 'Baseplate 32 x 32', 'green', BX, -0.4, BZ, 32, 0.4, 32, 'plate');
 // Fenster- und Türöffnungen: {side: front|back|left|right, pos (Noppe entlang der Wand), w, y (Steinreihe), h}
-const openings = [];
-for (let f = 0; f < P.floors; f++) {
+const openings = P.openings ? P.openings.slice() : [];
+for (let f = 0; f < P.floors && !P.openings; f++) {
   const y0 = f * P.floorH + 1; // Fenster ab zweiter Reihe des Geschosses
   openings.push({ side: 'front', pos: 2, w: 2, y: y0, h: 2 }, { side: 'front', pos: P.W - 4, w: 2, y: y0, h: 2 });
   openings.push({ side: 'back', pos: 3, w: 2, y: y0, h: 2 }, { side: 'back', pos: P.W - 5, w: 2, y: y0, h: 2 });
   openings.push({ side: 'left', pos: 5, w: 2, y: y0, h: 2 }, { side: 'right', pos: 5, w: 2, y: y0, h: 2 });
 }
-openings.push({ side: 'front', pos: Math.floor(P.W / 2) - 1, w: 2, y: 0, h: 3, door: true }); // Tür 1x4x6 = 2 Noppen breit, 3 Steine hoch? (1x4x6: 4 Noppen breit, 6 Steine hoch). Vereinfachung: 2x3-Öffnung mit Tür 1x2x3 (3861/3860?) → wir nehmen Tür 1 x 2 x 3 (part 3861 + 3860 Rahmen)
+if (!P.openings) openings.push({ side: 'front', pos: Math.floor(P.W / 2) - 1, w: 2, y: 0, h: 3, door: true }); // Tür 1x4x6 = 2 Noppen breit, 3 Steine hoch? (1x4x6: 4 Noppen breit, 6 Steine hoch). Vereinfachung: 2x3-Öffnung mit Tür 1x2x3 (3861/3860?) → wir nehmen Tür 1 x 2 x 3 (part 3861 + 3860 Rahmen)
 // Wandzellen je Reihe als Ring
 function isOpen(side, pos, row) { return openings.some(o => o.side === side && pos >= o.pos && pos < o.pos + o.w && row >= o.y && row < o.y + o.h); }
 const H = P.floors * P.floorH;
@@ -55,7 +56,7 @@ for (let row = 0; row < H; row++) {
     const horiz = o.side === 'front' || o.side === 'back';
     const x = horiz ? o.pos : (o.side === 'left' ? 0 : P.W - 1), z = horiz ? (o.side === 'front' ? P.D - 1 : 0) : o.pos;
     if (o.door) { add('3860', 'Door Frame 1 x 2 x 3', 'white', x, row, z, horiz ? 2 : 1, 3, horiz ? 1 : 2, 'window'); add('3861', 'Door 1 x 2 x 3 with 6 Panes', P.door, x, row, z, horiz ? 2 : 1, 3, horiz ? 1 : 2, 'door'); }
-    else { add('60592', 'Window 1 x 2 x 2 Flat Front', 'white', x, row, z, horiz ? 2 : 1, 2, horiz ? 1 : 2, 'window'); add('60601', 'Glass for Window 1 x 2 x 2', 'trans clear', x, row, z, horiz ? 2 : 1, 2, horiz ? 1 : 2, 'glass'); }
+    else for (let k = 0; k < o.w; k += 2) { const xx = horiz ? x + k : x, zz = horiz ? z : z + k; add('60592', 'Window 1 x 2 x 2 Flat Front', 'white', xx, row, zz, horiz ? 2 : 1, 2, horiz ? 1 : 2, 'window'); add('60601', 'Glass for Window 1 x 2 x 2', 'trans clear', xx, row, zz, horiz ? 2 : 1, 2, horiz ? 1 : 2, 'glass'); }
   }
 }
 // Dach: Giebel links/rechts aus Steinen, Dachhaut aus Schrägsteinen 45° (3040 1x2) vorne und hinten, First aus 3043 (2x2 Doppelschräge)

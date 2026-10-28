@@ -1,0 +1,15 @@
+{
+  "_hinweis": "So sieht die Ausgabe der Bildanalyse aus: Maße in Metern (aus Adresse/Katasterumriss oder Nutzerangabe), alles andere relativ aus den Fotos (0 = linker Rand der Fassade, 1 = rechter Rand).",
+  "quelle_masse": "OpenStreetMap-Gebäudeumriss, Adresse Musterstraße 4",
+  "breite_m": 10.5, "tiefe_m": 8.2, "geschosse": 2, "dach": "satteldach", "firstrichtung": "laengs",
+  "farben": { "wand": "white", "dach": "dark bluish gray", "tuer": "reddish brown" },
+  "fassaden": {
+    "front": { "tuer": { "pos": 0.42, "breite_m": 1.0 },
+               "fenster": [ { "geschoss": 1, "pos": 0.14, "breite_m": 1.2 }, { "geschoss": 1, "pos": 0.72, "breite_m": 1.2 },
+                            { "geschoss": 2, "pos": 0.14, "breite_m": 1.2 }, { "geschoss": 2, "pos": 0.44, "breite_m": 1.0 }, { "geschoss": 2, "pos": 0.72, "breite_m": 1.2 } ] },
+    "back":  { "fenster": [ { "geschoss": 1, "pos": 0.25, "breite_m": 2.0 }, { "geschoss": 1, "pos": 0.70, "breite_m": 1.2 },
+                            { "geschoss": 2, "pos": 0.25, "breite_m": 1.2 }, { "geschoss": 2, "pos": 0.70, "breite_m": 1.2 } ] },
+    "left":  { "fenster": [ { "geschoss": 1, "pos": 0.5, "breite_m": 0.8 }, { "geschoss": 2, "pos": 0.5, "breite_m": 0.8 } ] },
+    "right": { "fenster": [ { "geschoss": 2, "pos": 0.35, "breite_m": 1.2 } ] }
+  }
+}
