@@ -118,3 +118,22 @@ Korrekturrunde nehmen.
 
 Noch offen: Overpass-Abfrage einbauen, Dachformen Walm und Flach, Gauben, Anbau und Garage als zweiter Baukörper, die
 automatische Fotoanalyse mit Vergleichsbild zur Kontrolle.
+
+## 11. Katzen, Hunde, Gesichter (Stand 28.10.2026, abends)
+
+Zwei Wege, beide mit exakter Anleitung:
+
+1. **Mosaik aus 1×1-Platten.** Foto → Kopfausschnitt → Raster 48 × 48 oder 64 × 64 → jede Noppe eine echte Steinfarbe
+   (24 Farben, die es als Platte 3024 gibt) → Teileliste je Farbe, Wunschliste, Bauabschnitte 16 × 16 mit Koordinaten wie
+   bei den großen Mosaik-Sets. Rein rechnerisch, deshalb exakt. Prototyp `prototyp/mosaik.py`, Beispiel `beispiel-katze/`:
+   64 × 64 = 4.096 Platten in 15 Farben, Richtpreis rund 250 €, 48 × 48 rund 140 €. Grenzen: Das Foto muss ein naher Kopf
+   mit ruhigem Hintergrund sein, bei 48 × 48 wird ein Tier gerade noch erkannt, 64 × 64 ist die sinnvolle Größe. Für ein
+   gutes Ergebnis gehört ein Freistellen des Hintergrunds dazu, das ist noch nicht gebaut. Konkurrenz: Brick Me verkauft
+   Mosaik-Sets ab 50 £, LEGO selbst ein Porträt-Set für 130 $. Als Zusatzprodukt im selben Shop trotzdem sinnvoll, weil
+   Fotos von Haustier und Familie der häufigste Wunsch sind.
+2. **Figur im Blockstil.** Für eine dreidimensionale Katze gibt es zwei Möglichkeiten: eine Vorlage je Tierart (sitzende
+   Katze, liegender Hund) mit festem Bauplan, bei der nur Farben und Zeichnung aus dem Foto kommen, exakt und immer
+   baubar; oder eine KI, die aus Fotos ein 3D-Modell macht, das wir in Steine zerlegen, flexibler, aber unsicher in Form und
+   Stabilität. Empfehlung: Vorlagen, drei bis fünf Tierhaltungen reichen für den Start. Noch nicht gebaut.
+
+Für Gesichter von Menschen gilt dasselbe wie für Tiere: Mosaik ja, Figur nur als Vorlage.
