@@ -1,0 +1,506 @@
+<title>Haus in Steinen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: eine Bauanleitung als Website. Oben der Konfigurator mit lebendem Modell, darunter Anlässe, Partner, Dateien, Preis, Bestellung. */
+  :root {
+    --bg: #f4f1ea; --bg-2: #e9e3d6; --card: #fffdf8; --fg: #1d2326; --fg-2: #5e6569; --line: #d7d0c2;
+    --accent: #e0612e; --accent-ink: #ffffff; --stage: #e9ebe4;
+    --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #16191b; --bg-2: #1f2427; --card: #1c2124; --fg: #ebe8e0; --fg-2: #a4a8a2; --line: #343b3f; --accent: #ea7a4c; --accent-ink: #1a110c; --stage: #e9ebe4; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg: #16191b; --bg-2: #1f2427; --card: #1c2124; --fg: #ebe8e0; --fg-2: #a4a8a2; --line: #343b3f; --accent: #ea7a4c; --accent-ink: #1a110c; --stage: #e9ebe4; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.55; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1.05; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; }
+  h2 { font-size: clamp(1.7rem, 3.2vw, 2.5rem); font-weight: 700; }
+  h3 { font-size: 1.15rem; font-weight: 700; }
+  p { margin: 0; } a { color: inherit; }
+  .eyebrow { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-2); }
+  .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .muted { color: var(--fg-2); }
+  .btn { display: inline-flex; align-items: center; gap: 0.5em; font: 600 1rem var(--font-body); padding: 0.8em 1.25em; border-radius: 6px; border: 1px solid transparent; cursor: pointer; text-decoration: none; }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-ghost { background: transparent; color: var(--fg); border-color: var(--fg); }
+  .btn-small { font-size: 0.9rem; padding: 0.6em 1em; }
+  .btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .top { display: flex; align-items: center; gap: 1.5rem; padding-block: 1rem; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .brand { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; margin-right: auto; display: flex; align-items: center; gap: 0.5rem; }
+  .brand i { display: inline-block; width: 22px; height: 14px; background: var(--accent); border-radius: 2px; position: relative; }
+  .brand i::before, .brand i::after { content: ""; position: absolute; top: -5px; width: 7px; height: 5px; background: var(--accent); border-radius: 2px 2px 0 0; }
+  .brand i::before { left: 2px; } .brand i::after { left: 12px; }
+  .top nav { display: flex; gap: 1.1rem; flex-wrap: wrap; font-size: 0.95rem; }
+  .top nav a { text-decoration: none; color: var(--fg-2); } .top nav a:hover { color: var(--fg); }
+  .draft { background: var(--bg-2); border-bottom: 1px solid var(--line); }
+  .draft .wrap { padding-block: 0.55rem; font-size: 0.85rem; color: var(--fg-2); }
+  .hero { display: grid; gap: 1.1rem; padding-block: 2.75rem 1.5rem; max-width: 48em; }
+  .lede { font-size: 1.15rem; max-width: 34em; }
+  .fine { font-size: 0.85rem; color: var(--fg-2); }
+  /* Konfigurator */
+  .konfig { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr); gap: 1.25rem; align-items: start; padding-block: 0 2.5rem; }
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.2rem; display: grid; gap: 0.9rem; min-width: 0; }
+  .panel h3 { font-size: 1rem; }
+  .fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 0.6rem; }
+  .field { display: grid; gap: 0.25rem; min-width: 0; } .field span { font-size: 0.78rem; color: var(--fg-2); }
+  input[type="text"], input[type="number"], input[type="email"], select, textarea { width: 100%; font: 400 0.95rem var(--font-body); padding: 0.5em 0.65em; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--fg); }
+  textarea { min-height: 5.5em; resize: vertical; }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
+  .stat { background: var(--bg-2); border-radius: 6px; padding: 0.55rem 0.7rem; display: grid; gap: 0.1rem; min-width: 0; }
+  .stat b { font-family: var(--font-display); font-size: 1.35rem; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: 0.72rem; color: var(--fg-2); letter-spacing: 0.04em; text-transform: uppercase; font-family: var(--font-mono); }
+  .model { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--card); min-width: 0; }
+  .model-head { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 1rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-2); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .stage { position: relative; background: var(--stage); aspect-ratio: 14 / 9; max-width: 100%; touch-action: pan-y; overflow: hidden; }
+  .stage canvas, .stage img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+  .stage canvas { cursor: grab; } .stage canvas:active { cursor: grabbing; }
+  .hint { position: absolute; left: 0.8rem; bottom: 0.7rem; font-family: var(--font-mono); font-size: 0.7rem; color: #4b5048; background: rgba(255,255,255,0.78); padding: 0.25em 0.55em; border-radius: 4px; }
+  .controls { display: grid; grid-template-columns: auto 1fr auto; gap: 0.75rem; align-items: center; padding: 0.85rem 1rem; border-top: 1px solid var(--line); }
+  .nav-btn { font: 600 0.95rem var(--font-mono); width: 2.4rem; height: 2.4rem; border-radius: 6px; border: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; }
+  .progress { display: flex; gap: 3px; } .progress i { flex: 1; height: 6px; background: var(--line); border-radius: 2px; } .progress i.on { background: var(--accent); }
+  .play { font: 600 0.85rem var(--font-body); padding: 0.55em 0.9em; border-radius: 6px; border: 1px solid var(--fg); background: transparent; color: var(--fg); cursor: pointer; }
+  .caption { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: 0.9rem; }
+  section { padding-block: 3rem; } .band { background: var(--bg-2); }
+  .section-head { display: grid; gap: 0.6rem; margin-bottom: 1.75rem; max-width: 40em; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 1.25rem; min-width: 0; display: grid; gap: 0.5rem; align-content: start; }
+  .card .num { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.12em; }
+  .card p { font-size: 0.95rem; color: var(--fg-2); }
+  .card .cta-row { margin-top: 0.4rem; }
+  .example { padding: 0; overflow: hidden; }
+  .example img { display: block; width: 100%; aspect-ratio: 14 / 9; object-fit: cover; background: var(--stage); }
+  .example .body { padding: 1.1rem 1.25rem 1.25rem; display: grid; gap: 0.5rem; }
+  .statline { font-family: var(--font-mono); font-size: 0.85rem; color: var(--fg); }
+  .tag { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2em 0.55em; border: 1px solid var(--line); border-radius: 4px; color: var(--fg-2); }
+  .parts { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 520px; }
+  th { text-align: left; font-family: var(--font-mono); font-weight: 500; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-2); padding: 0.75rem 1rem; border-bottom: 1px solid var(--line); }
+  td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--line); vertical-align: top; } tr:last-child td { border-bottom: 0; }
+  td.r, th.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; } td.mono { font-family: var(--font-mono); white-space: nowrap; }
+  tr.sum td { font-weight: 600; border-top: 2px solid var(--fg); }
+  .steps-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+  .price { display: grid; gap: 0.75rem; }
+  .price .amount { font-family: var(--font-display); font-size: 3rem; font-weight: 800; line-height: 1; }
+  .price .amount small { font: 500 1rem var(--font-body); color: var(--fg-2); margin-left: 0.4em; }
+  .price ul { margin: 0; padding-left: 1.1em; font-size: 0.95rem; display: grid; gap: 0.3rem; }
+  .price-featured { border-color: var(--accent); }
+  .seal { display: inline-flex; align-items: center; gap: 0.6rem; border: 1px solid var(--accent); border-radius: 999px; padding: 0.4rem 0.9rem 0.4rem 0.5rem; font-size: 0.85rem; background: var(--card); }
+  .seal i { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: inline-grid; place-items: center; font-weight: 700; font-size: 0.8rem; font-style: normal; }
+  .faq { display: grid; gap: 0.5rem; max-width: 46em; }
+  details { border: 1px solid var(--line); border-radius: 8px; background: var(--card); padding: 0 1.1rem; }
+  summary { cursor: pointer; padding: 0.9rem 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  summary::-webkit-details-marker { display: none; } summary::after { content: "+"; font-family: var(--font-mono); color: var(--accent); } details[open] summary::after { content: "–"; }
+  details p { padding-bottom: 1rem; color: var(--fg-2); font-size: 0.95rem; max-width: 60ch; }
+  form { display: grid; gap: 1.5rem; max-width: 46em; }
+  fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 0.6rem; min-width: 0; }
+  legend { font-weight: 600; padding: 0; margin-bottom: 0.35rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chips label { display: inline-flex; align-items: center; gap: 0.5em; padding: 0.55em 0.9em; border: 1px solid var(--line); border-radius: 6px; background: var(--card); cursor: pointer; font-size: 0.95rem; }
+  .chips input { accent-color: var(--accent); margin: 0; }
+  .chips label:has(input:checked) { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .check { display: flex; gap: 0.6rem; align-items: start; font-size: 0.92rem; } .check input { accent-color: var(--accent); margin-top: 0.3em; }
+  .notice { border: 1px solid var(--accent); border-radius: 8px; padding: 1rem 1.1rem; background: var(--card); display: grid; gap: 0.3rem; }
+  footer { border-top: 1px solid var(--line); } footer .wrap { padding-block: 1.5rem 2rem; display: grid; gap: 0.5rem; font-size: 0.85rem; color: var(--fg-2); }
+  @media (max-width: 900px) { .konfig { grid-template-columns: 1fr; } .grid-4, .grid-3, .steps-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .grid-4, .grid-3, .grid-2, .steps-list { grid-template-columns: 1fr; } .top nav { display: none; } section { padding-block: 2.25rem; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="draft"><div class="wrap">Entwurf vom 28.10.2026. Zahlung und Bestellstrecke sind noch nicht angeschlossen. Der Konfigurator, die Teilenummern und die Anleitung sind echt.</div></div>
+
+<header class="wrap top">
+  <div class="brand"><i></i>Haus in Steinen</div>
+  <nav aria-label="Seite">
+    <a href="#konfigurator">Dein Haus</a>
+    <a href="#anlaesse">Anlässe</a>
+    <a href="#dateien">Was du bekommst</a>
+    <a href="#makler">Für Makler</a>
+    <a href="#preis">Preis</a>
+    <a href="#faq">Fragen</a>
+  </nav>
+  <a class="btn btn-primary" href="#konfigurator">Mein Haus in 60 Sekunden</a>
+</header>
+
+<section class="wrap hero">
+  <p class="eyebrow">Dein Zuhause aus Klemmbausteinen, mit Anleitung</p>
+  <h1>Bau dein Haus in 60 Sekunden. Erst dann entscheidest du.</h1>
+  <p class="lede">Maße eintippen, Dach und Farben wählen, und dein Haus steht in 3D vor dir, mit Steinzahl und Preis. Die Anleitung Stein für Stein, die Teileliste mit echten Nummern und das Fensterraster nach deinen Fotos gibt es für 29 €. Die Steine kaufst du selbst.</p>
+  <p class="fine">Lieferung in 3 Tagen · Geld zurück, wenn es nicht baubar ist · kein offizielles LEGO® Produkt</p>
+</section>
+
+<section class="wrap konfig" id="konfigurator">
+  <div class="panel">
+    <h3>Dein Haus</h3>
+    <div class="fields">
+      <label class="field"><span>Breite in m</span><input type="number" id="kBreite" min="4" max="19" step="0.5" value="10"></label>
+      <label class="field"><span>Tiefe in m</span><input type="number" id="kTiefe" min="4" max="16" step="0.5" value="7.5"></label>
+      <label class="field"><span>Geschosse</span><select id="kGeschosse"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option></select></label>
+      <label class="field"><span>Dach</span><select id="kDach"><option value="sattel" selected>Satteldach</option><option value="flach">Flachdach</option><option value="rohbau">Rohbau, Richtfest-Edition</option></select></label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Fenster vorne je Geschoss</span><select id="kFensterVorne"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label>
+      <label class="field"><span>Fenster hinten je Geschoss</span><select id="kFensterHinten"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label>
+      <label class="field"><span>Wandfarbe</span><select id="kWand"><option value="white">Weiß</option><option value="tan" selected>Sand</option><option value="red">Rot, Backstein</option><option value="light bluish gray">Hellgrau</option><option value="yellow">Gelb</option><option value="dark tan">Ocker</option></select></label>
+      <label class="field"><span>Dachfarbe</span><select id="kDachfarbe"><option value="dark red" selected>Dunkelrot</option><option value="dark bluish gray">Anthrazit</option><option value="black">Schwarz</option><option value="reddish brown">Braun</option></select></label>
+      <label class="field"><span>Türfarbe</span><select id="kTuer"><option value="reddish brown" selected>Braun</option><option value="black">Schwarz</option><option value="white">Weiß</option><option value="red">Rot</option><option value="dark bluish gray">Anthrazit</option></select></label>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="sSteine">0</b><span>Steine</span></div>
+      <div class="stat"><b id="sArten">0</b><span>Teilearten</span></div>
+      <div class="stat"><b id="sReihen">0</b><span>Reihen</span></div>
+      <div class="stat"><b id="sPreis">0 €</b><span>Steine ca.</span></div>
+    </div>
+    <p class="fine" id="kHinweis">Richtwerte für die Steine, Grundplatte eingerechnet. Fensterraster, Anbau und Garage kommen nach deinen Fotos.</p>
+    <div class="seal"><i>✓</i><span>Baubar geprüft: kein loser Stein, jede Reihe trägt die nächste.</span></div>
+    <div><button type="button" class="btn btn-primary" id="kBestellen">Anleitung für dieses Haus · 29 €</button></div>
+  </div>
+
+  <div class="model" id="model">
+    <div class="model-head"><span id="mTitel">Dein Haus · 16 × 12 Noppen</span><span id="mSub">256 Steine · 15 Reihen</span></div>
+    <div class="stage" id="stage">
+      <img id="fallback" src="haus_final.jpg" alt="3D-Modell eines zweigeschossigen Hauses aus Klemmbausteinen mit rotem Satteldach auf einer grünen Grundplatte" width="1400" height="900">
+      <span class="hint" id="hint">Ziehen zum Drehen · Reihen unten</span>
+    </div>
+    <div class="controls">
+      <button type="button" class="nav-btn" id="prev" aria-label="Vorherige Reihe">‹</button>
+      <div class="progress" id="progress" aria-hidden="true"></div>
+      <button type="button" class="nav-btn" id="next" aria-label="Nächste Reihe">›</button>
+      <div class="caption"><span id="capTitle"><b>Fertig</b></span><span class="mono" id="capParts"></span></div>
+      <div class="caption"><button type="button" class="play" id="play">Aufbau abspielen</button><span class="fine" id="capHint">Neue Steine der Reihe leuchten orange.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="anlaesse">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Anlässe</p><h2>Vier Momente, in denen ein Haus ein Geschenk wird.</h2><p class="muted">Jede Edition ist dieselbe Anleitung mit einem anderen Dreh. Widmungsseite und Gutscheinkarte zum Ausdrucken sind immer dabei.</p></div>
+    <div class="grid-4">
+      <div class="card"><span class="num">EINZUG</span><h3>Das neue Zuhause</h3><p>Das erste Modell auf dem Regal im neuen Haus. Zum Einzug, zur Einweihung, von den Eltern oder vom Makler.</p><div class="cta-row"><button type="button" class="btn btn-ghost btn-small" data-anlass="Einzug" data-edition="komplett">Einzug wählen</button></div></div>
+      <div class="card"><span class="num">RICHTFEST</span><h3>Richtfest-Edition</h3><p>Das Haus als Rohbau ohne Dach, so wie es am Tag des Richtfests steht. Das Dach kommt später als zweite Anleitung dazu, wenn es echt gedeckt ist.</p><div class="cta-row"><button type="button" class="btn btn-ghost btn-small" data-anlass="Richtfest" data-edition="rohbau">Rohbau wählen</button></div></div>
+      <div class="card"><span class="num">ABSCHIED</span><h3>Abschied vom Elternhaus</h3><p>Wenn das Haus verkauft wird, bekommt jedes Geschwister sein Modell. Eine Anleitung, bis zu vier Widmungsseiten, ein Preis.</p><div class="cta-row"><button type="button" class="btn btn-ghost btn-small" data-anlass="Abschied" data-edition="abschied">Abschied wählen</button></div></div>
+      <div class="card"><span class="num">JUBILÄUM</span><h3>40 Jahre Musterstraße 4</h3><p>Für die Großeltern, die seit Jahrzehnten im selben Haus wohnen. Mit dem Jahr des Einzugs auf dem Deckblatt.</p><div class="cta-row"><button type="button" class="btn btn-ghost btn-small" data-anlass="Jubiläum" data-edition="komplett">Jubiläum wählen</button></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="ablauf">
+  <div class="section-head"><p class="eyebrow">So geht’s</p><h2>Vom Konfigurator zum Modell auf dem Regal.</h2></div>
+  <div class="steps-list">
+    <div class="card"><span class="num">SCHRITT 1</span><h3>Haus eintippen</h3><p>Maße, Geschosse, Dach, Farben, oben im Konfigurator. Du siehst sofort, was es wird und was die Steine kosten.</p></div>
+    <div class="card"><span class="num">SCHRITT 2</span><h3>Fotos nachreichen</h3><p>Nach der Bestellung lädst du je Hausseite ein Foto hoch. Wir setzen Fenster, Tür, Anbau und Garage so, wie sie wirklich sind.</p></div>
+    <div class="card"><span class="num">SCHRITT 3</span><h3>Steine bestellen</h3><p>Teileliste für LEGO® Pick a Brick und BrickLink-Wunschliste zum Hochladen, Preise am Liefertag geprüft.</p></div>
+    <div class="card"><span class="num">SCHRITT 4</span><h3>Bauen</h3><p>Reihe für Reihe nach der Anleitung, wie bei einem gekauften Set. Ein Abend, dann steht es.</p></div>
+  </div>
+</section>
+
+<section class="band" id="dateien">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Was du bekommst</p><h2>Vier Dateien. Die Steine kaufst du selbst.</h2></div>
+    <div class="grid-2">
+      <article class="card example"><img src="anleitung-schritt-09.png" alt="Seite der Anleitung: Reihe 9, neue Steine orange, Teile links" width="1123" height="794"><div class="body"><h3>Die Anleitung als PDF</h3><p>Eine Seite je Reihe, neue Steine orange, die Teile der Reihe links mit Nummer und Farbe. Mit Widmungsseite und dem Prüfsiegel auf dem Deckblatt.</p></div></article>
+      <article class="card example"><img src="anleitung-teileliste.png" alt="Teileliste mit Teilenummern, Farben, Stückzahlen und Preisen" width="1123" height="794"><div class="body"><h3>Die Teileliste</h3><p>Jeder Stein mit Nummer, Farbe und Stückzahl. Als Liste für LEGO® Pick a Brick und als BrickLink-Wunschliste. Preise am Liefertag geprüft, Händler in Europa.</p></div></article>
+      <article class="card"><h3>Die 3D-Seite</h3><p>Ein privater Link wie das Modell oben: drehen, Reihe für Reihe durchklicken, jeden Stein antippen. Bleibt dauerhaft erreichbar, zum Teilen mit der Familie.</p></article>
+      <article class="card"><h3>Der Film</h3><p>15 Sekunden im Hochformat, das Haus baut sich Reihe für Reihe selbst auf. Für die Familiengruppe oder als Geschenkankündigung.</p></article>
+    </div>
+    <div class="section-head" style="margin-top: 2.5rem;"><p class="eyebrow">Teileliste deines Hauses</p><h2 id="tlTitel">256 Steine, 12 Teilearten, zwei Shops.</h2><p class="muted">Ändert sich live mit dem Konfigurator. Richtpreise vom 28.10.2026, Versand nicht enthalten.</p></div>
+    <div class="parts"><table><thead><tr><th>Teil</th><th>Farbe</th><th>Nummer</th><th class="r">Stück</th><th class="r">Einzeln</th><th class="r">Summe</th></tr></thead><tbody id="tlBody"></tbody></table></div>
+    <p class="fine" style="margin-top: 0.75rem;">Zum Vergleich: Handgebaute Hausmodelle kosten bei Auftragsbauern 1.500 bis 3.800 Dollar und brauchen zehn Wochen.</p>
+  </div>
+</section>
+
+<section class="wrap" id="makler">
+  <div class="section-head"><p class="eyebrow">Für Makler, Bauträger und Fertighaus</p><h2>Das Abschlussgeschenk, von dem die Familie erzählt.</h2><p class="muted">Ein Modell des gekauften Hauses wirkt wie ein 150-Euro-Geschenk, kostet im Staffelpreis unter 20 € und steht jahrelang im Wohnzimmer, mit Ihrem Namen auf dem Deckblatt.</p></div>
+  <div class="grid-3">
+    <div class="card"><h3>Immobilienmakler</h3><p>Zur Schlüsselübergabe: Modell des neuen Zuhauses als Gutscheinkarte, die Familie baut es am ersten Wochenende. Deckblatt mit Ihrem Logo.</p></div>
+    <div class="card"><h3>Bauträger und Fertighaus</h3><p>Jeder Haustyp als Modell für Musterhaus und Messe. Zur Vertragsunterschrift die Richtfest-Edition, zum Einzug das Dach.</p></div>
+    <div class="card"><h3>Architekten und Hausverwaltungen</h3><p>Der Entwurf als Modell neben dem Plan, das Mehrfamilienhaus als Geschenk an die Eigentümer.</p></div>
+  </div>
+  <div class="grid-3" style="margin-top: 1rem;">
+    <div class="card price"><span class="eyebrow">Staffel</span><div class="amount">19 €<small>je Haus ab 10</small></div><ul><li>15 € je Haus ab 25</li><li>Rechnung mit Umsatzsteuer, monatlich</li><li>Gutscheincodes, die Ihre Kunden selbst einlösen</li></ul></div>
+    <div class="card price"><span class="eyebrow">Co-Branding</span><div class="amount">0 €<small>inklusive</small></div><ul><li>Ihr Logo und Ihre Farbe auf Deckblatt und 3D-Seite</li><li>Übergabekarte zum Ausdrucken</li><li>Keine LEGO®-Logos, keine Markenprobleme</li></ul></div>
+    <div class="card price price-featured"><span class="eyebrow">Musterhaus</span><div class="amount">kostenlos</div><ul><li>Ein Haus aus Ihrem Bestand als komplettes Paket</li><li>Innerhalb von 3 Tagen</li><li>Danach entscheiden Sie</li></ul><button type="button" class="btn btn-primary" data-anlass="Makler" data-edition="komplett">Musterhaus anfordern</button></div>
+  </div>
+</section>
+
+<section class="band" id="preis">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Preis</p><h2>Ein Haus, ein Preis. Steine nicht enthalten.</h2></div>
+    <div class="grid-3">
+      <div class="card price"><span class="eyebrow">Haus</span><div class="amount">29 €<small>je Haus</small></div><ul><li>Ein Gebäude bis 32 × 32 Noppen</li><li>3D-Seite, PDF-Anleitung, Teileliste, Film</li><li>Widmungsseite und Gutscheinkarte</li><li>Lieferung in 3 Tagen, Geld zurück, wenn es nicht baubar ist</li></ul><a class="btn btn-primary" href="#konfigurator">Mein Haus bauen</a></div>
+      <div class="card price price-featured"><span class="eyebrow">Haus mit Umfeld</span><div class="amount">49 €<small>je Haus</small></div><ul><li>Garten, Garage, Anbau, Carport oder Innenleben</li><li>Eine Änderungsrunde inklusive</li><li>Richtfest-Edition mit Dach als zweiter Anleitung</li><li>Abschieds-Edition mit bis zu vier Widmungen</li></ul><a class="btn btn-primary" href="#konfigurator">Mit Umfeld bauen</a></div>
+      <div class="card price"><span class="eyebrow">Firmensitz</span><div class="amount">149 €<small>je Gebäude</small></div><ul><li>Größerer Maßstab bis 48 × 48 Noppen</li><li>Zwei Änderungsrunden, Rechnung mit Umsatzsteuer</li><li>Für Makler und Bauträger gelten die Staffelpreise</li></ul><a class="btn btn-ghost" href="#bauen">Anfragen</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="faq">
+  <div class="section-head"><p class="eyebrow">Fragen</p><h2>Bevor du die Fotos machst.</h2></div>
+  <div class="faq">
+    <details><summary>Ist das ein LEGO® Produkt?</summary><p>Nein. Wir entwerfen Modelle aus handelsüblichen Steinen und liefern Anleitung und Teileliste. LEGO® ist eine Marke der LEGO Gruppe, die diese Seite weder unterstützt noch genehmigt. Die Steine kaufst du bei LEGO® Pick a Brick, bei BrickLink-Händlern oder nimmst, was du hast.</p></details>
+    <details><summary>Wie genau wird mein Haus?</summary><p>So genau, wie es Noppen zulassen: eine Noppe ist 60 cm, ein Fenster zwei Noppen breit, ein Geschoss vier Steine hoch. Proportionen, Dachform, Fensterraster, Farben und die Tür stimmen. Bei sehr verwinkelten Häusern vereinfachen wir und sagen dir vorher, was anders wird.</p></details>
+    <details><summary>Was heißt „baubar geprüft“?</summary><p>Jede Reihe liegt im Verband auf der Reihe darunter, kein Stein schwebt, jedes Fenster sitzt in einer Öffnung mit Sturz. Das prüft der Generator rechnerisch, bevor die Anleitung entsteht. Ist ein Haus nicht baubar, bekommst du das Geld zurück.</p></details>
+    <details><summary>Woher bekomme ich die Steine?</summary><p>Die Teileliste passt für LEGO® Pick a Brick, dort gibt es die meisten Teile neu. Die Wunschliste lädst du bei BrickLink hoch, dort findest du alles, auch seltene Farben, von Händlern in Deutschland.</p></details>
+    <details><summary>Was, wenn ein Teil nicht lieferbar ist?</summary><p>Wir prüfen die Liste am Liefertag. Fehlt ein Teil, nennen wir Ersatz in Nummer und Farbe oder passen das Modell kostenlos an.</p></details>
+    <details><summary>Wie lange dauert es?</summary><p>Drei Tage nach Bestellung bekommst du die Mail mit allen Dateien und dem privaten Link.</p></details>
+  </div>
+</section>
+
+<section class="band" id="bauen">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Anleitung bestellen</p><h2>Dein Haus aus dem Konfigurator, dazu Fotos und Anlass.</h2><p class="muted">Entwurf: Die Angaben werden nicht gesendet. In der fertigen Seite folgt hier die Zahlung über Stripe.</p></div>
+    <form id="orderForm" novalidate>
+      <fieldset>
+        <legend>Edition</legend>
+        <div class="chips">
+          <label><input type="radio" name="edition" id="e1" value="komplett" checked> Komplett mit Dach</label>
+          <label><input type="radio" name="edition" id="e2" value="rohbau"> Richtfest-Edition, Rohbau</label>
+          <label><input type="radio" name="edition" id="e3" value="abschied"> Abschied, bis zu vier Widmungen</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Der Anlass</legend>
+        <div class="chips">
+          <label><input type="radio" name="anlass" id="a1" value="Einzug" checked> Einzug</label>
+          <label><input type="radio" name="anlass" id="a2" value="Richtfest"> Richtfest</label>
+          <label><input type="radio" name="anlass" id="a3" value="Abschied"> Abschied vom Elternhaus</label>
+          <label><input type="radio" name="anlass" id="a4" value="Jubiläum"> Jubiläum</label>
+          <label><input type="radio" name="anlass" id="a5" value="Hochzeit"> Hochzeit oder Jahrestag</label>
+          <label><input type="radio" name="anlass" id="a6" value="Makler"> Makler, Bauträger, Firma</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Das Haus aus dem Konfigurator</legend>
+        <p class="fine" id="fHaus">10 × 7,5 m, 2 Geschosse, Satteldach, Wand Sand, Dach Dunkelrot.</p>
+        <label class="field"><span>Fotos jeder Hausseite, bis zu 8</span><input type="file" id="fotos" name="fotos" accept="image/*" multiple></label>
+      </fieldset>
+      <fieldset>
+        <legend>Widmung und Geschichte</legend>
+        <label class="field"><span>Widmung auf dem Deckblatt</span><input type="text" id="widmung" name="widmung" maxlength="80" placeholder="Für Oma und Opa, 40 Jahre Musterstraße 4"></label>
+        <label class="field"><span>Was bedeutet euch das Haus? Was soll auf jeden Fall drin sein?</span><textarea id="geschichte" name="geschichte" placeholder="Zum Beispiel: Der Anbau von 1998 soll mit drauf, und der Kirschbaum vor dem Küchenfenster."></textarea></label>
+        <div class="fields">
+          <label class="field"><span>Name</span><input type="text" id="name" name="name" autocomplete="name"></label>
+          <label class="field"><span>E-Mail für die Lieferung</span><input type="email" id="email" name="email" autocomplete="email"></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <label class="check"><input type="checkbox" id="rechte" name="rechte"> Ich darf diese Fotos verwenden lassen und weiß, dass Steine nicht im Preis enthalten sind.</label>
+        <label class="check"><input type="checkbox" id="agb" name="agb"> Die Planung beginnt sofort, ich verzichte auf mein Widerrufsrecht für digitale Inhalte. AGB und Datenschutz habe ich gelesen.</label>
+        <label class="check"><input type="checkbox" id="zeigen" name="zeigen"> Haus in Steinen darf mein fertiges Modell als Beispiel zeigen. (freiwillig)</label>
+      </fieldset>
+      <div class="cta"><button class="btn btn-primary" type="submit" id="submitBtn">Weiter zur Zahlung · 29 €</button></div>
+      <div class="notice" id="orderNotice" hidden><b>Entwurf: Bestellung angenommen</b><span id="noticeText"></span></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span><b>Haus in Steinen</b> entwirft Modelle aus handelsüblichen Klemmbausteinen und liefert Anleitung und Teileliste. Kein offizielles LEGO® Produkt. LEGO® ist eine Marke der LEGO Gruppe, die diese Seite weder unterstützt noch genehmigt.</span>
+    <span>Entwurf vom 28.10.2026 · Impressum, AGB, Widerruf und Datenschutz folgen in der fertigen Seite.</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script>
+(function () {
+  // ---------- Generator: Haus aus Klemmbausteinen, Einheiten x/z in Noppen, y in Steinhöhen ----------
+  var COLORS = { tan: '#d9c48f', 'dark red': '#6b1f1f', 'reddish brown': '#5b3a1e', green: '#3c8f3c', white: '#f4f4f4', 'trans clear': '#cfe6f2', 'dark bluish gray': '#5b5f66', red: '#b40000', black: '#1f1f1f', 'light bluish gray': '#a0a5a9', yellow: '#f7d117', 'dark tan': '#958a73' };
+  var NAMES_DE = { tan: 'Sand', 'dark red': 'Dunkelrot', 'reddish brown': 'Braun', green: 'Grün', white: 'Weiß', 'trans clear': 'Klar', 'dark bluish gray': 'Anthrazit', red: 'Rot', black: 'Schwarz', 'light bluish gray': 'Hellgrau', yellow: 'Gelb', 'dark tan': 'Ocker' };
+  var PRICE = { '3005': 0.07, '3004': 0.09, '3622': 0.12, '3010': 0.14, '3009': 0.19, '3040': 0.12, '3043': 0.25, '60592': 0.32, '60601': 0.15, '3860': 0.45, '3861': 0.45, '3811': 8.99, '4186': 14.99, '3020': 0.14, '3022': 0.09, '3023': 0.07, '3024': 0.05, '3710': 0.10 };
+  var SIZES = [6, 4, 3, 2, 1], PARTNO = { 1: '3005', 2: '3004', 3: '3622', 4: '3010', 6: '3009' };
+  function generate(p) {
+    var parts = [], step = 0;
+    function add(part, name, color, x, y, z, w, h, d, kind) { parts.push({ part: part, name: name, color: color, x: x, y: y, z: z, w: w, h: h, d: d, kind: kind || 'brick', step: step }); }
+    var baseN = Math.max(p.W, p.D) <= 26 ? 32 : 48, basePart = baseN === 32 ? '3811' : '4186';
+    var BX = -Math.floor((baseN - p.W) / 2), BZ = -Math.floor((baseN - p.D) / 2);
+    step = 1; add(basePart, 'Baseplate ' + baseN + ' x ' + baseN, 'green', BX, -0.4, BZ, baseN, 0.4, baseN, 'plate');
+    var openings = [], doorPos = Math.floor(p.W / 2) - 1;
+    function spread(len, n) { var res = []; for (var i = 0; i < n; i++) { var pos = Math.round(len * (i + 1) / (n + 1) - 1); res.push(Math.min(len - 3, Math.max(1, pos))); } return res; }
+    for (var f = 0; f < p.floors; f++) {
+      var y0 = f * p.floorH + 1;
+      var fr = spread(p.W, p.winFront); if (f === 0) fr = fr.filter(function (x) { return x + 2 < doorPos || x > doorPos + 2; });
+      fr.forEach(function (pos) { openings.push({ side: 'front', pos: pos, w: 2, y: y0, h: 2 }); });
+      spread(p.W, p.winBack).forEach(function (pos) { openings.push({ side: 'back', pos: pos, w: 2, y: y0, h: 2 }); });
+      if (p.D >= 8) { var sp = Math.floor(p.D / 2) - 1; openings.push({ side: 'left', pos: sp, w: 2, y: y0, h: 2 }); openings.push({ side: 'right', pos: sp, w: 2, y: y0, h: 2 }); }
+    }
+    openings.push({ side: 'front', pos: doorPos, w: 2, y: 0, h: 3, door: true });
+    function isOpen(side, pos, row) { return openings.some(function (o) { return o.side === side && pos >= o.pos && pos < o.pos + o.w && row >= o.y && row < o.y + o.h; }); }
+    function layRun(cells, row, color, place) {
+      var i = 0, offset = row % 2;
+      while (i < cells.length) {
+        if (cells[i].open) { i++; continue; }
+        var len = 0; while (i + len < cells.length && !cells[i + len].open) len++;
+        var j = 0, first = true;
+        while (j < len) { var rest = len - j, s = SIZES.filter(function (v) { return v <= rest; })[0]; if (first && offset && rest > 2 && s >= 2) s = SIZES.filter(function (v) { return v <= s - 1; })[0]; first = false; place(cells[i + j], s, color); j += s; }
+        i += len;
+      }
+    }
+    var H = p.floors * p.floorH;
+    for (var row = 0; row < H; row++) {
+      step = row + 2; var cornerToX = row % 2 === 0, front = [], back = [], left = [], right = [];
+      for (var x = 0; x < p.W; x++) { var cx = x === 0 || x === p.W - 1; if (cx && !cornerToX) continue; front.push({ x: x, z: p.D - 1, open: isOpen('front', x, row) }); back.push({ x: x, z: 0, open: isOpen('back', x, row) }); }
+      for (var z = 0; z < p.D; z++) { var cz = z === 0 || z === p.D - 1; if (cz && cornerToX) continue; left.push({ x: 0, z: z, open: isOpen('left', z, row) }); right.push({ x: p.W - 1, z: z, open: isOpen('right', z, row) }); }
+      layRun(front, row, p.wall, function (c, s) { add(PARTNO[s], 'Brick 1 x ' + s, p.wall, c.x, row, c.z, s, 1, 1); });
+      layRun(back, row, p.wall, function (c, s) { add(PARTNO[s], 'Brick 1 x ' + s, p.wall, c.x, row, c.z, s, 1, 1); });
+      layRun(left, row, p.wall, function (c, s) { add(PARTNO[s], 'Brick 1 x ' + s, p.wall, c.x, row, c.z, 1, 1, s); });
+      layRun(right, row, p.wall, function (c, s) { add(PARTNO[s], 'Brick 1 x ' + s, p.wall, c.x, row, c.z, 1, 1, s); });
+      openings.forEach(function (o) {
+        if (o.y !== row) return; var horiz = o.side === 'front' || o.side === 'back';
+        var ox = horiz ? o.pos : (o.side === 'left' ? 0 : p.W - 1), oz = horiz ? (o.side === 'front' ? p.D - 1 : 0) : o.pos;
+        if (o.door) { add('3860', 'Door Frame 1 x 2 x 3', 'white', ox, row, oz, horiz ? 2 : 1, 3, horiz ? 1 : 2, 'window'); add('3861', 'Door 1 x 2 x 3', p.door, ox, row, oz, horiz ? 2 : 1, 3, horiz ? 1 : 2, 'door'); }
+        else { add('60592', 'Window 1 x 2 x 2', 'white', ox, row, oz, horiz ? 2 : 1, 2, horiz ? 1 : 2, 'window'); add('60601', 'Glass 1 x 2 x 2', 'trans clear', ox, row, oz, horiz ? 2 : 1, 2, horiz ? 1 : 2, 'glass'); }
+      });
+    }
+    var stepNames = { 1: 'Grundplatte legen' };
+    for (var r = 0; r < H; r++) stepNames[r + 2] = (r < p.floorH ? 'Erdgeschoss' : r < 2 * p.floorH ? 'Obergeschoss' : 'Dachgeschoss') + ', Reihe ' + (r % p.floorH + 1) + (r === 0 ? ', Tür einsetzen' : r % p.floorH === 1 ? ', Fenster einsetzen' : '');
+    if (p.roofType === 'sattel') {
+      var roofRows = Math.floor(p.D / 2);
+      for (var rr = 0; rr < roofRows; rr++) {
+        var y = H + rr; step = H + 2 + rr; var z0 = rr, z1 = p.D - 1 - rr;
+        if (z1 - z0 >= 3) {
+          for (var xx = 0; xx < p.W; xx += 2) { add('3040', 'Slope 45 2 x 1', p.roof, xx, y, z1, 2, 1, 1, 'slopeF'); add('3040', 'Slope 45 2 x 1', p.roof, xx, y, z0, 2, 1, 1, 'slopeB'); }
+          var gl = [], gr = []; for (var gz = z0 + 1; gz <= z1 - 1; gz++) { gl.push({ x: 0, z: gz, open: false }); gr.push({ x: p.W - 1, z: gz, open: false }); }
+          layRun(gl, y, p.wall, function (c, s) { add(PARTNO[s], 'Brick 1 x ' + s, p.wall, c.x, y, c.z, 1, 1, s); });
+          layRun(gr, y, p.wall, function (c, s) { add(PARTNO[s], 'Brick 1 x ' + s, p.wall, c.x, y, c.z, 1, 1, s); });
+          for (var sx = 4; sx < p.W - 1; sx += 4) { var cells = []; for (var cz2 = z0 + 1; cz2 <= z1 - 1; cz2++) cells.push({ x: sx, z: cz2, open: false }); (function (sxx) { layRun(cells, y, p.wall, function (c, s) { add(PARTNO[s], 'Brick 1 x ' + s, p.wall, sxx, y, c.z, 1, 1, s); }); })(sx); }
+          stepNames[step] = 'Dach, Reihe ' + (rr + 1);
+        } else { for (var rx = 0; rx < p.W; rx += 2) add('3043', 'Slope 45 2 x 2 Double', p.roof, rx, y, z0, 2, 1, 2, 'ridge'); stepNames[step] = 'First setzen'; break; }
+      }
+    } else if (p.roofType === 'flach') {
+      step = H + 2; var yz = 0;
+      while (yz < p.D) { var dz = p.D - yz >= 2 ? 2 : 1, px = 0;
+        while (px < p.W) { var rest = p.W - px, w = rest >= 4 ? 4 : rest >= 2 ? 2 : 1, part, name;
+          if (dz === 2) { part = w === 4 ? '3020' : w === 2 ? '3022' : '3023'; name = w === 4 ? 'Plate 2 x 4' : w === 2 ? 'Plate 2 x 2' : 'Plate 1 x 2'; } else { part = w === 4 ? '3710' : w === 2 ? '3023' : '3024'; name = w === 4 ? 'Plate 1 x 4' : w === 2 ? 'Plate 1 x 2' : 'Plate 1 x 1'; }
+          add(part, name, p.roof, px, H, yz, w, 1 / 3, dz, 'plate'); px += w; }
+        yz += dz; }
+      stepNames[step] = 'Flachdach aus Platten';
+    }
+    var bom = {}; parts.forEach(function (q) { var k = q.part + '|' + q.color; bom[k] = bom[k] || { part: q.part, name: q.name, color: q.color, qty: 0 }; bom[k].qty++; });
+    var list = Object.keys(bom).map(function (k) { return bom[k]; }).sort(function (a, b) { return b.qty - a.qty; });
+    var steps = 0; parts.forEach(function (q) { if (q.step > steps) steps = q.step; });
+    var price = list.reduce(function (s, b) { return s + b.qty * (PRICE[b.part] || 0.15); }, 0);
+    return { params: p, colors: COLORS, parts: parts, bom: list, total: parts.length, steps: steps, stepNames: stepNames, price: price };
+  }
+
+  // ---------- Konfigurator ----------
+  var $ = function (id) { return document.getElementById(id); };
+  var NOPPE_M = 0.6;
+  function even(v) { return Math.max(8, Math.min(32, Math.round(v / 2) * 2)); }
+  function readParams() {
+    var W = even(parseFloat($('kBreite').value || 10) / NOPPE_M), D = even(parseFloat($('kTiefe').value || 7.5) / NOPPE_M);
+    var maxWin = Math.max(1, Math.floor((W - 2) / 4));
+    return { W: W, D: D, floors: parseInt($('kGeschosse').value, 10), floorH: 4, wall: $('kWand').value, roof: $('kDachfarbe').value, door: $('kTuer').value, roofType: $('kDach').value, winFront: Math.min(maxWin, parseInt($('kFensterVorne').value, 10)), winBack: Math.min(maxWin, parseInt($('kFensterHinten').value, 10)) };
+  }
+  var MODEL = null, STEPS = 1, step = 1, azimuth = 0.65, playing = false, timer = null, three = null;
+  var stage = $('stage'), fallback = $('fallback'), hint = $('hint'), capTitle = $('capTitle'), capParts = $('capParts'), playBtn = $('play'), progress = $('progress');
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(n) { return n.toLocaleString('de-DE'); }
+  function euro(v) { return v.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
+  function label(sel) { var el = $(sel); return el.options[el.selectedIndex].text; }
+  function rebuild() {
+    var p = readParams(); MODEL = generate(p); STEPS = MODEL.steps; step = STEPS; if (playing) stop();
+    $('sSteine').textContent = fmt(MODEL.total); $('sArten').textContent = MODEL.bom.length; $('sReihen').textContent = STEPS; $('sPreis').textContent = Math.round(MODEL.price) + ' €';
+    $('mTitel').textContent = 'Dein Haus · ' + p.W + ' × ' + p.D + ' Noppen'; $('mSub').textContent = fmt(MODEL.total) + ' Steine · ' + STEPS + ' Reihen';
+    $('tlTitel').textContent = fmt(MODEL.total) + ' Steine, ' + MODEL.bom.length + ' Teilearten, zwei Shops.';
+    var tb = $('tlBody'); tb.innerHTML = '';
+    MODEL.bom.forEach(function (b) { var pr = PRICE[b.part] || 0.15; var tr = document.createElement('tr'); tr.innerHTML = '<td>' + b.name + '</td><td>' + (NAMES_DE[b.color] || b.color) + '</td><td class="mono">' + b.part + '</td><td class="r">' + fmt(b.qty) + '</td><td class="r">' + euro(pr) + '</td><td class="r">' + euro(b.qty * pr) + '</td>'; tb.appendChild(tr); });
+    var sum = document.createElement('tr'); sum.className = 'sum'; sum.innerHTML = '<td colspan="5">Steine gesamt, Richtwerte, Versand nicht enthalten</td><td class="r">ca. ' + Math.round(MODEL.price) + ' €</td>'; tb.appendChild(sum);
+    $('fHaus').textContent = $('kBreite').value + ' × ' + $('kTiefe').value + ' m, ' + p.floors + ' Geschoss' + (p.floors > 1 ? 'e' : '') + ', ' + label('kDach') + ', Wand ' + label('kWand') + ', Dach ' + label('kDachfarbe') + '.';
+    $('kHinweis').textContent = p.roofType === 'rohbau' ? 'Richtfest-Edition: ohne Dach, das Dach kommt später als zweite Anleitung. Fensterraster, Anbau und Garage nach deinen Fotos.' : 'Richtwerte für die Steine, Grundplatte eingerechnet. Fensterraster, Anbau und Garage kommen nach deinen Fotos.';
+    progress.innerHTML = ''; for (var i = 0; i < STEPS; i++) progress.appendChild(document.createElement('i'));
+    if (three) three.setCenter(p); show();
+  }
+  function setCaption() {
+    var bars = progress.children; for (var i = 0; i < bars.length; i++) bars[i].className = i < step ? 'on' : '';
+    var n = 0; MODEL.parts.forEach(function (q) { if (q.step === step) n++; });
+    if (step >= STEPS) { capTitle.innerHTML = '<b>Fertig</b> · alle ' + STEPS + ' Reihen'; capParts.textContent = fmt(MODEL.total) + ' Steine'; }
+    else { capTitle.innerHTML = '<b>Reihe ' + step + ' von ' + STEPS + '</b> · ' + (MODEL.stepNames[step] || 'Reihe setzen'); capParts.textContent = n + ' neue Steine'; }
+  }
+  function show() { setCaption(); if (three) { three.build(step, step < STEPS); three.render(); } }
+  function stop() { playing = false; if (timer) { clearInterval(timer); timer = null; } playBtn.textContent = 'Aufbau abspielen'; show(); }
+  function play() { playing = true; playBtn.textContent = 'Anhalten'; step = 1; show(); timer = setInterval(function () { step++; if (step > STEPS) { step = STEPS; stop(); return; } show(); }, reduced ? 1500 : 650); }
+  $('prev').addEventListener('click', function () { if (playing) stop(); step = Math.max(1, step - 1); show(); });
+  $('next').addEventListener('click', function () { if (playing) stop(); step = Math.min(STEPS, step + 1); show(); });
+  playBtn.addEventListener('click', function () { playing ? stop() : play(); });
+  var debounce; ['kBreite', 'kTiefe', 'kGeschosse', 'kDach', 'kFensterVorne', 'kFensterHinten', 'kWand', 'kDachfarbe', 'kTuer'].forEach(function (id) { $(id).addEventListener('input', function () { clearTimeout(debounce); debounce = setTimeout(rebuild, 120); }); $(id).addEventListener('change', function () { clearTimeout(debounce); debounce = setTimeout(rebuild, 60); }); });
+  $('kBestellen').addEventListener('click', function () { if ($('kDach').value === 'rohbau') { $('e2').checked = true; $('a2').checked = true; } $('bauen').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); });
+  document.querySelectorAll('[data-anlass]').forEach(function (b) { b.addEventListener('click', function () {
+    var a = b.getAttribute('data-anlass'), e = b.getAttribute('data-edition');
+    var ra = document.querySelector('input[name="anlass"][value="' + a + '"]'); if (ra) ra.checked = true;
+    var re = document.querySelector('input[name="edition"][value="' + e + '"]'); if (re) re.checked = true;
+    if (e === 'rohbau') { $('kDach').value = 'rohbau'; rebuild(); }
+    $('bauen').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+  }); });
+  document.querySelectorAll('input[name="edition"]').forEach(function (r) { r.addEventListener('change', function () { $('submitBtn').textContent = 'Weiter zur Zahlung · ' + (r.value === 'komplett' ? '29 €' : '49 €'); }); });
+
+  // ---------- 3D ----------
+  function initThree() {
+    if (typeof THREE === 'undefined') return null;
+    var canvas = document.createElement('canvas'), renderer;
+    try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true }); } catch (e) { return null; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    var scene = new THREE.Scene(); scene.background = new THREE.Color(0xe9ebe4);
+    var cam = new THREE.OrthographicCamera(-1, 1, 1, -1, -2000, 2000);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xb8bcb0, 0.85));
+    var sun = new THREE.DirectionalLight(0xffffff, 0.95); sun.position.set(300, 500, 250); sun.castShadow = true; sun.shadow.mapSize.set(1024, 1024);
+    var sc = sun.shadow.camera; sc.left = -450; sc.right = 450; sc.top = 450; sc.bottom = -450; sc.near = 1; sc.far = 1500; scene.add(sun);
+    var ground = new THREE.Mesh(new THREE.PlaneGeometry(2500, 2500), new THREE.MeshStandardMaterial({ color: 0xd8d4c8, roughness: 1 })); ground.rotation.x = -Math.PI / 2; ground.position.y = -3.3; ground.receiveShadow = true; scene.add(ground);
+    var group = new THREE.Group(); scene.add(group);
+    var S = 8, B = 9.6, ORANGE = 0xe0612e, mats = {}, boxGeos = {};
+    function mat(hex, opts) { var k = hex + JSON.stringify(opts || {}); if (!mats[k]) mats[k] = new THREE.MeshStandardMaterial(Object.assign({ color: new THREE.Color(hex), roughness: 0.55, metalness: 0.05 }, opts || {})); return mats[k]; }
+    var studGeo = new THREE.CylinderGeometry(2.4, 2.4, 1.7, 14);
+    function prism(v, tri) { var c = v.reduce(function (a, p) { return [a[0] + p[0] / v.length, a[1] + p[1] / v.length, a[2] + p[2] / v.length]; }, [0, 0, 0]); var pos = [], nrm = [];
+      tri.forEach(function (t) { var a = v[t[0]], b = v[t[1]], d = v[t[2]]; var ab = [b[0] - a[0], b[1] - a[1], b[2] - a[2]], ad = [d[0] - a[0], d[1] - a[1], d[2] - a[2]]; var n = [ab[1] * ad[2] - ab[2] * ad[1], ab[2] * ad[0] - ab[0] * ad[2], ab[0] * ad[1] - ab[1] * ad[0]]; var m = [(a[0] + b[0] + d[0]) / 3 - c[0], (a[1] + b[1] + d[1]) / 3 - c[1], (a[2] + b[2] + d[2]) / 3 - c[2]]; if (n[0] * m[0] + n[1] * m[1] + n[2] * m[2] < 0) { var tmp = b; b = d; d = tmp; n = n.map(function (x) { return -x; }); } var l = Math.hypot(n[0], n[1], n[2]) || 1; [a, b, d].forEach(function (q) { pos.push(q[0], q[1], q[2]); nrm.push(n[0] / l, n[1] / l, n[2] / l); }); });
+      var g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.Float32BufferAttribute(nrm, 3)); return g; }
+    function wedge(w, h, d, dir) { var zLow = dir > 0 ? d : 0, zHigh = dir > 0 ? 0 : d; return prism([[0, 0, zLow], [w, 0, zLow], [w, 0, zHigh], [0, 0, zHigh], [0, h, zHigh], [w, h, zHigh]], [[0, 2, 1], [0, 3, 2], [3, 4, 5], [3, 5, 2], [0, 1, 5], [0, 5, 4], [0, 4, 3], [1, 2, 5]]); }
+    function ridge(w, h, d) { return prism([[0, 0, 0], [w, 0, 0], [w, 0, d], [0, 0, d], [0, h, d / 2], [w, h, d / 2]], [[0, 2, 1], [0, 3, 2], [0, 1, 5], [0, 5, 4], [3, 4, 5], [3, 5, 2], [0, 4, 3], [1, 2, 5]]); }
+    var wedgeF = wedge(2 * S, B, S, 1), wedgeB = wedge(2 * S, B, S, -1), ridgeG = ridge(2 * S, B, 2 * S);
+    function boxGeo(w, h, d) { var k = w + 'x' + h + 'x' + d; if (!boxGeos[k]) boxGeos[k] = new THREE.BoxGeometry(w, h, d); return boxGeos[k]; }
+    function build(st, hilite) {
+      while (group.children.length) group.remove(group.children[0]);
+      var studs = {}, dummy = new THREE.Object3D();
+      MODEL.parts.forEach(function (p) {
+        if (p.step > st) return; var isNew = hilite && p.step === st, hex = isNew ? ORANGE : MODEL.colors[p.color];
+        var x = p.x * S, y = p.y * B, z = p.z * S, w = p.w * S, h = p.h * B, d = p.d * S, m;
+        if (p.kind === 'slopeF' || p.kind === 'slopeB') { m = new THREE.Mesh(p.kind === 'slopeF' ? wedgeF : wedgeB, mat(hex)); m.position.set(x, y, z); }
+        else if (p.kind === 'ridge') { m = new THREE.Mesh(ridgeG, mat(hex)); m.position.set(x, y, z); }
+        else if (p.kind === 'glass') { m = new THREE.Mesh(boxGeo(w - 1.5, h - 1.5, d - 1.5), mat(hex, { transparent: true, opacity: 0.45, roughness: 0.1 })); m.position.set(x + w / 2, y + h / 2, z + d / 2); }
+        else if (p.kind === 'door') { m = new THREE.Mesh(boxGeo(w - 1.2, h - 1.2, d - 1.2), mat(hex)); m.position.set(x + w / 2, y + h / 2, z + d / 2); }
+        else if (p.kind === 'window') { m = new THREE.Mesh(boxGeo(w, h, d), mat(hex, { transparent: true, opacity: 0.35 })); m.position.set(x + w / 2, y + h / 2, z + d / 2); }
+        else { m = new THREE.Mesh(boxGeo(w, h, d), mat(hex)); m.position.set(x + w / 2, y + h / 2, z + d / 2);
+          var top = y + h; studs[hex] = studs[hex] || []; for (var i = 0; i < p.w; i++) for (var j = 0; j < p.d; j++) studs[hex].push([x + (i + 0.5) * S, top + 0.85, z + (j + 0.5) * S]); }
+        m.castShadow = true; m.receiveShadow = true; group.add(m);
+      });
+      Object.keys(studs).forEach(function (hex) { var list = studs[hex]; var im = new THREE.InstancedMesh(studGeo, mat(hex), list.length); list.forEach(function (pos, k) { dummy.position.set(pos[0], pos[1], pos[2]); dummy.updateMatrix(); im.setMatrixAt(k, dummy.matrix); }); im.castShadow = true; group.add(im); });
+    }
+    var cx = 64, cy = 45, cz = 48, hw = 205;
+    function setCenter(p) { cx = p.W * S / 2; cz = p.D * S / 2; var hgt = p.floors * p.floorH + (p.roofType === 'sattel' ? p.D / 2 : 0.5); cy = hgt * B / 2; hw = Math.max(205, (p.W + p.D) * 7 + hgt * 4); resize(); }
+    function resize() { var w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return; renderer.setSize(w, h, false); var hh = hw * h / w; cam.left = -hw; cam.right = hw; cam.top = hh; cam.bottom = -hh; cam.updateProjectionMatrix(); }
+    function render() { var r = 1000, el = 0.5; cam.position.set(cx + Math.sin(azimuth) * r * Math.cos(el), r * Math.sin(el), cz + Math.cos(azimuth) * r * Math.cos(el)); cam.lookAt(cx, cy, cz); renderer.render(scene, cam); }
+    stage.insertBefore(canvas, fallback); fallback.hidden = true;
+    var dragging = false, lastX = 0;
+    canvas.addEventListener('pointerdown', function (e) { dragging = true; lastX = e.clientX; canvas.setPointerCapture(e.pointerId); if (playing) stop(); });
+    canvas.addEventListener('pointermove', function (e) { if (!dragging) return; azimuth += (e.clientX - lastX) * 0.006; lastX = e.clientX; render(); });
+    canvas.addEventListener('pointerup', function () { dragging = false; }); canvas.addEventListener('pointercancel', function () { dragging = false; });
+    window.addEventListener('resize', function () { resize(); render(); });
+    resize(); return { build: build, render: render, setCenter: setCenter };
+  }
+  three = initThree();
+  if (!three) { hint.textContent = 'Beispielbild · 3D-Ansicht im Browser nicht verfügbar'; $('capHint').textContent = 'Das lebende Modell braucht WebGL. Zahlen und Teileliste rechnen trotzdem.'; }
+  rebuild();
+  window.__HAUS = function () { return MODEL; };
+  $('orderForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var anlass = document.querySelector('input[name="anlass"]:checked'), edition = document.querySelector('input[name="edition"]:checked');
+    $('noticeText').textContent = (anlass ? anlass.value : 'Haus') + ', Edition ' + (edition ? edition.value : 'komplett') + ', ' + $('fHaus').textContent + ' ' + fmt(MODEL.total) + ' Steine. In der fertigen Seite öffnet sich hier Stripe Checkout, danach lädst du die Fotos hoch und bekommst in 3 Tagen die Dateien per Mail.';
+    var n = $('orderNotice'); n.hidden = false; n.scrollIntoView({ block: 'nearest' });
+  });
+})();
+</script>
