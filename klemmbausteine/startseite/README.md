@@ -11,3 +11,14 @@ Stand 28.10.2026, abends:
 - Makler, Bauträger, Fertighaus: Staffelpreise, Co-Branding, kostenloses Musterhaus.
 - Bestellformular mit Edition, Anlass, Widmung; Zahlung noch nicht angeschlossen.
 - Geprüft lokal mit Playwright: keine Skriptfehler, Varianten rechnen, keine Querscrollung bei 400 px.
+
+Nachtrag, später am 28.10.2026:
+- Adresse im Konfigurator: „Maße holen“ fragt Nominatim (OpenStreetMap) mit `polygon_geojson=1&extratags=1` ab, nimmt das
+  Gebäudepolygon, rechnet das kleinste umschließende Rechteck (Breite × Tiefe in Metern) und übernimmt Geschosse
+  (`building:levels`) und Dachform (`roof:shape`), wenn vorhanden. Geprüft aus der Cloud: Goethestraße 12, Heidelberg
+  → 16,9 × 11,9 m. Im Artifact ist der Abruf durch die Sandbox gesperrt, dort greift ein Zwischenspeicher mit diesem
+  Ergebnis. Auf der echten Seite läuft die Abfrage über unseren Server mit Zwischenspeicher, Nominatim erlaubt nur
+  eine Anfrage je Sekunde; Overpass als zweite Quelle, wenn die Adresse nur ein Punkt ist.
+- Fotos im Konfigurator: bis zu acht Bilder mit Vorschau, aus dem ersten Foto Vorschlag für Wand- und Dachfarbe
+  (Medianfarbe der Bildmitte und des oberen Bereichs, nächste Steinfarbe). Fensterraster, Tür, Anbau und Garage werden
+  nach der Bestellung aus den Fotos gesetzt (Abschnitt 10 im Konzept).

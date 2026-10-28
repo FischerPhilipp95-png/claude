@@ -50,6 +50,9 @@
   .field { display: grid; gap: 0.25rem; min-width: 0; } .field span { font-size: 0.78rem; color: var(--fg-2); }
   input[type="text"], input[type="number"], input[type="email"], select, textarea { width: 100%; font: 400 0.95rem var(--font-body); padding: 0.5em 0.65em; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--fg); }
   textarea { min-height: 5.5em; resize: vertical; }
+  .adr { display: flex; gap: 0.4rem; } .adr input { flex: 1; min-width: 0; }
+  .thumbs { display: flex; gap: 0.4rem; flex-wrap: wrap; } .thumbs img { width: 56px; height: 42px; object-fit: cover; border-radius: 4px; border: 1px solid var(--line); }
+  .thumbs:empty { display: none; }
   .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
   .stat { background: var(--bg-2); border-radius: 6px; padding: 0.55rem 0.7rem; display: grid; gap: 0.1rem; min-width: 0; }
   .stat b { font-family: var(--font-display); font-size: 1.35rem; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -131,13 +134,19 @@
 <section class="wrap hero">
   <p class="eyebrow">Dein Zuhause aus Klemmbausteinen, mit Anleitung</p>
   <h1>Bau dein Haus in 60 Sekunden. Erst dann entscheidest du.</h1>
-  <p class="lede">Maße eintippen, Dach und Farben wählen, und dein Haus steht in 3D vor dir, mit Steinzahl und Preis. Die Anleitung Stein für Stein, die Teileliste mit echten Nummern und das Fensterraster nach deinen Fotos gibt es für 29 €. Die Steine kaufst du selbst.</p>
+  <p class="lede">Adresse eintippen oder Maße eingeben, Fotos hochladen, Dach und Farben wählen, und dein Haus steht in 3D vor dir, mit Steinzahl und Preis. Die Anleitung Stein für Stein, die Teileliste mit echten Nummern und das Fensterraster nach deinen Fotos gibt es für 29 €. Die Steine kaufst du selbst.</p>
   <p class="fine">Lieferung in 3 Tagen · Geld zurück, wenn es nicht baubar ist · kein offizielles LEGO® Produkt</p>
 </section>
 
 <section class="wrap konfig" id="konfigurator">
   <div class="panel">
     <h3>Dein Haus</h3>
+    <div class="field"><span>Straße, Hausnummer und Ort</span>
+      <div class="adr"><input type="text" id="kAdresse" placeholder="Musterstraße 4, 12345 Musterstadt" autocomplete="street-address"><button type="button" class="btn btn-ghost btn-small" id="adrSuchen">Maße holen</button></div>
+      <span id="adrStatus" class="fine">Holt Breite und Tiefe, oft auch Geschosse und Dachform, aus dem Gebäudeumriss von OpenStreetMap.</span>
+    </div>
+    <div class="field"><span>Fotos vom Haus, je Seite eins, bis zu 8</span><input type="file" id="kFotos" accept="image/*" multiple>
+      <div class="thumbs" id="fotoVorschau"></div><span id="fotoStatus" class="fine">Aus dem ersten Foto schlagen wir Wand- und Dachfarbe vor. Fenster, Tür, Anbau und Garage setzen wir nach der Bestellung aus den Fotos.</span></div>
     <div class="fields">
       <label class="field"><span>Breite in m</span><input type="number" id="kBreite" min="4" max="19" step="0.5" value="10"></label>
       <label class="field"><span>Tiefe in m</span><input type="number" id="kTiefe" min="4" max="16" step="0.5" value="7.5"></label>
@@ -193,8 +202,8 @@
 <section class="wrap" id="ablauf">
   <div class="section-head"><p class="eyebrow">So geht’s</p><h2>Vom Konfigurator zum Modell auf dem Regal.</h2></div>
   <div class="steps-list">
-    <div class="card"><span class="num">SCHRITT 1</span><h3>Haus eintippen</h3><p>Maße, Geschosse, Dach, Farben, oben im Konfigurator. Du siehst sofort, was es wird und was die Steine kosten.</p></div>
-    <div class="card"><span class="num">SCHRITT 2</span><h3>Fotos nachreichen</h3><p>Nach der Bestellung lädst du je Hausseite ein Foto hoch. Wir setzen Fenster, Tür, Anbau und Garage so, wie sie wirklich sind.</p></div>
+    <div class="card"><span class="num">SCHRITT 1</span><h3>Adresse und Fotos</h3><p>Die Adresse holt die Maße aus dem Gebäudeumriss, die Fotos liefern die Farben. Du siehst sofort, was es wird und was die Steine kosten.</p></div>
+    <div class="card"><span class="num">SCHRITT 2</span><h3>Wir setzen die Details</h3><p>Nach der Bestellung lesen wir aus deinen Fotos Fenster, Tür, Anbau und Garage und setzen sie so, wie sie wirklich sind. Du siehst das Modell neben deinem Foto.</p></div>
     <div class="card"><span class="num">SCHRITT 3</span><h3>Steine bestellen</h3><p>Teileliste für LEGO® Pick a Brick und BrickLink-Wunschliste zum Hochladen, Preise am Liefertag geprüft.</p></div>
     <div class="card"><span class="num">SCHRITT 4</span><h3>Bauen</h3><p>Reihe für Reihe nach der Anleitung, wie bei einem gekauften Set. Ein Abend, dann steht es.</p></div>
   </div>
@@ -278,7 +287,7 @@
       <fieldset>
         <legend>Das Haus aus dem Konfigurator</legend>
         <p class="fine" id="fHaus">10 × 7,5 m, 2 Geschosse, Satteldach, Wand Sand, Dach Dunkelrot.</p>
-        <label class="field"><span>Fotos jeder Hausseite, bis zu 8</span><input type="file" id="fotos" name="fotos" accept="image/*" multiple></label>
+        <p class="fine" id="fFotos">Noch keine Fotos. Du kannst sie oben im Konfigurator hochladen oder nach der Bestellung nachreichen.</p>
       </fieldset>
       <fieldset>
         <legend>Widmung und Geschichte</legend>
@@ -439,6 +448,75 @@
     $('bauen').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
   }); });
   document.querySelectorAll('input[name="edition"]').forEach(function (r) { r.addEventListener('change', function () { $('submitBtn').textContent = 'Weiter zur Zahlung · ' + (r.value === 'komplett' ? '29 €' : '49 €'); }); });
+
+  // ---------- Adresse → Gebäudeumriss aus OpenStreetMap ----------
+  var CACHE = { 'goethestraße 12, 69117 heidelberg': { w: 16.9, d: 11.9, levels: null, roof: null, note: 'Zwischenspeicher, abgerufen am 28.10.2026' } };
+  function minRect(pts, lat0) {
+    var k = Math.cos(lat0 * Math.PI / 180), xy = pts.map(function (p) { return [p[0] * k * 111320, p[1] * 110540]; }), best = null;
+    for (var i = 0; i < xy.length - 1; i++) {
+      var ang = Math.atan2(xy[i + 1][1] - xy[i][1], xy[i + 1][0] - xy[i][0]), c = Math.cos(-ang), s = Math.sin(-ang), xs = [], ys = [];
+      xy.forEach(function (q) { xs.push(q[0] * c - q[1] * s); ys.push(q[0] * s + q[1] * c); });
+      var w = Math.max.apply(null, xs) - Math.min.apply(null, xs), h = Math.max.apply(null, ys) - Math.min.apply(null, ys);
+      if (!best || w * h < best[0] * best[1]) best = [w, h];
+    }
+    return best ? [Math.max(best[0], best[1]), Math.min(best[0], best[1])] : null;
+  }
+  function dm(v) { return v.toFixed(1).replace('.', ','); }
+  function applyOutline(w, d, levels, roof, source) {
+    $('kBreite').value = Math.min(19, Math.max(4, Math.round(w * 2) / 2)); $('kTiefe').value = Math.min(16, Math.max(4, Math.round(d * 2) / 2));
+    if (levels) $('kGeschosse').value = String(Math.min(3, Math.max(1, parseInt(levels, 10) || 2)));
+    if (roof === 'flat') $('kDach').value = 'flach'; else if (roof) $('kDach').value = 'sattel';
+    rebuild();
+    $('adrStatus').textContent = 'Umriss gefunden: ' + dm(w) + ' × ' + dm(d) + ' m' + (levels ? ', ' + levels + ' Geschosse' : '') + (roof ? ', Dachform ' + roof : '') + ' (' + source + '). Prüfe die Werte und passe sie an.';
+  }
+  $('adrSuchen').addEventListener('click', function () {
+    var q = $('kAdresse').value.trim(); if (!q) { $('adrStatus').textContent = 'Bitte Straße, Hausnummer und Ort eingeben.'; return; }
+    $('adrStatus').textContent = 'Suche den Gebäudeumriss …';
+    var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&polygon_geojson=1&extratags=1&countrycodes=de,at,ch&q=' + encodeURIComponent(q);
+    fetch(url, { headers: { 'Accept': 'application/json' } }).then(function (r) { return r.json(); }).then(function (res) {
+      var r = res && res[0]; if (!r) { $('adrStatus').textContent = 'Adresse nicht gefunden. Maße bitte eintippen.'; return; }
+      var g = r.geojson, ex = r.extratags || {};
+      if (g && g.type === 'Polygon') { var wd = minRect(g.coordinates[0], parseFloat(r.lat)); applyOutline(wd[0], wd[1], ex['building:levels'], ex['roof:shape'], 'OpenStreetMap'); }
+      else $('adrStatus').textContent = 'Adresse gefunden, aber kein Gebäudeumriss hinterlegt. Maße bitte eintippen, die Fotos helfen beim Rest.';
+    }).catch(function () {
+      var c = CACHE[q.toLowerCase().replace(/\s+/g, ' ')]; if (c) { applyOutline(c.w, c.d, c.levels, c.roof, c.note); return; }
+      $('adrStatus').textContent = 'Im Entwurf ist der Abruf gesperrt. Auf der echten Seite holt dieser Knopf den Umriss aus OpenStreetMap. Probier „Goethestraße 12, 69117 Heidelberg“, das Ergebnis liegt im Zwischenspeicher.';
+    });
+  });
+  $('kAdresse').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('adrSuchen').click(); } });
+
+  // ---------- Fotos → Farbvorschlag ----------
+  var WALLS = { white: [244, 244, 244], tan: [217, 196, 143], red: [180, 0, 0], 'light bluish gray': [160, 165, 169], yellow: [247, 209, 23], 'dark tan': [149, 138, 115] };
+  var ROOFS = { 'dark red': [107, 31, 31], 'dark bluish gray': [91, 95, 102], black: [31, 31, 31], 'reddish brown': [91, 58, 30] };
+  function nearest(rgb, pal) { var best = null, bd = 1e12; Object.keys(pal).forEach(function (k) { var p = pal[k], d = Math.pow(rgb[0] - p[0], 2) + Math.pow(rgb[1] - p[1], 2) + Math.pow(rgb[2] - p[2], 2); if (d < bd) { bd = d; best = k; } }); return best; }
+  function regionColor(img, x0, y0, x1, y1) {
+    var c = document.createElement('canvas'); c.width = 64; c.height = 64; var ctx = c.getContext('2d'); ctx.drawImage(img, 0, 0, 64, 64);
+    var data = ctx.getImageData(0, 0, 64, 64).data, rs = [], gs = [], bs = [];
+    for (var y = Math.floor(y0 * 64); y < y1 * 64; y++) for (var x = Math.floor(x0 * 64); x < x1 * 64; x++) { var i = (y * 64 + x) * 4; rs.push(data[i]); gs.push(data[i + 1]); bs.push(data[i + 2]); }
+    var med = function (a) { a.sort(function (p, q) { return p - q; }); return a[Math.floor(a.length / 2)]; }; return [med(rs), med(gs), med(bs)];
+  }
+  var photoCount = 0;
+  $('kFotos').addEventListener('change', function () {
+    var files = Array.prototype.slice.call($('kFotos').files || []).slice(0, 8); photoCount = files.length; var box = $('fotoVorschau'); box.innerHTML = '';
+    $('fFotos').textContent = photoCount ? photoCount + ' Foto' + (photoCount > 1 ? 's' : '') + ' aus dem Konfigurator. Weitere kannst du nach der Bestellung nachreichen.' : 'Noch keine Fotos. Du kannst sie oben im Konfigurator hochladen oder nach der Bestellung nachreichen.';
+    if (!files.length) return;
+    files.forEach(function (f, idx) {
+      var rd = new FileReader();
+      rd.onload = function () {
+        var img = new Image();
+        img.onload = function () {
+          var t = document.createElement('img'); t.src = rd.result; t.alt = ''; box.appendChild(t);
+          if (idx === 0) {
+            try { var wall = nearest(regionColor(img, 0.3, 0.45, 0.7, 0.8), WALLS), roof = nearest(regionColor(img, 0.3, 0.12, 0.7, 0.3), ROOFS); $('kWand').value = wall; $('kDachfarbe').value = roof; rebuild();
+              $('fotoStatus').textContent = 'Vorschlag aus dem ersten Foto: Wand ' + NAMES_DE[wall] + ', Dach ' + NAMES_DE[roof] + '. Anpassbar. Fenster, Tür, Anbau und Garage setzen wir nach der Bestellung aus den Fotos.'; }
+            catch (e) { $('fotoStatus').textContent = photoCount + ' Fotos übernommen.'; }
+          }
+        };
+        img.src = rd.result;
+      };
+      rd.readAsDataURL(f);
+    });
+  });
 
   // ---------- 3D ----------
   function initThree() {
