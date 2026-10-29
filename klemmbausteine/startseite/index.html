@@ -143,7 +143,7 @@
     <h3>Dein Haus</h3>
     <div class="field"><span>Straße, Hausnummer und Ort</span>
       <div class="adr"><input type="text" id="kAdresse" placeholder="Musterstraße 4, 12345 Musterstadt" autocomplete="street-address"><button type="button" class="btn btn-ghost btn-small" id="adrSuchen">Maße holen</button></div>
-      <span id="adrStatus" class="fine">Holt Breite und Tiefe, oft auch Geschosse und Dachform, aus dem Gebäudeumriss von OpenStreetMap.</span>
+      <span id="adrStatus" class="fine">Adresse eintippen, fertig: Breite und Tiefe, oft auch Geschosse und Dachform, kommen von selbst aus dem Gebäudeumriss von OpenStreetMap.</span>
     </div>
     <div class="field"><span>Fotos vom Haus, je Seite eins, bis zu 8</span><input type="file" id="kFotos" accept="image/*" multiple>
       <div class="thumbs" id="fotoVorschau"></div><span id="fotoStatus" class="fine">Aus dem ersten Foto schlagen wir Wand- und Dachfarbe vor. Fenster, Tür, Anbau und Garage setzen wir nach der Bestellung aus den Fotos.</span></div>
@@ -469,8 +469,10 @@
     rebuild();
     $('adrStatus').textContent = 'Umriss gefunden: ' + dm(w) + ' × ' + dm(d) + ' m' + (levels ? ', ' + levels + ' Geschosse' : '') + (roof ? ', Dachform ' + roof : '') + ' (' + source + '). Prüfe die Werte und passe sie an.';
   }
-  $('adrSuchen').addEventListener('click', function () {
-    var q = $('kAdresse').value.trim(); if (!q) { $('adrStatus').textContent = 'Bitte Straße, Hausnummer und Ort eingeben.'; return; }
+  var lastLookup = '';
+  function lookup(auto) {
+    var q = $('kAdresse').value.trim(); if (!q) { if (!auto) $('adrStatus').textContent = 'Bitte Straße, Hausnummer und Ort eingeben.'; return; }
+    if (auto && (q === lastLookup || !/\d/.test(q) || q.length < 8)) return; lastLookup = q;
     $('adrStatus').textContent = 'Suche den Gebäudeumriss …';
     var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&polygon_geojson=1&extratags=1&countrycodes=de,at,ch&q=' + encodeURIComponent(q);
     fetch(url, { headers: { 'Accept': 'application/json' } }).then(function (r) { return r.json(); }).then(function (res) {
@@ -480,10 +482,12 @@
       else $('adrStatus').textContent = 'Adresse gefunden, aber kein Gebäudeumriss hinterlegt. Maße bitte eintippen, die Fotos helfen beim Rest.';
     }).catch(function () {
       var c = CACHE[q.toLowerCase().replace(/\s+/g, ' ')]; if (c) { applyOutline(c.w, c.d, c.levels, c.roof, c.note); return; }
-      $('adrStatus').textContent = 'Im Entwurf ist der Abruf gesperrt. Auf der echten Seite holt dieser Knopf den Umriss aus OpenStreetMap. Probier „Goethestraße 12, 69117 Heidelberg“, das Ergebnis liegt im Zwischenspeicher.';
+      $('adrStatus').textContent = 'Im Entwurf ist der Abruf gesperrt, auf der echten Seite holt die Seite den Umriss von selbst aus OpenStreetMap. Probier „Goethestraße 12, 69117 Heidelberg“, das Ergebnis liegt im Zwischenspeicher.';
     });
-  });
-  $('kAdresse').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('adrSuchen').click(); } });
+  }
+  $('adrSuchen').addEventListener('click', function () { lookup(false); });
+  $('kAdresse').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); lookup(false); } });
+  $('kAdresse').addEventListener('blur', function () { lookup(true); });
 
   // ---------- Fotos → Farbvorschlag ----------
   var WALLS = { white: [244, 244, 244], tan: [217, 196, 143], red: [180, 0, 0], 'light bluish gray': [160, 165, 169], yellow: [247, 209, 23], 'dark tan': [149, 138, 115] };
