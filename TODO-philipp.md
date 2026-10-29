@@ -32,6 +32,20 @@ Stand: 04.10.2026. Abhaken mit `[x]`. Ausführliche Anleitungen: `kaffee/EINRICH
       gibt es keine freien Fotos (dort steht vorerst ein Kaffeefoto): eigenes Foto machen oder Pressestelle anfragen (Mail-Entwurf von Claude)
 - [ ] **In 4–8 Wochen:** Search Console → *Leistung* ansehen und Claude die Suchanfragen schicken (beste Themenquelle)
 
+## Haus in Steinen (Start, Stand 29.10.2026)
+
+Ausführlich in `klemmbausteine/EINRICHTUNG.md`. Reihenfolge so, dass nichts wartet:
+
+- [ ] **Domain:** hausinsteinen.de bei IONOS bestellen, Ordner und SFTP-Benutzer anlegen, Secrets `STEINE_SFTP_USER` und `STEINE_SFTP_PASSWORD`
+- [ ] **Stripe:** Konto, Identitätsprüfung, Bankkonto, Stripe Tax an; Secrets `STEINE_STRIPE_SECRET` und `STEINE_STRIPE_WEBHOOK`
+- [ ] **LEGO-Partnerprogramm:** bei Rakuten Advertising beantragen (dauert, deshalb jetzt)
+- [ ] **Steuerberater:** Kleinunternehmer ja/nein, OSS ab 10.000 € EU-Umsatz
+- [ ] **Name prüfen:** „Haus in Steinen“ bei DPMA und TMview
+- [ ] **Pick-a-Brick-Preise:** Skript einmal vom eigenen Anschluss laufen lassen (Claude liefert es)
+- [ ] **Postfach:** hello@hausinsteinen.de bei IONOS, Versandkonto Resend oder Brevo, Secret `STEINE_MAIL_KEY`
+- [ ] **Rechtstexte:** Entwürfe von Claude prüfen lassen
+- [ ] **Entscheiden:** Name, Kleinunternehmer, Preise (siehe EINRICHTUNG.md, Abschnitt D)
+
 ## Ideen für weitere Seiten
 
 Siehe `blog/seo/naechste-seiten.md` (Top 5 mit Daten).
