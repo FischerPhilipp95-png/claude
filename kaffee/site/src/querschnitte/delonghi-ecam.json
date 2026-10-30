@@ -9,133 +9,133 @@
   1500
  ],
  "viewBoxEng": [
-  219,
-  0,
-  1459,
-  1500
+  283,
+  50,
+  1335,
+  1401
  ],
  "anker": {
   "elektronik": [
-   904,
-   479
+   712,
+   608
   ],
   "wassertank": [
-   1355,
-   652
+   1408,
+   616
   ],
   "pumpe": [
-   1038,
-   772
+   979,
+   644
   ],
   "flowmeter": [
-   1105,
-   861
+   1220,
+   807
   ],
   "thermoblock": [
-   796,
-   721
+   676,
+   752
   ],
   "ventil": [
-   959,
-   672
+   1011,
+   563
   ],
   "bohnen": [
-   946,
-   131
+   893,
+   291
   ],
   "mahlwerk": [
-   1112,
-   443
+   1160,
+   489
   ],
   "pulverschacht": [
-   1251,
-   375
+   1175,
+   440
   ],
   "bruehgruppe": [
-   901,
-   995
+   929,
+   1001
   ],
   "bruehkopf": [
-   943,
-   784
+   953,
+   772
   ],
   "satzbehaelter": [
-   515,
-   922
+   530,
+   949
   ],
   "abtropfschale": [
-   478,
-   1088
+   475,
+   1083
   ],
   "auslauf": [
-   508,
-   997
+   500,
+   1017
   ],
   "aufschaeumer": [
-   1002,
-   1152
+   1009,
+   1197
   ],
   "bedienfeld": [
-   628,
-   438
+   456,
+   473
   ]
  },
  "labels": {
   "elektronik": [
    150,
-   70
+   120
   ],
   "bedienfeld": [
    150,
-   264
-  ],
-  "ventil": [
-   150,
-   459
+   300
   ],
   "thermoblock": [
    150,
-   653
+   480
+  ],
+  "ventil": [
+   150,
+   660
   ],
   "bruehkopf": [
    150,
-   847
+   841
   ],
   "satzbehaelter": [
    150,
-   1041
+   1021
   ],
   "auslauf": [
    150,
-   1236
+   1201
   ],
   "abtropfschale": [
    150,
-   1430
+   1381
   ],
   "pulverschacht": [
    1850,
-   70
+   120
   ],
   "wassertank": [
    1850,
-   342
+   372
   ],
   "pumpe": [
    1850,
-   614
+   624
   ],
   "flowmeter": [
    1850,
-   886
+   877
   ],
   "bruehgruppe": [
    1850,
-   1158
+   1129
   ],
   "aufschaeumer": [
    1850,
-   1430
+   1381
   ],
   "bohnen": [
    720,
@@ -148,86 +148,86 @@
  },
  "labelsEng": {
   "elektronik": [
-   279,
-   70
+   343,
+   120
   ],
   "bedienfeld": [
-   279,
-   264
-  ],
-  "ventil": [
-   279,
-   459
+   343,
+   300
   ],
   "thermoblock": [
-   279,
-   653
+   343,
+   480
+  ],
+  "ventil": [
+   343,
+   660
   ],
   "bruehkopf": [
-   279,
-   847
+   343,
+   841
   ],
   "satzbehaelter": [
-   279,
-   1041
+   343,
+   1021
   ],
   "auslauf": [
-   279,
-   1236
+   343,
+   1201
   ],
   "abtropfschale": [
-   279,
-   1430
+   343,
+   1381
   ],
   "pulverschacht": [
-   1618,
-   70
+   1558,
+   120
   ],
   "wassertank": [
-   1618,
-   342
+   1558,
+   372
   ],
   "pumpe": [
-   1618,
-   614
+   1558,
+   624
   ],
   "flowmeter": [
-   1618,
-   886
+   1558,
+   877
   ],
   "bruehgruppe": [
-   1618,
-   1158
+   1558,
+   1129
   ],
   "aufschaeumer": [
-   1618,
-   1430
+   1558,
+   1381
   ],
   "bohnen": [
-   686,
-   40
+   710,
+   90
   ],
   "mahlwerk": [
-   1124,
-   40
+   1111,
+   90
   ]
  },
  "teile": [
-  "elektronik",
-  "wassertank",
-  "pumpe",
-  "flowmeter",
-  "thermoblock",
-  "ventil",
+  "abtropfschale",
+  "aufschaeumer",
+  "auslauf",
+  "bedienfeld",
   "bohnen",
-  "mahlwerk",
-  "pulverschacht",
   "bruehgruppe",
   "bruehkopf",
+  "elektronik",
+  "flowmeter",
+  "mahlwerk",
+  "pulverschacht",
+  "pumpe",
   "satzbehaelter",
-  "abtropfschale",
-  "auslauf",
-  "aufschaeumer",
-  "bedienfeld"
+  "thermoblock",
+  "ventil",
+  "wassertank"
  ]
 }
