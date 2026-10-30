@@ -2,6 +2,7 @@
 // Schematische Schnittzeichnung einer Maschine mit anklickbaren Bauteilen. Daten: src/bauteile.ts (Symptome je Bauteil),
 // Zeichnung: src/querschnitte/<bauart>.svg und .json aus scripts/querschnitt.py (Anker- und Label-Positionen).
 // Ohne JavaScript bleibt die Liste darunter voll nutzbar (details/summary), die Labels sind dann Sprungmarken.
+import { createHash } from 'node:crypto';
 import Icon from './Icon.astro';
 import { amazonSearch } from '../site';
 import { bauart as holeBauart, STUFEN } from '../bauteile';
@@ -17,6 +18,9 @@ const meta = metas[`../querschnitte/${id}.json`];
 if (!meta) throw new Error(`Querschnitt: Rendering für „${id}“ fehlt, bitte node scripts/querschnitt/render.mjs ausführen`);
 for (const t of b.teile) if (!meta.anker[t.id] || !meta.labels[t.id]) throw new Error(`Querschnitt: Bauteil „${t.id}“ fehlt im Modell ${id}`);
 
+// Versionskennung aus den Renderdaten: neue Bilder bekommen neue Adressen, sonst zeigen Browser und CDN alte Bilder.
+const version = createHash('md5').update(JSON.stringify(meta)).digest('hex').slice(0, 8);
+const bild = (suffix = '') => `${meta.bild}${suffix}.webp?v=${version}`;
 const [vx, vy, vw, vh] = meta.viewBox;
 const prozent = ([x, y]: number[]) => `left:${(((x - vx) / vw) * 100).toFixed(2)}%;top:${(((y - vy) / vh) * 100).toFixed(2)}%`;
 const seite = ([x]: number[]) => (x < vx + vw * 0.3 ? 'qs-links' : x > vx + vw * 0.7 ? 'qs-rechts' : 'qs-oben');
@@ -35,9 +39,9 @@ const anzahl = b.teile.reduce((n, t) => n + t.symptome.length, 0);
   gerade macht, dann wird das passende Teil markiert.</p>
   <div class="qs-buehne" style={`aspect-ratio:${vw}/${vh}`} data-weit={meta.viewBox.join(' ')} data-eng={meta.viewBoxEng.join(' ')}>
     <div class="qs-bild">
-      <img class="qs-basis" src={`${meta.bild}.webp`} srcset={`${meta.bild}-1000.webp 1000w, ${meta.bild}.webp ${meta.breite}w`} sizes="(max-width: 780px) 100vw, 740px"
+      <img class="qs-basis" src={bild()} srcset={`${bild('-1000')} 1000w, ${bild()} ${meta.breite}w`} sizes="(max-width: 780px) 100vw, 740px"
         width={meta.breite} height={meta.hoehe} alt={alt} loading="lazy" decoding="async" />
-      {b.teile.map((t) => <img class="qs-ebene" data-teil={t.id} src={`${meta.bild}-${t.id}.webp`} width={meta.breite} height={meta.hoehe} alt="" loading="lazy" decoding="async" />)}
+      {b.teile.map((t) => <img class="qs-ebene" data-teil={t.id} src={bild(`-${t.id}`)} width={meta.breite} height={meta.hoehe} alt="" loading="lazy" decoding="async" />)}
     </div>
     <svg class="qs-linien" viewBox={meta.viewBox.join(' ')} aria-hidden="true" focusable="false" set:html={linien} />
     {b.teile.map((t, i) => (
