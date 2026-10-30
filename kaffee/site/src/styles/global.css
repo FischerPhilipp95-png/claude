@@ -544,7 +544,13 @@ p.small { max-width: 72ch; }
 /* Schnittzeichnung „So ist die Maschine aufgebaut“ (Querschnitt.astro) */
 .querschnitt .section-h { margin-top: 0; }
 .qs-buehne { position: relative; margin: 14px 0 6px; }
-.qs-buehne svg { display: block; width: 100%; height: auto; }
+.qs-bild { position: absolute; inset: 0; overflow: hidden; }
+.qs-bild img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; max-width: none; }
+.qs-basis { transition: filter .25s; }
+.qs-hat-aktiv .qs-basis { filter: brightness(.55) saturate(.6); }
+.qs-ebene { opacity: 0; transition: opacity .2s; pointer-events: none; }
+.qs-ebene.aktiv, .qs-ebene.hover { opacity: 1; }
+.qs-linien { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
 .qs-tag { position: absolute; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 7px; padding: 3px 11px 3px 3px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--tag, #fff); color: var(--ink); font-size: 0.8rem; font-weight: 700; line-height: 1; text-decoration: none; white-space: nowrap; box-shadow: 0 2px 6px rgba(0,0,0,.14); cursor: pointer; transition: background-color .15s, transform .15s; }
 .qs-tag.qs-links { transform: translate(-14%, -50%); } .qs-tag.qs-rechts { transform: translate(-86%, -50%); }
 .qs-tag:hover, .qs-tag.aktiv { background: var(--yellow); }
@@ -552,13 +558,11 @@ p.small { max-width: 72ch; }
 .qs-num { display: inline-flex; flex: none; width: 24px; height: 24px; border-radius: 50%; align-items: center; justify-content: center; background: var(--ink); color: #fff; font-size: 0.74rem; font-weight: 800; line-height: 1; }
 .qs-wasser { --tag: #cfe6fa; } .qs-heiss { --tag: #fdd9b5; } .qs-kaffee { --tag: #f7e3a3; } .qs-milch { --tag: #c9efe3; } .qs-strom { --tag: #f9d0dc; }
 .qs-teil summary .qs-num { background: var(--tag, var(--ink)); color: var(--ink); border: 1.5px solid var(--ink); }
-.qs-halo { stroke: #fff; stroke-width: 5; stroke-linecap: round; }
-.qs-linie { stroke: #1d1712; stroke-width: 1.6; }
-.qs-punkt { fill: #fff; stroke: #1d1712; stroke-width: 2.2; }
+.qs-halo { stroke: #fff; stroke-width: 5; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.qs-linie { stroke: #1d1712; stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+.qs-punkt { fill: #fff; stroke: #1d1712; stroke-width: 2.2; vector-effect: non-scaling-stroke; }
 .qs-leit.aktiv .qs-linie, .qs-leit.hover .qs-linie { stroke-width: 3.2; }
 .qs-leit.aktiv .qs-punkt, .qs-leit.hover .qs-punkt { fill: var(--yellow); }
-.qs-zeichnung g[data-teil] { transition: opacity .25s; }
-.qs-hat-aktiv .qs-zeichnung g[data-teil]:not(.aktiv):not(.hover) { opacity: 0.3; }
 .qs-hat-aktiv .qs-leit:not(.aktiv):not(.hover) { opacity: 0.35; }
 .qs-hinweis { margin-top: 0; }
 .qs-symptom { display: grid; gap: 6px; margin: 16px 0; }

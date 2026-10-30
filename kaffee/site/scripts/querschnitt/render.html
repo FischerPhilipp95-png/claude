@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><title>Querschnitt rendern</title>
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/three/build/three.module.js","three/addons/":"/three/examples/jsm/"}}</script>
+</head><body>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { material, werkzeug } from '/werkzeug.mjs';
+
+const q = new URLSearchParams(location.search);
+const bauart = q.get('bauart');
+const W = Number(q.get('w') || 2000), H = Number(q.get('h') || 1500);
+const { bauen } = await import(`/modelle/${bauart}.mjs`);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(W, H);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.setClearColor(0x000000, 0);
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.7;
+
+const camera = new THREE.PerspectiveCamera(26, W / H, 10, 5000);
+const modell = bauen({ THREE, RoundedBoxGeometry, material, ...werkzeug(THREE) });
+scene.add(modell.gruppe);
+camera.position.copy(modell.kamera.position);
+camera.lookAt(modell.kamera.ziel);
+camera.updateMatrixWorld();
+
+const hemi = new THREE.HemisphereLight(0xffffff, 0x8a8078, 0.55);
+scene.add(hemi);
+const key = new THREE.DirectionalLight(0xfff4e6, 2.4);
+key.position.set(420, 760, 560);
+key.castShadow = true;
+key.shadow.mapSize.set(4096, 4096);
+key.shadow.bias = -0.0004;
+key.shadow.normalBias = 1.5;
+const sc = key.shadow.camera; sc.left = -420; sc.right = 420; sc.top = 420; sc.bottom = -420; sc.near = 100; sc.far = 2200;
+scene.add(key);
+const fill = new THREE.DirectionalLight(0xdce8ff, 0.7);
+fill.position.set(-600, 300, 300);
+scene.add(fill);
+const rim = new THREE.DirectionalLight(0xffffff, 0.5);
+rim.position.set(-200, 400, -700);
+scene.add(rim);
+
+// Bodenschatten
+const boden = new THREE.Mesh(new THREE.PlaneGeometry(1600, 1600), new THREE.ShadowMaterial({ opacity: 0.22 }));
+boden.rotation.x = -Math.PI / 2; boden.position.y = -0.5; boden.receiveShadow = true;
+scene.add(boden);
+
+scene.traverse((o) => { if (o.isMesh && !o.userData.keinSchatten) { o.castShadow = true; o.receiveShadow = true; } });
+
+function sichtbar(teil) {
+  // null = alles; sonst nur dieses Bauteil (für die Hervorhebungs-Ebene), ohne Gehäuse, Boden und Schläuche
+  boden.visible = teil === null;
+  for (const [id, g] of Object.entries(modell.teile)) g.visible = teil === null || id === teil;
+  modell.deko.visible = teil === null;
+}
+
+window.rendern = (teil = null) => {
+  sichtbar(teil);
+  renderer.render(scene, camera);
+  return renderer.domElement.toDataURL('image/png');
+};
+window.anker = () => {
+  const out = {};
+  const v = new THREE.Vector3();
+  for (const [id, p] of Object.entries(modell.anker)) {
+    v.copy(p).project(camera);
+    out[id] = [Math.round(((v.x + 1) / 2) * W), Math.round(((1 - v.y) / 2) * H)];
+  }
+  // Umriss der Maschine im Bild (für den engen Ausschnitt)
+  const box = new THREE.Box3().setFromObject(modell.gruppe);
+  let minx = W, miny = H, maxx = 0, maxy = 0;
+  for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) {
+    v.set(x, y, z).project(camera);
+    const px = ((v.x + 1) / 2) * W, py = ((1 - v.y) / 2) * H;
+    minx = Math.min(minx, px); maxx = Math.max(maxx, px); miny = Math.min(miny, py); maxy = Math.max(maxy, py);
+  }
+  return { anker: out, umriss: [Math.round(minx), Math.round(miny), Math.round(maxx), Math.round(maxy)], labels: modell.labels };
+};
+window.fertig = true;
+</script>
+</body></html>

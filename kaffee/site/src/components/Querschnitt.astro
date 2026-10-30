@@ -11,13 +11,11 @@ const { bauart: id, name } = Astro.props;
 const b = holeBauart(id);
 if (!b) throw new Error(`Querschnitt: Bauart „${id}“ fehlt in src/bauteile.ts`);
 
-const svgs = import.meta.glob('../querschnitte/*.svg', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
-type Meta = { viewBox: number[]; anker: Record<string, number[]>; labels: Record<string, number[]>; viewBoxEng: number[]; labelsEng: Record<string, number[]> };
+type Meta = { bild: string; breite: number; hoehe: number; viewBox: number[]; viewBoxEng: number[]; anker: Record<string, number[]>; labels: Record<string, number[]>; labelsEng: Record<string, number[]>; teile: string[] };
 const metas = import.meta.glob('../querschnitte/*.json', { import: 'default', eager: true }) as Record<string, Meta>;
-const svg = svgs[`../querschnitte/${id}.svg`];
 const meta = metas[`../querschnitte/${id}.json`];
-if (!svg || !meta) throw new Error(`Querschnitt: Zeichnung für „${id}“ fehlt, bitte scripts/querschnitt.py ausführen`);
-for (const t of b.teile) if (!meta.anker[t.id] || !meta.labels[t.id]) throw new Error(`Querschnitt: Bauteil „${t.id}“ hat keinen Anker in ${id}.json`);
+if (!meta) throw new Error(`Querschnitt: Rendering für „${id}“ fehlt, bitte node scripts/querschnitt/render.mjs ausführen`);
+for (const t of b.teile) if (!meta.anker[t.id] || !meta.labels[t.id]) throw new Error(`Querschnitt: Bauteil „${t.id}“ fehlt im Modell ${id}`);
 
 const [vx, vy, vw, vh] = meta.viewBox;
 const prozent = ([x, y]: number[]) => `left:${(((x - vx) / vw) * 100).toFixed(2)}%;top:${(((y - vy) / vh) * 100).toFixed(2)}%`;
@@ -25,17 +23,22 @@ const seite = ([x]: number[]) => (x < vx + vw * 0.3 ? 'qs-links' : x > vx + vw *
 const linien = b.teile.map((t) => {
   const [x1, y1] = meta.labels[t.id];
   const [x2, y2] = meta.anker[t.id];
-  return `<g class="qs-leit" data-teil="${t.id}"><line class="qs-halo" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><line class="qs-linie" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><circle class="qs-punkt" cx="${x2}" cy="${y2}" r="7"/></g>`;
+  return `<g class="qs-leit" data-teil="${t.id}"><line class="qs-halo" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><line class="qs-linie" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><circle class="qs-punkt" cx="${x2}" cy="${y2}" r="11"/></g>`;
 }).join('');
-const zeichnung = svg.replace('<g class="qs-linien"></g>', `<g class="qs-linien">${linien}</g>`).replace('<svg ', '<svg aria-hidden="true" focusable="false" ');
+const alt = `Schnittzeichnung der ${name}: Gehäuse durchsichtig, ${b.teile.length} Bauteile von Wassertank bis Brühgruppe nummeriert`;
 const anzahl = b.teile.reduce((n, t) => n + t.symptome.length, 0);
 ---
 <section class="box querschnitt" aria-labelledby="aufbau-h" id="aufbau">
   <h2 class="section-h" id="aufbau-h">So ist die {name} aufgebaut: {b.teile.length} Bauteile, {anzahl} Fehler</h2>
   <p>Tippe auf ein Bauteil, dann siehst du, was es macht und welche Fehler dort entstehen. Oder wähle unten, was deine Maschine
   gerade macht, dann leuchtet das passende Teil auf.</p>
-  <div class="qs-buehne" data-weit={meta.viewBox.join(' ')} data-eng={meta.viewBoxEng.join(' ')}>
-    <Fragment set:html={zeichnung} />
+  <div class="qs-buehne" style={`aspect-ratio:${vw}/${vh}`} data-weit={meta.viewBox.join(' ')} data-eng={meta.viewBoxEng.join(' ')}>
+    <div class="qs-bild">
+      <img class="qs-basis" src={`${meta.bild}.webp`} srcset={`${meta.bild}-1000.webp 1000w, ${meta.bild}.webp ${meta.breite}w`} sizes="(max-width: 780px) 100vw, 740px"
+        width={meta.breite} height={meta.hoehe} alt={alt} loading="lazy" decoding="async" />
+      {b.teile.map((t) => <img class="qs-ebene" data-teil={t.id} src={`${meta.bild}-${t.id}.webp`} width={meta.breite} height={meta.hoehe} alt="" loading="lazy" decoding="async" />)}
+    </div>
+    <svg class="qs-linien" viewBox={meta.viewBox.join(' ')} aria-hidden="true" focusable="false" set:html={linien} />
     {b.teile.map((t, i) => (
       <a class={`qs-tag qs-${t.gruppe} ${seite(meta.labels[t.id])}`} href={`#qs-${t.id}`} data-teil={t.id} style={prozent(meta.labels[t.id])}
         data-weit={meta.labels[t.id].join(' ')} data-eng={meta.labelsEng[t.id].join(' ')}>
@@ -109,6 +112,7 @@ const anzahl = b.teile.reduce((n, t) => n + t.symptome.length, 0);
     // Schmale Bildschirme: engerer Bildausschnitt, Labels (nur Nummern) rücken an den Rand. Linien laufen zur Label-Position.
     const buehne = box.querySelector<HTMLElement>('.qs-buehne');
     const svg = buehne?.querySelector('svg');
+    const weit = (buehne?.dataset.weit || '').split(' ').map(Number);
     const schmal = window.matchMedia('(max-width: 640px)');
     function ausschnitt() {
       if (!buehne || !svg) return;
@@ -116,6 +120,11 @@ const anzahl = b.teile.reduce((n, t) => n + t.symptome.length, 0);
       const vb = (buehne.dataset[art] || '').split(' ').map(Number);
       if (vb.length !== 4) return;
       svg.setAttribute('viewBox', vb.join(' '));
+      buehne.style.aspectRatio = `${vb[2]}/${vb[3]}`;
+      buehne.querySelectorAll<HTMLImageElement>('.qs-bild img').forEach((img) => {
+        img.style.left = `${(-vb[0] / vb[2]) * 100}%`; img.style.top = `${(-vb[1] / vb[3]) * 100}%`;
+        img.style.width = `${(weit[2] / vb[2]) * 100}%`; img.style.height = `${(weit[3] / vb[3]) * 100}%`;
+      });
       buehne.querySelectorAll<HTMLElement>('.qs-tag').forEach((tag) => {
         const [x, y] = (tag.dataset[art] || '').split(' ').map(Number);
         tag.style.left = `${((x - vb[0]) / vb[2]) * 100}%`;

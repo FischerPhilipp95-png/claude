@@ -1,212 +1,233 @@
 {
+ "bild": "/bilder/querschnitt/delonghi-ecam",
+ "breite": 2000,
+ "hoehe": 1500,
  "viewBox": [
-  -304,
-  -725,
-  1137,
-  945
+  0,
+  0,
+  2000,
+  1500
+ ],
+ "viewBoxEng": [
+  219,
+  0,
+  1459,
+  1500
  ],
  "anker": {
   "elektronik": [
-   185.3,
-   -383.0
-  ],
-  "pumpe": [
-   294.4,
-   -211.0
-  ],
-  "flowmeter": [
-   431.3,
-   -171.0
-  ],
-  "mahlwerk": [
-   375.9,
-   -363.0
-  ],
-  "thermoblock": [
-   77.9,
-   -250.0
-  ],
-  "ventil": [
-   185.3,
-   -275.0
+   904,
+   479
   ],
   "wassertank": [
-   491.9,
-   -246.0
+   1355,
+   652
   ],
-  "satzbehaelter": [
-   52.0,
-   -122.0
+  "pumpe": [
+   1038,
+   772
   ],
-  "bruehgruppe": [
-   289.3,
-   -103.0
+  "flowmeter": [
+   1105,
+   861
   ],
-  "bruehkopf": [
-   275.4,
-   -209.0
+  "thermoblock": [
+   796,
+   721
   ],
-  "bedienfeld": [
-   103.9,
-   -278.0
+  "ventil": [
+   959,
+   672
   ],
   "bohnen": [
-   294.4,
-   -530.0
+   946,
+   131
+  ],
+  "mahlwerk": [
+   1112,
+   443
   ],
   "pulverschacht": [
-   453.8,
-   -413.0
+   1251,
+   375
   ],
-  "auslauf": [
-   50.2,
-   -87.0
+  "bruehgruppe": [
+   901,
+   995
+  ],
+  "bruehkopf": [
+   943,
+   784
+  ],
+  "satzbehaelter": [
+   515,
+   922
   ],
   "abtropfschale": [
-   -13.9,
-   4.0
+   478,
+   1088
+  ],
+  "auslauf": [
+   508,
+   997
   ],
   "aufschaeumer": [
-   233.0,
-   -4.5
+   1002,
+   1152
+  ],
+  "bedienfeld": [
+   628,
+   438
   ]
  },
  "labels": {
   "elektronik": [
-   -186,
-   -665
+   150,
+   70
   ],
   "bedienfeld": [
-   -186,
-   -547
+   150,
+   264
   ],
   "ventil": [
-   -186,
-   -429
+   150,
+   459
   ],
   "thermoblock": [
-   -186,
-   -311
+   150,
+   653
   ],
   "bruehkopf": [
-   -186,
-   -194
+   150,
+   847
   ],
   "satzbehaelter": [
-   -186,
-   -76
+   150,
+   1041
   ],
   "auslauf": [
-   -186,
-   42
+   150,
+   1236
   ],
   "abtropfschale": [
-   -186,
-   160
+   150,
+   1430
   ],
   "pulverschacht": [
-   715,
-   -665
+   1850,
+   70
   ],
   "wassertank": [
-   715,
-   -500
+   1850,
+   342
   ],
   "pumpe": [
-   715,
-   -335
+   1850,
+   614
   ],
   "flowmeter": [
-   715,
-   -170
+   1850,
+   886
   ],
   "bruehgruppe": [
-   715,
-   -5
+   1850,
+   1158
   ],
   "aufschaeumer": [
-   715,
-   160
+   1850,
+   1430
   ],
   "bohnen": [
-   82,
-   -697
+   720,
+   60
   ],
   "mahlwerk": [
-   355,
-   -697
+   1160,
+   60
   ]
  },
- "viewBoxEng": [
-  -144,
-  -725,
-  817,
-  945
- ],
  "labelsEng": {
   "elektronik": [
-   -110,
-   -665
+   279,
+   70
   ],
   "bedienfeld": [
-   -110,
-   -547
+   279,
+   264
   ],
   "ventil": [
-   -110,
-   -429
+   279,
+   459
   ],
   "thermoblock": [
-   -110,
-   -311
+   279,
+   653
   ],
   "bruehkopf": [
-   -110,
-   -194
+   279,
+   847
   ],
   "satzbehaelter": [
-   -110,
-   -76
+   279,
+   1041
   ],
   "auslauf": [
-   -110,
-   42
+   279,
+   1236
   ],
   "abtropfschale": [
-   -110,
-   160
+   279,
+   1430
   ],
   "pulverschacht": [
-   639,
-   -665
+   1618,
+   70
   ],
   "wassertank": [
-   639,
-   -500
+   1618,
+   342
   ],
   "pumpe": [
-   639,
-   -335
+   1618,
+   614
   ],
   "flowmeter": [
-   639,
-   -170
+   1618,
+   886
   ],
   "bruehgruppe": [
-   639,
-   -5
+   1618,
+   1158
   ],
   "aufschaeumer": [
-   639,
-   160
+   1618,
+   1430
   ],
   "bohnen": [
-   101,
-   -697
+   686,
+   40
   ],
   "mahlwerk": [
-   346,
-   -697
+   1124,
+   40
   ]
- }
+ },
+ "teile": [
+  "elektronik",
+  "wassertank",
+  "pumpe",
+  "flowmeter",
+  "thermoblock",
+  "ventil",
+  "bohnen",
+  "mahlwerk",
+  "pulverschacht",
+  "bruehgruppe",
+  "bruehkopf",
+  "satzbehaelter",
+  "abtropfschale",
+  "auslauf",
+  "aufschaeumer",
+  "bedienfeld"
+ ]
 }
