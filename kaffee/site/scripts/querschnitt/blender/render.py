@@ -13,6 +13,7 @@ from PIL import Image
 
 name = sys.argv[1] if len(sys.argv) > 1 else 'delonghi_ecam'
 schnell = 'schnell' in sys.argv
+linien = 'linien' in sys.argv  # Explosionsansicht als technische Strichzeichnung (Workbench + Freestyle)
 bauart = name.replace('_', '-')
 W, H = (1000, 750) if schnell else (2000, 1500)
 SAMPLES = 48 if schnell else 160
@@ -48,12 +49,44 @@ sc.view_settings.exposure = -1.3
 sc.world = bpy.data.worlds.new('welt')
 bg = sc.world.node_tree.nodes['Background']
 bg.inputs['Color'].default_value = (0.9, 0.9, 0.92, 1)
-bg.inputs['Strength'].default_value = 0.2
+bg.inputs['Strength'].default_value = 1.0 if linien else 0.2
 
 # Kamera
 S = werkzeug.S
-kp = Vector([v * S for v in info['kamera']['position']])
-kz = Vector([v * S for v in info['kamera']['ziel']])
+kam = getattr(modell, 'KAMERA_EXPLOSION', info['kamera']) if linien else info['kamera']
+kp = Vector([v * S for v in kam['position']])
+kz = Vector([v * S for v in kam['ziel']])
+if linien:
+    # Teile auseinanderziehen, Schläuche/Kabel/Gehäusehaut ausblenden, alles weiß mit schwarzen Linien
+    for o in bpy.data.objects:
+        if o.type not in ('MESH', 'CURVE'):
+            continue
+        t = o.get('teil')
+        if t and t in modell.EXPLOSION:
+            o.location = o.location + Vector([v * S for v in modell.EXPLOSION[t]])
+        if o.type == 'CURVE' or o.name in ('huelle', 'kanten', 'frontblende', 'klappe', 'bohnendeckel'):
+            o['_cutter'] = True
+    # Headless gibt es kein OpenGL für Workbench, deshalb Cycles mit einem flachen weißen Material und Umgebungslicht
+    weiss = bpy.data.materials.new('linien_weiss')
+    weiss.use_nodes = True
+    weiss.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = (0.95, 0.95, 0.95, 1)
+    weiss.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value = 1.0
+    for o in bpy.data.objects:
+        if o.type == 'MESH' and o.data.materials:
+            for i in range(len(o.data.materials)):
+                o.data.materials[i] = weiss
+    SAMPLES = 48
+    sc.render.use_freestyle = True
+    sc.render.line_thickness = 1.1
+    fs = bpy.context.view_layer.freestyle_settings
+    ls = fs.linesets.new('linien')
+    ls.select_silhouette = True; ls.select_crease = True; ls.select_border = True; ls.select_contour = True
+    fs.crease_angle = math.radians(120)
+    ls.linestyle.color = (0.05, 0.05, 0.05)
+    ls.linestyle.thickness = 1.3
+    sc.view_settings.view_transform = 'Standard'
+    sc.view_settings.look = 'None'
+    sc.view_settings.exposure = 0.0
 cam_data = bpy.data.cameras.new('kamera')
 cam_data.lens = info['kamera'].get('brennweite', 50)
 cam_data.clip_end = 100
@@ -79,16 +112,21 @@ def licht(name, typ, loc, energie, groesse=1.0, farbe=(1, 1, 1), ziel=kz):
     return o
 
 
-licht('key', 'AREA', (1.3, -1.6, 2.0), 380, 2.0, (1.0, 0.96, 0.9))
-licht('fill', 'AREA', (-2.0, -1.2, 1.0), 120, 3.0, (0.9, 0.94, 1.0))
-licht('rim', 'AREA', (0.4, 2.0, 1.6), 200, 2.0)
-licht('top', 'AREA', (0, 0, 2.5), 90, 3.0)
+if not linien:
+    licht('key', 'AREA', (1.3, -1.6, 2.0), 380, 2.0, (1.0, 0.96, 0.9))
+    licht('fill', 'AREA', (-2.0, -1.2, 1.0), 120, 3.0, (0.9, 0.94, 1.0))
+    licht('rim', 'AREA', (0.4, 2.0, 1.6), 200, 2.0)
+    licht('top', 'AREA', (0, 0, 2.5), 90, 3.0)
+else:
+    licht('sonne', 'SUN', (1, -1, 3), 1.2)
 
 # Schattenfänger-Boden
 bpy.ops.mesh.primitive_plane_add(size=4, location=(0, 0, -0.0005))
 boden = bpy.context.object
 boden.name = 'schattenfaenger'
 boden.is_shadow_catcher = True
+if linien:
+    boden['_cutter'] = True
 
 ordner = os.path.join(SITE, 'public', 'bilder', 'querschnitt')
 os.makedirs(ordner, exist_ok=True)
@@ -135,6 +173,7 @@ webp(basis, os.path.join(ordner, f'{bauart}-1000.webp'), 1000, 80)
 # Anker und Umriss
 anker = {}
 for k, p in info['anker'].items():
+    p = Vector(p) + (Vector([v * S for v in modell.EXPLOSION.get(k, (0, 0, 0))]) if linien else Vector((0, 0, 0)))
     v = world_to_camera_view(sc, cam, Vector(p))
     anker[k] = [round(v.x * W), round((1 - v.y) * H)]
 minx, miny, maxx, maxy = W, H, 0, 0
@@ -146,7 +185,7 @@ for o in bpy.data.objects:
             miny, maxy = min(miny, (1 - v.y) * H), max(maxy, (1 - v.y) * H)
 umriss = [max(0, round(minx)), max(0, round(miny)), min(W, round(maxx)), min(H, round(maxy))]
 
-if not schnell:
+if not schnell and not linien:
     for t in teile:
         png = os.path.join(tmp, f'{bauart}-{t}.png')
         rendern(png, t, SAMPLES_TEIL)
@@ -171,7 +210,7 @@ for i, k in enumerate(labels['oben']):
     pos[k] = [round(W * (0.36 + 0.22 * i)), 60]
     eng[k] = [round(ex0 + (ex1 - ex0) * (0.32 + 0.3 * i)), ey0 + 40]
 assert not (set(teile) - set(pos)), f'Labels fehlen: {set(teile) - set(pos)}'
-if not schnell:
+if not schnell and not linien:
     json.dump({'bild': f'/bilder/querschnitt/{bauart}', 'breite': W, 'hoehe': H, 'viewBox': [0, 0, W, H],
                'viewBoxEng': [ex0, ey0, ex1 - ex0, ey1 - ey0], 'anker': anker, 'labels': pos, 'labelsEng': eng, 'teile': teile},
               open(os.path.join(SITE, 'src', 'querschnitte', f'{bauart}.json'), 'w'), indent=1)

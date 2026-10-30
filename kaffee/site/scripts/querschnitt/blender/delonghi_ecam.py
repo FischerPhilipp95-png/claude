@@ -14,6 +14,14 @@ LABELS = {
     'oben': ['bohnen', 'mahlwerk'],
 }
 KAMERA = {'position': (680, -740, 880), 'ziel': (0, 10, 160), 'brennweite': 50}
+# Explosionsansicht: Versatz je Bauteil in mm (Richtung, in die das Teil aus dem Gerät gezogen wird)
+EXPLOSION = {
+    'wassertank': (170, 40, 0), 'bruehgruppe': (170, -70, 0), 'bruehkopf': (170, -70, 110), 'ventil': (80, 0, 170),
+    'bohnen': (0, 0, 230), 'mahlwerk': (0, 0, 120), 'pulverschacht': (90, 40, 190), 'bedienfeld': (-40, -150, 150),
+    'elektronik': (-170, 0, 40), 'thermoblock': (-160, -60, 0), 'pumpe': (-140, 120, -10), 'flowmeter': (40, 150, 0),
+    'satzbehaelter': (-70, -170, 0), 'abtropfschale': (0, -210, -50), 'auslauf': (0, -150, 0), 'aufschaeumer': (150, -70, -40),
+}
+KAMERA_EXPLOSION = {'position': (1250, -1350, 1250), 'ziel': (0, -20, 170), 'brennweite': 50}
 
 
 def bauen():
