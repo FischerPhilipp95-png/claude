@@ -1,7 +1,7 @@
 """Helfer zum Modellieren in Blender (bpy): Maße in Millimetern, X nach rechts, Y nach hinten, Z nach oben.
 Jedes Bauteil bekommt die Eigenschaft obj["teil"] = <id>, damit render.py es einzeln rendern kann."""
 import bpy, bmesh, math
-from mathutils import Vector
+from mathutils import Vector, Matrix
 
 S = 0.001  # mm → m
 _MAT = {}
@@ -242,3 +242,62 @@ def drahtgitter(name, w, d, h, x, y, z, mat, dicke=1.2):
     o.data.materials.append(mat)
     o.visible_shadow = False
     return o
+
+
+def versatz(obj, dx, dy, dz):
+    """Versatz für die Explosionsansicht (mm) an einem Dekorationsobjekt, z. B. Gehäuseteil."""
+    obj['explosion'] = (dx, dy, dz)
+    return obj
+
+
+def loecher(obj, punkte, r, achse='Z', tiefe=20):
+    """Löcher (Kreise) in ein Objekt schneiden: punkte = [(a, b), ...] in der Ebene senkrecht zur Achse, Weltkoordinaten (mm).
+    Für achse 'Z' sind (a, b) = (x, y), das Loch geht durch das Objekt auf Höhe seiner Mitte."""
+    bm = bmesh.new()
+    ox, oy, oz = obj.location
+    for a, b in punkte:
+        geo = bmesh.ops.create_cone(bm, cap_ends=True, segments=20, radius1=r * S, radius2=r * S, depth=tiefe * S)
+        verts = geo['verts']
+        if achse == 'Z':
+            bmesh.ops.translate(bm, verts=verts, vec=(a * S, b * S, oz))
+        elif achse == 'X':
+            bmesh.ops.rotate(bm, verts=verts, cent=(0, 0, 0), matrix=Matrix.Rotation(math.pi / 2, 3, 'Y'))
+            bmesh.ops.translate(bm, verts=verts, vec=(ox, a * S, b * S))
+        else:
+            bmesh.ops.rotate(bm, verts=verts, cent=(0, 0, 0), matrix=Matrix.Rotation(math.pi / 2, 3, 'X'))
+            bmesh.ops.translate(bm, verts=verts, vec=(a * S, oy, b * S))
+    return _schneider(obj, bm, '_loecher')
+
+
+def _schneider(obj, bm, suffix):
+    # In lokale Koordinaten des Objekts umrechnen (Objekte haben hier nur eine Verschiebung, keine Drehung)
+    bmesh.ops.translate(bm, verts=bm.verts, vec=(-obj.location.x, -obj.location.y, -obj.location.z))
+    me = bpy.data.meshes.new(obj.name + suffix)
+    bm.to_mesh(me)
+    bm.free()
+    cutter = bpy.data.objects.new(obj.name + suffix, me)
+    bpy.context.collection.objects.link(cutter)
+    cutter['_cutter'] = True
+    # Schneider folgt dem Objekt (wichtig für die Explosionsansicht, in der Teile verschoben werden)
+    cutter.parent = obj
+    ausschneiden(obj, cutter)
+    return obj
+
+
+def schlitze(obj, liste, achse='X'):
+    """Rechteckige Schlitze schneiden: liste = [(a, b, breite, hoehe), ...] in der Ebene senkrecht zur Achse (mm, Weltkoordinaten)."""
+    bm = bmesh.new()
+    ox, oy, oz = obj.location
+    for a, b, w, h in liste:
+        geo = bmesh.ops.create_cube(bm, size=1.0)
+        verts = geo['verts']
+        if achse == 'X':
+            bmesh.ops.scale(bm, vec=(30 * S, w * S, h * S), verts=verts)
+            bmesh.ops.translate(bm, verts=verts, vec=(ox, a * S, b * S))
+        elif achse == 'Y':
+            bmesh.ops.scale(bm, vec=(w * S, 30 * S, h * S), verts=verts)
+            bmesh.ops.translate(bm, verts=verts, vec=(a * S, oy, b * S))
+        else:
+            bmesh.ops.scale(bm, vec=(w * S, h * S, 30 * S), verts=verts)
+            bmesh.ops.translate(bm, verts=verts, vec=(a * S, b * S, oz))
+    return _schneider(obj, bm, '_schlitze')

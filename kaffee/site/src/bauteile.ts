@@ -37,7 +37,7 @@ export const BAUARTEN: Record<string, Bauart> = {
   'delonghi-ecam': {
     name: 'De’Longhi ECAM-Bauart',
     beispiele: 'Magnifica S (ECAM 22.110, ECAM 11.112), baugleiche ECAM 20.11X und 21.11X',
-    hinweis: 'Nachgebaut nach der Explosionszeichnung aus der De’Longhi-Ersatzteilliste (ECAM 22.110.SB), vereinfacht und mit durchsichtigem Gehäuse. Keine Konstruktionszeichnung.',
+    hinweis: 'Eigene Zeichnung nach dem Aufbau der De’Longhi-Ersatzteilliste (ECAM 22.110.SB), Formen vereinfacht. Keine Konstruktionszeichnung des Herstellers.',
     teile: [
       {
         id: 'wassertank', gruppe: 'wasser', name: 'Wassertank', aufgabe: 'Sitzt rechts hinten und wird seitlich herausgezogen. Ein Magnetschwimmer meldet der Elektronik, wann Wasser fehlt. Unten passt der Wasserfilter hinein.',

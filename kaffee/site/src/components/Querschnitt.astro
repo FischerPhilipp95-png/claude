@@ -25,13 +25,14 @@ const linien = b.teile.map((t) => {
   const [x2, y2] = meta.anker[t.id];
   return `<g class="qs-leit" data-teil="${t.id}"><line class="qs-halo" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><line class="qs-linie" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><circle class="qs-punkt" cx="${x2}" cy="${y2}" r="11"/></g>`;
 }).join('');
-const alt = `Schnittzeichnung der ${name}: Gehäuse durchsichtig, ${b.teile.length} Bauteile von Wassertank bis Brühgruppe nummeriert`;
+const alt = `Explosionszeichnung der ${name}: Gehäuseteile und ${b.teile.length} Bauteile von Wassertank bis Brühgruppe auseinandergezogen und nummeriert`;
 const anzahl = b.teile.reduce((n, t) => n + t.symptome.length, 0);
 ---
 <section class="box querschnitt" aria-labelledby="aufbau-h" id="aufbau">
   <h2 class="section-h" id="aufbau-h">So ist die {name} aufgebaut: {b.teile.length} Bauteile, {anzahl} Fehler</h2>
-  <p>Tippe auf ein Bauteil, dann siehst du, was es macht und welche Fehler dort entstehen. Oder wähle unten, was deine Maschine
-  gerade macht, dann leuchtet das passende Teil auf.</p>
+  <p>Die Zeichnung zeigt die Maschine auseinandergezogen, wie in einer Ersatzteilliste: jedes Teil an seinem Platz, nur nach außen
+  gerückt. Tippe auf ein Bauteil, dann siehst du, was es macht und welche Fehler dort entstehen. Oder wähle unten, was deine Maschine
+  gerade macht, dann wird das passende Teil markiert.</p>
   <div class="qs-buehne" style={`aspect-ratio:${vw}/${vh}`} data-weit={meta.viewBox.join(' ')} data-eng={meta.viewBoxEng.join(' ')}>
     <div class="qs-bild">
       <img class="qs-basis" src={`${meta.bild}.webp`} srcset={`${meta.bild}-1000.webp 1000w, ${meta.bild}.webp ${meta.breite}w`} sizes="(max-width: 780px) 100vw, 740px"

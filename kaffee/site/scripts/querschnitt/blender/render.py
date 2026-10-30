@@ -64,31 +64,47 @@ if linien:
         t = o.get('teil')
         if t and t in modell.EXPLOSION:
             o.location = o.location + Vector([v * S for v in modell.EXPLOSION[t]])
-        if o.type == 'CURVE' or o.name in ('huelle', 'kanten', 'frontblende', 'klappe', 'bohnendeckel'):
+        elif o.get('explosion'):
+            o.location = o.location + Vector([v * S for v in o['explosion']])
+        if o.type == 'CURVE' or o.name in ('huelle', 'kanten', 'bohnendeckel'):
             o['_cutter'] = True
     # Headless gibt es kein OpenGL für Workbench, deshalb Cycles mit einem flachen weißen Material und Umgebungslicht
     weiss = bpy.data.materials.new('linien_weiss')
     weiss.use_nodes = True
-    weiss.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = (0.95, 0.95, 0.95, 1)
+    weiss.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = (0.96, 0.96, 0.96, 1)
     weiss.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value = 1.0
+    gelb = bpy.data.materials.new('linien_gelb')
+    gelb.use_nodes = True
+    gelb.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = (1.0, 0.72, 0.15, 1)
+    gelb.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value = 1.0
     for o in bpy.data.objects:
         if o.type == 'MESH' and o.data.materials:
             for i in range(len(o.data.materials)):
                 o.data.materials[i] = weiss
-    SAMPLES = 48
+    SAMPLES = 64
+    SAMPLES_TEIL = 32
     sc.render.use_freestyle = True
-    sc.render.line_thickness = 1.1
+    sc.render.line_thickness_mode = 'ABSOLUTE'
+    sc.render.line_thickness = 1.0
     fs = bpy.context.view_layer.freestyle_settings
+    fs.crease_angle = math.radians(110)
+    for alt in list(fs.linesets):
+        fs.linesets.remove(alt)
     ls = fs.linesets.new('linien')
-    ls.select_silhouette = True; ls.select_crease = True; ls.select_border = True; ls.select_contour = True
-    fs.crease_angle = math.radians(120)
-    ls.linestyle.color = (0.05, 0.05, 0.05)
-    ls.linestyle.thickness = 1.3
+    if ls.linestyle is None:
+        ls.linestyle = bpy.data.linestyles.new('linien_stil')
+    ls.select_silhouette = True; ls.select_crease = True; ls.select_border = True; ls.select_contour = False
+    ls.linestyle.color = (0.08, 0.08, 0.08)
+    ls.linestyle.thickness = 2.4 if not schnell else 1.0
+    ls.linestyle.caps = 'ROUND'
     sc.view_settings.view_transform = 'Standard'
     sc.view_settings.look = 'None'
     sc.view_settings.exposure = 0.0
 cam_data = bpy.data.cameras.new('kamera')
-cam_data.lens = info['kamera'].get('brennweite', 50)
+cam_data.lens = kam.get('brennweite', 50)
+if kam.get('ortho'):
+    cam_data.type = 'ORTHO'
+    cam_data.ortho_scale = kam['ortho']
 cam_data.clip_end = 100
 cam = bpy.data.objects.new('kamera', cam_data)
 sc.collection.objects.link(cam)
@@ -150,7 +166,10 @@ def rendern(pfad, nur=None, samples=SAMPLES):
         if nur is None:
             o.hide_render = bool(o.get('_cutter'))
         else:
-            o.hide_render = o.get('teil') != nur
+            o.hide_render = o.get('teil') != nur or bool(o.get('_cutter'))
+        if linien and o.type == 'MESH' and o.data.materials and o.get('teil'):
+            for i in range(len(o.data.materials)):
+                o.data.materials[i] = gelb if (nur is not None and o.get('teil') == nur) else weiss
     sc.render.filepath = pfad
     t = time.time()
     bpy.ops.render.render(write_still=True)
@@ -167,7 +186,7 @@ def webp(png, ziel, breite=None, q=82):
 t0 = time.time()
 basis = os.path.join(tmp, f'{bauart}.png')
 rendern(basis)
-if schnell or linien:
+if schnell:
     ordner = tmp  # Testbilder nie in den Public-Ordner schreiben
 webp(basis, os.path.join(ordner, f'{bauart}.webp'), None if schnell else 2000)
 webp(basis, os.path.join(ordner, f'{bauart}-1000.webp'), 1000, 80)
@@ -187,11 +206,11 @@ for o in bpy.data.objects:
             miny, maxy = min(miny, (1 - v.y) * H), max(maxy, (1 - v.y) * H)
 umriss = [max(0, round(minx)), max(0, round(miny)), min(W, round(maxx)), min(H, round(maxy))]
 
-if not schnell and not linien:
-    for t in teile:
-        png = os.path.join(tmp, f'{bauart}-{t}.png')
-        rendern(png, t, SAMPLES_TEIL)
-        webp(png, os.path.join(ordner, f'{bauart}-{t}.webp'), 1400, 78)
+nur_teile = os.environ.get('TEILE', '').split(',') if os.environ.get('TEILE') else None
+for t in (nur_teile or (teile if not schnell else [])):
+    png = os.path.join(tmp, f'{bauart}-{t}.png')
+    rendern(png, t, SAMPLES_TEIL)
+    webp(png, os.path.join(ordner, f'{bauart}-{t}.webp'), 1400, 78)
 
 labels = info['labels']
 ex0, ey0 = max(0, umriss[0] - 90), max(0, min(umriss[1] - 40, 50))
@@ -212,7 +231,7 @@ for i, k in enumerate(labels['oben']):
     pos[k] = [round(W * (0.36 + 0.22 * i)), 60]
     eng[k] = [round(ex0 + (ex1 - ex0) * (0.32 + 0.3 * i)), ey0 + 40]
 assert not (set(teile) - set(pos)), f'Labels fehlen: {set(teile) - set(pos)}'
-if not schnell and not linien:
+if not schnell:
     json.dump({'bild': f'/bilder/querschnitt/{bauart}', 'breite': W, 'hoehe': H, 'viewBox': [0, 0, W, H],
                'viewBoxEng': [ex0, ey0, ex1 - ex0, ey1 - ey0], 'anker': anker, 'labels': pos, 'labelsEng': eng, 'teile': teile},
               open(os.path.join(SITE, 'src', 'querschnitte', f'{bauart}.json'), 'w'), indent=1)
