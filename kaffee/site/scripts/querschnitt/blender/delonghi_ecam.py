@@ -311,7 +311,7 @@ def bauen():
         p = zylinder(f'puck{i}', 19, 9, -40 + dx, -150 + dy, dz, kaffeesatz)
         p.rotation_euler = (r, 0, r / 2)
     quader('satz_blende', 84, 6, 20, -40, -198, 122, anthrazit, 1)
-    anker('satzbehaelter', -84, -196, 124)
+    anker('satzbehaelter', -84, -196, 44)
 
     # ======================= Abtropfschale mit Tassenabstellfläche und Schwimmer =======================
     teil('abtropfschale')

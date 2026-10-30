@@ -8,7 +8,8 @@ import { createReadStream } from 'node:fs';
 import { tmpdir } from 'node:os';
 
 const DIST = new URL('../dist/', import.meta.url).pathname;
-const CHROME = process.env.CHROME_PATH || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
+// Chrome für pa11y: CHROME_PATH, sonst der vorinstallierte Browser der Cloud-Umgebung (Symlink auf die aktuelle Version), sonst Suche.
+const CHROME = process.env.CHROME_PATH || ['/opt/pw-browsers/chromium', ...(fs.existsSync('/opt/pw-browsers') ? fs.readdirSync('/opt/pw-browsers', { withFileTypes: true }) : []).filter((d) => d.name.startsWith('chromium-')).map((d) => `/opt/pw-browsers/${d.name}/chrome-linux64/chrome`), ...(fs.existsSync('/opt/pw-browsers') ? fs.readdirSync('/opt/pw-browsers', { withFileTypes: true }) : []).filter((d) => d.name.startsWith('chromium-')).map((d) => `/opt/pw-browsers/${d.name}/chrome-linux/chrome`)].find((pfad) => fs.existsSync(pfad)) || '/opt/pw-browsers/chromium';
 const PORT = 4398;
 
 console.log('1/2 HTML prüfen (html-validate) …');

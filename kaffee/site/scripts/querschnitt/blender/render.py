@@ -20,10 +20,11 @@ from PIL import Image, ImageDraw
 
 name = sys.argv[1] if len(sys.argv) > 1 else 'delonghi_ecam'
 schnell = 'schnell' in sys.argv
+nur_anker = 'anker' in sys.argv  # nur Anker, Ausschnitte und Marker neu berechnen (JSON), keine Bilder
 foto = 'foto' in sys.argv
 bauart = name.replace('_', '-')
-W, H = (1000, 750) if schnell else (2000, 1500)
-DW, DH = (600, 450) if schnell else (1200, 900)
+W, H = (1000, 750) if schnell and not nur_anker else (2000, 1500)
+DW, DH = (600, 450) if schnell and not nur_anker else (1200, 900)
 SAMPLES = 32 if schnell else 96
 SAMPLES_TEIL = 24 if schnell else 48
 
@@ -172,6 +173,9 @@ def anordnen(ansicht):
 
 
 def rendern(pfad, nur=None, samples=SAMPLES, breite=W, hoehe=H, gelb_fuellung=True):
+    if nur_anker:
+        sc.render.resolution_x, sc.render.resolution_y = breite, hoehe
+        return
     sc.cycles.samples = samples
     sc.render.resolution_x, sc.render.resolution_y = breite, hoehe
     for o in objekte:
@@ -191,6 +195,8 @@ def rendern(pfad, nur=None, samples=SAMPLES, breite=W, hoehe=H, gelb_fuellung=Tr
 
 
 def webp(png, ziel, breite=None, q=82):
+    if nur_anker:
+        return
     im = Image.open(png).convert('RGBA')
     if breite and breite < im.width:
         im = im.resize((breite, round(im.height * breite / im.width)), Image.LANCZOS)
@@ -235,11 +241,11 @@ for ansicht in ('explosion', 'eingebaut'):
     u = umriss()
     eng = [max(0, u[0] - 40), max(0, u[1] - 30), min(W, u[2] + 40), min(H, u[3] + 30)]
     ergebnis['ansichten'][ansicht] = {'anker': anker, 'viewBoxEng': [eng[0], eng[1], eng[2] - eng[0], eng[3] - eng[1]]}
-    for tid in (nur_teile or (teile if not schnell else [])):
+    for tid in (nur_teile or (teile if not schnell and not nur_anker else [])):
         png = os.path.join(tmp, f'{bauart}-{ansicht}-{tid}.png')
         rendern(png, tid, SAMPLES_TEIL)
         webp(png, os.path.join(ordner, f'{bauart}-{ansicht}-{tid}.webp'), 1400, 78)
-    if schnell:
+    if schnell and not nur_anker:
         im = Image.open(os.path.join(tmp, f'{bauart}-{ansicht}.png')).convert('RGBA')
         hg = Image.new('RGBA', im.size, (255, 255, 255, 255)); hg.alpha_composite(im); d = ImageDraw.Draw(hg)
         for tid, (x, y) in anker.items():
@@ -263,7 +269,7 @@ for tid in (nur_teile or (teile if not schnell else teile[:1])):
     webp(png, os.path.join(ordner, f'{bauart}-detail-{tid}.webp'), 1200, 80)
     marker = [[text, *projizieren([v * S for v in p], DW, DH)] for text, p in DETAILS.get(tid, [])]
     ergebnis['details'][tid] = {'breite': DW, 'hoehe': DH, 'marker': marker}
-    if schnell:
+    if schnell and not nur_anker:
         im = Image.open(png).convert('RGBA'); hg = Image.new('RGBA', im.size, (255, 255, 255, 255)); hg.alpha_composite(im); d = ImageDraw.Draw(hg)
         for text, x, y in marker:
             d.ellipse((x - 7, y - 7, x + 7, y + 7), fill='white', outline='black', width=2); d.text((x + 9, y - 12), text, fill='red')

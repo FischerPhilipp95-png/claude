@@ -4,7 +4,10 @@
 import { createServer } from 'node:http';
 import { readFile, readdir, mkdir } from 'node:fs/promises';
 import { extname, join } from 'node:path';
+import { existsSync } from 'node:fs';
 import { chromium } from 'playwright';
+// Browser: CHROME_PATH, sonst der vorinstallierte Browser der Cloud-Umgebung, sonst der von Playwright mitgebrachte (CI).
+const BROWSER = process.env.CHROME_PATH || (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined);
 
 const DIST = new URL('../dist/', import.meta.url).pathname;
 const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.webp': 'image/webp', '.png': 'image/png', '.woff2': 'font/woff2', '.xml': 'application/xml', '.txt': 'text/plain' };
@@ -31,7 +34,7 @@ const server = createServer(async (req, res) => {
 }).listen(0);
 const origin = `http://localhost:${server.address().port}`;
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: BROWSER });
 const pages = await htmlFiles(DIST);
 const external = [];
 const shots = process.env.SHOTS;

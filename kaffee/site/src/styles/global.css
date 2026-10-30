@@ -569,7 +569,8 @@ p.small { max-width: 72ch; }
 .qs-buehne .qs-num:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
 .qs-legende { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 4px 10px; }
 @media (min-width: 900px) { .qs-legende { grid-template-columns: 1fr; } }
-.qs-leg { display: flex; align-items: center; gap: 8px; padding: 3px 6px; border-radius: 8px; text-decoration: none; color: var(--ink); font-size: 0.88rem; font-weight: 600; line-height: 1.25; }
+.qs-legende li { min-width: 0; }
+.qs-leg { display: flex; align-items: center; gap: 8px; padding: 3px 6px; border-radius: 8px; text-decoration: none; color: var(--ink); font-size: 0.88rem; font-weight: 600; line-height: 1.25; min-width: 0; hyphens: auto; overflow-wrap: anywhere; }
 .qs-leg:hover, .qs-leg.hover, .qs-leg.aktiv { background: color-mix(in srgb, var(--yellow) 22%, #fff); }
 .qs-leg.neben { background: color-mix(in srgb, var(--yellow) 10%, #fff); }
 .qs-hinweis { margin-top: 10px; }
@@ -625,6 +626,7 @@ p.small { max-width: 72ch; }
 .qs-auch { margin: 4px 0 0; }
 .qs-teile-nr { font-size: 0.88rem; color: var(--muted); margin: 0 0 12px; }
 .qs-mehr { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.qs-mehr .btn { white-space: normal; text-align: left; line-height: 1.3; max-width: 100%; }
 .qs-dialog { width: min(96vw, 1400px); max-width: none; max-height: 96vh; padding: 0; border: 0; border-radius: var(--radius); box-shadow: var(--shadow-lg); background: #fff; color: var(--ink); }
 .qs-dialog::backdrop { background: rgba(0,0,0,.6); }
 .qs-dialog-kopf { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
