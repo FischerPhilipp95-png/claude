@@ -5,6 +5,7 @@ import ArtikelKarte from '../../components/ArtikelKarte.astro';
 import VideoKarte from '../../components/VideoKarte.astro';
 import Icon from '../../components/Icon.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
+import Querschnitt from '../../components/Querschnitt.astro';
 import { pflegemittelFuer } from '../../pflegemittel';
 import { SITE } from '../../site';
 import Bild from '../../components/Bild.astro';
@@ -70,6 +71,7 @@ const jsonLd = [
     <p class="ad-note"><strong>Anzeige:</strong> Diese Seite enthält Affiliate-Links (mit * markiert). Kaufst du darüber ein,
     bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts. <a href="/werbung/">Mehr dazu</a></p>
     <Schnellkauf titel={`Pflege für deine ${m.name}`} items={kauf} />
+    {m.bauart && <Querschnitt bauart={m.bauart} name={m.name} />}
     {eigene.length > 0 && (
       <section aria-labelledby="eigene-h">
         <h2 class="section-h" id="eigene-h">Anleitungen für die {m.name}</h2>

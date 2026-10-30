@@ -540,3 +540,50 @@ p.small { max-width: 72ch; }
 .sitemap-gruppe ul { columns: 2; column-gap: 28px; margin: 0; padding-left: 1.2em; }
 .sitemap-gruppe li { break-inside: avoid; margin: 0.25em 0; }
 @media (max-width: 560px) { .sitemap-gruppe ul { columns: 1; } }
+
+/* Schnittzeichnung „So ist die Maschine aufgebaut“ (Querschnitt.astro) */
+.querschnitt .section-h { margin-top: 0; }
+.qs-buehne { position: relative; margin: 14px 0 6px; }
+.qs-buehne svg { display: block; width: 100%; height: auto; }
+.qs-tag { position: absolute; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 7px; padding: 3px 11px 3px 3px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--tag, #fff); color: var(--ink); font-size: 0.8rem; font-weight: 700; line-height: 1; text-decoration: none; white-space: nowrap; box-shadow: 0 2px 6px rgba(0,0,0,.14); cursor: pointer; transition: background-color .15s, transform .15s; }
+.qs-tag.qs-links { transform: translate(-14%, -50%); } .qs-tag.qs-rechts { transform: translate(-86%, -50%); }
+.qs-tag:hover, .qs-tag.aktiv { background: var(--yellow); }
+.qs-tag:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.qs-num { display: inline-flex; flex: none; width: 24px; height: 24px; border-radius: 50%; align-items: center; justify-content: center; background: var(--ink); color: #fff; font-size: 0.74rem; font-weight: 800; line-height: 1; }
+.qs-wasser { --tag: #cfe6fa; } .qs-heiss { --tag: #fdd9b5; } .qs-kaffee { --tag: #f7e3a3; } .qs-milch { --tag: #c9efe3; } .qs-strom { --tag: #f9d0dc; }
+.qs-teil summary .qs-num { background: var(--tag, var(--ink)); color: var(--ink); border: 1.5px solid var(--ink); }
+.qs-halo { stroke: #fff; stroke-width: 5; stroke-linecap: round; }
+.qs-linie { stroke: #1d1712; stroke-width: 1.6; }
+.qs-punkt { fill: #fff; stroke: #1d1712; stroke-width: 2.2; }
+.qs-leit.aktiv .qs-linie, .qs-leit.hover .qs-linie { stroke-width: 3.2; }
+.qs-leit.aktiv .qs-punkt, .qs-leit.hover .qs-punkt { fill: var(--yellow); }
+.qs-zeichnung g[data-teil] { transition: opacity .25s; }
+.qs-hat-aktiv .qs-zeichnung g[data-teil]:not(.aktiv):not(.hover) { opacity: 0.3; }
+.qs-hat-aktiv .qs-leit:not(.aktiv):not(.hover) { opacity: 0.35; }
+.qs-hinweis { margin-top: 0; }
+.qs-symptom { display: grid; gap: 6px; margin: 16px 0; }
+.qs-symptom label { font-weight: 700; }
+.qs-symptom select { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid #bdbab2; border-radius: 8px; background: #fff; color: var(--ink); }
+.qs-teil { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 0 14px; margin: 8px 0; background: #fff; scroll-margin-top: 90px; }
+.qs-teil summary { display: flex; align-items: center; gap: 10px; padding: 12px 0; cursor: pointer; list-style: none; font-weight: 700; line-height: 1.3; }
+.qs-teil summary::-webkit-details-marker { display: none; }
+.qs-teil summary::after { content: '+'; margin-left: 6px; font-size: 1.3rem; line-height: 1; color: var(--muted); }
+.qs-teil[open] summary::after { content: '–'; }
+.qs-teil.aktiv { border-color: var(--akzent); box-shadow: inset 0 0 0 1px var(--akzent); }
+.qs-anz { margin-left: auto; flex: none; font-size: 0.78rem; font-weight: 500; color: var(--muted); }
+.qs-aufgabe { margin: 2px 0 10px; color: var(--muted); font-size: 0.95rem; }
+.qs-fehler { list-style: none; padding: 0; margin: 0 0 12px; }
+.qs-fehler li { padding: 10px 0; border-top: 1px solid var(--line); }
+.qs-fehler li.aktiv { background: color-mix(in srgb, var(--yellow) 14%, #fff); margin: 0 -14px; padding: 10px 14px; }
+.qs-fehler p { margin: 0 0 4px; }
+.qs-f-ursache { font-size: 0.95rem; }
+.qs-stufe { display: flex; align-items: flex-start; gap: 8px; font-size: 0.92rem; line-height: 1.45; }
+.qs-stufe .icon { flex: none; margin-top: 3px; color: #0ca30c; }
+.qs-stufe[data-status="warn"] .icon { color: #b45309; }
+.qs-stufe .small { display: block; }
+.qs-mehr { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+@media (max-width: 640px) {
+  .qs-tag { padding: 0; gap: 0; transform: translate(-50%, -50%); }
+  .qs-tag .qs-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .qs-tag .qs-num { width: 26px; height: 26px; background: transparent; color: var(--ink); }
+}

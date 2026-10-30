@@ -1,0 +1,136 @@
+---
+// Schematische Schnittzeichnung einer Maschine mit anklickbaren Bauteilen. Daten: src/bauteile.ts (Symptome je Bauteil),
+// Zeichnung: src/querschnitte/<bauart>.svg und .json aus scripts/querschnitt.py (Anker- und Label-Positionen).
+// Ohne JavaScript bleibt die Liste darunter voll nutzbar (details/summary), die Labels sind dann Sprungmarken.
+import Icon from './Icon.astro';
+import { amazonSearch } from '../site';
+import { bauart as holeBauart, STUFEN } from '../bauteile';
+
+interface Props { bauart: string; name: string }
+const { bauart: id, name } = Astro.props;
+const b = holeBauart(id);
+if (!b) throw new Error(`Querschnitt: Bauart „${id}“ fehlt in src/bauteile.ts`);
+
+const svgs = import.meta.glob('../querschnitte/*.svg', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
+type Meta = { viewBox: number[]; anker: Record<string, number[]>; labels: Record<string, number[]>; viewBoxEng: number[]; labelsEng: Record<string, number[]> };
+const metas = import.meta.glob('../querschnitte/*.json', { import: 'default', eager: true }) as Record<string, Meta>;
+const svg = svgs[`../querschnitte/${id}.svg`];
+const meta = metas[`../querschnitte/${id}.json`];
+if (!svg || !meta) throw new Error(`Querschnitt: Zeichnung für „${id}“ fehlt, bitte scripts/querschnitt.py ausführen`);
+for (const t of b.teile) if (!meta.anker[t.id] || !meta.labels[t.id]) throw new Error(`Querschnitt: Bauteil „${t.id}“ hat keinen Anker in ${id}.json`);
+
+const [vx, vy, vw, vh] = meta.viewBox;
+const prozent = ([x, y]: number[]) => `left:${(((x - vx) / vw) * 100).toFixed(2)}%;top:${(((y - vy) / vh) * 100).toFixed(2)}%`;
+const seite = ([x]: number[]) => (x < vx + vw * 0.3 ? 'qs-links' : x > vx + vw * 0.7 ? 'qs-rechts' : 'qs-oben');
+const linien = b.teile.map((t) => {
+  const [x1, y1] = meta.labels[t.id];
+  const [x2, y2] = meta.anker[t.id];
+  return `<g class="qs-leit" data-teil="${t.id}"><line class="qs-halo" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><line class="qs-linie" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><circle class="qs-punkt" cx="${x2}" cy="${y2}" r="7"/></g>`;
+}).join('');
+const zeichnung = svg.replace('<g class="qs-linien"></g>', `<g class="qs-linien">${linien}</g>`).replace('<svg ', '<svg aria-hidden="true" focusable="false" ');
+const anzahl = b.teile.reduce((n, t) => n + t.symptome.length, 0);
+---
+<section class="box querschnitt" aria-labelledby="aufbau-h" id="aufbau">
+  <h2 class="section-h" id="aufbau-h">So ist die {name} aufgebaut: {b.teile.length} Bauteile, {anzahl} Fehler</h2>
+  <p>Tippe auf ein Bauteil, dann siehst du, was es macht und welche Fehler dort entstehen. Oder wähle unten, was deine Maschine
+  gerade macht, dann leuchtet das passende Teil auf.</p>
+  <div class="qs-buehne" data-weit={meta.viewBox.join(' ')} data-eng={meta.viewBoxEng.join(' ')}>
+    <Fragment set:html={zeichnung} />
+    {b.teile.map((t, i) => (
+      <a class={`qs-tag qs-${t.gruppe} ${seite(meta.labels[t.id])}`} href={`#qs-${t.id}`} data-teil={t.id} style={prozent(meta.labels[t.id])}
+        data-weit={meta.labels[t.id].join(' ')} data-eng={meta.labelsEng[t.id].join(' ')}>
+        <span class="qs-num">{i + 1}</span><span class="qs-name">{t.kurz ?? t.name.split(' (')[0]}</span>
+      </a>
+    ))}
+  </div>
+  <p class="small qs-hinweis">{b.hinweis}</p>
+
+  <div class="qs-symptom">
+    <label for="qs-symptom-wahl">Was macht deine Maschine?</label>
+    <select id="qs-symptom-wahl">
+      <option value="">Symptom wählen …</option>
+      {b.teile.map((t) => (
+        <optgroup label={t.name}>{t.symptome.map((s, j) => <option value={`${t.id}|${j}`}>{s.text}</option>)}</optgroup>
+      ))}
+    </select>
+  </div>
+
+  <div class="qs-teile">
+    {b.teile.map((t, i) => (
+      <details class="qs-teil" id={`qs-${t.id}`} data-teil={t.id}>
+        <summary><span class={`qs-num qs-${t.gruppe}`}>{i + 1}</span> <span class="qs-teil-name">{t.name}</span>
+          <span class="qs-anz">{t.symptome.length} {t.symptome.length === 1 ? 'Fehler' : 'Fehler'}</span></summary>
+        <p class="qs-aufgabe">{t.aufgabe}</p>
+        <ul class="qs-fehler">
+          {t.symptome.map((s, j) => {
+            const st = STUFEN[s.stufe];
+            return (
+              <li data-symptom={`${t.id}|${j}`}>
+                <p class="qs-f-text"><strong>{s.text}</strong></p>
+                <p class="qs-f-ursache">{s.ursache}</p>
+                <p class="qs-stufe" data-status={st.status}><Icon name={st.icon} size={18} /> <span><strong>{st.text}:</strong> {s.loesung} <span class="small">Quelle: {s.quelle}</span></span></p>
+              </li>
+            );
+          })}
+        </ul>
+        {(t.ersatzteil || t.artikel) && (
+          <p class="qs-mehr">
+            {t.artikel?.map(([href, text]) => <a class="btn btn-sm btn-ghost-dark" href={href}><Icon name="book-open" size={16} /> {text}</a>)}
+            {t.ersatzteil && <a class="btn btn-sm" href={amazonSearch(t.ersatzteil[1])} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> {t.ersatzteil[0]} bei Amazon*</a>}
+          </p>
+        )}
+      </details>
+    ))}
+  </div>
+  <p class="small">*Affiliate-Links zu Amazon. Für dich ändert sich am Preis nichts. Werkstatt-Lösungen stammen aus Reparaturforen und
+  verlangen, das Gehäuse zu öffnen: vorher Netzstecker ziehen, bei Garantie besser der Kundendienst.</p>
+</section>
+
+<script>
+  const box = document.querySelector<HTMLElement>('.querschnitt');
+  if (box) {
+    const alle = (id: string) => box.querySelectorAll<HTMLElement>(`[data-teil="${id}"]`);
+    function aktiv(id: string, oeffnen = false) {
+      box!.classList.toggle('qs-hat-aktiv', !!id);
+      box!.querySelectorAll<HTMLElement>('[data-teil]').forEach((el) => el.classList.toggle('aktiv', el.dataset.teil === id));
+      if (!oeffnen) return;
+      box!.querySelectorAll<HTMLDetailsElement>('details[data-teil]').forEach((d) => { d.open = d.dataset.teil === id; });
+      document.getElementById(`qs-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    box.querySelectorAll<HTMLAnchorElement>('.qs-tag').forEach((tag) => {
+      const id = tag.dataset.teil || '';
+      tag.addEventListener('click', (e) => { e.preventDefault(); aktiv(id, true); });
+      tag.addEventListener('mouseenter', () => alle(id).forEach((el) => el.classList.add('hover')));
+      tag.addEventListener('mouseleave', () => alle(id).forEach((el) => el.classList.remove('hover')));
+    });
+    box.querySelectorAll<HTMLDetailsElement>('details[data-teil]').forEach((d) => {
+      d.addEventListener('toggle', () => { if (d.open) aktiv(d.dataset.teil || ''); });
+    });
+    // Schmale Bildschirme: engerer Bildausschnitt, Labels (nur Nummern) rücken an den Rand. Linien laufen zur Label-Position.
+    const buehne = box.querySelector<HTMLElement>('.qs-buehne');
+    const svg = buehne?.querySelector('svg');
+    const schmal = window.matchMedia('(max-width: 640px)');
+    function ausschnitt() {
+      if (!buehne || !svg) return;
+      const art = schmal.matches ? 'eng' : 'weit';
+      const vb = (buehne.dataset[art] || '').split(' ').map(Number);
+      if (vb.length !== 4) return;
+      svg.setAttribute('viewBox', vb.join(' '));
+      buehne.querySelectorAll<HTMLElement>('.qs-tag').forEach((tag) => {
+        const [x, y] = (tag.dataset[art] || '').split(' ').map(Number);
+        tag.style.left = `${((x - vb[0]) / vb[2]) * 100}%`;
+        tag.style.top = `${((y - vb[1]) / vb[3]) * 100}%`;
+        const leit = svg.querySelector(`.qs-leit[data-teil="${tag.dataset.teil}"]`);
+        leit?.querySelectorAll('line').forEach((l) => { l.setAttribute('x1', String(x)); l.setAttribute('y1', String(y)); });
+      });
+    }
+    ausschnitt();
+    schmal.addEventListener('change', ausschnitt);
+    const wahl = document.getElementById('qs-symptom-wahl') as HTMLSelectElement | null;
+    wahl?.addEventListener('change', () => {
+      const [id] = wahl.value.split('|');
+      box.querySelectorAll<HTMLElement>('[data-symptom]').forEach((li) => li.classList.toggle('aktiv', li.dataset.symptom === wahl.value));
+      if (id) aktiv(id, true);
+    });
+  }
+</script>

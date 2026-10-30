@@ -1,0 +1,212 @@
+{
+ "viewBox": [
+  -304,
+  -725,
+  1137,
+  945
+ ],
+ "anker": {
+  "elektronik": [
+   185.3,
+   -383.0
+  ],
+  "pumpe": [
+   294.4,
+   -211.0
+  ],
+  "flowmeter": [
+   431.3,
+   -171.0
+  ],
+  "mahlwerk": [
+   375.9,
+   -363.0
+  ],
+  "thermoblock": [
+   77.9,
+   -250.0
+  ],
+  "ventil": [
+   185.3,
+   -275.0
+  ],
+  "wassertank": [
+   491.9,
+   -246.0
+  ],
+  "satzbehaelter": [
+   52.0,
+   -122.0
+  ],
+  "bruehgruppe": [
+   289.3,
+   -103.0
+  ],
+  "bruehkopf": [
+   275.4,
+   -209.0
+  ],
+  "bedienfeld": [
+   103.9,
+   -278.0
+  ],
+  "bohnen": [
+   294.4,
+   -530.0
+  ],
+  "pulverschacht": [
+   453.8,
+   -413.0
+  ],
+  "auslauf": [
+   50.2,
+   -87.0
+  ],
+  "abtropfschale": [
+   -13.9,
+   4.0
+  ],
+  "aufschaeumer": [
+   233.0,
+   -4.5
+  ]
+ },
+ "labels": {
+  "elektronik": [
+   -186,
+   -665
+  ],
+  "bedienfeld": [
+   -186,
+   -547
+  ],
+  "ventil": [
+   -186,
+   -429
+  ],
+  "thermoblock": [
+   -186,
+   -311
+  ],
+  "bruehkopf": [
+   -186,
+   -194
+  ],
+  "satzbehaelter": [
+   -186,
+   -76
+  ],
+  "auslauf": [
+   -186,
+   42
+  ],
+  "abtropfschale": [
+   -186,
+   160
+  ],
+  "pulverschacht": [
+   715,
+   -665
+  ],
+  "wassertank": [
+   715,
+   -500
+  ],
+  "pumpe": [
+   715,
+   -335
+  ],
+  "flowmeter": [
+   715,
+   -170
+  ],
+  "bruehgruppe": [
+   715,
+   -5
+  ],
+  "aufschaeumer": [
+   715,
+   160
+  ],
+  "bohnen": [
+   82,
+   -697
+  ],
+  "mahlwerk": [
+   355,
+   -697
+  ]
+ },
+ "viewBoxEng": [
+  -144,
+  -725,
+  817,
+  945
+ ],
+ "labelsEng": {
+  "elektronik": [
+   -110,
+   -665
+  ],
+  "bedienfeld": [
+   -110,
+   -547
+  ],
+  "ventil": [
+   -110,
+   -429
+  ],
+  "thermoblock": [
+   -110,
+   -311
+  ],
+  "bruehkopf": [
+   -110,
+   -194
+  ],
+  "satzbehaelter": [
+   -110,
+   -76
+  ],
+  "auslauf": [
+   -110,
+   42
+  ],
+  "abtropfschale": [
+   -110,
+   160
+  ],
+  "pulverschacht": [
+   639,
+   -665
+  ],
+  "wassertank": [
+   639,
+   -500
+  ],
+  "pumpe": [
+   639,
+   -335
+  ],
+  "flowmeter": [
+   639,
+   -170
+  ],
+  "bruehgruppe": [
+   639,
+   -5
+  ],
+  "aufschaeumer": [
+   639,
+   160
+  ],
+  "bohnen": [
+   101,
+   -697
+  ],
+  "mahlwerk": [
+   346,
+   -697
+  ]
+ }
+}

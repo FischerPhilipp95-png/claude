@@ -7,6 +7,7 @@
 // - suchwoerter: weitere Namen für die Modellsuche (Modellnummern nur, wenn belegt: Anleitung, Typenschild, Herstellerseite).
 // - art: 'siebtraeger' oder 'kapsel', wenn es kein Vollautomat ist.
 // - videos: IDs vom eigenen Kanal (src/videos.json), die genau zu dieser Maschine passen.
+// - bauart: Schlüssel aus src/bauteile.ts, zeigt die Schnittzeichnung „So ist die Maschine aufgebaut“ auf der Maschinenseite.
 //
 // Jede Maschine hat eine Seite. Ohne eigenen Beitrag und ohne Video steht sie auf „noindex“ und fehlt in der Sitemap,
 // damit Google keine dünnen Seiten sieht. Sobald ein Beitrag (Feld „maschinen“ im Artikel) oder ein Video dazukommt, wird sie sichtbar.
@@ -20,6 +21,8 @@ export interface Maschine {
   suchwoerter?: string[];
   art?: 'vollautomat' | 'siebtraeger' | 'kapsel';
   videos?: string[];
+  /** Schnittzeichnung mit Bauteilen und Fehlern (src/bauteile.ts, scripts/querschnitt.py) */
+  bauart?: string;
 }
 
 export const MASCHINEN = daten as Record<string, Maschine>;
