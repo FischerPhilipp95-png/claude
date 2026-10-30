@@ -20,6 +20,8 @@ export interface Bauteil {
   ersatzteil?: [string, string];
   /** [Adresse, Linktext] ausführliche Anleitungen */
   artikel?: [string, string][];
+  /** Original-Ersatzteile mit Hersteller-Teilenummer (aus der offiziellen Ersatzteilliste), z. B. „Pumpe Ulka 230 V (5113211311)“ */
+  teile?: string[];
 }
 export interface Bauart { name: string; beispiele: string; hinweis: string; teile: Bauteil[] }
 
@@ -34,11 +36,12 @@ const FEHLER = '/artikel/delonghi-magnifica-s-fehler/';
 export const BAUARTEN: Record<string, Bauart> = {
   'delonghi-ecam': {
     name: 'De’Longhi ECAM-Bauart',
-    beispiele: 'Magnifica S, Magnifica Evo, Dinamica, Eletta',
-    hinweis: 'Schematische Darstellung, keine Konstruktionszeichnung: Das Gehäuse ist durchsichtig gezeichnet, die Lage der Teile ist vereinfacht.',
+    beispiele: 'Magnifica S (ECAM 22.110, ECAM 11.112), baugleiche ECAM 20.11X und 21.11X',
+    hinweis: 'Nachgebaut nach der Explosionszeichnung aus der De’Longhi-Ersatzteilliste (ECAM 22.110.SB), vereinfacht und mit durchsichtigem Gehäuse. Keine Konstruktionszeichnung.',
     teile: [
       {
         id: 'wassertank', gruppe: 'wasser', name: 'Wassertank', aufgabe: 'Sitzt rechts hinten und wird seitlich herausgezogen. Ein Magnetschwimmer meldet der Elektronik, wann Wasser fehlt. Unten passt der Wasserfilter hinein.',
+        teile: ['Wassertank (7313212611)', 'Wassertankdeckel (5313213321)', 'Schwimmer (5313222641)'],
         symptome: [
           { text: 'Wassertank-Lampe blinkt', ursache: 'Zu wenig Wasser im Tank.', stufe: 'selbst', loesung: 'Tank füllen und einsetzen, bis er hörbar einrastet.', quelle: 'Anleitung' },
           { text: 'Wassertank-Lampe leuchtet dauerhaft', ursache: 'Tank fehlt oder sitzt nicht richtig.', stufe: 'selbst', loesung: 'Tank fest nach unten drücken.', quelle: 'Anleitung' },
@@ -50,6 +53,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'pumpe', gruppe: 'wasser', name: 'Pumpe', aufgabe: 'Eine Schwingkolbenpumpe hinten links baut den Brühdruck auf. Ihr Brummen hörst du bei jedem Bezug, das Rattern ohne Wasser ist Luft im System.',
+        teile: ['Pumpe Ulka 230 V 48 W (5113211311)', 'Halterung Pumpe (5313230671)', 'Silikonrohr zur Pumpe (5332199500)'],
         symptome: [
           { text: 'Pumpe brummt laut, aber es kommt nichts', ursache: 'Luft im Wasserkreislauf, zum Beispiel nach leerem Tank.', stufe: 'selbst', loesung: 'Dampfdrehknopf öffnen und Heißwasser laufen lassen, bis es gleichmäßig fließt.', quelle: 'Anleitung' },
           { text: 'Pumpe läuft, aber kein Wasser kommt an', ursache: 'Schlauch zum oder vom Erhitzer verstopft.', stufe: 'werkstatt', loesung: 'Schlauch am Erhitzerausgang abziehen, prüfen, ob Wasser kommt, Verstopfung mit einer Nadel freistoßen.', quelle: 'elektroda.com' },
@@ -58,12 +62,14 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'flowmeter', gruppe: 'wasser', name: 'Durchflussmesser', aufgabe: 'Ein kleines Flügelrad zählt, wie viel Wasser zur Tasse fließt. Danach stoppt die Maschine den Bezug und zählt die Bezüge bis zum Entkalken.',
+        teile: ['Durchflussmesser (5213214671)', 'Verkabelung Durchflussmesser (5013251461)'],
         symptome: [
           { text: 'Tassenmenge schwankt stark oder Bezug stoppt zu früh', ursache: 'Flügelrad verkalkt oder Sensor gestört. In Reparaturforen ein häufiger Verdacht, aber ohne Öffnen nicht zu prüfen.', stufe: 'werkstatt', loesung: 'Erst entkalken und den Tank-Schwimmer prüfen. Bleibt es dabei, Durchflussmesser in der Werkstatt prüfen lassen.', quelle: 'kaffee-netz.de' },
         ],
       },
       {
         id: 'thermoblock', gruppe: 'heiss', name: 'Thermoblock (Durchlauferhitzer)', aufgabe: 'Ein Aluminiumblock mit Heizwendel erhitzt das Wasser in Sekunden. Hier setzt sich der meiste Kalk ab, deshalb mahnt die Maschine regelmäßig zum Entkalken.',
+        teile: ['Generator rund 230 V 1400 W (5513214291)', 'Sicherheitsventil (7313219401)', 'Sensor NTC (5213211181)', 'Verkabelung mit TCO (5013252531)'],
         symptome: [
           { text: 'Entkalkungs-Lampe blinkt', ursache: 'Kalk im Erhitzer, die Maschine zählt die Bezüge.', stufe: 'selbst', loesung: 'Entkalkungsprogramm starten: Taste Spülen/Entkalken 5 Sekunden halten.', quelle: 'Anleitung' },
           { text: 'Kaffee nicht heiß', ursache: 'Tassen kalt, Brühgruppe abgekühlt oder Temperatur niedrig eingestellt.', stufe: 'selbst', loesung: 'Tassen vorwärmen, vor dem Bezug die Spültaste drücken, Kaffeetemperatur höher stellen.', quelle: 'Anleitung' },
@@ -75,6 +81,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'ventil', gruppe: 'wasser', name: 'Magnetventil', aufgabe: 'Schaltet den Wasserweg um: zur Brühgruppe, zur Dampfdüse oder beim Spülen in die Abtropfschale. Hängt das Ventil, läuft Wasser am falschen Ort heraus.',
+        teile: ['Ventilgruppe „Mechanics valve“ (7313217301)', 'Mikroschalter (5132110500)'],
         symptome: [
           { text: 'Entkalken bricht immer mit „Wasser nachfüllen“ ab', ursache: 'Ventilstück im oberen Brühkopf verstopft, der Abzweig zur Dampfdüse ist zu.', stufe: 'werkstatt', loesung: 'Oberen Brühkopf komplett tauschen, das Ventil gibt es nicht einzeln.', quelle: 'kaffee-netz.de' },
           { text: 'Wasser tritt links unten am roten Überlauf aus', ursache: 'Überdruck- oder Expansionsventil öffnet.', stufe: 'werkstatt', loesung: 'Keine eindeutige Lösung aus Foren, Fall für den Kundendienst.', quelle: 'Reparaturforen' },
@@ -82,6 +89,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'bohnen', gruppe: 'kaffee', name: 'Bohnenbehälter mit Mahlgradregler', kurz: 'Bohnenbehälter', aufgabe: 'Oben unter dem Deckel. Der Drehregler im Behälter verstellt den Abstand der Mahlscheiben, aber nur bei laufendem Mahlwerk und nur eine Stufe auf einmal.',
+        teile: ['Bohnenbehälter (5313219211)', 'Reglerknopf Mahlwerk (5913212611)', 'Bohnendeckel (5513214851)'],
         symptome: [
           { text: 'Kaffee läuft zu langsam oder tröpfchenweise', ursache: 'Mahlgrad zu fein.', stufe: 'selbst', loesung: 'Regler bei laufendem Mahlwerk eine Stufe nach rechts (Richtung 7) drehen, Wirkung erst nach 2 Kaffees.', quelle: 'Anleitung, De’Longhi-Support' },
           { text: 'Kaffee dünn, wässrig, wenig Crema', ursache: 'Zu grob gemahlen, zu wenig Pulver, zu viel Wasser.', stufe: 'selbst', loesung: 'Regler bei laufendem Mahlwerk eine Stufe nach links, Aroma höher, Tassenmenge kleiner, Espressobohnen verwenden.', quelle: 'Anleitung' },
@@ -91,6 +99,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'mahlwerk', gruppe: 'kaffee', name: 'Mahlwerk', aufgabe: 'Kegelmahlwerk aus Stahl direkt unter dem Bohnenbehälter. Ein Sensor misst die Mahlzeit, daraus ergibt sich die Pulvermenge pro Tasse.',
+        teile: ['Mahleinheit 230 V (7313230501)', 'Balgdichtung Mahlwerk (5313219181)', 'Verkabelung mit Sicherung für Mahlwerk (5013257371)'],
         symptome: [
           { text: 'Nach Werksreset: Kaffee wässrig, Kaffeepuck höchstens 8 mm', ursache: 'Maschine muss die Mahlmenge neu lernen.', stufe: 'selbst', loesung: 'Bohnenbehälter leeren, 10 Bezüge hintereinander ohne Bohnen machen.', quelle: 'kaffee-netz.de' },
           { text: 'Mahlwerk mahlt unter 1 Sekunde, Kaffeepuck hauchdünn', ursache: 'Kabelbruch am Kabel zur Sensorplatine des Mahlwerks.', stufe: 'werkstatt', loesung: 'Defektes Kabelstück herausschneiden und neu verlöten.', quelle: 'kaffeestudio.de' },
@@ -100,6 +109,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'pulverschacht', gruppe: 'kaffee', name: 'Pulverschacht (vorgemahlen)', aufgabe: 'Die Klappe neben dem Bohnenbehälter führt direkt zur Brühgruppe, am Mahlwerk vorbei. Nur für einen gestrichenen Messlöffel gemahlenen Kaffee.',
+        teile: ['Deckel Kaffeepulverbehälter (5313221031)', 'Messlöffel (5332169200)'],
         symptome: [
           { text: 'Pulverkaffee fällt in die Maschine, statt gebrüht zu werden', ursache: 'Pulver zu früh oder zu viel eingefüllt.', stufe: 'selbst', loesung: 'Funktion „vorgemahlen“ wählen, erst einen Messlöffel einfüllen, wenn die Maschine fehlendes Pulver meldet, Getränk erneut wählen.', quelle: 'elektroda.com' },
           { text: 'Zu viel Pulver: Alarm, kein Kaffee', ursache: 'Mehr als ein gestrichener Messlöffel.', stufe: 'selbst', loesung: 'Pulvermenge verringern, Kaffee neu anfordern.', quelle: 'Anleitung' },
@@ -107,6 +117,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'bruehgruppe', gruppe: 'kaffee', name: 'Brühgruppe', aufgabe: 'Hinter der rechten Klappe. Nimmt das Pulver auf, presst es und lässt das heiße Wasser hindurch. Herausnehmbar, nur mit Wasser spülen, drei große Dichtringe halten den Druck.',
+        teile: ['Brühkolben, komplette Brühgruppe (7313232331)', 'Unterer Kolben (5313213211)', 'Dichtung (5313238581)', 'Auswurfhebel (5313213191)', 'Filter (6032105300)'],
         symptome: [
           { text: 'Viel Wasser im Kaffeesatzbehälter, Kaffee schwach', ursache: 'Die drei großen O-Ringe der Brühgruppe sind verschlissen.', stufe: 'selbst', loesung: 'O-Ringe tauschen und mit lebensmittelechtem Silikonfett fetten.', quelle: 'coffeeforums.co.uk, iFixit' },
           { text: 'Tasse wird nur halb voll, der Rest läuft in die Abtropfschale', ursache: 'Brühkolben verschmutzt oder Dichtringe verschlissen, Druck geht verloren.', stufe: 'selbst', loesung: 'Brühgruppe zerlegen und reinigen, große Dichtringe und Dichtring am Kolben erneuern.', quelle: 'kaffeestudio.de' },
@@ -121,6 +132,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'bruehkopf', gruppe: 'kaffee', name: 'Oberer Brühkolben', aufgabe: 'Fest im Gerät, drückt von oben auf die Brühgruppe und leitet das Wasser ein. Das normale Entkalken erreicht ihn nicht, deshalb verkalkt er mit den Jahren.',
+        teile: ['Duschsieb, schwarz (5313217601)', 'O-Ring D=3,85 (5313217701)', 'Antrieb Brühgruppe (7313225981)'],
         symptome: [
           { text: 'Kaffee kommt nur tröpfchenweise, Heißwasser läuft normal', ursache: 'Oberer Brühkolben verkalkt.', stufe: 'werkstatt', loesung: 'Entkalker im Testmodus durch den oberen Brühkolben pumpen, einwirken lassen, mehrmals wiederholen, mit klarem Wasser spülen. Kein von De’Longhi beschriebenes Verfahren.', quelle: 'kaffee-netz.de' },
           { text: 'Durchfluss wird immer weniger bis null, Wasser läuft in die Abtropfschale', ursache: 'Dichtung am oberen Brühkolben verschlissen, oft nach etwa 4.500 Bezügen.', stufe: 'werkstatt', loesung: 'Gehäuse öffnen, oberen Kolben ausbauen, O-Ringe erneuern.', quelle: 'elektroda.com, coffeeforums.co.uk' },
@@ -128,6 +140,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'auslauf', gruppe: 'kaffee', name: 'Kaffeeauslauf', aufgabe: 'Höhenverstellbar, mit zwei Düsen. Die feinen Löcher setzen sich mit Kaffeeöl zu, dann kommt aus einer Seite weniger.',
+        teile: ['Kaffeeauslauf (5313213901)', 'Deckel Kaffeeauslauf (5313223051)', 'Griff Auslauf (5313224281)'],
         symptome: [
           { text: 'Aus einem Auslauf kommt kein Kaffee', ursache: 'Löcher im Auslauf verstopft.', stufe: 'selbst', loesung: 'Ausläufe mit einem Zahnstocher frei machen, Auslauf abnehmen und spülen.', quelle: 'Anleitung' },
         ],
@@ -135,6 +148,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'aufschaeumer', gruppe: 'milch', name: 'Milchaufschäumer und Dampfventil', kurz: 'Milchaufschäumer', aufgabe: 'Die Dampfdüse rechts vorn zieht Luft und Milch an und schäumt sie auf. Der Drehknopf darüber öffnet das Dampfventil im Gerät.',
+        teile: ['Rohr mit Milchaufschäumer (7313219311)', 'Dichtung Milchaufschäumer (5313224911)', 'Einheit Dampfhahn (7313218741)', 'Dampfregelknopf (5513222441)'],
         symptome: [
           { text: 'Milch wird nicht aufgeschäumt', ursache: 'Aufschäumer verschmutzt, Löcher zu.', stufe: 'selbst', loesung: 'Aufschäumer abnehmen, zerlegen, reinigen, Löcher frei machen.', quelle: 'Anleitung' },
           { text: 'Milchschaum mit großen Blasen', ursache: 'Milch nicht kalt genug.', stufe: 'selbst', loesung: 'Teilentrahmte Milch direkt aus dem Kühlschrank, sonst andere Marke probieren.', quelle: 'Anleitung' },
@@ -147,6 +161,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'satzbehaelter', gruppe: 'kaffee', name: 'Kaffeesatzbehälter', aufgabe: 'Sitzt in der Abtropfschale und fängt die Kaffeepucks auf. Ein Zähler meldet, wann er voll ist, deshalb nur leeren, wenn die Maschine eingeschaltet ist.',
+        teile: ['Kaffeesatzschale (5313213561)', 'Blende Kaffeesatzschublade (5313215181)'],
         symptome: [
           { text: 'Satzbehälter-Lampe blinkt', ursache: 'Behälter voll.', stufe: 'selbst', loesung: 'Satzbehälter und Abtropfschale leeren. Wer die Schale herausnimmt, leert immer auch den Satzbehälter, sonst stimmt der Zähler nicht.', quelle: 'Anleitung' },
           { text: 'Satzbehälter-Lampe leuchtet dauerhaft', ursache: 'Behälter fehlt nach dem Reinigen.', stufe: 'selbst', loesung: 'Abtropfschale herausnehmen, Satzbehälter einsetzen.', quelle: 'Anleitung' },
@@ -155,6 +170,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'abtropfschale', gruppe: 'wasser', name: 'Abtropfschale', aufgabe: 'Fängt Spülwasser und Tropfen auf. Der rote Schwimmer zeigt, wann sie voll ist. Läuft sie über, steht Wasser unter der Maschine.',
+        teile: ['Ablaufschale (5313213551)', 'Tassenabstellfläche (6013211171)', 'Schwimmer (5313222641)'],
         symptome: [
           { text: 'Pfütze unter der Maschine', ursache: 'Abtropfschale übergelaufen oder nicht richtig eingesetzt.', stufe: 'selbst', loesung: 'Schale leeren und einsetzen, bis sie einrastet. Kommt das Wasser aus dem Gerät selbst, ist meist eine Dichtung undicht.', quelle: 'Anleitung' },
         ],
@@ -162,6 +178,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'bedienfeld', gruppe: 'strom', name: 'Bedienfeld', aufgabe: 'Tasten und Kontrolllampen. Blinkt eine Lampe, musst du etwas tun. Leuchtet sie dauerhaft, fehlt ein Teil oder ein Programm läuft.',
+        teile: ['Einheit Bedienfeld (7313222211)', 'Platine Display (5213216011)'],
         symptome: [
           { text: 'Alle Lampen blinken gleichzeitig', ursache: 'Maschine meldet einen Fehler, oft nach Stromausfall oder Transport.', stufe: 'selbst', loesung: 'Ausschalten, Netzstecker ziehen, nach einer Minute neu starten. Bleibt es dabei, Reset nach Anleitung.', quelle: 'Anleitung' },
           { text: 'Rotes Warndreieck blinkt', ursache: 'Allgemeiner Fehler, meist Brühgruppe falsch eingesetzt oder starke Verschmutzung.', stufe: 'selbst', loesung: 'Brühgruppe herausnehmen, reinigen, richtig einsetzen, Klappe schließen.', quelle: 'Anleitung' },
@@ -170,6 +187,7 @@ export const BAUARTEN: Record<string, Bauart> = {
       },
       {
         id: 'elektronik', gruppe: 'strom', name: 'Elektronik (Leistungsplatine)', aufgabe: 'Steuert Pumpe, Heizung, Mahlwerk und Antrieb der Brühgruppe. Sitzt an der linken Gehäusewand. Der Hauptschalter dahinter trennt alles vom Netz.',
+        teile: ['Leistungsplatine (5213216631)', 'Netzkabel mit Stecker (5032111900)', 'Schalter (5132112500)'],
         symptome: [
           { text: 'Gerät schaltet sich nicht ein', ursache: 'Stecker nicht drin oder Hauptschalter auf der Rückseite aus.', stufe: 'selbst', loesung: 'Stecker prüfen, Hauptschalter hinten auf I stellen.', quelle: 'Anleitung, De’Longhi-FAQ' },
           { text: 'Totalausfall, keine Lampe leuchtet (älteres Gerät)', ursache: 'Bauteile auf der Leistungsplatine defekt.', stufe: 'werkstatt', loesung: 'Leistungsplatine tauschen, danach alle Steckverbindungen prüfen und neu stecken.', quelle: 'kaffee-netz.de' },

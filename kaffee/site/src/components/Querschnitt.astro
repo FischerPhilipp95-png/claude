@@ -76,6 +76,10 @@ const anzahl = b.teile.reduce((n, t) => n + t.symptome.length, 0);
             );
           })}
         </ul>
+        {t.teile && (
+          <p class="qs-teile-nr"><strong>Original-Ersatzteile</strong> (Teilenummern aus der Ersatzteilliste, vor dem Kauf mit dem Typenschild
+          abgleichen): {t.teile.join(', ')}</p>
+        )}
         {(t.ersatzteil || t.artikel) && (
           <p class="qs-mehr">
             {t.artikel?.map(([href, text]) => <a class="btn btn-sm btn-ghost-dark" href={href}><Icon name="book-open" size={16} /> {text}</a>)}
