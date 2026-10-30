@@ -1,7 +1,8 @@
 ---
-// Schematische Schnittzeichnung einer Maschine mit anklickbaren Bauteilen. Daten: src/bauteile.ts (Symptome je Bauteil),
-// Zeichnung: src/querschnitte/<bauart>.svg und .json aus scripts/querschnitt.py (Anker- und Label-Positionen).
-// Ohne JavaScript bleibt die Liste darunter voll nutzbar (details/summary), die Labels sind dann Sprungmarken.
+// Explosionszeichnung und eingebaute Ansicht einer Maschine mit nummerierten Bauteilen, Legende, Brühablauf-Animation,
+// Fehler-Modus (Symptom → verdächtige Teile), Nahaufnahme je Teil, Vollbild mit Lupe.
+// Daten: src/bauteile.ts (Symptome, Teilenummern, Tausch-Infos, Ablauf), Bilder und Anker aus scripts/querschnitt/blender/render.py
+// (src/querschnitte/<bauart>.json). Ohne JavaScript bleiben Zeichnung, Legende und die Liste darunter nutzbar.
 import { createHash } from 'node:crypto';
 import Icon from './Icon.astro';
 import { amazonSearch } from '../site';
@@ -12,143 +13,295 @@ const { bauart: id, name } = Astro.props;
 const b = holeBauart(id);
 if (!b) throw new Error(`Querschnitt: Bauart „${id}“ fehlt in src/bauteile.ts`);
 
-type Meta = { bild: string; breite: number; hoehe: number; viewBox: number[]; viewBoxEng: number[]; anker: Record<string, number[]>; labels: Record<string, number[]>; labelsEng: Record<string, number[]>; teile: string[] };
+type Ansicht = { anker: Record<string, number[]>; viewBoxEng: number[] };
+type Meta = { bild: string; breite: number; hoehe: number; teile: string[]; ansichten: Record<string, Ansicht>;
+  details: Record<string, { breite: number; hoehe: number; marker: [string, number, number][] }> };
 const metas = import.meta.glob('../querschnitte/*.json', { import: 'default', eager: true }) as Record<string, Meta>;
 const meta = metas[`../querschnitte/${id}.json`];
-if (!meta) throw new Error(`Querschnitt: Rendering für „${id}“ fehlt, bitte node scripts/querschnitt/render.mjs ausführen`);
-for (const t of b.teile) if (!meta.anker[t.id] || !meta.labels[t.id]) throw new Error(`Querschnitt: Bauteil „${t.id}“ fehlt im Modell ${id}`);
+if (!meta?.ansichten) throw new Error(`Querschnitt: Rendering für „${id}“ fehlt oder ist veraltet, bitte scripts/querschnitt/blender/render.py ausführen`);
+const ANSICHTEN = [['explosion', 'Auseinandergezogen'], ['eingebaut', 'Eingebaut']] as const;
+for (const t of b.teile) for (const [a] of ANSICHTEN) if (!meta.ansichten[a]?.anker[t.id]) throw new Error(`Querschnitt: Bauteil „${t.id}“ fehlt in Ansicht ${a} von ${id}`);
+for (const s of b.ablauf) if (!b.teile.some((t) => t.id === s.teil)) throw new Error(`Querschnitt: Ablauf nennt unbekanntes Teil „${s.teil}“`);
 
 // Versionskennung aus den Renderdaten: neue Bilder bekommen neue Adressen, sonst zeigen Browser und CDN alte Bilder.
 const version = createHash('md5').update(JSON.stringify(meta)).digest('hex').slice(0, 8);
-const bild = (suffix = '') => `${meta.bild}${suffix}.webp?v=${version}`;
-const [vx, vy, vw, vh] = meta.viewBox;
-const prozent = ([x, y]: number[]) => `left:${(((x - vx) / vw) * 100).toFixed(2)}%;top:${(((y - vy) / vh) * 100).toFixed(2)}%`;
-const seite = ([x]: number[]) => (x < vx + vw * 0.3 ? 'qs-links' : x > vx + vw * 0.7 ? 'qs-rechts' : 'qs-oben');
-const linien = b.teile.map((t) => {
-  const [x1, y1] = meta.labels[t.id];
-  const [x2, y2] = meta.anker[t.id];
-  return `<g class="qs-leit" data-teil="${t.id}"><line class="qs-halo" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><line class="qs-linie" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><circle class="qs-punkt" cx="${x2}" cy="${y2}" r="11"/></g>`;
-}).join('');
-const alt = `Explosionszeichnung der ${name}: Gehäuseteile und ${b.teile.length} Bauteile von Wassertank bis Brühgruppe auseinandergezogen und nummeriert`;
+const bild = (suffix: string) => `${meta.bild}-${suffix}.webp?v=${version}`;
+const { breite: W, hoehe: H } = meta;
+const prozent = ([x, y]: number[]) => `left:${((x / W) * 100).toFixed(2)}%;top:${((y / H) * 100).toFixed(2)}%`;
+const nummer = (tid: string) => b.teile.findIndex((t) => t.id === tid) + 1;
 const anzahl = b.teile.reduce((n, t) => n + t.symptome.length, 0);
+const alt = `Explosionszeichnung der ${name}: Gehäuseteile und ${b.teile.length} nummerierte Bauteile von Wassertank bis Brühgruppe`;
+const teileNummer = (eintrag: string) => eintrag.match(/\(([A-Z0-9]+)\)\s*$/)?.[1];
 ---
-<section class="box querschnitt" aria-labelledby="aufbau-h" id="aufbau">
+<section class="box querschnitt" aria-labelledby="aufbau-h" id="aufbau" data-ansicht="explosion">
   <h2 class="section-h" id="aufbau-h">So ist die {name} aufgebaut: {b.teile.length} Bauteile, {anzahl} Fehler</h2>
-  <p>Die Zeichnung zeigt die Maschine auseinandergezogen, wie in einer Ersatzteilliste: jedes Teil an seinem Platz, nur nach außen
-  gerückt. Tippe auf ein Bauteil, dann siehst du, was es macht und welche Fehler dort entstehen. Oder wähle unten, was deine Maschine
-  gerade macht, dann wird das passende Teil markiert.</p>
-  <div class="qs-buehne" style={`aspect-ratio:${vw}/${vh}`} data-weit={meta.viewBox.join(' ')} data-eng={meta.viewBoxEng.join(' ')}>
-    <div class="qs-bild">
-      <img class="qs-basis" src={bild()} srcset={`${bild('-1000')} 1000w, ${bild()} ${meta.breite}w`} sizes="(max-width: 780px) 100vw, 740px"
-        width={meta.breite} height={meta.hoehe} alt={alt} loading="lazy" decoding="async" />
-      {b.teile.map((t) => <img class="qs-ebene" data-teil={t.id} src={bild(`-${t.id}`)} width={meta.breite} height={meta.hoehe} alt="" loading="lazy" decoding="async" />)}
+  <p>Die Zeichnung zeigt die Maschine auseinandergezogen wie in einer Ersatzteilliste oder eingebaut, wie die Teile im Gerät
+  sitzen. Tippe auf eine Nummer, dann siehst du, was das Teil macht, welche Fehler dort entstehen und ob du es selbst tauschen kannst.</p>
+
+  <div class="qs-kopf">
+    <div class="qs-ansichten" role="group" aria-label="Ansicht wählen">
+      {ANSICHTEN.map(([a, text]) => <button type="button" class="qs-ansicht" data-ansicht={a} aria-pressed={a === 'explosion' ? 'true' : 'false'}>{text}</button>)}
     </div>
-    <svg class="qs-linien" viewBox={meta.viewBox.join(' ')} aria-hidden="true" focusable="false" set:html={linien} />
-    {b.teile.map((t, i) => (
-      <a class={`qs-tag qs-${t.gruppe} ${seite(meta.labels[t.id])}`} href={`#qs-${t.id}`} data-teil={t.id} style={prozent(meta.labels[t.id])}
-        data-weit={meta.labels[t.id].join(' ')} data-eng={meta.labelsEng[t.id].join(' ')}>
-        <span class="qs-num">{i + 1}</span><span class="qs-name">{t.kurz ?? t.name.split(' (')[0]}</span>
-      </a>
-    ))}
+    <button type="button" class="qs-vollbild" hidden><Icon name="maximize-2" size={16} /> Vergrößern</button>
+  </div>
+
+  <div class="qs-rahmen">
+    <div class="qs-buehne" style={`aspect-ratio:${W}/${H}`} data-weit={`0 0 ${W} ${H}`}
+      data-eng-explosion={meta.ansichten.explosion.viewBoxEng.join(' ')} data-eng-eingebaut={meta.ansichten.eingebaut.viewBoxEng.join(' ')}>
+      <div class="qs-bild">
+        {ANSICHTEN.map(([a]) => (
+          <img class="qs-basis" data-ansicht={a} src={bild(a)} srcset={`${bild(`${a}-1000`)} 1000w, ${bild(a)} ${W}w`} sizes="(max-width: 780px) 100vw, 740px"
+            width={W} height={H} alt={a === 'explosion' ? alt : `Eingebaute Ansicht der ${name} mit denselben Bauteilen`} loading={a === 'explosion' ? 'eager' : 'lazy'} decoding="async" />
+        ))}
+        {ANSICHTEN.map(([a]) => b.teile.map((t) => (
+          <img class="qs-ebene" data-ansicht={a} data-teil={t.id} src={bild(`${a}-${t.id}`)} width={W} height={H} alt="" loading="lazy" decoding="async" />
+        )))}
+      </div>
+      {b.teile.map((t, i) => (
+        <button type="button" class={`qs-num qs-${t.gruppe}`} data-teil={t.id} style={prozent(meta.ansichten.explosion.anker[t.id])}
+          data-explosion={meta.ansichten.explosion.anker[t.id].join(' ')} data-eingebaut={meta.ansichten.eingebaut.anker[t.id].join(' ')}
+          aria-label={`${i + 1}: ${t.name}`}>{i + 1}</button>
+      ))}
+    </div>
+    <ol class="qs-legende" aria-label="Bauteile">
+      {b.teile.map((t, i) => (
+        <li><a class="qs-leg" href={`#qs-${t.id}`} data-teil={t.id}><span class={`qs-num qs-${t.gruppe}`}>{i + 1}</span> {t.kurz ?? t.name.split(' (')[0]}</a></li>
+      ))}
+    </ol>
   </div>
   <p class="small qs-hinweis">{b.hinweis}</p>
 
+  <div class="qs-ablauf" data-schritte={b.ablauf.length}>
+    <p class="qs-ablauf-kopf"><Icon name="play-circle" size={20} /> <strong>So entsteht dein Kaffee</strong>
+      <span class="qs-ablauf-zaehler" aria-hidden="true"></span></p>
+    <p class="qs-ablauf-text" aria-live="polite">{b.ablauf.length} Schritte vom Bohnenbehälter bis zur Tasse. Beim Abspielen leuchtet das jeweilige Teil in der Zeichnung auf.</p>
+    <div class="qs-ablauf-knoepfe">
+      <button type="button" class="btn btn-sm qs-play"><Icon name="play" size={16} /> Abspielen</button>
+      <button type="button" class="btn btn-sm btn-ghost-dark qs-zurueck" aria-label="Schritt zurück"><Icon name="chevron-left" size={16} /></button>
+      <button type="button" class="btn btn-sm btn-ghost-dark qs-weiter" aria-label="Nächster Schritt"><Icon name="chevron-right" size={16} /></button>
+    </div>
+    <details class="qs-ablauf-details">
+      <summary>Alle {b.ablauf.length} Schritte zum Nachlesen</summary>
+      <ol class="qs-ablauf-liste">
+        {b.ablauf.map((s) => <li><span class="qs-num">{nummer(s.teil)}</span> <strong>{s.titel}:</strong> {s.text}</li>)}
+      </ol>
+    </details>
+  </div>
+
   <div class="qs-symptom">
-    <label for="qs-symptom-wahl">Was macht deine Maschine?</label>
+    <label for="qs-symptom-wahl"><Icon name="search" size={18} /> Fehler-Modus: Was macht deine Maschine?</label>
     <select id="qs-symptom-wahl">
       <option value="">Symptom wählen …</option>
       {b.teile.map((t) => (
-        <optgroup label={t.name}>{t.symptome.map((s, j) => <option value={`${t.id}|${j}`}>{s.text}</option>)}</optgroup>
+        <optgroup label={t.name}>{t.symptome.map((s, j) => <option value={`${t.id}|${j}`} data-auch={(s.auch ?? []).join(',')}>{s.text}</option>)}</optgroup>
       ))}
     </select>
+    <p class="small qs-symptom-hilfe" aria-live="polite">Das wahrscheinlichste Teil leuchtet kräftig, weitere Verdächtige blass.</p>
   </div>
 
   <div class="qs-teile">
-    {b.teile.map((t, i) => (
-      <details class="qs-teil" id={`qs-${t.id}`} data-teil={t.id}>
-        <summary><span class={`qs-num qs-${t.gruppe}`}>{i + 1}</span> <span class="qs-teil-name">{t.name}</span>
-          <span class="qs-anz">{t.symptome.length} {t.symptome.length === 1 ? 'Fehler' : 'Fehler'}</span></summary>
-        <p class="qs-aufgabe">{t.aufgabe}</p>
-        <ul class="qs-fehler">
-          {t.symptome.map((s, j) => {
-            const st = STUFEN[s.stufe];
-            return (
-              <li data-symptom={`${t.id}|${j}`}>
-                <p class="qs-f-text"><strong>{s.text}</strong></p>
-                <p class="qs-f-ursache">{s.ursache}</p>
-                <p class="qs-stufe" data-status={st.status}><Icon name={st.icon} size={18} /> <span><strong>{st.text}:</strong> {s.loesung} <span class="small">Quelle: {s.quelle}</span></span></p>
-              </li>
-            );
-          })}
-        </ul>
-        {t.teile && (
-          <p class="qs-teile-nr"><strong>Original-Ersatzteile</strong> (Teilenummern aus der Ersatzteilliste, vor dem Kauf mit dem Typenschild
-          abgleichen): {t.teile.join(', ')}</p>
-        )}
-        {(t.ersatzteil || t.artikel) && (
-          <p class="qs-mehr">
-            {t.artikel?.map(([href, text]) => <a class="btn btn-sm btn-ghost-dark" href={href}><Icon name="book-open" size={16} /> {text}</a>)}
-            {t.ersatzteil && <a class="btn btn-sm" href={amazonSearch(t.ersatzteil[1])} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> {t.ersatzteil[0]} bei Amazon*</a>}
-          </p>
-        )}
-      </details>
-    ))}
+    {b.teile.map((t, i) => {
+      const d = meta.details[t.id];
+      return (
+        <details class="qs-teil" id={`qs-${t.id}`} data-teil={t.id}>
+          <summary><span class={`qs-num qs-${t.gruppe}`}>{i + 1}</span> <span class="qs-teil-name">{t.name}</span>
+            <span class="qs-anz">{t.symptome.length} Fehler</span></summary>
+          <p class="qs-aufgabe">{t.aufgabe}</p>
+          {d && (
+            <figure class="qs-detail">
+              <div class="qs-detail-bild" style={`aspect-ratio:${d.breite}/${d.hoehe}`}>
+                <img src={bild(`detail-${t.id}`)} width={d.breite} height={d.hoehe} alt={`Nahaufnahme: ${t.name}`} loading="lazy" decoding="async" />
+                {d.marker.map(([, x, y], k) => <span class="qs-marke" style={`left:${((x / d.breite) * 100).toFixed(2)}%;top:${((y / d.hoehe) * 100).toFixed(2)}%`}>{k + 1}</span>)}
+              </div>
+              {d.marker.length > 0 && <figcaption><ol class="qs-marken">{d.marker.map(([text]) => <li>{text}</li>)}</ol></figcaption>}
+            </figure>
+          )}
+          {t.tausch && (
+            <p class="qs-tausch"><strong>Selbst tauschen?</strong> <span class="qs-stufen" role="img" aria-label={`Schwierigkeit ${t.tausch.stufe} von 5`}>{[1, 2, 3, 4, 5].map((n) => <i class={n <= t.tausch!.stufe ? 'voll' : ''} />)}</span>
+              Schwierigkeit {t.tausch.stufe} von 5. Werkzeug: {t.tausch.werkzeug}. Dauer: {t.tausch.dauer}.</p>
+          )}
+          <ul class="qs-fehler">
+            {t.symptome.map((s, j) => {
+              const st = STUFEN[s.stufe];
+              return (
+                <li data-symptom={`${t.id}|${j}`}>
+                  <p class="qs-f-text"><strong>{s.text}</strong></p>
+                  <p class="qs-f-ursache">{s.ursache}</p>
+                  <p class="qs-stufe" data-status={st.status}><Icon name={st.icon} size={18} /> <span><strong>{st.text}:</strong> {s.loesung} <span class="small">Quelle: {s.quelle}</span></span></p>
+                  {s.auch && s.auch.length > 0 && <p class="small qs-auch">Auch prüfen: {s.auch.map((a) => `${nummer(a)} ${b.teile.find((x) => x.id === a)?.kurz ?? b.teile.find((x) => x.id === a)?.name}`).join(', ')}</p>}
+                </li>
+              );
+            })}
+          </ul>
+          {t.teile && (
+            <p class="qs-teile-nr"><strong>Original-Ersatzteile</strong> (Teilenummern aus der Ersatzteilliste, vor dem Kauf mit dem Typenschild abgleichen):{' '}
+              {t.teile.map((e, k) => {
+                const nr = teileNummer(e);
+                return <>{k > 0 && ', '}{nr ? <a href={amazonSearch(`De'Longhi ${nr}`)} rel="sponsored nofollow noopener" target="_blank">{e}*</a> : e}</>;
+              })}
+            </p>
+          )}
+          {(t.ersatzteil || t.artikel) && (
+            <p class="qs-mehr">
+              {t.artikel?.map(([href, text]) => <a class="btn btn-sm btn-ghost-dark" href={href}><Icon name="book-open" size={16} /> {text}</a>)}
+              {t.ersatzteil && <a class="btn btn-sm" href={amazonSearch(t.ersatzteil[1])} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> {t.ersatzteil[0]} bei Amazon*</a>}
+            </p>
+          )}
+        </details>
+      );
+    })}
   </div>
   <p class="small">*Affiliate-Links zu Amazon. Für dich ändert sich am Preis nichts. Werkstatt-Lösungen stammen aus Reparaturforen und
   verlangen, das Gehäuse zu öffnen: vorher Netzstecker ziehen, bei Garantie besser der Kundendienst.</p>
+
+  <dialog class="qs-dialog" aria-label={`Zeichnung vergrößert: ${name}`}>
+    <div class="qs-dialog-kopf"><strong>{name}</strong> <span class="small">Mit zwei Fingern zoomen oder mit der Maus überfahren.</span>
+      <button type="button" class="btn btn-sm btn-ghost-dark qs-schliessen"><Icon name="x" size={16} /> Schließen</button></div>
+    <div class="qs-zoom">
+      <img class="qs-zoom-bild" src={bild('explosion')} width={W} height={H} alt="" loading="lazy" decoding="async" />
+      <div class="qs-lupe" aria-hidden="true"></div>
+    </div>
+  </dialog>
 </section>
+<script type="application/json" id="qs-ablauf-daten" set:html={JSON.stringify(b.ablauf)} />
 
 <script>
   const box = document.querySelector<HTMLElement>('.querschnitt');
   if (box) {
-    const alle = (id: string) => box.querySelectorAll<HTMLElement>(`[data-teil="${id}"]`);
-    function aktiv(id: string, oeffnen = false) {
-      box!.classList.toggle('qs-hat-aktiv', !!id);
-      box!.querySelectorAll<HTMLElement>('[data-teil]').forEach((el) => el.classList.toggle('aktiv', el.dataset.teil === id));
-      if (!oeffnen) return;
-      box!.querySelectorAll<HTMLDetailsElement>('details[data-teil]').forEach((d) => { d.open = d.dataset.teil === id; });
-      document.getElementById(`qs-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-    box.querySelectorAll<HTMLAnchorElement>('.qs-tag').forEach((tag) => {
-      const id = tag.dataset.teil || '';
-      tag.addEventListener('click', (e) => { e.preventDefault(); aktiv(id, true); });
-      tag.addEventListener('mouseenter', () => alle(id).forEach((el) => el.classList.add('hover')));
-      tag.addEventListener('mouseleave', () => alle(id).forEach((el) => el.classList.remove('hover')));
-    });
-    box.querySelectorAll<HTMLDetailsElement>('details[data-teil]').forEach((d) => {
-      d.addEventListener('toggle', () => { if (d.open) aktiv(d.dataset.teil || ''); });
-    });
-    // Schmale Bildschirme: engerer Bildausschnitt, Labels (nur Nummern) rücken an den Rand. Linien laufen zur Label-Position.
-    const buehne = box.querySelector<HTMLElement>('.qs-buehne');
-    const svg = buehne?.querySelector('svg');
-    const weit = (buehne?.dataset.weit || '').split(' ').map(Number);
+    const buehne = box.querySelector<HTMLElement>('.qs-buehne')!;
+    const weit = (buehne.dataset.weit || '').split(' ').map(Number);
     const schmal = window.matchMedia('(max-width: 640px)');
+    const ruhig = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const alle = (sel: string) => Array.from(box.querySelectorAll<HTMLElement>(sel));
+    const nameVon = (id: string) => box.querySelector<HTMLElement>(`.qs-num[data-teil="${id}"]`)?.getAttribute('aria-label')?.replace(/^\d+: /, '') || id;
+
+    // ---- Ansicht (auseinandergezogen / eingebaut) und Bildausschnitt
+    let ansicht = 'explosion';
     function ausschnitt() {
-      if (!buehne || !svg) return;
-      const art = schmal.matches ? 'eng' : 'weit';
-      const vb = (buehne.dataset[art] || '').split(' ').map(Number);
-      if (vb.length !== 4) return;
-      svg.setAttribute('viewBox', vb.join(' '));
+      const art = schmal.matches ? `eng${ansicht[0].toUpperCase()}${ansicht.slice(1)}` : 'weit';
+      const vb = (art === 'weit' ? buehne.dataset.weit : buehne.dataset[art] || buehne.dataset.weit)!.split(' ').map(Number);
       buehne.style.aspectRatio = `${vb[2]}/${vb[3]}`;
       buehne.querySelectorAll<HTMLImageElement>('.qs-bild img').forEach((img) => {
         img.style.left = `${(-vb[0] / vb[2]) * 100}%`; img.style.top = `${(-vb[1] / vb[3]) * 100}%`;
         img.style.width = `${(weit[2] / vb[2]) * 100}%`; img.style.height = `${(weit[3] / vb[3]) * 100}%`;
       });
-      buehne.querySelectorAll<HTMLElement>('.qs-tag').forEach((tag) => {
-        const [x, y] = (tag.dataset[art] || '').split(' ').map(Number);
-        tag.style.left = `${((x - vb[0]) / vb[2]) * 100}%`;
-        tag.style.top = `${((y - vb[1]) / vb[3]) * 100}%`;
-        const leit = svg.querySelector(`.qs-leit[data-teil="${tag.dataset.teil}"]`);
-        leit?.querySelectorAll('line').forEach((l) => { l.setAttribute('x1', String(x)); l.setAttribute('y1', String(y)); });
+      alle('.qs-buehne .qs-num').forEach((n) => {
+        const [x, y] = (n.dataset[ansicht] || '').split(' ').map(Number);
+        n.style.left = `${((x - vb[0]) / vb[2]) * 100}%`; n.style.top = `${((y - vb[1]) / vb[3]) * 100}%`;
       });
     }
-    ausschnitt();
+    function setzeAnsicht(a: string) {
+      ansicht = a;
+      box!.dataset.ansicht = a;
+      alle('.qs-ansicht').forEach((k) => k.setAttribute('aria-pressed', k.dataset.ansicht === a ? 'true' : 'false'));
+      ausschnitt();
+    }
+    alle('.qs-ansicht').forEach((k) => k.addEventListener('click', () => setzeAnsicht(k.dataset.ansicht || 'explosion')));
     schmal.addEventListener('change', ausschnitt);
-    const wahl = document.getElementById('qs-symptom-wahl') as HTMLSelectElement | null;
-    wahl?.addEventListener('change', () => {
-      const [id] = wahl.value.split('|');
-      box.querySelectorAll<HTMLElement>('[data-symptom]').forEach((li) => li.classList.toggle('aktiv', li.dataset.symptom === wahl.value));
-      if (id) aktiv(id, true);
+    ausschnitt();
+
+    // ---- Hervorheben: ein Hauptteil, optional weitere Verdächtige blass
+    let aktuell = '';
+    function aktiv(id: string, neben: string[] = [], oeffnen = false) {
+      aktuell = id;
+      box!.classList.toggle('qs-hat-aktiv', !!id);
+      alle('[data-teil]').forEach((el) => {
+        const t = el.dataset.teil || '';
+        el.classList.toggle('aktiv', t === id);
+        el.classList.toggle('neben', neben.includes(t));
+      });
+      if (!oeffnen || !id) return;
+      alle('details[data-teil]').forEach((d) => { (d as HTMLDetailsElement).open = d.dataset.teil === id; });
+      document.getElementById(`qs-${id}`)?.scrollIntoView({ behavior: ruhig.matches ? 'auto' : 'smooth', block: 'nearest' });
+    }
+    alle('.qs-buehne .qs-num, .qs-leg').forEach((el) => {
+      const id = el.dataset.teil || '';
+      el.addEventListener('click', (e) => { e.preventDefault(); stopp(); aktiv(id, [], true); });
+      el.addEventListener('mouseenter', () => alle(`[data-teil="${id}"]`).forEach((x) => x.classList.add('hover')));
+      el.addEventListener('mouseleave', () => alle(`[data-teil="${id}"]`).forEach((x) => x.classList.remove('hover')));
     });
+    alle('details[data-teil]').forEach((d) => d.addEventListener('toggle', () => {
+      if ((d as HTMLDetailsElement).open && d.dataset.teil !== aktuell) aktiv(d.dataset.teil || '');
+    }));
+
+    // ---- Fehler-Modus: Symptom → Hauptteil kräftig, weitere Verdächtige blass
+    const wahl = document.getElementById('qs-symptom-wahl') as HTMLSelectElement | null;
+    const hilfe = box.querySelector<HTMLElement>('.qs-symptom-hilfe');
+    wahl?.addEventListener('change', () => {
+      stopp();
+      const opt = wahl.selectedOptions[0];
+      const [id] = wahl.value.split('|');
+      const neben = (opt?.dataset.auch || '').split(',').filter(Boolean);
+      alle('[data-symptom]').forEach((li) => li.classList.toggle('aktiv', li.dataset.symptom === wahl.value));
+      if (id) {
+        aktiv(id, neben, true);
+        if (hilfe) hilfe.textContent = neben.length ? `Wahrscheinlich: ${nameVon(id)}. Auch prüfen: ${neben.map(nameVon).join(', ')}.` : `Wahrscheinlich: ${nameVon(id)}.`;
+      } else {
+        aktiv('');
+        if (hilfe) hilfe.textContent = 'Das wahrscheinlichste Teil leuchtet kräftig, weitere Verdächtige blass.';
+      }
+    });
+
+    // ---- „So entsteht dein Kaffee“
+    type Schritt = { teil: string; titel: string; text: string };
+    const schritte: Schritt[] = JSON.parse(document.getElementById('qs-ablauf-daten')?.textContent || '[]');
+    const textEl = box.querySelector<HTMLElement>('.qs-ablauf-text');
+    const zaehler = box.querySelector<HTMLElement>('.qs-ablauf-zaehler');
+    const play = box.querySelector<HTMLButtonElement>('.qs-play');
+    let schritt = -1;
+    let timer: number | undefined;
+    function zeige(i: number) {
+      schritt = ((i % schritte.length) + schritte.length) % schritte.length;
+      const s = schritte[schritt];
+      if (textEl) textEl.innerHTML = `<strong>${schritt + 1}. ${s.titel}:</strong> ${s.text}`;
+      if (zaehler) zaehler.textContent = `Schritt ${schritt + 1} von ${schritte.length}`;
+      box!.classList.add('qs-laeuft');
+      aktiv(s.teil);
+    }
+    function stopp() {
+      if (timer) { window.clearInterval(timer); timer = undefined; }
+      if (play) { play.innerHTML = play.innerHTML.replace('Pause', 'Abspielen'); play.dataset.laeuft = ''; }
+    }
+    function start() {
+      if (ansicht !== 'eingebaut') setzeAnsicht('eingebaut');
+      zeige(schritt + 1);
+      timer = window.setInterval(() => {
+        if (schritt >= schritte.length - 1) { stopp(); return; }
+        zeige(schritt + 1);
+      }, ruhig.matches ? 6000 : 3200);
+      if (play) { play.innerHTML = play.innerHTML.replace('Abspielen', 'Pause'); play.dataset.laeuft = '1'; }
+    }
+    play?.addEventListener('click', () => { if (timer) stopp(); else start(); });
+    box.querySelector('.qs-weiter')?.addEventListener('click', () => { stopp(); if (ansicht !== 'eingebaut') setzeAnsicht('eingebaut'); zeige(schritt + 1); });
+    box.querySelector('.qs-zurueck')?.addEventListener('click', () => { stopp(); if (ansicht !== 'eingebaut') setzeAnsicht('eingebaut'); zeige(schritt - 1); });
+
+    // ---- Vollbild mit Lupe
+    const dialog = box.querySelector<HTMLDialogElement>('.qs-dialog');
+    const voll = box.querySelector<HTMLButtonElement>('.qs-vollbild');
+    const zoomBild = box.querySelector<HTMLImageElement>('.qs-zoom-bild');
+    const lupe = box.querySelector<HTMLElement>('.qs-lupe');
+    if (dialog && voll && typeof dialog.showModal === 'function') {
+      voll.hidden = false;
+      voll.addEventListener('click', () => {
+        const basis = box!.querySelector<HTMLImageElement>(`.qs-basis[data-ansicht="${ansicht}"]`);
+        if (zoomBild && basis) { zoomBild.src = basis.currentSrc.includes('-1000') ? basis.src : basis.currentSrc || basis.src; }
+        dialog.showModal();
+      });
+      box.querySelector('.qs-schliessen')?.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+      const zoom = box.querySelector<HTMLElement>('.qs-zoom');
+      zoom?.addEventListener('mousemove', (e) => {
+        if (!lupe || !zoomBild || schmal.matches) return;
+        const r = zoomBild.getBoundingClientRect();
+        const fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+        if (fx < 0 || fx > 1 || fy < 0 || fy > 1) { lupe.style.opacity = '0'; return; }
+        lupe.style.opacity = '1';
+        lupe.style.left = `${e.clientX - r.left}px`; lupe.style.top = `${e.clientY - r.top}px`;
+        lupe.style.backgroundImage = `url("${zoomBild.src}")`;
+        lupe.style.backgroundSize = `${r.width * 2.5}px ${r.height * 2.5}px`;
+        lupe.style.backgroundPosition = `${-fx * r.width * 2.5 + 110}px ${-fy * r.height * 2.5 + 110}px`;
+      });
+      zoom?.addEventListener('mouseleave', () => { if (lupe) lupe.style.opacity = '0'; });
+    }
   }
 </script>

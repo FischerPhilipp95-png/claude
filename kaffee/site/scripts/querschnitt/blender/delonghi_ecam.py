@@ -19,9 +19,38 @@ EXPLOSION = {
     'wassertank': (150, 60, 0), 'bruehgruppe': (170, -40, 0), 'bruehkopf': (170, -40, 90), 'ventil': (60, 20, 150),
     'bohnen': (0, 0, 230), 'mahlwerk': (0, 0, 120), 'pulverschacht': (70, 50, 180), 'bedienfeld': (-20, -120, 140),
     'elektronik': (-150, 20, 60), 'thermoblock': (-150, -40, 0), 'pumpe': (-150, 60, -10), 'flowmeter': (20, 170, 0),
-    'satzbehaelter': (-60, -150, 0), 'abtropfschale': (0, -170, -80), 'auslauf': (0, -130, 0), 'aufschaeumer': (150, -60, -40),
+    'satzbehaelter': (-60, -150, 0), 'abtropfschale': (0, -190, -20), 'auslauf': (0, -130, 0), 'aufschaeumer': (150, -60, -40),
 }
 KAMERA_EXPLOSION = {'position': (1300, -1400, 1300), 'ziel': (20, 0, 200), 'ortho': 1.5}
+KAMERA_EINGEBAUT = {'position': (1300, -1400, 1300), 'ziel': (0, 0, 165), 'ortho': 0.78}
+# Farbgruppe je Bauteil (für die Tönung der Illustration, gleiche Gruppen wie in src/bauteile.ts)
+GRUPPEN = {
+    'wassertank': 'wasser', 'pumpe': 'wasser', 'flowmeter': 'wasser', 'ventil': 'wasser', 'abtropfschale': 'wasser', 'thermoblock': 'heiss',
+    'bohnen': 'kaffee', 'mahlwerk': 'kaffee', 'pulverschacht': 'kaffee', 'bruehgruppe': 'kaffee', 'bruehkopf': 'kaffee', 'auslauf': 'kaffee',
+    'satzbehaelter': 'kaffee', 'aufschaeumer': 'milch', 'bedienfeld': 'strom', 'elektronik': 'strom',
+}
+# Markierungen für die Nahaufnahmen: Beschriftung und Punkt (mm, eingebaute Lage)
+DETAILS = {
+    'bruehgruppe': [('Brühzylinder mit Sieb', (84, -113, 247)), ('Dichtringe am Kolben', (105, -113, 168)), ('Rote Entriegelungstasten', (106, -155, 186)),
+                    ('Griff', (84, -165, 190)), ('Auswurfhebel', (114, -95, 120)), ('Zahnstange zum Antrieb', (114, -61, 200)), ('Abstreifer', (84, -148, 110))],
+    'bruehkopf': [('Duschsieb', (84, -113, 251)), ('O-Ringe', (107, -113, 271)), ('Halter', (109, -113, 293)), ('Schlauchanschluss', (84, -113, 314))],
+    'thermoblock': [('Aluminiumkörper', (-70, -103, 139)), ('Wasseranschlüsse', (-120, -72, 144)), ('Sicherheitsventil', (-14, -48, 148)),
+                    ('Temperaturfühler (NTC)', (-80, -16, 154)), ('Thermosicherung (TCO)', (-60, -104, 150)), ('Anschlussfahnen Heizung', (-62, -106, 128))],
+    'pumpe': [('Spulengehäuse', (-85, 140, 123)), ('Pumpenkörper', (-85, 88, 120)), ('Auslass (Messing)', (-85, 56, 100)), ('Einlass vom Tank', (-85, 206, 100)),
+              ('Thermosicherung', (-85, 140, 131)), ('Gummilager', (-85, 134, 64))],
+    'flowmeter': [('Gehäuse mit Flügelrad', (20, 150, 74)), ('Schlauchanschlüsse', (-4, 152, 58)), ('Stecker zur Elektronik', (26, 150, 88))],
+    'ventil': [('Ventilkörper', (98, -10, 322)), ('Feder und Kappe', (98, -10, 360)), ('Zahnrad', (74, -34, 310)), ('Mikroschalter', (72, 0, 314)), ('Wasseranschluss', (116, -10, 322))],
+    'wassertank': [('Tank, 1,8 Liter', (117, 150, 230)), ('Wasserfilter', (84, 40, 54)), ('Ventil am Tankboden', (84, 40, 16)), ('Schwimmer (Füllstand)', (84, 190, 33)), ('Griff', (84, 180, 323))],
+    'bohnen': [('Bohnenbehälter', (-80, 70, 340)), ('Mahlgradregler', (-20, 70, 296))],
+    'mahlwerk': [('Mahlkegel', (-20, 70, 284)), ('Zahnkranz (Mahlgrad)', (-66, 70, 274)), ('Motor', (-30, 34, 200)), ('Pulverschacht zur Brühgruppe', (42, 10, 262))],
+    'pulverschacht': [('Klappe', (72, 30, 351)), ('Trichter', (72, 30, 320))],
+    'auslauf': [('Düsen', (0, -238, 100)), ('Führungsschienen', (24, -216, 230)), ('Höhenverstellung', (-34, -246, 150))],
+    'aufschaeumer': [('Dampfdrehknopf', (123, -140, 300)), ('Dampfrohr', (147, -150, 250)), ('Hülse mit Luftschlitz', (158, -150, 150)), ('Düse', (147, -150, 86))],
+    'satzbehaelter': [('Behälter', (-82, -150, 78)), ('Kaffeepucks', (-44, -150, 60)), ('Blende', (-40, -201, 122))],
+    'abtropfschale': [('Schale', (-111, -130, 27)), ('Tassenabstellfläche', (0, -130, 44)), ('Schwimmer (voll)', (96, -210, 56))],
+    'bedienfeld': [('Tasten mit Leuchten', (-72, -190, 361)), ('Aromaregler', (0, -178, 364)), ('Kontrollleuchten', (-58, -200, 363))],
+    'elektronik': [('Leistungsplatine', (-110, 60, 200)), ('Transformator', (-94, 44, 169)), ('Relais', (-103, -8, 213)), ('Steckverbinder', (-106, 80, 216)), ('Kühlkörper', (-103, -82, 203))],
+}
 
 
 def bauen():
@@ -69,7 +98,7 @@ def bauen():
     for x, y in ((-108, -200), (-108, 60), (-108, 200), (108, 200)):
         quader('saeule', 10, 10, H - 40, x, y, H / 2 - 10, dunkelgrau, 1)
     quader('traeger_hinten', W - 24, 10, 10, 0, 200, H - 22, dunkelgrau, 1)
-    quader('platinentraeger', 4, 180, 200, -113, 15, 175, anthrazit, 0.5)
+    versatz(quader('platinentraeger', 4, 180, 200, -113, 15, 175, anthrazit, 0.5), -150, 20, 60)
 
     # ======================= Gehäuseteile (in der Explosionsansicht nach außen gezogen) =======================
     # Zusammengebaut sind sie fast unsichtbar (Geist), in der Strichzeichnung werden sie weiß gezeichnet.
@@ -84,13 +113,17 @@ def bauen():
     schlitze(rechts, [(100 + i * 14, 250, 5, 90) for i in range(8)], 'X')
     versatz(rechts, 300, 60, 0)
     klappe = quader('klappe', 3, 170, 240, W / 2 + 1.5, -120, 150, geh, 1)
+    schlitze(klappe, [(-190, 60, 50, 12)], 'X')                                                          # Griffmulde
     versatz(klappe, 300, -90, -40)
     quader('klappengriff', 6, 50, 10, W / 2 + 4, -190, 60, hellgrau, 1)
     versatz(bpy.data.objects['klappengriff'], 300, -90, -40)
     hinten = quader('gehaeuse_hinten', W - 6, 3, H - 40, 0, D / 2 + 1.5, H / 2 - 10, geh, 1)
     schlitze(hinten, [(-90 + i * 14, 250, 5, 80) for i in range(13)], 'Y')
     versatz(hinten, 0, 240, 0)
-    front = quader('frontblende', W - 24, 3, 190, 0, -D / 2 - 1.5, 235, geist('geist_silber', (0.9, 0.9, 0.92), 0.05), 1)
+    netz = quader('netzschalter', 22, 6, 30, 90, D / 2 + 4, 70, anthrazit, 1); versatz(netz, 0, 240, 0)
+    wippe = quader('netzwippe', 14, 4, 20, 90, D / 2 + 8, 70, rot, 1); versatz(wippe, 0, 240, 0)
+    kabel = zylinder('kabeldurchfuehrung', 6, 10, 40, D / 2 + 6, 60, schwarz, 'Y'); versatz(kabel, 0, 240, 0)
+    front = quader('frontblende', W - 24, 3, 190, 0, -D / 2 - 1.5, 235, geist('geist_silber', (0.9, 0.9, 0.92), 0.05), 14)
     schlitze(front, [(0, 190, 70, 40)], 'Y')                                                             # Durchlass Auslauf
     versatz(front, -40, -250, 130)
     for o in (oben, links, rechts, klappe, hinten, front):
@@ -193,7 +226,9 @@ def bauen():
         a = random.random() * math.pi * 2
         r = math.sqrt(random.random()) * 48
         z = 292 + random.random() * 40
-        kugel(f'bohne{i}', 6.5, bx + math.cos(a) * r, by + math.sin(a) * r, z, bohne, (1, 0.62, 0.5)).rotation_euler = (random.random() * 3, random.random() * 3, random.random() * 3)
+        b = kugel(f'bohne{i}', 6.5, bx + math.cos(a) * r, by + math.sin(a) * r, z, bohne, (1, 0.62, 0.5))
+        b.rotation_euler = (random.random() * 3, random.random() * 3, random.random() * 3)
+        b['illu_aus'] = True
     deckel = quader('bohnendeckel', 150, 150, 4, bx, by, 358, geist('geist_deckel', (0.15, 0.15, 0.15), 0.35), 2)
     deckel.visible_shadow = False
     anker('bohnen', bx - 60, by - 40, 352)

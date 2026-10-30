@@ -1,217 +1,7 @@
 {
  "bild": "/bilder/querschnitt/delonghi-ecam",
- "breite": 2000,
- "hoehe": 1500,
- "viewBox": [
-  0,
-  0,
-  2000,
-  1500
- ],
- "viewBoxEng": [
-  325,
-  19,
-  1408,
-  1330
- ],
- "anker": {
-  "elektronik": [
-   680,
-   558
-  ],
-  "wassertank": [
-   1432,
-   741
-  ],
-  "pumpe": [
-   871,
-   648
-  ],
-  "flowmeter": [
-   1305,
-   760
-  ],
-  "thermoblock": [
-   613,
-   734
-  ],
-  "ventil": [
-   1071,
-   510
-  ],
-  "bohnen": [
-   929,
-   249
-  ],
-  "mahlwerk": [
-   1082,
-   489
-  ],
-  "pulverschacht": [
-   1194,
-   402
-  ],
-  "bruehgruppe": [
-   1083,
-   986
-  ],
-  "bruehkopf": [
-   1096,
-   759
-  ],
-  "satzbehaelter": [
-   527,
-   934
-  ],
-  "abtropfschale": [
-   525,
-   1153
-  ],
-  "auslauf": [
-   605,
-   971
-  ],
-  "aufschaeumer": [
-   1085,
-   1082
-  ],
-  "bedienfeld": [
-   590,
-   508
-  ]
- },
- "labels": {
-  "elektronik": [
-   150,
-   89
-  ],
-  "bedienfeld": [
-   150,
-   259
-  ],
-  "thermoblock": [
-   150,
-   429
-  ],
-  "ventil": [
-   150,
-   599
-  ],
-  "bruehkopf": [
-   150,
-   769
-  ],
-  "satzbehaelter": [
-   150,
-   939
-  ],
-  "auslauf": [
-   150,
-   1109
-  ],
-  "abtropfschale": [
-   150,
-   1279
-  ],
-  "pulverschacht": [
-   1850,
-   89
-  ],
-  "wassertank": [
-   1850,
-   327
-  ],
-  "pumpe": [
-   1850,
-   565
-  ],
-  "flowmeter": [
-   1850,
-   803
-  ],
-  "bruehgruppe": [
-   1850,
-   1041
-  ],
-  "aufschaeumer": [
-   1850,
-   1279
-  ],
-  "bohnen": [
-   720,
-   60
-  ],
-  "mahlwerk": [
-   1160,
-   60
-  ]
- },
- "labelsEng": {
-  "elektronik": [
-   385,
-   89
-  ],
-  "bedienfeld": [
-   385,
-   259
-  ],
-  "thermoblock": [
-   385,
-   429
-  ],
-  "ventil": [
-   385,
-   599
-  ],
-  "bruehkopf": [
-   385,
-   769
-  ],
-  "satzbehaelter": [
-   385,
-   939
-  ],
-  "auslauf": [
-   385,
-   1109
-  ],
-  "abtropfschale": [
-   385,
-   1279
-  ],
-  "pulverschacht": [
-   1673,
-   89
-  ],
-  "wassertank": [
-   1673,
-   327
-  ],
-  "pumpe": [
-   1673,
-   565
-  ],
-  "flowmeter": [
-   1673,
-   803
-  ],
-  "bruehgruppe": [
-   1673,
-   1041
-  ],
-  "aufschaeumer": [
-   1673,
-   1279
-  ],
-  "bohnen": [
-   776,
-   59
-  ],
-  "mahlwerk": [
-   1198,
-   59
-  ]
- },
+ "breite": 1000,
+ "hoehe": 750,
  "teile": [
   "abtropfschale",
   "aufschaeumer",
@@ -229,5 +19,178 @@
   "thermoblock",
   "ventil",
   "wassertank"
- ]
+ ],
+ "ansichten": {
+  "explosion": {
+   "anker": {
+    "elektronik": [
+     340,
+     279
+    ],
+    "wassertank": [
+     716,
+     370
+    ],
+    "pumpe": [
+     436,
+     324
+    ],
+    "flowmeter": [
+     652,
+     380
+    ],
+    "thermoblock": [
+     307,
+     367
+    ],
+    "ventil": [
+     536,
+     255
+    ],
+    "bohnen": [
+     464,
+     125
+    ],
+    "mahlwerk": [
+     541,
+     244
+    ],
+    "pulverschacht": [
+     597,
+     201
+    ],
+    "bruehgruppe": [
+     542,
+     493
+    ],
+    "bruehkopf": [
+     548,
+     380
+    ],
+    "satzbehaelter": [
+     264,
+     467
+    ],
+    "abtropfschale": [
+     253,
+     547
+    ],
+    "auslauf": [
+     302,
+     485
+    ],
+    "aufschaeumer": [
+     542,
+     541
+    ],
+    "bedienfeld": [
+     295,
+     254
+    ]
+   },
+   "viewBoxEng": [
+    167,
+    0,
+    694,
+    690
+   ]
+  },
+  "eingebaut": {
+   "anker": {
+    "elektronik": [
+     336,
+     301
+    ],
+    "wassertank": [
+     741,
+     300
+    ],
+    "pumpe": [
+     487,
+     327
+    ],
+    "flowmeter": [
+     647,
+     425
+    ],
+    "thermoblock": [
+     324,
+     375
+    ],
+    "ventil": [
+     513,
+     266
+    ],
+    "bohnen": [
+     451,
+     119
+    ],
+    "mahlwerk": [
+     598,
+     228
+    ],
+    "pulverschacht": [
+     595,
+     205
+    ],
+    "bruehgruppe": [
+     471,
+     481
+    ],
+    "bruehkopf": [
+     484,
+     363
+    ],
+    "satzbehaelter": [
+     250,
+     477
+    ],
+    "abtropfschale": [
+     208,
+     562
+    ],
+    "auslauf": [
+     250,
+     496
+    ],
+    "aufschaeumer": [
+     508,
+     529
+    ],
+    "bedienfeld": [
+     246,
+     221
+    ]
+   },
+   "viewBoxEng": [
+    160,
+    0,
+    680,
+    744
+   ]
+  }
+ },
+ "details": {
+  "abtropfschale": {
+   "breite": 600,
+   "hoehe": 450,
+   "marker": [
+    [
+     "Schale",
+     163,
+     172
+    ],
+    [
+     "Tassenabstellfl\u00e4che",
+     300,
+     210
+    ],
+    [
+     "Schwimmer (voll)",
+     328,
+     297
+    ]
+   ]
+  }
+ }
 }

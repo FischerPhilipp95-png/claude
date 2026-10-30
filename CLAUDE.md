@@ -71,10 +71,12 @@ Gleiches Muster für alle Seiten (auch künftige):
   `claude/serene-darwin-f9rggj` per Fast-Forward nachziehen (vom Nutzer erlaubt), dann die Läufe prüfen und die Seite live ansehen.
 - Passwörter nie im Chat oder Code, nur als GitHub-Secrets. Jede Seite hat eine eigene Amazon-Tracking-ID.
 
-Schnittzeichnungen (kaffee/site, Abschnitt „So ist die Maschine aufgebaut“): 3D-Modell je Bauart in `scripts/querschnitt/blender/<bauart>.py`
-(Blender als Python-Modul, `pip install bpy`), rendern mit `python3 scripts/querschnitt/blender/render.py <bauart>` (Grundbild plus eine
-Hervorhebungs-Ebene je Bauteil nach `public/bilder/querschnitt/`, Anker nach `src/querschnitte/`). Symptome und Teilenummern je Bauteil in
-`src/bauteile.ts`, Zuordnung Maschine → Bauart über `bauart` in `src/maschinen.json`. Vorlage: Explosionszeichnung aus dem Hersteller-Ersatzteilsystem.
+Explosionszeichnungen (kaffee/site, Abschnitt „So ist die Maschine aufgebaut“): 3D-Modell je Bauart in `scripts/querschnitt/blender/<bauart>.py`
+(Blender als Python-Modul, `pip install bpy`), rendern mit `python3 scripts/querschnitt/blender/render.py <bauart>` (etwa 45 Minuten:
+Explosions- und eingebaute Ansicht als Strichzeichnung, Hervorhebungs-Ebene je Bauteil und Ansicht, Nahaufnahme je Bauteil mit Markern,
+Anker nach `src/querschnitte/`; `schnell` für eine Kontrolle in den Temp-Ordner). Symptome, Verdächtige (`auch`), Tausch-Infos,
+Teilenummern und der Brühablauf je Bauart in `src/bauteile.ts`, Zuordnung Maschine → Bauart über `bauart` in `src/maschinen.json`.
+Vorlage: Explosionszeichnung und Teilefotos aus dem Hersteller-Ersatzteilsystem, nie die Zeichnung selbst verwenden (Urheberrecht).
 
 Kapitel „Dynamischer Stromtarif“ (blog/site, Thema `Tarif`): Börsenpreise für Strompreis-Uhr und Rechner liegen in `src/strompreise.json`,
 Aktualisieren mit `node scripts/strompreise.mjs` (SMARD-Daten über energy-charts.info). Anbieter des Vergleichs und die Affiliate-Links
