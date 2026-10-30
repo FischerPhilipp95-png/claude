@@ -167,6 +167,8 @@ def webp(png, ziel, breite=None, q=82):
 t0 = time.time()
 basis = os.path.join(tmp, f'{bauart}.png')
 rendern(basis)
+if schnell or linien:
+    ordner = tmp  # Testbilder nie in den Public-Ordner schreiben
 webp(basis, os.path.join(ordner, f'{bauart}.webp'), None if schnell else 2000)
 webp(basis, os.path.join(ordner, f'{bauart}-1000.webp'), 1000, 80)
 
