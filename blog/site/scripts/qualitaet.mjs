@@ -1,7 +1,7 @@
 // Qualitäts-Check vor jedem Upload: HTML-Fehler (html-validate) und Barrierefreiheit (pa11y-ci, axe, WCAG 2 AA).
 // Läuft nur lokal gegen den fertigen Build in dist/. Nichts davon landet auf der Website.
 import { execFileSync, spawn } from 'node:child_process';
-import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import fs, { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import http from 'node:http';
 import { createReadStream } from 'node:fs';
