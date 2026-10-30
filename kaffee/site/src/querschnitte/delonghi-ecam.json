@@ -1,7 +1,7 @@
 {
  "bild": "/bilder/querschnitt/delonghi-ecam",
- "breite": 1000,
- "hoehe": 750,
+ "breite": 2000,
+ "hoehe": 1500,
  "teile": [
   "abtropfschale",
   "aufschaeumer",
@@ -24,171 +24,571 @@
   "explosion": {
    "anker": {
     "elektronik": [
-     340,
-     279
+     680,
+     558
     ],
     "wassertank": [
-     716,
-     370
+     1432,
+     741
     ],
     "pumpe": [
-     436,
-     324
+     871,
+     648
     ],
     "flowmeter": [
-     652,
-     380
+     1305,
+     760
     ],
     "thermoblock": [
-     307,
-     367
+     613,
+     734
     ],
     "ventil": [
-     536,
-     255
+     1071,
+     510
     ],
     "bohnen": [
-     464,
-     125
+     929,
+     249
     ],
     "mahlwerk": [
-     541,
-     244
+     1082,
+     489
     ],
     "pulverschacht": [
-     597,
-     201
+     1194,
+     402
     ],
     "bruehgruppe": [
-     542,
-     493
+     1083,
+     986
     ],
     "bruehkopf": [
-     548,
-     380
+     1096,
+     759
     ],
     "satzbehaelter": [
-     264,
-     467
+     527,
+     934
     ],
     "abtropfschale": [
-     253,
-     547
+     507,
+     1094
     ],
     "auslauf": [
-     302,
-     485
+     605,
+     971
     ],
     "aufschaeumer": [
-     542,
-     541
+     1085,
+     1082
     ],
     "bedienfeld": [
-     295,
-     254
+     590,
+     508
     ]
    },
    "viewBoxEng": [
-    167,
-    0,
-    694,
-    690
+    375,
+    29,
+    1308,
+    1320
    ]
   },
   "eingebaut": {
    "anker": {
     "elektronik": [
-     336,
-     301
+     671,
+     602
     ],
     "wassertank": [
-     741,
-     300
+     1482,
+     600
     ],
     "pumpe": [
-     487,
-     327
+     973,
+     653
     ],
     "flowmeter": [
-     647,
-     425
+     1294,
+     851
     ],
     "thermoblock": [
-     324,
-     375
+     648,
+     750
     ],
     "ventil": [
-     513,
-     266
+     1026,
+     532
     ],
     "bohnen": [
-     451,
-     119
+     902,
+     238
     ],
     "mahlwerk": [
-     598,
-     228
+     1196,
+     455
     ],
     "pulverschacht": [
-     595,
-     205
+     1190,
+     410
     ],
     "bruehgruppe": [
-     471,
-     481
+     942,
+     963
     ],
     "bruehkopf": [
-     484,
-     363
+     967,
+     727
     ],
     "satzbehaelter": [
-     250,
-     477
+     500,
+     954
     ],
     "abtropfschale": [
-     208,
-     562
+     416,
+     1124
     ],
     "auslauf": [
-     250,
-     496
+     500,
+     993
     ],
     "aufschaeumer": [
-     508,
-     529
+     1016,
+     1058
     ],
     "bedienfeld": [
-     246,
-     221
+     492,
+     441
     ]
    },
    "viewBoxEng": [
-    160,
+    360,
     0,
-    680,
-    744
+    1280,
+    1457
    ]
   }
  },
  "details": {
   "abtropfschale": {
-   "breite": 600,
-   "hoehe": 450,
+   "breite": 1200,
+   "hoehe": 900,
    "marker": [
     [
      "Schale",
-     163,
-     172
+     325,
+     344
     ],
     [
      "Tassenabstellfl\u00e4che",
-     300,
-     210
+     600,
+     421
     ],
     [
      "Schwimmer (voll)",
-     328,
+     657,
+     595
+    ]
+   ]
+  },
+  "aufschaeumer": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Dampfdrehknopf",
+     591,
+     104
+    ],
+    [
+     "Dampfrohr",
+     633,
+     316
+    ],
+    [
+     "H\u00fclse mit Luftschlitz",
+     665,
+     664
+    ],
+    [
+     "D\u00fcse",
+     633,
+     863
+    ]
+   ]
+  },
+  "auslauf": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "D\u00fcsen",
+     589,
+     836
+    ],
+    [
+     "F\u00fchrungsschienen",
+     761,
+     241
+    ],
+    [
+     "H\u00f6henverstellung",
+     427,
+     562
+    ]
+   ]
+  },
+  "bedienfeld": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Tasten mit Leuchten",
+     306,
+     328
+    ],
+    [
+     "Aromaregler",
+     600,
+     412
+    ],
+    [
+     "Kontrollleuchten",
+     323,
+     361
+    ]
+   ]
+  },
+  "bohnen": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Bohnenbeh\u00e4lter",
+     393,
+     258
+    ],
+    [
+     "Mahlgradregler",
+     600,
+     531
+    ]
+   ]
+  },
+  "bruehgruppe": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Br\u00fchzylinder mit Sieb",
+     566,
+     143
+    ],
+    [
+     "Dichtringe am Kolben",
+     635,
+     477
+    ],
+    [
+     "Rote Entriegelungstasten",
+     513,
+     478
+    ],
+    [
+     "Griff",
+     411,
+     446
+    ],
+    [
+     "Auswurfhebel",
+     718,
+     644
+    ],
+    [
+     "Zahnstange zum Antrieb",
+     819,
+     283
+    ],
+    [
+     "Abstreifer",
+     462,
+     724
+    ]
+   ]
+  },
+  "bruehkopf": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Duschsieb",
+     600,
+     719
+    ],
+    [
+     "O-Ringe",
+     769,
+     624
+    ],
+    [
+     "Halter",
+     784,
+     441
+    ],
+    [
+     "Schlauchanschluss",
+     600,
+     175
+    ]
+   ]
+  },
+  "elektronik": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Leistungsplatine",
+     728,
+     223
+    ],
+    [
+     "Transformator",
+     733,
+     396
+    ],
+    [
+     "Relais",
+     544,
      297
+    ],
+    [
+     "Steckverbinder",
+     803,
+     132
+    ],
+    [
+     "K\u00fchlk\u00f6rper",
+     317,
+     460
+    ]
+   ]
+  },
+  "flowmeter": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Geh\u00e4use mit Fl\u00fcgelrad",
+     669,
+     444
+    ],
+    [
+     "Schlauchanschl\u00fcsse",
+     489,
+     498
+    ],
+    [
+     "Stecker zur Elektronik",
+     718,
+     333
+    ]
+   ]
+  },
+  "mahlwerk": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Mahlkegel",
+     630,
+     188
+    ],
+    [
+     "Zahnkranz (Mahlgrad)",
+     475,
+     156
+    ],
+    [
+     "Motor",
+     486,
+     564
+    ],
+    [
+     "Pulverschacht zur Br\u00fchgruppe",
+     654,
+     471
+    ]
+   ]
+  },
+  "pulverschacht": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Klappe",
+     596,
+     218
+    ],
+    [
+     "Trichter",
+     596,
+     520
+    ]
+   ]
+  },
+  "pumpe": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Spulengeh\u00e4use",
+     670,
+     291
+    ],
+    [
+     "Pumpenk\u00f6rper",
+     501,
+     396
+    ],
+    [
+     "Auslass (Messing)",
+     397,
+     536
+    ],
+    [
+     "Einlass vom Tank",
+     884,
+     269
+    ],
+    [
+     "Thermosicherung",
+     670,
+     257
+    ],
+    [
+     "Gummilager",
+     650,
+     547
+    ]
+   ]
+  },
+  "satzbehaelter": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Beh\u00e4lter",
+     430,
+     375
+    ],
+    [
+     "Kaffeepucks",
+     595,
+     542
+    ],
+    [
+     "Blende",
+     410,
+     346
+    ]
+   ]
+  },
+  "thermoblock": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Aluminiumk\u00f6rper",
+     422,
+     539
+    ],
+    [
+     "Wasseranschl\u00fcsse",
+     330,
+     351
+    ],
+    [
+     "Sicherheitsventil",
+     872,
+     486
+    ],
+    [
+     "Temperaturf\u00fchler (NTC)",
+     717,
+     260
+    ],
+    [
+     "Thermosicherung (TCO)",
+     461,
+     506
+    ],
+    [
+     "Anschlussfahnen Heizung",
+     444,
+     616
+    ]
+   ]
+  },
+  "ventil": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Ventilk\u00f6rper",
+     689,
+     488
+    ],
+    [
+     "Feder und Kappe",
+     689,
+     218
+    ],
+    [
+     "Zahnrad",
+     410,
+     580
+    ],
+    [
+     "Mikroschalter",
+     587,
+     442
+    ],
+    [
+     "Wasseranschluss",
+     798,
+     538
+    ]
+   ]
+  },
+  "wassertank": {
+   "breite": 1200,
+   "hoehe": 900,
+   "marker": [
+    [
+     "Tank, 1,8 Liter",
+     731,
+     299
+    ],
+    [
+     "Wasserfilter",
+     479,
+     764
+    ],
+    [
+     "Ventil am Tankboden",
+     479,
+     847
+    ],
+    [
+     "Schwimmer (F\u00fcllstand)",
+     738,
+     668
+    ],
+    [
+     "Griff",
+     721,
+     37
     ]
    ]
   }
