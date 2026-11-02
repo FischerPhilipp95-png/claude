@@ -1,0 +1,34 @@
+---
+// Karten für Spezialtarife (Autostrom, Wärmepumpenstrom): Daten aus src/stromtarife.ts. Keine Noten, keine Testsiegel: Zahlen, Quelle, Stand.
+import Icon from './Icon.astro';
+import { TARIFART_TEXT, type Spezialtarif } from '../stromtarife';
+interface Props { tarife: Spezialtarif[]; stand: string }
+const { tarife, stand } = Astro.props;
+const eur = (x: number) => x.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const ct = (x: number) => x.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 2 });
+---
+<ol class="vg-liste">
+  {tarife.map((t) => (
+    <li class="vg-karte">
+      <div class="vg-kopf">
+        <div>
+          <p class="vg-anbieter">{t.anbieter}</p>
+          <p class="vg-tarif">{t.tarif}</p>
+        </div>
+        <p class="vg-kosten"><span class="vg-kosten-zahl">{t.arbeitspreis === null ? 'nach PLZ' : `${ct(t.arbeitspreis)} ct`}</span><span class="small">{t.arbeitspreis === null ? 'Arbeitspreis' : 'pro kWh, Beispielwert'}</span></p>
+      </div>
+      <dl class="vg-daten">
+        <div><dt>Tarifart</dt><dd>{TARIFART_TEXT[t.art]}</dd></div>
+        <div><dt>Grundpreis</dt><dd>{t.grundpreis === null ? 'nach PLZ' : `${eur(t.grundpreis)} €/Monat`}</dd></div>
+        <div><dt>Laufzeit</dt><dd>{t.laufzeit}</dd></div>
+        <div><dt>Voraussetzung</dt><dd>{t.voraussetzung}</dd></div>
+      </dl>
+      {t.bonus && <p class="vg-text"><Icon name="badge-percent" size={15} /> {t.bonus}</p>}
+      <p class="vg-fuss">
+        <a class="btn btn-sm" href={t.link || t.website} rel={t.link ? 'sponsored nofollow noopener' : 'noopener'} target="_blank" data-pagefind-ignore><Icon name="external-link" size={15} /> Zum Anbieter{t.link ? '*' : ''}</a>
+        <span class="small">Stand {t.stand}, Quelle: {t.quelle}</span>
+      </p>
+    </li>
+  ))}
+</ol>
+<p class="small" data-pagefind-ignore>*Affiliate-Links: Schließt du darüber ab, bekomme ich eine Provision. Für dich ändert sich am Preis nichts, die Reihenfolge und die Zahlen beeinflusst das nicht. Links ohne Stern sind normale Links. Mehr unter <a href="/werbung/">Transparenz &amp; Werbung</a>. Alle Angaben geprüft am {stand}, maßgeblich ist das Angebot des Anbieters nach Eingabe der Postleitzahl.</p>

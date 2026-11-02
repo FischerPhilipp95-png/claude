@@ -87,3 +87,30 @@ export const STROMTARIFE: Stromtarif[] = [
 ];
 
 export const TARIFE_STAND = '27. Oktober 2026';
+
+// ---------------------------------------------------------------------------------------------------------------
+// Spezialtarife mit festem Preis: Autostromtarife (Wallbox) und Wärmepumpentarife. Vergleich unter /vergleich/autostromtarife/
+// und /vergleich/waermepumpentarife/. Preise sind regional verschieden (Netzentgelte), deshalb steht bei vielen „nach PLZ“.
+// Affiliate-Link: `link` setzen, sonst führt der Button zur Anbieter-Website.
+export type TarifArt = 'eigener-zaehler' | 'haushalt-bonus' | 'zeitvariabel' | 'dynamisch';
+export interface Spezialtarif {
+  id: string;
+  anbieter: string;
+  tarif: string;
+  website: string;
+  link?: string;
+  art: TarifArt;                 // eigener Zähler (§ 14a Modul 2), Haushaltstarif mit Bonus, zeitvariabel, dynamisch
+  arbeitspreis: number | null;   // ct/kWh brutto, Beispielwert laut Quelle (null: nur nach PLZ)
+  grundpreis: number | null;     // € pro Monat (null: nur nach PLZ)
+  laufzeit: string;
+  voraussetzung: string;         // Zähler, Smart Meter, Wallbox-Steuerung, Region
+  bonus?: string;                // Ladeguthaben, Rabatt, Besonderheit
+  stand: string;                 // JJJJ-MM-TT
+  quelle: string;
+}
+export const TARIFART_TEXT: Record<TarifArt, string> = {
+  'eigener-zaehler': 'eigener Zähler, reduzierte Netzentgelte (§ 14a Modul 2)',
+  'haushalt-bonus': 'Haushaltstarif mit Ladebonus',
+  zeitvariabel: 'zeitvariabel (günstige Zeitfenster)',
+  dynamisch: 'dynamisch (Börsenpreis) mit smartem Laden',
+};
