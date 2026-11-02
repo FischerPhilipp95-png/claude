@@ -1,0 +1,142 @@
+---
+title: "Stromspeicher mit dynamischem Tarif: lohnt sich Laden aus dem Netz?"
+kurztitel: "Stromspeicher und dynamischer Tarif"
+description: "Heimspeicher mit dynamischem Stromtarif: wie viel Preisunterschied nötig ist, was Verluste und Alterung kosten, was Modul 3 bringt, was beim Netzladen gilt."
+pubDate: 2026-11-02
+icon: battery-charging
+thema: Tarif
+bild: /bilder/titel/stromspeicher-dynamischer-stromtarif.webp
+bildAlt: "Titelbild: Stromspeicher mit dynamischem Stromtarif"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: false
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+
+<Antwort>
+**Kurz gesagt:** Ein Heimspeicher kann mit dynamischem Tarif **günstigen Netzstrom laden und ihn in teuren Stunden nutzen**. Das lohnt
+sich nur, wenn der Preisunterschied die **Verluste** (Fraunhofer ISE rechnet mit 86 Prozent Wirkungsgrad, Finanztip mit 15 bis 20
+Prozent Verlust) und den **Verschleiß** des Akkus übersteigt. Weil 16 ct/kWh netto Netzentgelte und Abgaben auf jede geladene
+Kilowattstunde kommen, bleibt bei typischen Winter-Spreads von 15 bis 20 ct ein Gewinn von grob **10 bis 15 ct je gespeicherter kWh**.
+Bei 10 kWh nutzbarem Speicher und 150 Wintertagen sind das rund **150 bis 220 Euro im Jahr**, mit zeitvariablem Netzentgelt (Modul 3)
+mehr. Im Sommer lädt der Speicher ohnehin vom Dach. Wer Netzstrom in einen PV-Speicher lädt, muss die EEG-Vergütung und die Anmeldung
+beim Netzbetreiber beachten.
+</Antwort>
+
+## Das Prinzip: Arbitrage im Keller
+
+Große Batteriespeicher verdienen ihr Geld damit, Strom günstig zu kaufen und teuer zu verkaufen. Suena Energy rechnet für einen
+10-MW-Speicher im September 2026 mit Erlösen von 13.800 Euro je Megawatt allein am Day-Ahead-Markt, bis 25.500 Euro mit
+Multi-Markt-Optimierung. Der Unterschied zum Heimspeicher: Großspeicher zahlen beim Laden kaum Netzentgelte und Abgaben, du schon. Das
+ist der Grund, warum die Rechnung zu Hause so viel enger ist.
+
+## Die Rechnung: wie viel Spread brauchst du?
+
+Dein Arbeitspreis im dynamischen Tarif besteht aus Börsenpreis plus festen Anteilen (laut BDEW, zitiert nach Finanztip, im Schnitt rund
+16 ct/kWh netto, also etwa 19 ct brutto) plus Aufschlag des Anbieters. Entscheidend ist nur die **Differenz** zwischen der Lade- und der
+Entladestunde, weil die festen Anteile in beiden stecken. Ein Winterbeispiel:
+
+| | Börsenpreis | dein Arbeitspreis brutto |
+|---|---|---|
+| Laden, nachts 3 Uhr | 3 ct/kWh | rund 25 ct |
+| Entladen statt Netzbezug, 18 Uhr | 22 ct/kWh | rund 47 ct |
+
+- 1 kWh laden kostet 25 ct. Davon kommen bei 86 Prozent Wirkungsgrad **0,86 kWh** wieder heraus.
+- Diese 0,86 kWh ersetzen Netzstrom für 47 ct, also **40 ct** Ersparnis.
+- Gewinn: rund **15 ct je geladener kWh**, bevor der Akkuverschleiß gerechnet ist.
+
+Bei 10 kWh nutzbarer Kapazität und einem Zyklus pro Tag an 150 Wintertagen sind das **rund 225 Euro im Jahr**. Mit einem kleineren
+Spread von 15 ct bleiben etwa 10 ct Gewinn und rund 150 Euro. Die 150 zusätzlichen Zyklen im Jahr kosten Lebensdauer: Bei 6.000
+garantierten Zyklen und 10.000 Euro Speicherpreis sind das rechnerisch rund 25 Cent je Zyklus, also etwa 40 Euro im Jahr. Netto
+bleiben **grob 100 bis 200 Euro**.
+
+Die Spreads schwanken stark: Im September 2026 lag der Day-Ahead-Schnitt bei 144,80 €/MWh mit Abendspitzen von rund 261 €/MWh bei
+Schwachwind, im Sommer sind die Mittagsstunden oft negativ. Deine echten Zahlen rechnet der [Spar-Rechner](/rechner/dynamischer-stromtarif/)
+mit den Börsenpreisen des letzten Jahres; die Viertelstunden siehst du im Artikel [Börsenstrompreis verstehen](/artikel/boersenstrompreis-tagesverlauf/).
+
+## Modul 3 macht den Unterschied größer
+
+Dein Speicher ab 4,2 kW gilt als steuerbare Verbrauchseinrichtung nach § 14a EnWG (Netze BW zählt Batteriespeicher ausdrücklich
+dazu). Dafür gibt es Modul 1, die Pauschale (bei Netze BW 2026: 147,56 Euro im Jahr), und auf Wunsch **Modul 3**, das zeitvariable
+Netzentgelt. Bei Netze BW kostet das Netzentgelt von 10 bis 14 Uhr **3,61 ct/kWh** und von 17 bis 22 Uhr **13,16 ct/kWh**. Wer mittags
+lädt und abends entlädt, gewinnt also zusätzlich zur Börse **9,55 ct je kWh** beim Netzentgelt. Mit Modul 3 rechnet sich der
+Netz-Zyklus im Winter fast immer, ohne ist er eine Wette auf windige Nächte. Mehr: [§ 14a EnWG erklärt](/artikel/14a-enwg-module/).
+
+<Warnung titel="Mehr Speicher, kleinere Spreads">
+Das Fraunhofer ISE hat simuliert, was 20 GW Großspeicher mit dem Markt von 2025 gemacht hätten: Der mittlere Tagesunterschied zwischen
+teuerster und günstigster Viertelstunde fällt von 130 auf 53 €/MWh, Stunden über 200 €/MWh von 169 auf 20. Je mehr Speicher ans Netz
+gehen, desto weniger bringt die Arbitrage zu Hause. Kaufe keinen Speicher nur für die Börse; rechne ihn über den PV-Eigenverbrauch
+und nimm die Arbitrage als Zugabe.
+</Warnung>
+
+## Was dein Speicher können muss
+
+- **Netzladen erlauben.** Viele PV-Speicher laden ab Werk nur vom Dach. Die Funktion heißt je nach Hersteller „Netzladen“, „Grid
+  Charging“ oder „Speicher aus dem Netz laden“ und muss freigeschaltet sein. Frag den Installateur.
+- **Preise kennen.** Der Energiemanager braucht die Börsenpreise deines Anbieters: über dessen Schnittstelle (Tibber, tado°, Octopus,
+  Ostrom) oder ein System, das sie selbst holt. Herstellerlösungen wie 1KOMMA5° Heartbeat oder EP Cube (laut Hersteller
+  „koordiniert zeitabhängige Strompreise“) tun das automatisch, offene Software wie evcc kann Speicher nach Preisgrenze laden.
+- **PV-Prognose berücksichtigen.** Sonst lädt der Speicher nachts aus dem Netz und hat mittags keinen Platz für den eigenen Strom.
+  Gute Systeme laden nur die Menge nach, die bis zum nächsten Sonnentag fehlt.
+- **Smart Meter.** Ohne intelligentes Messsystem kein dynamischer Tarif; ab 4,2 kW Speicherleistung ist er ohnehin Pflicht
+  ([Smart Meter Einbau](/artikel/smart-meter-einbau/)).
+
+## Rechtliches: Netzstrom im PV-Speicher
+
+Wer Netzstrom in den Speicher lädt und später wieder einspeist, vermischt Graustrom mit Solarstrom. Für den eingespeisten Anteil, der
+aus dem Netz stammt, gibt es keine EEG-Vergütung; der Netzbetreiber verlangt dafür eine messtechnische Trennung oder eine
+nachvollziehbare Bilanzierung. In der Praxis lösen das die Energiemanager, indem der Speicher **bei Netzladung nicht einspeist**. Drei
+Dinge solltest du vor dem ersten Netz-Zyklus klären:
+
+1. **Netzbetreiber informieren**, dass der Speicher auch aus dem Netz lädt; manche verlangen eine geänderte Anmeldung.
+2. **Anlagenkonfiguration** so, dass bei Netzladung keine Einspeisung aus dem Speicher stattfindet.
+3. **Steuer**: Einnahmen und Ersparnisse aus reinem Netzladen fallen nicht unter die Steuerbefreiung für kleine PV-Anlagen; bei
+   nennenswerten Beträgen den Steuerberater fragen.
+
+Die Verbraucherzentrale sieht den Mehrwert dynamischer Tarife ausdrücklich auch bei „Batteriespeicher“, warnt aber, dass Umlagen,
+Netzentgelte und Abgaben auch bei negativen Börsenpreisen weiterlaufen. Negative Preise sind also nicht gratis, nur günstig.
+
+## Anbieter mit Speicher-Bonus
+
+Spotmyenergy hat laut pv magazine (02.11.2026) für Anfang 2027 einen Festpreistarif angekündigt, der für einen steuerbaren
+Batteriespeicher einen Bonus von 10 ct/kWh zahlt, gesteuert über das eigene Energiemanagement. Tibber zahlt 2026 einen Wechselbonus
+von 100 Euro für Neukunden mit Heimspeicher. Das sind Anbieterangaben, keine Erfahrungswerte; die Konditionen stehen in den
+Vergleichen [dynamische Stromtarife](/vergleich/dynamische-stromtarife/) und [Wärmepumpentarife](/vergleich/waermepumpentarife/).
+
+## Lohnt es sich bei dir?
+
+| Situation | Einschätzung |
+|---|---|
+| PV-Speicher vorhanden, Netzladen freischaltbar, Smart Meter da oder beantragt | Ja, als Zugabe im Winter: 100 bis 200 Euro im Jahr realistisch, mit Modul 3 mehr |
+| Speicher ohne PV, nur für Arbitrage | Nein, Anschaffung rechnet sich über Börsen-Spreads allein nicht |
+| Balkonkraftwerk mit kleinem Speicher | Nein, Gebühr des Tarifs übersteigt den Gewinn; siehe [Balkonkraftwerk mit Speicher](/artikel/balkonkraftwerk-mit-speicher/) |
+| Speicher plus E-Auto plus Wärmepumpe mit Energiemanager | Ja, hier summieren sich die Effekte; siehe [PV und dynamischer Tarif](/artikel/pv-dynamischer-stromtarif/) |
+
+## Häufige Fragen
+
+### Wie viel spart ein Stromspeicher mit dynamischem Tarif?
+Bei 10 kWh und Winterbetrieb grob 100 bis 200 Euro im Jahr nach Verlusten und Verschleiß, mit zeitvariablem Netzentgelt (Modul 3) mehr.
+Unabhängige Studien für Heimspeicher gibt es Stand November 2026 nicht.
+
+### Kann ich den Speicher bei negativen Strompreisen kostenlos laden?
+Nein. Netzentgelte, Umlagen und Steuern (rund 19 ct/kWh brutto) bleiben. Negative Börsenpreise machen das Laden günstig, nicht gratis.
+
+### Darf ich Netzstrom in den PV-Speicher laden?
+Ja, wenn der Speicher bei Netzladung nicht einspeist oder die Mengen messtechnisch getrennt werden, sonst gefährdest du die
+EEG-Vergütung. Netzbetreiber vorher informieren.
+
+### Welche Speicher können nach Börsenpreis laden?
+Systeme mit Energiemanager und Preis-Schnittstelle, etwa 1KOMMA5° Heartbeat oder EP Cube laut Hersteller, sowie viele Speicher über
+offene Software wie evcc. Die konkrete Freigabe für Netzladen hängt vom Modell ab, frag den Installateur.
+
+### Lohnt sich ein größerer Speicher wegen des dynamischen Tarifs?
+Selten. Die Arbitrage bringt je nutzbarer kWh grob 10 bis 20 Euro im Jahr; eine zusätzliche kWh Speicher kostet mehrere hundert Euro.
+
+## Quellen
+
+- Fraunhofer ISE: [Energy-Charts startet Preissimulator](https://www.ise.fraunhofer.de/de/presse-und-medien/presseinformationen/2026/datenplattform-energy-charts-startet-preissimulator.html), 01.10.2026 (Wirkungsgrad 86 Prozent, Spreads mit 20 GW Speicher)
+- Suena Energy in pv magazine: [Aufschwung am Großhandelsmarkt: Batterieerlöse im September](https://www.pv-magazine.de/2026/10/28/aufschwung-am-grosshandelsmarkt-batterieerloese-im-september/), 28.10.2026
+- pv magazine: Interview EP Cube, 30.10.2026, und Ankündigung spotmyenergy SmartFix, 02.11.2026
+- Finanztip: [Dynamische Stromtarife](https://www.finanztip.de/stromtarife/dynamischer-stromtarif/), Stand 16.04.2026 (Ladeverluste 15 bis 20 Prozent, fixe Preisbestandteile laut BDEW)
+- Verbraucherzentrale: [Dynamische Stromtarife: für wen es sich lohnt](https://www.verbraucherzentrale.de/wissen/energie/preise-tarife-anbieterwechsel/dynamische-stromtarife-fuer-wen-es-sich-lohnt-und-worauf-sie-achten-sollten-97836), Stand 06.10.2025
+- Netze BW: [Preisblatt Netzentgelte Strom 2026](https://assets.cdn.netze-bw.de/xytfb1vrn7of/7eQvxehZzn3ECbR9rALmyD/ecc795b9dcd666ce1f53d9d04362a321/netzentgelte-strom-netze-bw-gmbh-2026.pdf) (PDF) und [Regelung § 14a EnWG](https://www.netze-bw.de/neuregelung-14a-enwg), abgerufen 02.11.2026

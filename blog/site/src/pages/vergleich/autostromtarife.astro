@@ -1,0 +1,70 @@
+---
+// Vergleich der Autostromtarife. Daten und Affiliate-Links: src/stromtarife.ts (AUTOSTROM). Keine Noten, keine Testsiegel.
+import Base from '../../layouts/Base.astro';
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import TarifKarten from '../../components/TarifKarten.astro';
+import { AUTOSTROM, SPEZIAL_STAND } from '../../stromtarife';
+import { SITE } from '../../site';
+
+const title = 'Autostromtarife im Vergleich: Ladestrom für die Wallbox zuhause';
+const description = `Autostrom 2026 im Vergleich: ${AUTOSTROM.length} Tarife für das Laden zuhause, von naturstrom e mobil über EnBW Wallbox bis Tibber und Octopus: Tarifart, Zähler, Bonus, Laufzeit. Stand ${SPEZIAL_STAND}.`;
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Autostromtarife im Vergleich', url: `${SITE.url}/vergleich/autostromtarife/`,
+    itemListElement: AUTOSTROM.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: `${t.anbieter} ${t.tarif}`, url: t.website })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: `${SITE.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Dynamischer Stromtarif', item: `${SITE.url}/thema/dynamischer-stromtarif/` },
+    { '@type': 'ListItem', position: 3, name: 'Autostromtarife', item: `${SITE.url}/vergleich/autostromtarife/` } ] },
+];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/thema/dynamischer-stromtarif/">Dynamischer Stromtarif</a> › Autostromtarife</nav>
+    <h1>Autostromtarife im Vergleich</h1>
+    <p class="lead">Ladestrom für die Wallbox zuhause gibt es in vier Formen: ein <strong>günstiger Haushaltstarif für E-Auto-Fahrer</strong>, ein Tarif mit
+    <strong>eigenem Wallbox-Zähler</strong> (§ 14a Modul 2), ein <strong>Haushaltstarif mit Ladebonus</strong> und <strong>dynamische</strong> Tarife mit
+    smartem Laden. Hier stehen Tarifart, Zählerpflicht, Bonus und Laufzeit mit Quelle und Stand. Die Arbeitspreise hängen vom Netzgebiet ab und
+    erscheinen bei fast allen Anbietern erst nach Eingabe der Postleitzahl.</p>
+
+    <Antwort>
+    <p><strong>Kurz gesagt:</strong> Der einzige veröffentlichte Festpreis ist <strong>naturstrom e mobil mit 29,90 ct/kWh</strong> (Stand {SPEZIAL_STAND}).
+    Der zweite Zähler mit 60 Prozent Netzentgelt-Rabatt lohnt sich erst bei hoher Fahrleistung, grob ab 20.000 bis 30.000 km im Jahr; darunter ist
+    <strong>Modul 1</strong> (pauschal, bei Netze BW 2026: 147,56 €) plus günstiger Haushaltstarif besser. Wer flexibel laden kann, spart mit dem dynamischen
+    Tarif meist mehr. Rechnung und Entscheidungshilfe: <a href="/artikel/autostromtarif/">Autostromtarif oder dynamischer Tarif?</a></p>
+    </Antwort>
+
+    <TarifKarten tarife={AUTOSTROM} stand={SPEZIAL_STAND} />
+
+    <Warnung titel="Preise nur nach Postleitzahl">
+    Netzentgelt und Konzessionsabgabe sind je Netzgebiet verschieden, deshalb nennen die Anbieter ihre Arbeitspreise erst im Tarifrechner. Vergleiche
+    mit deiner Postleitzahl, deinem Haushaltsverbrauch und den geladenen Kilowattstunden. Maßgeblich ist das Angebot des Anbieters. Keine Noten, kein Testsieger.
+    </Warnung>
+
+    <h2>Worauf es beim Vergleich ankommt</h2>
+    <ul>
+      <li><strong>Zählerpflicht:</strong> Tarife mit eigenem Wallbox-Zähler brauchen einen freien Zählerplatz und den Elektriker. Messentgelt (25 bis 50 € im Jahr) und zweiter Grundpreis kommen dazu.</li>
+      <li><strong>Wird § 14a weitergegeben?</strong> Modul 1 steht jeder angemeldeten Wallbox zu. Ob dein Anbieter die Pauschale weitergibt, steht in den Bedingungen oder auf Nachfrage.</li>
+      <li><strong>Bonus-Bedingungen:</strong> Ladeboni hängen an Smart Meter, App und gesteuerten Ladevorgängen. Lies, wann der Bonus entfällt.</li>
+      <li><strong>Preisgarantie:</strong> „Netto-Preisgarantie“ sichert nur den Anbieteranteil, nicht Netzentgelte, Steuern und Umlagen.</li>
+      <li><strong>Laufzeit:</strong> Festpreis-Tarife binden oft 12 bis 18 Monate; dynamische Tarife sind meist monatlich kündbar.</li>
+      <li><strong>Smart Meter:</strong> Wer baut ihn ein, wer zahlt, wie lange dauert es? Details im Artikel <a href="/artikel/smart-meter-einbau/">Smart Meter Einbau</a>.</li>
+    </ul>
+
+    <h2>Häufige Fragen</h2>
+    <h3>Welcher Autostromtarif ist der günstigste?</h3>
+    <p>Ohne Postleitzahl nicht zu sagen. naturstrom e mobil nennt als einziger einen Preis (29,90 ct/kWh); ob ein Wallbox-Tarif mit Zweitzähler oder ein dynamischer Tarif günstiger ist, hängt von deiner Fahrleistung und deinen Ladezeiten ab.</p>
+    <h3>Gibt es noch Nachtstrom für die Wallbox?</h3>
+    <p>Klassische Nachttarife bieten die großen Anbieter kaum noch an. Die zeitvariable Variante läuft heute über Modul 3 des Netzbetreibers (bei Netze BW 2026: Niedrigtarif von 10 bis 14 Uhr, Hochtarif von 17 bis 22 Uhr) oder über einen dynamischen Tarif.</p>
+    <h3>Kann ich den Tarif als Mieter nutzen?</h3>
+    <p>Haushaltstarife mit Bonus und dynamische Tarife ja, über den Wohnungszähler. Ein eigener Wallbox-Zähler braucht einen Zählerplatz auf deinen Namen, in Tiefgaragen mit zentraler Ladeinfrastruktur rechnet meist der Betreiber ab.</p>
+
+    <h2>Quellen</h2>
+    <ul class="small">
+      <li>Anbieterseiten von naturstrom, EnBW, LichtBlick, Tibber und Octopus Energy, abgerufen am {SPEZIAL_STAND}</li>
+      <li>Netze BW: <a href="https://assets.cdn.netze-bw.de/xytfb1vrn7of/7eQvxehZzn3ECbR9rALmyD/ecc795b9dcd666ce1f53d9d04362a321/netzentgelte-strom-netze-bw-gmbh-2026.pdf" rel="noopener">Preisblatt Netzentgelte Strom 2026</a> (PDF, Stand 12.12.2025)</li>
+      <li>LichtBlick: <a href="https://www.lichtblick.de/wissen/waerme/reduzierte-netzentgelte-nach-14a-enwg/" rel="noopener">Reduzierte Netzentgelte nach § 14a EnWG</a>, Stand 08.07.2026</li>
+      <li>Verbraucherzentrale: <a href="https://www.verbraucherzentrale.de/wissen/energie/preise-tarife-anbieterwechsel/smart-meter-was-sie-ueber-die-stromzaehler-wissen-muessen-13275" rel="noopener">Smart Meter: Was Sie wissen müssen</a>, Stand 10.08.2026</li>
+    </ul>
+  </div>
+</Base>

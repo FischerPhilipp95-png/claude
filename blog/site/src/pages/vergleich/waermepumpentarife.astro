@@ -1,0 +1,69 @@
+---
+// Vergleich der Wärmepumpentarife. Daten und Affiliate-Links: src/stromtarife.ts (WAERMEPUMPENSTROM). Keine Noten, keine Testsiegel.
+import Base from '../../layouts/Base.astro';
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import TarifKarten from '../../components/TarifKarten.astro';
+import { WAERMEPUMPENSTROM, SPEZIAL_STAND } from '../../stromtarife';
+import { SITE } from '../../site';
+
+const title = 'Wärmepumpentarife im Vergleich: Wärmestrom, zeitvariabel, dynamisch';
+const description = `Wärmepumpenstrom 2026 im Vergleich: ${WAERMEPUMPENSTROM.length} Tarife von Vattenfall, EnBW, LichtBlick, Octopus und Tibber mit Tarifart, Voraussetzungen und Laufzeit. Stand ${SPEZIAL_STAND}.`;
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Wärmepumpentarife im Vergleich', url: `${SITE.url}/vergleich/waermepumpentarife/`,
+    itemListElement: WAERMEPUMPENSTROM.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: `${t.anbieter} ${t.tarif}`, url: t.website })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: `${SITE.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Dynamischer Stromtarif', item: `${SITE.url}/thema/dynamischer-stromtarif/` },
+    { '@type': 'ListItem', position: 3, name: 'Wärmepumpentarife', item: `${SITE.url}/vergleich/waermepumpentarife/` } ] },
+];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/thema/dynamischer-stromtarif/">Dynamischer Stromtarif</a> › Wärmepumpentarife</nav>
+    <h1>Wärmepumpentarife im Vergleich</h1>
+    <p class="lead">Wärmepumpenstrom gibt es in drei Formen: klassischer <strong>Wärmestrom</strong> mit eigenem Zähler, <strong>zeitvariable</strong> Tarife
+    mit festen günstigen Zeitfenstern und <strong>dynamische</strong> Tarife zum Börsenpreis. Die Preise hängen vom Netzgebiet ab, deshalb nennen die
+    Anbieter sie erst nach Eingabe der Postleitzahl. Hier stehen Tarifart, Voraussetzungen, Laufzeit und Besonderheiten, mit Quelle und Stand.</p>
+
+    <Antwort>
+    <p><strong>Kurz gesagt:</strong> Der Preisvorteil kommt aus dem Netzentgelt (§ 14a EnWG): <strong>60 Prozent Rabatt</strong> bei eigenem Zähler (Modul 2) oder
+    <strong>110 bis 190 € pauschal</strong> ohne Zusatzzähler (Modul 1). Der zweite Zähler lohnt sich laut Finanztip meist ab etwa <strong>4.500 kWh</strong>
+    Wärmepumpenstrom im Jahr. Wer die Wärmepumpe zeitlich steuern kann, prüft zusätzlich zeitvariable oder dynamische Tarife.
+    Grundlagen und Rechenbeispiel: <a href="/artikel/waermepumpentarif/">Wärmepumpentarif: lohnt sich das?</a></p>
+    </Antwort>
+
+    <TarifKarten tarife={WAERMEPUMPENSTROM} stand={SPEZIAL_STAND} />
+
+    <Warnung titel="Preise nur nach Postleitzahl">
+    Keiner der Anbieter veröffentlicht einen bundesweiten Arbeitspreis für Wärmepumpenstrom, weil Netzentgelt und Konzessionsabgabe je Netzgebiet verschieden
+    sind. Vergleiche deshalb immer mit deiner Postleitzahl und deinem Jahresverbrauch. Maßgeblich ist das Angebot des Anbieters. Keine Noten, kein Testsieger.
+    </Warnung>
+
+    <h2>Worauf es beim Vergleich ankommt</h2>
+    <ul>
+      <li><strong>Eigener Zähler oder nicht:</strong> Wärmestromtarife setzen einen separaten, vom Netzbetreiber zugelassenen Zähler voraus. Rechne Messentgelt und zweiten Grundpreis gegen den Rabatt.</li>
+      <li><strong>Wird § 14a weitergegeben?</strong> Bei Wärmestrom ist der Rabatt eingepreist. Bei Haushalts- und dynamischen Tarifen steht es in den Bedingungen, Finanztip empfiehlt nur Anbieter, die mindestens Modul 1 und 2 weitergeben.</li>
+      <li><strong>Preisgarantie:</strong> „Netto-Preisgarantie“ oder „ohne Steuern und Umlagen“ heißt, dass nur der Anbieteranteil fest ist.</li>
+      <li><strong>Laufzeit:</strong> Die Verbraucherzentralen raten bei dynamischen Tarifen von 12-Monats-Bindungen ab. Bei Wärmestrom mit Preisgarantie kann eine längere Bindung sinnvoll sein, wenn der Preis gut ist.</li>
+      <li><strong>Smart Meter:</strong> Zeitvariable und dynamische Tarife brauchen ihn. Wer zahlt den Einbau, was kostet der Messstellenbetrieb danach?</li>
+      <li><strong>Steuerung:</strong> Kann der Anbieter die Wärmepumpe über SG-Ready, EEBus oder ein Thermostat führen, oder musst du selbst programmieren?</li>
+    </ul>
+
+    <h2>Häufige Fragen</h2>
+    <h3>Welcher Wärmepumpentarif ist der günstigste?</h3>
+    <p>Das lässt sich ohne Postleitzahl nicht sagen, weil der Arbeitspreis regional ist. Rechne mit deinem Netzentgelt, ob Modul 1 oder der eigene Zähler mehr bringt, und vergleiche dann die Anbieter in deinem Netzgebiet.</p>
+    <h3>Gibt es dynamischen Wärmepumpenstrom mit eigenem Zähler?</h3>
+    <p>Stand November 2026 kennen wir keinen Anbieter, der das eindeutig ausweist. Tibber liefert dynamischen Strom ohne eigenen Wärmepumpentarif, Octopus Heat ist zeitvariabel. Vor dem Wechsel schriftlich klären.</p>
+    <h3>Muss ich eine Sperrzeit hinnehmen?</h3>
+    <p>Für Anlagen ab 2024 gibt es keine Abschaltung mehr, nur eine Dimmung auf mindestens 4,2 kW bei Netzüberlastung. Ältere Vereinbarungen laufen bis Ende 2028.</p>
+
+    <h2>Quellen</h2>
+    <ul class="small">
+      <li>Anbieterseiten von Vattenfall, EnBW, LichtBlick, Octopus Energy und Tibber, abgerufen am {SPEZIAL_STAND}</li>
+      <li>LichtBlick: <a href="https://www.lichtblick.de/wissen/waerme/reduzierte-netzentgelte-nach-14a-enwg/" rel="noopener">Reduzierte Netzentgelte nach § 14a EnWG</a>, Stand 08.07.2026</li>
+      <li>Finanztip: <a href="https://www.finanztip.de/stromtarife/waermepumpe/" rel="noopener">Stromtarife für Wärmepumpen</a>, Stand September 2026</li>
+      <li>pv-magazine: <a href="https://www.pv-magazine.de/" rel="noopener">Ankündigung spotmyenergy SmartFix</a>, 02.11.2026</li>
+    </ul>
+  </div>
+</Base>

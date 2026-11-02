@@ -1,0 +1,163 @@
+---
+title: "Tibber-Alternative: 9 dynamische Stromtarife im Vergleich (2026)"
+kurztitel: "Tibber-Alternativen im Vergleich"
+description: "Tibber ist nicht der einzige dynamische Tarif: Octopus, naturstrom, Rabot, Ostrom, tado, 1KOMMA5°, EnBW und Vattenfall im Vergleich mit Gebühr und Aufschlag."
+pubDate: 2026-11-02
+icon: arrow-left-right
+thema: Tarif
+bild: /bilder/titel/tibber-alternative.webp
+bildAlt: "Titelbild: Tibber-Alternative, dynamische Stromtarife im Vergleich"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: true
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+
+<Antwort>
+**Kurz gesagt:** Tibber ist der bekannteste dynamische Stromtarif, aber nicht automatisch der günstigste. Die Monatsgebühr (laut Tibber-FAQ
+5,99 Euro) und der Aufschlag auf den Börsenpreis sind bei **Octopus Energy** und **Ostrom** niedriger, **naturstrom smart** gibt den
+Börsenpreis 1:1 weiter, **EnBW** nennt keinen Aufschlag, dafür einen festen Preisanteil nach Postleitzahl. Wer **keinen Smart Meter**
+bekommt, findet bei **Rabot Energy** einen Tarif mit Monatsdurchschnitt. Für die **Wärmepumpe** passt **tado° Hourly** (die frühere
+aWATTar-Schnittstelle), für **PV plus Speicher** 1KOMMA5°, mit **Preisdeckel** Vattenfall. Finanztip bewertet die Anbietergebühren mit
+einem Preisscore: Tibber liegt dort bei 4,7 von 10, Octopus bei 7,1, naturstrom smart bei 7,3 (Stand 27.10.2026).
+</Antwort>
+
+## Warum überhaupt eine Alternative zu Tibber?
+
+Tibber hat den dynamischen Tarif in Deutschland bekannt gemacht: gute App, offene Schnittstelle, Wallbox-Steuerung, keine
+Mindestlaufzeit. Es gibt trotzdem vier gute Gründe, sich umzusehen:
+
+1. **Die Gebühr.** Laut Tibber-FAQ kostet der Tarif 5,99 Euro im Monat, also rund 72 Euro im Jahr, dazu ein Aufschlag auf den
+   Börsenpreis (laut stromdiagnose.de, Stand Mai 2026: 2,5 ct/kWh). Bei 3.000 kWh im Jahr sind das zusammen rund 147 Euro, die der
+   Tarif erst einmal einspielen muss.
+2. **Der Smart Meter.** Tibber Smart Dynamic gibt es ausschließlich mit intelligentem Messsystem. Der Einbau über die Partner inexogy
+   oder metrify ist mit E-Auto, Wallbox, PV oder Speicher laut Tibber kostenlos, sonst nennt die FAQ 60 Euro. Andere Anbieter
+   organisieren den Einbau ebenfalls, teils schneller, teils gar nicht.
+3. **Der Tibber Pulse.** Das Lesegerät für Echtzeitdaten ist an das Tibber-Konto gebunden. Wer wechselt, braucht die App des neuen
+   Anbieters oder liest den Smart Meter mit eigener Hardware aus.
+4. **Die Bewertung.** Finanztip stuft Tibber im Vergleich der Anbietergebühren nur im Mittelfeld ein (Preisscore 4,7 von 10), vorn
+   liegen Friesenwerk (10,0), naturstrom smart (7,3) und dynamicOctopus (7,1).
+
+Was dir Tibber oder ein anderer dynamischer Tarif überhaupt bringt, hängt mehr von deinem Verbrauch als vom Anbieter ab. Rechne das
+zuerst im [Spar-Rechner](/rechner/dynamischer-stromtarif/) oder lies [Lohnt sich ein dynamischer Stromtarif?](/artikel/dynamischer-stromtarif-lohnt-sich/).
+
+## Die Alternativen im Überblick
+
+Die Gebühren stammen aus unserem [Anbieter-Vergleich](/vergleich/dynamische-stromtarife/) (Stand 27. Oktober 2026, Quellen
+Anbieterseiten und stromdiagnose.de). Die Arbeitspreise selbst hängen vom Netzgebiet ab.
+
+| Anbieter, Tarif | Grundgebühr | Aufschlag auf Börse | Smart Meter | Preise | Besonderheit |
+|---|---|---|---|---|---|
+| **Tibber** Smart Dynamic | 5,99 €/Monat | 2,5 ct/kWh | Pflicht | 15 Minuten | App, Pulse, Wallbox-Steuerung, evcc |
+| **Octopus Energy** dynamicOctopus | 7,99 €/Monat | 2,0 ct/kWh | Pflicht, Einbau laut Anbieter kostenlos | 15 Minuten | eigene Tarife für E-Auto (Intelligent Octopus) und Wärmepumpe (Octopus Heat) |
+| **naturstrom** smart | nach PLZ (Servicepauschale) | Börse 1:1 | Pflicht, Einbau kostenlos buchbar | 15 Minuten | Ökostrom-Anbieter, 4 Wochen Kündigungsfrist |
+| **Ostrom** SimplyDynamic | 6,00 €/Monat | 1,8 ct/kWh | Pflicht (Bestellung nur in Partner-Netzgebieten) | stündlich | offene Kunden-API; Finanztip: Gebühr seit April 2026 gestiegen |
+| **Rabot Energy** rabot.dynamic | 9,99 €/Monat | 2,2 ct/kWh | **nicht nötig** (dann Monatsdurchschnitt) | stündlich | Wallbox-Anbindung per OCPP |
+| **tado° Energy** Hourly (früher aWATTar) | 12,00 €/Monat | 1,5 ct/kWh | Pflicht | stündlich | offene Preis-API, die viele Wallboxen und Heizungen kennen |
+| **1KOMMA5°** Dynamic Pulse | 14,90 €/Monat | 3,0 ct/kWh | Pflicht | 15 Minuten | nur sinnvoll mit dem Energiemanager Heartbeat (PV, Speicher, Wallbox, Wärmepumpe) |
+| **EnBW** Strom dynamisch | nach PLZ | laut EnBW kein Aufschlag, fester Preisanteil | Pflicht, EnBW veranlasst Einbau | stündlich | Übergangstarif bis zum Einbau |
+| **Vattenfall** Dynamischer Stromtarif | nach PLZ | nach PLZ | Pflicht | 15 Minuten | Variante „mit Limit“ als Preisdeckel |
+
+Dazu kommen regionale Anbieter, die Finanztip gut bewertet, etwa **Friesenwerk** (Preisscore 10,0), sowie viele Stadtwerke, die seit
+2025 einen dynamischen Tarif anbieten müssen. Frag bei deinem Stadtwerk nach, die Gebühren sind dort oft niedrig.
+
+## Die richtige Alternative für deinen Fall
+
+### Du bekommst keinen Smart Meter
+
+**Rabot Energy** rechnet ohne Smart Meter mit dem Monatsdurchschnitt der Börse ab (Zählerstand per App). Das ist kein echter
+dynamischer Tarif, Verschieben bringt nichts extra, aber du profitierst von günstigen Monaten. Ostrom bietet mit „SimplyFair“ etwas
+Ähnliches. Mehr dazu: [Dynamischer Stromtarif ohne Smart Meter](/artikel/dynamischer-stromtarif-ohne-smart-meter/).
+
+### Du willst die niedrigste Gebühr
+
+Rechne Grundgebühr plus Aufschlag mal Verbrauch. Bei 3.000 kWh: Tibber rund 147 Euro, Octopus rund 156 Euro, Ostrom rund 126 Euro,
+tado rund 189 Euro im Jahr. Bei 6.000 kWh mit E-Auto dreht sich das Bild zugunsten der Anbieter mit niedrigem Aufschlag: Ostrom
+rund 180 Euro, tado rund 234 Euro, Tibber rund 222 Euro, Octopus rund 216 Euro. naturstrom smart und EnBW lassen sich nur mit
+Postleitzahl rechnen.
+
+### Du hast eine Wärmepumpe
+
+**tado° Hourly** hat die Preis-Schnittstelle, die seit aWATTar-Zeiten viele Wärmepumpen und Energiemanager direkt lesen, und koppelt
+mit tado°-Thermostaten. **Octopus Heat** ist kein dynamischer, sondern ein zeitvariabler Tarif mit festen günstigen Fenstern, dafür
+ohne Preisrisiko. Welche Variante bei welchem Verbrauch passt: [Wärmepumpentarif: lohnt sich das?](/artikel/waermepumpentarif/).
+
+### Du hast PV und Speicher
+
+**1KOMMA5°** verkauft den Tarif im Paket mit dem Energiemanager Heartbeat, der Speicher, Wallbox und Wärmepumpe nach Börsenpreis
+steuert. Das ist teuer in der Gebühr und bindet im Hardware-Paket bis zu 24 Monate, holt aber ohne eigenes Basteln das meiste aus
+Speicher und Börse. Mit offener Software (etwa evcc) geht das auch mit Tibber, Octopus oder tado. Mehr:
+[Stromspeicher mit dynamischem Tarif](/artikel/stromspeicher-dynamischer-stromtarif/).
+
+### Du willst eine Obergrenze
+
+**Vattenfall** bietet die Variante „Dynamik mit Limit“: ein Höchstpreis, der Preisspitzen abfängt. Das kostet etwas Ersparnis,
+nimmt aber die Angst vor der Dunkelflaute. Wer das Risiko ganz vermeiden will, nimmt statt eines dynamischen einen zeitvariablen
+Tarif (Octopus Heat, EnBW SparZeit).
+
+### Du lädst ein E-Auto
+
+Alle Anbieter in der Tabelle eignen sich fürs smarte Laden, die Unterschiede liegen in der Steuerung: Tibber und Rabot steuern die
+Wallbox aus der App, Octopus zahlt im Festpreistarif Intelligent Octopus einen Bonus von 12 ct/kWh auf smart geladene
+Kilowattstunden. Die Übersicht: [Autostromtarif oder dynamischer Tarif?](/artikel/autostromtarif/).
+
+<Warnung titel="Gebühren ändern sich schnell">
+Ostrom hat laut Finanztip im April 2026 die Gebühr auf den Arbeitspreis erhöht, Tibber hat die Monatsgebühr in den letzten Jahren
+mehrfach angepasst. Lies vor dem Abschluss das aktuelle Preisblatt des Anbieters und prüfe, ob der Anbieter Gebühr und Aufschlag
+einseitig ändern darf. Bei einer Preisänderung hast du nach § 41 Abs. 5 EnWG ein Sonderkündigungsrecht.
+</Warnung>
+
+## Worauf du beim Wechsel achten solltest
+
+- **Viertelstunde oder Stunde:** Seit Oktober 2025 wird der Day-Ahead-Markt in Viertelstunden gehandelt. Tarife mit
+  Viertelstundenpreisen (Tibber, Octopus, naturstrom, Vattenfall, 1KOMMA5°) bilden die Mittagsdelle und die Abendspitze genauer ab.
+- **Schnittstelle:** Wer Wallbox, Wärmepumpe oder Speicher automatisch steuern will, braucht eine offene API (Tibber, tado, Ostrom)
+  oder die App des Anbieters mit passender Hardware.
+- **Smart-Meter-Organisation:** Wer baut ein, wie lange dauert es, was passiert bis dahin? Octopus, naturstrom und EnBW kümmern sich
+  mit Übergangstarif, Ostrom nur in Partner-Netzgebieten. Details: [Smart Meter Einbau](/artikel/smart-meter-einbau/).
+- **Kündigung:** Dynamische Tarife sind meist monatlich kündbar. Die Verbraucherzentralen raten von Laufzeiten über 12 Monate ab.
+- **§ 14a-Rabatt:** Bei Wallbox oder Wärmepumpe muss der Anbieter die Netzentgeltreduzierung weitergeben. Laut Finanztip-Befragung
+  tun das E.ON, Enercity, EWE, LichtBlick, Mainova, N-Ergie und Octopus in jedem Haushaltstarif, EnBW, Vattenfall und naturstrom nur in
+  Spezialtarifen (siehe [§ 14a EnWG](/artikel/14a-enwg-module/)).
+
+Die komplette Wechsel-Anleitung mit Checkliste: [Zum dynamischen Stromtarif wechseln](/artikel/dynamischer-stromtarif-wechseln/).
+
+## Wann du bei Tibber bleiben solltest
+
+Wenn du den Tibber Pulse schon hast, die App magst und Wallbox oder Wärmepumpe darüber steuerst, ist ein Wechsel wegen ein paar Euro Gebühr
+selten sinnvoll. Der Unterschied zwischen 2,0 und 2,5 ct Aufschlag macht bei 4.000 kWh 20 Euro im Jahr aus. Entscheidend ist, ob
+du überhaupt Verbrauch in die günstigen Stunden verschiebst, nicht, bei wem.
+
+## Häufige Fragen
+
+### Ist Octopus günstiger als Tibber?
+Beim Aufschlag ja (2,0 statt 2,5 ct/kWh), bei der Grundgebühr nein (7,99 statt 5,99 Euro). Bis etwa 4.800 kWh im Jahr ist Tibber in
+Summe günstiger, darüber Octopus, jeweils mit den Werten von Mai 2026.
+
+### Welche Tibber-Alternative geht ohne Smart Meter?
+Rabot Energy (Monatsdurchschnitt der Börse, Zählerstand per App) und Ostrom SimplyFair. Echte Viertelstundenpreise gibt es ohne
+Smart Meter bei niemandem.
+
+### Was ist aus aWATTar geworden?
+Die Domain awattar.de leitet auf tado° Energy weiter; der stündliche Tarif heißt dort „Hourly“. Die Preis-Schnittstelle, die viele
+Geräte kennen, ist geblieben.
+
+### Gibt es eine Tibber-Alternative mit Preisdeckel?
+Vattenfall mit der Variante „Dynamik mit Limit“. Ein zeitvariabler Tarif wie Octopus Heat oder EnBW SparZeit hat gar kein Börsenrisiko.
+
+### Kann ich den Tibber Pulse beim neuen Anbieter weiterverwenden?
+Der Pulse ist an das Tibber-Konto gebunden. Beim Wechsel nutzt du die App des neuen Anbieters oder liest den Smart Meter mit eigener
+Hardware aus.
+
+### Muss mein Stadtwerk mir einen dynamischen Tarif anbieten?
+Ja. Seit 1. Januar 2025 müssen alle Stromanbieter Kunden mit intelligentem Messsystem einen dynamischen Tarif anbieten
+(Verbraucherzentrale). Die Gebühren der Stadtwerke lohnen oft einen Blick.
+
+## Quellen
+
+- Anbieterseiten von Tibber, Octopus Energy, naturstrom, Ostrom, Rabot Energy, tado°, 1KOMMA5°, EnBW und Vattenfall, abgerufen 27.10. und 02.11.2026
+- stromdiagnose.de: Gebühren und Aufschläge dynamischer Tarife, Stand Mai 2026 (zitiert in unserem [Anbieter-Vergleich](/vergleich/dynamische-stromtarife/))
+- Finanztip: [Dynamische Stromtarife im Vergleich](https://www.finanztip.de/stromtarife/dynamische-stromtarife-vergleich/), Stand 27.10.2026 (Preisscore)
+- Verbraucherzentrale: [Dynamische Stromtarife: für wen es sich lohnt](https://www.verbraucherzentrale.de/wissen/energie/preise-tarife-anbieterwechsel/dynamische-stromtarife-fuer-wen-es-sich-lohnt-und-worauf-sie-achten-sollten-97836), Stand 06.10.2025
+
+*Gebühren und Aufschläge ändern sich. Maßgeblich ist das Preisblatt des Anbieters zum Zeitpunkt deines Abschlusses.*

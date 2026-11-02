@@ -5,6 +5,15 @@
 import { readFile, access, mkdir } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { chromium } from 'playwright';
+import { existsSync, readdirSync } from 'node:fs';
+
+// Chromium: CHROME_PATH, sonst der vorinstallierte Browser der Cloud-Umgebung (Symlink auf die aktuelle Version), sonst Playwright-Standard.
+function browserPfad() {
+  if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
+  const kandidaten = ['/opt/pw-browsers/chromium'];
+  if (existsSync('/opt/pw-browsers')) for (const d of readdirSync('/opt/pw-browsers')) if (d.startsWith('chromium-')) kandidaten.push(`/opt/pw-browsers/${d}/chrome-linux64/chrome`, `/opt/pw-browsers/${d}/chrome-linux/chrome`);
+  return kandidaten.find((p) => existsSync(p));
+}
 import { renderSVG } from 'uqr';
 import { CHECKLISTEN } from '../src/checklisten.mjs';
 
@@ -69,7 +78,7 @@ async function html(c) {
 }
 
 await mkdir(ZIEL, { recursive: true });
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: browserPfad() });
 const page = await browser.newPage();
 for (const c of CHECKLISTEN) {
   const datei = `${ZIEL}${c.id}.pdf`;

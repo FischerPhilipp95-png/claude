@@ -100,11 +100,11 @@ main { padding: 0 0 72px; }
 
 .section-h { margin-top: 1.8em; }
 .tiles { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-.tiles li { margin: 0; }
+.tiles li { margin: 0; min-width: 0; }
 .tiles a { display: flex; flex-direction: column; gap: 4px; height: 100%; padding: 18px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); color: var(--ink); text-decoration: none; box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s, border-color .15s; }
 .tiles a:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--akzent); }
 .tile-icon { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: color-mix(in srgb, var(--akzent) 18%, transparent); color: color-mix(in srgb, var(--akzent) 80%, #000); margin-bottom: 8px; }
-.tile-name { font-weight: 800; font-size: 1.05rem; }
+.tile-name { font-weight: 800; font-size: 1.05rem; overflow-wrap: anywhere; hyphens: auto; }
 .tile-count { font-size: 0.85rem; color: var(--muted); }
 /* Kacheln mit Foto (Startseite): Foto oben randlos, Akzentfarbe als Linie darunter */
 .tiles-foto { grid-template-columns: repeat(2, 1fr); gap: 12px; }

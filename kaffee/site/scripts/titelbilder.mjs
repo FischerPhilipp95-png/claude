@@ -5,6 +5,15 @@
 import { readFile, readdir, access } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { chromium } from 'playwright';
+import { existsSync, readdirSync } from 'node:fs';
+
+// Chromium: CHROME_PATH, sonst der vorinstallierte Browser der Cloud-Umgebung (Symlink auf die aktuelle Version), sonst Playwright-Standard.
+function browserPfad() {
+  if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
+  const kandidaten = ['/opt/pw-browsers/chromium'];
+  if (existsSync('/opt/pw-browsers')) for (const d of readdirSync('/opt/pw-browsers')) if (d.startsWith('chromium-')) kandidaten.push(`/opt/pw-browsers/${d}/chrome-linux64/chrome`, `/opt/pw-browsers/${d}/chrome-linux/chrome`);
+  return kandidaten.find((p) => existsSync(p));
+}
 import sharp from 'sharp';
 
 const require = createRequire(import.meta.url);
@@ -56,7 +65,7 @@ async function html(titel, t, artIcon) {
   </body></html>`;
 }
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: browserPfad() });
 const page = await browser.newPage({ viewport: { width: 1200, height: 675 } });
 for (const f of (await readdir(ROOT + 'src/content/artikel')).filter((f) => f.endsWith('.mdx')).sort()) {
   const k = kopf(await readFile(ROOT + 'src/content/artikel/' + f, 'utf8'));

@@ -1,0 +1,166 @@
+---
+title: "Smart Meter Einbau: Ablauf, Dauer, Fristen und Vorbereitung (2026)"
+kurztitel: "Smart Meter Einbau: so läuft es ab"
+description: "Wer den Smart Meter einbaut, wie lange es dauert, welche Fristen gelten, was du am Zählerschrank vorbereiten musst und was Einbau und Betrieb kosten."
+pubDate: 2026-11-02
+icon: circuit-board
+thema: Tarif
+bild: /bilder/titel/smart-meter-einbau.webp
+bildAlt: "Titelbild: Smart Meter Einbau, Ablauf und Dauer"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: false
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import Ablauf from '../../components/Ablauf.astro';
+
+<Antwort>
+**Kurz gesagt:** Den Smart Meter baut der **Messstellenbetreiber** ein, in der Regel dein Netzbetreiber (steht auf der Stromrechnung),
+nicht dein Stromanbieter. Seit 2025 hast du einen **Anspruch auf Einbau innerhalb von vier Monaten**, wenn du ihn beantragst. Beim
+Pflicht-Rollout kündigt der Betreiber den Einbau **drei Monate** vorher an und nennt **zwei Wochen** vorher den Termin. Der Wechsel
+selbst dauert kurz, der Strom ist dabei kurz weg. Vorbereiten musst du den Zugang zum Zählerschrank und, wenn der Betreiber es
+verlangt, Mobilfunkempfang oder ein LAN-Kabel am Zählerplatz. Für den vorzeitigen Einbau gelten laut Verbraucherzentrale **bis 100 Euro
+einmalig** als angemessen, der Betrieb kostet danach je nach Fall 30 bis 50 Euro im Jahr.
+</Antwort>
+
+## Wer baut den Smart Meter ein?
+
+Nicht dein Stromanbieter. Zuständig ist der **grundzuständige Messstellenbetreiber**, in jeder Region gibt es genau einen, meist der
+örtliche Netzbetreiber. Welcher das bei dir ist, steht auf deiner Stromrechnung. Daneben gibt es **wettbewerbliche
+Messstellenbetreiber**, etwa Octopus Energy, inexogy oder metrify, die dieselbe Leistung anbieten, aber nicht an die gesetzlichen
+Preisobergrenzen gebunden sind. Zwei Regeln dazu aus der Verbraucherzentrale:
+
+- Hat der grundzuständige Betreiber bereits ein intelligentes Messsystem eingebaut, kannst du erst **zwei Jahre** später zu einem
+  wettbewerblichen Betreiber wechseln, außer beide einigen sich vorher.
+- Auf **Werbebriefe** anderer Anbieter, bei denen es sich nicht um deinen örtlichen Betreiber handelt, musst du nicht reagieren.
+
+In der **Mietwohnung** kann das Auswahlrecht für den Messstellenbetreiber seit 2021 unter Bedingungen auf den Vermieter übergehen.
+Beantragen kannst du den Zähler für deine Wohnung aber selbst, der Vermieter muss nur den Zugang zum Zählerschrank ermöglichen.
+
+## Zwei Wege zum Smart Meter
+
+### Weg 1: der Pflicht-Rollout
+
+Haushalte mit mehr als 6.000 kWh im Jahr, mit Wallbox oder Wärmepumpe ab 4,2 kW (steuerbare Verbrauchseinrichtung nach § 14a) und
+PV-Anlagen ab 7 kW bekommen den Smart Meter ohne Antrag. Der Betreiber muss dich laut Verbraucherzentrale **mindestens drei Monate**
+vor dem Einbau informieren und dabei auf die Wechselmöglichkeit zu einem anderen Betreiber hinweisen. **Zwei Wochen** vorher kommt
+schriftlich der konkrete Termin mit mindestens einem Ausweichtermin. Bei einer modernen Messeinrichtung (digitaler Zähler ohne
+Funk) gelten zwei Wochen Vorlauf und ein Ersatztermin.
+
+### Weg 2: der Antrag
+
+Seit 1. Januar 2025 kann **jeder Haushalt** den Smart Meter verlangen, auch unter 6.000 kWh. Der Betreiber muss ihn dann **innerhalb
+von vier Monaten** einbauen. Dafür darf er ein einmaliges Entgelt nehmen: Die Verbraucherzentrale nennt **maximal 100 Euro als
+angemessen**, betont aber, dass das keine gesetzliche Preisobergrenze ist. Netze BW zum Beispiel verlangt 100 Euro einmalig und 30 Euro
+Zählermiete im Jahr. Den Antrag stellst du beim Messstellenbetreiber, meist über ein Formular auf dessen Website; eine Vorlage und die
+Pflichtfälle findest du im Artikel [Smart Meter: Pflicht, Kosten, Antrag](/artikel/smart-meter-pflicht-kosten/).
+
+### Abkürzung: über den Stromanbieter
+
+Viele dynamische Tarife setzen den Smart Meter voraus, und die Anbieter organisieren den Einbau selbst:
+
+| Anbieter | So läuft es laut Anbieter (Stand 02.11.2026) |
+|---|---|
+| **Octopus Energy** | wird selbst Messstellenbetreiber (Vertrag über zwei Jahre), Einbau für Kunden mit smartem Tarif ohne Einbaukosten, nur Messentgelt; Kapazitäten begrenzt, Einbau in der Regel innerhalb von 3 Monaten, danach 2 bis 3 Monate Konfiguration |
+| **Tibber** | Einbau über inexogy oder metrify; mit E-Auto, Wallbox, PV oder Speicher kostenlos, sonst laut FAQ 60 Euro |
+| **naturstrom** | Einbau kostenlos buchbar beim Tarif naturstrom smart |
+| **EnBW** | veranlasst den Einbau, übernimmt bis 100 Euro bei mindestens 12 Monaten Belieferung; bis dahin Übergangstarif |
+| **Vattenfall** | Einbau über den Messstellenbetreiber, Konfiguration „kann einige Wochen dauern“ |
+
+## Vorbereitung: das musst du vorher klären
+
+<Ablauf titel="Vor dem Einbautermin" schritte={[
+  { icon: 'file-text', titel: 'Zuständigkeit', text: 'Messstellenbetreiber auf der Stromrechnung finden, Antrag stellen oder Ankündigung lesen.' },
+  { icon: 'key', titel: 'Zugang', text: 'Zählerschrank zugänglich machen: Keller aufschließen, Hausmeister oder Vermieter informieren.' },
+  { icon: 'smartphone', titel: 'Empfang prüfen', text: 'Am Zählerplatz mit dem Handy testen, ob LTE-Empfang da ist, sonst LAN-Kabel zum Zählerschrank legen lassen.' },
+  { icon: 'camera', titel: 'Zählerstand', text: 'Alten Zählerstand fotografieren, nach dem Einbau den neuen. Das Protokoll aufheben.' },
+]} />
+
+**Der Zählerschrank.** Der Smart Meter braucht einen genormten Zählerplatz. In alten Schränken (Octopus nennt „oft vor Baujahr 1965“)
+fehlt der Platz für Gateway und Steuerbox, oder die Verdrahtung entspricht nicht mehr den Regeln. Dann muss der Schrank umgebaut
+werden, und das zahlt laut BDEW der Anschlussnehmer, also der Haus- oder Wohnungseigentümer. Die Verbraucherzentrale spricht von
+„Mehrkosten von bis zu mehreren tausend Euro“, Octopus von „bis zu 2.000 Euro“. Lass den Schrank vorab vom Elektriker ansehen, wenn
+er älter als 30 Jahre ist oder noch Schraubsicherungen hat.
+
+**Die Verbindung.** Das Smart Meter Gateway sendet die Daten per Mobilfunk (LTE) oder über ein LAN-Kabel. Octopus schreibt:
+„Mindestens notwendig ist eine LTE-Verbindung“ und empfiehlt, den Empfang am Zählerplatz mit dem Smartphone zu testen. In Kellern
+mit dicken Wänden ist das der häufigste Grund für Verzögerungen.
+
+## Der Einbautag
+
+Der Techniker tauscht den alten Zähler gegen die moderne Messeinrichtung, setzt das Gateway daneben und, bei Wallbox oder
+Wärmepumpe, die Steuerbox für § 14a. Dafür wird der Strom am Zähler kurz abgeschaltet: PC speichern, Server und Aquarienpumpe im Blick
+behalten, Uhren an Herd und Mikrowelle danach neu stellen. Du bekommst ein Protokoll mit altem und neuem Zählerstand und der
+Zählernummer; das brauchst du für die Schlussrechnung des alten Zählers.
+
+<Warnung titel="Nach dem Einbau ist der Smart Meter noch nicht „scharf“">
+Der Zähler misst sofort, aber das Gateway muss erst beim Messstellenbetreiber eingerichtet und deinem Stromanbieter zugeordnet
+werden. Octopus nennt dafür 2 bis 3 Monate, Vattenfall „einige Wochen“. Bis dahin läuft der Übergangstarif, und die
+Viertelstundenwerte kommen noch nicht in der App an. Hake nach, wenn nach drei Monaten nichts passiert.
+</Warnung>
+
+## Was Einbau und Betrieb kosten
+
+Die Preisobergrenzen gelten für den grundzuständigen Messstellenbetreiber, brutto im Jahr (Verbraucherzentrale, Stand 10.08.2026):
+
+| Fall | Obergrenze im Jahr |
+|---|---|
+| Haushalt 6.000 bis 10.000 kWh (Pflicht) | 40 € |
+| Haushalt 10.000 bis 20.000 kWh (Pflicht) | 50 € |
+| Wallbox oder Wärmepumpe (steuerbar nach § 14a) | 50 € |
+| PV-Anlage bis 15 kW | 50 € |
+| PV-Anlage über 15 bis 25 kW | 110 € |
+| freiwilliger Einbau unter 6.000 kWh | 30 € (vom Gesetzgeber als angemessen bezeichnet) |
+| Steuerungseinrichtung (Steuerbox) zusätzlich | 50 € |
+| moderne Messeinrichtung ohne Funk | 25 € |
+
+Dazu beim Antrag das einmalige Entgelt von bis zu 100 Euro. Beim Pflichteinbau zahlst du für den Einbau selbst nichts, die Kosten
+stecken im Messentgelt. Seit 2024 trägt der Netzbetreiber einen Teil der Kosten des Messstellenbetriebs, deshalb sind die Entgelte
+niedriger als früher. Ob sich das für dich rechnet: [Smart-Meter-Check](/rechner/smart-meter-check/).
+
+## Wie weit ist der Rollout?
+
+Laut BDEW waren im September 2025 mehr als 20 Prozent der Pflichtfälle (6.000 bis 100.000 kWh oder steuerbare Verbrauchseinrichtung)
+mit einem intelligenten Messsystem ausgestattet. Die Verbraucherzentrale nennt für Ende 2025 über 54 Prozent aller Messstellen mit
+moderner Messeinrichtung, also dem digitalen Zähler ohne Funk. Ziel sind laut Verbraucherzentrale mindestens 90 Prozent der
+Pflichtfälle bis Ende 2032 und bis dahin eine moderne Messeinrichtung an jeder Messstelle. Wer schneller will, stellt den Antrag.
+
+## Was mit den Daten passiert
+
+Der Smart Meter speichert Viertelstundenwerte und sendet sie laut Verbraucherzentrale **einmal täglich** an den Messstellenbetreiber.
+Stromanbieter und Netzbetreiber erhalten die Werte, die sie für Abrechnung und Netzbetrieb brauchen, mehr nur mit deiner
+ausdrücklichen Zustimmung. Personenbezogene Messwerte müssen gelöscht werden, sobald sie nicht mehr nötig sind; die Geräte sind vom
+BSI zertifiziert. Für einen dynamischen Tarif stimmst du der Nutzung der Viertelstundenwerte beim Abschluss zu.
+
+## Häufige Fragen
+
+### Wie lange dauert der Smart-Meter-Einbau nach dem Antrag?
+Der Betreiber muss innerhalb von vier Monaten einbauen. In der Praxis hängt es an Kapazitäten und Zählerschrank; Octopus nennt für
+seine Kunden „in der Regel innerhalb von 3 Monaten“.
+
+### Muss ich beim Einbau zu Hause sein?
+Der Techniker braucht Zugang zum Zählerschrank. Im Einfamilienhaus heißt das ja, im Mehrfamilienhaus reicht oft der Hausmeister. Der
+Termin kommt zwei Wochen vorher mit Ausweichtermin.
+
+### Kann ich den Smart Meter ablehnen?
+Als Pflichtfall nicht, du kannst nur den Messstellenbetreiber wechseln. Unter 6.000 kWh ohne Wallbox, Wärmepumpe oder PV bekommst du
+ihn nur auf Antrag.
+
+### Was ist, wenn mein Zählerschrank zu alt ist?
+Dann muss er auf deine Kosten umgebaut werden, bevor der Smart Meter eingebaut werden kann. Hol zwei Angebote vom Elektriker ein; ein
+neuer Zählerschrank ist oft ohnehin fällig, wenn eine Wallbox oder Wärmepumpe dazukommt.
+
+### Brauche ich Internet für den Smart Meter?
+Nein. Das Gateway nutzt Mobilfunk oder ein LAN-Kabel zum Zählerplatz. Dein WLAN spielt keine Rolle.
+
+### Was kostet der Smart Meter in der Mietwohnung?
+Dieselben Obergrenzen wie oben; das Messentgelt zahlt, wer den Stromvertrag hat. Einen Umbau des Zählerschranks zahlt der Eigentümer.
+
+## Quellen
+
+- Verbraucherzentrale: [Smart Meter: Was Sie über die Stromzähler wissen müssen](https://www.verbraucherzentrale.de/wissen/energie/preise-tarife-anbieterwechsel/smart-meter-was-sie-ueber-die-stromzaehler-wissen-muessen-13275), Stand 10.08.2026
+- BDEW: [Smart Meter: Wie digitale Messtechnik die Energiewende vorantreibt](https://www.bdew.de/energie/digitalisierung/smart-meter/), 13.02.2026
+- Netze BW: [Antrag Einbau Smart Meter](https://www.netze-bw.de/zaehler/stromzaehler/smart-meter/antrag), abgerufen 02.11.2026
+- Octopus Energy: [Smart Meter: Funktionen, Vorteile, Pflicht und Kosten](https://octopusenergy.de/smart-meter) und [Intelligent Octopus E-Auto](https://www.octopusenergy.de/intelligent-octopus/e-auto), abgerufen 02.11.2026
+- Tibber: [Smart-Meter-Tarif](https://tibber.com/de/smartmeter-tarif) und FAQ, abgerufen 02.11.2026
+- Vattenfall: [Dynamischer Stromtarif](https://www.vattenfall.de/strom/tarife/dynamischer-stromtarif), abgerufen 02.11.2026

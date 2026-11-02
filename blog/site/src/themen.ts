@@ -11,6 +11,8 @@ export const THEMEN = {
     links: [
       { href: '/strompreis-heute/', icon: 'clock', titel: 'Strompreis heute und morgen', text: 'Alle Viertelstundenpreise der Börse, täglich neu: Wann ist Strom heute am günstigsten?' },
       { href: '/vergleich/dynamische-stromtarife/', icon: 'list-checks', titel: 'Anbieter-Vergleich', text: 'Tibber, Octopus, Rabot, Ostrom und Co.: Grundgebühr, Aufschlag, App und Laufzeit auf einen Blick.' },
+      { href: '/vergleich/autostromtarife/', icon: 'ev-charger', titel: 'Autostromtarife', text: 'Ladestrom für die Wallbox zuhause: E-Auto-Tarife, Wallbox-Zähler, Ladeboni und dynamische Tarife.' },
+      { href: '/vergleich/waermepumpentarife/', icon: 'heater', titel: 'Wärmepumpentarife', text: 'Wärmestrom mit eigenem Zähler, zeitvariabel oder dynamisch: Tarifart, Voraussetzungen, Laufzeit.' },
     ] },
   Werkzeug: { slug: 'werkzeug', titel: 'Werkzeug', icon: 'drill', farbe: '#12b5a5', intro: 'Akkuschrauber, Bohrmaschine und Zubehör: worauf es beim Kauf wirklich ankommt, welches Werkzeug wofür passt und wie du es richtig benutzt.' },
 } as const;
