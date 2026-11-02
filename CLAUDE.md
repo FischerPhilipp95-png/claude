@@ -70,6 +70,9 @@ Gleiches Muster für alle Seiten (auch künftige):
   nur dort laufen die nächtlichen Builds). Nach jeder fertigen, geprüften Änderung: pushen und
   `claude/serene-darwin-f9rggj` per Fast-Forward nachziehen (vom Nutzer erlaubt), dann die Läufe prüfen und die Seite live ansehen.
 - Passwörter nie im Chat oder Code, nur als GitHub-Secrets. Jede Seite hat eine eigene Amazon-Tracking-ID.
+- Erscheinungsbild: handwerksdoktor.de hat seit 2.11.2026 das neue Design (Referenz kobu.co: Off-White, Bricolage Grotesque als
+  Display-Schrift, gelbes Hero-Band mit Porträt, Haarlinien, Wegweiser-Zeilen; Regeln in `blog/site/DESIGN.md`, Produktwahrheit in
+  `blog/site/PRODUCT.md`). vollautomatendoktor.de behält den alten Look, bis der Nutzer die Übertragung ausdrücklich freigibt.
 
 Explosionszeichnungen (kaffee/site, Abschnitt „So ist die Maschine aufgebaut“): 3D-Modell je Bauart in `scripts/querschnitt/blender/<bauart>.py`
 (Blender als Python-Modul, `pip install bpy`), rendern mit `python3 scripts/querschnitt/blender/render.py <bauart>` (etwa 45 Minuten:
