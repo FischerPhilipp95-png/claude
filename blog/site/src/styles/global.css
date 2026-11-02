@@ -579,7 +579,9 @@ p.small { max-width: 72ch; }
 .vg-filter { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
 .chip-btn { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 0.86rem; font-weight: 500; padding: 7px 12px; border-radius: 4px; border: 1px solid var(--line-strong); background: transparent; color: var(--ink); cursor: pointer; }
 .chip-btn.aktiv { background: var(--ink); border-color: var(--ink); color: var(--bg); }
-.chip-btn:hover { background: var(--yellow); }
+.chip-btn:hover { background: var(--yellow); color: var(--ink); }
+.chip-btn.aktiv:hover { background: var(--yellow); border-color: var(--ink); color: var(--ink); }
+.chip-btn.aktiv:hover .icon { color: var(--ink); }
 .chip-btn.aktiv .icon { color: #fff; }
 .vg-liste { list-style: none; padding: 0; margin: 1.4em 0 0.6em; display: grid; gap: 16px; }
 .vg-karte { background: transparent; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 20px 22px; margin: 0; }
