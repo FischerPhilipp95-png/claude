@@ -53,7 +53,7 @@ li { margin-bottom: 0.4em; }
 strong { font-weight: 800; }
 ::selection { background: var(--yellow); color: var(--ink); }
 /* Beschriftung: kleine Versalien mit Laufweite, wie ein Etikett. */
-.label, .chip, .crumbs, .more, .eyebrow, .answer-label, .warn-title, .quick-title, .result-thema, .foot-h, .tile-count, .byline .small, .chart-kicker, .flow-nr, .fokus-kicker, .produkt-marke, .vg-daten dt, .hero-facts {
+.label, .chip, .crumbs, .more, .answer-label, .warn-title, .quick-title, .result-thema, .foot-h, .tile-count, .byline .small, .chart-kicker, .flow-nr, .fokus-kicker, .produkt-marke, .vg-daten dt, .hero-facts {
   font-family: var(--text); font-size: 0.72rem; font-weight: 600; line-height: 1.35; text-transform: uppercase; letter-spacing: 0.13em; }
 
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }

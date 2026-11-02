@@ -1,0 +1,554 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-02T00:00:00Z",
+  "title": "Design System: handwerksdoktor.de",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Papier",
+        "canonical": "#f7f4ee",
+        "tonalRamp": [
+          "oklch(15% 0.01 85)",
+          "oklch(25% 0.01 85)",
+          "oklch(38% 0.01 85)",
+          "oklch(50% 0.01 85)",
+          "oklch(62% 0.01 85)",
+          "oklch(75% 0.01 85)",
+          "oklch(86% 0.01 85)",
+          "oklch(95% 0.01 85)"
+        ]
+      },
+      "paper-bright": {
+        "role": "neutral",
+        "displayName": "Helles Papier",
+        "canonical": "#fffdf9",
+        "tonalRamp": [
+          "oklch(15% 0.008 85)",
+          "oklch(25% 0.008 85)",
+          "oklch(38% 0.008 85)",
+          "oklch(50% 0.008 85)",
+          "oklch(62% 0.008 85)",
+          "oklch(75% 0.008 85)",
+          "oklch(86% 0.008 85)",
+          "oklch(95% 0.008 85)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinte",
+        "canonical": "#0e0e0f",
+        "tonalRamp": [
+          "oklch(15% 0.003 270)",
+          "oklch(25% 0.003 270)",
+          "oklch(38% 0.003 270)",
+          "oklch(50% 0.003 270)",
+          "oklch(62% 0.003 270)",
+          "oklch(75% 0.003 270)",
+          "oklch(86% 0.003 270)",
+          "oklch(95% 0.003 270)"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Gedämpfte Tinte",
+        "canonical": "#5e5a52",
+        "tonalRamp": [
+          "oklch(15% 0.015 80)",
+          "oklch(25% 0.015 80)",
+          "oklch(38% 0.015 80)",
+          "oklch(50% 0.015 80)",
+          "oklch(62% 0.015 80)",
+          "oklch(75% 0.015 80)",
+          "oklch(86% 0.015 80)",
+          "oklch(95% 0.015 80)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Haarlinie",
+        "canonical": "#dcd7cc",
+        "tonalRamp": [
+          "oklch(15% 0.013 85)",
+          "oklch(25% 0.013 85)",
+          "oklch(38% 0.013 85)",
+          "oklch(50% 0.013 85)",
+          "oklch(62% 0.013 85)",
+          "oklch(75% 0.013 85)",
+          "oklch(86% 0.013 85)",
+          "oklch(95% 0.013 85)"
+        ]
+      },
+      "yellow": {
+        "role": "primary",
+        "displayName": "Kanalgelb",
+        "canonical": "#ffd400",
+        "tonalRamp": [
+          "oklch(15% 0.19 95)",
+          "oklch(25% 0.19 95)",
+          "oklch(38% 0.19 95)",
+          "oklch(50% 0.19 95)",
+          "oklch(62% 0.19 95)",
+          "oklch(75% 0.19 95)",
+          "oklch(86% 0.19 95)",
+          "oklch(95% 0.19 95)"
+        ]
+      },
+      "chart-night": {
+        "role": "neutral",
+        "displayName": "Grafik-Nacht",
+        "canonical": "#17171a",
+        "tonalRamp": [
+          "oklch(15% 0.005 285)",
+          "oklch(25% 0.005 285)",
+          "oklch(38% 0.005 285)",
+          "oklch(50% 0.005 285)",
+          "oklch(62% 0.005 285)",
+          "oklch(75% 0.005 285)",
+          "oklch(86% 0.005 285)",
+          "oklch(95% 0.005 285)"
+        ]
+      },
+      "footer-text": {
+        "role": "neutral",
+        "displayName": "Footer-Text",
+        "canonical": "#cfcbc2",
+        "tonalRamp": [
+          "oklch(15% 0.012 85)",
+          "oklch(25% 0.012 85)",
+          "oklch(38% 0.012 85)",
+          "oklch(50% 0.012 85)",
+          "oklch(62% 0.012 85)",
+          "oklch(75% 0.012 85)",
+          "oklch(86% 0.012 85)",
+          "oklch(95% 0.012 85)"
+        ]
+      },
+      "thema-heizung": {
+        "role": "secondary",
+        "displayName": "Heizung Orange",
+        "canonical": "#ff741c",
+        "tonalRamp": [
+          "oklch(15% 0.19 45)",
+          "oklch(25% 0.19 45)",
+          "oklch(38% 0.19 45)",
+          "oklch(50% 0.19 45)",
+          "oklch(62% 0.19 45)",
+          "oklch(75% 0.19 45)",
+          "oklch(86% 0.19 45)",
+          "oklch(95% 0.19 45)"
+        ]
+      },
+      "thema-strom": {
+        "role": "secondary",
+        "displayName": "Strom Gelb",
+        "canonical": "#ffd400",
+        "tonalRamp": [
+          "oklch(15% 0.19 95)",
+          "oklch(25% 0.19 95)",
+          "oklch(38% 0.19 95)",
+          "oklch(50% 0.19 95)",
+          "oklch(62% 0.19 95)",
+          "oklch(75% 0.19 95)",
+          "oklch(86% 0.19 95)",
+          "oklch(95% 0.19 95)"
+        ]
+      },
+      "thema-wasser": {
+        "role": "secondary",
+        "displayName": "Wasser Blau",
+        "canonical": "#39a8ff",
+        "tonalRamp": [
+          "oklch(15% 0.15 245)",
+          "oklch(25% 0.15 245)",
+          "oklch(38% 0.15 245)",
+          "oklch(50% 0.15 245)",
+          "oklch(62% 0.15 245)",
+          "oklch(75% 0.15 245)",
+          "oklch(86% 0.15 245)",
+          "oklch(95% 0.15 245)"
+        ]
+      },
+      "thema-raumklima": {
+        "role": "secondary",
+        "displayName": "Raumklima Grün",
+        "canonical": "#03b84c",
+        "tonalRamp": [
+          "oklch(15% 0.2 150)",
+          "oklch(25% 0.2 150)",
+          "oklch(38% 0.2 150)",
+          "oklch(50% 0.2 150)",
+          "oklch(62% 0.2 150)",
+          "oklch(75% 0.2 150)",
+          "oklch(86% 0.2 150)",
+          "oklch(95% 0.2 150)"
+        ]
+      },
+      "thema-haushalt": {
+        "role": "secondary",
+        "displayName": "Haushalt Violett",
+        "canonical": "#924ef6",
+        "tonalRamp": [
+          "oklch(15% 0.22 295)",
+          "oklch(25% 0.22 295)",
+          "oklch(38% 0.22 295)",
+          "oklch(50% 0.22 295)",
+          "oklch(62% 0.22 295)",
+          "oklch(75% 0.22 295)",
+          "oklch(86% 0.22 295)",
+          "oklch(95% 0.22 295)"
+        ]
+      },
+      "thema-sicherheit": {
+        "role": "secondary",
+        "displayName": "Sicherheit Pink",
+        "canonical": "#d6336c",
+        "tonalRamp": [
+          "oklch(15% 0.2 5)",
+          "oklch(25% 0.2 5)",
+          "oklch(38% 0.2 5)",
+          "oklch(50% 0.2 5)",
+          "oklch(62% 0.2 5)",
+          "oklch(75% 0.2 5)",
+          "oklch(86% 0.2 5)",
+          "oklch(95% 0.2 5)"
+        ]
+      },
+      "thema-tarif": {
+        "role": "secondary",
+        "displayName": "Stromtarif Blau",
+        "canonical": "#3b82f6",
+        "tonalRamp": [
+          "oklch(15% 0.19 260)",
+          "oklch(25% 0.19 260)",
+          "oklch(38% 0.19 260)",
+          "oklch(50% 0.19 260)",
+          "oklch(62% 0.19 260)",
+          "oklch(75% 0.19 260)",
+          "oklch(86% 0.19 260)",
+          "oklch(95% 0.19 260)"
+        ]
+      },
+      "thema-werkzeug": {
+        "role": "secondary",
+        "displayName": "Werkzeug Türkis",
+        "canonical": "#12b5a5",
+        "tonalRamp": [
+          "oklch(15% 0.13 185)",
+          "oklch(25% 0.13 185)",
+          "oklch(38% 0.13 185)",
+          "oklch(50% 0.13 185)",
+          "oklch(62% 0.13 185)",
+          "oklch(75% 0.13 185)",
+          "oklch(86% 0.13 185)",
+          "oklch(95% 0.13 185)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Nur die Hero-Zeile der Startseite (.hero-h) und als Echo die Footer-Wortmarke (clamp(2.3rem, 7.6vw, 6.4rem), −0.045em). font-optical-sizing: auto."
+      },
+      "section-h": {
+        "displayName": "Abschnittstitel",
+        "purpose": "Abschnittstitel der Startseite (.section-h) über einer schwarzen Haarlinie, padding-top 28px, margin 2.4em 0 0.5em."
+      },
+      "h1": {
+        "displayName": "Seitentitel",
+        "purpose": "Artikel-h1 (.article h1); global bis clamp(2.1rem, 6vw, 4rem). hyphens: auto, overflow-wrap: anywhere."
+      },
+      "h2": {
+        "displayName": "Kapitel",
+        "purpose": "Artikelkapitel; im Artikel mit border-top 1px ink, padding-top 26px, margin-top 2.6em, scroll-margin-top 90px."
+      },
+      "h3": {
+        "displayName": "Unterkapitel",
+        "purpose": "Unterkapitel; FAQ-Fragen 1.15rem mit warmer Haarlinie darüber."
+      },
+      "body": {
+        "displayName": "Fließtext",
+        "purpose": "body: 400 18px/1.7 Inter, Spalte 740px. Lead clamp(1.1rem,1.5vw,1.25rem) gedämpft. Kleingedrucktes .small 0.82rem."
+      },
+      "label": {
+        "displayName": "Etikett",
+        "purpose": "Meta-Zeile unter dem Titel, Chips, Brotkrumen, Reiter, Footer-Spaltentitel, Hero-Fakten, Tabellenköpfe. Nie als Kicker über Titeln."
+      },
+      "nav": {
+        "displayName": "Hauptmenü",
+        "purpose": "Links der Kopfzeile; 1241–1500px verdichtet auf 0.64rem / 0.06em."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow",
+        "value": "0 1px 0 rgba(14,14,15,.04)",
+        "purpose": "Als --shadow definiert, in keiner Regel verwendet. Nicht benutzen."
+      },
+      {
+        "name": "shadow-lg",
+        "value": "0 18px 40px -18px rgba(14,14,15,.28)",
+        "purpose": "Einzige Verwendung: dunkle Diagramm-Figur .chart. Widerspricht der Haarlinien-Regel; keine Vorlage für neue Flächen."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 2px solid #0e0e0f; outline-offset: 3px; border-radius: 2px",
+        "purpose": ":focus-visible global; Formularfelder 2px Abstand; Diagnose-Optionen 3px Ring."
+      },
+      {
+        "name": "option-selected",
+        "value": "box-shadow: inset 0 0 0 1px var(--akzent)",
+        "purpose": "Gewählte Diagnose-Option: Innenlinie in Themenfarbe auf color-mix(in srgb, var(--akzent) 10%, #fff)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.2,.8,.2,1)",
+        "purpose": "--ease: Standardkurve für Hero, gelbes Schild, Pfeil, Bild-Zoom."
+      },
+      {
+        "name": "hero-rise",
+        "value": "@keyframes hero-rise { from { transform: translateY(108%); } to { transform: none; } } / .9s var(--ease) both, zweite Zeile delay .1s, Zeile mit overflow: hidden",
+        "purpose": "Hero-Zeilen steigen beim Laden aus der Linie."
+      },
+      {
+        "name": "hero-fade",
+        "value": "@keyframes hero-fade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } } / .8s .25s var(--ease) both",
+        "purpose": "Gelbes Band blendet nach den Zeilen ein."
+      },
+      {
+        "name": "tile-fill",
+        "value": "::before transform: scaleX(0→1); transform-origin: left; transition: transform .4s var(--ease); inset: 0 -6px; background: var(--yellow)",
+        "purpose": "Gelbes Schild fährt beim Hover/Fokus über die Wegweiser-Zeile; Pfeil translateX(4px) in .3s."
+      },
+      {
+        "name": "image-zoom",
+        "value": "transform: scale(1.035) (Karte) / scale(1.03) (Aufmacher); transition: transform .7s var(--ease)",
+        "purpose": "Bild-Zoom auf Karten beim Hover; Titel bekommt 2px-Unterstreichung in .25s."
+      },
+      {
+        "name": "state-fade",
+        "value": "transition: background .2s, color .2s, border-color .2s",
+        "purpose": "Buttons, Menü, Chips: Farbwechsel Tinte ↔ Gelb."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }",
+        "purpose": "Alle Animationen und Übergänge abschaltbar."
+      },
+      {
+        "name": "header-blur",
+        "value": "background: rgba(247,244,238,.88); backdrop-filter: blur(14px) saturate(140%)",
+        "purpose": "Sticky-Kopfzeile auf Papier."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "hyphens",
+        "value": "480px"
+      },
+      {
+        "name": "tables-charts",
+        "value": "560px"
+      },
+      {
+        "name": "gutter",
+        "value": "700px"
+      },
+      {
+        "name": "hero-footer",
+        "value": "760px"
+      },
+      {
+        "name": "feature",
+        "value": "900px"
+      },
+      {
+        "name": "nav-wrap",
+        "value": "1240px"
+      },
+      {
+        "name": "nav-dense",
+        "value": "1241px–1500px"
+      }
+    ],
+    "notCanonized": [
+      "src/pages/rechner/balkonkraftwerk.astro .bkw-regel: border-left 5px in Statusfarbe (Verstoß gegen die 1-px-Regel); Vorbild für Status ist .taupunkt-status / .rc-ergebnis mit 2px Rahmen rundum.",
+      "src/pages/rechner/balkonkraftwerk.astro und stromkosten.astro: Eingabefelder mit border #bdbab2 und border-radius 8px statt --line-strong / --radius-sm.",
+      ".chart trägt --shadow-lg (einziger Schatten); --shadow ist ungenutzt.",
+      "h1, th, td: hyphens auto ohne 480-px-Schranke (nur .tile-name hält sie ein).",
+      ".eyebrow steht noch in der Etikett-Selektorliste, ohne Verwendung im Markup.",
+      ".hero-h ist größer als im Vertrag genannt (~125 px): clamp(2.7rem, 12.4vw, 11.6rem) ergibt bei 1440 px etwa 179 px; der Bau gilt."
+    ]
+  },
+  "components": [
+    {
+      "name": "Primärer Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Schwarzer Block mit gelbem Icon; Hover wird gelb.",
+      "html": "<a class=\"ds-btn\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 7v14\"/><path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/></svg> Alle Anleitungen</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:Inter,system-ui,sans-serif;font-size:.78rem;font-weight:700;line-height:1.25;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:14px 20px;border-radius:4px;border:1px solid #0e0e0f;cursor:pointer;transition:background .2s,color .2s,border-color .2s;background:#0e0e0f;color:#f7f4ee;} .ds-btn svg{color:#ffd400;transition:color .2s} .ds-btn:hover{background:#ffd400;color:#0e0e0f;border-color:#ffd400} .ds-btn:hover svg{color:#0e0e0f} .ds-btn:focus-visible{outline:2px solid #0e0e0f;outline-offset:3px}"
+    },
+    {
+      "name": "Ghost-Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Transparenter Rahmen in Tinte; Hover invertiert zu Schwarz mit gelbem Icon.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 7v14\"/><path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/></svg> Themen</a>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:Inter,system-ui,sans-serif;font-size:.78rem;font-weight:700;line-height:1.25;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:14px 20px;border-radius:4px;border:1px solid #0e0e0f;cursor:pointer;transition:background .2s,color .2s,border-color .2s;background:transparent;color:#0e0e0f;} .ds-btn-ghost:hover{background:#0e0e0f;color:#f7f4ee} .ds-btn-ghost:hover svg{color:#ffd400} .ds-btn-ghost:focus-visible{outline:2px solid #0e0e0f;outline-offset:3px}"
+    },
+    {
+      "name": "Themen-Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Etikett mit 1px Rahmen, Icon in abgedunkelter Themenfarbe (hier Heizung).",
+      "html": "<a class=\"ds-chip\" href=\"#\" style=\"--akzent:#ff741c\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 7v14\"/><path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/></svg> Heizung</a>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;gap:6px;font-family: Inter, system-ui, sans-serif; font-size: .72rem; font-weight: 600; line-height: 1.35; text-transform: uppercase; letter-spacing: .13em;color:#0e0e0f;border:1px solid #0e0e0f;background:transparent;padding:5px 10px;border-radius:3px;text-decoration:none} .ds-chip svg{color:color-mix(in srgb,var(--akzent) 65%,#000)} .ds-chip:focus-visible{outline:2px solid #0e0e0f;outline-offset:3px}"
+    },
+    {
+      "name": "Filter-Chip",
+      "kind": "chip",
+      "refersTo": "chip-filter",
+      "description": "Filterknopf der Anbieter-Vergleiche; aktiv schwarz, Hover gelb.",
+      "html": "<div style=\"display:flex;gap:8px\"><button class=\"ds-chip-btn ds-aktiv\">Alle</button><button class=\"ds-chip-btn\">Ohne Grundgebühr</button></div>",
+      "css": ".ds-chip-btn{display:inline-flex;align-items:center;gap:6px;font:500 .86rem/1.2 Inter,system-ui,sans-serif;padding:7px 12px;border-radius:4px;border:1px solid #0e0e0f;background:transparent;color:#0e0e0f;cursor:pointer} .ds-chip-btn.ds-aktiv{background:#0e0e0f;color:#f7f4ee} .ds-chip-btn:hover{background:#ffd400;color:#0e0e0f} .ds-chip-btn:focus-visible{outline:2px solid #0e0e0f;outline-offset:3px}"
+    },
+    {
+      "name": "Kurze Antwort",
+      "kind": "card",
+      "refersTo": "answer",
+      "description": "Antwortbox auf hellem Papier mit gelbem Etikett-Reiter oben links.",
+      "html": "<div class=\"ds-answer\"><p class=\"ds-answer-label\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5\"/><path d=\"M9 18h6\"/><path d=\"M10 22h4\"/></svg> Kurze Antwort</p><p>Meist ist Luft im Heizkörper. Entlüften, Druck prüfen, fertig.</p></div>",
+      "css": ".ds-answer{position:relative;background:#fffdf9;border:1px solid #0e0e0f;border-radius:8px;padding:30px 24px 20px;margin:24px 0 0;font:400 18px/1.7 Inter,system-ui,sans-serif;color:#0e0e0f} .ds-answer p{margin:0} .ds-answer-label{position:absolute;top:-13px;left:16px;display:inline-flex;align-items:center;gap:6px;background:#ffd400;color:#0e0e0f;padding:6px 10px;border-radius:3px;font-family: Inter, system-ui, sans-serif; font-size: .72rem; font-weight: 600; line-height: 1.35; text-transform: uppercase; letter-spacing: .13em;}"
+    },
+    {
+      "name": "Warnung",
+      "kind": "card",
+      "refersTo": "warn",
+      "description": "Haarlinienkasten mit schwarzem Reiter und orangem Warn-Icon.",
+      "html": "<div class=\"ds-warn\" role=\"note\"><p class=\"ds-warn-title\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/></svg> Achtung</p><p>Arbeiten an Gasleitungen sind Sache des Fachbetriebs.</p></div>",
+      "css": ".ds-warn{position:relative;background:transparent;border:1px solid #0e0e0f;border-radius:8px;padding:30px 24px 18px;margin:24px 0 0;font:400 18px/1.7 Inter,system-ui,sans-serif;color:#0e0e0f} .ds-warn p{margin:0} .ds-warn-title{position:absolute;top:-13px;left:16px;display:inline-flex;align-items:center;gap:7px;background:#0e0e0f;color:#f7f4ee;padding:6px 10px;border-radius:3px;font-family: Inter, system-ui, sans-serif; font-size: .72rem; font-weight: 600; line-height: 1.35; text-transform: uppercase; letter-spacing: .13em;} .ds-warn-title svg{color:#ffb15c}"
+    },
+    {
+      "name": "Artikelkarte",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Bild auf Tinte mit 8px, Titel, Etikettzeile darunter; kein Rahmen, kein Schatten; Hover zoomt Bild und unterstreicht Titel.",
+      "html": "<a class=\"ds-card\" href=\"#\" style=\"--akzent:#ff741c\"><div class=\"ds-card-img\"></div><h3>Heizkörper richtig entlüften: Anleitung in 7 Schritten</h3><p class=\"ds-card-meta\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 7v14\"/><path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/></svg> Heizung · 5 Min.</p><p class=\"ds-card-text\">Luft raus, Druck prüfen, Ventil wieder auf.</p><span class=\"ds-more\">Weiterlesen →</span></a>",
+      "css": ".ds-card{display:flex;flex-direction:column;gap:8px;max-width:320px;color:#0e0e0f;text-decoration:none;font-family:Inter,system-ui,sans-serif} .ds-card-img{aspect-ratio:16/9;background:#0e0e0f;border-radius:8px;overflow:hidden;margin-bottom:8px;transition:transform .7s cubic-bezier(.2,.8,.2,1)} .ds-card:hover .ds-card-img{transform:scale(1.035)} .ds-card h3{margin:0;font-family:'Bricolage Grotesque',Inter,system-ui,sans-serif;font-weight:760;font-size:1.32rem;line-height:1.1;letter-spacing:-.02em;text-decoration:underline transparent;text-decoration-thickness:2px;text-underline-offset:4px;transition:text-decoration-color .25s} .ds-card:hover h3{text-decoration-color:#0e0e0f} .ds-card-meta{margin:0;display:inline-flex;align-items:center;gap:6px;color:#5e5a52;font-family: Inter, system-ui, sans-serif; font-size: .72rem; font-weight: 600; line-height: 1.35; text-transform: uppercase; letter-spacing: .13em;} .ds-card-meta svg{color:color-mix(in srgb,var(--akzent) 65%,#000)} .ds-card-text{margin:0;color:#5e5a52;font-size:.95rem;line-height:1.55} .ds-more{font-family: Inter, system-ui, sans-serif; font-size: .72rem; font-weight: 600; line-height: 1.35; text-transform: uppercase; letter-spacing: .13em;color:#0e0e0f;padding-top:10px}"
+    },
+    {
+      "name": "Wegweiser-Zeile",
+      "kind": "nav",
+      "refersTo": "tile-row",
+      "description": "Index-Zeile mit Haarlinie; beim Hover fährt ein gelbes Schild von links herein.",
+      "html": "<ul class=\"ds-tiles\"><li><a href=\"#\" style=\"--akzent:#ff741c\"><span class=\"ds-tile-icon\"><svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M11 8c2-3-2-3 0-6\"/><path d=\"M15.5 8c2-3-2-3 0-6\"/><path d=\"M6 10h.01\"/><path d=\"M6 14h.01\"/><path d=\"M10 16v-4\"/><path d=\"M14 16v-4\"/><path d=\"M18 16v-4\"/><path d=\"M20 6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3\"/><path d=\"M5 20v2\"/><path d=\"M19 20v2\"/></svg></span><span class=\"ds-tile-name\">Heizung</span><span class=\"ds-tile-count\">24 Artikel</span></a></li><li><a href=\"#\" style=\"--akzent:#39a8ff\"><span class=\"ds-tile-icon\"><svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M11 8c2-3-2-3 0-6\"/><path d=\"M15.5 8c2-3-2-3 0-6\"/><path d=\"M6 10h.01\"/><path d=\"M6 14h.01\"/><path d=\"M10 16v-4\"/><path d=\"M14 16v-4\"/><path d=\"M18 16v-4\"/><path d=\"M20 6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3\"/><path d=\"M5 20v2\"/><path d=\"M19 20v2\"/></svg></span><span class=\"ds-tile-name\">Wasser</span><span class=\"ds-tile-count\">5 Artikel</span></a></li></ul>",
+      "css": ".ds-tiles{list-style:none;padding:0;margin:0;max-width:360px;border-top:1px solid #0e0e0f;font-family:Inter,system-ui,sans-serif} .ds-tiles li{border-bottom:1px solid #dcd7cc} .ds-tiles a{position:relative;isolation:isolate;display:grid;grid-template-columns:40px 1fr auto;column-gap:16px;align-items:center;padding:20px 6px;color:#0e0e0f;text-decoration:none} .ds-tiles a::before{content:'';position:absolute;inset:0 -6px;z-index:-1;background:#ffd400;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.8,.2,1)} .ds-tiles a:hover::before,.ds-tiles a:focus-visible::before{transform:scaleX(1)} .ds-tiles a::after{content:'→';grid-column:3;grid-row:1/span 2;font-family:'Bricolage Grotesque',Inter,sans-serif;font-weight:600;font-size:1.4rem;transition:transform .3s cubic-bezier(.2,.8,.2,1)} .ds-tiles a:hover::after{transform:translateX(4px)} .ds-tile-icon{grid-row:1/span 2;align-self:start;width:40px;height:40px;display:grid;place-items:center;color:color-mix(in srgb,var(--akzent) 70%,#000)} .ds-tile-name{grid-column:2;font-family:'Bricolage Grotesque',Inter,sans-serif;font-weight:760;font-size:clamp(1.3rem,2vw,1.65rem);letter-spacing:-.025em;line-height:1.05} .ds-tile-count{grid-column:2;color:#5e5a52;margin-top:6px;font-size:.82rem;font-weight:500;letter-spacing:.02em} .ds-tiles a:focus-visible{outline:2px solid #0e0e0f;outline-offset:3px}"
+    },
+    {
+      "name": "Suchfeld",
+      "kind": "input",
+      "refersTo": "search",
+      "description": "Weiße Leiste mit Lupe und schwarzem Suchen-Button innen; Fokusring auf der ganzen Leiste.",
+      "html": "<form class=\"ds-search\" role=\"search\"><span class=\"ds-search-icon\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg></span><input type=\"search\" placeholder=\"z. B. Kalk, Heizung, Stand-by\" aria-label=\"Anleitungen durchsuchen\"><button class=\"ds-search-btn\" type=\"submit\">Suchen</button></form>",
+      "css": ".ds-search{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #0e0e0f;border-radius:6px;padding:5px 5px 5px 14px;max-width:560px;font-family:Inter,system-ui,sans-serif} .ds-search:focus-within{outline:2px solid #0e0e0f;outline-offset:2px} .ds-search-icon{display:inline-flex;color:#5e5a52} .ds-search input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;font-size:1rem;color:#0e0e0f;padding:8px 4px} .ds-search-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:Inter,system-ui,sans-serif;font-size:.78rem;font-weight:700;line-height:1.25;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:14px 20px;border-radius:4px;border:1px solid #0e0e0f;cursor:pointer;transition:background .2s,color .2s,border-color .2s;background:#0e0e0f;color:#f7f4ee;padding:11px 16px;flex:none} .ds-search-btn:hover{background:#ffd400;color:#0e0e0f;border-color:#ffd400}"
+    },
+    {
+      "name": "Eingabefeld",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Formular- und Rechnerfeld: weiß, 1px Tinte, 5px Radius, Fokusring.",
+      "html": "<label class=\"ds-field\">Verbrauch in kWh<input type=\"number\" value=\"3500\"></label>",
+      "css": ".ds-field{display:block;font:500 .92rem/1.3 Inter,system-ui,sans-serif;color:#0e0e0f;max-width:260px} .ds-field input{display:block;width:100%;font:400 18px/1.4 Inter,system-ui,sans-serif;padding:12px 14px;border:1px solid #0e0e0f;border-radius:5px;margin-top:6px;background:#fff;color:#0e0e0f} .ds-field input:focus{outline:2px solid #0e0e0f;outline-offset:2px}"
+    },
+    {
+      "name": "Hauptmenü",
+      "kind": "nav",
+      "refersTo": "nav-rechner",
+      "description": "Winzige Versal-Navigation; „Rechner“ als schwarzer Block mit gelbem Icon, Hover gelb.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">Heizung</a><a href=\"#\">Strom</a><a href=\"#\">Wasser</a><a href=\"#\" class=\"ds-nav-rechner\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 7v14\"/><path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/></svg> Rechner</a></nav>",
+      "css": ".ds-nav{display:flex;gap:2px;align-items:center;padding-bottom:10px;border-bottom:1px solid #dcd7cc;background:#f7f4ee} .ds-nav a{color:#0e0e0f;text-decoration:none;font-family:Inter,system-ui,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px;padding:10px 8px;border-radius:4px;white-space:nowrap;transition:background .2s} .ds-nav a:hover{background:rgba(14,14,15,.07)} .ds-nav .ds-nav-rechner{background:#0e0e0f;color:#f7f4ee;margin-left:4px;padding:11px 13px} .ds-nav .ds-nav-rechner svg{color:#ffd400} .ds-nav .ds-nav-rechner:hover{background:#ffd400;color:#0e0e0f} .ds-nav .ds-nav-rechner:hover svg{color:#0e0e0f} .ds-nav a:focus-visible{outline:2px solid #0e0e0f;outline-offset:3px}"
+    },
+    {
+      "name": "Schnellkauf",
+      "kind": "custom",
+      "refersTo": "quick",
+      "description": "Schwarzer Kasten mit gelbem Etikett und gelben Buttons; Zeilen mit weißen 16-%-Linien.",
+      "html": "<div class=\"ds-quick\"><p class=\"ds-quick-title\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 7v14\"/><path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/></svg> Das brauchst du</p><ul><li><span>Entlüfterschlüssel<br><small>Vierkant, passt auf jedes Ventil</small></span><a class=\"ds-quick-btn\" href=\"#\">Bei Amazon*</a></li><li><span>Auffangbecher</span><a class=\"ds-quick-btn\" href=\"#\">Bei Amazon*</a></li></ul></div>",
+      "css": ".ds-quick{background:#0e0e0f;color:#f7f4ee;border-radius:8px;padding:22px 24px;font:400 18px/1.7 Inter,system-ui,sans-serif;max-width:520px} .ds-quick-title{display:flex;align-items:center;gap:8px;color:#ffd400;margin:0 0 8px;font-family: Inter, system-ui, sans-serif; font-size: .72rem; font-weight: 600; line-height: 1.35; text-transform: uppercase; letter-spacing: .13em;} .ds-quick ul{list-style:none;padding:0;margin:0} .ds-quick li{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 14px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.16);line-height:1.4} .ds-quick li:last-child{border-bottom:0} .ds-quick small{color:#c4c0b7;font-size:.82rem} .ds-quick-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:Inter,system-ui,sans-serif;font-size:.78rem;font-weight:700;line-height:1.25;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:14px 20px;border-radius:4px;border:1px solid #0e0e0f;cursor:pointer;transition:background .2s,color .2s,border-color .2s;background:#ffd400;color:#0e0e0f;border-color:#ffd400;padding:10px 14px;font-size:.7rem} .ds-quick-btn:hover{background:#fff;border-color:#fff}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Das große, ruhige Schild",
+    "overview": "**Creative North Star: \"Das große, ruhige Schild\"**\n\nDie Seite ist eine Baumarkt-Beschilderung in der Grammatik eines Editorial-Portfolios: ein Satz in riesiger schwarzer Grotesk auf warmem Off-White sagt, worum es geht; darunter ein einziges gelbes Feld in Seitenbreite mit dem Mann, der es erklärt, und der Suche als Handlung. Alles Weitere ist Index: Zeilen mit großer Beschriftung, getrennt durch Haarlinien, mit einem gelben Schild, das beim Überfahren von links hereinfährt. Gelb und Schwarz bleiben die Kanalfarben, aber sparsam und edel: Gelb ist Band, Reiter, Nummernschild und Hover-Füllung, nie Dekoration.\n\nDie Dichte ist niedrig und typografisch: Abschnitte beginnen mit einer schwarzen Haarlinie und einem großen Titel, Text läuft in 740 px Spaltenbreite bei 18 px / 1.7. Kästen sind Haarlinienrahmen mit Etikett-Reiter oben links, keine Flächen mit Schatten. Themenfarben (Orange, Blau, Grün, Violett …) erscheinen nur in Titelbildern, Icons und Chips; die Bedienoberfläche selbst kennt nur Tinte und Gelb.\n\nVerworfen wurden (laut Richtungsvertrag): die Kachelwand aus Icon-Karten mit Schatten, der dunkle Hero mit Avatar-Kreis, Kicker über Überschriften.",
+    "keyCharacteristics": [
+      "Riesige Bricolage Grotesque (760–800, optische Größe, −0.03 bis −0.045 em) als Hauptgestaltungsmittel",
+      "Warmes Off-White, Tinte, ein gelbes Farbfeld; Themenfarben nur in Bildern, Icons, Chips",
+      "Haarlinien (1 px) statt Kästen und Schatten; Abschnitte beginnen mit einer schwarzen Linie",
+      "Etiketten: 0.72 rem Versalien mit 0.13 em Laufweite, immer unter dem Titel, nie darüber",
+      "Rechteckige Bedienelemente (3–5 px), Bilder mit 8 px, Porträts rund",
+      "Bewegung nur beim Laden (Hero-Zeilen steigen auf, Band blendet ein), beim Überfahren (gelbes Schild, Bild-Zoom) und abschaltbar"
+    ],
+    "rules": [
+      {
+        "name": "Die Ein-Farbfeld-Regel",
+        "body": "Gelb ist das einzige großflächige Farbfeld einer Seite. Themenfarben erscheinen nie als Fläche, nur in Titelbild, Icon und Chip.",
+        "section": "colors"
+      },
+      {
+        "name": "Die Tinte-oder-Gelb-Regel",
+        "body": "Jedes Bedienelement ist schwarz, transparent mit schwarzem Rahmen oder gelb. Hover wechselt zwischen genau diesen Zuständen.",
+        "section": "colors"
+      },
+      {
+        "name": "Die Farbe-plus-Text-Regel",
+        "body": "Status wird nie allein durch Farbe getragen: jede Statusfläche hat Rahmen und Wortlaut („✓ Erlaubt“, „Achtung“).",
+        "section": "colors"
+      },
+      {
+        "name": "Die Etikett-unter-dem-Titel-Regel",
+        "body": "Die Versal-Beschriftung (Thema · Lesezeit, Datum) steht immer unter dem Titel, nie als Kicker darüber. Die Klasse `.eyebrow` ist im Stylesheet nur noch Altlast ohne Verwendung.",
+        "section": "typography"
+      },
+      {
+        "name": "Die Doppelhöhen-Regel",
+        "body": "Zwischen Abschnittstitel und Text liegen mindestens zwei Stufen (3.6 rem gegen 18 px); Zwischengrößen werden nicht erfunden.",
+        "section": "typography"
+      },
+      {
+        "name": "Die Silbentrennungs-Regel",
+        "body": "Wegweiser-Titel trennen nur unter 480 px (`hyphens: auto` erst im Media Query), sonst `hyphens: manual`.",
+        "section": "typography"
+      },
+      {
+        "name": "Die Haarlinien-Regel",
+        "body": "Flächen sind flach; Trennung erfolgt mit 1-px-Linien, nie mit Schatten. Ein neuer Kasten bekommt einen Rahmen in Tinte, keinen Schatten.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** Meta-Zeilen (Thema · Lesezeit, Datum) als Etikett (0.72 rem, 600, Versalien, 0.13 em) unter den Titel setzen.",
+      "**Do** jeden neuen Abschnitt mit einer schwarzen 1-px-Haarlinie und einem Bricolage-Titel (760, −0.03 em) beginnen.",
+      "**Do** Buttons rechteckig (4 px) in Tinte mit gelbem Hover bauen; Ghost-Varianten mit 1-px-Rahmen in Tinte.",
+      "**Do** Themenfarbe nur per `--akzent` in Titelbild, Icon (abgedunkelt mit `color-mix` 65–70 % Schwarz) und Chip zeigen.",
+      "**Do** Bilder mit 8 px Radius und 16:9 auf Tinte legen; Porträts rund.",
+      "**Do** Bewegung auf Laden (Hero), Hover-Füllung (0.4 s `--ease`) und Bild-Zoom (0.7 s) beschränken und mit `prefers-reduced-motion` komplett abschalten.",
+      "**Do** Status immer als Fläche plus 2-px-Rahmen plus Wortlaut ausgeben, nie als Farbe allein.",
+      "**Do** Affiliate-Hinweise („Anzeige“, Sternchen) sichtbar lassen; der Anzeige-Hinweis bleibt gedämpfter Text mit Haarlinie, nie ausgeblendet.",
+      "**Do** Schriften und Bilder ausschließlich lokal laden (`/fonts/*.woff2`, `/bilder/`)."
+    ],
+    "donts": [
+      "**Don't** Kicker oder Eyebrows über Überschriften setzen; `.eyebrow` nicht wiederbeleben.",
+      "**Don't** farbige `border-left` dicker als 1 px als Kasten-Markierung verwenden; Kästen tragen 1 px Tinte rundum und einen Reiter.",
+      "**Don't** Pillen oder 999-px-Radien; Bedienelemente bleiben bei 3–6 px, Flächen bei 8 px.",
+      "**Don't** Schatten als Dekoration; neue Flächen trennen sich durch Haarlinien oder Papierton.",
+      "**Don't** Themenfarben als Flächen, Buttons oder Rahmen der Bedienoberfläche einsetzen; UI ist Tinte oder Gelb.",
+      "**Don't** ein zweites großes Farbfeld neben dem gelben Band auf dieselbe Seite setzen.",
+      "**Don't** Silbentrennung oberhalb von 480 px in Titeln einschalten.",
+      "**Don't** Icon-Kachelwände mit Schatten oder einen dunklen Hero mit Avatar-Kreis bauen; der Wegweiser ist die Zeile, der Hero ist Typografie plus Band.",
+      "**Don't** Schriften, Bilder oder Skripte von fremden Hosts einbinden."
+    ]
+  }
+}
