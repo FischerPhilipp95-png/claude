@@ -65,12 +65,12 @@ if (vSchema) jsonLd.push(vSchema as any);
 <Base title={title} description={description} image={bild} jsonLd={jsonLd} type="article" artikel={{ veroeffentlicht: pubDate, geaendert: updatedDate, rubrik: themaTitel }}>
   <article class="wrap article" style={`--akzent:${akzent}`} data-pagefind-body>
     <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> <Icon name="chevron-right" size={14} /> <a href={`/thema/${themaSlug}/`}>{themaTitel}</a></nav>
-    <a class="chip chip-lg" href={`/thema/${themaSlug}/`} data-pagefind-meta="thema" data-pagefind-ignore><Icon name={themaIcon} size={16} /> {themaTitel}</a>
     <h1>{title}</h1>
     <p class="lead">{description}</p>
     <div class="byline" data-pagefind-ignore>
       <img src="/bilder/autor.webp" alt="" width="40" height="40" data-pin-nopin="true" />
       <span><strong>{SITE.author}</strong><br /><span class="small">{updatedDate ? `Aktualisiert ${datum(updatedDate)}` : `Veröffentlicht ${datum(pubDate)}`} · {lesezeit} Min. Lesezeit</span></span>
+      <a class="chip byline-thema" href={`/thema/${themaSlug}/`} data-pagefind-meta="thema"><Icon name={themaIcon} size={14} /> {themaTitel}</a>
     </div>
     <figure class="hero-img"><img data-pagefind-meta="image[src], image_alt[alt]" src={bild} alt={bildAlt} width="1200" height="675" fetchpriority="high" decoding="async" data-pin-media={pin} data-pin-description={`${title}: ${description}`} data-pin-url={url} /></figure>
     {affiliate && (

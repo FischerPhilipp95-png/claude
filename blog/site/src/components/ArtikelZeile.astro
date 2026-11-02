@@ -1,0 +1,15 @@
+---
+// Artikel als Wegweiser-Zeile (Haarlinie, Titel, Thema · Lesezeit), gleiche Grammatik wie der Themen-Index.
+import type { CollectionEntry } from 'astro:content';
+import { THEMEN } from '../themen';
+import Icon from './Icon.astro';
+import { lesezeit } from '../lesezeit';
+interface Props { post: CollectionEntry<'artikel'> }
+const { post } = Astro.props;
+const t = THEMEN[post.data.thema];
+---
+<li><a href={`/artikel/${post.id}/`} style={`--akzent:${t.farbe}`}>
+  <span class="tile-icon"><Icon name={t.icon} size={22} /></span>
+  <span class="tile-name">{post.data.title}</span>
+  <span class="tile-count">{t.titel} · {lesezeit(post.body)} Min.</span>
+</a></li>

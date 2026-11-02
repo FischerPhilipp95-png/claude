@@ -3,6 +3,8 @@ import SuchFeld from '../components/SuchFeld.astro';
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import ArtikelKarte from '../components/ArtikelKarte.astro';
+import ArtikelFeature from '../components/ArtikelFeature.astro';
+import ArtikelZeile from '../components/ArtikelZeile.astro';
 import Icon from '../components/Icon.astro';
 import { SITE } from '../site';
 import { THEMEN } from '../themen';
@@ -14,7 +16,7 @@ const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const anzahl = (name: string) => posts.filter((p) => p.data.thema === name).length;
 const saison = SAISON.artikel.map((id) => posts.find((p) => p.id === id)).filter((p) => p !== undefined);
-const neueste = posts.filter((p) => !SAISON.artikel.includes(p.id)).slice(0, 6);
+const neueste = posts.filter((p) => !SAISON.artikel.includes(p.id)).slice(0, 3);
 const oftGelesen = OFT_GELESEN.map((id) => posts.find((p) => p.id === id)).filter((p) => p !== undefined);
 const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: `${SITE.url}/`, inLanguage: 'de-DE' }];
 ---
@@ -26,16 +28,16 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
     <div class="hero-band">
       <div class="wrap wide hero-band-grid">
         <div class="hero-copy">
-          <p class="hero-lead">Warum gluckert die Heizung? Was kostet der Heizlüfter? Wie bekomme ich den Abfluss frei?
-          Antworten, die man versteht, und Anleitungen für alles, was du sicher selbst machen kannst.</p>
+          <p class="hero-lead"><span>Warum gluckert die Heizung?</span> <span>Was kostet der Heizlüfter?</span> <span>Wie bekomme ich den Abfluss frei?</span></p>
+          <p class="hero-sub">Antworten, die man versteht, und Anleitungen für alles, was du sicher selbst machen kannst.</p>
           <SuchFeld id="suche-start" variante="hero" />
           <div class="hero-cta">
             <a class="btn" href="/artikel/"><Icon name="book-open" size={16} /> Alle Anleitungen</a>
-            <a class="btn btn-ghost" href="/rechner/"><Icon name="calculator" size={16} /> Rechner</a>
+            <a class="btn btn-ghost" href="#themen"><Icon name="compass" size={16} /> Themen</a>
           </div>
-          <p class="hero-facts"><span>{posts.length} Anleitungen</span><span>{RECHNER.length} Rechner</span><span>Alle mit Quellen</span></p>
         </div>
         <img class="hero-person" src="/bilder/handwerksdoktor-freisteller.webp" alt="Der Handwerksdoktor" width="900" height="900" fetchpriority="high" decoding="async" data-pin-nopin="true" />
+        <p class="hero-facts"><span>{posts.length} Anleitungen</span><span>{RECHNER.length} Rechner</span><span>Mit Quellen</span></p>
       </div>
     </div>
   </section>
@@ -43,12 +45,15 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
   <section class="wrap wide saison" aria-labelledby="saison-h">
     <h2 class="section-h" id="saison-h"><Icon name={SAISON.icon} size={26} /> {SAISON.titel}</h2>
     <p class="saison-text">{SAISON.text}</p>
-    <ul class="cards">{saison.map((p) => <ArtikelKarte post={p} />)}</ul>
+    <div class="feature-grid">
+      {saison[0] && <ArtikelFeature post={saison[0]} />}
+      <ul class="tiles tiles-liste" aria-label="Weitere Artikel zum Thema">{saison.slice(1).map((p) => <ArtikelZeile post={p} />)}</ul>
+    </div>
     <p class="saison-rechner"><a href={SAISON.rechner.href}><Icon name="calculator" size={18} /> {SAISON.rechner.titel}</a></p>
   </section>
 
   <section class="wrap wide">
-    <h2 class="section-h">Wobei brauchst du Hilfe?</h2>
+    <h2 class="section-h" id="themen">Wobei brauchst du Hilfe?</h2>
     <ul class="tiles">
       {Object.entries(THEMEN).filter(([n]) => anzahl(n) > 0).map(([n, t]) => (
         <li><a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}>
@@ -85,7 +90,7 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
     </ul>
 
     <h2 class="section-h">Oft gelesen</h2>
-    <ul class="cards">{oftGelesen.map((p) => <ArtikelKarte post={p} />)}</ul>
+    <ul class="tiles tiles-liste">{oftGelesen.map((p) => <ArtikelZeile post={p} />)}</ul>
 
     <h2 class="section-h">Neueste Anleitungen</h2>
     <ul class="cards">{neueste.map((p) => <ArtikelKarte post={p} />)}</ul>
