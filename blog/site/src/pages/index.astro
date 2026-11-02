@@ -19,20 +19,24 @@ const oftGelesen = OFT_GELESEN.map((id) => posts.find((p) => p.id === id)).filte
 const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: `${SITE.url}/`, inLanguage: 'de-DE' }];
 ---
 <Base title={SITE.name} description={SITE.description} jsonLd={jsonLd}>
-  <section class="hero">
-    <div class="wrap wide hero-grid">
-      <div>
-        <p class="eyebrow"><Icon name="sparkles" size={16} /> {posts.length} Anleitungen, alle mit Quellen</p>
-        <h1>Haustechnik, <b>einfach erklärt.</b></h1>
-        <p class="hero-lead">Warum gluckert die Heizung? Was kostet der Heizlüfter? Wie bekomme ich den Abfluss frei?
-        Antworten, die man versteht, und Anleitungen für alles, was du sicher selbst machen kannst.</p>
-        <SuchFeld id="suche-start" variante="hero" />
-        <div class="hero-cta">
-          <a class="btn" href="/artikel/"><Icon name="book-open" size={18} /> Alle Anleitungen</a>
-          <a class="btn btn-ghost" href="/rechner/"><Icon name="calculator" size={18} /> Rechner</a>
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap wide">
+      <h1 class="hero-h" id="hero-h"><span class="line"><span>Haustechnik,</span></span><span class="line"><span>einfach erklärt.</span></span></h1>
+    </div>
+    <div class="hero-band">
+      <div class="wrap wide hero-band-grid">
+        <div class="hero-copy">
+          <p class="hero-lead">Warum gluckert die Heizung? Was kostet der Heizlüfter? Wie bekomme ich den Abfluss frei?
+          Antworten, die man versteht, und Anleitungen für alles, was du sicher selbst machen kannst.</p>
+          <SuchFeld id="suche-start" variante="hero" />
+          <div class="hero-cta">
+            <a class="btn" href="/artikel/"><Icon name="book-open" size={16} /> Alle Anleitungen</a>
+            <a class="btn btn-ghost" href="/rechner/"><Icon name="calculator" size={16} /> Rechner</a>
+          </div>
+          <p class="hero-facts"><span>{posts.length} Anleitungen</span><span>{RECHNER.length} Rechner</span><span>Alle mit Quellen</span></p>
         </div>
+        <img class="hero-person" src="/bilder/handwerksdoktor-freisteller.webp" alt="Der Handwerksdoktor" width="900" height="900" fetchpriority="high" decoding="async" data-pin-nopin="true" />
       </div>
-      <img class="hero-avatar" src="/bilder/autor.webp" alt="Der Handwerksdoktor" width="256" height="256" />
     </div>
   </section>
 

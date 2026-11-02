@@ -70,7 +70,7 @@ if (vSchema) jsonLd.push(vSchema as any);
     <p class="lead">{description}</p>
     <div class="byline" data-pagefind-ignore>
       <img src="/bilder/autor.webp" alt="" width="40" height="40" data-pin-nopin="true" />
-      <span><strong>{SITE.author}</strong><br /><span class="small">{updatedDate ? `Aktualisiert am ${datum(updatedDate)}` : `Veröffentlicht am ${datum(pubDate)}`} · <Icon name="clock" size={13} /> {lesezeit} Min. Lesezeit</span></span>
+      <span><strong>{SITE.author}</strong><br /><span class="small">{updatedDate ? `Aktualisiert ${datum(updatedDate)}` : `Veröffentlicht ${datum(pubDate)}`} · {lesezeit} Min. Lesezeit</span></span>
     </div>
     <figure class="hero-img"><img data-pagefind-meta="image[src], image_alt[alt]" src={bild} alt={bildAlt} width="1200" height="675" fetchpriority="high" decoding="async" data-pin-media={pin} data-pin-description={`${title}: ${description}`} data-pin-url={url} /></figure>
     {affiliate && (
