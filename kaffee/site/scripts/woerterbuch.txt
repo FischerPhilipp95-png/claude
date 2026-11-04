@@ -181,3 +181,22 @@ VeroCafe
 VeroBar
 VeroAroma
 VeroCup
+
+# AquaClean-Artikel (4.11.2026)
+AquaClean-Licht
+AquaClean-Wasserfilter
+AquaClean-Anzeige
+AquaClean-Filterleuchte
+AquaClean-Filtersymbol
+Incanto
+BRITA
+INTENZA
+INTENZA+
+Saeco-Abschnitt
+Nachbaufilter
+Filtersymbol
+Filterzyklen
+Doppelpack
+Talea
+Originalfilter
+Filtermeldung
