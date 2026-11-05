@@ -5,12 +5,15 @@ Stand: 05.11.2026. Abhaken mit `[x]`. Ausführliche Anleitungen: `kaffee/EINRICH
 ## Jetzt (Einrichtung gartensaunadoktor.de, Anleitung: `sauna/EINRICHTUNG.md`)
 
 - [x] **Domain bestellen:** `gartensaunadoktor.de` bei IONOS, Ordner `/gartensaunadoktor` verbunden, SFTP-Benutzer `su860681` (05.11.2026)
-- [ ] **Cloudflare:** Domain hinzufügen, Nameserver umstellen, SSL Flexible (wie bei vollautomatendoktor.de)
-- [ ] **GitHub-Secrets:** `SAUNA_SFTP_USER`, `SAUNA_SFTP_PASSWORD`, `SAUNA_SFTP_HOST` (erst dann lädt der Workflow hoch)
+- [x] **Cloudflare:** Domain hinzugefügt, Nameserver umgestellt, Seite live seit 05.11.2026
+- [ ] **Cloudflare, Datenschutz:** *Web Analytics* (RUM) bei gartensaunadoktor.de **und vollautomatendoktor.de** abschalten (baut ein Messskript ein),
+      bei gartensaunadoktor.de *Email Address Obfuscation* aus
+- [x] **GitHub-Secrets:** `SAUNA_SFTP_USER`, `SAUNA_SFTP_PASSWORD`, `SAUNA_SFTP_HOST`
 - [ ] **Awin:** Publisher-Konto anlegen, Programme GartenHaus (22747), Gartenhausfabrik (76696), Bast Sauna (119243), Artsauna (106021) beantragen,
       Deeplinks an Claude schicken (bis dahin stehen Platzhalter auf der Seite)
 - [ ] **Marke prüfen:** „Gartensaunadoktor“ bei DPMA und TMview
-- [ ] Danach: Search Console + Bing für gartensaunadoktor.de, Sitemap einreichen
+- [ ] **Search Console + Bing** für gartensaunadoktor.de (TXT-Eintrag bei Cloudflare), Sitemap `https://gartensaunadoktor.de/sitemap-index.xml`
+- [ ] **Manus-API-Schlüssel erneuern** (stand im Chat), danach in den Umgebungs-Einstellungen hinterlegen
 
 ## Jetzt (Einrichtung vollautomatendoktor.de)
 
