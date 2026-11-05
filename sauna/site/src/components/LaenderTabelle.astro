@@ -1,0 +1,24 @@
+---
+// Baurecht-Tabelle aller 16 Länder (Daten: src/baurecht.ts). Desktop: Tabelle. Handy: je Land eine Karte mit Beschriftung je Zeile.
+import { LAENDER, STAND } from '../baurecht';
+// Zahl und Einheit nicht trennen (geschütztes Leerzeichen).
+const nb = (t: string) => t.replace(/(\d) (m³|m²|m|°|kW)/g, '$1\u00a0$2');
+---
+<div class="lt-wrap">
+  <table class="lt">
+    <caption>Gartensauna ohne Baugenehmigung: Regeln der Landesbauordnungen, Stand {STAND}. Keine Rechtsberatung.</caption>
+    <thead>
+      <tr><th scope="col">Land</th><th scope="col">Ohne Baugenehmigung (Innenbereich)</th><th scope="col">Holzofen und Außenbereich</th><th scope="col">An der Grenze ohne Abstand</th></tr>
+    </thead>
+    <tbody>
+      {LAENDER.map((l) => (
+        <tr>
+          <th scope="row">{l.land}<span class="lt-quellen">{l.quellen.map((q) => <a href={q.url} rel="noopener">{q.text}</a>)}</span></th>
+          <td data-label="Ohne Baugenehmigung">{nb(l.innen)}</td>
+          <td data-label="Holzofen und Außenbereich">{nb(l.holzofen)}</td>
+          <td data-label="An der Grenze">{nb(l.grenze)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

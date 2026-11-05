@@ -82,7 +82,7 @@ Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (Erreichbarkeit unter einer ladungsf
 ## 6. Affiliate-Links (Partnerprogramme über Awin)
 
 Diese Website nimmt an Partnerprogrammen von Online-Shops für Gartensaunen und Fasssaunen teil. Die Programme laufen über das
-Affiliate-Netzwerk der AWIN AG, Eichhornstraße 3, 10785 Berlin. Beteiligte Shops (sobald das jeweilige Programm freigeschaltet ist):
+Affiliate-Netzwerk der AWIN AG mit Sitz in Berlin. Beteiligte Shops (sobald das jeweilige Programm freigeschaltet ist):
 GartenHaus GmbH, Gartenhausfabrik, Bast Sauna, Artsauna.
 
 Affiliate-Links sind gekennzeichnet. Auf dieser Website selbst werden dabei **keine** Daten an Awin oder die Shops übertragen und
