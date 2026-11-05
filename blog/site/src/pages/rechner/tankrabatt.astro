@@ -1,0 +1,113 @@
+---
+import Base from '../../layouts/Base.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../site';
+
+const title = 'Tankrabatt-Rechner 2026: Was sparst du wirklich pro Tankfüllung?';
+const description = 'Tankrabatt bis 31.12.2026: 16,7 Cent je Liter laut Gesetz, an der Zapfsäule weniger. Verbrauch und Kilometer eingeben, Ersparnis pro Tankfüllung, Monat und bis Jahresende sehen.';
+// Gesetzlich: Energiesteuer minus 14,04 ct/l, mit 19 % Mehrwertsteuer 16,7 ct/l (Bundestag, 25.09.2026).
+// Weitergabe: Bundeskartellamt für Oktober rund 90 % bei Diesel und rund 60 % bei Benzin (E5), Stand 04.11.2026, „Momentaufnahme“.
+// ifo-Tracker 28.10. bis 03.11.: Diesel 9,7 ct, Superbenzin 17,4 ct (Verkehrsrundschau, 04.11.2026).
+const RABATT = 16.7;
+const vorlagen = [
+  { name: 'Volle Weitergabe (Gesetz)', benzin: 16.7, diesel: 16.7, quelle: 'Bundestag, 25.09.2026' },
+  { name: 'Kartellamt, Oktober', benzin: 10.0, diesel: 15.0, quelle: 'rund 60 % Benzin, rund 90 % Diesel, Stand 04.11.2026' },
+  { name: 'ifo-Tracker, 28.10. bis 03.11.', benzin: 17.4, diesel: 9.7, quelle: 'Verkehrsrundschau, 04.11.2026' },
+];
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Tankrabatt-Rechner 2026',
+  url: `${SITE.url}/rechner/tankrabatt/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Tankrabatt</nav>
+    <h1>{title}</h1>
+    <p class="lead">Der Staat senkt die Energiesteuer vom 1. Oktober bis 31. Dezember 2026 um 14,04 Cent je Liter, mit Mehrwertsteuer sind das 16,7 Cent.
+    An der Zapfsäule kommt davon nur ein Teil an. Trag ein, wie du fährst, und wähle, wie viel vom Rabatt die Tankstellen gerade weitergeben.
+    Alles wird nur in deinem Browser berechnet.</p>
+
+    <section class="box calc" aria-label="Rechner">
+      <p class="small">Weitergabe laden:</p>
+      <div class="presets">
+        {vorlagen.map((v) => <button type="button" class="chip" data-benzin={v.benzin} data-diesel={v.diesel} title={v.quelle}>{v.name}</button>)}
+      </div>
+      <div class="calc-grid">
+        <label>Kraftstoff
+          <select id="sorte"><option value="benzin">Benzin (E5, E10)</option><option value="diesel">Diesel</option></select>
+        </label>
+        <label>Verbrauch in Liter je 100 km<input id="verbrauch" type="number" inputmode="decimal" min="0" step="any" value="7" /></label>
+        <label>Kilometer im Jahr<input id="km" type="number" inputmode="numeric" min="0" step="100" value="12000" /></label>
+        <label>Tankgröße in Litern<input id="tank" type="number" inputmode="numeric" min="1" step="1" value="50" /></label>
+        <label>Weitergabe Benzin in Cent je Liter<input id="wg-benzin" type="number" inputmode="decimal" min="0" max="20" step="0.1" value="10" /></label>
+        <label>Weitergabe Diesel in Cent je Liter<input id="wg-diesel" type="number" inputmode="decimal" min="0" max="20" step="0.1" value="15" /></label>
+      </div>
+      <table class="result" aria-live="polite">
+        <thead><tr><td></td><th scope="col">laut Gesetz</th><th scope="col">an der Zapfsäule</th><th scope="col">bleibt bei der Branche</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">je Liter</th><td id="g-liter">–</td><td id="z-liter">–</td><td id="b-liter">–</td></tr>
+          <tr><th scope="row">je Tankfüllung</th><td id="g-tank">–</td><td id="z-tank">–</td><td id="b-tank">–</td></tr>
+          <tr><th scope="row">je Monat</th><td id="g-monat">–</td><td id="z-monat">–</td><td id="b-monat">–</td></tr>
+          <tr><th scope="row"><strong>Oktober bis Dezember</strong></th><td id="g-quartal">–</td><td id="z-quartal"><strong>–</strong></td><td id="b-quartal">–</td></tr>
+        </tbody>
+      </table>
+      <p class="small">„Je Monat“ = Jahreskilometer ÷ 12. „Bleibt bei der Branche“ ist die Lücke zwischen Steuersenkung und Preis an der Zapfsäule;
+      das Kartellamt nennt seine Zahlen eine Momentaufnahme. Eine Pflicht zur vollständigen Weitergabe gibt es nicht.</p>
+      <RechnerTeilen />
+    </section>
+
+    <h2>Woher die Zahlen kommen</h2>
+    <ul>
+      <li><strong>16,7 Cent je Liter:</strong> Energiesteuer minus 14,04 Cent plus die darauf entfallende Mehrwertsteuer, beschlossen am 25.09.2026
+        (<a href="https://www.bundestag.de/dokumente/textarchiv/2026/kw39-de-versicherung-aufsicht-1216898" rel="noopener">Bundestag</a>), gültig vom 1. Oktober bis 31. Dezember 2026.</li>
+      <li><strong>Kartellamt, Oktober:</strong> „rund 90 Prozent bei Diesel und rund 60 Prozent bei Benzin“, also etwa 15 und 10 Cent
+        (<a href="https://www.tagesspiegel.de/wirtschaft/afp-bundeskartellamt-zieht-erste-bilanz-tankrabatt-kommt-nicht-vollstandig-bei-autofahrern-an-16241250.html" rel="noopener">Tagesspiegel/AFP, 04.11.2026</a>).</li>
+      <li><strong>ifo-Tracker:</strong> Woche 28.10. bis 03.11.: Diesel 9,7 Cent, Superbenzin 17,4 Cent
+        (<a href="https://www.verkehrsrundschau.de/nachrichten/nfz-fuhrpark/rueckgang-der-kraftstoffpreise-setzt-sich-fort-3931306" rel="noopener">Verkehrsrundschau, 04.11.2026</a>).</li>
+    </ul>
+    <p>Die ganze Einordnung mit Preisen, Weitergabe und dem geplanten Spritpreisdeckel 2027: <a href="/artikel/tankrabatt-2026/">Tankrabatt 2026: Wie viel kommt bei dir an?</a></p>
+    <p>Du fährst elektrisch oder überlegst es? <a href="/rechner/e-auto-laden/"><Icon name="car" size={16} /> E-Auto-Ladekosten-Rechner</a>: Was kosten 100 km an der eigenen Steckdose?</p>
+  </div>
+</Base>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const zahl = (id: string) => Math.max(0, parseFloat($(id).value.replace(',', '.')) || 0);
+  const eur = (x: number) => x.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
+  const ct = (x: number) => x.toLocaleString('de-DE', { maximumFractionDigits: 1 }) + ' ct';
+  const RABATT = 16.7;
+  function rechnen() {
+    const sorte = ($('sorte') as unknown as HTMLSelectElement).value;
+    const weiter = Math.min(zahl(sorte === 'diesel' ? 'wg-diesel' : 'wg-benzin'), 20);
+    const liter = { g: RABATT, z: weiter, b: Math.max(0, RABATT - weiter) };
+    const tank = zahl('tank');
+    const monatLiter = (zahl('km') / 12) * zahl('verbrauch') / 100;
+    const set = (id: string, text: string) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+    for (const k of ['g', 'z', 'b'] as const) {
+      set(`${k}-liter`, ct(liter[k]));
+      set(`${k}-tank`, eur((liter[k] / 100) * tank));
+      set(`${k}-monat`, eur((liter[k] / 100) * monatLiter));
+      set(`${k}-quartal`, eur((liter[k] / 100) * monatLiter * 3));
+    }
+  }
+  ['sorte', 'verbrauch', 'km', 'tank', 'wg-benzin', 'wg-diesel'].forEach((id) => $(id).addEventListener('input', rechnen));
+  document.querySelectorAll<HTMLButtonElement>('.chip').forEach((b) => b.addEventListener('click', () => {
+    $('wg-benzin').value = b.dataset.benzin || '0';
+    $('wg-diesel').value = b.dataset.diesel || '0';
+    rechnen();
+  }));
+  rechnen();
+</script>
+
+<style>
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .chip { font: inherit; font-size: 0.9rem; padding: 6px 12px; border-radius: 4px; border: 1px solid var(--line-strong); background: transparent; cursor: pointer; }
+  .chip:hover { border-color: var(--ink); background: var(--yellow); }
+  .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0 16px; }
+  .calc-grid label { display: block; font-weight: 500; margin: 12px 0 0; }
+  .calc-grid input, .calc-grid select { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); margin-top: 6px; background: #fff; color: var(--ink); }
+  .result { margin-top: 18px; }
+  .result td:not(:first-child), .result th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+</style>

@@ -74,6 +74,24 @@ const tag = {
 await writeFile(ROOT + 'src/strompreis-tag.json', JSON.stringify(tag) + '\n');
 console.log(`geschrieben: src/strompreis-tag.json (${tag.tage.map((t) => t.datum).join(', ')})`);
 
+// Archiv für die Tagesseiten /strompreis/<datum>/ und die Monatsübersichten: alle Viertelstunden seit ARCHIV_START bis morgen.
+// Die Seiten entstehen beim Build aus dieser Datei; der Workflow lädt sie vor jedem Build neu (nachts und um 12:25 UTC).
+const ARCHIV_START = '2026-10-01';
+const archivRows = await laden(ARCHIV_START, morgenDe);
+const archivTage = {};
+for (const [t, p] of archivRows) {
+  const d = datum(t);
+  const uhr = new Date(t * 1000).toLocaleTimeString('de-DE', { timeZone: tz, hour: '2-digit', minute: '2-digit' });
+  (archivTage[d] ??= []).push([uhr, r2(p / 10)]);
+}
+const archiv = {
+  _hinweis: tag._hinweis,
+  stand: heute.toISOString(),
+  tage: Object.entries(archivTage).filter(([, v]) => v.length >= 90).sort(([a], [b]) => a.localeCompare(b)).map(([datum, werte]) => ({ datum, werte })),
+};
+await writeFile(ROOT + 'src/strompreis-archiv.json', JSON.stringify(archiv) + '\n');
+console.log(`geschrieben: src/strompreis-archiv.json (${archiv.tage.length} Tage ab ${ARCHIV_START})`);
+
 const vorjahr = await laden(`${jahr - 1}-01-01`, `${jahr - 1}-12-31`);
 const laufend = await laden(`${jahr}-01-01`, heute.toISOString().slice(0, 10));
 const out = {

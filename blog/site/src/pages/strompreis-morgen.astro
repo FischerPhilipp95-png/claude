@@ -1,0 +1,71 @@
+---
+// Strompreis morgen: die Viertelstundenpreise für den nächsten Tag, sobald die Börse sie gegen 13 Uhr veröffentlicht hat.
+// Daten aus src/strompreis-archiv.json (scripts/strompreise.mjs), neu erzeugt nachts und um 12:25 UTC.
+import Base from '../layouts/Base.astro';
+import Antwort from '../components/Antwort.astro';
+import Tagespreis from '../components/Tagespreis.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../site';
+import archiv from '../strompreis-archiv.json';
+import { auswerten, endpreis, fmt, datumLang, heuteBerlin, tagPlus, type Werte } from '../strompreis-auswertung';
+
+const heuteDe = heuteBerlin();
+const morgenDe = tagPlus(heuteDe, 1);
+const morgen = archiv.tage.find((t) => t.datum === morgenDe);
+const heute = archiv.tage.find((t) => t.datum === heuteDe);
+const m = morgen && auswerten(morgen.werte as Werte);
+const h = heute && auswerten(heute.werte as Werte);
+const standText = new Date(archiv.stand).toLocaleString('de-DE', { timeZone: 'Europe/Berlin', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+const title = 'Strompreis morgen: Börsenpreis je Viertelstunde, ab 13 Uhr';
+const description = m
+  ? `Börsenstrompreis morgen, ${datumLang(morgenDe)}: günstigste Stunden ${m.best.text}, Tagesmittel ${fmt(m.mittel)} ct/kWh. Alle 96 Viertelstunden aus SMARD-Daten.`
+  : 'Börsenstrompreis für morgen je Viertelstunde, sobald die Day-Ahead-Auktion gegen 13 Uhr veröffentlicht ist. Wann Strom morgen am günstigsten ist, aus SMARD-Daten.';
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebPage', name: title, url: `${SITE.url}/strompreis-morgen/`, inLanguage: 'de-DE', dateModified: archiv.stand, description }];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/thema/dynamischer-stromtarif/">Dynamischer Stromtarif</a> › Strompreis morgen</nav>
+    <h1>Strompreis morgen{m ? `: ${datumLang(morgenDe)}` : ''}</h1>
+    <p class="lead">Die Strombörse versteigert den Strom für den nächsten Tag jeden Mittag (Day-Ahead-Auktion). Gegen 13 Uhr stehen die Preise
+    für morgen fest, und dynamische Stromtarife geben sie je Viertelstunde weiter. Stand: {standText} Uhr.</p>
+
+    {m ? (
+      <Antwort>
+      <p><strong>Kurz gesagt:</strong> Morgen, {datumLang(morgenDe)}, ist Strom an der Börse am günstigsten <strong>{m.best.text}</strong>
+      {' '}(im Schnitt {fmt(m.best.v)} ct/kWh) und am teuersten <strong>{m.worst.text}</strong> ({fmt(m.worst.v)} ct). Tagesmittel
+      {' '}<strong>{fmt(m.mittel)} ct/kWh</strong>{h ? `, ${m.mittel < h.mittel ? 'günstiger' : 'teurer'} als heute (${fmt(h.mittel)} ct)` : ''}{m.negativ > 0 ? `, ${m.negativ} Viertelstunden mit negativem Preis` : ''}.
+      Im dynamischen Tarif sind das zu Hause etwa <strong>{fmt(endpreis(m.best.v))} bis {fmt(endpreis(m.worst.v))} ct/kWh</strong>.</p>
+      </Antwort>
+    ) : (
+      <Antwort>
+      <p><strong>Kurz gesagt:</strong> Die Preise für morgen, {datumLang(morgenDe)}, sind noch nicht veröffentlicht. Die Day-Ahead-Auktion
+      schließt um 12 Uhr, die Ergebnisse stehen gegen 13 Uhr fest; diese Seite wird kurz danach neu erzeugt. Bis dahin:
+      {h ? ` heute ist Strom am günstigsten ${h.best.text} (${fmt(h.best.v)} ct/kWh).` : ''} <a href="/strompreis-heute/">Strompreis heute</a>.</p>
+      </Antwort>
+    )}
+
+    {morgen && <Tagespreis datum={morgenDe} werte={morgen.werte as Werte} label="Morgen" />}
+    {heute && <Tagespreis datum={heuteDe} werte={heute.werte as Werte} label="Heute" />}
+
+    <h2>So nutzt du die Preise für morgen</h2>
+    <ul>
+      <li><strong>Abends planen:</strong> Waschmaschine, Trockner und Spülmaschine mit Startzeitvorwahl in das günstigste Zwei-Stunden-Fenster legen.</li>
+      <li><strong>E-Auto:</strong> In der Wallbox-App oder beim Anbieter (Tibber, Octopus, Rabot) „günstig laden bis morgen früh“ wählen; die App kennt die Preise ab 13 Uhr.
+        Wie das geht: <a href="/artikel/e-auto-laden-dynamischer-stromtarif/">E-Auto laden mit dynamischem Tarif</a>.</li>
+      <li><strong>Wärmepumpe:</strong> Puffer und Warmwasser in den grünen Stunden laden, in den roten drosseln: <a href="/artikel/waermepumpe-dynamischer-stromtarif/">Wärmepumpe mit dynamischem Tarif</a>.</li>
+      <li><strong>Mit Festpreis:</strong> Für dich ändert sich nichts. Ob sich der Wechsel lohnt: <a href="/rechner/dynamischer-stromtarif/">Spar-Rechner mit echten Börsenpreisen</a>.</li>
+    </ul>
+
+    <p class="sp-nav"><a href="/strompreis-heute/"><Icon name="clock" size={16} /> Strompreis heute</a> <a href="/strompreis/"><Icon name="calendar" size={16} /> Alle Tage seit Oktober 2026</a></p>
+
+    <h2>Häufige Fragen</h2>
+    <h3>Wann stehen die Strompreise für morgen fest?</h3>
+    <p>Die Day-Ahead-Auktion der EPEX Spot schließt täglich um 12 Uhr, die Ergebnisse werden gegen 13 Uhr veröffentlicht. Diese Seite wird um 13:25 Uhr
+    deutscher Zeit (14:25 Uhr im Sommer) und jede Nacht neu erzeugt.</p>
+    <h3>Gilt der Preis für ganz Deutschland?</h3>
+    <p>Ja, die Gebotszone DE-LU umfasst Deutschland und Luxemburg. Dein Endpreis unterscheidet sich nur durch Netzentgelte und den Aufschlag des Anbieters.</p>
+    <h3>Ist das mein Strompreis?</h3>
+    <p>Nein, das ist der Börsenanteil. Netzentgelte, Steuern, Umlagen und der Aufschlag des Anbieters kommen fest dazu, zusammen rund 19 bis 20 Cent brutto.
+    Die Schätzung „zu Hause etwa“ rechnet mit 16 Cent festen Bestandteilen netto und 2 Cent Aufschlag.</p>
+  </div>
+</Base>

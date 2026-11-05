@@ -1,0 +1,81 @@
+---
+// Archivseiten: /strompreis/<JJJJ-MM-TT>/ (ein Tag) und /strompreis/<JJJJ-MM>/ (ein Monat). Daten aus src/strompreis-archiv.json.
+import Base from '../../layouts/Base.astro';
+import Antwort from '../../components/Antwort.astro';
+import Tagespreis from '../../components/Tagespreis.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../site';
+import archiv from '../../strompreis-archiv.json';
+import { auswerten, endpreis, fmt, datumLang, datumMittel, monatLang, heuteBerlin, type Werte } from '../../strompreis-auswertung';
+
+export function getStaticPaths() {
+  const tage = archiv.tage.map((t) => t.datum);
+  const monate = [...new Set(tage.map((d) => d.slice(0, 7)))];
+  return [...tage.map((d) => ({ params: { slug: d } })), ...monate.map((m) => ({ params: { slug: m } }))];
+}
+const { slug } = Astro.params;
+const istTag = slug.length === 10;
+const alle = archiv.tage.map((t) => ({ datum: t.datum, werte: t.werte as Werte, ...auswerten(t.werte as Werte) }));
+const heuteDe = heuteBerlin();
+const idx = alle.findIndex((t) => t.datum === slug);
+const tag = istTag ? alle[idx] : undefined;
+const vortag = istTag && idx > 0 ? alle[idx - 1] : undefined;
+const folgetag = istTag && idx < alle.length - 1 ? alle[idx + 1] : undefined;
+const monatTage = alle.filter((t) => t.datum.startsWith(slug.slice(0, 7)));
+const monatMittel = monatTage.reduce((a, t) => a + t.mittel, 0) / monatTage.length;
+const rolle = tag ? (tag.datum === heuteDe ? 'Heute' : tag.datum > heuteDe ? 'Morgen' : datumMittel(tag.datum)) : '';
+const title = tag
+  ? `Strompreis am ${new Date(tag.datum + 'T12:00:00').toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' })}: Börsenpreis je Viertelstunde`
+  : `Strompreise im ${monatLang(slug)}: Tagesmittel und günstigste Stunden`;
+const description = tag
+  ? `Börsenstrompreis am ${datumLang(tag.datum)}: Tagesmittel ${fmt(tag.mittel)} ct/kWh, günstigste Stunden ${tag.best.text}, teuerste ${tag.worst.text}. Alle 96 Viertelstunden aus SMARD-Daten.`
+  : `Börsenstrompreis im ${monatLang(slug)} Tag für Tag: Mittel ${fmt(monatMittel)} ct/kWh an ${monatTage.length} Tagen, mit den günstigsten und teuersten Stunden je Tag.`;
+const url = `${SITE.url}/strompreis/${slug}/`;
+const jsonLd = [{ '@context': 'https://schema.org', '@type': tag ? 'WebPage' : 'CollectionPage', name: title, url, inLanguage: 'de-DE', dateModified: archiv.stand, description,
+  ...(tag ? { datePublished: `${tag.datum}T00:00:00+01:00` } : {}) }];
+const tagLink = (t: { datum: string }) => new Date(t.datum + 'T12:00:00').toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' });
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/strompreis/">Strompreis-Archiv</a> › {tag ? <a href={`/strompreis/${slug.slice(0, 7)}/`}>{monatLang(slug.slice(0, 7))}</a> : monatLang(slug)}{tag && <> › {tagLink(tag)}</>}</nav>
+    {tag ? (
+      <>
+        <h1>Strompreis am {datumLang(tag.datum)}</h1>
+        <p class="lead">Alle 96 Viertelstundenpreise der Strombörse (Day-Ahead, Deutschland) für diesen Tag, so wie dynamische Stromtarife sie weitergeben.
+        Grün sind die günstigsten, rot die teuersten Viertelstunden.</p>
+        <Antwort>
+        <p><strong>Kurz gesagt:</strong> Am {datumLang(tag.datum)} war Strom an der Börse am günstigsten <strong>{tag.best.text}</strong> (im Schnitt
+        {' '}{fmt(tag.best.v)} ct/kWh) und am teuersten <strong>{tag.worst.text}</strong> ({fmt(tag.worst.v)} ct). Tagesmittel <strong>{fmt(tag.mittel)} ct/kWh</strong>,
+        {' '}{tag.mittel < monatMittel ? 'unter' : 'über'} dem Monatsmittel von {fmt(monatMittel)} ct{vortag ? `, ${tag.mittel < vortag.mittel ? 'günstiger' : 'teurer'} als am Vortag (${fmt(vortag.mittel)} ct)` : ''}{tag.negativ > 0 ? `, ${tag.negativ} Viertelstunden mit negativem Preis` : ''}.
+        Im dynamischen Tarif waren das zu Hause etwa <strong>{fmt(endpreis(tag.best.v))} bis {fmt(endpreis(tag.worst.v))} ct/kWh</strong>.</p>
+        </Antwort>
+        <Tagespreis datum={tag.datum} werte={tag.werte} label={rolle} />
+        <p class="sp-nav">
+          {vortag ? <a href={`/strompreis/${vortag.datum}/`}><Icon name="chevron-left" size={16} /> {tagLink(vortag)}</a> : <span></span>}
+          {folgetag ? <a href={`/strompreis/${folgetag.datum}/`}>{tagLink(folgetag)} <Icon name="chevron-right" size={16} /></a> : <a href="/strompreis-morgen/">Strompreis morgen <Icon name="chevron-right" size={16} /></a>}
+        </p>
+        <h2>Was der Tag für dich bedeutet</h2>
+        <ul>
+          <li><strong>Mit dynamischem Tarif:</strong> Eine Wäsche mit 1 kWh kostete in den günstigsten zwei Stunden rund {fmt(endpreis(tag.best.v))} Cent, in den teuersten rund {fmt(endpreis(tag.worst.v))} Cent.
+            Ein E-Auto mit 50 kWh Ladung: etwa {fmt(endpreis(tag.best.v) * 0.5, 2)} statt {fmt(endpreis(tag.worst.v) * 0.5, 2)} Euro.</li>
+          <li><strong>Mit Festpreis:</strong> Für dich galt den ganzen Tag derselbe Preis. Ob sich der Wechsel lohnt: <a href="/rechner/dynamischer-stromtarif/">Spar-Rechner mit echten Börsenpreisen</a>.</li>
+          <li><strong>Typisch oder Ausnahme?</strong> Wie der Tagesverlauf im Jahresmittel aussieht, Sommer und Winter getrennt: <a href="/artikel/boersenstrompreis-tagesverlauf/">Börsenstrompreis verstehen</a>.</li>
+        </ul>
+      </>
+    ) : (
+      <>
+        <h1>Strompreise im {monatLang(slug)}</h1>
+        <p class="lead">Jeder Tag des Monats mit Tagesmittel, günstigsten und teuersten zwei Stunden an der Strombörse (Day-Ahead, Deutschland).
+        Der Monat hat bisher {monatTage.length} {monatTage.length === 1 ? 'Tag' : 'Tage'} mit einem Mittel von <strong>{fmt(monatMittel)} ct/kWh</strong>.</p>
+        <table class="sp-tabelle">
+          <thead><tr><th scope="col">Tag</th><th scope="col">Mittel</th><th scope="col">tiefster</th><th scope="col">höchster</th><th scope="col">günstigste 2 h</th><th scope="col">teuerste 2 h</th></tr></thead>
+          <tbody>{monatTage.map((t) => (
+            <tr><td><a href={`/strompreis/${t.datum}/`}>{tagLink(t)}</a></td><td>{fmt(t.mittel)}</td><td>{fmt(t.min)}</td><td>{fmt(t.max)}</td><td>{t.best.text.replace(' Uhr', '')}</td><td>{t.worst.text.replace(' Uhr', '')}</td></tr>
+          ))}</tbody>
+        </table>
+        <p class="small">Alle Werte in ct/kWh netto, ohne Netzentgelte, Steuern und Umlagen. Quelle: EPEX Spot Day-Ahead DE-LU über Bundesnetzagentur | SMARD.de (CC BY 4.0) und energy-charts.info.</p>
+        <p class="sp-nav"><a href="/strompreis/"><Icon name="calendar" size={16} /> Alle Monate</a> <a href="/strompreis-heute/"><Icon name="clock" size={16} /> Strompreis heute</a></p>
+      </>
+    )}
+  </div>
+</Base>

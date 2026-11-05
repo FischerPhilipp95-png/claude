@@ -598,3 +598,21 @@ p.small { max-width: 72ch; }
 .vg-text { display: flex; gap: 8px; align-items: flex-start; font-size: 0.9rem; margin: 6px 0; }
 .vg-text .icon { flex: none; margin-top: 3px; color: var(--ink); }
 .vg-fuss { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin: 12px 0 0; }
+
+/* Tagesgrafik der Börsenpreise (Tagespreis.astro): 96 Balken je Viertelstunde auf Nachtgrund */
+.tagespreis { margin-top: 1.4em; }
+.tp-balken { display: grid; grid-template-columns: repeat(96, minmax(0, 1fr)); gap: 1px; align-items: end; height: 170px; border-bottom: 1px solid rgba(255,255,255,.2); }
+.tp-bar { display: block; align-self: end; height: calc(100% * var(--p, 0)); min-height: 1px; background: #4c7df0; border-radius: 2px 2px 0 0; }
+.tp-bar.billig { background: #4ade80; }
+.tp-bar.teuer { background: #f87171; }
+.tp-bar.neg { background: #a78bfa; min-height: 3px; }
+.tp-achse { display: flex; justify-content: space-between; font-size: 0.68rem; color: #9a9aa4; margin: 4px 0 10px; }
+.tp-fakten { list-style: none; padding: 0; margin: 0 0 6px; display: grid; gap: 6px; font-size: 0.92rem; color: #e6e6ea; }
+.tp-fakten li { display: flex; gap: 8px; align-items: flex-start; margin: 0; }
+.tp-fakten .icon { flex: none; margin-top: 3px; color: var(--yellow); }
+.tp-tabelle { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); display: block; margin: 0; }
+@media (max-width: 560px) { .tp-balken { height: 130px; } }
+/* Archiv: Tagesliste und Navigation zwischen Tagen */
+.sp-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; margin: 1.4em 0; }
+.sp-tabelle td:not(:first-child), .sp-tabelle th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+.sp-monate { list-style: none; padding: 0; margin: 0 0 1.6em; display: grid; gap: 8px; }

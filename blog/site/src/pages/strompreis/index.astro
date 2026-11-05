@@ -1,0 +1,42 @@
+---
+// Archiv der Börsenstrompreise: ein Eintrag je Tag seit Oktober 2026, gruppiert nach Monat.
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../site';
+import archiv from '../../strompreis-archiv.json';
+import { auswerten, fmt, monatLang, type Werte } from '../../strompreis-auswertung';
+
+const tage = archiv.tage.map((t) => ({ datum: t.datum, ...auswerten(t.werte as Werte) }));
+const monate = [...new Set(tage.map((t) => t.datum.slice(0, 7)))].sort().reverse().map((m) => {
+  const liste = tage.filter((t) => t.datum.startsWith(m));
+  return { m, tage: liste.length, mittel: liste.reduce((a, t) => a + t.mittel, 0) / liste.length, min: Math.min(...liste.map((t) => t.min)), max: Math.max(...liste.map((t) => t.max)), negativ: liste.reduce((a, t) => a + t.negativ, 0) };
+});
+const title = 'Strompreis-Archiv: Börsenpreise je Tag seit Oktober 2026';
+const description = `Börsenstrompreis Tag für Tag: ${tage.length} Tage mit Tagesmittel, günstigsten und teuersten Stunden, je Monat zusammengefasst. Aus SMARD-Daten, täglich ergänzt.`;
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, url: `${SITE.url}/strompreis/`, inLanguage: 'de-DE', dateModified: archiv.stand }];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/thema/dynamischer-stromtarif/">Dynamischer Stromtarif</a> › Strompreis-Archiv</nav>
+    <h1>Strompreis-Archiv: jeder Tag seit Oktober 2026</h1>
+    <p class="lead">Für jeden Tag alle 96 Viertelstundenpreise der Strombörse (Day-Ahead, Deutschland), mit den günstigsten und teuersten
+    Stunden. So siehst du, wie sich der Börsenstrom über Wochen verhält, und kannst nachsehen, was dein dynamischer Tarif an einem Tag gekostet hat.</p>
+    <p class="sp-nav"><a href="/strompreis-heute/"><Icon name="clock" size={16} /> Strompreis heute</a> <a href="/strompreis-morgen/"><Icon name="calendar-clock" size={16} /> Strompreis morgen</a></p>
+
+    {monate.map((mo) => (
+      <section aria-labelledby={`m-${mo.m}`}>
+        <h2 id={`m-${mo.m}`}><a href={`/strompreis/${mo.m}/`}>{monatLang(mo.m)}</a></h2>
+        <p>{mo.tage} Tage, Mittel <strong>{fmt(mo.mittel)} ct/kWh</strong>, Spanne {fmt(mo.min)} bis {fmt(mo.max)} ct{mo.negativ > 0 ? `, ${mo.negativ} Viertelstunden unter null` : ''}.
+        {' '}<a href={`/strompreis/${mo.m}/`}>Alle Tage im {monatLang(mo.m).split(' ')[0]}</a></p>
+        <table class="sp-tabelle">
+          <thead><tr><th scope="col">Tag</th><th scope="col">Mittel</th><th scope="col">günstigste 2 h</th><th scope="col">teuerste 2 h</th></tr></thead>
+          <tbody>{tage.filter((t) => t.datum.startsWith(mo.m)).reverse().map((t) => (
+            <tr><td><a href={`/strompreis/${t.datum}/`}>{new Date(t.datum + 'T12:00:00').toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' })}</a></td><td>{fmt(t.mittel)} ct</td><td>{t.best.text.replace(' Uhr', '')}, {fmt(t.best.v)} ct</td><td>{t.worst.text.replace(' Uhr', '')}, {fmt(t.worst.v)} ct</td></tr>
+          ))}</tbody>
+        </table>
+      </section>
+    ))}
+    <p class="small">Quelle: Day-Ahead-Auktion EPEX Spot, Gebotszone DE-LU, Bundesnetzagentur | SMARD.de (CC BY 4.0), abgerufen über energy-charts.info. Preise in ct/kWh netto ohne Netzentgelte, Steuern und Umlagen.
+    Was der Verlauf im Jahresmittel zeigt: <a href="/artikel/boersenstrompreis-tagesverlauf/">Börsenstrompreis verstehen</a>.</p>
+  </div>
+</Base>
