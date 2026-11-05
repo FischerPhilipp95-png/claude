@@ -24,6 +24,11 @@ RewriteRule ^ https://handwerksdoktor.de%{REQUEST_URI} [L,R=301]
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
   # Nur eigene Dateien laden; einzige Ausnahme: YouTube-Player nach Klick.
   Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; font-src 'self'; connect-src 'self'; frame-src https://www.youtube-nocookie.com; form-action 'self'; base-uri 'self'; frame-ancestors 'self'; object-src 'none'"
+  # HTML darf unterwegs nicht verändert werden: Cloudflare baut dann kein Analyse-Skript (Web Analytics/RUM) ein
+  # und verschleiert keine E-Mail-Adressen. Passt zur Datenschutzerklärung (kein Tracking).
+  <FilesMatch "\.html$">
+    Header merge Cache-Control "no-transform"
+  </FilesMatch>
 </IfModule>
 
 <IfModule mod_expires.c>
