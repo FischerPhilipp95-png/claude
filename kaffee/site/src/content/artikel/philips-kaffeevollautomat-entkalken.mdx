@@ -20,6 +20,8 @@ import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Ablauf from '../../components/Ablauf.astro';
+import Material from '../../components/Material.astro';
+import Kennzahl from '../../components/Kennzahl.astro';
 
 <Antwort>
 **Kurz gesagt:** Blinkt bei deiner Philips die Anzeige **Calc/Clean**, nimmst du LatteGo und AquaClean-Filter heraus, gibst die
@@ -29,7 +31,16 @@ Maschine entkalkt, bis der Tank leer ist, danach **einmal mit frischem Wasser sp
 30 Minuten** und darf nicht unterbrochen werden.
 </Antwort>
 
+## Das brauchst du
+
+<Material items={[
+  { name: "Philips Entkalker CA6700", warum: "Nur dieser laut Philips. Passt zu den Serien 800 bis 5500, GranAroma und Xelsis. Eine ganze Flasche pro Entkalkung.", suche: "Philips CA6700 Entkalker" },
+  { name: "Gefäß mit 1,5 Litern", warum: "Unter Kaffee- und Heißwasserauslauf zugleich." },
+]} />
+
 ## Wann entkalken?
+
+<Kennzahl wert="3" einheit="Monate" text="ohne Wasserfilter etwa zwischen zwei Entkalkungen; mit rechtzeitig gewechseltem AquaClean-Filter laut Coolblue etwa 18 Monate" quelle="Coolblue, Philips 2200 und 3200 entkalken" quelleUrl="https://www.coolblue.de/beratung/wie-entkalke-ich-meine-philips-2200-und-3200-kaffeemaschine.html" />
 
 - **Die Maschine sagt es dir:** Bei den Serien 1200 bis 3300 **blinkt die Calc/Clean-Lampe**, bei 4300 bis 5500 erscheint eine
   Meldung im Display.

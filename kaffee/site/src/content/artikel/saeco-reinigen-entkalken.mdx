@@ -21,6 +21,8 @@ import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Ablauf from '../../components/Ablauf.astro';
+import Material from '../../components/Material.astro';
+import Kennzahl from '../../components/Kennzahl.astro';
 
 <Antwort>
 **Kurz gesagt:** Saeco gehört zu Philips, deshalb gelten die gleichen Mittel: **Reinigungstabletten (Kaffeefettlöser)** kommen
@@ -29,6 +31,15 @@ Wasser gespült, nie mit Spülmittel. **Entkalkt** wird mit dem **Saeco- bzw. Ph
 zur Markierung **Calc Clean** im Tank. Das dauert **23 Minuten**: 20 Minuten Entkalken, 3 Minuten Spülen. Der **AquaClean-Filter**
 muss vorher raus und kommt danach neu rein.
 </Antwort>
+
+## Das brauchst du
+
+<Material items={[
+  { name: "Kaffeefettlöser-Tabletten CA6704", warum: "Für die Brühgruppe: monatlich oder nach etwa 500 Tassen, in den Pulverschacht.", suche: "Philips Saeco CA6704 Kaffeefettlöser Tabletten" },
+  { name: "Saeco-/Philips-Entkalker CA6700", warum: "Fürs Entkalken, wenn das Display es verlangt. Andere Mittel hinterlassen Rückstände.", suche: "Saeco Philips CA6700 Entkalker" },
+  { name: "Philips Schmierfett HD5061", warum: "Brühgruppe je nach Tassenzahl alle 1 bis 4 Monate fetten.", suche: "Philips HD5061 Schmierfett" },
+  { name: "Gefäß mit 1,5 Litern", warum: "Unter den Kaffeeauslauf beim Entkalken." },
+]} />
 
 Die Schritte stammen aus dem Handbuch der **Saeco PicoBaristo (HD8927)** und der Philips-Hilfeseite zur **PicoBaristo Deluxe**. Bei
 Intelia, Syntia und älteren Modellen sind Menütexte anders, die Reihenfolge ist dieselbe.
@@ -46,6 +57,8 @@ Intelia, Syntia und älteren Modellen sind Menütexte anders, die Reihenfolge is
 Die Intervalle für Tablette und Fett nennt Philips auf der Produktseite des Kaffeefettlösers und im Supportartikel zum Fetten.
 
 ## Reinigungstabletten richtig anwenden
+
+<Kennzahl wert="500" einheit="Tassen" text="oder einmal im Monat: dann ist die Brühgruppe mit einer Reinigungstablette dran" quelle="Philips, Produktseite Kaffeefettlöser CA6704/10" quelleUrl="https://www.home-appliances.philips/de/de/p/CA6704_10" />
 
 Laut Handbuch: Die Tabletten lösen **Kaffeeöl**, sie **entkalken nicht**. So geht es bei der PicoBaristo:
 

@@ -14,8 +14,9 @@ affiliate: true
 ---
 import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
-import ProduktFokus from '../../components/ProduktFokus.astro';
 import Ablauf from '../../components/Ablauf.astro';
+import Material from '../../components/Material.astro';
+import Kennzahl from '../../components/Kennzahl.astro';
 
 <Antwort>
 **Kurz gesagt:** Bei Siemens-Vollautomaten der EQ-Serie startest du das Programm **„Entkalken“** im Menü. Du nimmst den
@@ -24,7 +25,12 @@ ein Gefäß mit mindestens **1 Liter** unter den Auslauf. Den Rest führt das Di
 Die genaue Tablettenzahl für dein Modell steht in der Anleitung.
 </Antwort>
 
-<ProduktFokus id="siemens-tz80002a" />
+## Das brauchst du
+
+<Material items={[
+  { name: "Siemens Entkalkungstabletten TZ80002A", warum: "Der Original-Entkalker für die EQ-Serie; bei vielen Modellen eine Tablette auf 0,5 Liter lauwarmes Wasser.", produkt: "siemens-tz80002a" },
+  { name: "Gefäß mit mindestens 1 Liter", warum: "Unter Kaffeeauslauf und Milchauslauf." },
+]} />
 
 ## Entkalken, Reinigen oder calc'nClean?
 
@@ -95,6 +101,8 @@ Hast du die **Anleitung nicht mehr**: Das Display führt bei Bosch wie bei Sieme
 Starten.
 
 ## Wie oft entkalken?
+
+<Kennzahl wert="1 bis 2" einheit="Monate" text="empfiehlt Bosch als Abstand zwischen zwei Entkalkungen; die Maschine meldet sich je nach Wasserhärte von selbst" quelle="Bosch Support, calc’nClean" quelleUrl="https://www.bosch-home.co.uk/customer-service/get-support/coffee-machines/calc-n-clean" />
 
 Je nach **Wasserhärte** und Nutzung meist **alle paar Wochen**. Die Maschine **meldet sich selbst**, wenn die Wasserhärte im Menü richtig
 eingestellt ist. Mit einem eingesetzten und aktivierten **Wasserfilter** kommt die Meldung deutlich seltener.

@@ -15,6 +15,7 @@ import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
 import ProduktFokus from '../../components/ProduktFokus.astro';
 import Ablauf from '../../components/Ablauf.astro';
+import Material from '../../components/Material.astro';
 
 <Antwort>
 **Kurz gesagt:** Wenn dein Jura **„Reinigen“** meldet, startest du das Reinigungsprogramm, wirfst eine **3-Phasen-Reinigungstablette**
@@ -23,7 +24,12 @@ Bei Geräten mit **CLARIS Smart** erkennt die Maschine den Filter automatisch, d
 Filter musst du kaum noch entkalken.
 </Antwort>
 
-<ProduktFokus id="jura-reinigungstabletten" titel="Für die Reinigung" />
+## Das brauchst du
+
+<Material items={[
+  { name: "JURA 3-Phasen-Reinigungstabletten", warum: "Für das Reinigungsprogramm: löst Kaffeefett aus Brüheinheit und Leitungen. Gehört in den Pulverschacht, nie in den Tank.", produkt: "jura-reinigungstabletten" },
+  { name: "Großes Gefäß", warum: "Unter den Kaffeeauslauf, das Programm läuft etwa 20 Minuten." },
+]} />
 
 ## Reinigen und Entkalken: der Unterschied
 

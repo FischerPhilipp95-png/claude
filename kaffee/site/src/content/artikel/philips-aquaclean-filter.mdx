@@ -13,9 +13,10 @@ affiliate: true
 ---
 import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
-import ProduktFokus from '../../components/ProduktFokus.astro';
 import Ablauf from '../../components/Ablauf.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
+import Material from '../../components/Material.astro';
+import Kennzahl from '../../components/Kennzahl.astro';
 
 <Antwort>
 **Kurz gesagt:** Den AquaClean-Filter etwa **5 Sekunden schütteln**, dann **kopfüber in kaltes Wasser** halten, bis keine Luftblasen mehr
@@ -24,7 +25,12 @@ Maschine es meldet. Philips gibt an, dass du so **bis zu 5.000 Tassen ohne Entka
 rechtzeitig tauschst.
 </Antwort>
 
-<ProduktFokus id="philips-aquaclean" />
+## Das brauchst du
+
+<Material items={[
+  { name: "Philips AquaClean CA6903", warum: "Der Filter selbst. Nur für Geräte mit AquaClean-Anschluss; Nachbaufilter stehen weiter unten.", produkt: "philips-aquaclean" },
+  { name: "Gefäß mit kaltem Wasser", warum: "Zum Entlüften: Filter kopfüber hineinhalten, bis keine Luftblasen mehr aufsteigen." },
+]} />
 
 ## Anleitung: AquaClean-Filter einsetzen
 
@@ -67,6 +73,8 @@ unter den Heißwasserauslauf stellen und **Start** drücken, die Maschine gibt e
 **Aktivieren mit Display:** Bei Modellen mit Display bestätigst du den neuen Filter im Menü unter **„AquaClean“**.
 
 ## Wann wechseln?
+
+<Kennzahl wert="5.000" einheit="Tassen" text="ohne Entkalken, wenn du jeden Filter rechtzeitig wechselst" quelle="Philips, Produktseite AquaClean CA6903/10" quelleUrl="https://www.philips.de/c-p/CA6903_10/aquaclean-wasserfilter" />
 
 - **Wenn die Maschine meldet.** Das Gerät zählt mit, wie viel Wasser durch den Filter gelaufen ist.
 - Spätestens nach **etwa drei Monaten**, auch wenn wenig Kaffee gemacht wurde. Ein alter Filter hält kaum noch Kalk zurück.

@@ -19,9 +19,10 @@ pruefung:
 ---
 import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
-import ProduktFokus from '../../components/ProduktFokus.astro';
 import Ablauf from '../../components/Ablauf.astro';
 import Bild from '../../components/Bild.astro';
+import Material from '../../components/Material.astro';
+import Kennzahl from '../../components/Kennzahl.astro';
 
 <Antwort>
 **Kurz gesagt:** Bei vielen De'Longhi-Vollautomaten, etwa der Magnifica-Reihe, füllst du **EcoDecalk bis zur Markierung „A“** im
@@ -30,9 +31,17 @@ Wassertank (eine Flasche, **100 ml**) und gießt **Wasser bis zur Markierung „
 Entkalkungstaste. Danach spülst du mit frischem Wasser **bis MAX**. Alles zusammen dauert etwa **45 Minuten**.
 </Antwort>
 
-<ProduktFokus id="delonghi-ecodecalk" />
+## Das brauchst du
+
+<Material items={[
+  { name: "De’Longhi EcoDecalk", warum: "Eine Flasche (100 ml) bis Markierung A, dann Wasser bis B. Von De’Longhi vorgeschrieben.", produkt: "delonghi-ecodecalk" },
+  { name: "Großes Gefäß", warum: "Mindestens 2 Liter, unter Kaffeeauslauf und Dampf- bzw. Heißwasserauslauf zugleich." },
+  { name: "Wasserhärte-Teststreifen", warum: "Damit stellst du die Wasserhärte ein, dann meldet sich die Maschine zum richtigen Zeitpunkt.", imKarton: true },
+]} />
 
 ## EcoDecalk Mischverhältnis
+
+<Kennzahl wert="100" einheit="ml" text="EcoDecalk auf 1 Liter Wasser: Flasche bis Markierung A, Wasser bis Markierung B" quelle="De’Longhi, Entkalkung der Magnifica S" quelleUrl="https://www.delonghi.com/de-de/faqs/Entkalkung-der-Magnfica-S-ECAM22.110/a/576854" />
 
 | Gerät | EcoDecalk | Wasser | Quelle |
 |---|---|---|---|

@@ -21,6 +21,8 @@ import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
 import AmazonLink from '../../components/AmazonLink.astro';
 import Ablauf from '../../components/Ablauf.astro';
+import Material from '../../components/Material.astro';
+import Kennzahl from '../../components/Kennzahl.astro';
 
 <Antwort>
 **Kurz gesagt:** Die Brühgruppe deiner Philips kommt **einmal pro Woche** unter lauwarmes Wasser, ohne Spülmittel. Zusätzlich will
@@ -28,6 +30,15 @@ Philips sie **gefettet** haben, mit dem **Schmierfett HD5061**: bei 1 bis 5 Tass
 **alle 2 Monate**, bei mehr als 10 Tassen **jeden Monat**. Eine dünne Schicht auf Kolben, Welle und Schienen reicht. Beim Einsetzen
 müssen die Hebel in Grundstellung stehen, sonst passt sie nicht.
 </Antwort>
+
+## Das brauchst du
+
+<Material items={[
+  { name: "Philips Schmierfett HD5061", warum: "Das Fett, das Philips nennt: lebensmittelecht, für die Kunststoffe der Brühgruppe. Kein Haushaltsfett.", suche: "Philips HD5061 Schmierfett" },
+  { name: "Weiche Bürste", warum: "Kaffeereste unter lauwarmem Wasser lösen, kein Spülmittel.", suche: "Reinigungsbürste Kaffeevollautomat Brühgruppe" },
+  { name: "Kaffeefettlöser-Tabletten CA6704", warum: "Monatlich oder nach etwa 500 Tassen, laut Philips.", suche: "Philips CA6704 Kaffeefettlöser Tabletten" },
+  { name: "Tuch oder Pinsel", warum: "Für die Kaffeereste im Innenraum der Maschine." },
+]} />
 
 <Ablauf
   titel="Reinigen und fetten auf einen Blick"
@@ -42,6 +53,8 @@ müssen die Hebel in Grundstellung stehen, sonst passt sie nicht.
 />
 
 ## Wie oft reinigen, wie oft fetten?
+
+<Kennzahl wert="1 bis 4" einheit="Monate" text="bis zum nächsten Fetten, je nach Tassenzahl: alle 4 Monate bei bis zu 5 Tassen am Tag, jeden Monat ab 10 Tassen" quelle="Philips Support, Brühgruppe einfetten" quelleUrl="https://www.philips.de/c-f/XC000004177/so-fette-ich-die-br%C3%BChgruppe-der-philips-espressomaschine-ein/1000" />
 
 | Pflege | Wie oft | Quelle |
 |---|---|---|

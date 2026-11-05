@@ -18,8 +18,8 @@ pruefung:
 ---
 import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
-import ProduktFokus from '../../components/ProduktFokus.astro';
 import Ablauf from '../../components/Ablauf.astro';
+import Material from '../../components/Material.astro';
 
 <Antwort>
 **Kurz gesagt:** Maschine einschalten und warten, bis sie bereit ist. Abtropfschale und Kaffeesatzbehälter leeren, Wasserfilter
@@ -29,7 +29,13 @@ drehen, sobald die Dampflampe blinkt. Nach etwa **25 Minuten** stoppt die Maschi
 MAX**. Alles zusammen dauert etwa **45 Minuten**.
 </Antwort>
 
-<ProduktFokus id="delonghi-ecodecalk" />
+## Das brauchst du
+
+<Material items={[
+  { name: "De’Longhi EcoDecalk", warum: "Nur De’Longhi-Entkalker, sonst erlischt laut Anleitung die Garantie. Eine Flasche bis Markierung A.", produkt: "delonghi-ecodecalk" },
+  { name: "Großes Gefäß", warum: "Mindestens 2 Liter, unter Milchaufschäumer und Kaffeeauslauf zugleich." },
+  { name: "Teststreifen „Total Hardness Test“", warum: "Zum Messen der Wasserhärte, damit die Maschine zum richtigen Zeitpunkt zum Entkalken auffordert.", imKarton: true },
+]} />
 
 ## Wann muss die Magnifica S entkalkt werden?
 

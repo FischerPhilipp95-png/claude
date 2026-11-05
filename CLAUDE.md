@@ -72,7 +72,9 @@ Gleiches Muster für alle Seiten (auch künftige):
 - Passwörter nie im Chat oder Code, nur als GitHub-Secrets. Jede Seite hat eine eigene Amazon-Tracking-ID.
 - Erscheinungsbild: handwerksdoktor.de hat seit 2.11.2026 das neue Design (Referenz kobu.co: Off-White, Bricolage Grotesque als
   Display-Schrift, gelbes Hero-Band mit Porträt, Haarlinien, Wegweiser-Zeilen; Regeln in `blog/site/DESIGN.md`, Produktwahrheit in
-  `blog/site/PRODUCT.md`). vollautomatendoktor.de behält den alten Look, bis der Nutzer die Übertragung ausdrücklich freigibt.
+  `blog/site/PRODUCT.md`). vollautomatendoktor.de hat seit 5.11.2026 dasselbe Gerüst in eigenen Farben (Creme, Tinte, Kaffeebraun `#4b2e1d`, Crema `#e9cfa6`;
+  Regeln in `kaffee/site/DESIGN.md`) und den Artikelaufbau nach Referenz kaffeevollautomaten-guide.de: Video unter dem Titel, „Das brauchst du“
+  (`Material.astro`) nach der Antwort, nummerierte Schritte, `Kennzahl.astro` nur für belegte Zahlen, `MaschinenBox.astro` am Ende (ohne Preise).
 
 Explosionszeichnungen (kaffee/site, Abschnitt „So ist die Maschine aufgebaut“): 3D-Modell je Bauart in `scripts/querschnitt/blender/<bauart>.py`
 (Blender als Python-Modul, `pip install bpy`), rendern mit `python3 scripts/querschnitt/blender/render.py <bauart>` (etwa 45 Minuten:

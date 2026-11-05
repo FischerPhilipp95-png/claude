@@ -18,8 +18,8 @@ pruefung:
 ---
 import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
-import ProduktFokus from '../../components/ProduktFokus.astro';
 import Ablauf from '../../components/Ablauf.astro';
+import Material from '../../components/Material.astro';
 
 <Antwort>
 **Kurz gesagt:** Leuchtet an der Dedica die **orange Entkalkungslampe**, nimmst du den Siebträger und den Wasserfilter heraus,
@@ -28,7 +28,12 @@ alle drei Tasten nacheinander blinken. Dann den **Dampfregler öffnen** und die 
 entkalkt in Schüben, bis der Tank leer ist, danach **zweimal mit frischem Wasser spülen**. Rechne mit **25 bis 30 Minuten**.
 </Antwort>
 
-<ProduktFokus id="delonghi-ecodecalk" />
+## Das brauchst du
+
+<Material items={[
+  { name: "De’Longhi EcoDecalk", warum: "Der einzige Entkalker, den De’Longhi für die Dedica freigibt: 100 ml auf 1 Liter Wasser.", produkt: "delonghi-ecodecalk" },
+  { name: "Großes Gefäß", warum: "Unter Kaffeeauslauf und Dampfdüse, fängt die Entkalkerlösung und das Spülwasser auf." },
+]} />
 
 Die Dedica ist ein **Siebträger**, kein Vollautomat. Entkalkt wird sie trotzdem über ein Programm, nur die Tasten sind andere als
 bei Magnifica und Co. Die Schritte unten stammen von der De’Longhi-Hilfeseite zur Dedica (EC685) und Dedica Arte.
