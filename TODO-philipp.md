@@ -4,9 +4,9 @@ Stand: 05.11.2026. Abhaken mit `[x]`. Ausführliche Anleitungen: `kaffee/EINRICH
 
 ## Jetzt (Einrichtung gartensaunadoktor.de, Anleitung: `sauna/EINRICHTUNG.md`)
 
-- [ ] **Domain bestellen:** `gartensaunadoktor.de` bei IONOS (am 05.11.2026 frei), Ordner `/gartensaunadoktor`, SFTP-Benutzer
+- [x] **Domain bestellen:** `gartensaunadoktor.de` bei IONOS, Ordner `/gartensaunadoktor` verbunden, SFTP-Benutzer `su860681` (05.11.2026)
 - [ ] **Cloudflare:** Domain hinzufügen, Nameserver umstellen, SSL Flexible (wie bei vollautomatendoktor.de)
-- [ ] **GitHub-Secrets:** `SAUNA_SFTP_USER`, `SAUNA_SFTP_PASSWORD` (erst dann lädt der Workflow hoch)
+- [ ] **GitHub-Secrets:** `SAUNA_SFTP_USER`, `SAUNA_SFTP_PASSWORD`, `SAUNA_SFTP_HOST` (erst dann lädt der Workflow hoch)
 - [ ] **Awin:** Publisher-Konto anlegen, Programme GartenHaus (22747), Gartenhausfabrik (76696), Bast Sauna (119243), Artsauna (106021) beantragen,
       Deeplinks an Claude schicken (bis dahin stehen Platzhalter auf der Seite)
 - [ ] **Marke prüfen:** „Gartensaunadoktor“ bei DPMA und TMview
