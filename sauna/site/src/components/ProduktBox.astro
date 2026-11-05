@@ -1,0 +1,23 @@
+---
+// Produkt-Empfehlung als Kaufkriterien + Link zum Partnershop (src/affiliate-links.ts). Keine Shop-Bilder, keine festen Preise.
+import { SHOPS, shopLink, istPlatzhalter } from '../affiliate-links';
+import Icon from './Icon.astro';
+
+interface Props {
+  titel: string;
+  shop: string;
+  produkt?: string;
+  kriterien: string[];
+  button?: string;
+}
+const { titel, shop, produkt, kriterien, button } = Astro.props;
+const href = shopLink(shop, produkt);
+const text = button ?? `Bei ${SHOPS[shop].name} ansehen`;
+---
+<aside class="product" aria-label={`Empfehlung: ${titel}`}>
+  <p class="product-title"><Icon name="list-checks" size={18} /> {titel}</p>
+  <p>Darauf solltest du achten:</p>
+  <ul>{kriterien.map((k) => <li>{k}</li>)}</ul>
+  <a class="btn" data-pagefind-ignore href={href} rel="sponsored nofollow noopener" target="_blank" data-affiliate={istPlatzhalter(href) ? 'offen' : undefined}><Icon name="shopping-cart" size={16} /> {text}*</a>
+  <p class="small" data-pagefind-ignore>*Affiliate-Link. Kaufst du darüber, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.</p>
+</aside>

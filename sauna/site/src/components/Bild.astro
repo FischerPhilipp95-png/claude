@@ -1,0 +1,10 @@
+---
+// Bild mit Bildnachweis direkt darunter (Pflicht bei CC-Lizenzen, bei CC0 trotzdem sauber).
+// schmal: für Hochformat-Fotos, damit sie auf dem Desktop nicht die ganze Seite füllen.
+interface Props { src: string; alt: string; nachweis: string; width: number; height: number; eager?: boolean; schmal?: boolean }
+const { src, alt, nachweis, width, height, eager = false, schmal = false } = Astro.props;
+---
+<figure class={schmal ? 'bild-schmal' : undefined}>
+  <img src={src} alt={alt} width={width} height={height} loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : 'auto'} />
+  <figcaption set:html={nachweis} />
+</figure>

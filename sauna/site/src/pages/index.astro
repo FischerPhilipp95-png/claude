@@ -1,0 +1,87 @@
+---
+import SuchFeld from '../components/SuchFeld.astro';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ArtikelFeature from '../components/ArtikelFeature.astro';
+import ArtikelZeile from '../components/ArtikelZeile.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../site';
+import { THEMEN, type Thema } from '../themen';
+import { SAISON } from '../saison';
+import { RECHNER } from '../rechner';
+
+const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const anzahl = (name: string) => posts.filter((p) => p.data.thema === name).length;
+const saison = SAISON.artikel.map((id) => posts.find((p) => p.id === id)).filter((p) => p !== undefined);
+const neueste = posts.filter((p) => !SAISON.artikel.includes(p.id)).slice(0, 5);
+const bereiche = Object.entries(THEMEN) as [Thema, (typeof THEMEN)[Thema]][];
+const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: `${SITE.url}/`, inLanguage: 'de-DE' }];
+---
+<Base title={SITE.name} description={SITE.description} jsonLd={jsonLd}>
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap wide">
+      <h1 class="hero-h" id="hero-h"><span class="line"><span>Gartensauna,</span></span><span class="line"><span>einfach erklärt.</span></span></h1>
+    </div>
+    <div class="hero-band">
+      <div class="hero-band-grid">
+        <div class="hero-copy">
+          <p class="hero-lead"><span>Brauche ich eine Baugenehmigung?</span> <span>Holzofen oder Elektro?</span> <span>Was kostet ein Saunagang?</span></p>
+          <p class="hero-sub">Gartensauna, Außensauna und Fasssauna: was vor dem Kauf geklärt sein muss, mit Quellen und Stand-Datum statt Werbeversprechen.</p>
+          <SuchFeld id="suche-start" variante="hero" />
+          <div class="hero-cta">
+            <a class="btn" href={`/thema/${THEMEN.Planung.slug}/`}><Icon name="scale" size={16} /> Baugenehmigung und Planung</a>
+            <a class="btn btn-ghost" href="/rechner/sauna-stromkosten/"><Icon name="calculator" size={16} /> Was kostet ein Saunagang?</a>
+          </div>
+        </div>
+        <img class="hero-person" src="/bilder/gartensaunadoktor-freisteller.webp" alt={SITE.author} width="900" height="900" fetchpriority="high" decoding="async" data-pin-nopin="true" />
+        <p class="hero-facts">{posts.length > 0 && <span>{posts.length} {posts.length === 1 ? 'Ratgeber' : 'Ratgeber'}</span>}<span>{bereiche.length} Bereiche</span><span>{RECHNER.length === 1 ? '1 Rechner' : `${RECHNER.length} Rechner`}</span><span>Mit Quellen und Stand</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap wide" aria-labelledby="bereiche-h">
+    <h2 class="section-h" id="bereiche-h">Worum geht es bei dir?</h2>
+    <ul class="tiles tiles-bereiche">
+      {bereiche.map(([n, t]) => (
+        <li><a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}>
+          <span class="tile-icon"><Icon name={t.icon} size={28} /></span>
+          <span class="tile-name">{t.titel}</span>
+          <span class="tile-count">{anzahl(n) > 0 ? `${anzahl(n)} ${anzahl(n) === 1 ? 'Ratgeber' : 'Ratgeber'}` : t.intro.split(':')[0]}</span>
+        </a></li>
+      ))}
+    </ul>
+  </section>
+
+  {saison.length > 0 && (
+    <section class="wrap wide saison" aria-labelledby="saison-h">
+      <h2 class="section-h" id="saison-h">{SAISON.titel}</h2>
+      <p class="saison-text">{SAISON.text}</p>
+      <div class="feature-grid">
+        {saison[0] && <ArtikelFeature post={saison[0]} />}
+        <ul class="tiles tiles-liste" aria-label="Weitere häufig gesuchte Ratgeber">{saison.slice(1).map((p) => <ArtikelZeile post={p} />)}</ul>
+      </div>
+    </section>
+  )}
+
+  <section class="wrap wide" aria-labelledby="rechner-h">
+    <h2 class="section-h" id="rechner-h">Rechnen statt schätzen</h2>
+    <ul class="tiles rechner-tiles">
+      {RECHNER.map((r) => (
+        <li><a href={r.href} style={`--akzent:${r.farbe}`}>
+          <span class="tile-icon"><Icon name={r.icon} size={28} /></span>
+          <span class="tile-name">{r.titel}</span>
+          <span class="tile-count">{r.text}</span>
+        </a></li>
+      ))}
+    </ul>
+  </section>
+
+  {neueste.length > 0 && (
+    <section class="wrap wide" aria-labelledby="neu-h">
+      <h2 class="section-h" id="neu-h">Neueste Ratgeber</h2>
+      <ul class="tiles tiles-liste">{neueste.map((p) => <ArtikelZeile post={p} />)}</ul>
+      <p class="center"><a class="btn btn-dark" href="/artikel/">Alle {posts.length} Ratgeber ansehen <Icon name="chevron-right" size={18} /></a></p>
+    </section>
+  )}
+</Base>

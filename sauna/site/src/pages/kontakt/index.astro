@@ -1,0 +1,17 @@
+---
+// Kein Kontaktformular: Die Seite läuft über Cloudflare, persönliche Daten sollen nicht über die Website laufen.
+// Kontakt nur per E-Mail (direkt an das IONOS-Postfach, nicht über Cloudflare).
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../site';
+---
+<Base title="Kontakt" description="Frage, Themenwunsch oder Fehler gefunden? So erreichst du den Gartensauna-Doktor.">
+  <div class="wrap">
+    <h1>Kontakt</h1>
+    <p>Du hast eine Frage, einen Themenwunsch oder einen Fehler gefunden? Schreib mir eine E-Mail.
+    Ich antworte in der Regel innerhalb von zwei Werktagen.</p>
+    <p class="kontakt-mail"><a class="btn" href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+    <p>Hilfreich ist, wenn du dazuschreibst, um welchen Beitrag es geht und in welchem Bundesland du baust.</p>
+    <p class="small">Eine Rechtsberatung zu deinem Bauvorhaben kann ich nicht geben, dafür ist deine Gemeinde oder ein Fachanwalt zuständig.
+    Was mit deiner E-Mail passiert, steht in der <a href="/datenschutz/">Datenschutzerklärung</a>.</p>
+  </div>
+</Base>

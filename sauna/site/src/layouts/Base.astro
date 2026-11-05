@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+import { SITE } from '../site';
+import { THEMEN } from '../themen';
+import Icon from '../components/Icon.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+  jsonLd?: object[];
+  type?: 'website' | 'article';
+  /** Nur Artikel: Angaben für Artikel-Rich-Pins bei Pinterest (und Vorschauen bei Facebook & Co.). */
+  artikel?: { veroeffentlicht: Date; geaendert?: Date; rubrik: string };
+}
+const { title, description, image = '/bilder/autor.webp', noindex = false, jsonLd = [], type = 'website', artikel } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE.url).toString();
+// Google zeigt etwa 60 bis 70 Zeichen. Passt der Seitenname nicht mehr dazu, nur den Titel verwenden.
+// Markenzusatz nur, wenn der ganze Titel in die Google-Ergebnisse passt (ca. 60 Zeichen), sonst wird er abgeschnitten.
+const mitName = `${title} | ${SITE.name}`;
+const fullTitle = Astro.url.pathname === '/' ? `${SITE.name}: Gartensauna und Fasssauna erklärt` : mitName.replace(/&/g, '&amp;').length <= 60 ? mitName : title;  // & zählt im HTML als &amp;
+const ogImage = new URL(image, SITE.url).toString();
+---
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {/* max-image-preview:large: Google darf das Titelbild groß zeigen (Discover, Bildvorschau in der Suche). */}
+  <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large'} />
+  <meta property="og:type" content={type} />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  {artikel && <meta property="article:published_time" content={artikel.veroeffentlicht.toISOString()} />}
+  {artikel && <meta property="article:modified_time" content={(artikel.geaendert ?? artikel.veroeffentlicht).toISOString()} />}
+  {artikel && <meta property="article:author" content={SITE.author} />}
+  {artikel && <meta property="article:section" content={artikel.rubrik} />}
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+  <link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/inter-500.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/inter-800.woff2" as="font" type="font/woff2" crossorigin />
+  <meta name="theme-color" content="#f6f1e9" />
+  {SITE.pinterestVerify && <meta name="p:domain_verify" content={SITE.pinterestVerify} />}
+  {jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
+</head>
+<body>
+  <a class="skip" href="#inhalt">Zum Inhalt springen</a>
+  <header class="site-header">
+    <div class="wrap wide header-row">
+      <a class="logo" href="/"><img src="/bilder/autor.webp" alt="" width="36" height="36" data-pin-nopin="true" /><span>Der <b>Gartensauna</b>-Doktor</span></a>
+      <nav aria-label="Hauptmenü" class="mainnav">
+        {Object.values(THEMEN).map((t) => <a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}><Icon name={t.icon} size={16} />{t.nav}</a>)}
+        <a href="/rechner/" class="nav-rechner"><Icon name="calculator" size={16} />Rechner</a>
+        <a href="/suche/" class="nav-suche" aria-label="Suche"><Icon name="search" size={18} /><span>Suche</span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="inhalt">
+    <slot />
+  </main>
+  <footer class="site-footer">
+    <div class="wrap wide"><p class="footer-mark" aria-hidden="true">Der <b>Gartensauna-</b>Doktor</p></div>
+    <div class="wrap wide footer-grid">
+      <div>
+        <a class="logo" href="/"><img src="/bilder/autor.webp" alt="" width="36" height="36" loading="lazy" data-pin-nopin="true" /><span>Der <b>Gartensauna</b>-Doktor</span></a>
+        <p>Unabhängiger Ratgeber zu Gartensauna, Außensauna und Fasssauna: Kauf, Baugenehmigung, Holzofen, Kosten und Aufbau. Mit Quellen und Stand-Datum.</p>
+      </div>
+      <nav aria-label="Themen">
+        <p class="foot-h">Themen</p>
+        {Object.values(THEMEN).map((t) => <a href={`/thema/${t.slug}/`}>{t.titel}</a>)}
+        <a href="/artikel/">Alle Ratgeber</a>
+        <a href="/rechner/sauna-stromkosten/">Stromkosten-Rechner</a>
+      </nav>
+      <nav aria-label="Rechtliches">
+        <p class="foot-h">Rechtliches</p>
+        <a href="/ueber/">Über den Gartensauna-Doktor</a>
+        <a href="/impressum/">Impressum</a>
+        <a href="/datenschutz/">Datenschutz</a>
+        <a href="/werbung/">Transparenz &amp; Werbung</a>
+        <a href="/kontakt/">Kontakt</a>
+        <a href="/sitemap/">Alle Seiten</a>
+      </nav>
+    </div>
+    <div class="wrap wide footer-note">
+      <p>Links mit * sind Affiliate-Links zu Partnershops (Partnerprogramme über Awin). Kaufst du darüber, bekomme ich eine Provision, für dich ändert sich am Preis nichts.</p>
+      <p>Unabhängige Seite, nicht verbunden mit den genannten Shops oder Herstellern. Marken- und Produktnamen gehören ihren Inhabern.
+      Angaben zum Baurecht sind keine Rechtsberatung, verbindlich ist die Auskunft deiner Gemeinde.</p>
+      <p>© {new Date().getFullYear()} {SITE.author}</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -54,6 +54,30 @@
     "/videos/",
     "/sitemap-index.xml"
    ]
+  },
+  "sauna": {
+   "name": "Der Gartensauna-Doktor",
+   "stichwort": "Sauna-Website",
+   "ordner": "sauna/site",
+   "domain": "gartensaunadoktor.de",
+   "webspace_ordner": "gartensaunadoktor",
+   "dns": "Cloudflare (SSL Flexible)",
+   "sftp_host": [
+    "SAUNA_SFTP_HOST",
+    "IONOS_SFTP_HOST"
+   ],
+   "sftp_user": "SAUNA_SFTP_USER",
+   "sftp_passwort": "SAUNA_SFTP_PASSWORD",
+   "ziel_variable": "SAUNA_SFTP_ZIEL",
+   "amazon_tag": "",
+   "min_seiten": 8,
+   "cron": "7 4 * * *",
+   "live_check": [
+    "/",
+    "/artikel/",
+    "/rechner/sauna-stromkosten/",
+    "/sitemap-index.xml"
+   ]
   }
  }
 }

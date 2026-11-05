@@ -1,6 +1,16 @@
 # To-do für Philipp
 
-Stand: 04.10.2026. Abhaken mit `[x]`. Ausführliche Anleitungen: `kaffee/EINRICHTUNG.md`.
+Stand: 05.11.2026. Abhaken mit `[x]`. Ausführliche Anleitungen: `kaffee/EINRICHTUNG.md`.
+
+## Jetzt (Einrichtung gartensaunadoktor.de, Anleitung: `sauna/EINRICHTUNG.md`)
+
+- [ ] **Domain bestellen:** `gartensaunadoktor.de` bei IONOS (am 05.11.2026 frei), Ordner `/gartensaunadoktor`, SFTP-Benutzer
+- [ ] **Cloudflare:** Domain hinzufügen, Nameserver umstellen, SSL Flexible (wie bei vollautomatendoktor.de)
+- [ ] **GitHub-Secrets:** `SAUNA_SFTP_USER`, `SAUNA_SFTP_PASSWORD` (erst dann lädt der Workflow hoch)
+- [ ] **Awin:** Publisher-Konto anlegen, Programme GartenHaus (22747), Gartenhausfabrik (76696), Bast Sauna (119243), Artsauna (106021) beantragen,
+      Deeplinks an Claude schicken (bis dahin stehen Platzhalter auf der Seite)
+- [ ] **Marke prüfen:** „Gartensaunadoktor“ bei DPMA und TMview
+- [ ] Danach: Search Console + Bing für gartensaunadoktor.de, Sitemap einreichen
 
 ## Jetzt (Einrichtung vollautomatendoktor.de)
 

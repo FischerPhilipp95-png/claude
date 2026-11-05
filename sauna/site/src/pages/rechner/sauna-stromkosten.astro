@@ -1,0 +1,106 @@
+---
+import Base from '../../layouts/Base.astro';
+import RechnerTeilen from '../../components/RechnerTeilen.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../site';
+
+const title = 'Stromkosten-Rechner Gartensauna: Was kostet ein Saunagang?';
+const description = 'Ofenleistung, Aufheizzeit, Saunadauer und Strompreis eingeben: Stromkosten je Saunagang, Monat und Jahr für die Gartensauna mit Elektroofen. Mit Einschaltdauer des Ofens.';
+// Strompreis: BDEW-Strompreisanalyse Oktober 2026, Haushalt mit 3.500 kWh/Jahr, bisheriger Durchschnitt 2026: 37,3 ct/kWh (Datenstand 10/2026).
+const STROMPREIS = 37.3;
+const STROMPREIS_STAND = 'Oktober 2026';
+// Einschaltdauer: Während des Aufheizens läuft der Ofen durch. Ist die Kabine warm, taktet die Steuerung, der Ofen läuft nur noch
+// einen Teil der Zeit (voreingestellt 50 %). Beispiel 9 kW, 45 Minuten aufheizen, 90 Minuten Saunagang: 9 × (0,75 + 0,75) = 13,5 kWh ≈ 5 €.
+const vorlagen = [
+  { name: 'Kleine Kabine, 4,5 kW', kw: 4.5, aufheizen: 40 },
+  { name: 'Mittlere Kabine, 6 kW', kw: 6, aufheizen: 45 },
+  { name: 'Fasssauna, 8 kW', kw: 8, aufheizen: 45 },
+  { name: 'Große Gartensauna, 9 kW', kw: 9, aufheizen: 45 },
+];
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Stromkosten-Rechner Gartensauna',
+  url: `${SITE.url}/rechner/sauna-stromkosten/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, inLanguage: 'de-DE',
+}];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Kosten & Technik">
+    <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › Stromkosten Gartensauna</nav>
+    <h1>{title}</h1>
+    <p class="lead">Ein Elektroofen zieht beim Aufheizen seine volle Leistung, danach taktet er. Trag Ofenleistung, Aufheizzeit und Dauer ein,
+    und du siehst, was ein Saunagang, ein Monat und ein Jahr an Strom kosten. Alles wird nur in deinem Browser berechnet.</p>
+
+    <section class="box calc" aria-label="Rechner">
+      <p class="small">Typische Werte laden:</p>
+      <div class="presets">
+        {vorlagen.map((v) => <button type="button" class="chip" data-kw={v.kw} data-aufheizen={v.aufheizen}>{v.name}</button>)}
+      </div>
+      <div class="calc-grid">
+        <label>Ofenleistung in kW<input id="kw" type="number" inputmode="decimal" min="0" step="0.5" value="9" /></label>
+        <label>Aufheizzeit in Minuten<input id="aufheizen" type="number" inputmode="numeric" min="0" step="5" value="45" /></label>
+        <label>Dauer des Saunagangs in Minuten (nach dem Aufheizen)<input id="dauer" type="number" inputmode="numeric" min="0" step="5" value="90" /></label>
+        <label>Einschaltdauer des Ofens während des Saunagangs in %<input id="takt" type="number" inputmode="numeric" min="0" max="100" step="5" value="50" /></label>
+        <label>Saunagänge je Woche<input id="gaenge" type="number" inputmode="decimal" min="0" step="0.5" value="2" /></label>
+        <label>Strompreis in Cent je kWh<input id="preis" type="number" inputmode="decimal" min="0" step="0.1" value={STROMPREIS} /></label>
+      </div>
+      <p class="calc-gross" aria-live="polite">Ein Saunagang kostet <strong id="e-gang">–</strong> <span class="small">(<span id="e-kwh">–</span> kWh)</span></p>
+      <table class="result" aria-live="polite">
+        <thead><tr><td></td><th scope="col">Strom</th><th scope="col">Kosten</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Aufheizen</th><td id="k-auf">–</td><td id="e-auf">–</td></tr>
+          <tr><th scope="row">Saunagang</th><td id="k-dauer">–</td><td id="e-dauer">–</td></tr>
+          <tr><th scope="row">je Monat</th><td id="k-monat">–</td><td id="e-monat">–</td></tr>
+          <tr><th scope="row"><strong>je Jahr</strong></th><td id="k-jahr">–</td><td id="e-jahr"><strong>–</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="small">„Je Monat“ = Saunagänge je Woche × 52 ÷ 12. Die Einschaltdauer ist ein Schätzwert: Je besser die Kabine gedämmt ist und je seltener die
+      Tür aufgeht, desto weniger muss der Ofen nachheizen. Beleuchtung, Steuerung und Lüfter sind nicht enthalten, sie fallen kaum ins Gewicht.</p>
+      <RechnerTeilen />
+    </section>
+
+    <h2>So rechnet der Rechner</h2>
+    <p>Strom je Saunagang = Ofenleistung × (Aufheizzeit + Saunadauer × Einschaltdauer). Beim Aufheizen läuft der Ofen durch, danach schaltet die
+    Steuerung ihn immer wieder ab, sobald die eingestellte Temperatur erreicht ist. Mit 9 kW, 45 Minuten Aufheizen, 90 Minuten Saunagang und 50 %
+    Einschaltdauer sind das 13,5 kWh, beim Strompreis von {STROMPREIS.toLocaleString('de-DE')} Cent also rund 5 Euro je Saunagang.</p>
+
+    <h2>Woher die Zahlen kommen</h2>
+    <ul>
+      <li><strong>Strompreis {STROMPREIS.toLocaleString('de-DE')} Cent je kWh:</strong> Durchschnitt für Haushalte mit 3.500 kWh Jahresverbrauch, Grundpreis anteilig enthalten
+        (<a href="https://www.bdew.de/media/documents/BDEW_Strompreisanalyse_102026_1.pdf" rel="noopener">BDEW-Strompreisanalyse, Stand {STROMPREIS_STAND}</a>).
+        Deinen eigenen Arbeitspreis findest du auf der Stromrechnung, trag ihn oben ein.</li>
+      <li><strong>Ofenleistung und Aufheizzeit:</strong> stehen im Datenblatt deines Ofens bzw. deiner Sauna. Die Voreinstellungen oben sind übliche Größen, keine Messwerte.</li>
+      <li><strong>Einschaltdauer:</strong> Schätzwert für eine warme Kabine. Wie stark der Ofen bei dir taktet, hängt von Dämmung, Außentemperatur und Türöffnungen ab.</li>
+    </ul>
+    <p>Was eine Gartensauna insgesamt kostet und ob ein Holzofen günstiger ist: <a href="/thema/kosten-technik/"><Icon name="flame" size={16} /> Kosten &amp; Technik</a>.</p>
+  </div>
+</Base>
+
+<script>
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const zahl = (id: string) => Math.max(0, parseFloat($(id).value.replace(',', '.')) || 0);
+  const eur = (x: number) => x.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
+  const kwh = (x: number) => x.toLocaleString('de-DE', { maximumFractionDigits: 1 }) + ' kWh';
+  const set = (id: string, text: string) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+  function rechnen() {
+    const kw = zahl('kw');
+    const auf = kw * (zahl('aufheizen') / 60);
+    const dauer = kw * (zahl('dauer') / 60) * (Math.min(zahl('takt'), 100) / 100);
+    const gang = auf + dauer;
+    const preis = zahl('preis') / 100;
+    const monat = gang * zahl('gaenge') * 52 / 12;
+    const jahr = gang * zahl('gaenge') * 52;
+    set('e-gang', eur(gang * preis));
+    set('e-kwh', gang.toLocaleString('de-DE', { maximumFractionDigits: 1 }));
+    set('k-auf', kwh(auf)); set('e-auf', eur(auf * preis));
+    set('k-dauer', kwh(dauer)); set('e-dauer', eur(dauer * preis));
+    set('k-monat', kwh(monat)); set('e-monat', eur(monat * preis));
+    set('k-jahr', kwh(jahr)); set('e-jahr', eur(jahr * preis));
+  }
+  ['kw', 'aufheizen', 'dauer', 'takt', 'gaenge', 'preis'].forEach((id) => $(id).addEventListener('input', rechnen));
+  document.querySelectorAll<HTMLButtonElement>('.presets .chip').forEach((b) => b.addEventListener('click', () => {
+    $('kw').value = b.dataset.kw || '9';
+    $('aufheizen').value = b.dataset.aufheizen || '45';
+    rechnen();
+  }));
+  rechnen();
+</script>

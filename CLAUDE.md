@@ -58,6 +58,7 @@ Der Nutzer nennt im Chat das Stichwort, dann wird in diesem Ordner gearbeitet:
 |---|---|---|
 | „Handwerksdoktor“ | handwerksdoktor.de | `blog/site/` |
 | „Kaffee-Website“ | vollautomatendoktor.de | `kaffee/site/` |
+| „Sauna-Website“ | gartensaunadoktor.de | `sauna/site/` |
 
 Gleiches Muster für alle Seiten (auch künftige):
 - Upload und Prüfungen kommen aus EINER Vorlage: `websites/workflow-vorlage.yml` → `python3 websites/erzeugen.py`
@@ -86,6 +87,13 @@ Vorlage: Explosionszeichnung und Teilefotos aus dem Hersteller-Ersatzteilsystem,
 Kapitel „Dynamischer Stromtarif“ (blog/site, Thema `Tarif`): Börsenpreise für Strompreis-Uhr und Rechner liegen in `src/strompreise.json`,
 Aktualisieren mit `node scripts/strompreise.mjs` (SMARD-Daten über energy-charts.info). Anbieter des Vergleichs und die Affiliate-Links
 stehen in `src/stromtarife.ts` (Feld `link`, sonst Anbieter-Website). Zahlen dort alle paar Wochen prüfen und `stand` setzen.
+
+gartensaunadoktor.de (Stichwort „Sauna-Website“, seit 5.11.2026, Briefing in `sauna/briefing.md`, Keywords in `sauna/keywords.csv`): vier Bereiche in
+`src/themen.ts` (Kaufen, Fasssauna, Planung & Recht, Kosten & Technik), Farben Tanne `#1f4a3a` und Birke `#e8d9b5` (`sauna/site/DESIGN.md`).
+Kein Amazon: Affiliate-Links kommen aus Awin-Partnerprogrammen der Sauna-Shops und stehen nur in `src/affiliate-links.ts`
+(bis zur Freischaltung Platzhalter `#AFFILIATE-<shop>-<produkt>`, im Browser rot gestrichelt). Beiträge zum Baurecht bekommen
+`rechtshinweis: true` (Kasten „keine Rechtsberatung“), Quelle und Stand je Bundesland sind Pflicht. Keine erfundenen Tests, Preise oder Bewertungen.
+Reihenfolge laut Briefing: Grundgerüst, Artikel 1–4, Stromkosten-Rechner, Artikel 5–8, Baugenehmigungstabelle, Artikel 9–16, ab Monat 4 Artikel 17–20.
 
 Neue Seite anlegen:
 1. Nische und Domain prüfen (`blog/seo/naechste-seiten.md`, DENIC RDAP), Stichwort mit dem Nutzer festlegen.

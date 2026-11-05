@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { RECHNER as rechner } from '../../rechner';
+---
+<Base title="Rechner: Stromkosten der Gartensauna" description="Kostenlose Rechner vom Gartensauna-Doktor: Was kostet ein Saunagang mit Elektroofen? Alles läuft nur im Browser, nichts wird gespeichert.">
+  <div class="wrap wide">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Rechner</nav>
+    <h1>Rechner</h1>
+    <p class="lead">Ausrechnen statt schätzen. Alle Rechner laufen nur in deinem Browser, es wird nichts gespeichert oder übertragen. Jedes Ergebnis kannst du als Link teilen.</p>
+    <ul class="tiles rechner-tiles">
+      {rechner.map((r) => (
+        <li><a href={r.href} style={`--akzent:${r.farbe}`}>
+          <span class="tile-icon"><Icon name={r.icon} size={28} /></span>
+          <span class="tile-name">{r.titel}</span>
+          <span class="tile-count">{r.text}</span>
+        </a></li>
+      ))}
+    </ul>
+  </div>
+</Base>

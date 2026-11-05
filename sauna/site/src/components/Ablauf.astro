@@ -1,0 +1,20 @@
+---
+// Schritt-für-Schritt-Grafik: auf dem Desktop nebeneinander mit Pfeilen, auf dem Handy untereinander.
+import Icon from './Icon.astro';
+interface Schritt { icon: string; titel: string; text: string }
+interface Props { titel: string; schritte: Schritt[] }
+const { titel, schritte } = Astro.props;
+---
+<figure class="flow" role="group" aria-label={titel}>
+  <p class="flow-title">{titel}</p>
+  <ol style={`--n:${schritte.length}`}>
+    {schritte.map((s, i) => (
+      <li>
+        <span class="flow-icon"><Icon name={s.icon} size={22} /></span>
+        <span class="flow-nr">Schritt {i + 1}</span>
+        <strong>{s.titel}</strong>
+        <span class="flow-text">{s.text}</span>
+      </li>
+    ))}
+  </ol>
+</figure>

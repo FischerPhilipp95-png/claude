@@ -1,0 +1,56 @@
+---
+import ArtikelKarte from '../../components/ArtikelKarte.astro';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { THEMEN } from '../../themen';
+import { SITE } from '../../site';
+import { RECHNER } from '../../rechner';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('artikel', ({ data }) => !data.entwurf);
+  // Alle vier Bereiche bekommen eine Seite (sie stehen im Menü). Ohne eigenen Beitrag: noindex, keine dünnen Seiten im Index.
+  return Object.entries(THEMEN)
+    .map(([name, t]) => ({ params: { thema: t.slug }, props: { name, t, posts: posts.filter((p) => p.data.thema === name) } }));
+}
+const { name, t, posts } = Astro.props;
+const liste = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const rechner = RECHNER.filter((r) => r.thema === name);
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${t.titel}: Ratgeber`,
+  url: `${SITE.url}/thema/${t.slug}/`, inLanguage: 'de-DE',
+  hasPart: liste.map((p) => ({ '@type': 'Article', headline: p.data.title, url: `${SITE.url}/artikel/${p.id}/` })),
+}];
+---
+<Base title={`${t.titel}: Ratgeber`} description={t.intro.slice(0, 155)} jsonLd={jsonLd} noindex={posts.length === 0}>
+  <div class="wrap wide" style={`--akzent:${t.farbe}`}>
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › {t.titel}</nav>
+    <div class="thema-kopf thema-kopf-icon">
+      <div>
+        <h1>{t.titel}</h1>
+        <p class="lead">{t.intro}</p>
+      </div>
+      <span class="thema-icon" aria-hidden="true"><Icon name={t.icon} size={64} /></span>
+    </div>
+    {liste.length > 0
+      ? <section aria-labelledby="artikel-h">
+          <h2 class="section-h" id="artikel-h">Ratgeber</h2>
+          <ul class="cards">{liste.map((p) => <ArtikelKarte post={p} />)}</ul>
+        </section>
+      : <p>Die Ratgeber zu diesem Bereich sind in Arbeit. Schau in der <a href="/artikel/">Übersicht aller Ratgeber</a> nach, was schon da ist.</p>}
+    {rechner.length > 0 && (
+      <section aria-labelledby="rechner-h">
+        <h2 class="section-h" id="rechner-h">Rechner</h2>
+        <ul class="tiles rechner-tiles">
+          {rechner.map((r) => (
+            <li><a href={r.href} style={`--akzent:${r.farbe}`}>
+              <span class="tile-icon"><Icon name={r.icon} size={28} /></span>
+              <span class="tile-name">{r.titel}</span>
+              <span class="tile-count">{r.text}</span>
+            </a></li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </div>
+</Base>

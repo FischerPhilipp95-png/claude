@@ -1,0 +1,9 @@
+---
+// Affiliate-Link im Fließtext: <ShopLink shop="gartenhaus" produkt="fasssauna-xy">Fasssauna XY</ShopLink>
+// Ohne freigeschalteten Link (src/affiliate-links.ts) steht der Platzhalter #AFFILIATE-<shop>-<produkt> im href.
+import { shopLink, istPlatzhalter } from '../affiliate-links';
+interface Props { shop: string; produkt?: string }
+const { shop, produkt } = Astro.props;
+const href = shopLink(shop, produkt);
+---
+<a href={href} rel="sponsored nofollow noopener" target="_blank" data-affiliate={istPlatzhalter(href) ? 'offen' : undefined}><slot />*</a>

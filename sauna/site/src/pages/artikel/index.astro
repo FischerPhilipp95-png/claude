@@ -1,0 +1,18 @@
+---
+import ArtikelKarte from '../../components/ArtikelKarte.astro';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SuchFeld from '../../components/SuchFeld.astro';
+
+const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<Base title="Alle Ratgeber" description="Alle Ratgeber zu Gartensauna, Außensauna und Fasssauna: Baugenehmigung, Holzofen, Kosten, Thermoholz, selber bauen, mieten. Mit Quellen und Stand-Datum.">
+  <div class="wrap wide">
+    <h1>Alle Ratgeber</h1>
+    <SuchFeld id="suche-artikel" />
+    {posts.length > 0
+      ? <ul class="cards">{posts.map((p) => <ArtikelKarte post={p} ebene={2} />)}</ul>
+      : <p class="lead">Die ersten Ratgeber sind in Arbeit. Bis dahin: <a href="/rechner/sauna-stromkosten/">Stromkosten-Rechner für die Gartensauna</a>.</p>}
+  </div>
+</Base>

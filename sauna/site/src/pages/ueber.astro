@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../site';
+import { THEMEN } from '../themen';
+
+const title = 'Über den Gartensauna-Doktor';
+const description = 'Der Gartensauna-Doktor: unabhängiger Ratgeber zu Gartensauna, Außensauna und Fasssauna. Wer dahintersteht, wie die Beiträge entstehen und wie sich die Seite finanziert.';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: title,
+    url: `${SITE.url}/ueber/`,
+    inLanguage: 'de-DE',
+    mainEntity: {
+      '@type': 'Organization',
+      name: SITE.name,
+      url: `${SITE.url}/`,
+      logo: `${SITE.url}/bilder/autor.webp`,
+      sameAs: [SITE.youtube, 'https://handwerksdoktor.de/', 'https://vollautomatendoktor.de/'],
+    },
+  },
+];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Über den Gartensauna-Doktor</nav>
+    <div class="ueber-kopf">
+      <img src="/bilder/autor.webp" alt={SITE.author} width="96" height="96" />
+      <h1>Über den Gartensauna-Doktor</h1>
+    </div>
+
+    <p class="lead"><strong>Der Gartensauna-Doktor</strong> beantwortet die Fragen, die vor dem Kauf einer Gartensauna oder Fasssauna anstehen:
+    Brauche ich eine Baugenehmigung? Darf ich einen Holzofen betreiben? Was kostet ein Saunagang? Thermoholz oder Fichte? Selber bauen, mieten oder kaufen?</p>
+
+    <ul class="pfeil-liste">
+      <li>Baugenehmigung nach Bundesland, mit Quelle und Stand</li>
+      <li>Holzofen, Elektroofen, Schornstein und Abstand zum Nachbarn</li>
+      <li>Kosten: Anschaffung, Strom je Saunagang, Unterhalt</li>
+      <li>Fasssauna: Bauweise, Holz, Erfahrungen nach dem ersten Winter</li>
+      <li>Kaufberatung ohne erfundene Tests</li>
+    </ul>
+
+    <h2>Wer dahintersteht</h2>
+    <p>Hinter dieser Seite steht der Betreiber von <a href="https://handwerksdoktor.de/" rel="noopener">handwerksdoktor.de</a> und
+    <a href="https://vollautomatendoktor.de/" rel="noopener">vollautomatendoktor.de</a> sowie des YouTube-Kanals
+    <a href={SITE.youtube} rel="noopener">„{SITE.kanal}“</a>. Rund um Haus, Garten und Technik gilt dort wie hier dasselbe Prinzip:
+    erst die kurze Antwort, dann die Einzelheiten, immer mit Quelle.</p>
+    <p><a class="btn" href={SITE.youtube} rel="noopener"><Icon name="circle-play" size={18} /> Zum YouTube-Kanal</a></p>
+
+    <h2>So entstehen die Beiträge</h2>
+    <ul>
+      <li><strong>Mit Quellen:</strong> Zahlen und Regeln stammen aus Landesbauordnungen, Normen, Herstellerangaben und Verbraucherzentralen.
+      Jeder Beitrag nennt am Ende seine Quellen und oben sein Stand-Datum.</li>
+      <li><strong>Erst die kurze Antwort:</strong> Oben in jedem Beitrag steht in wenigen Sätzen, worauf es ankommt. Danach kommen die Einzelheiten.</li>
+      <li><strong>Keine Rechtsberatung:</strong> Angaben zum Baurecht sind eine allgemeine Zusammenfassung. Verbindlich ist die Auskunft deiner
+      Gemeinde oder Bauaufsichtsbehörde. Das steht in jedem Beitrag zum Thema ausdrücklich dabei.</li>
+      <li><strong>Keine erfundenen Tests:</strong> „Getestet“ steht hier nur, wenn ein Produkt wirklich benutzt wurde. Alles andere ist eine
+      Kaufberatung nach Herstellerangaben und Erfahrungsberichten von Besitzern.</li>
+      <li><strong>Aktuell gehalten:</strong> Das Datum „Aktualisiert am“ zeigt, wann ein Beitrag zuletzt überarbeitet wurde.</li>
+    </ul>
+
+    <h2>So finanziert sich die Seite</h2>
+    <ul>
+      <li><strong>Affiliate-Links:</strong> Links mit Sternchen (*) führen zu Partnershops für Gartensaunen und Fasssaunen. Kaufst du darüber,
+      bekomme ich eine Provision. Für dich ändert sich am Preis nichts.</li>
+      <li><strong>Keine bezahlten Platzierungen:</strong> Kein Shop und kein Hersteller kann sich in einen Beitrag einkaufen.</li>
+      <li><strong>Keine Preise:</strong> Preise ändern sich ständig. Den aktuellen Preis siehst du direkt beim Shop.</li>
+      <li><strong>Unabhängig:</strong> Diese Seite gehört zu keinem Shop und keinem Hersteller. Alles dazu: <a href="/werbung/">Transparenz und Werbung</a>.</li>
+    </ul>
+
+    <h2>Die Bereiche</h2>
+    <ul class="tiles">
+      {Object.values(THEMEN).map((t) => (
+        <li><a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}>
+          <span class="tile-icon"><Icon name={t.icon} size={28} /></span>
+          <span class="tile-name">{t.titel}</span>
+        </a></li>
+      ))}
+    </ul>
+
+    <h2>Kontakt</h2>
+    <p>Fragen, Fehler gefunden oder ein Thema fehlt? Schreib über die <a href="/kontakt/">Kontaktseite</a>.
+    Die Anbieterkennzeichnung steht im <a href="/impressum/">Impressum</a>.</p>
+  </div>
+</Base>

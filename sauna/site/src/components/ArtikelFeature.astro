@@ -1,0 +1,22 @@
+---
+// Große Aufmacher-Karte: Bild über zwei Spalten, Titel in Display-Stufe, Meta-Zeile unter dem Titel.
+import type { CollectionEntry } from 'astro:content';
+import { THEMEN } from '../themen';
+import Icon from './Icon.astro';
+import { lesezeit } from '../lesezeit';
+interface Props { post: CollectionEntry<'artikel'>; ebene?: 2 | 3 }
+const { post, ebene = 3 } = Astro.props;
+const H = `h${ebene}`;
+const t = THEMEN[post.data.thema];
+---
+<article class="feature" style={`--akzent:${t.farbe}`}>
+  <a href={`/artikel/${post.id}/`}>
+    <div class="feature-img"><img src={post.data.bild} alt="" width="1200" height="675" loading="eager" decoding="async" /></div>
+    <div class="feature-body">
+      <H>{post.data.title}</H>
+      <p class="card-meta"><Icon name={t.icon} size={14} /> {t.titel} · {lesezeit(post.body)} Min. Lesezeit</p>
+      <p class="feature-text">{post.data.description}</p>
+      <span class="more">Weiterlesen <Icon name="chevron-right" size={16} /></span>
+    </div>
+  </a>
+</article>

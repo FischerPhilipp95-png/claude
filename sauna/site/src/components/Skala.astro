@@ -1,0 +1,40 @@
+---
+// Bewertungsskala: Bereiche mit Statusfarbe, aber nie Farbe allein, jeder Bereich hat Symbol und Text.
+import Icon from './Icon.astro';
+type Status = 'gut' | 'achtung' | 'erhoeht' | 'kritisch';
+interface Bereich { bis: number; label: string; status: Status }
+interface Props { titel: string; untertitel?: string; einheit: string; min: number; max: number; bereiche: Bereich[]; quelle: string }
+const { titel, untertitel, einheit, min, max, bereiche, quelle } = Astro.props;
+const STATUS: Record<Status, { farbe: string; icon: string; text: string }> = {
+  gut: { farbe: '#0ca30c', icon: 'circle-check', text: 'gut' },
+  achtung: { farbe: '#fab219', icon: 'circle-alert', text: 'Achtung' },
+  erhoeht: { farbe: '#ec835a', icon: 'triangle-alert', text: 'erhöht' },
+  kritisch: { farbe: '#d03b3b', icon: 'octagon-alert', text: 'kritisch' },
+};
+const fmt = new Intl.NumberFormat('de-DE', { maximumFractionDigits: 1 });
+const teile = bereiche.map((b, i) => ({ ...b, von: i === 0 ? min : bereiche[i - 1].bis, ...STATUS[b.status] }));
+const pos = (v: number) => (((v - min) / (max - min)) * 100).toFixed(2);
+const spanne = (t: (typeof teile)[number], i: number) =>
+  i === 0 ? `unter ${fmt.format(t.bis)} ${einheit}` : i === teile.length - 1 ? `über ${fmt.format(t.von)} ${einheit}` : `${fmt.format(t.von)}–${fmt.format(t.bis)} ${einheit}`;
+---
+<figure class="chart" role="group" aria-label={titel}>
+  <div class="chart-head">
+    <span class="chart-kicker"><Icon name="gauge" size={15} /> Grafik</span>
+    <p class="chart-title">{titel}</p>
+    {untertitel && <p class="chart-sub">{untertitel}</p>}
+  </div>
+  <div class="scale" aria-hidden="true">
+    <div class="scale-bar">
+      {teile.map((t, i) => <span style={`flex-grow:${t.bis - t.von};background:${t.farbe}`} title={`${spanne(t, i)}: ${t.label}`}></span>)}
+    </div>
+    <div class="scale-ticks">
+      {teile.slice(0, -1).map((t) => <span style={`left:${pos(t.bis)}%`}>{fmt.format(t.bis)}</span>)}
+    </div>
+  </div>
+  <ul class="scale-legend">
+    {teile.map((t, i) => (
+      <li><span class="scale-icon" style={`color:${t.farbe}`}><Icon name={t.icon} size={18} /></span><span><strong>{spanne(t, i)}</strong> {t.label}</span></li>
+    ))}
+  </ul>
+  <figcaption set:html={quelle} />
+</figure>
