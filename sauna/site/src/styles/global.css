@@ -807,3 +807,10 @@ a[data-affiliate="offen"] { outline: 2px dashed #b8322f; outline-offset: 2px; }
   .lt-quellen a { display: inline; margin-right: 12px; }
   .lt td::before { content: attr(data-label); display: block; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
 }
+
+/* Großes Startseitenfoto unter dem Hero-Band */
+.start-foto { margin-top: clamp(40px, 6vw, 80px); margin-bottom: 0; }
+.start-foto img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius); }
+.start-foto figcaption { font-size: 0.72rem; color: var(--muted); margin-top: 8px; }
+@media (min-width: 900px) { .tiles-bereiche.tiles-foto { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.hero-nachweis { font-size: 0.72rem; color: var(--muted); margin-top: 6px; }

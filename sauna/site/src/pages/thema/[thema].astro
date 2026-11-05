@@ -3,6 +3,7 @@ import ArtikelKarte from '../../components/ArtikelKarte.astro';
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
+import Bild from '../../components/Bild.astro';
 import { THEMEN } from '../../themen';
 import { SITE } from '../../site';
 import { RECHNER } from '../../rechner';
@@ -22,15 +23,15 @@ const jsonLd = [{
   hasPart: liste.map((p) => ({ '@type': 'Article', headline: p.data.title, url: `${SITE.url}/artikel/${p.id}/` })),
 }];
 ---
-<Base title={`${t.titel}: Ratgeber`} description={t.intro.slice(0, 155)} jsonLd={jsonLd} noindex={posts.length === 0}>
+<Base title={`${t.titel}: Ratgeber`} description={t.intro.slice(0, 155)} jsonLd={jsonLd} image={`/bilder/bereiche/${t.slug}.webp`} noindex={posts.length === 0}>
   <div class="wrap wide" style={`--akzent:${t.farbe}`}>
     <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › {t.titel}</nav>
-    <div class="thema-kopf thema-kopf-icon">
+    <div class="thema-kopf">
       <div>
         <h1>{t.titel}</h1>
         <p class="lead">{t.intro}</p>
       </div>
-      <span class="thema-icon" aria-hidden="true"><Icon name={t.icon} size={64} /></span>
+      <Bild src={`/bilder/bereiche/${t.slug}.webp`} alt={t.bild} nachweis="Bild: KI-generiert für den Gartensauna-Doktor" width={960} height={720} eager />
     </div>
     {liste.length > 0
       ? <section aria-labelledby="artikel-h">

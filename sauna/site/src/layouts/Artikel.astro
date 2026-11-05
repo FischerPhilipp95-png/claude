@@ -20,12 +20,13 @@ interface Props {
   id: string;
   headings: { depth: number; slug: string; text: string }[];
   bildAlt: string;
+  bildNachweis?: string;
   lesezeit: number;
   rechtshinweis?: boolean;
   faq?: { frage: string; antwort: string }[];
   pruefung?: { datum: Date; anleitung: string; videos: number; reddit: number; korrektur?: string };
 }
-const { title, description, pubDate, updatedDate, thema, bild, affiliate, id, headings, bildAlt, lesezeit, rechtshinweis = false, faq = [], pruefung } = Astro.props;
+const { title, description, pubDate, updatedDate, thema, bild, affiliate, id, headings, bildAlt, bildNachweis, lesezeit, rechtshinweis = false, faq = [], pruefung } = Astro.props;
 const akzent = THEMEN[thema as Thema].farbe;
 const themaIcon = THEMEN[thema as Thema].icon;
 const themaSlug = THEMEN[thema as Thema].slug;
@@ -76,7 +77,7 @@ if (faq.length > 0) jsonLd.push({
       <span class="byline-text"><strong>{SITE.author}</strong><span class="small">{updatedDate ? `Aktualisiert am ${datum(updatedDate)}` : `Veröffentlicht am ${datum(pubDate)}`} · <Icon name="clock" size={13} /> {lesezeit} Min. Lesezeit</span></span>
       <a class="chip byline-thema" href={`/thema/${themaSlug}/`} data-pagefind-meta="thema"><Icon name={themaIcon} size={14} /> {themaTitel}</a>
     </div>
-    <figure class="hero-img"><img data-pagefind-meta="image[src], image_alt[alt]" src={bild} alt={bildAlt} width="1200" height="675" fetchpriority="high" decoding="async" data-pin-media={pin} data-pin-description={`${title}: ${description}`} data-pin-url={url} /></figure>
+    <figure class="hero-img"><img data-pagefind-meta="image[src], image_alt[alt]" src={bild} alt={bildAlt} width="1200" height="675" fetchpriority="high" decoding="async" data-pin-media={pin} data-pin-description={`${title}: ${description}`} data-pin-url={url} />{bildNachweis?.startsWith('Bild:') && <figcaption class="hero-nachweis">{bildNachweis}</figcaption>}</figure>
     {affiliate && (
       <p class="ad-note" data-pagefind-ignore><strong>Anzeige:</strong> Dieser Artikel enthält Affiliate-Links (mit * markiert). Kaufst du darüber ein,
       bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts. <a href="/werbung/">Mehr dazu</a></p>

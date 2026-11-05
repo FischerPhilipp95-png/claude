@@ -19,6 +19,6 @@ const faq = faqTeil.split(/^### /m).slice(1).map((block) => {
   return { frage: frage.trim(), antwort };
 }).filter((f) => f.frage && f.antwort);
 ---
-<Artikel title={d.title} description={d.description} pubDate={d.pubDate} updatedDate={d.updatedDate} thema={d.thema} bild={d.bild} affiliate={d.affiliate} id={post.id} headings={headings} bildAlt={d.bildAlt} lesezeit={lesezeit} rechtshinweis={d.rechtshinweis} faq={faq} pruefung={d.pruefung}>
+<Artikel title={d.title} description={d.description} pubDate={d.pubDate} updatedDate={d.updatedDate} thema={d.thema} bild={d.bild} affiliate={d.affiliate} id={post.id} headings={headings} bildAlt={d.bildAlt} bildNachweis={d.bildNachweis} lesezeit={lesezeit} rechtshinweis={d.rechtshinweis} faq={faq} pruefung={d.pruefung}>
   <Content />
 </Artikel>
