@@ -274,3 +274,11 @@ Klopftest
 Entleerhähne
 = zuhause
 ifo
+Heizstromtarif
+Wärmestromtarif
+Wärmepumpenstromtarif
+Zählpunktbezeichnung
+Messstellenbetrieb
+SmartConnect
+Ladetarif
+Ladetarife

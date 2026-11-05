@@ -1,0 +1,119 @@
+---
+title: "Intelligenter Ladetarif: Wallbox lädt automatisch in günstigen Stunden"
+kurztitel: "Intelligenter Ladetarif fürs E-Auto"
+description: "Intelligente Ladetarife (Octopus Intelligent, Tibber Smart Charging): wie die App das E-Auto günstig lädt, Voraussetzungen, Boni, Vergleich mit Autostromtarif."
+pubDate: 2026-11-05
+icon: ev-charger
+thema: Tarif
+bild: /bilder/titel/intelligenter-ladetarif.webp
+bildAlt: "Titelbild: Intelligenter Ladetarif"
+bildNachweis: "Grafik: Der Handwerksdoktor"
+affiliate: false
+---
+import Antwort from '../../components/Antwort.astro';
+import Warnung from '../../components/Warnung.astro';
+import Ablauf from '../../components/Ablauf.astro';
+
+<Antwort>
+**Kurz gesagt:** Bei einem intelligenten Ladetarif steuert die **App des Stromanbieters** die Wallbox oder das Auto: Du steckst
+abends an, gibst Abfahrtszeit und Ziel-Ladestand ein, und geladen wird in den Stunden, in denen der Strom am günstigsten ist. Tibber
+macht das mit dem dynamischen Tarif Smart Dynamic („bis zu 290 € Ladekosten pro Jahr“ Ersparnis laut Anbieter), Octopus mit einem
+festen Ladestrompreis plus **12 Cent Bonus je kWh** für das E-Auto. Voraussetzung ist in beiden Fällen ein **Smart Meter** und ein
+kompatibles Auto oder eine kompatible Wallbox. Laut ADAC ist ein klassischer Autostromtarif mit zweitem Zähler nur **3 bis 4 Cent**
+günstiger als Haushaltsstrom; der intelligente Tarif spart, ohne dass du einen zweiten Zähler brauchst.
+</Antwort>
+
+## Wie ein intelligenter Ladetarif funktioniert
+
+Ein normaler Stromtarif kennt nur einen Preis. Ein dynamischer Tarif gibt dir den Börsenpreis je Viertelstunde weiter, aber du
+musst selbst in den günstigen Stunden laden. Der intelligente Ladetarif nimmt dir das ab: Der Anbieter spricht per Schnittstelle mit
+dem Auto oder der Wallbox und schiebt die Ladung in die Zeiten mit niedrigem Preis und viel Wind- oder Sonnenstrom.
+
+<Ablauf
+  titel="So läuft eine Nacht mit intelligentem Laden"
+  schritte={[
+    { icon: 'plug-zap', titel: 'Anstecken', text: 'Abends an der Wallbox, mehr ist nicht nötig.' },
+    { icon: 'clock', titel: 'Abfahrt eingeben', text: 'In der App: wann du losmusst und wie voll der Akku sein soll.' },
+    { icon: 'activity', titel: 'App plant', text: 'Sie kennt ab 13 Uhr die Börsenpreise für morgen und wählt die günstigsten Fenster.' },
+    { icon: 'battery-charging', titel: 'Laden', text: 'Meist nachts zwischen 1 und 5 Uhr, im Sommer auch mittags.' },
+    { icon: 'car', titel: 'Fertig', text: 'Zur Abfahrtszeit voll, abgerechnet nach den günstigen Stunden.' },
+  ]}
+/>
+
+Tibber beschreibt es so: „Mit Smart Charging lädt dein Auto automatisch, wenn der Strompreis am niedrigsten ist.“ Octopus: „Unsere
+App erstellt individuelle Ladepläne für dein E-Auto, alles was du tun musst: Es an deine Wallbox anschließen, sobald du zu Hause
+bist.“ Welche Stunden das heute und morgen sind, siehst du auf der Seite [Strompreis morgen](/strompreis-morgen/).
+
+## Die beiden Modelle: dynamisch oder Festpreis mit Bonus
+
+| | Tibber Smart Charging | Intelligent Octopus |
+|---|---|---|
+| Tarif | Smart Dynamic: Börsenpreis je Viertelstunde plus Steuern und Abgaben, keine Bindung | fester Arbeitspreis für Haushalt und Auto |
+| Ersparnis laut Anbieter | „bis zu 290 € Ladekosten pro Jahr“, mit Grid Rewards „bis zu 440 €/Jahr“ | SmartConnect-Bonus 12 ct/kWh für das Auto (6 ct vor aktiver Smart-Meter-Nutzung), „pro Ladung bis zu 50 % sparen“ |
+| Smart Meter | Pflicht, Einbau laut Anbieter 0 € | Pflicht, Einbau laut Anbieter kostenlos, „in der Regel innerhalb von 3 Monaten“ |
+| Verbindung | Auto direkt (u. a. Audi, BMW, BYD, Cupra, Ford, Mercedes, MINI, Škoda, Tesla, VW) oder Wallbox (u. a. Easee, go-e, Keba, Zaptec, Tesla Wall Connector) | „bereits mit über 500 Geräten kompatibel“, Prüfung per Check auf der Website |
+| Abrechnung | monatlich nach Verbrauch | monatlich nach tatsächlichem Verbrauch, ohne Abschlag |
+| Bedingung für Bonus | Grid Rewards und Ladebonus nur mit integrierter Wallbox | „Die Steuerung muss in der App aktiviert sein.“ |
+
+Beide Angaben stammen von den Anbieterseiten (Stand 5. November 2026); die Preise je Kilowattstunde nennen beide erst im
+persönlichen Angebot. Der Unterschied im Prinzip: Bei Tibber trägst du das Preisrisiko der Börse selbst und profitierst voll von
+billigen Stunden. Bei Octopus bleibt der Preis fest, der Anbieter verdient an der Verschiebung und gibt dir einen Teil als Bonus.
+
+<Warnung titel="Was die Ersparnis-Versprechen voraussetzen">
+„Bis zu 290 Euro“ gilt laut Tibber für einen Haushalt, der viel und regelmäßig zu Hause lädt. Wer 8.000 km im Jahr fährt und meist
+unterwegs lädt, kommt nicht annähernd hin. Rechne mit deinem Verbrauch: [Ladestrom berechnen](/rechner/e-auto-laden/) vergleicht
+Festpreis, dynamischen Tarif und Netzentgelt-Rabatt pro 100 km und pro Jahr, mit echten Börsenpreisen.
+</Warnung>
+
+## Was du brauchst
+
+1. **Smart Meter.** Ohne Viertelstundenwerte kein dynamischer Tarif und kein Bonus. Beantragen beim Netzbetreiber oder über den
+   Anbieter: [Smart Meter beantragen](/artikel/smart-meter-beantragen/).
+2. **Ein Auto oder eine Wallbox mit Schnittstelle.** Tibber nennt Direktintegration für viele Marken und integrierte Wallboxen von
+   Charge Amps, Easee, Elli, go-e, Keba, Tesla und Zaptec. Octopus prüft die Kompatibilität auf der Website. Eine einfache Wallbox
+   ohne Verbindung reicht nicht, dann hilft nur die Startzeitvorwahl von Hand.
+3. **Die Wallbox als steuerbare Verbrauchseinrichtung.** Jede Wallbox ab 4,2 kW, die seit 2024 in Betrieb ging, fällt unter
+   § 14a EnWG: Der Netzbetreiber darf sie in Engpässen auf 4,2 kW drosseln, dafür gibt es weniger Netzentgelt, laut ADAC pauschal
+   110 bis 190 Euro im Jahr (Modul 1). Das kommt zum Ladetarif dazu: [§ 14a EnWG: Modul 1, 2 oder 3](/artikel/14a-enwg-module/).
+
+## Intelligenter Ladetarif oder Autostromtarif mit eigenem Zähler?
+
+Der ADAC hat im Januar 2026 Autostromtarife ausgewertet: „Im Schnitt war die Kilowattstunde Autostrom rund 3 bis 4 Cent günstiger
+als Haushaltsstrom“, bei Arbeitspreisen von 19,74 bis 34,05 Cent und Grundpreisen von 5,14 bis 14,95 Euro im Monat. Der zweite
+Zähler kostet: „Ein Umbau kann je nach Aufwand bis zu 2000 Euro kosten. Für die Installation des zusätzlichen Stromzählers fallen
+gegebenenfalls nochmals Kosten von 100 bis 200 Euro an.“ Lohnen kann sich das laut ADAC, „wer über 10.000 Kilometer im Jahr mit
+dem E-Auto fährt und viel zu Hause lädt“.
+
+Der intelligente Ladetarif braucht keinen zweiten Zähler und keinen Umbau. Dafür hängt die Ersparnis vom Börsenpreis (Tibber) oder
+vom Bonus (Octopus) ab, nicht von einem festen Rabatt. Faustregel:
+
+- **Viel zu Hause laden, flexibel bei der Ladezeit, Wallbox mit Schnittstelle:** intelligenter Ladetarif.
+- **Über 10.000 km, feste Ladezeiten, Zählerplatz frei:** Autostromtarif mit Modul 2 prüfen: [Autostromtarif zuhause](/artikel/autostromtarif/).
+- **PV-Anlage:** mittags mit eigenem Strom laden, der Tarif ist zweitrangig: [E-Auto laden mit PV und dynamischem Tarif](/artikel/e-auto-laden-dynamischer-stromtarif/).
+
+## Häufige Fragen
+
+### Ist das Auto morgens wirklich voll?
+Du gibst Abfahrtszeit und Ziel-Ladestand vor; die App plant rückwärts. Reicht die Zeit in günstigen Stunden nicht, lädt sie auch in
+teureren. Bei Tibber kannst du jederzeit „jetzt laden“ wählen.
+
+### Brauche ich eine bestimmte Wallbox?
+Für Tibber Grid Rewards und Ladebonus ja („eine integrierte Ladebox notwendig“), das Smart Charging selbst geht auch über die
+Direktintegration des Autos. Octopus prüft Auto und Wallbox vorab.
+
+### Was ist mit flexiblen Stromtarifen ohne App-Steuerung?
+Dann legst du die Ladezeit selbst, in der Wallbox-App per Zeitplan. Das klappt mit jedem dynamischen Tarif, nur ohne Automatik:
+[E-Auto laden mit dynamischem Stromtarif](/artikel/e-auto-laden-dynamischer-stromtarif/).
+
+### Greift der Netzbetreiber in meine Ladung ein?
+Nur in Engpässen und nur bis auf 4,2 kW herunter, das reicht für rund 25 km Reichweite je Stunde. Abschalten darf er die Wallbox
+nicht.
+
+## Quellen
+
+- Octopus Energy: [Intelligent Octopus](https://octopusenergy.de/intelligent-octopus), abgerufen 05.11.2026
+- Tibber: [Smartes Laden](https://tibber.com/de/smartes-laden) und [Autostrom](https://tibber.com/de/autostrom), abgerufen 05.11.2026
+- ADAC: [Autostromtarife: Das E-Auto günstig zu Hause laden](https://www.adac.de/rund-ums-fahrzeug/elektromobilitaet/laden/autostrom-tarife/), 02.02.2026, Preisrecherche Januar 2026
+- EnBW: [Wallbox mit Stromzähler richtig planen und einbauen](https://www.enbw.com/blog/elektromobilitaet/laden/wallbox-mit-stromzaehler/), 30.01.2026
+
+*Anbieterangaben sind Werbeaussagen der Anbieter, keine Messungen. Preise je Kilowattstunde gibt es nur im persönlichen Angebot.*
