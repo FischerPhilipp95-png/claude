@@ -9,7 +9,7 @@ import Icon from '../../components/Icon.astro';
 import { SITE } from '../../site';
 import preise from '../../strompreise.json';
 
-const title = 'E-Auto-Ladekosten-Rechner: Festpreis oder dynamischer Tarif?';
+const title = 'Ladestrom berechnen: E-Auto-Ladekosten-Rechner für zu Hause';
 const description = 'Was kostet das Laden deines E-Autos zu Hause? Pro 100 km und pro Jahr, mit Festpreis, dynamischem Stromtarif (echte Börsenpreise) und § 14a-Netzentgelt-Rabatt.';
 const jahre = Object.keys(preise).filter((k) => /^\d{4}$/.test(k)).sort();
 const daten = Object.fromEntries(jahre.map((j) => [j, (preise as any)[j].stunden]));
@@ -22,7 +22,7 @@ const jsonLd = [{
 <Base title={title} description={description} jsonLd={jsonLd}>
   <div class="wrap" data-pagefind-body data-pagefind-meta="thema:Tarif">
     <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> › <a href="/rechner/">Rechner</a> › E-Auto laden</nav>
-    <h1>E-Auto-Ladekosten-Rechner</h1>
+    <h1>Ladestrom berechnen: E-Auto-Ladekosten zu Hause</h1>
     <p class="lead">Kilometer, Verbrauch und Strompreis eingeben: Der Rechner zeigt, was 100 km und ein Jahr kosten, mit Festpreis, mit dynamischem
     Tarif in den günstigen Stunden (echte Börsenpreise) und mit dem Netzentgelt-Rabatt nach § 14a. Alles nur in deinem Browser.</p>
 
