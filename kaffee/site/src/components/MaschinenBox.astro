@@ -1,0 +1,35 @@
+---
+// Maschinen-Box am Artikelende (Feld „maschinen“ im Artikelkopf): Modell, belegte Fakten aus src/maschinen.json,
+// Link zur Maschinenseite und, bei Affiliate-Artikeln, ein Amazon-Button. Keine Preise (Amazon-Regeln), keine Bewertungen.
+import Icon from './Icon.astro';
+import { maschine } from '../maschinen';
+import { THEMEN, type Thema } from '../themen';
+import { amazonSearch } from '../site';
+interface Props { ids: string[]; affiliate: boolean }
+const { ids, affiliate } = Astro.props;
+const alle = ids.map((id) => ({ id, ...maschine(id) })).filter((m) => m.name);
+const m = alle[0];
+const weitere = alle.slice(1);
+const marke = m ? (m.markenname ?? THEMEN[m.hersteller as Thema].titel.split(' ')[0]) : '';
+const titel = m ? `${marke} ${m.name}` : '';
+const fakten = m ? [
+  m.suchwoerter?.length ? `Auch: ${m.suchwoerter.slice(0, 3).join(', ')}` : '',
+  m.videos?.length ? `${m.videos.length} ${m.videos.length === 1 ? 'Video-Anleitung' : 'Video-Anleitungen'} vom Kanal` : '',
+  m.art === 'siebtraeger' ? 'Siebträger' : m.art === 'kapsel' ? 'Kapselmaschine' : 'Kaffeevollautomat',
+].filter(Boolean) : [];
+---
+{m && (
+  <aside class="maschinen-box" aria-label={`Die Maschine aus diesem Artikel: ${titel}`} data-pagefind-ignore>
+    <p class="maschinen-box-tab"><Icon name="coffee" size={16} /> Die Maschine aus diesem Artikel</p>
+    <div>
+      <p class="maschinen-box-name"><a href={`/maschine/${m.id}/`}>{titel}</a></p>
+      <ul class="maschinen-box-fakten">{fakten.map((f) => <li>{f}</li>)}</ul>
+    </div>
+    <div class="maschinen-box-links">
+      <a class="btn btn-sm btn-ghost" href={`/maschine/${m.id}/`}><Icon name="book-open" size={16} /> Alle Anleitungen</a>
+      {affiliate && <a class="btn btn-sm" href={amazonSearch(`${marke.replace('’', "'")} ${m.name} ${m.art === 'siebtraeger' ? 'Siebträger' : 'Kaffeevollautomat'}`)} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> Preis prüfen*</a>}
+    </div>
+    {weitere.length > 0 && <p class="maschinen-box-weitere">Gilt auch für: {weitere.map((w, i) => <><a href={`/maschine/${w.id}/`}>{w.name}</a>{i < weitere.length - 1 ? ', ' : ''}</>)}</p>}
+    {affiliate && <p class="small">*Affiliate-Link zu Amazon. Für dich ändert sich am Preis nichts.</p>}
+  </aside>
+)}

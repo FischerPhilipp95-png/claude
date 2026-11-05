@@ -2,7 +2,8 @@
 import SuchFeld from '../components/SuchFeld.astro';
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import ArtikelKarte from '../components/ArtikelKarte.astro';
+import ArtikelFeature from '../components/ArtikelFeature.astro';
+import ArtikelZeile from '../components/ArtikelZeile.astro';
 import VideoKarte from '../components/VideoKarte.astro';
 import Icon from '../components/Icon.astro';
 import { SITE } from '../site';
@@ -10,39 +11,44 @@ import { THEMEN, type Thema } from '../themen';
 import { themenBild, PRODUKTE_BILD } from '../themen-bilder';
 import { SAISON } from '../saison';
 import { mediathekVideos } from '../videos';
+import { maschinenListe } from '../maschinen-hilfe';
 
 const posts = (await getCollection('artikel', ({ data }) => !data.entwurf))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const anzahl = (name: string) => posts.filter((p) => p.data.thema === name).length;
 const videoAnzahl = (name: string) => mediathekVideos(name).length;
+const alleVideos = (Object.keys(THEMEN) as Thema[]).reduce((n, k) => n + videoAnzahl(k), 0) + mediathekVideos('Weitere').length;
 const saison = SAISON.artikel.map((id) => posts.find((p) => p.id === id)).filter((p) => p !== undefined);
+const neueste = posts.filter((p) => !SAISON.artikel.includes(p.id)).slice(0, 5);
 const kacheln = (Object.entries(THEMEN) as [Thema, (typeof THEMEN)[Thema]][]).filter(([n]) => anzahl(n) + videoAnzahl(n) > 0)
   .map(([n, t]) => ({ n, t, bild: themenBild(n, t.slug) }));
 const neueVideos = mediathekVideos('DeLonghi').slice(1, 4);
 const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: `${SITE.url}/`, inLanguage: 'de-DE' }];
 ---
 <Base title={SITE.name} description={SITE.description} jsonLd={jsonLd}>
-  <section class="hero">
-    <div class="wrap wide hero-grid">
-      <div>
-        <p class="eyebrow"><Icon name="coffee" size={16} /> Anleitungen nach Herstellerangaben, mit Video</p>
-        <h1>Dein Kaffeevollautomat <b>macht Probleme?</b></h1>
-        <p class="hero-lead">Rote Lampe blinkt, Kaffee wässrig, Milchschaum kommt nicht: Hier findest du die Lösung für dein Modell.
-        Entkalken, reinigen, Filter wechseln, Schritt für Schritt erklärt.</p>
-        <SuchFeld id="suche-start" variante="hero" />
-        <div class="hero-cta">
-          <a class="btn" href="/maschinen/"><Icon name="coffee" size={18} /> Meine Maschine finden</a>
-          <a class="btn btn-ghost" href="/rechner/vollautomat-diagnose/"><Icon name="stethoscope" size={18} /> Was hat meine Maschine?</a>
-          <a class="btn btn-ghost" href="/artikel/"><Icon name="book-open" size={18} /> Alle Anleitungen</a>
-          <a class="btn btn-ghost" href="/videos/"><Icon name="circle-play" size={18} /> Video-Anleitungen</a>
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap wide">
+      <h1 class="hero-h" id="hero-h"><span class="line"><span>Vollautomat,</span></span><span class="line"><span>einfach erklärt.</span></span></h1>
+    </div>
+    <div class="hero-band">
+      <div class="hero-band-grid">
+        <div class="hero-copy">
+          <p class="hero-lead"><span>Rote Lampe blinkt?</span> <span>Milchschaum kommt nicht?</span> <span>Kaffee schmeckt wässrig?</span></p>
+          <p class="hero-sub">Entkalken, reinigen, Filter wechseln: die Lösung für dein Modell, Schritt für Schritt nach Herstellerangaben.</p>
+          <SuchFeld id="suche-start" variante="hero" />
+          <div class="hero-cta">
+            <a class="btn" href="/maschinen/"><Icon name="coffee" size={16} /> Meine Maschine finden</a>
+            <a class="btn btn-ghost" href="/rechner/vollautomat-diagnose/"><Icon name="stethoscope" size={16} /> Was hat meine Maschine?</a>
+          </div>
         </div>
+        <img class="hero-person" src="/bilder/vollautomatendoktor-freisteller.webp" alt={SITE.author} width="900" height="900" fetchpriority="high" decoding="async" data-pin-nopin="true" />
+        <p class="hero-facts"><span>{posts.length} Anleitungen</span><span>{alleVideos} Videos</span><span>{maschinenListe().length} Maschinen</span><span>Nach Herstellerangaben</span></p>
       </div>
-      <img class="hero-avatar" src="/bilder/autor.webp" alt={SITE.author} width="256" height="256" />
     </div>
   </section>
 
-  <section class="wrap wide">
-    <h2 class="section-h">Welche Marke hast du?</h2>
+  <section class="wrap wide" aria-labelledby="marken-h">
+    <h2 class="section-h" id="marken-h">Welche Marke hast du?</h2>
     <ul class="tiles tiles-foto">
       {kacheln.map(({ n, t, bild }) => (
         <li><a href={`/thema/${t.slug}/`} style={`--akzent:${t.farbe}`}>
@@ -64,14 +70,23 @@ const jsonLd = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
   </section>
 
   <section class="wrap wide saison" aria-labelledby="saison-h">
-    <h2 class="section-h" id="saison-h"><Icon name={SAISON.icon} size={26} /> {SAISON.titel}</h2>
+    <h2 class="section-h" id="saison-h">{SAISON.titel}</h2>
     <p class="saison-text">{SAISON.text}</p>
-    <ul class="cards">{saison.map((p) => <ArtikelKarte post={p} />)}</ul>
+    <div class="feature-grid">
+      {saison[0] && <ArtikelFeature post={saison[0]} />}
+      <ul class="tiles tiles-liste" aria-label="Weitere häufig gesuchte Anleitungen">{saison.slice(1).map((p) => <ArtikelZeile post={p} />)}</ul>
+    </div>
   </section>
 
-  <section class="wrap wide">
-    <h2 class="section-h">De’Longhi im Video</h2>
+  <section class="wrap wide" aria-labelledby="video-h">
+    <h2 class="section-h" id="video-h">De’Longhi im Video</h2>
     <ul class="cards">{neueVideos.map((v) => <VideoKarte video={v} farbe={THEMEN.DeLonghi.farbe} />)}</ul>
-    <p class="center"><a class="btn btn-dark" href="/videos/">Alle Video-Anleitungen <Icon name="chevron-right" size={18} /></a></p>
+    <p class="center"><a class="btn btn-dark" href="/videos/">Alle {alleVideos} Video-Anleitungen <Icon name="chevron-right" size={18} /></a></p>
+  </section>
+
+  <section class="wrap wide" aria-labelledby="neu-h">
+    <h2 class="section-h" id="neu-h">Neueste Anleitungen</h2>
+    <ul class="tiles tiles-liste">{neueste.map((p) => <ArtikelZeile post={p} />)}</ul>
+    <p class="center"><a class="btn btn-dark" href="/artikel/">Alle {posts.length} Anleitungen ansehen <Icon name="chevron-right" size={18} /></a></p>
   </section>
 </Base>

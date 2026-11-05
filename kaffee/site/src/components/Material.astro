@@ -1,0 +1,23 @@
+---
+// „Das brauchst du“: Materialliste direkt unter der kurzen Antwort, wie bei einer guten Werkstatt-Anleitung.
+// Jede Zeile: Name, wofür, Kaufbutton (Amazon-Suche oder Produkt aus src/produkte.ts per „produkt“). „imKarton: true“ heißt:
+// liegt dem Gerät bei, dann steht statt des Buttons ein Hinweis. Keine Preise, keine Amazon-Bilder.
+import { amazonSearch } from '../site';
+import { PRODUKTE, amazonProdukt, type ProduktId } from '../produkte';
+import Icon from './Icon.astro';
+interface Item { name: string; warum: string; suche?: string; produkt?: ProduktId; imKarton?: boolean }
+interface Props { items: Item[] }
+const { items } = Astro.props;
+const link = (i: Item) => (i.produkt ? amazonProdukt(PRODUKTE[i.produkt].asin) : i.suche ? amazonSearch(i.suche) : undefined);
+---
+<ul class="material" data-pagefind-ignore>
+  {items.map((i) => (
+    <li>
+      <span><span class="material-name">{i.name}</span><span class="material-warum">{i.warum}</span></span>
+      {i.imKarton
+        ? <span class="material-im-karton"><Icon name="package-check" size={16} /> liegt der Maschine bei</span>
+        : link(i) && <a class="btn btn-sm" href={link(i)} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> Preis prüfen*</a>}
+    </li>
+  ))}
+</ul>
+{items.some((i) => !i.imKarton && link(i)) && <p class="material-note" data-pagefind-ignore>*Affiliate-Links zu Amazon. Kaufst du darüber, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.</p>}

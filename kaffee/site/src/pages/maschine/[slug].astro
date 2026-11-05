@@ -51,7 +51,6 @@ const jsonLd = [
 <Base title={title} description={description} jsonLd={jsonLd} noindex={leer} image={bild?.src}>
   <div class="wrap wide" style={`--akzent:${m.marke.farbe}`}>
     <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › <a href="/maschinen/">Maschinen</a> › <a href={`/thema/${m.marke.slug}/`}>{m.marke.titel}</a> › {m.name}</nav>
-    <a class="chip chip-lg" href={`/thema/${m.marke.slug}/`}><Icon name={m.marke.icon} size={16} /> {m.marke.titel}</a>
     <div class={bild ? 'thema-kopf' : undefined}>
       <div>
         <h1>{title}</h1>

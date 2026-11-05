@@ -57,7 +57,7 @@ async function html(titel, t, artIcon) {
   .bar{position:absolute;left:0;top:0;bottom:0;width:14px;background:${t.farbe}}
   .foot{position:absolute;left:72px;bottom:56px;display:flex;gap:16px;align-items:center;font-weight:500;font-size:26px;color:#cfcfcf}
   .foot img{width:58px;height:58px;border-radius:50%;border:3px solid ${t.farbe}}
-  </style></head><body><div class="grid"></div><div class="bar"></div>
+  </style></head><body><div class="grid"></div>
   <div class="chip">${await icon(t.icon, 30, 2.2)} ${t.titel}</div>
   <h1 id="t">${titel}</h1>
   <div class="bigicon">${await icon(artIcon || t.icon, 200)}</div>

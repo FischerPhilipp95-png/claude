@@ -10,6 +10,8 @@ import { videoFuerArtikel, videoSchema } from '../videos';
 import { CHECKLISTEN } from '../checklisten.mjs';
 import { existsSync } from 'node:fs';
 import { maschine } from '../maschinen';
+import VideoBox from '../components/VideoBox.astro';
+import MaschinenBox from '../components/MaschinenBox.astro';
 
 interface Props {
   title: string;
@@ -70,17 +72,20 @@ if (vSchema) jsonLd.push(vSchema as any);
 <Base title={title} description={description} image={bild} jsonLd={jsonLd} type="article" artikel={{ veroeffentlicht: pubDate, geaendert: updatedDate, rubrik: themaTitel }}>
   <article class="wrap article" style={`--akzent:${akzent}`} data-pagefind-body>
     <nav class="crumbs" aria-label="Brotkrumen" data-pagefind-ignore><a href="/">Start</a> <Icon name="chevron-right" size={14} /> <a href={`/thema/${themaSlug}/`}>{themaTitel}</a></nav>
-    <a class="chip chip-lg" href={`/thema/${themaSlug}/`} data-pagefind-meta="thema" data-pagefind-ignore><Icon name={themaIcon} size={16} /> {themaTitel}</a>
     <h1>{title}</h1>
     <p class="lead">{description}</p>
     <div class="byline" data-pagefind-ignore>
       <img src="/bilder/autor.webp" alt="" width="40" height="40" data-pin-nopin="true" />
-      <span><strong>{SITE.author}</strong><br /><span class="small">{updatedDate ? `Aktualisiert am ${datum(updatedDate)}` : `Veröffentlicht am ${datum(pubDate)}`} · <Icon name="clock" size={13} /> {lesezeit} Min. Lesezeit</span></span>
+      <span class="byline-text"><strong>{SITE.author}</strong><span class="small">{updatedDate ? `Aktualisiert am ${datum(updatedDate)}` : `Veröffentlicht am ${datum(pubDate)}`} · <Icon name="clock" size={13} /> {lesezeit} Min. Lesezeit</span></span>
+      <a class="chip byline-thema" href={`/thema/${themaSlug}/`} data-pagefind-meta="thema"><Icon name={themaIcon} size={14} /> {themaTitel}</a>
     </div>
     {passtZu.length > 0 && (
       <p class="passt-zu" data-pagefind-ignore><strong>Passt zu:</strong> {passtZu.map((m) => <a class="chip" href={`/maschine/${m.id}/`}>{THEMEN[m.hersteller as Thema].titel.split(' ')[0]} {m.name}</a>)}</p>
     )}
-    <figure class="hero-img"><img data-pagefind-meta="image[src], image_alt[alt]" src={bild} alt={bildAlt} width="1200" height="675" fetchpriority="high" decoding="async" data-pin-media={pin} data-pin-description={`${title}: ${description}`} data-pin-url={url} /></figure>
+    {/* Wie bei einer guten Video-Anleitung: Gibt es ein passendes Kanal-Video, steht es direkt unter dem Titel. Sonst das Titelbild. */}
+    {video
+      ? <div class="hero-video"><VideoBox video={video} ueberschrift="Die Anleitung als Video" /><img class="sr-only" data-pagefind-meta="image[src], image_alt[alt]" src={bild} alt={bildAlt} width="1200" height="675" loading="lazy" data-pin-media={pin} data-pin-description={`${title}: ${description}`} data-pin-url={url} /></div>
+      : <figure class="hero-img"><img data-pagefind-meta="image[src], image_alt[alt]" src={bild} alt={bildAlt} width="1200" height="675" fetchpriority="high" decoding="async" data-pin-media={pin} data-pin-description={`${title}: ${description}`} data-pin-url={url} /></figure>}
     {affiliate && (
       <p class="ad-note" data-pagefind-ignore><strong>Anzeige:</strong> Dieser Artikel enthält Affiliate-Links (mit * markiert). Kaufst du darüber ein,
       bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts. <a href="/werbung/">Mehr dazu</a></p>
@@ -92,6 +97,7 @@ if (vSchema) jsonLd.push(vSchema as any);
       </details>
     )}
     <slot />
+    {maschinen.length > 0 && <MaschinenBox ids={maschinen} affiliate={affiliate} />}
     {checklisten.map((c) => (
       <aside class="box druck-checkliste" aria-label={`Checkliste zum Ausdrucken: ${c.kurz}`} data-pagefind-ignore>
         <Icon name="printer" size={28} />

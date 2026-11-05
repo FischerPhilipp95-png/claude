@@ -1,0 +1,15 @@
+---
+// Zwei Fotos nebeneinander mit Bildunterschrift (vorher/nachher, Teil/Einbauort). Am Handy untereinander.
+// Nur eigene oder frei lizenzierte Fotos; der Nachweis steht in der Bildunterschrift.
+interface Bild { src: string; alt: string; text: string; width?: number; height?: number }
+interface Props { bilder: [Bild, Bild] }
+const { bilder } = Astro.props;
+---
+<div class="bildpaar">
+  {bilder.map((b) => (
+    <figure>
+      <img src={b.src} alt={b.alt} width={b.width ?? 960} height={b.height ?? 720} loading="lazy" decoding="async" />
+      <figcaption set:html={b.text} />
+    </figure>
+  ))}
+</div>

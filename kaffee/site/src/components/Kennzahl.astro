@@ -1,0 +1,11 @@
+---
+// Eine große Zahl aus der Anleitung (z. B. „5.000 Tassen ohne Entkalken“), mit Einheit, Bedeutung und Quelle.
+// Nur für belegte Zahlen (Hersteller, Anleitung). Die Quelle gehört immer dazu.
+interface Props { wert: string; einheit?: string; text: string; quelle: string; quelleUrl?: string }
+const { wert, einheit, text, quelle, quelleUrl } = Astro.props;
+---
+<figure class="kennzahl" role="group" aria-label={`${wert} ${einheit ?? ''}: ${text}`}>
+  <span class="kennzahl-wert">{wert}{einheit && <small>{einheit}</small>}</span>
+  <span class="kennzahl-text">{text}</span>
+  <figcaption class="kennzahl-quelle">Quelle: {quelleUrl ? <a href={quelleUrl} rel="noopener">{quelle}</a> : quelle}</figcaption>
+</figure>

@@ -13,8 +13,8 @@ const dauer = video.dauer ? `${Math.floor(video.dauer / 60)}:${String(video.daue
   <a href={artikel ? `/artikel/${artikel}/` : `https://www.youtube.com/watch?v=${video.id}`} rel={artikel ? undefined : 'noopener'}>
     <div class="card-img"><img src={vorschau(video)} alt="" width="1280" height="720" loading="lazy" decoding="async" /></div>
     <div class="card-body">
-      <span class="chip"><Icon name={artikel ? 'book-open' : 'circle-play'} size={14} /> {artikel ? 'Anleitung + Video' : `Video${dauer ? ' · ' + dauer : ''}`}</span>
       <H>{video.titel}</H>
+      <p class="card-meta"><Icon name={artikel ? 'book-open' : 'circle-play'} size={14} /> {artikel ? 'Anleitung + Video' : `Video${dauer ? ' · ' + dauer : ''}`}</p>
       <span class="more">{artikel ? 'Anleitung lesen' : 'Auf YouTube ansehen'} <Icon name="chevron-right" size={16} /></span>
     </div>
   </a>
