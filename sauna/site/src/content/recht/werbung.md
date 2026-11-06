@@ -13,6 +13,7 @@ Diese Seite finanziert sich über Affiliate-Links. Das heißt:
 
 **Partnerprogramme:** Die Affiliate-Links führen zu Online-Shops für Gartensaunen und Fasssaunen. Die Partnerprogramme laufen
 über das Affiliate-Netzwerk Awin. Welche Shops das sind, steht in der [Datenschutzerklärung](/datenschutz/) unter „Affiliate-Links“.
+Zubehör wie Saunasteine, Thermometer oder Infrarotkabinen verlinke ich auch zu Amazon. Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.
 Ist ein Partnerprogramm noch nicht freigeschaltet, steht an der Stelle des Links ein Platzhalter ohne Ziel.
 
 **Preise:** Genannte Preise sind Richtwerte zum angegebenen Datum. Maßgeblich ist immer der

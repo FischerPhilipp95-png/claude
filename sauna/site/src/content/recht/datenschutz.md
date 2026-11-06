@@ -23,7 +23,7 @@ Ein Datenschutzbeauftragter ist nicht bestellt und gesetzlich nicht erforderlich
 - Die Seiten werden über das Netzwerk von **Cloudflare** ausgeliefert (Nr. 3). Cloudflare setzt dabei keine Cookies zur Analyse und erstellt keine Profile.
 - Es gibt **kein Kontaktformular**. Wenn du mir schreibst, dann per E-Mail.
 - YouTube-Videos werden **erst nach deinem Klick** geladen. Auch Pinterest erfährt erst etwas, wenn du auf „Auf Pinterest merken“ klickst.
-- Beim Klick auf einen Affiliate-Link verlässt du diese Website. Ab dann gilt der Datenschutz des jeweiligen Shops und des Netzwerks Awin.
+- Beim Klick auf einen Affiliate-Link verlässt du diese Website. Ab dann gilt der Datenschutz des jeweiligen Shops, des Netzwerks Awin oder von Amazon.
 
 ## 3. Hosting, Auslieferung über Cloudflare und Server-Logfiles
 
@@ -79,7 +79,7 @@ Dabei werden die Angaben des Absenders verarbeitet. Mit Postflex besteht ein Ver
 Auftragsverarbeitung nach Art. 28 DSGVO.
 Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (Erreichbarkeit unter einer ladungsfähigen Anschrift).
 
-## 6. Affiliate-Links (Partnerprogramme über Awin)
+## 6. Affiliate-Links (Partnerprogramme über Awin und Amazon)
 
 Diese Website nimmt an Partnerprogrammen von Online-Shops für Gartensaunen und Fasssaunen teil. Die Programme laufen über das
 Affiliate-Netzwerk der AWIN AG mit Sitz in Berlin. Beteiligte Shops (sobald das jeweilige Programm freigeschaltet ist):
@@ -92,6 +92,12 @@ Erst wenn du auf einen Link klickst, wirst du über Awin zum Shop weitergeleitet
 erkennen, dass du über diese Website gekommen bist, um die Provision zuzuordnen (Cookie-Laufzeit in der Regel 30 Tage).
 Dafür sind Awin und der jeweilige Shop verantwortlich. Details stehen in der
 [Datenschutzerklärung von Awin](https://www.awin.com/de/datenschutzerklarung) und in der des Shops.
+
+**Amazon-Partnerprogramm:** Diese Website nimmt außerdem am Partnerprogramm der Amazon Europe Core S.à r.l. teil.
+Als Amazon-Partner verdiene ich an qualifizierten Verkäufen. Auch hier gilt: Auf dieser Website werden keine Daten an Amazon
+übertragen und keine Cookies gesetzt, Produktbilder werden nicht von Amazon-Servern geladen. Erst nach deinem Klick auf einen
+Amazon-Link kann Amazon Cookies setzen, um die Provision zuzuordnen. Dafür ist Amazon verantwortlich. Details stehen in der
+Datenschutzerklärung von Amazon (auf amazon.de ganz unten unter „Datenschutzerklärung“).
 
 ## 7. YouTube-Videos
 

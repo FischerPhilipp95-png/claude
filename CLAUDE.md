@@ -90,8 +90,9 @@ stehen in `src/stromtarife.ts` (Feld `link`, sonst Anbieter-Website). Zahlen dor
 
 gartensaunadoktor.de (Stichwort „Sauna-Website“, seit 5.11.2026, Briefing in `sauna/briefing.md`, Keywords in `sauna/keywords.csv`): vier Bereiche in
 `src/themen.ts` (Kaufen, Fasssauna, Planung & Recht, Kosten & Technik), Farben Tanne `#1f4a3a` und Birke `#e8d9b5` (`sauna/site/DESIGN.md`).
-Kein Amazon: Affiliate-Links kommen aus Awin-Partnerprogrammen der Sauna-Shops und stehen nur in `src/affiliate-links.ts`
-(bis zur Freischaltung Platzhalter `#AFFILIATE-<shop>-<produkt>`, im Browser rot gestrichelt). Beiträge zum Baurecht bekommen
+Saunen und Fasssaunen verlinken auf Awin-Partnerprogramme der Sauna-Shops (nur in `src/affiliate-links.ts`,
+bis zur Freischaltung Platzhalter `#AFFILIATE-<shop>-<produkt>`, im Browser rot gestrichelt). Amazon (seit 6.11.2026, Tag in `src/site.ts`)
+nur für Zubehör und Infrarotkabinen, Produkte in `src/produkte.ts`, Box `AmazonProdukt.astro`, in `Material.astro` per `amazon: <id>`. Beiträge zum Baurecht bekommen
 `rechtshinweis: true` (Kasten „keine Rechtsberatung“), Quelle und Stand je Bundesland sind Pflicht. Keine erfundenen Tests, Preise oder Bewertungen.
 Reihenfolge laut Briefing: Grundgerüst, Artikel 1–4, Stromkosten-Rechner, Artikel 5–8, Baugenehmigungstabelle, Artikel 9–16, ab Monat 4 Artikel 17–20.
 

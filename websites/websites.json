@@ -69,7 +69,7 @@
    "sftp_user": "SAUNA_SFTP_USER",
    "sftp_passwort": "SAUNA_SFTP_PASSWORD",
    "ziel_variable": "SAUNA_SFTP_ZIEL",
-   "amazon_tag": "",
+   "amazon_tag": "rechn24-21",
    "min_seiten": 8,
    "cron": "7 4 * * *",
    "live_check": [

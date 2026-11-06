@@ -1,0 +1,16 @@
+---
+// Ein Amazon-Produkt aus src/produkte.ts: Name, wofür, belegte Daten, Hinweis, Button. Keine Preise, keine Amazon-Bilder.
+import { PRODUKTE, amazonProdukt, type ProduktId } from '../produkte';
+import Icon from './Icon.astro';
+interface Props { id: ProduktId; button?: string }
+const { id, button = 'Preis bei Amazon ansehen' } = Astro.props;
+const p = PRODUKTE[id];
+---
+<aside class="product" aria-label={`Produkt: ${p.name}`}>
+  <p class="product-title"><Icon name="package" size={18} /> {p.name}</p>
+  <p>{p.kurz}</p>
+  {p.daten && <ul>{p.daten.map((d) => <li>{d}</li>)}</ul>}
+  {p.passt && <p class="small"><strong>Wichtig:</strong> {p.passt}</p>}
+  <a class="btn" data-pagefind-ignore href={amazonProdukt(p.asin)} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> {button}*</a>
+  <p class="small" data-pagefind-ignore>*Affiliate-Link zu Amazon. Als Amazon-Partner verdiene ich an qualifizierten Verkäufen, für dich ändert sich am Preis nichts.</p>
+</aside>

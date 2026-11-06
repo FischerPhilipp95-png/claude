@@ -1,13 +1,14 @@
 ---
 // „Das brauchst du“: Liste direkt unter der kurzen Antwort (Werkzeug, Material, Zubehör für Aufbau oder Pflege).
-// Jede Zeile: Name, wofür, optional Kaufbutton zu einem Partnershop (shop + produkt aus src/affiliate-links.ts).
+// Jede Zeile: Name, wofür, optional Kaufbutton zu einem Partnershop (shop + produkt aus src/affiliate-links.ts) oder zu Amazon (amazon: Id aus src/produkte.ts).
 // „imLieferumfang: true“ heißt: liegt dem Bausatz bei, dann steht statt des Buttons ein Hinweis. Keine Preise, keine Shop-Bilder.
 import { shopLink, istPlatzhalter } from '../affiliate-links';
+import { PRODUKTE, amazonProdukt, type ProduktId } from '../produkte';
 import Icon from './Icon.astro';
-interface Item { name: string; warum: string; shop?: string; produkt?: string; imLieferumfang?: boolean }
+interface Item { name: string; warum: string; shop?: string; produkt?: string; amazon?: ProduktId; imLieferumfang?: boolean }
 interface Props { items: Item[] }
 const { items } = Astro.props;
-const link = (i: Item) => (i.shop ? shopLink(i.shop, i.produkt) : undefined);
+const link = (i: Item) => (i.amazon ? amazonProdukt(PRODUKTE[i.amazon].asin) : i.shop ? shopLink(i.shop, i.produkt) : undefined);
 ---
 <ul class="material" data-pagefind-ignore>
   {items.map((i) => (
@@ -15,8 +16,8 @@ const link = (i: Item) => (i.shop ? shopLink(i.shop, i.produkt) : undefined);
       <span><span class="material-name">{i.name}</span><span class="material-warum">{i.warum}</span></span>
       {i.imLieferumfang
         ? <span class="material-im-karton"><Icon name="package-check" size={16} /> liegt dem Bausatz bei</span>
-        : link(i) && <a class="btn btn-sm" href={link(i)} rel="sponsored nofollow noopener" target="_blank" data-affiliate={istPlatzhalter(link(i)!) ? 'offen' : undefined}><Icon name="shopping-cart" size={16} /> Zum Shop*</a>}
+        : link(i) && <a class="btn btn-sm" href={link(i)} rel="sponsored nofollow noopener" target="_blank" data-affiliate={istPlatzhalter(link(i)!) ? 'offen' : undefined}><Icon name="shopping-cart" size={16} /> {i.amazon ? 'Bei Amazon*' : 'Zum Shop*'}</a>}
     </li>
   ))}
 </ul>
-{items.some((i) => !i.imLieferumfang && link(i)) && <p class="material-note" data-pagefind-ignore>*Affiliate-Links zu Partnershops. Kaufst du darüber, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.</p>}
+{items.some((i) => !i.imLieferumfang && link(i)) && <p class="material-note" data-pagefind-ignore>*Affiliate-Links zu Partnershops oder Amazon (als Amazon-Partner verdiene ich an qualifizierten Verkäufen). Kaufst du darüber, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.</p>}

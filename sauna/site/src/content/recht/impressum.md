@@ -27,7 +27,8 @@ Emsdettener Straße 10\
 ## Hinweis zu Affiliate-Links
 
 Links, die mit einem Sternchen (*) oder „Anzeige“ gekennzeichnet sind, sind Affiliate-Links.
-Sie führen zu Partnershops für Gartensaunen und Fasssaunen (Partnerprogramme über das Netzwerk Awin).
+Sie führen zu Partnershops für Gartensaunen und Fasssaunen (Partnerprogramme über das Netzwerk Awin) oder zu Amazon.
+Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.
 Kaufst du darüber ein, erhalte ich eine Provision. Für dich ändert sich am Preis nichts.
 Mehr dazu unter [Transparenz & Werbung](/werbung/).
 
