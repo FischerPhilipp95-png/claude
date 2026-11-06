@@ -11,7 +11,7 @@ const artikel = defineCollection({
     description: z.string().max(160),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    thema: z.enum(['Kaufen', 'Fasssauna', 'Planung', 'Kosten']),
+    thema: z.enum(['Kaufen', 'Fasssauna', 'Planung', 'Kosten', 'Zubehoer']),
     // Prüfprotokoll: wann und womit der Beitrag zuletzt geprüft wurde (Bericht in sauna/recherche/<slug>/pruefbericht.md).
     pruefung: z.object({
       datum: z.coerce.date(),

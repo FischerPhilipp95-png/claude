@@ -814,3 +814,11 @@ a[data-affiliate="offen"] { outline: 2px dashed #b8322f; outline-offset: 2px; }
 .start-foto figcaption { font-size: 0.72rem; color: var(--muted); margin-top: 8px; }
 @media (min-width: 900px) { .tiles-bereiche.tiles-foto { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .hero-nachweis { font-size: 0.72rem; color: var(--muted); margin-top: 6px; }
+
+/* Bereich „Öfen & Zubehör“: Amazon-Produkte als Raster */
+.produkte h3 { margin-top: 1.6em; }
+.produkt-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 24px; }
+.produkt-raster .product { margin: 1em 0; display: flex; flex-direction: column; }
+.produkt-raster .product .btn { align-self: flex-start; margin-top: auto; }
+/* Fünf Bereiche: auf breiten Bildschirmen alle in einer Reihe */
+@media (min-width: 1100px) { .tiles-bereiche { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 36px 20px; } }

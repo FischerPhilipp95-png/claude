@@ -1,4 +1,4 @@
-// Vier Bereiche der Seite (Briefing Abschnitt 4): zwei Kaufbereiche, Planung & Recht, Kosten & Technik. Jede Themenseite ist die Hauptseite
+// Fünf Bereiche der Seite (Briefing Abschnitt 4 plus „Öfen & Zubehör“ seit 6.11.2026 für Amazon-Produkte): zwei Kaufbereiche, Planung & Recht, Kosten & Technik, Öfen & Zubehör. Jede Themenseite ist die Hauptseite
 // ihres Bereichs und sammelt die Unterseiten („Hub & Spoke“). farbe: Akzent für Titelbilder, Icons und Chips. icon: Name aus lucide-static.
 // bild: Alt-Text des Bereichsfotos /bilder/bereiche/<slug>.webp (960 px) und <slug>-klein.webp (480 px), KI-generiert.
 // Neuer Bereich: hier eintragen und in src/content.config.ts beim Feld „thema“ ergänzen.
@@ -11,5 +11,7 @@ export const THEMEN = {
     intro: 'Baugenehmigung nach Bundesland, Holzofen und Schornstein, Abstand zum Nachbarn, Fundament und Aufbau: was vor dem Kauf geklärt sein muss.' },
   Kosten: { slug: 'kosten-technik', titel: 'Kosten & Technik', icon: 'flame', farbe: '#2f855a', nav: 'Kosten & Technik', bild: 'Elektro-Saunaofen mit Saunasteinen und Holzbänken in einer kleinen Saunakabine',
     intro: 'Was eine Gartensauna kostet: Anschaffung, Strom je Saunagang, Holzofen oder Elektroofen, Unterhalt. Mit Stromkosten-Rechner.' },
+  Zubehoer: { slug: 'oefen-zubehoer', titel: 'Öfen & Zubehör', icon: 'package', farbe: '#8c5a3c', nav: 'Öfen & Zubehör', bild: 'Elektro-Saunaofen aus Edelstahl mit Saunasteinen an der Wand einer hellen Saunakabine, daneben ein Bedienteil',
+    intro: 'Holzofen oder Elektroofen, Saunasteine, Thermometer, Aufguss und Infrarotstrahler: was in die Gartensauna gehört, mit Herstellerdaten und ohne erfundene Tests.' },
 } as const;
 export type Thema = keyof typeof THEMEN;

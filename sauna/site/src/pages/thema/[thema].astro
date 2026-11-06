@@ -7,6 +7,8 @@ import Bild from '../../components/Bild.astro';
 import { THEMEN } from '../../themen';
 import { SITE } from '../../site';
 import { RECHNER } from '../../rechner';
+import { PRODUKTE, GRUPPEN, type Gruppe, type ProduktId } from '../../produkte';
+import AmazonProdukt from '../../components/AmazonProdukt.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('artikel', ({ data }) => !data.entwurf);
@@ -17,6 +19,10 @@ export async function getStaticPaths() {
 const { name, t, posts } = Astro.props;
 const liste = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const rechner = RECHNER.filter((r) => r.thema === name);
+// Bereich „Öfen & Zubehör“: alle Amazon-Produkte aus src/produkte.ts, nach Gruppen.
+const produktGruppen = name === 'Zubehoer'
+  ? (Object.keys(GRUPPEN) as Gruppe[]).map((g) => ({ g, titel: GRUPPEN[g], ids: (Object.keys(PRODUKTE) as ProduktId[]).filter((id) => PRODUKTE[id].gruppe === g) })).filter((x) => x.ids.length > 0)
+  : [];
 const jsonLd = [{
   '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${t.titel}: Ratgeber`,
   url: `${SITE.url}/thema/${t.slug}/`, inLanguage: 'de-DE',
@@ -39,6 +45,20 @@ const jsonLd = [{
           <ul class="cards">{liste.map((p) => <ArtikelKarte post={p} />)}</ul>
         </section>
       : <p>Die Ratgeber zu diesem Bereich sind in Arbeit. Schau in der <a href="/artikel/">Übersicht aller Ratgeber</a> nach, was schon da ist.</p>}
+    {produktGruppen.length > 0 && (
+      <section aria-labelledby="produkte-h" class="produkte">
+        <h2 class="section-h" id="produkte-h">Bei Amazon</h2>
+        <p class="ad-note" data-pagefind-ignore><strong>Anzeige:</strong> Die Buttons sind Affiliate-Links zu Amazon (mit * markiert). Als Amazon-Partner verdiene ich
+        an qualifizierten Verkäufen, für dich ändert sich am Preis nichts. Wir haben die Produkte nicht getestet. Die Angaben stammen von Herstellern
+        und Händlern, Preise siehst du direkt bei Amazon. <a href="/werbung/">Mehr dazu</a></p>
+        {produktGruppen.map(({ g, titel, ids }) => (
+          <>
+            <h3 id={`gruppe-${g}`}>{titel}</h3>
+            <div class="produkt-raster">{ids.map((id) => <AmazonProdukt id={id} />)}</div>
+          </>
+        ))}
+      </section>
+    )}
     {rechner.length > 0 && (
       <section aria-labelledby="rechner-h">
         <h2 class="section-h" id="rechner-h">Rechner</h2>
