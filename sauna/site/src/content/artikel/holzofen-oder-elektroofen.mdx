@@ -8,7 +8,7 @@ thema: Kosten
 bild: /bilder/fotos/holzofen-oder-elektroofen.webp
 bildAlt: "Saunaraum mit schwarzem Holzofen mit Flammen links und einem Elektro-Saunaofen aus Edelstahl rechts"
 bildNachweis: "Bild: KI-generiert für den Gartensauna-Doktor"
-affiliate: false
+affiliate: true
 pruefung:
   datum: 2026-11-06
   anleitung: "Produktangaben von Saunaöfen bei Gartenhausfabrik und FasssaunaFreunde, Stiftung Warentest, 1. BImSchV, KÜO, eigene Rechner-Annahmen"
@@ -16,6 +16,8 @@ pruefung:
 import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
 import Bild from '../../components/Bild.astro';
+import AmazonProdukt from '../../components/AmazonProdukt.astro';
+import Material from '../../components/Material.astro';
 
 <Antwort>
 **Kurz gesagt:** Der **Elektroofen** ist günstiger in der Anschaffung, einfacher zu bedienen und meist ohne Baugenehmigung möglich, braucht aber
@@ -82,6 +84,27 @@ Alle Regeln im Detail: [Sauna mit Holzofen im Garten: Was ist erlaubt?](/artikel
 Was Brennholz kostet, schwankt stark nach Region, Holzart und Menge. Eine offizielle, aktuelle Statistik für Scheitholz haben wir nicht gefunden, deshalb nennen
 wir keinen Durchschnittspreis. Frag beim Brennholzhändler in deiner Nähe und rechne mit dem Verbrauch deines Ofens aus der Bedienungsanleitung.
 </Warnung>
+
+## Öfen und Zubehör bei Amazon
+
+Zwei bekannte Öfen gibt es auch bei Amazon. Beide sind für größere Gartensaunen ab etwa 8 m³ gedacht. Für eine typische Fasssauna ist
+ein kleinerer Ofen nach Herstellerangabe meist die bessere Wahl. Wir haben die Öfen nicht getestet, die Daten stammen von Harvia.
+
+<AmazonProdukt id="harvia-vega-bc90" />
+
+<AmazonProdukt id="harvia-pro-20" />
+
+Für den ersten Saunaabend brauchst du außerdem:
+
+<Material items={[
+  { name: 'Saunasteine 5 bis 10 cm', warum: 'für Elektroöfen, Menge laut Anleitung des Ofens', amazon: 'harvia-steine-5-10' },
+  { name: 'Saunasteine 10 bis 15 cm', warum: 'für Holzöfen wie den Harvia Pro 20', amazon: 'harvia-steine-10-15' },
+  { name: 'Thermo-Hygrometer', warum: 'zeigt Temperatur und Luftfeuchte in der Kabine', amazon: 'fischer-thermohygrometer' },
+  { name: 'Aufgusseimer', warum: 'Edelstahl, 4 Liter', amazon: 'eliga-aufgusseimer' },
+  { name: 'Aufgusskelle', warum: 'aus Holz, etwa 30 cm', amazon: 'eliga-kelle' },
+]} />
+
+Viele Saunaöfen und Bausätze werden schon mit Steinen geliefert. Schau vor dem Kauf in den Lieferumfang.
 
 ## Welcher Ofen passt zu dir?
 
