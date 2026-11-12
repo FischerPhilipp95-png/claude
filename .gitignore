@@ -40,3 +40,6 @@ projects/test-moneyprinter/stimme.wav
 
 # Recherche-Rohtexte (fremde Transkripte und Reddit-Texte): nur lokal auswerten, nie veröffentlichen
 kaffee/recherche/*/roh/
+
+# Zusammengesetzte Quellfilme (entstehen aus quelle/pander_teil_*)
+projects/*/quelle/*.webm
