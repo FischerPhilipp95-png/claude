@@ -790,3 +790,6 @@ p.small { max-width: 72ch; }
 .fokus-punkte { list-style: none; padding: 0; margin: 0 0 12px; }
 .fokus-punkte li { display: flex; gap: 8px; align-items: flex-start; margin: 0 0 4px; line-height: 1.45; }
 .fokus-punkte .icon { margin-top: 3px; flex: none; color: var(--akzent, var(--ink)); }
+.fokus-figur { margin: 0; max-width: 240px; }
+@media (min-width: 640px) { .fokus-figur { max-width: none; } }
+.fokus-figur figcaption { font-size: 0.75rem; color: var(--muted); margin-top: 6px; line-height: 1.35; }

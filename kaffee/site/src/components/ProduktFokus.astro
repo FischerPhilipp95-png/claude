@@ -1,18 +1,21 @@
 ---
 // Hervorgehobenes Produkt mit direktem Amazon-Link. Daten kommen aus src/produkte.ts.
-// bild: optional ein EIGENES Foto des Produkts (nie Amazon-Bilder), liegt in public/bilder/fotos/.
+// bild: optional ein eigenes Foto oder eine eigene Grafik (nie Amazon- oder Herstellerbilder). Grafiken als „Symbolbild“ kennzeichnen (nachweis).
 import Icon from './Icon.astro';
 import { PRODUKTE, amazonProdukt, type ProduktId } from '../produkte';
-interface Props { id: ProduktId; titel?: string; bild?: { src: string; alt: string }; button?: string; punkte?: string[] }
+interface Props { id: ProduktId; titel?: string; bild?: { src: string; alt: string; nachweis?: string }; button?: string; punkte?: string[] }
 const { id, titel = 'Das Produkt aus diesem Artikel', bild, button = 'Preis bei Amazon prüfen', punkte } = Astro.props;
 const p = PRODUKTE[id];
 const href = amazonProdukt(p.asin);
 ---
 <aside class:list={['fokus', { 'fokus-mit-bild': bild }]} aria-label={`${titel}: ${p.name}`} data-pagefind-ignore>
   {bild && (
-    <a class="fokus-bild" href={href} rel="sponsored nofollow noopener" target="_blank" tabindex="-1" aria-hidden="true">
-      <img src={bild.src} alt="" width="480" height="480" loading="lazy" decoding="async" />
-    </a>
+    <figure class="fokus-figur">
+      <a class="fokus-bild" href={href} rel="sponsored nofollow noopener" target="_blank" tabindex="-1" aria-hidden="true">
+        <img src={bild.src} alt="" width="480" height="480" loading="lazy" decoding="async" />
+      </a>
+      {bild.nachweis && <figcaption>{bild.nachweis}</figcaption>}
+    </figure>
   )}
   <div class="fokus-text">
     <p class="fokus-kicker"><Icon name="package" size={16} /> {titel}</p>
