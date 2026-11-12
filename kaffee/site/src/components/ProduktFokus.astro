@@ -1,16 +1,26 @@
 ---
 // Hervorgehobenes Produkt mit direktem Amazon-Link. Daten kommen aus src/produkte.ts.
+// bild: optional ein EIGENES Foto des Produkts (nie Amazon-Bilder), liegt in public/bilder/fotos/.
 import Icon from './Icon.astro';
 import { PRODUKTE, amazonProdukt, type ProduktId } from '../produkte';
-interface Props { id: ProduktId; titel?: string }
-const { id, titel = 'Das Produkt aus diesem Artikel' } = Astro.props;
+interface Props { id: ProduktId; titel?: string; bild?: { src: string; alt: string }; button?: string; punkte?: string[] }
+const { id, titel = 'Das Produkt aus diesem Artikel', bild, button = 'Preis bei Amazon prüfen', punkte } = Astro.props;
 const p = PRODUKTE[id];
+const href = amazonProdukt(p.asin);
 ---
-<aside class="fokus" aria-label={`Produkt: ${p.name}`} data-pagefind-ignore>
-  <p class="fokus-kicker"><Icon name="package" size={16} /> {titel}</p>
-  <p class="fokus-name">{p.name}</p>
-  <p class="fokus-kurz">{p.kurz}</p>
-  {'passt' in p && p.passt && <p class="fokus-passt"><Icon name="info" size={16} /> {p.passt}</p>}
-  <a class="btn" href={amazonProdukt(p.asin)} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> Bei Amazon ansehen*</a>
-  <p class="small">*Affiliate-Link. Kaufst du darüber, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.</p>
+<aside class:list={['fokus', { 'fokus-mit-bild': bild }]} aria-label={`${titel}: ${p.name}`} data-pagefind-ignore>
+  {bild && (
+    <a class="fokus-bild" href={href} rel="sponsored nofollow noopener" target="_blank" tabindex="-1" aria-hidden="true">
+      <img src={bild.src} alt="" width="480" height="480" loading="lazy" decoding="async" />
+    </a>
+  )}
+  <div class="fokus-text">
+    <p class="fokus-kicker"><Icon name="package" size={16} /> {titel}</p>
+    <p class="fokus-name">{p.name}</p>
+    <p class="fokus-kurz">{p.kurz}</p>
+    {punkte && <ul class="fokus-punkte">{punkte.map((x) => <li><Icon name="check" size={16} /> {x}</li>)}</ul>}
+    {'passt' in p && p.passt && <p class="fokus-passt"><Icon name="info" size={16} /> {p.passt}</p>}
+    <a class="btn" href={href} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> {button}*</a>
+    <p class="small">*Affiliate-Link. Kaufst du darüber, bekomme ich eine kleine Provision, für dich ändert sich am Preis nichts.</p>
+  </div>
 </aside>

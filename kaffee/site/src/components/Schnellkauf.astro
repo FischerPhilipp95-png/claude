@@ -2,8 +2,9 @@
 // Kompakter Kasten direkt nach der Antwort: „Das brauchst du“. Höchste Klickrate, weil die
 // Leser an dieser Stelle schon wissen, dass sie das Werkzeug brauchen.
 import { amazonSearch } from '../site';
+import { PRODUKTE, amazonProdukt, type ProduktId } from '../produkte';
 import Icon from './Icon.astro';
-interface Item { name: string; warum: string; suche: string }
+interface Item { name: string; warum: string; suche?: string; produkt?: ProduktId }
 interface Props { titel?: string; items: Item[] }
 const { titel = 'Das brauchst du', items } = Astro.props;
 ---
@@ -13,7 +14,7 @@ const { titel = 'Das brauchst du', items } = Astro.props;
     {items.map((i) => (
       <li>
         <span><strong>{i.name}</strong><br /><span class="small">{i.warum}</span></span>
-        <a class="btn btn-sm" href={amazonSearch(i.suche)} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> Preis prüfen*</a>
+        <a class="btn btn-sm" href={i.produkt ? amazonProdukt(PRODUKTE[i.produkt].asin) : amazonSearch(i.suche ?? i.name)} rel="sponsored nofollow noopener" target="_blank"><Icon name="shopping-cart" size={16} /> Preis prüfen*</a>
       </li>
     ))}
   </ul>

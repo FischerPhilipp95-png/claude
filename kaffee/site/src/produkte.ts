@@ -20,8 +20,8 @@ export const PRODUKTE = {
     passt: 'Laut Händlerangaben für EQ-Serie, surpresso und Siemens-Einbauvollautomaten.',
   },
   'delonghi-ecodecalk': {
-    name: "De'Longhi EcoDecalk", marke: "De'Longhi", asin: 'B008YETL18', thema: 'DeLonghi', artikel: 'delonghi-kaffeevollautomat-entkalken',
-    kurz: "Flüssiger Original-Entkalker für De'Longhi-Kaffeevollautomaten und Siebträger.",
+    name: "De'Longhi EcoDecalk 500 ml", marke: "De'Longhi", asin: 'B008YETL18', thema: 'DeLonghi', artikel: 'delonghi-kaffeevollautomat-entkalken',
+    kurz: "Flüssiger Original-Entkalker für De'Longhi-Kaffeevollautomaten und Siebträger. Die 500-ml-Flasche reicht laut Packung für 5 Entkalkungen.",
   },
   'jura-reinigungstabletten': {
     name: 'JURA 3-Phasen-Reinigungstabletten', marke: 'JURA', asin: 'B09F98MMVC', thema: 'Jura', artikel: 'jura-kaffeevollautomat-reinigen',
@@ -33,7 +33,7 @@ export const PRODUKTE = {
     passt: 'Nur für JURA-Geräte, die für CLARIS Smart ausgelegt sind. Steht in der Anleitung.',
   },
   'philips-aquaclean': {
-    name: 'Philips AquaClean CA6903', marke: 'Philips', asin: 'B074M9DZ4M', thema: 'Philips', artikel: 'philips-aquaclean-filter',
+    name: 'Philips AquaClean CA6903/22 (Doppelpack)', marke: 'Philips', asin: 'B074M9DZ4M', thema: 'Philips', artikel: 'philips-aquaclean-filter',
     kurz: 'Kalk- und Wasserfilter für Philips- und Saeco-Vollautomaten mit AquaClean.',
     passt: 'Nur für Geräte mit AquaClean-Filteranschluss.',
   },

@@ -779,3 +779,14 @@ p.small { max-width: 72ch; }
   .qs-buehne .qs-num { width: 24px; height: 24px; font-size: 0.7rem; }
   .qs-kopf { gap: 8px; }
 }
+
+/* Produktbox mit eigenem Foto: Bild links, Text rechts; auf dem Handy Bild oben */
+.fokus-mit-bild { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 640px) { .fokus-mit-bild { grid-template-columns: minmax(0, 200px) 1fr; gap: 22px; align-items: start; } }
+.fokus-text { display: flex; flex-direction: column; }
+.fokus-text .btn { align-self: flex-start; }
+.fokus-bild { display: block; border-radius: var(--radius-sm); overflow: hidden; background: var(--bg); }
+.fokus-bild img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+.fokus-punkte { list-style: none; padding: 0; margin: 0 0 12px; }
+.fokus-punkte li { display: flex; gap: 8px; align-items: flex-start; margin: 0 0 4px; line-height: 1.45; }
+.fokus-punkte .icon { margin-top: 3px; flex: none; color: var(--akzent, var(--ink)); }

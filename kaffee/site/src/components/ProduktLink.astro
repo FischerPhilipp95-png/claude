@@ -1,0 +1,7 @@
+---
+// Direkter Amazon-Link im Fließtext zu einem Produkt aus src/produkte.ts, mit Sternchen als Kennzeichnung.
+import { PRODUKTE, amazonProdukt, type ProduktId } from '../produkte';
+interface Props { id: ProduktId }
+const { id } = Astro.props;
+---
+<a href={amazonProdukt(PRODUKTE[id].asin)} rel="sponsored nofollow noopener" target="_blank"><slot />*</a>

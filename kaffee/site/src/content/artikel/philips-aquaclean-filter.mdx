@@ -1,9 +1,9 @@
 ---
 title: "Philips AquaClean einsetzen, aktivieren und wechseln: Anleitung"
 kurztitel: "AquaClean einsetzen und wechseln"
-description: "AquaClean-Filter bei Philips und Saeco in 5 Schritten einsetzen, aktivieren und wechseln: wann der Wechsel fällig ist, was die Lampe sagt, welcher Filter passt."
+description: "AquaClean-Filter bei Philips und Saeco in 5 Schritten einsetzen, aktivieren (Taste oder Menü) und wechseln: wann der Wechsel fällig ist, welcher Filter passt."
 pubDate: 2026-10-01
-updatedDate: 2026-11-04
+updatedDate: 2026-11-12
 icon: filter
 thema: Philips
 bild: /bilder/titel/philips-aquaclean-filter.webp
@@ -17,6 +17,8 @@ import Ablauf from '../../components/Ablauf.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import Material from '../../components/Material.astro';
 import Kennzahl from '../../components/Kennzahl.astro';
+import ProduktFokus from '../../components/ProduktFokus.astro';
+import ProduktLink from '../../components/ProduktLink.astro';
 
 <Antwort>
 **Kurz gesagt:** Den AquaClean-Filter etwa **5 Sekunden schütteln**, dann **kopfüber in kaltes Wasser** halten, bis keine Luftblasen mehr
@@ -24,6 +26,12 @@ kommen. Anschließend **senkrecht in den Anschluss im Wassertank drücken** und 
 Maschine es meldet. Philips gibt an, dass du so **bis zu 5.000 Tassen ohne Entkalken** auskommst, wenn du den Filter jedes Mal
 rechtzeitig tauschst.
 </Antwort>
+
+<ProduktFokus id="philips-aquaclean" titel="Der Original-Filter" punkte={[
+  'Laut Philips bis zu 5.000 Tassen ohne Entkalken, wenn du jeden Filter rechtzeitig wechselst',
+  'Passt in Philips- und Saeco-Vollautomaten mit AquaClean-Anschluss',
+  'Zwei Filter in der Packung: Der nächste Wechsel liegt schon bereit',
+]} />
 
 ## Das brauchst du
 
@@ -45,7 +53,7 @@ rechtzeitig tauschst.
   ]}
 />
 
-1. **Schütteln:** Den neuen Filter etwa fünf Sekunden schütteln.
+1. **Schütteln:** Den neuen Filter (<ProduktLink id="philips-aquaclean">AquaClean im Doppelpack bei Amazon</ProduktLink>) etwa fünf Sekunden schütteln.
 2. **Entlüften:** Kopfüber in ein Gefäß mit kaltem Wasser halten, bis **keine Luftblasen** mehr aufsteigen. Luft im Filter kann
    später Probleme beim Wasserfluss machen.
 3. **Einsetzen:** Wassertank herausnehmen und leeren. Filter **senkrecht** auf den Anschluss im Tank setzen und **bis zum Anschlag**
@@ -59,18 +67,16 @@ Philips empfiehlt, die Maschine **zu entkalken, bevor** du zum ersten Mal einen 
 ohne Filter lief. Sonst arbeitet der Filter gegen Kalk, der schon in der Maschine sitzt.
 </Warnung>
 
-## Lampe leuchtet blau, blinkt orange oder ist aus: was bedeutet das?
-
-Bei Philips-Modellen mit **AquaClean-Taste** (zum Beispiel der Serien 1200 und 2200) zeigt die Lampe den Zustand des Filters, bei
-Modellen mit Display ein Filtersymbol. Kurz: **blau** heißt alles in Ordnung, **orange blinkend** heißt Filter verbraucht, jetzt
-wechseln, **orange erloschen** heißt Wechsel verpasst, erst entkalken. Alle Zustände mit dem, was du jeweils tun musst, stehen im
-Artikel [AquaClean leuchtet blau oder blinkt orange: Bedeutung, was tun](/artikel/philips-aquaclean-leuchtet-blau/).
+## AquaClean aktivieren
 
 **Aktivieren mit Taste:** Nach dem Einsetzen die **AquaClean-Taste 3 Sekunden gedrückt halten**, bis die Lampen blinken. Eine Schale
 unter den Heißwasserauslauf stellen und **Start** drücken, die Maschine gibt etwas warmes Wasser aus. Danach leuchtet die Lampe
 **blau**.
 
 **Aktivieren mit Display:** Bei Modellen mit Display bestätigst du den neuen Filter im Menü unter **„AquaClean“**.
+
+Was die Farbe der Lampe bedeutet (blau, orange blinkend, aus), erklären wir in einem eigenen Artikel:
+[AquaClean leuchtet blau oder blinkt orange](/artikel/philips-aquaclean-leuchtet-blau/).
 
 ## Wann wechseln?
 
@@ -84,7 +90,7 @@ Blinkt die Lampe schon orange, ist der Wechsel fällig. Ein Vorrat spart den Weg
 dazu gibt es Nachbaufilter für den AquaClean-Anschluss.
 
 <Schnellkauf titel="Nachschub für den Filterwechsel" items={[
-  { name: 'Philips AquaClean CA6903/22 Doppelpack', warum: 'Zwei Originalfilter, bei täglichem Gebrauch etwa ein halbes Jahr. Nur mit dem Original gilt die Philips-Angabe „bis zu 5.000 Tassen ohne Entkalken“.', suche: 'Philips AquaClean CA6903/22 Doppelpack' },
+  { name: 'Philips AquaClean CA6903/22 Doppelpack', warum: 'Zwei Originalfilter, bei täglichem Gebrauch etwa ein halbes Jahr. Nur mit dem Original gilt die Philips-Angabe „bis zu 5.000 Tassen ohne Entkalken“.', produkt: 'philips-aquaclean' },
   { name: 'Nachbaufilter für den AquaClean-Anschluss', warum: 'Günstiger, oft im 3er- oder 4er-Pack. Auf „kompatibel mit AquaClean“ achten; die Aktivierung an der Maschine läuft genauso.', suche: 'Wasserfilter kompatibel Philips AquaClean' },
 ]} />
 
@@ -110,6 +116,11 @@ Steht trotzdem eine Entkalkung an: [Philips Kaffeevollautomat entkalken](/artike
 
 Allgemeines zum Entkalken für alle Marken:
 [Kaffeevollautomat entkalken: richtig, und warum nicht mit Essig](/artikel/kaffeevollautomat-entkalken/).
+
+<ProduktFokus id="philips-aquaclean" titel="Für den nächsten Filterwechsel" punkte={[
+  'Original von Philips, auch für Saeco freigegeben',
+  'Spätestens nach etwa drei Monaten wechseln, auch bei wenig Kaffee',
+]} />
 
 ## Häufige Fragen
 

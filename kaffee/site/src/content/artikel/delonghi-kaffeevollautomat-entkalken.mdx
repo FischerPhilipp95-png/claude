@@ -23,18 +23,26 @@ import Ablauf from '../../components/Ablauf.astro';
 import Bild from '../../components/Bild.astro';
 import Material from '../../components/Material.astro';
 import Kennzahl from '../../components/Kennzahl.astro';
+import ProduktFokus from '../../components/ProduktFokus.astro';
+import ProduktLink from '../../components/ProduktLink.astro';
 
 <Antwort>
 **Kurz gesagt:** Bei vielen De'Longhi-Vollautomaten, etwa der Magnifica-Reihe, füllst du **EcoDecalk bis zur Markierung „A“** im
-Wassertank (eine Flasche, **100 ml**) und gießt **Wasser bis zur Markierung „B“** auf (**1 Liter**), nicht bis MAX. Vorher den
+Wassertank (**100 ml**) und gießt **Wasser bis zur Markierung „B“** auf (**1 Liter**), nicht bis MAX. Vorher den
 **Wasserfilter herausnehmen**. Dann das **Entkalkungsprogramm** starten, je nach Modell über das Menü oder durch langes Drücken der
 Entkalkungstaste. Danach spülst du mit frischem Wasser **bis MAX**. Alles zusammen dauert etwa **45 Minuten**.
 </Antwort>
 
+<ProduktFokus id="delonghi-ecodecalk" titel="Der Entkalker von De’Longhi" punkte={[
+  'Von De’Longhi für seine Kaffeevollautomaten vorgesehen',
+  '100 ml je Entkalkung, die 500-ml-Flasche reicht laut Packung für 5 Durchgänge',
+  'Ohne Essig und Zitronensäure, die Dichtungen angreifen können',
+]} />
+
 ## Das brauchst du
 
 <Material items={[
-  { name: "De’Longhi EcoDecalk", warum: "Eine Flasche (100 ml) bis Markierung A, dann Wasser bis B. Von De’Longhi vorgeschrieben.", produkt: "delonghi-ecodecalk" },
+  { name: "De’Longhi EcoDecalk", warum: "100 ml bis Markierung A, dann Wasser bis B. Von De’Longhi vorgeschrieben. Die 500-ml-Flasche reicht für 5 Entkalkungen.", produkt: "delonghi-ecodecalk" },
   { name: "Großes Gefäß", warum: "Mindestens 2 Liter, unter Kaffeeauslauf und Dampf- bzw. Heißwasserauslauf zugleich." },
   { name: "Wasserhärte-Teststreifen", warum: "Damit stellst du die Wasserhärte ein, dann meldet sich die Maschine zum richtigen Zeitpunkt.", imKarton: true },
 ]} />
@@ -47,7 +55,7 @@ Entkalkungstaste. Danach spülst du mit frischem Wasser **bis MAX**. Alles zusam
 |---|---|---|---|
 | Vollautomaten wie Magnifica S, Magnifica Evo, Dinamica | **100 ml** (bis Markierung A) | **1 Liter** (bis Markierung B) | De’Longhi-Anleitungen ECAM22.110 und ECAM29X |
 
-Das sind **eine 100-ml-Flasche auf einen Liter Wasser**. Mehr Entkalker bringt nichts, weniger Wasser auch nicht: Die Maschine ist
+Das sind **100 ml EcoDecalk auf einen Liter Wasser**, bei der <ProduktLink id="delonghi-ecodecalk">500-ml-Flasche EcoDecalk</ProduktLink> also ein Fünftel. Mehr Entkalker bringt nichts, weniger Wasser auch nicht: Die Maschine ist
 auf genau diese Menge eingestellt. Bei Siebträgern wie der Dedica und bei Kapselgeräten weicht die Menge ab, dort gilt die Anleitung
 des Geräts: [Dedica entkalken](/artikel/delonghi-dedica-entkalken/).
 
@@ -66,7 +74,7 @@ des Geräts: [Dedica entkalken](/artikel/delonghi-dedica-entkalken/).
 
 1. **Abtropfschale und Kaffeesatzbehälter leeren** und wieder einsetzen.
 2. **Wassertank leeren** und den **Wasserfilter herausnehmen**, falls einer drin ist.
-3. **EcoDecalk bis zur Markierung „A“** einfüllen (sie ist hinten auf der Tankwand aufgedruckt, eine 100-ml-Flasche reicht genau).
+3. **EcoDecalk bis zur Markierung „A“** einfüllen (sie ist hinten auf der Tankwand aufgedruckt, das sind 100 ml).
    Dann mit Wasser bis zur **Markierung „B“** auffüllen, das ist **1 Liter**. Tank einsetzen.
 4. **Gefäß mit mindestens 2 Litern** unter Kaffeeauslauf und Dampf- bzw. Heißwasserauslauf stellen.
 5. **Programm starten.** Bei Geräten mit Display steht es im Menü unter „Entkalkung“. Bei der **Magnifica S** hältst du die
@@ -100,6 +108,11 @@ Die Maschine **meldet sich selbst**, sobald es Zeit ist. Damit das passt, muss d
 liegt meist bei. Mit einem aktivierten **Wasserfilter** musst du seltener entkalken.
 
 Mehr Hintergrund für alle Marken: [Kaffeevollautomat entkalken: richtig, und warum nicht mit Essig](/artikel/kaffeevollautomat-entkalken/).
+
+<ProduktFokus id="delonghi-ecodecalk" titel="Vorrat für die nächste Entkalkung" punkte={[
+  'Die Maschine meldet sich, sobald es wieder Zeit ist',
+  'Eine Flasche reicht für 5 Entkalkungen',
+]} />
 
 ## Häufige Fragen
 
