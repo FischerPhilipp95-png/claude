@@ -1,19 +1,23 @@
-# Shotlist Short 1: „So entstand 1922 ein Sessel“
+# Shotlist Short 1: „1922: So baute man Möbel“
 
-Ziel etwa 24 s, 1080x1920, 60 fps. Zeiten = Stelle im Quellfilm (Akt 1).
+Gebaut am 13.11.2026, 22,6 s, 1080x1920, 60 fps. Maßgeblich sind `SHOTS` in `build.py` und `vo_script.json`;
+die Länge jeder Einstellung folgt dem Sprechersatz. Zeiten = Stelle im Quellfilm (Akt 1).
 
-| # | Dauer | Quelle | Bild | Label | Sprecher |
-|---|---|---|---|---|---|
-| 1 | 2,5 s | 0:02–0:12 | Hände setzen Sprungfedern in einen Sitzrahmen | „1922 · SO ENTSTAND EIN SESSEL“ | „1922. So entsteht ein Sessel, ganz ohne Akkuschrauber.“ |
-| 2 | 3,0 s | 1:11–1:15 | Holzfäller schlägt die Wurzeln einer Eiche frei | 1 EICHE FÄLLEN | „Erst fällt die Eiche. Von Hand.“ |
-| 3 | 3,0 s | 0:57–1:05 | Männer rollen einen Stamm auf den Stapel | 2 STÄMME STAPELN | „Die Stämme werden mit Muskelkraft gestapelt …“ |
-| 4 | 2,5 s | 1:26–1:40 | Lore mit gesägten Bohlen rollt aufs Werksgelände | 3 INS WERK | „… und kommen als Bohlen auf Schienen ins Werk.“ |
-| 5 | 2,5 s | 7:29–7:34 | Eichenklotz an der Bandsäge, Hände führen | 4 ZUSÄGEN | „An der Bandsäge entsteht die Form.“ |
-| 6 | 3,0 s | 7:35–7:50 | Zwei Männer spannen ein Stuhlgestell in Bodenklemmen | 5 VERLEIMEN | „Das Gestell wird verleimt und eingespannt, bis der Leim trocken ist.“ |
-| 7 | 2,5 s | 0:06–0:14 | Sprungfedern, näher | 6 FEDERN | „Dann die Federn. Jede einzeln.“ |
-| 8 | 3,0 s | 4:10–4:30 | Polsterei, Sessel wird gefüllt und bezogen | 7 POLSTERN | „Zum Schluss Polster und Stoff.“ |
-| 9 | 2,0 s | 4:18 (Standbild-Zoom) | Fertige Sessel in der Halle | „HEUTE SCHNELLER. ABER BESSER?“ | „Heute geht das schneller. Aber besser?“ |
+| # | Quelle | Bild | Label | Sprecher |
+|---|---|---|---|---|
+| Hook a | 7:31 | Bandsäge, bloße Hand schiebt den Eichenklotz | OHNE HANDSCHUHE / OHNE SCHUTZ | „1922. Keine Handschuhe. Kein Schutz an der Säge.“ |
+| Hook b | 0:03 | Sprungfedern im Sitzrahmen | SO ENTSTAND / EIN SESSEL | „So entstand ein Sessel.“ |
+| 1 | 1:12 | Holzfäller an der Eiche | 1 EICHE FÄLLEN | „Am Anfang steht eine Eiche. Gefällt wird von Hand.“ |
+| 2 | 0:58 | Männer rollen Stamm auf den Stapel | 2 STAPELN | „Die Stämme stapeln die Männer mit reiner Muskelkraft.“ |
+| 3 | 1:39 | Lore mit Bohlen wird geschoben | 3 INS WERK | „Auf Schienen rollt das Holz ins Werk.“ |
+| 4 | 7:34 | Bandsäge, Arbeiter im Bild | 4 ZUSÄGEN | „An der Bandsäge bekommt es seine Form.“ |
+| 5 | 7:42 | Stuhlgestell in Bodenklemmen | 5 VERLEIMEN | „Das Gestell wird verleimt und fest eingespannt.“ |
+| 6 | 0:08 | Sprungfedern, Arbeiter | 6 FEDERN SETZEN | „Dann die Sprungfedern. Jede einzeln.“ |
+| 7 | 4:24 | Polsterer mit Füllung | 7 POLSTERN | „Zum Schluss wird gepolstert.“ |
+| Ende | 4:10 | Halle voller Sessel | HÄTTEST DU DAS / DURCHGEHALTEN? | „Hättest du das durchgehalten?“ |
 
-Offen:
-- Shot 9 wäre mit dem Polieren des Tischbeins (8:57) schöner, das liegt im fehlenden Teil `ad`.
-- Weitere Shorts aus demselben Film: Holzschnitzer mit Bart (5:00), Weberei (6:14), Späne-Absaugung der Fabrik (2:24, 8:00).
+Für mehr Reichweite gegenüber dem ersten Entwurf geändert: Hook mit dem auffälligsten Bild (Hand am Sägeblatt),
+Fortschrittsbalken mit 7 Schritten, Bild größer (4:5 statt Quadrat), kürzere Sätze, Schlussfrage als Kommentar-Anlass.
+
+Weitere Shorts aus demselben Film: Holzschnitzer mit Bart (5:00), Weberei (6:14), Späne-Absaugung (2:24, 8:00);
+aus dem fehlenden Teil `ad`: vier Tischbeine gleichzeitig schnitzen (8:29), Polieren (8:57).

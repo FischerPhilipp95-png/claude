@@ -43,3 +43,4 @@ kaffee/recherche/*/roh/
 
 # Zusammengesetzte Quellfilme (entstehen aus quelle/pander_teil_*)
 projects/*/quelle/*.webm
+projects/*/out/tmp/

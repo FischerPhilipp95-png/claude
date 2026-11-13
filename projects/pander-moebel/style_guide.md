@@ -10,7 +10,7 @@ keine Kolorierung, keine KI-Hochskalierung, kein künstliches „Alter-Film“-O
 
 ## Bildaufbau (1080x1920)
 - Hintergrund: fast schwarz `#0d0d0d`.
-- Film als Quadrat 1080x1080 (Ausschnitt 576x576 aus der Quelle), y = 300 bis 1380. Einheitlich entsättigt
+- Film im Format 4:5, 1080x1350 (Ausschnitt 461x576 aus der Quelle), y = 230 bis 1580, darüber ein Fortschrittsbalken mit 7 Segmenten. Einheitlich entsättigt
   auf Schwarzweiß mit leicht warmem Ton, damit graue und blaue Szenen zusammenpassen.
 - Oben (y 90–270): Jahreszahl-Marke „1922“ gelb `#ffd400` auf Schwarz, daneben das Thema in Weiß.
 - Schritt-Label: im unteren Bilddrittel, über y = 1440 bleibt alles Wichtige. Unter 1440 nur Kanal-Avatar und Name, klein.
@@ -21,7 +21,7 @@ keine Kolorierung, keine KI-Hochskalierung, kein künstliches „Alter-Film“-O
 - Quellenzeile klein in Inter/Systemschrift, 60 % Weiß: „Film: W. Mullens / Haghefilm, 1922, gemeinfrei“.
 
 ## Schnitt und Tempo
-- Harte Schnitte, keine Blenden. Shot-Länge 2,0–3,5 s, Hook 1,5 s.
+- Harte Schnitte, keine Blenden. Shot-Länge 1,4–2,9 s. Hook: das auffälligste Bild zuerst.
 - Schnitte fallen auf den Satzanfang des Sprechers, nicht auf Musik-Beats.
 - Film läuft in Originalgeschwindigkeit; nur bei sehr langsamen Szenen bis 1,25-fach.
 
@@ -32,8 +32,8 @@ keine Kolorierung, keine KI-Hochskalierung, kein künstliches „Alter-Film“-O
 
 ## Ton
 - Sprecher: Piper `de_DE-thorsten-high`.
-- Musik: eigene, ruhige Klavier-/Zupffigur aus `music.py`, etwa 90 BPM, leise unter der Stimme.
-- Geräusche sparsam (Säge, Hammer) aus `tools/sfx.mjs`, nur wo die Bewegung im Bild klar ist.
+- Musik: eigene, ruhige Zupffigur (in `build.py`), 90 BPM, leise unter der Stimme.
+- Ein kurzer Holzschlag auf jedem Schnitt, sonst keine Geräusche.
 
 ## Regeln für Aussagen
 Gesprochen wird nur, was im Bild zu sehen ist oder in der Filmbeschreibung von Beeld en Geluid steht.
