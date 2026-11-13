@@ -102,3 +102,9 @@ Neue Seite anlegen:
 3. Eintrag in `websites/websites.json`, `python3 websites/erzeugen.py`, Stichwort in die Tabelle oben.
 4. Einrichtung für den Nutzer nach `kaffee/EINRICHTUNG.md` (IONOS-Ordner, SFTP-Benutzer, Cloudflare, Secrets, PartnerNet,
    Search Console, Bing) und die offenen Punkte in `TODO-philipp.md`.
+
+## PV-Überschussladen (privat, kein Website-Projekt)
+
+Ordner `pv-laden/`: Anleitung und Konfiguration, damit der ID.4 des Nutzers nur mit PV-Überschuss lädt (Huawei SUN2000 mit Dongle,
+dé Mobile Wallbox 11 kW über Tuya, Raspberry Pi mit evcc und dem kostenlosen Gateway `de-wallbox-evcc-gateway`). Der Nutzer ist kein
+Programmierer: Schritte einzeln und in einfachen Worten erklären. Schlüssel der Wallbox nur in `gateway.env` auf dem Pi, nie im Chat oder Repo.

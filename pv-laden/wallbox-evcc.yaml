@@ -1,0 +1,47 @@
+# In evcc einfügen: Konfiguration → Wallbox hinzufügen → "Benutzerdefiniertes Gerät"
+# Kostenloser Weg über das Gateway (kein Sponsor-Token nötig).
+# Wichtig: enable und maxcurrent brauchen "method: POST", sonst passiert stillschweigend nichts.
+type: custom
+status:
+  source: http
+  uri: http://localhost:8087/status
+enabled:
+  source: http
+  uri: http://localhost:8087/enabled
+  jq: .enabled
+enable:
+  source: http
+  uri: "http://localhost:8087/enable?state={{if .enable}}true{{else}}false{{end}}"
+  method: POST
+maxcurrent:
+  source: http
+  uri: "http://localhost:8087/maxcurrent?value={{.maxcurrent}}"
+  method: POST
+power:
+  source: http
+  uri: http://localhost:8087/power
+  jq: .power
+energy:
+  source: http
+  uri: http://localhost:8087/energy
+  jq: .energy
+currents:
+  - source: http
+    uri: http://localhost:8087/phases
+    jq: .currents[0]
+  - source: http
+    uri: http://localhost:8087/phases
+    jq: .currents[1]
+  - source: http
+    uri: http://localhost:8087/phases
+    jq: .currents[2]
+voltages:
+  - source: http
+    uri: http://localhost:8087/phases
+    jq: .voltages[0]
+  - source: http
+    uri: http://localhost:8087/phases
+    jq: .voltages[1]
+  - source: http
+    uri: http://localhost:8087/phases
+    jq: .voltages[2]

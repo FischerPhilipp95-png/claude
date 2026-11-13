@@ -1,0 +1,16 @@
+# PV-Überschussladen: evcc + Gateway für die dé Mobile Wallbox
+# Start:  docker compose up -d      Stand ansehen:  docker compose logs -f
+services:
+  evcc:
+    image: evcc/evcc:latest
+    restart: unless-stopped
+    network_mode: host            # Oberfläche: http://<IP-des-Pi>:7070
+    volumes:
+      - ./evcc-daten:/root/.evcc  # Einstellungen und Ladehistorie
+
+  wallbox-gateway:
+    image: ghcr.io/vondraussen/de-wallbox-evcc-gateway:latest
+    restart: unless-stopped
+    network_mode: host            # Schnittstelle: http://localhost:8087
+    env_file:
+      - gateway.env
