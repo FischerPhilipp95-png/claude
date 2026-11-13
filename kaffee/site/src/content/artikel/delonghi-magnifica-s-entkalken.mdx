@@ -20,6 +20,7 @@ import Antwort from '../../components/Antwort.astro';
 import Warnung from '../../components/Warnung.astro';
 import Ablauf from '../../components/Ablauf.astro';
 import Material from '../../components/Material.astro';
+import ProduktFokus from '../../components/ProduktFokus.astro';
 
 <Antwort>
 **Kurz gesagt:** Maschine einschalten und warten, bis sie bereit ist. Abtropfschale und Kaffeesatzbehälter leeren, Wasserfilter
@@ -32,9 +33,14 @@ MAX**. Alles zusammen dauert etwa **45 Minuten**.
 ## Das brauchst du
 
 <Material items={[
-  { name: "De’Longhi EcoDecalk", warum: "Nur De’Longhi-Entkalker, sonst erlischt laut Anleitung die Garantie. Eine Flasche bis Markierung A.", produkt: "delonghi-ecodecalk" },
+  { name: "De’Longhi EcoDecalk", warum: "Nur De’Longhi-Entkalker, sonst erlischt laut Anleitung die Garantie. 100 ml bis Markierung A, die 500-ml-Flasche reicht für 5 Entkalkungen.", produkt: "delonghi-ecodecalk" },
   { name: "Großes Gefäß", warum: "Mindestens 2 Liter, unter Milchaufschäumer und Kaffeeauslauf zugleich." },
   { name: "Teststreifen „Total Hardness Test“", warum: "Zum Messen der Wasserhärte, damit die Maschine zum richtigen Zeitpunkt zum Entkalken auffordert.", imKarton: true },
+]} />
+
+<ProduktFokus id="delonghi-ecodecalk" titel="Der Entkalker für die Magnifica S" bild={{ src: "/bilder/fotos/delonghi-ecodecalk-flasche.webp", alt: "", nachweis: "Foto: Der Vollautomaten-Doktor" }} punkte={[
+  'Von De’Longhi für seine Kaffeevollautomaten vorgesehen',
+  '100 ml je Entkalkung, die 500-ml-Flasche reicht laut Packung für 5 Durchgänge',
 ]} />
 
 ## Wann muss die Magnifica S entkalkt werden?
@@ -62,7 +68,7 @@ Stufe 4, deshalb meldet sich eine neue Maschine oft früher als nötig.
 1. **Maschine einschalten** und warten, bis sie betriebsbereit ist.
 2. **Abtropfschale und Kaffeesatzbehälter** leeren und wieder einsetzen.
 3. **Wassertank leeren** und den **Wasserfilter** herausnehmen, falls einer drin ist.
-4. **EcoDecalk bis zur Markierung A** einfüllen (sie ist innen auf der Tankrückseite aufgedruckt und entspricht einer 100-ml-Flasche).
+4. **EcoDecalk bis zur Markierung A** einfüllen (sie ist innen auf der Tankrückseite aufgedruckt und entspricht 100 ml).
    Dann mit **Wasser bis zur Markierung B** auffüllen, das ist **1 Liter**. Tank einsetzen.
 5. **Gefäß unterstellen**, das mindestens **2 Liter** fasst, unter **Milchaufschäumer und Kaffeeauslauf** zugleich.
 
@@ -133,7 +139,7 @@ De’Longhi erlaubt nur den eigenen Entkalker. Schäden durch andere Mittel sind
 Meist wurde das Programm unterbrochen oder der Spülgang nicht beendet. Das Programm noch einmal komplett durchlaufen lassen.
 
 ### Wie viel EcoDecalk brauche ich für die Magnifica S?
-Eine 100-ml-Flasche, bis Markierung A im Tank, dazu Wasser bis Markierung B (1 Liter).
+100 ml EcoDecalk, also bis Markierung A im Tank, dazu Wasser bis Markierung B (1 Liter).
 
 ## Quellen
 
