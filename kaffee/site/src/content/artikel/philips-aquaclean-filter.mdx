@@ -17,6 +17,7 @@ import Ablauf from '../../components/Ablauf.astro';
 import Schnellkauf from '../../components/Schnellkauf.astro';
 import Material from '../../components/Material.astro';
 import Kennzahl from '../../components/Kennzahl.astro';
+import Bild from '../../components/Bild.astro';
 import ProduktFokus from '../../components/ProduktFokus.astro';
 import ProduktLink from '../../components/ProduktLink.astro';
 
@@ -27,7 +28,7 @@ Maschine es meldet. Philips gibt an, dass du so **bis zu 5.000 Tassen ohne Entka
 rechtzeitig tauschst.
 </Antwort>
 
-<ProduktFokus id="philips-aquaclean" bild={{ src: "/bilder/grafik/aquaclean-symbol.webp", alt: "", nachweis: "Symbolbild (Grafik: Der Vollautomaten-Doktor), nicht das Originalprodukt" }} titel="Der Original-Filter" punkte={[
+<ProduktFokus id="philips-aquaclean" bild={{ src: "/bilder/fotos/philips-aquaclean-verpackung.webp", alt: "", nachweis: "Foto: Der Vollautomaten-Doktor" }} titel="Der Original-Filter" punkte={[
   'Laut Philips bis zu 5.000 Tassen ohne Entkalken, wenn du jeden Filter rechtzeitig wechselst',
   'Passt in Philips- und Saeco-Vollautomaten mit AquaClean-Anschluss',
   'Zwei Filter in der Packung: Der nächste Wechsel liegt schon bereit',
@@ -62,6 +63,8 @@ rechtzeitig tauschst.
 5. **Aktivieren:** Im Menü den Filter bestätigen. Bei Geräten mit Display steht das unter „Wasserfilter“ oder es erscheint automatisch.
    Die Maschine spült dann einmal Wasser durch, ein Gefäß unterstellen.
 
+<Bild src="/bilder/fotos/philips-aquaclean-im-tank.webp" alt="Philips-Kaffeevollautomat von der Seite: Der weiße AquaClean-Filter steht senkrecht im durchsichtigen Wassertank" width={1200} height={1200} schmal nachweis="Foto: Der Vollautomaten-Doktor. So sitzt der AquaClean-Filter im Wassertank." />
+
 <Warnung titel="Entkalken, bevor der erste Filter reinkommt">
 Philips empfiehlt, die Maschine **zu entkalken, bevor** du zum ersten Mal einen AquaClean-Filter einsetzt, falls sie schon länger
 ohne Filter lief. Sonst arbeitet der Filter gegen Kalk, der schon in der Maschine sitzt.
@@ -94,6 +97,8 @@ Was die Farbe der Lampe bedeutet (blau, orange blinkend, aus), erklären wir in 
 4. **Einsetzen:** senkrecht auf den Anschluss im Tank drücken, bis zum Anschlag. Tank füllen und einsetzen.
 5. **Aktivieren**, damit die Maschine wieder von vorn zählt: mit der **AquaClean-Taste 3 Sekunden** gedrückt halten oder im Menü
    unter **„AquaClean“** bestätigen. Das ist das Zurücksetzen der Filteranzeige.
+
+<Bild src="/bilder/fotos/philips-aquaclean-tank-herausgezogen.webp" alt="Herausgezogener Wassertank einer Philips 2200 mit eingesetztem AquaClean-Filter" width={1200} height={1200} schmal nachweis="Foto: Der Vollautomaten-Doktor. Tank herausgezogen, der Filter sitzt im Anschluss am Boden." />
 
 Bei Modellen mit Display führt das Menü durch dieselben Schritte. Den neuen Filter hast du am
 besten schon da, wenn die Meldung kommt: <ProduktLink id="philips-aquaclean">AquaClean im Doppelpack</ProduktLink>.
@@ -129,7 +134,7 @@ Steht trotzdem eine Entkalkung an: [Philips Kaffeevollautomat entkalken](/artike
 Allgemeines zum Entkalken für alle Marken:
 [Kaffeevollautomat entkalken: richtig, und warum nicht mit Essig](/artikel/kaffeevollautomat-entkalken/).
 
-<ProduktFokus id="philips-aquaclean" bild={{ src: "/bilder/grafik/aquaclean-symbol.webp", alt: "", nachweis: "Symbolbild (Grafik: Der Vollautomaten-Doktor), nicht das Originalprodukt" }} titel="Für den nächsten Filterwechsel" punkte={[
+<ProduktFokus id="philips-aquaclean" bild={{ src: "/bilder/fotos/philips-aquaclean-verpackung.webp", alt: "", nachweis: "Foto: Der Vollautomaten-Doktor" }} titel="Für den nächsten Filterwechsel" punkte={[
   'Original von Philips, auch für Saeco freigegeben',
   'Spätestens nach etwa drei Monaten wechseln, auch bei wenig Kaffee',
 ]} />
